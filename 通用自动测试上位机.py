@@ -44,8 +44,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # 初始化使用元素
         self.short_time = '000000'
         self.normal_time = '00:00:00'
-        self.show_message_automatic = None
+        self.show_message_automatic_list = []
         self.show_message_singletest = None
+        self.show_message_dis1_list = []
         
         # 初始化多线程标志位
         self.test_mode = None
@@ -127,7 +128,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                                       self.lineEdit_binding_longitude,
                                       self.lineEdit_binding_height,
                                       self.lineEdit_binding_time]
-        # 十二路开关切换
+        # 十二路开关设置
         for i in range(12):
             self.combox_com_open_list[i].clicked.connect(self.change_button)
         for binding in self.comboBox_binding_list:
@@ -187,15 +188,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     
     # 事件更新0.1s线程，用于更新数据输出和绘图
     def show_message_01s(self):
-        if self.show_message_automatic is not None:
-            self.textBrowser_automatic_ruleline.append(self.show_message_automatic)
-            self.show_message_automatic = None
+        if len(self.show_message_dis1_list)>0:
+            self.textBrowser_progress_display1.append(self.show_message_dis1_list.pop(0))
             self.textBrowser_automatic_ruleline().setValue(self.textBrowser_automatic_ruleline().maximum())
-        if self.show_message_singletest is not None:
-            self.textBrowser_single_test.append(self.show_message_singletest)
-            self.show_message_singletest = None
-            self.textBrowser_single_test().setValue(self.textBrowser_single_test().maximum())
-            
+
+        if len(self.show_message_automatic_list)>0:
+            self.textBrowser_automatic_ruleline.append(self.show_message_automatic_list.pop(0))
+            self.textBrowser_automatic_ruleline.verticalScrollBar().setValue(self.textBrowser_automatic_ruleline.verticalScrollBar().maximum())
             
     # 事件更新0.5s线程，用于更新数据输出和绘图
     def show_message_05s(self):
@@ -588,6 +587,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def stop_test(self):
         if self.debug_flag:
             print('停止测试')
+        self.show_message_automatic_list.append('{} 停止测试'.format(self.normal_time))
         self.threading_test_flag = False
     # 点击开始测试事件，判断测试模式
     def begin_test(self):
@@ -618,10 +618,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         if not ((automatic_rule.lower()=='none')|(automatic_rule.lower()=='选择协议')):
             begin_test_mode = 'automatic_test'
         self.test_mode = begin_test_mode
-        self.textBrowser_automatic_ruleline.append('{} 当前模式：{}'.format(self.normal_time,testmode2chinese(begin_test_mode)))
-        # self.show_message_automatic = '{} 当前模式：{}'.format(self.normal_time,testmode2chinese(begin_test_mode))
-        
-        self.only_test()
+        # self.textBrowser_automatic_ruleline.append('{} 当前模式：{}'.format(self.normal_time,testmode2chinese(begin_test_mode)))
+        self.show_message_automatic_list.append('{} 模式：{}'.format(self.normal_time,testmode2chinese(begin_test_mode))) 
+        if begin_test_mode=='only_test':
+            self.only_test()
+        elif begin_test_mode=='turntable_test':
+            self.only_test()
+        elif begin_test_mode=='automatic_test':
+            self.only_test()
         
         
     # 单独测试模式、通用惯导采集
@@ -631,21 +635,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         protocal_baund = self.comboBox_protocal_baund.currentText()
         protocal_check = self.comboBox_protocal_check.currentText()
         
-        # self.threading_test_flag = False
-        # time.sleep(0.1)
-        # self.threading_test_flag = True
-        
-        # threading_receive = threading.Thread(target=self.receive_data_threading)
-        # threading_receive.setDaemon(True)
-        # threading_receive.start()
-        # threading_decode = threading.Thread(target=self.decode_data_threading)
-        # threading_decode.setDaemon(True)
-        # threading_decode.start()
-        # print('尝试创建')
         thread_receive_list = []
         thread_decode_list = []
         for i in range(12):
             if self.combox_com_open_list[i].text() == '开启':
+                if protocal_com.lower()=='lower':
+                    continue
                 thread = threading.Thread(target=self.receive_data_threading,args=(i,))
                 thread.setDaemon(True)
                 thread_receive_list.append(thread)
@@ -656,10 +651,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
 
     def receive_data_threading(self,thread_num):
-        # com = self.findChild()
         com = self.combox_com_list[thread_num].currentText()
+        baund = self.findChild(QtWidgets.QComboBox,'combox_set_baund_%s'%(thread_num+1)).currentText()
+        check = self.findChild(QtWidgets.QComboBox,'comboBox_set_check_%s'%(thread_num+1)).currentText()
+        stop = self.findChild(QtWidgets.QComboBox,'comboBox_stopbit_%s'%(thread_num+1)).currentText()
+        name = self.findChild(QtWidgets.QLineEdit,'lineEdit_file_names_%s'%(thread_num+1)).text()
+        # if 
+        
         if self.debug_flag | self.debug_threading:
-            print('thread_num:{}  com:{}'.format(thread_num,com))
+            print('thread_num:{} com:{} baund:{} check{} stop:{} name:{}'.format(thread_num,com,baund,check,stop,name))
             
         while self.threading_test_flag:
             time.sleep(0.1)
