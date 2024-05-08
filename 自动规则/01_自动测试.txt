@@ -1,0 +1,7 @@
+#序号	名称	设置	注释
+#自动测试
+#power:电源型号控制 on
+0	power	off
+1	wait	3600
+2	power	on
+3	
