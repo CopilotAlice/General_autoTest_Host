@@ -586,6 +586,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.lineEdit_binding_command.setText(' '.join(command_list1+command_list))
         
     def stop_test(self):
+        if self.debug_flag:
+            print('停止测试')
         self.threading_test_flag = False
     # 点击开始测试事件，判断测试模式
     def begin_test(self):
