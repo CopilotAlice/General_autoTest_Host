@@ -1865,17 +1865,17 @@ class Ui_MainWindow(object):
 
         self.groupBox_9 = QGroupBox(self.tab_2)
         self.groupBox_9.setObjectName(u"groupBox_9")
-        self.horizontalLayout_12 = QHBoxLayout(self.groupBox_9)
-        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
+        self.verticalLayout_8 = QVBoxLayout(self.groupBox_9)
+        self.verticalLayout_8.setObjectName(u"verticalLayout_8")
         self.textBrowser_progress_display1 = QTextBrowser(self.groupBox_9)
         self.textBrowser_progress_display1.setObjectName(u"textBrowser_progress_display1")
 
-        self.horizontalLayout_12.addWidget(self.textBrowser_progress_display1)
+        self.verticalLayout_8.addWidget(self.textBrowser_progress_display1)
 
         self.textBrowser_progress_display2 = QTextBrowser(self.groupBox_9)
         self.textBrowser_progress_display2.setObjectName(u"textBrowser_progress_display2")
 
-        self.horizontalLayout_12.addWidget(self.textBrowser_progress_display2)
+        self.verticalLayout_8.addWidget(self.textBrowser_progress_display2)
 
 
         self.verticalLayout_3.addWidget(self.groupBox_9)
@@ -1887,67 +1887,74 @@ class Ui_MainWindow(object):
         self.gridLayout_2.setSpacing(0)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.textBrowser_5 = QTextBrowser(self.tab)
-        self.textBrowser_5.setObjectName(u"textBrowser_5")
-
-        self.gridLayout_2.addWidget(self.textBrowser_5, 3, 0, 1, 1)
-
-        self.textBrowser = QTextBrowser(self.tab)
-        self.textBrowser.setObjectName(u"textBrowser")
-
-        self.gridLayout_2.addWidget(self.textBrowser, 0, 0, 1, 1)
-
         self.textBrowser_3 = QTextBrowser(self.tab)
         self.textBrowser_3.setObjectName(u"textBrowser_3")
 
-        self.gridLayout_2.addWidget(self.textBrowser_3, 1, 0, 1, 1)
-
-        self.textBrowser_9 = QTextBrowser(self.tab)
-        self.textBrowser_9.setObjectName(u"textBrowser_9")
-
-        self.gridLayout_2.addWidget(self.textBrowser_9, 4, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.textBrowser_3, 2, 0, 1, 1)
 
         self.textBrowser_4 = QTextBrowser(self.tab)
         self.textBrowser_4.setObjectName(u"textBrowser_4")
 
-        self.gridLayout_2.addWidget(self.textBrowser_4, 2, 0, 1, 1)
-
-        self.textBrowser_7 = QTextBrowser(self.tab)
-        self.textBrowser_7.setObjectName(u"textBrowser_7")
-
-        self.gridLayout_2.addWidget(self.textBrowser_7, 2, 1, 1, 1)
-
-        self.textBrowser_8 = QTextBrowser(self.tab)
-        self.textBrowser_8.setObjectName(u"textBrowser_8")
-
-        self.gridLayout_2.addWidget(self.textBrowser_8, 3, 1, 1, 1)
-
-        self.textBrowser_10 = QTextBrowser(self.tab)
-        self.textBrowser_10.setObjectName(u"textBrowser_10")
-
-        self.gridLayout_2.addWidget(self.textBrowser_10, 5, 0, 1, 1)
-
-        self.textBrowser_11 = QTextBrowser(self.tab)
-        self.textBrowser_11.setObjectName(u"textBrowser_11")
-
-        self.gridLayout_2.addWidget(self.textBrowser_11, 4, 1, 1, 1)
-
-        self.textBrowser_12 = QTextBrowser(self.tab)
-        self.textBrowser_12.setObjectName(u"textBrowser_12")
-
-        self.gridLayout_2.addWidget(self.textBrowser_12, 5, 1, 1, 1)
-
-        self.textBrowser_6 = QTextBrowser(self.tab)
-        self.textBrowser_6.setObjectName(u"textBrowser_6")
-
-        self.gridLayout_2.addWidget(self.textBrowser_6, 1, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.textBrowser_4, 3, 0, 1, 1)
 
         self.textBrowser_2 = QTextBrowser(self.tab)
         self.textBrowser_2.setObjectName(u"textBrowser_2")
 
-        self.gridLayout_2.addWidget(self.textBrowser_2, 0, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.textBrowser_2, 1, 0, 1, 1)
+
+        self.textBrowser_5 = QTextBrowser(self.tab)
+        self.textBrowser_5.setObjectName(u"textBrowser_5")
+
+        self.gridLayout_2.addWidget(self.textBrowser_5, 4, 0, 1, 1)
+
+        self.textBrowser_1 = QTextBrowser(self.tab)
+        self.textBrowser_1.setObjectName(u"textBrowser_1")
+
+        self.gridLayout_2.addWidget(self.textBrowser_1, 0, 0, 1, 1)
+
+        self.textBrowser_6 = QTextBrowser(self.tab)
+        self.textBrowser_6.setObjectName(u"textBrowser_6")
+
+        self.gridLayout_2.addWidget(self.textBrowser_6, 5, 0, 1, 1)
 
         self.tabWidget.addTab(self.tab, "")
+        self.tab_4 = QWidget()
+        self.tab_4.setObjectName(u"tab_4")
+        self.verticalLayout_7 = QVBoxLayout(self.tab_4)
+        self.verticalLayout_7.setSpacing(0)
+        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
+        self.verticalLayout_7.setContentsMargins(0, 0, 0, 0)
+        self.textBrowser_7 = QTextBrowser(self.tab_4)
+        self.textBrowser_7.setObjectName(u"textBrowser_7")
+
+        self.verticalLayout_7.addWidget(self.textBrowser_7)
+
+        self.textBrowser_8 = QTextBrowser(self.tab_4)
+        self.textBrowser_8.setObjectName(u"textBrowser_8")
+
+        self.verticalLayout_7.addWidget(self.textBrowser_8)
+
+        self.textBrowser_9 = QTextBrowser(self.tab_4)
+        self.textBrowser_9.setObjectName(u"textBrowser_9")
+
+        self.verticalLayout_7.addWidget(self.textBrowser_9)
+
+        self.textBrowser_10 = QTextBrowser(self.tab_4)
+        self.textBrowser_10.setObjectName(u"textBrowser_10")
+
+        self.verticalLayout_7.addWidget(self.textBrowser_10)
+
+        self.textBrowser_11 = QTextBrowser(self.tab_4)
+        self.textBrowser_11.setObjectName(u"textBrowser_11")
+
+        self.verticalLayout_7.addWidget(self.textBrowser_11)
+
+        self.textBrowser_12 = QTextBrowser(self.tab_4)
+        self.textBrowser_12.setObjectName(u"textBrowser_12")
+
+        self.verticalLayout_7.addWidget(self.textBrowser_12)
+
+        self.tabWidget.addTab(self.tab_4, "")
         self.tab_3 = QWidget()
         self.tab_3.setObjectName(u"tab_3")
         self.groupBox_7 = QGroupBox(self.tab_3)
@@ -2013,7 +2020,7 @@ class Ui_MainWindow(object):
         self.comboBox_protocal_check.setItemText(2, QCoreApplication.translate("MainWindow", u"\u5947\u6821\u9a8c", None))
 
         self.label_11.setText(QCoreApplication.translate("MainWindow", u"\u534f\u8bae:", None))
-        self.comboBox_protocal_rule.setItemText(0, QCoreApplication.translate("MainWindow", u"None", None))
+        self.comboBox_protocal_rule.setItemText(0, QCoreApplication.translate("MainWindow", u"\u9009\u62e9\u534f\u8bae", None))
 
         self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"\u8f6c\u53f0\u63a7\u5236\u6a21\u5757", None))
         self.comboBox_turntable_com.setItemText(0, QCoreApplication.translate("MainWindow", u"COM1", None))
@@ -2050,7 +2057,7 @@ class Ui_MainWindow(object):
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"\u901f\u7387", None))
         self.label_13.setText(QCoreApplication.translate("MainWindow", u"\u52a0\u901f", None))
         self.label_30.setText(QCoreApplication.translate("MainWindow", u"\u6807\u5b9a:", None))
-        self.comboBox_turntable_rule.setItemText(0, QCoreApplication.translate("MainWindow", u"None", None))
+        self.comboBox_turntable_rule.setItemText(0, QCoreApplication.translate("MainWindow", u"\u9009\u62e9\u534f\u8bae", None))
 
         self.groupBox_3.setTitle(QCoreApplication.translate("MainWindow", u"\u7535\u6e90\u63a7\u5236\u6a21\u5757", None))
         self.radioButton_power_flag.setText("")
@@ -2097,7 +2104,7 @@ class Ui_MainWindow(object):
         self.label_43.setText(QCoreApplication.translate("MainWindow", u"\u5bf9\u51c6", None))
         self.lineEdit_binding_time.setText(QCoreApplication.translate("MainWindow", u"0", None))
         self.label_36.setText(QCoreApplication.translate("MainWindow", u"\u534f\u8bae:", None))
-        self.comboBox_binding_rule.setItemText(0, QCoreApplication.translate("MainWindow", u"None", None))
+        self.comboBox_binding_rule.setItemText(0, QCoreApplication.translate("MainWindow", u"\u9009\u62e9\u534f\u8bae", None))
 
         self.groupBox_5.setTitle(QCoreApplication.translate("MainWindow", u"\u81ea\u52a8\u6d4b\u8bd5\u6a21\u5757", None))
         self.textBrowser_automatic_ruleline.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -2520,7 +2527,8 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(tooltip)
         self.groupBox_9.setTitle(QCoreApplication.translate("MainWindow", u"\u8fdb\u5ea6\u663e\u793a\u6a21\u5757", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("MainWindow", u"\u591a\u8def", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"\u6570\u636e", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"1-6", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), QCoreApplication.translate("MainWindow", u"7-12", None))
         self.groupBox_7.setTitle(QCoreApplication.translate("MainWindow", u"\u901f\u5ea6", None))
         self.groupBox_8.setTitle(QCoreApplication.translate("MainWindow", u"\u4f4d\u7f6e", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QCoreApplication.translate("MainWindow", u"\u60ef\u5bfc", None))

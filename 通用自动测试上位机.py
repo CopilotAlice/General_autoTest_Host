@@ -29,9 +29,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
-        self.setWindowTitle("通用自动测试上位机_蔡_2404_V0.1")
+        self.setWindowTitle("通用自动测试上位机_蔡_功能测试版_2404_V0.1")
         self.show_message_length = 30   # 显示的最大行数
-        self.show_message_count = 0     # 显示提示次数
         
         # 初始化界面元素
         self.inside_location = 0.0
@@ -57,7 +56,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.debug_read_rules = False
         self.bebug_binding = False
         self.debug_begin_test = False
-        self.debug_threading = True
+        self.debug_threading = False
+        self.debug_update_5s = False
+        self.debug_update_5s_file = True
         
         # 初始化解算规则列表-新
         self.decode_rule_list = []    # 解算规则
@@ -148,28 +149,29 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # 多路文件名同步更新
         self.lineEdit_file_names_all.textChanged.connect(self.filenames_change)
         # 规则更新同步
-        # self.comboBox_protocal_rule.currentIndexChanged.connect(self.read_rules)
+        self.comboBox_protocal_rule.currentTextChanged.connect(self.read_rules)
         self.pushButton_begin_test.clicked.connect(self.begin_test)
         self.pushButton_stop_test.clicked.connect(self.stop_test)
         
         
+
+        
+        # 读取默认配置文件
+        self.read_default_para_com()
+        self.read_default_para_config()
+        
+        # 事件更新计数
         self.show_timer_count0 = 0
         self.show_timer_count1 = 0
         self.show_timer_count2 = 0
         self.show_timer_count3 = 0
-        
         # 打开软件自动更新一次所有状态
         self.show_message_01s()
         self.show_message_05s()
         self.show_message_1s()
         self.show_message_5s()
         
-        
-        # 读取默认配置文件
-        self.read_default_para_com()
-        self.read_default_para_config()
-        
-        # 事件0.5s更新
+        # 事件0.1s更新
         self.show_timer0 = QTimer(self)
         self.show_timer0.timeout.connect(self.show_message_01s)
         self.show_timer0.start(100)
@@ -190,7 +192,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def show_message_01s(self):
         if len(self.show_message_dis1_list)>0:
             self.textBrowser_progress_display1.append(self.show_message_dis1_list.pop(0))
-            self.textBrowser_automatic_ruleline().setValue(self.textBrowser_automatic_ruleline().maximum())
+            self.textBrowser_progress_display1.verticalScrollBar().setValue(self.textBrowser_progress_display1.verticalScrollBar().maximum())
 
         if len(self.show_message_automatic_list)>0:
             self.textBrowser_automatic_ruleline.append(self.show_message_automatic_list.pop(0))
@@ -223,6 +225,21 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             # com_lists.sort()
             com_lists = sorted(com_lists,key=lambda x:int(x[3:]))
             for comboBox in self.comboBox_com_list+self.combox_com_list:
+                comboBox_com_list = []
+                for count in range(comboBox.count()):
+                    comboBox_com_list.append(comboBox.itemText(count))
+                try:    
+                    comboBox_com_list.remove('None')
+                except:
+                    if self.debug_update_5s:
+                        print('comboBox_com_list中没有None项:{}'.format(comboBox_com_list))
+                comboBox_com_list = sorted(comboBox_com_list,key=lambda x:int(x[3:]))
+                if comboBox_com_list==com_lists:
+                    if self.debug_update_5s:
+                        print('没有新的com口')
+                    continue
+                if self.debug_update_5s:
+                    print('选择了新的com口:{}'.format(com_lists))
                 select_combo = comboBox.currentText()
                 comboBox.clear()
                 comboBox.addItem('None')
@@ -240,14 +257,31 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 if file_path.lower()=='none':
                     continue
                 file_list = []
+                if not os.path.exists(file_path):
+                    os.makedirs(file_path)
                 for file_name in os.listdir('./'+file_path):
                     file_name = file_name.split('.txt')[0]
                     file_list.append(file_name)
                 file_list.sort()
+                
+                comboBox_file_list = []
+                for count in range(comboBox.count()):
+                    comboBox_file_list.append(comboBox.itemText(count))
+                try:    
+                    comboBox_file_list.remove('选择协议')
+                except:
+                    if self.debug_update_5s_file:
+                        print('comboBox_file_list中没有选择协议 项:{}'.format(comboBox_file_list))
+                if comboBox_file_list==file_list:
+                    if self.debug_update_5s_file:
+                        print('没有新的com口')
+                    continue
+                else:
+                    if self.debug_update_5s_file:
+                        print('comboBox_file_list:{}\nfile_list:{}'.format(comboBox_file_list,file_list))
                 comboBox = self.findChild(QtWidgets.QComboBox,'comboBox_%s_rule'%(model_list[1][i]))
                 if comboBox is None:
-                    if self.show_message_count<3:
-                        self.show_message_count+=1
+                    if self.debug_update_5s_file:
                         print('未找到对应控件：comboBox_%s_rule'%(model_list[1][i]))
                     continue
                 select_combo = comboBox.currentText()
@@ -396,10 +430,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         try:
             rule_name = self.comboBox_protocal_rule.currentText()
             if len(rule_name)==0:
-                print('没有选择规则文件')
-                return
-            with open('./解算规则/{}.txt'.format(rule_name), 'r',encoding='gb2312') as file:
+                print('没有选择规则文件:{}'.format(rule_name))
+                return False
+            if rule_name=='选择协议':
+                return False
+            with open('./解算规则/{}.txt'.format(rule_name), 'r',encoding='gb2312',errors='ignore') as file:
                 rules = file.read()
+                
         except Exception as e:
             self.textBrowser_automatic_ruleline.append('读取规则文件失败:'+str(e))
             return False
@@ -493,10 +530,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             elif len(lines)==0 | len(lines.split())==0:
                 continue
             elif len(lines.split())<5:
-                self.textBrowser_fileCsv.append('错误长度<{}>'.format(lines))
+                self.textBrowser_automatic_ruleline.append('错误长度<{}>'.format(lines))
                 continue
             elif lines.split()[0] not in rules_lists_format:
-                self.textBrowser_fileCsv.append('不在解算规则范围内<{}>'.format(lines))
+                self.textBrowser_automatic_ruleline.append('不在解算规则范围内<{}>'.format(lines))
                 continue
             # 读取合法规则文件
             else:
@@ -639,7 +676,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         thread_decode_list = []
         for i in range(12):
             if self.combox_com_open_list[i].text() == '开启':
-                if protocal_com.lower()=='lower':
+                if protocal_com.lower()=='none':
+                    self.show_message_dis1_list.append('tab_{}:线程开启，串口{}'.format(i+1,protocal_com))
                     continue
                 thread = threading.Thread(target=self.receive_data_threading,args=(i,))
                 thread.setDaemon(True)
