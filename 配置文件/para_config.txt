@@ -6,13 +6,15 @@
 2	out_spd	24	转台外框速度
 3	out_acc	24	转台外框加速度
 4	hold_time	5	转台稳定后等待时间
-5	save_ms	0	是否保存毫秒值 1True/0False
+5	save_ms	1	是否保存毫秒值 1True/0False
 6	save_BD_average	1	是否将标定过程各位置+取均值存放
 6	save_BD_bin	1	是否将标定过程中16进制原始数
 6	save_BD_1file	1	将标定过程各点存储到一个文件/0:多个文件
+6	save_decimal_point	6	保存时保留小数点后几位
+6	save_test_title	1	创建文件时将协议中的标题内容一并保存
 7	power_model	1	电源型号：1程控电源，2继电器
 8	default_protocal	1	默认通讯协议选择序号
-9	default_turntable	1	默认转台控制选择序号
-10	default_binding	0	默认转台控制选择序号
+9	default_turntable	0	默认转台控制选择序号
+10	default_binding	1	默认装订选择序号
 11	default_automatic	0	默认自动测试选择序号
 12	decode_header_type	1	0:使用单帧头模式/1:使用2帧头中间模式/2:使用帧头帧尾模式

@@ -7,7 +7,7 @@
 #	dimensions	116.50984			
 #	height	20			
 #	alignment_time	200			
-#	comm_hz	200	
+#	receive_hz	200	
 #	special_flag	JG	特殊标志位
 #	rulehead	>
 B	0	1	0x55	N	

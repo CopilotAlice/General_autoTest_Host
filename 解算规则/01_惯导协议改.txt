@@ -57,7 +57,7 @@ d	0	1	ECEF坐标系位置Z	N	（低字节在前）单位：m
 d	0	1	ECEF坐标系速度X	N	（低字节在前）单位：m/s
 d	0	1	ECEF坐标系速度Y	N	（低字节在前）单位：m/s
 d	0	1	ECEF坐标系速度Z	N	（低字节在前）单位：m/s
-B	0	1	卫星数	N	
+B	0	1	count	N	
 x	0	1	保留	N	
 x	0	1	保留	N	
 x	0	1	保留	N	

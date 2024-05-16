@@ -46,19 +46,33 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.show_message_automatic_list = []
         self.show_message_singletest = None
         self.show_message_dis1_list = []
+        self.show_message_list = []             # 12输出显示
+        for i in range(12):
+            self.show_message_list.append([])
+        self.show_message_dataframe = []        # 12路绘图显示
+        for i in range(12):
+            self.show_message_dataframe.append(pd.DataFrame([]))
+        
         
         # 初始化多线程标志位
         self.test_mode = None
         self.threading_test_flag = False        # 测试标志
+        self.threading_list_flag = []           # 12子线程测试标志位
+        for i in range(12):
+            self.threading_list_flag.append(False)
+        self.save_data_flag = False     # 保存数据标志位
+        self.save_aver_flag = False     # 标定结束一个位置，取均值
+        self.save_ztrd_flag = False     # 转台到位标志位
+        self.turntable_read = False     # 标定可以开始标志位
         
         # debug调试状态
         self.debug_flag = False
         self.debug_read_rules = False
         self.bebug_binding = False
-        self.debug_begin_test = False
-        self.debug_threading = False
+        self.debug_begin_test = True
+        self.debug_threading = True
         self.debug_update_5s = False
-        self.debug_update_5s_file = True
+        self.debug_update_5s_file = False
         
         # 初始化解算规则列表-新
         self.decode_rule_list = []    # 解算规则
@@ -67,7 +81,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.decode_titl_list = []    # 标题
         self.decode_cout_list = []    # 排序序号
         self.decode_sort_list = []    # 排序后列表
-        self.decode_header_list = []    # 大小端
+        self.decode_edia_list = []    # 大小端
+        self.receive_hz = 200
         
         
         # 配置文件路径
@@ -85,6 +100,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.config_save_BD_average = 1     # 是否将标定过程各点取均值存放
         self.config_save_BD_bin = 1         # 是否保存标定过程中16进制原始数
         self.config_save_BD_1file = 1       # 将标定过程各点存储到一个文件/多个文件
+        self.save_decimal_point = 6         # 保存时保留小数点后几位
+        self.save_test_title = 1            # 创建文件时将协议中的标题内容一并保存
         self.config_power_model = 1         # 电源型号：1程控电源，2继电器
         self.config_special_flag = None     # 特殊标志位
         self.config_decode_header_type = 1  # 0:使用帧头模式/1:使用2帧头中间模式/2:使用帧头帧尾模式
@@ -154,12 +171,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.pushButton_stop_test.clicked.connect(self.stop_test)
         
         
-
-        
-        # 读取默认配置文件
-        self.read_default_para_com()
-        self.read_default_para_config()
-        
         # 事件更新计数
         self.show_timer_count0 = 0
         self.show_timer_count1 = 0
@@ -170,6 +181,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.show_message_05s()
         self.show_message_1s()
         self.show_message_5s()
+        
+        # 读取默认配置文件
+        self.read_default_para_com()
+        self.read_default_para_config()
         
         # 事件0.1s更新
         self.show_timer0 = QTimer(self)
@@ -216,7 +231,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     # 事件更新5s线程，用于更新串口等对时间不敏感内容
     def show_message_5s(self):
         self.show_timer_count3 += 1
-        # 更新串口  #串口   #更新
+        # 更新串口  #串口更新
         if self.comboBox_update_com_flag:
             plist = list(serial.tools.list_ports.comports())
             com_lists = []
@@ -238,18 +253,19 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     if self.debug_update_5s:
                         print('没有新的com口')
                     continue
-                if self.debug_update_5s:
+                elif self.debug_update_5s:
                     print('选择了新的com口:{}'.format(com_lists))
                 select_combo = comboBox.currentText()
                 comboBox.clear()
                 comboBox.addItem('None')
                 for com in com_lists:
                     comboBox.addItem(com)
-                if select_combo in com_lists:
-                    comboBox.setCurrentText(select_combo)
-                else:
-                    comboBox.setCurrentIndex(0)
-        # 更新规则文件 #协议    #更新
+                comboBox.setCurrentText(select_combo)
+                # if select_combo in com_lists:
+                #     comboBox.setCurrentText(select_combo)
+                # else:
+                #     comboBox.setCurrentIndex(0)
+        # 更新规则文件 #协议更新
         if self.comboBox_update_rules_flag:
             model_list = self.model_list
             for i in range(len(model_list[0])):
@@ -264,6 +280,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     file_list.append(file_name)
                 file_list.sort()
                 
+                comboBox = self.findChild(QtWidgets.QComboBox,'comboBox_%s_rule'%(model_list[1][i]))
                 comboBox_file_list = []
                 for count in range(comboBox.count()):
                     comboBox_file_list.append(comboBox.itemText(count))
@@ -271,15 +288,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     comboBox_file_list.remove('选择协议')
                 except:
                     if self.debug_update_5s_file:
-                        print('comboBox_file_list中没有选择协议 项:{}'.format(comboBox_file_list))
+                        print('comboBox_file_list中没有选择协议项:{}'.format(comboBox_file_list))
                 if comboBox_file_list==file_list:
                     if self.debug_update_5s_file:
-                        print('没有新的com口')
+                        print('没有新的协议')
                     continue
                 else:
                     if self.debug_update_5s_file:
                         print('comboBox_file_list:{}\nfile_list:{}'.format(comboBox_file_list,file_list))
-                comboBox = self.findChild(QtWidgets.QComboBox,'comboBox_%s_rule'%(model_list[1][i]))
                 if comboBox is None:
                     if self.debug_update_5s_file:
                         print('未找到对应控件：comboBox_%s_rule'%(model_list[1][i]))
@@ -289,6 +305,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 comboBox.addItem('选择协议')
                 for rule in file_list:
                     comboBox.addItem(rule)
+                # comboBox.setCurrentText(select_combo)
                 if select_combo in file_list:
                     comboBox.setCurrentText(select_combo)
                 else:
@@ -401,6 +418,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     # 是否将数据保存到一个文件中
                     elif para_rule_list[1]=='save_BD_1file':
                         self.config_save_BD_1file = int(para_rule_list[2])
+                    # 保存时保留小数点后几位
+                    elif para_rule_list[1]=='save_decimal_point':
+                        self.save_decimal_point = int(save_decimal_point[2])
+                    # 创建文件时将协议中的标题内容一并保存
+                    elif para_rule_list[1]=='save_test_title':
+                        self.save_test_title = int(save_test_title[2])
                     # 是否保存标定16进制原始数
                     elif para_rule_list[1]=='save_BD_bin':
                         self.config_save_BD_bin = int(para_rule_list[2])
@@ -421,8 +444,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         self.config_decode_header_type = int(para_rule_list[2])
                     else:
                         self.textBrowser_automatic_ruleline.append('未知配置项：%s'%(para_rule_list))
-    # 读取载入解算规则文件  20240508
+    # 读取载入解算规则文件  20240513
     # 读取规则文件并更新全局变量
+    # debug:惯导协议改文件中行60标题无法使用"卫星数"，暂时替换为其他
     def read_rules(self):
         if self.debug_flag:
             print('def_read_rules')
@@ -430,7 +454,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         try:
             rule_name = self.comboBox_protocal_rule.currentText()
             if len(rule_name)==0:
-                print('没有选择规则文件:{}'.format(rule_name))
+                if self.debug_flag:
+                    print('没有选择规则文件:{}'.format(rule_name))
                 return False
             if rule_name=='选择协议':
                 return False
@@ -448,9 +473,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         decode_titl_list = []    # 标题
         decode_cout_list = []    # 排序序号
         decode_sort_list = []    # 排序后列表
-        decode_header_list = []    # 大小端
+        decode_edia_list = []    # 大小端
 
-        default_header = '>'     # 默认大小端
+        default_edia = '>'     # 默认大小端
 
         decode_rule = []
         decode_save = []
@@ -461,9 +486,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # 帧头帧尾
         self.decode_rule_header = b'' 
         self.decode_rule_ender = b'' 
-        
+        read_line_count = 0
         # 逐行读取规则文件
         for lines in rules.split('\n'):
+            read_line_count+=1
             # 规则文件配置项
             if lines.startswith('#'):
                 if len(lines.split())<3:
@@ -484,8 +510,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 elif lines.split()[1].lower() == 'ender':
                     self.decode_rule_ender = bytes.fromhex(''.join(lines.split()[2:]))
                 # 帧率
-                elif lines.split()[1].lower() == 'comm_hz':
-                    self.comm_hz = try_set_text(lines.split()[2],int,200)
+                elif lines.split()[1].lower() == 'receive_hz':
+                    self.receive_hz = try_set_text(lines.split()[2],int,200)
                 # 经度
                 elif lines.split()[1].lower() == 'longitude':
                     self.lineEdit_binding_longitude.setText(lines.split()[2])
@@ -514,14 +540,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         decode_para_list.append(decode_para)
                         decode_titl_list.append(decode_titl)
                         decode_cout_list.append(decode_cout)
-                        decode_header_list.append(default_header)
+                        decode_edia_list.append(default_edia)
                         
                         decode_rule = []
                         decode_save = []
                         decode_para = []
                         decode_titl = []
                         decode_cout = []
-                    default_header = lines.split()[2]
+                    default_edia = lines.split()[2]
                 else:
                     if self.debug_flag | self.debug_read_rules:
                         print('未知规则:<{}>split:<{}>'.format(lines,lines.split()))
@@ -530,10 +556,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             elif len(lines)==0 | len(lines.split())==0:
                 continue
             elif len(lines.split())<5:
-                self.textBrowser_automatic_ruleline.append('错误长度<{}>'.format(lines))
+                self.textBrowser_automatic_ruleline.append('规则文件错误:《{}》：《{}》'.format(read_line_count,lines))
                 continue
             elif lines.split()[0] not in rules_lists_format:
-                self.textBrowser_automatic_ruleline.append('不在解算规则范围内<{}>'.format(lines))
+                self.textBrowser_automatic_ruleline.append('不在解算规则范围内《{}》'.format(lines))
                 continue
             # 读取合法规则文件
             else:
@@ -551,7 +577,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             decode_para_list.append(decode_para)
             decode_titl_list.append(decode_titl)
             decode_cout_list.append(decode_cout)
-            decode_header_list.append(default_header)
+            decode_edia_list.append(default_edia)
     
         decode_sort_list = []
         for test_order in decode_cout_list:
@@ -570,6 +596,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 else:
                     sorted_list.append(test_order[i])
             decode_sort_list.append(sorted_list)
+        decode_fram_leng = calculate_frame_length(decode_rule_list)
         if self.debug_flag | self.debug_read_rules:
             print('读取规则文件')
             print('decode_rule_list:{}'.format(decode_rule_list))
@@ -578,7 +605,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             print('decode_titl_list:{}'.format(decode_titl_list))
             print('decode_cout_list:{}'.format(decode_cout_list))
             print('decode_sort_list:{}'.format(decode_sort_list))
-            print('decode_header_list:{}'.format(decode_header_list))
+            print('decode_edia_list:{}'.format(decode_edia_list))
+            print('decode_fram_leng:{}'.format(decode_fram_leng))
 
         self.decode_rule_list = decode_rule_list    # 解算规则
         self.decode_save_list = decode_save_list    # 是否保存
@@ -586,7 +614,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.decode_titl_list = decode_titl_list    # 标题
         self.decode_cout_list = decode_cout_list    # 排序序号
         self.decode_sort_list = decode_sort_list    # 排序后列表
-        self.decode_header_list = decode_header_list    # 大小端
+        self.decode_edia_list = decode_edia_list    # 大小端
+        self.decode_fram_leng = decode_fram_leng    # 帧长度
         
         # self.comboBox_begin_axis.clear()
         # for i in range(len(title_sort)):
@@ -641,28 +670,37 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         binding_rule = self.comboBox_binding_rule.currentText()
         tempbox_com = self.comboBox_tempbox_com.currentText()
         automatic_rule = self.comboBox_automatic_rule.currentText()
+        
         if self.debug_flag | self.debug_begin_test:
-            print('protocal::rule:{}\tcom:{}\tbaund:{}\tcheck:{}'.format(protocal_rule,protocal_com,protocal_baund,protocal_check))
-            print('turntable:rule:{}\tcom:{}'.format(turntable_rule,turntable_com))
-            print('power_com:rule:{}'.format(power_com))
-            print('binding_rule:rule:{}'.format(binding_rule))
-            print('tempbox_com:rule:{}'.format(tempbox_com))
-            print('automatic_rule:rule:{}'.format(automatic_rule))
+            print('protocal::rule: {}\tcom:{}\tbaund:{}\tcheck:{}'.format(protocal_rule,protocal_com,protocal_baund,protocal_check))
+            print('turntable:rule: {}\tcom:{}'.format(turntable_rule,turntable_com))
+            print('power_com:rule: {}'.format(power_com))
+            print('binding__:rule: {}'.format(binding_rule))
+            print('tempbox_c:rule: {}'.format(tempbox_com))
+            print('automatic:rule: {}'.format(automatic_rule))
         
         begin_test_mode = 'only_test'
+        self.save_aver_flag = False
+        self.save_data_flag = False
+        self.save_ztrd_flag = False
+        self.turntable_read = False
+        
+        
         if not ((turntable_rule.lower()=='none')|(turntable_rule.lower()=='选择协议')):
             begin_test_mode = 'turntable_test'
         if not ((automatic_rule.lower()=='none')|(automatic_rule.lower()=='选择协议')):
             begin_test_mode = 'automatic_test'
         self.test_mode = begin_test_mode
-        # self.textBrowser_automatic_ruleline.append('{} 当前模式：{}'.format(self.normal_time,testmode2chinese(begin_test_mode)))
-        self.show_message_automatic_list.append('{} 模式：{}'.format(self.normal_time,testmode2chinese(begin_test_mode))) 
+        self.show_message_automatic_list.append('{} 模式:{}'.format(self.normal_time,testmode2chinese(begin_test_mode))) 
         if begin_test_mode=='only_test':
+            self.save_data_flag = True
+            self.turntable_read = True
             self.only_test()
         elif begin_test_mode=='turntable_test':
             self.only_test()
         elif begin_test_mode=='automatic_test':
-            self.only_test()
+            # self.only_test()
+            self.show_message_automatic_list.append('尚未完成')
         
         
     # 单独测试模式、通用惯导采集
@@ -671,38 +709,198 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         protocal_com = self.comboBox_protocal_com.currentText()
         protocal_baund = self.comboBox_protocal_baund.currentText()
         protocal_check = self.comboBox_protocal_check.currentText()
-        
         thread_receive_list = []
         thread_decode_list = []
         for i in range(12):
+            time.sleep(0.01)
             if self.combox_com_open_list[i].text() == '开启':
                 if protocal_com.lower()=='none':
                     self.show_message_dis1_list.append('tab_{}:线程开启，串口{}'.format(i+1,protocal_com))
                     continue
+                self.threading_list_flag[i] = True
                 thread = threading.Thread(target=self.receive_data_threading,args=(i,))
                 thread.setDaemon(True)
                 thread_receive_list.append(thread)
                 thread.start()
         
         
-        
-        
 
     def receive_data_threading(self,thread_num):
+        # 串口信息载入
         com = self.combox_com_list[thread_num].currentText()
         baund = self.findChild(QtWidgets.QComboBox,'combox_set_baund_%s'%(thread_num+1)).currentText()
         check = self.findChild(QtWidgets.QComboBox,'comboBox_set_check_%s'%(thread_num+1)).currentText()
         stop = self.findChild(QtWidgets.QComboBox,'comboBox_stopbit_%s'%(thread_num+1)).currentText()
         name = self.findChild(QtWidgets.QLineEdit,'lineEdit_file_names_%s'%(thread_num+1)).text()
-        # if 
-        
+        checks = check2serial(check)
+        stops = stop2chinese(stop)
         if self.debug_flag | self.debug_threading:
-            print('thread_num:{} com:{} baund:{} check{} stop:{} name:{}'.format(thread_num,com,baund,check,stop,name))
+            print('thread_num:{}\tcom:{}\tbaund:{} check:{} stop:{} name:{}'.format(thread_num,com,baund,check,stop,name))
+        
+        # 规则信息载入
+        decode_rule_list    = self.decode_rule_list     # 解算规则
+        decode_save_list    = self.decode_save_list     # 是否保存
+        decode_para_list    = self.decode_para_list     # 系数
+        decode_titl_list    = self.decode_titl_list     # 标题
+        decode_cout_list    = self.decode_cout_list     # 排序序号
+        decode_sort_list    = self.decode_sort_list     # 排序后列表
+        decode_edia_list    = self.decode_edia_list     # 大小端
+        decode_rule_header  = self.decode_rule_header   # 帧头
+        decode_rule_ender   = self.decode_rule_ender    # 帧尾
+        decode_fram_leng    = self.decode_fram_leng     # 帧长
+        receive_hz          = self.receive_hz           # 频率
+        save_decimal_point  = self.save_decimal_point   # 精度
+        save_test_title     = self.save_test_title      # 标题
+        
+        if self.debug_threading:
+            print('decode_fram_leng:{}'.format(decode_fram_leng))
+        # 测试信息初始化
+        now = datetime.datetime.now()
+        save_time = '{}_{}_{}'.format(now.hour,now.minute,now.second)
+        file_path = './测试数据/{}{}/{}/'.format(int2str(now.year),int2str(now.month),int2str(now.day))
+        if not os.path.exists(file_path):
+            os.makedirs(file_path)
+        all_data = b''
+        
+        # 保存文件名
+        hex_filename = '{}{}_{}_hex.hex'.format(file_path,name,now)
+        hz_filename  = '{}{}_{}_hz.txt'.format(file_path,name,now)
+        s_filename   = '{}{}_{}_s.txt'.format(file_path,name,now)
+        ave_filename = '{}{}_{}_ave.txt'.format(file_path,name,now)
+        
+        sorted_title_list = []
+        for i in range(len(decode_save_list)):
+            sorted_title_list+=[decode_titl_list[i][decode_sort_list[i].index(str(j))] for j in range(len(decode_titl_list[i])) if decode_save_list[i][decode_sort_list[i].index(str(j))]=='1']
+        zeros_list = [0 for i in range(rule_format_length)]
+        receive_data_s = zeros_list
+        
+        # 创建标题
+        if save_test_title:
+            if not os.path.exists(hz_filename):
+                with open(hz_filename,'a+') as f:
+                    f.write('\t'.join(sorted_title_list)+'\n')
+        if save_test_title:
+            if not os.path.exists(s_filename):
+                with open(s_filename,'a+') as f:
+                    f.write('\t'.join(sorted_title_list)+'\n')
+        # 创建串口线程
+        try:
+            serials = serial.Serial(com, baund, parity=checks,stopbits=stops)
+        except:
+            self.show_message_dis1_list.append('tab_{}:尝试开启串口失败,com:{},线程关闭'.format(thread_num,com))
+            self.threading_list_flag[thread_num] = False
             
-        while self.threading_test_flag:
-            time.sleep(0.1)
+        
+        while self.threading_test_flag & self.threading_list_flag[thread_num]:
+            waiting = serials.in_waiting
+            if waiting>=decode_fram_leng:
+                cache_hex_data = serials.read(waiting)
+                if self.config_save_BD_bin:
+                    with open(hex_filename,'ab+') as f:
+                        f.write(cache_hex_data)
+                all_data += cache_hex_data
+            if not self.turntable_read:
+                all_data = b''
+            if len(all_data)>=decode_fram_leng*2:
+                frame = all_data[:frame_length]
+                next_frame = all_data[frame_length:frame_length*2]
+                if frame.startswith(decode_rule_header) & next_frame.startswith(decode_rule_header): 
+                    all_data = all_data[frame_length:]
+                    hz_count+=1
+                    receive_data_hz = decode_hex_frame_list(frame,decode_rule_list,decode_save_list,decode_para_list,decode_sort_list,decode_edia_list)
+                    if self.config_save_ms:
+                        with open(hz_filename,'a+') as f:
+                            f.write('\t'.join([str(round(receive_data_hz,save_decimal_point)) for i in receive_data_hz])+'\n')
+                    if hz_count<hz+1:
+                        receive_data_s = [receive_data_s[i]+receive_data_hz[i] for i in range(len(receive_data_hz))]
+                    else:
+                        hz_count = 0
+                        receive_s_count+=1
+                        receive_data_s = [i/hz for i in receive_data_s]
+                        receive_data_save = '\t'.join([str(round(i,save_decimal_point)) for i in receive_data_s])
+                        with open(s_filename,'a+') as f:
+                            f.write(receive_data_show+'\n')
+                        receive_data_s = zeros_list
+                        self.show_message_list[thread_num].append(receive_data_save)
+                        self.show_message_dataframe[thread_num] = pd.concat([self.show_message_dataframe[thread_num],pd.DataFrame(receive_data_s).T],axis=0)
+                        
+                        receive_data_s = zeros_list
+                        
+                        
+                    
+                    
+                    
+                
+            else:
+                time.sleep(1/self.receive_hz)
+                    
+                
+    def begin_test_bd(self):
+        inside_location = 0
+        outside_location = 0
+        inside_speed = 0
+        outside_speed = 0
+        inside_acceleration = 20
+        outside_acceleration = 20
+        
+        waittime = 2
+        rule_count =0
+        send_check=True
+        self.serial_test_begin_flag = False
+        self.serial_receive_flag=True
+        begin_time = time.time()
+        bd_begin_time = begin_time
+        bd_rulename = './{}/{}.txt'.format('标定规则',self.comboBox_turntable_rule.currentText())
+        rule_file = pd.read_csv(bd_rulename,header=None,skiprows=2,encoding='gb2312',sep='\\s+')
+        com_port = self.comboBox_turntable_com.currentText()
+        turntable_serial = serial.Serial(com_port, 115200, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE)
+        turntable = Turntable_class()
+        while (rule_count<len(rule_file)) & self.bd_threading_flag:
+            time.sleep(0.5)
+            i=rule_count
+            if send_check:
+                send_check=False
+                try:
+                    for j in range(5):
+                        print(int(rule_file[j][i]))
+                except:
+                    print('错误')
+                inside_location=int(rule_file[1][i])
+                outside_location=int(rule_file[2][i])
+                inside_speed=int(rule_file[3][i])
+                outside_speed=int(rule_file[4][i])
+                test_time = int(rule_file[5][i])
+                mode = 'None'
+                if (rule_file[3][i]==0)&(rule_file[4][i]==0):
+                    # 转台固定 方位模式
+                    turntable.inside_location(inside_location,30,inside_acceleration)
+                    turntable.outside_location(outside_location,30,outside_acceleration)
+                else:
+                    # 内外旋转
+                    print('**********错误的转台位置设定**************')
+                    
+                message = turntable.get_command()
+                turntable_serial.write(bytes.fromhex(message))
 
-            
+                waittime = (int(rule_file[5][i])+15+1)
+                
+            if (time.time()-begin_time>10)& (not self.serial_test_begin_flag):
+                self.serial_test_begin_flag = True
+                self.turntable_read = True
+                print('开始陀螺数据接收')
+                # 开启陀螺串口接收程序
+            if time.time()-begin_time>waittime+10:
+                print('一组测试结束')
+                self.serial_test_begin_flag = False
+                send_check = True
+                rule_count+=1
+
+                message = 'aaaa555538000100800000000000000000000000008000000000000000000000000000000000000000000000000000ff000000ffffffff34'
+                turntable_serial.write(bytes.fromhex(message))
+                time.sleep(1)
+                print('停机完毕 进行下一步')
+                begin_time = time.time()
+
          
 
 
@@ -742,6 +940,16 @@ def hexcut2list(string):
     return [string[i*2:i*2+2] for i in range(len(string)//2)]
 def struct_unpack_int3(string):
     return int(struct.unpack('<i',b'\x00'+string)[0]/256)
+# 校验位中规则转换
+def check2serial(data):
+    import serial
+    try: return [serial.PARITY_NONE,serial.PARITY_EVEN,serial.PARITY_ODD][['无校验','偶校验','奇校验'].index(str(data).lower())]
+    except: return serial.PARITY_NONE
+# 停止位中规则
+def stop2chinese(data):
+    import serial
+    try: return [serial.STOPBITS_ONE,serial.STOPBITS_TWO][['stop1','stop2'].index(str(data).lower())]
+    except: return serial.STOPBITS_ONE
 # 校验位中英转换
 def check2chinese(data):
     try: return ['无校验','偶校验','奇校验'][['none','even','odd'].index(str(data).lower())]
@@ -757,11 +965,44 @@ def rulename2chinese(data):
 def testmode2chinese(data):
     try: return ['惯导测试','转台标定','自动测试'][['only_test','turntable_test','automatic_test'].index(str(data).lower())]
     except: return '错误名称'
+# 计算协议长度
+def calculate_frame_length(rules_format_list):
+    before_frame_length = 0
+    for rules_format in rules_format_list:
+        for i in rules_format:
+            if (i.lower()=='y'):
+                before_frame_length += 3
+            else:
+                before_frame_length += struct.calcsize('>'+i)
+    return before_frame_length
 def calculate_checksum(data):
     checksum = 0
     for byte in data:
         checksum += byte
     return checksum & 0xFF 
+# 按规则列表转换十六进制原始数
+def decode_hex_frame_list(frame,decode_rule_list,decode_save_list,decode_para_list,decode_sort_list,decode_edia_list):
+    decode_data_list = []
+    for i in range(len(decode_edia_list)):
+        decode_bit_list = []
+        decode_tuple = list(struct.unpack(decode_edia_list[i]+''.join(decode_rule_list[i])))
+        for j in range(len(decode_tuple)):
+            try:
+                decode_sort_num = decode_sort_list.index(str(j))
+            except:
+                print('decode_hex_frame_list:排序序号超出列表长度')
+                continue
+            if decode_save_list[i][decode_sort_num]=='1':
+                decode_para_num = decode_para_list[i][decode_sort_num]
+                if decode_para_num=='1':
+                    decode_bit_list.append(decode_tuple[decode_sort_num])
+                else:
+                    decode_bit_list.append(decode_tuple[decode_sort_num]*float(decode_para_num))
+        decode_data_list+=decode_bit_list
+    return decode_data_list
+            
+        
+        
 if __name__ == '__main__':
     import sys
     app = QtWidgets.QApplication(sys.argv)
