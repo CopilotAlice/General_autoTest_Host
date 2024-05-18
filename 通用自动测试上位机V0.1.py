@@ -29,7 +29,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
-        self.setWindowTitle("通用自动测试上位机_蔡_功能测试版_2405_V0.2")
+        self.setWindowTitle("通用自动测试上位机_蔡_功能测试版_2404_V0.1")
         self.show_message_length = 30   # 显示的最大行数
         
         # 初始化界面元素
