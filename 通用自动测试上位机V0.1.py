@@ -997,8 +997,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def begin_test_bd(self):
         inside_location = 0
         outside_location = 0
-        inside_speed = 0
-        outside_speed = 0
+        inside_speed = 20
+        outside_speed = 20
         inside_acceleration = 20
         outside_acceleration = 20
         
@@ -1027,8 +1027,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 mode = 'None'
                 if (rule_file[3][i]==0)&(rule_file[4][i]==0):
                     # 转台固定 方位模式
-                    turntable.inside_location(inside_location,30,inside_acceleration)
-                    turntable.outside_location(outside_location,30,outside_acceleration)
+                    turntable.inside_location(inside_location,inside_speed,inside_acceleration)
+                    turntable.outside_location(outside_location,outside_speed,outside_acceleration)
                 else:
                     # 内外旋转
                     print('**********错误的转台位置设定**************')

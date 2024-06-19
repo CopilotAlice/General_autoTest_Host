@@ -69,14 +69,21 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.plan_threading_flag = False# 自动测试标志位
         self.turntable_will_turn = True # 转台转动标志位
         
+        # 初始化定时线程相关标志位
+        self.auto_plot_always   = False # 始终更新绘图
+        self.auto_plot_1time    = False # 更新一次绘图
+        self.show_message_clear = False # 清空显示
+        
+        
         # debug调试状态
         self.debug_flag = False
-        self.debug_read_rules = False
+        self.debug_read_rules = True
         self.bebug_binding = False
         self.debug_begin_test = False
         self.debug_threading = True
         self.debug_update_5s = False
         self.debug_update_5s_file = False
+        self.debug_update_1s = True
         
         # 初始化解算规则列表-新
         self.decode_rule_list = []    # 解算规则
@@ -86,7 +93,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.decode_cout_list = []    # 排序序号
         self.decode_sort_list = []    # 排序后列表
         self.decode_edia_list = []    # 大小端
+        self.sorted_titl_list = []    # 排序后保存标题
         self.receive_hz = 200
+        self.receive_wait_time1 = 0.01
         
         
         # 配置文件路径
@@ -116,12 +125,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # 总控-刷新comboBox串口
         self.comboBox_update_com_flag = True
         self.comboBox_update_rules_flag = True
+        # 全部设置区com口列表
         self.comboBox_com_list = [self.comboBox_protocal_com, 
                                 self.comboBox_turntable_com, 
                                 self.comboBox_power_com,
                                 self.comboBox_tempbox_com,
                                 self.comboBox_binding_com,
                                 self.combox_set_com_all]
+        # 12路com口
         self.combox_com_list = [self.combox_set_com_1,
                                 self.combox_set_com_2,
                                 self.combox_set_com_3,
@@ -134,6 +145,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                                 self.combox_set_com_10,
                                 self.combox_set_com_11,
                                 self.combox_set_com_12]
+        # 12路开关按键
         self.combox_com_open_list = [self.pushButton_com_open_1,
                                     self.pushButton_com_open_2,
                                     self.pushButton_com_open_3,
@@ -146,6 +158,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                                     self.pushButton_com_open_10,
                                     self.pushButton_com_open_11,
                                     self.pushButton_com_open_12]
+        # 装订自动更新
         self.comboBox_binding_list = [self.lineEdit_binding_latitude,
                                       self.lineEdit_binding_longitude,
                                       self.lineEdit_binding_height,
@@ -157,7 +170,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             binding.textChanged.connect(self.binding_change)
         for combox in self.comboBox_com_list+self.combox_com_list:
             combox.view().setMinimumWidth(85)
-            
+        for i in range(12):
+            self.comboBox_plot_choiceTab.addItem('{} {}'.format(i+1,'路'))
+        self.comboBox_plot_choiceTab.setCurrentIndex(1)
+        
         # 总控开关切换
         self.pushButton_com_open_all.clicked.connect(self.change_button_all)
         # 单路通讯协议同步多路更新
@@ -173,6 +189,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.comboBox_protocal_rule.currentTextChanged.connect(self.read_rules)
         self.pushButton_begin_test.clicked.connect(self.begin_test)
         self.pushButton_stop_test.clicked.connect(self.stop_test)
+        # 绘图逻辑更新
+        self.comboBox_plot_beginAxis.currentTextChanged.connect(self.update_plot_axis)
+        
+        
         
         
         # 事件更新计数
@@ -209,6 +229,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     
     # 事件更新0.1s线程，用于更新数据输出和绘图
     def show_message_01s(self):
+        if self.show_message_clear:
+            for i in range(12):
+                textBrowsers = self.findChild(QtWidgets.QTextBrowser,'textBrowser_%s'%(i+1))
+                textBrowsers.clear()
         if len(self.show_message_dis1_list)>0:
             self.textBrowser_progress_display1.append(self.show_message_dis1_list.pop(0))
             self.textBrowser_progress_display1.verticalScrollBar().setValue(self.textBrowser_progress_display1.verticalScrollBar().maximum())
@@ -220,7 +244,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             if len(self.show_message_list[i])>0:
                 textBrowsers = self.findChild(QtWidgets.QTextBrowser,'textBrowser_%s'%(i+1))
                 textBrowsers.append(self.show_message_list[i].pop(0))
-                textBrowsers.verticalScrollBar().setValue(textBrowsers.verticalScrollBar().maximum())
+                # textBrowsers.verticalScrollBar().setValue(textBrowsers.verticalScrollBar().maximum())
+                
+
             
             
     # 事件更新0.5s线程，用于更新数据输出和绘图
@@ -238,7 +264,38 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # 转换时分秒
         self.test_time = datetime.datetime.now().strftime('%H%M%S')
         self.normal_time = datetime.datetime.now().strftime('%H:%M:%S')
-        # 绘图
+        # 绘图 # 若有绘图更新标志
+        if self.auto_plot_always | self.auto_plot_1time:
+            self.auto_plot_1time = False
+            try:
+                plot_data_tab = int(self.comboBox_plot_choiceTab.currentText().split()[0])-1
+            except:
+                plot_data_tab = 0
+            # 更新绘图相关设置
+            plot_axis_list = []
+            plot_para_list = []
+            plot_mean_list = []
+            plot_stds_list = []
+            plot_sett_roll = 1
+            plot_sett_skip = 0
+            for i in range(3):
+                try:
+                    plot_axis = self.findChild(QtWidgets.QLineEdit, 'lineEdit_inside_plot_axis{}'.format(i+1)).text().split()[0]
+                    plot_axis_list.append(int(plot_axis))
+                except Exception as e:
+                    plot_axis_list.append(int(1))
+                    print('函数show_message_1s中plot_axis错误:{}'.format(e))
+                try:
+                    plot_para = self.findChild(QtWidgets.QLineEdit, 'lineEdit_inside_plot_para{}'.format(i+1)).text()
+                    plot_para_list.append(float(plot_para))
+                except Exception as e:
+                    plot_para_list.append(float(1))
+                    print('函数show_message_1s中plot_para错误:{}'.format(e))
+            if self.debug_update_1s:
+                # print('当前绘制{}： axis:{}  para:{}'.format(plot_data_tab,plot_axis_list,plot_para_list))
+                a = 1
+                
+            
         '''
         plot_axis = self.comboBox_multiple_choice.currentText()
         axis_list = []
@@ -629,7 +686,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             print('decode_sort_list={}'.format(decode_sort_list))
             print('decode_edia_list={}'.format(decode_edia_list))
             print('decode_fram_leng={}'.format(decode_fram_leng))
-
+        sorted_title_list = []
+        for i in range(len(decode_save_list)):
+            sorted_title_list+=[decode_titl_list[i][decode_sort_list[i].index(str(j))] for j in range(len(decode_titl_list[i])) if decode_save_list[i][decode_sort_list[i].index(str(j))]=='1']
+        
         self.decode_rule_list = decode_rule_list    # 解算规则
         self.decode_save_list = decode_save_list    # 是否保存
         self.decode_para_list = decode_para_list    # 系数
@@ -638,11 +698,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.decode_sort_list = decode_sort_list    # 排序后列表
         self.decode_edia_list = decode_edia_list    # 大小端
         self.decode_fram_leng = decode_fram_leng    # 帧长度
+        self.sorted_titl_list = sorted_title_list   # 排序后的标题
         
-        # self.comboBox_begin_axis.clear()
-        # for i in range(len(title_sort)):
-        #     self.comboBox_begin_axis.addItem('{} {}'.format(i,self.title_sorted[i]))
-        # self.comboBox_begin_axis.setCurrentIndex(1)
+        
+        
+        self.comboBox_plot_beginAxis.clear()
+        for i in range(len(sorted_title_list)):
+            self.comboBox_plot_beginAxis.addItem('{} {}'.format(i,sorted_title_list[i]))
+        self.comboBox_plot_beginAxis.setCurrentIndex(1)
                                                 
         # self.textBrowser_fileCsv.append('主机规则载入完成')      
         # self.fileCsv_append_flag = True
@@ -666,18 +729,36 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         command_list+=hexcut2list(struct.pack('>i', binding_latitude).hex().upper())
         command_list+=hexcut2list(struct.pack('>i', binding_height).hex().upper())[-2:]
         command_list+=hexcut2list(struct.pack('>i', binding_time).hex().upper())[-1:]
-        checks = struct.pack('B',calculate_checksum(bytes.fromhex(''.join(command_list)))).hex().upper()
+        try:
+            checks = struct.pack('B',calculate_checksum(bytes.fromhex(''.join(command_list)))).hex().upper()
+        except Exception as e:
+            print('checks计算错误:{}'.format(e))
+            print('command_list:{}'.format(command_list))
         command_list.append(checks)
         if self.bebug_binding:
             print(' '.join(command_list1+command_list))
         self.lineEdit_binding_command.setText(' '.join(command_list1+command_list))
-        
+    # 起始更换时刷新三轴绘图内容
+    def update_plot_axis(self):
+        try:
+            begin_axis = int(self.comboBox_plot_beginAxis.currentText().split()[0])
+        except Exception as e:
+            # print('update_plot_axis函数错误:{}\t当前项{}'.format(e,self.comboBox_plot_beginAxis.currentText()))
+            return False
+        for i in range(3):
+            self.findChild(QtWidgets.QLineEdit, 'lineEdit_inside_plot_axis{}'.format(i+1)).setText('{} {}'.format(i+begin_axis,self.sorted_titl_list[i+begin_axis]))
+    
+    
+    
+    
+    
     def stop_test(self):
         if self.debug_flag:
             print('停止测试')
         self.show_message_automatic_list.append('{} 停止测试'.format(self.normal_time))
         self.threading_test_flag = False
         self.plan_threading_flag = False
+        self.auto_plot_always = False
     # 点击开始测试事件，判断测试模式
     def begin_test(self):
         if self.debug_flag:
@@ -704,9 +785,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
         begin_test_mode = 'only_test'
         self.save_aver_flag = False
-        self.save_data_flag = False
-        self.save_ztrd_flag = False
+        self.save_data_flag = False     
+        self.save_ztrd_flag = False     # 转台到位标志位
         self.turntable_ready = False
+        self.show_message_clear = True  # 清空12路显示信息
         
         
         if not ((turntable_rule.lower()=='none')|(turntable_rule.lower()=='选择协议')):
@@ -716,8 +798,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.test_mode = begin_test_mode
         self.show_message_automatic_list.append('{} 模式:{}'.format(self.normal_time,testmode2chinese(begin_test_mode))) 
         if begin_test_mode=='only_test':
-            self.save_data_flag = True
-            self.turntable_ready = True
+            self.save_data_flag = True      # 开启保存
+            self.turntable_ready = True     # 忽略转台/ 转台到位标志位
+            self.auto_plot_always = True    # 持续更新绘图
             self.only_test()
         elif begin_test_mode=='turntable_test':
             self.bd_test()
@@ -744,39 +827,25 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     self.show_message_dis1_list.append('tab_{}:线程开启，串口{}'.format(i+1,protocal_com))
                     continue
                 self.threading_list_flag[i] = True
-                thread = threading.Thread(target=self.receive_data_threading,args=(i,))
-                thread.setDaemon(True)
-                thread_receive_list.append(thread)
-                thread.start()
+                thread_receive = threading.Thread(target=self.threading_receive_data,args=(i,))
+                thread_receive.setDaemon(True)
+                thread_receive_list.append(thread_receive)
+                thread_receive.start()
+    # 标定测试模式、转台同步控制
     def bd_test(self):
-        protocal_rule = self.comboBox_protocal_rule.currentText()
-        protocal_com = self.comboBox_protocal_com.currentText()
-        protocal_baund = self.comboBox_protocal_baund.currentText()
-        protocal_check = self.comboBox_protocal_check.currentText()
-        thread_receive_list = []
-        thread_decode_list = []
-        for i in range(12):
-            time.sleep(0.01)
-            if self.combox_com_open_list[i].text() == '开启':
-                if protocal_com.lower()=='none':
-                    self.show_message_dis1_list.append('tab_{}:线程开启，串口{}'.format(i+1,protocal_com))
-                    continue
-                self.threading_list_flag[i] = True
-                thread = threading.Thread(target=self.receive_data_threading,args=(i,))
-                thread.setDaemon(True)
-                thread_receive_list.append(thread)
-                thread.start()
-        thread = threading.Thread(target=self.begin_test_bd)
-        thread.setDaemon(True)
-        thread.start()
+        thread_turn = threading.Thread(target=self.begin_test_bd)
+        thread_turn.setDaemon(True)
+        thread_turn.start()
+        self.only_test()
     def plan_test(self):
-        thread = threading.Thread(target=self.plan_test_threading)
-        thread.setDaemon(True)
-        thread.start()
+        thread_plan = threading.Thread(target=self.plan_test_threading)
+        thread_plan.setDaemon(True)
+        thread_plan.start()
+        
         
         
 
-    def receive_data_threading(self,thread_num):
+    def threading_receive_data(self,thread_num):
         print('tab_{}:接收进程开启'.format(thread_num))
         # 串口信息载入
         com = self.combox_com_list[thread_num].currentText()
@@ -807,7 +876,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         receive_s_count = 0
         receive_hz_count = 0
         
-        
         if self.debug_threading:
             print('decode_fram_leng:{}'.format(decode_fram_leng))
         # 测试信息初始化
@@ -818,13 +886,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             os.makedirs(file_path)
         all_data = b''
         
-        
         # 保存文件名
         if len(self.plan_name)>0:
             name = '{}#{}'.format(name,self.plan_name)
         hex_filename = '{}{}_{}_hex.hex'.format(file_path,name,save_time)
         hz_filename  = '{}{}_{}_hz.txt'.format(file_path,name,save_time)
-        calib_filename= '{}{}_{}_hz_calib.txt'.format(file_path,name,save_time)
+        bd_filename  = '{}{}_{}_bd.txt'.format(file_path,name,save_time)
+        calib_filename= '{}{}_{}_bd_calib.txt'.format(file_path,name,save_time)
         s_filename   = '{}{}_{}_s.txt'.format(file_path,name,save_time)
         ave_filename = '{}{}_{}_ave.txt'.format(file_path,name,save_time)
         
@@ -833,6 +901,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             sorted_title_list+=[decode_titl_list[i][decode_sort_list[i].index(str(j))] for j in range(len(decode_titl_list[i])) if decode_save_list[i][decode_sort_list[i].index(str(j))]=='1']
         zeros_list = [0 for i in range(len(sorted_title_list))]
         receive_data_s = zeros_list
+        print('当前:{} turntable_ready:{}'.format(thread_num,self.turntable_ready))
         
         # 创建标题
         if save_test_title:
@@ -842,13 +911,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # 创建串口线程
         try:
             serials = serial.Serial(com, baund, parity=checks,stopbits=stops)
-        except:
-            self.show_message_dis1_list.append('tab_{}:尝试开启串口失败,com:{},线程关闭'.format(thread_num,com))
+        except Exception as e:
+            self.show_message_dis1_list.append('tab_{}:尝试开启串口失败,com:{},线程关闭 {}'.format(thread_num,com,e))
             self.threading_list_flag[thread_num] = False
         while self.threading_test_flag & self.threading_list_flag[thread_num]:
+        # while True:
             waiting = serials.in_waiting
             if waiting>=decode_fram_leng:
                 cache_hex_data = serials.read(waiting)
+                # print(cache_hex_data)
                 if self.config_save_BD_bin:
                     with open(hex_filename,'ab+') as f:
                         f.write(cache_hex_data)
@@ -863,52 +934,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     hz_count+=1
                     receive_hz_count+=1
                     receive_data_hz = decode_hex_frame_list(frame,decode_rule_list,decode_save_list,decode_para_list,decode_sort_list,decode_edia_list)
-                    # D501惯导专用保存毫秒输出到标定文件中
                     if self.config_save_ms:
-                        if self.turntable_will_turn:
-                            will_turn_flag = '1'
-                        else:
-                            will_turn_flag = '0'
-                        for i in range(3):
-                            receive_data_hz[i+1] = int(receive_data_hz[i+1]*1000)
-                        for i in range(3):
-                            receive_data_hz[i+1+3] = round(receive_data_hz[i+1+3],save_decimal_point)
-                        receive_data_hz[7] = int(receive_data_hz[7]*16)
-                        receive_data_hz[8] = int(receive_data_hz[8]*400)
-                        
-                        calib_cache_list = []
-                        temp1 = receive_data_hz[7]
-                        temp2 = receive_data_hz[8]
-                        
-                        with open(hz_filename,'a+') as f:  
-                            temp_receive_data_hz = ''
-                            # temp_receive_data_hz+=str(receive_data_hz[0]).ljust(10,' ')+'\t'
-                            temp_receive_data_hz+=str(receive_hz_count).ljust(10,' ')+'\t'
-                            for i in range(6):
-                                temp_receive_data_hz+=str(receive_data_hz[i+1]).rjust(16,' ')+'\t'
-                            for i in range(3):
-                                temp_receive_data_hz+=str(receive_data_hz[7]).rjust(6,' ')+'\t'
-                            for i in range(3):
-                                temp_receive_data_hz+=str(receive_data_hz[8]).rjust(6,' ')+'\t'
-                            temp_receive_data_hz+=str(0).rjust(6,' ')+'\t'
-                            for i in range(2):
-                                temp_receive_data_hz+=str(0).rjust(3,' ')+'\t'
-                            temp_receive_data_hz+=str(0).rjust(6,' ')+'\t'
-                            temp_receive_data_hz+=str(0).rjust(3,' ')+'\t'
-                            for i in range(2):
-                                temp_receive_data_hz+=str(0).rjust(6,' ')+'\t'
-                            temp_receive_data_hz+=str(0).rjust(3,' ')
-                            f.write(temp_receive_data_hz+'\n')
-                            
-                        with open(calib_filename,'a+') as f:
-                            calib_receive_data_hz = ''
-                            # calib_receive_data_hz+=str(receive_data_hz[0]).ljust(10,' ')+'\t'
-                            calib_receive_data_hz+=str(receive_hz_count).ljust(10,' ')+'\t'
-                            for i in range(6):
-                                calib_receive_data_hz+=str(receive_data_hz[i+1]).rjust(16,' ')+'\t'
-                            calib_receive_data_hz+=str(will_turn_flag).rjust(2,' ')
-                            f.write(calib_receive_data_hz+'\n')
-                            
+                        with open(s_filename,'a+') as f:
+                            receive_data_save = '\t'.join([str(round(i,save_decimal_point)) for i in receive_data_hz])
+                            f.write(receive_data_save+'\n') 
                     if hz_count<receive_hz+1:
                         receive_data_s = [receive_data_s[i]+receive_data_hz[i] for i in range(len(receive_data_hz))]
                     else:
@@ -932,7 +961,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     
                 
             else:
-                time.sleep(1/self.receive_hz)
+                time.sleep(0.01)
                     
     def plan_test_threading(self):
         count =0
