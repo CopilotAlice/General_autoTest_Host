@@ -70,14 +70,20 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.turntable_will_turn = True # 转台转动标志位
         
         # 初始化定时线程相关标志位
-        self.auto_plot_always   = False # 始终更新绘图
-        self.auto_plot_1time    = False # 更新一次绘图
+        self.auto_plot_always   = False # 始终更新绘图，用于实时解算
+        self.auto_plot_1time    = False # 仅更新一次绘图，用于打开文件查看时
         self.show_message_clear = False # 清空显示
+        
+        # 初始化标定进度相关标志位
+        self.bd_count = 0               # 标定进度计数
+        self.bd_calib_flag = 0          # 标定转台转动标志位，用于惯导一室通用标定
+        
+        
         
         
         # debug调试状态
         self.debug_flag = False
-        self.debug_read_rules = True
+        self.debug_read_rules = False
         self.bebug_binding = False
         self.debug_begin_test = False
         self.debug_threading = True
@@ -95,7 +101,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.decode_edia_list = []    # 大小端
         self.sorted_titl_list = []    # 排序后保存标题
         self.receive_hz = 200
-        self.receive_wait_time1 = 0.01
+        self.receive_wait_time = 0.01
         
         
         # 配置文件路径
@@ -108,7 +114,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         ]
         
         # 配置文件默认设置
-        self.config_hold_time = 5           # 转台稳定后等待时间
+        self.config_hold_time = 15           # 转台稳定后等待时间
         self.config_save_ms = 0             # 是否保存毫秒值 1True/0False
         self.config_save_BD_average = 1     # 是否将标定过程各点取均值存放
         self.config_save_BD_bin = 1         # 是否保存标定过程中16进制原始数
@@ -118,6 +124,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.config_power_model = 1         # 电源型号：1程控电源，2继电器
         self.config_special_flag = None     # 特殊标志位
         self.config_decode_header_type = 1  # 0:使用帧头模式/1:使用2帧头中间模式/2:使用帧头帧尾模式
+        
+        self.config_in_spd = 36
+        self.config_in_acc = 36
+        self.config_out_spd = 24
+        self.config_out_acc = 24
         
         # 解算规则配置
         self.rules_lists_format = 'xcbB?hHiIlLqQfdspPtyY'   # 解算规则可用范围
@@ -479,12 +490,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     # 默认转台速度设置
                     elif para_rule_list[1]=='in_spd':
                         self.lineEdit_inside_speed.setText(para_rule_list[2])
+                        self.config_in_spd = int(para_rule_list[2])
                     elif para_rule_list[1]=='in_acc':
                         self.lineEdit_inside_acceleration.setText(para_rule_list[2])
+                        self.config_in_acc = int(para_rule_list[2])
                     elif para_rule_list[1]=='out_spd':
                         self.lineEdit_outside_speed.setText(para_rule_list[2])
+                        self.config_out_spd = int(para_rule_list[2])
                     elif para_rule_list[1]=='out_acc':
                         self.lineEdit_outside_acceleration.setText(para_rule_list[2])
+                        self.config_out_acc = int(para_rule_list[2])
                     # 默认转台稳定后等待时间
                     elif para_rule_list[1]=='hold_time':
                         self.config_hold_time = int(para_rule_list[2])
@@ -657,7 +672,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             decode_titl_list.append(decode_titl)
             decode_cout_list.append(decode_cout)
             # decode_edia_list.append(default_edia)
-    
+        
         decode_sort_list = []
         for test_order in decode_cout_list:
             max_count = 0
@@ -961,7 +976,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     
                 
             else:
-                time.sleep(0.01)
+                time.sleep(self.receive_wait_time)
                     
     def plan_test_threading(self):
         count =0
@@ -989,21 +1004,49 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             elif list_plan[1]=='power':
                 count+=1
                 print('电源时间:{:.2f}'.format(time.time()-real_time))
-                if list_plan[2]=='on':
-                    serial_com = self.comboBox_com_sate.currentText()
-                    serials = serial.Serial(serial_com, 57600)
-                    serials.write(':OUTP 1\n'.encode())
-                    serials.close()
-                elif list_plan[2]=='off':
+                if 'on' in list_plan[2]:
+                    if str(self.config_power_model)=='1':
+                        serial_com = self.comboBox_com_sate.currentText()
+                        serials = serial.Serial(serial_com, 57600)
+                        serials.write(':OUTP 1\n'.encode())
+                        serials.close()
+                    elif str(self.config_power_model)=='2':
+                        serial_com = self.comboBox_com_sate.currentText()
+                        serials = serial.Serial(serial_com,9600)
+                        command = try_split_power_command(list_plan[2])
+                        if command=='all':
+                            for power_count in range(8):
+                                serials.write(('{\"A0%s\":110000}'%(power_count+1)).encode())
+                        else:
+                            serials.write(('{\"A0%s\":110000}'%(int(command))).encode())
+                        serials.close()
+                    else:
+                        self.show_message_automatic_list.append('未知命令:{}'.format())
+                elif 'off' in list_plan[2]:
                     self.plan_name = ''
-                    serial_com = self.comboBox_com_sate.currentText()
-                    serials = serial.Serial(serial_com, 57600)
-                    serials.write(':OUTP 0\n'.encode())
-                    serials.close()
+                    if str(self.config_power_model)=='1':
+                        serial_com = self.comboBox_com_sate.currentText()
+                        serials = serial.Serial(serial_com, 57600)
+                        serials.write(':OUTP 0\n'.encode())
+                        serials.close()
+                    elif str(self.config_power_model)=='2':
+                        serial_com = self.comboBox_com_sate.currentText()
+                        serials = serial.Serial(serial_com,9600)
+                        command = try_split_power_command(list_plan[2])
+                        if command=='all':
+                            for power_count in range(8):
+                                serials.write(('{\"A0%s\":100000}'%(power_count+1)).encode())
+                        else:
+                            serials.write(('{\"A0%s\":100000}'%(int(command))).encode())
+                        serials.close()
+                        
+                    else:
+                        self.show_message_automatic_list.append('未知命令:{}'.format())
+                # elif 
                 else:
                     print('未知电源命令')
                 begin_time = time.time()
-            elif list_plan[1]=='test':
+            elif list_plan[1]=='name':
                 count+=1
                 self.plan_name = str(list_plan[2])
                 begin_time = time.time()
@@ -1024,6 +1067,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 count+=1
                
     def begin_test_bd(self):
+        bd_count = 0
         inside_location = 0
         outside_location = 0
         inside_speed = 0
@@ -1031,13 +1075,21 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         inside_acceleration = 20
         outside_acceleration = 20
         
+        # self.config_in_spd = 36
+        # self.config_in_acc = 36
+        # self.config_out_spd = 24
+        # self.config_out_acc = 24
+        
+        config_speed = self.config
         waittime = 2
         rule_count =0
+        # 等待命令标志位
         send_check=True
+        # 可以开始测试标志位
         self.serial_test_begin_flag = False
-        self.serial_receive_flag=True
         begin_time = time.time()
-        bd_begin_time = begin_time
+        last_mode = None
+        # 读取规则文件
         bd_rulename = './{}/{}.txt'.format('标定规则',self.comboBox_turntable_rule.currentText())
         rule_file = pd.read_csv(bd_rulename,header=None,skiprows=2,encoding='gb2312',sep='\\s+')
         com_port = self.comboBox_turntable_com.currentText()
@@ -1048,38 +1100,52 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             i=rule_count
             if send_check:
                 send_check=False
+                bd_count = int(rule_file[0][i])
                 inside_location=int(rule_file[1][i])
                 outside_location=int(rule_file[2][i])
                 inside_speed=int(rule_file[3][i])
                 outside_speed=int(rule_file[4][i])
                 test_time = int(rule_file[5][i])
-                mode = 'None'
-                if (rule_file[3][i]==0)&(rule_file[4][i]==0):
+                last_mode = 'spd'
+                if (inside_speed==0)&(outside_speed==0):
                     # 转台固定 方位模式
-                    turntable.inside_location(inside_location,30,inside_acceleration)
-                    turntable.outside_location(outside_location,30,outside_acceleration)
+                    turntable.inside_location(inside_location,self.config_in_spd,self.config_in_acc)
+                    turntable.outside_location(outside_location,self.config_out_spd,self.config_out_acc)
+                    last_mode = 'loc'
+                elif (inside_speed==0):
+                    # 内框旋转模式
+                    turntable.inside_speed(inside_speed,self.config_in_acc)
+                    turntable.outside_location(outside_location,self.config_out_spd,self.config_out_acc)
+                elif (outside_speed==0):
+                    # 外框旋转模式
+                    turntable.inside_location(inside_location,self.config_in_spd,self.config_in_acc)
+                    turntable.outside_speed(outside_speed,self.config_out_acc)
                 else:
                     # 内外旋转
-                    print('**********错误的转台位置设定**************')
+                    turntable.inside_speed(inside_speed,self.config_in_acc)
+                    turntable.outside_speed(outside_location,self.config_out_acc)
+                    
                     
                 message = turntable.get_command()
                 turntable_serial.write(bytes.fromhex(message))
-
-                waittime = (int(rule_file[5][i])+15+1)
+                # 转动等待时间
+                waittime = (int(rule_file[5][i])+self.config_hold_time)
                 
-            if (time.time()-begin_time>10)& (not self.serial_test_begin_flag):
+            if (time.time()-begin_time>self.config_hold_time)& (not self.serial_test_begin_flag):
                 self.serial_test_begin_flag = True
                 self.turntable_ready = True
                 print('开始陀螺数据接收')
                 self.turntable_will_turn = False
-            if time.time()-begin_time>waittime+8:
+                self.bd_calib_flag = 0
+            if (time.time()-begin_time>waittime+self.config_hold_time-2)&(rule_count<len(rule_file)-1):
                 self.turntable_will_turn = True
-            if time.time()-begin_time>waittime+10:
+                self.bd_calib_flag = 1
+            if time.time()-begin_time>waittime+self.config_hold_time:
                 print('一组测试结束')
                 self.serial_test_begin_flag = False
                 send_check = True
                 rule_count+=1
-
+                # 刹车指令
                 message = 'aaaa555538000100800000000000000000000000008000000000000000000000000000000000000000000000000000ff000000ffffffff34'
                 turntable_serial.write(bytes.fromhex(message))
                 time.sleep(1)
@@ -1189,7 +1255,18 @@ def decode_hex_frame_list(frame,decode_rule_list,decode_save_list,decode_para_li
                     decode_bit_list.append(decode_tuple[decode_sort_num]*float(decode_para_num))
         decode_data_list+=decode_bit_list
     return decode_data_list
-            
+def try_split_power_command(strings):
+    if ('on' in strings)|('off' in strings):
+        if ':' in strings:
+            try: return int(strings.split(':')[1])
+            except: return 'all'
+        elif '：' in strings:
+            try: return int(strings.split('：')[1])
+            except: return 'all'
+        else:
+            return None
+    else:
+        return None
 
 class Turntable_class:
     def __init__(self):

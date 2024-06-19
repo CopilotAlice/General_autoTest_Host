@@ -1,0 +1,8 @@
+#序号	名称	设置	注释
+#	一轮测试		
+0	temp	-55	
+1	wait	10	
+2	power	on:all	
+1	wait	10	
+9	power	off:all	
+#	一轮测试		
