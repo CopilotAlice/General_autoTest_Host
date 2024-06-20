@@ -2,13 +2,13 @@
 #   	默认配置文件，记录各个COM口默认设置，建议使用excel打开修改		
 #	打开上位机默认载入一次此配置文件，如果检测不到默认COM会定时修改为无校验		
 0	protocal	COM1	460800	无校验	Stop1	无	惯导
-1	turntable	COM38	460800	无校验	Stop1	无	转台
-2	power	COM3	460800	无校验	Stop1	无	电源
+1	turntable	COM37	115200	无校验	Stop1	无	转台
+2	power	COM38	9600	无校验	Stop1	无	电源
 3	temp	COM4	460800	无校验	Stop1	无	温箱
 3	binding	COM1	460800	无校验	Stop1	无	装订
-4	tab_1	COM1	230400	无校验	Stop1	开启	多路1/单路，同步更新
-5	tab_2	COM25	230400	无校验	Stop1	关闭	多路2
-6	tab_3	COM7	460800	无校验	Stop1	关闭	多路3
+4	tab_1	COM23	230400	无校验	Stop1	开启	多路1/单路，同步更新
+5	tab_2	COM24	230400	无校验	Stop1	开启	多路2
+6	tab_3	COM25	230400	无校验	Stop1	开启	多路3
 7	tab_4	COM8	460800	无校验	Stop1	关闭	多路4
 8	tab_5	COM9	460800	无校验	Stop1	关闭	多路5
 9	tab_6	COM10	460800	无校验	Stop1	关闭	多路6

@@ -86,10 +86,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.debug_read_rules = False
         self.bebug_binding = False
         self.debug_begin_test = False
-        self.debug_threading = True
+        self.debug_threading = False
         self.debug_update_5s = False
         self.debug_update_5s_file = False
-        self.debug_update_1s = True
+        self.debug_update_1s = False
         
         # 初始化解算规则列表-新
         self.decode_rule_list = []    # 解算规则
@@ -244,6 +244,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             for i in range(12):
                 textBrowsers = self.findChild(QtWidgets.QTextBrowser,'textBrowser_%s'%(i+1))
                 textBrowsers.clear()
+            self.show_message_clear = False
         if len(self.show_message_dis1_list)>0:
             self.textBrowser_progress_display1.append(self.show_message_dis1_list.pop(0))
             self.textBrowser_progress_display1.verticalScrollBar().setValue(self.textBrowser_progress_display1.verticalScrollBar().maximum())
@@ -818,6 +819,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.auto_plot_always = True    # 持续更新绘图
             self.only_test()
         elif begin_test_mode=='turntable_test':
+            self.plan_threading_flag = True
             self.bd_test()
         elif begin_test_mode=='automatic_test':
             self.plan_threading_flag = True
@@ -848,10 +850,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 thread_receive.start()
     # 标定测试模式、转台同步控制
     def bd_test(self):
-        thread_turn = threading.Thread(target=self.begin_test_bd)
-        thread_turn.setDaemon(True)
-        thread_turn.start()
         self.only_test()
+        self.begin_test_bd()
+        # thread_turn = threading.Thread(target=self.begin_test_bd)
+        # thread_turn.setDaemon(True)
+        # thread_turn.start()
+        # self.only_test()
     def plan_test(self):
         thread_plan = threading.Thread(target=self.plan_test_threading)
         thread_plan.setDaemon(True)
@@ -861,7 +865,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
 
     def threading_receive_data(self,thread_num):
-        print('tab_{}:接收进程开启'.format(thread_num))
+        # print('tab_{}:接收进程开启'.format(thread_num))
         # 串口信息载入
         com = self.combox_com_list[thread_num].currentText()
         baund = self.findChild(QtWidgets.QComboBox,'combox_set_baund_%s'%(thread_num+1)).currentText()
@@ -897,6 +901,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         now = datetime.datetime.now()
         save_time = '{}{}{}'.format(now.hour,now.minute,now.second)
         file_path = './测试数据/{}{}/{}/'.format(int2str(now.year),int2str(now.month),int2str(now.day))
+        if self.config_save_BD_1file==0:
+            file_path=file_path+str(self.plan_name)+'/'
         if not os.path.exists(file_path):
             os.makedirs(file_path)
         all_data = b''
@@ -919,7 +925,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         print('当前:{} turntable_ready:{}'.format(thread_num,self.turntable_ready))
         
         # 创建标题
-        if save_test_title:
+        if save_test_title &self.config_save_BD_1file:
             if not os.path.exists(s_filename):
                 with open(s_filename,'a+') as f:
                     f.write('\t'.join(sorted_title_list)+'\n')
@@ -950,8 +956,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     receive_hz_count+=1
                     receive_data_hz = decode_hex_frame_list(frame,decode_rule_list,decode_save_list,decode_para_list,decode_sort_list,decode_edia_list)
                     if self.config_save_ms:
-                        with open(s_filename,'a+') as f:
-                            receive_data_save = '\t'.join([str(round(i,save_decimal_point)) for i in receive_data_hz])
+                        if self.config_save_BD_1file:
+                            save_file_name = hz_filename
+                        else:
+                            save_file_name = '{}{}_BD{}#{}_hz.txt'.format(file_path,name,self.bd_count,save_time)
+                        with open(save_file_name,'a+') as f:
+                            receive_data_save = '\t '.join(['{:.{}f}'.format(i,save_decimal_point) for i in receive_data_hz])
                             f.write(receive_data_save+'\n') 
                     if hz_count<receive_hz+1:
                         receive_data_s = [receive_data_s[i]+receive_data_hz[i] for i in range(len(receive_data_hz))]
@@ -959,8 +969,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         hz_count = 0
                         receive_s_count+=1
                         receive_data_s = [i/receive_hz for i in receive_data_s]
-                        receive_data_save = '\t'.join([str(round(i,save_decimal_point)) for i in receive_data_s])
-                        with open(s_filename,'a+') as f:
+                        receive_data_save = '\t '.join(['{:.{}f}'.format(i,save_decimal_point) for i in receive_data_s])
+                        if self.config_save_BD_1file:
+                            save_file_name = s_filename
+                        else:
+                            save_file_name = '{}{}_BD{}#{}_s.txt'.format(file_path,name,self.bd_count,save_time)
+                        with open(save_file_name,'a+') as f:
                             f.write(receive_data_save+'\n')
                         receive_data_s = zeros_list
                         self.show_message_list[thread_num].append(receive_data_save)
@@ -988,7 +1002,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         real_time = time.time()
         begin_time = time.time()
         while self.plan_threading_flag:
-            list_plan = list(plan_files.iloc[count])
+            try:
+                list_plan = list(plan_files.iloc[count])
+            except:
+                # print(plan_files)
+                self.show_message_automatic_list.append('{} 自动测试结束'.format(self.normal_time))
+                break
             # print(list_plan)
             if list_plan[0].startswith('#'):
                 count+=1
@@ -1006,39 +1025,45 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 print('电源时间:{:.2f}'.format(time.time()-real_time))
                 if 'on' in list_plan[2]:
                     if str(self.config_power_model)=='1':
-                        serial_com = self.comboBox_com_sate.currentText()
-                        serials = serial.Serial(serial_com, 57600)
-                        serials.write(':OUTP 1\n'.encode())
-                        serials.close()
+                        serial_com = self.comboBox_power_com.currentText()
+                        power_serials = serial.Serial(serial_com, 57600)
+                        power_serials.write(':OUTP 1\n'.encode())
+                        power_serials.close()
                     elif str(self.config_power_model)=='2':
-                        serial_com = self.comboBox_com_sate.currentText()
-                        serials = serial.Serial(serial_com,9600)
+                        serial_com = self.comboBox_power_com.currentText()
+                        try:
+                            power_serials.close()
+                            power_serials = serial.Serial(serial_com, 9600)
+                        except:
+                            power_serials = serial.Serial(serial_com, 9600)
                         command = try_split_power_command(list_plan[2])
                         if command=='all':
-                            for power_count in range(8):
-                                serials.write(('{\"A0%s\":110000}'%(power_count+1)).encode())
+                            for power_count in range(4):
+                                power_serials.write(('{\"A0%s\":110000}'%(power_count+1)).encode())
+                            power_serials.close()
                         else:
-                            serials.write(('{\"A0%s\":110000}'%(int(command))).encode())
-                        serials.close()
+                            power_serials.write(('{\"A0%s\":110000}'%(int(command))).encode())
+                        power_serials.close()
                     else:
                         self.show_message_automatic_list.append('未知命令:{}'.format())
                 elif 'off' in list_plan[2]:
                     self.plan_name = ''
                     if str(self.config_power_model)=='1':
-                        serial_com = self.comboBox_com_sate.currentText()
-                        serials = serial.Serial(serial_com, 57600)
-                        serials.write(':OUTP 0\n'.encode())
-                        serials.close()
+                        serial_com = self.comboBox_power_com.currentText()
+                        power_serials = serial.Serial(serial_com, 57600)
+                        power_serials.write(':OUTP 0\n'.encode())
+                        power_serials.close()
                     elif str(self.config_power_model)=='2':
-                        serial_com = self.comboBox_com_sate.currentText()
-                        serials = serial.Serial(serial_com,9600)
+                        serial_com = self.comboBox_power_com.currentText()
+                        power_serials = serial.Serial(serial_com,9600)
                         command = try_split_power_command(list_plan[2])
+                        print('com{} 电源off 命令{}'.format(serial_com,command))
                         if command=='all':
-                            for power_count in range(8):
-                                serials.write(('{\"A0%s\":100000}'%(power_count+1)).encode())
+                            for power_count in range(4):
+                                power_serials.write(('{\"A0%s\":100000}'%(power_count+1)).encode())
                         else:
-                            serials.write(('{\"A0%s\":100000}'%(int(command))).encode())
-                        serials.close()
+                            power_serials.write(('{\"A0%s\":100000}'%(int(command))).encode())
+                        power_serials.close()
                         
                     else:
                         self.show_message_automatic_list.append('未知命令:{}'.format())
@@ -1061,12 +1086,25 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     self.turntable_ready = False
                     self.bd_test()
                 else:
-                    begin_time = time.time()     
+                    try:
+                        bd_name = int(list_plan[2])   
+                        self.comboBox_turntable_rule.setCurrentIndex(bd_name)
+                        begin_time = time.time()
+                        self.threading_test_flag = False
+                        time.sleep(0.1)
+                        self.threading_test_flag = True
+                        time.sleep(0.1)
+                        self.turntable_ready = False
+                        self.bd_test()
+                    except:
+                        # print('设置错误_bd_name')
+                        self.show_message_automatic_list('自动测试错误:{} 错误'.format(bd_name))
             else:
                 print('未知控制命令:{}，跳过'.format(list_plan))
                 count+=1
                
     def begin_test_bd(self):
+        print('开始转台标定')
         bd_count = 0
         inside_location = 0
         outside_location = 0
@@ -1080,7 +1118,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # self.config_out_spd = 24
         # self.config_out_acc = 24
         
-        config_speed = self.config
+        # config_speed = self.config
         waittime = 2
         rule_count =0
         # 等待命令标志位
@@ -1092,13 +1130,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # 读取规则文件
         bd_rulename = './{}/{}.txt'.format('标定规则',self.comboBox_turntable_rule.currentText())
         rule_file = pd.read_csv(bd_rulename,header=None,skiprows=2,encoding='gb2312',sep='\\s+')
+        # print(rule_file)
         com_port = self.comboBox_turntable_com.currentText()
         turntable_serial = serial.Serial(com_port, 115200, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE)
+        # print('转台开启')
         turntable = Turntable_class()
         while (rule_count<len(rule_file)) & self.plan_threading_flag:
             time.sleep(0.5)
             i=rule_count
             if send_check:
+                # print(rule_file[:][i])
                 send_check=False
                 bd_count = int(rule_file[0][i])
                 inside_location=int(rule_file[1][i])
@@ -1112,11 +1153,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     turntable.inside_location(inside_location,self.config_in_spd,self.config_in_acc)
                     turntable.outside_location(outside_location,self.config_out_spd,self.config_out_acc)
                     last_mode = 'loc'
-                elif (inside_speed==0):
+                elif (outside_speed==0):
                     # 内框旋转模式
                     turntable.inside_speed(inside_speed,self.config_in_acc)
                     turntable.outside_location(outside_location,self.config_out_spd,self.config_out_acc)
-                elif (outside_speed==0):
+                elif (inside_speed==0):
                     # 外框旋转模式
                     turntable.inside_location(inside_location,self.config_in_spd,self.config_in_acc)
                     turntable.outside_speed(outside_speed,self.config_out_acc)
