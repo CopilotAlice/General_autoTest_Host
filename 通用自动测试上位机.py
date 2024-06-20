@@ -6,7 +6,7 @@ import binascii
 import datetime
 import os
 import serial
-import pyqtgraph.opengl as gl
+# import pyqtgraph.opengl as gl
 import pyqtgraph as pg
 import pandas as pd
 import numpy as np
@@ -77,6 +77,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # 初始化标定进度相关标志位
         self.bd_count = 0               # 标定进度计数
         self.bd_calib_flag = 0          # 标定转台转动标志位，用于惯导一室通用标定
+        self.serial_test_begin_flag = False     # 转台到位标志位
+        self.bd_plan_flag = False       # 标定结束标志位
         
         
         
@@ -114,7 +116,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         ]
         
         # 配置文件默认设置
-        self.config_hold_time = 15           # 转台稳定后等待时间
+        self.config_hold_time = 15          # 转台稳定后等待时间
         self.config_save_ms = 0             # 是否保存毫秒值 1True/0False
         self.config_save_BD_average = 1     # 是否将标定过程各点取均值存放
         self.config_save_BD_bin = 1         # 是否保存标定过程中16进制原始数
@@ -124,6 +126,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.config_power_model = 1         # 电源型号：1程控电源，2继电器
         self.config_special_flag = None     # 特殊标志位
         self.config_decode_header_type = 1  # 0:使用帧头模式/1:使用2帧头中间模式/2:使用帧头帧尾模式
+        self.config_turntable_check_status = 0      # 1:根据转台状态反馈来决定是否到位/0:转动命令发送后固定等待hold_time
         
         self.config_in_spd = 36
         self.config_in_acc = 36
@@ -537,6 +540,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     # 默认使用寻找帧头模式
                     elif para_rule_list[1]=='decode_header_type':
                         self.config_decode_header_type = int(para_rule_list[2])
+                    elif para_rule_list[1]=='turntable_check_status':
+                        self.config_turntable_check_status = int(para_rule_list[2])
                     else:
                         self.textBrowser_automatic_ruleline.append('未知配置项：%s'%(para_rule_list))
     # 读取载入解算规则文件  20240513
@@ -824,6 +829,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         elif begin_test_mode=='automatic_test':
             self.plan_threading_flag = True
             self.turntable_ready = False
+            self.bd_plan_flag = False
             self.plan_test()
             
         
@@ -902,14 +908,17 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         save_time = '{}{}{}'.format(now.hour,now.minute,now.second)
         file_path = './测试数据/{}{}/{}/'.format(int2str(now.year),int2str(now.month),int2str(now.day))
         if self.config_save_BD_1file==0:
-            file_path=file_path+str(self.plan_name)+'/'
+            bd_file_path=file_path+str(self.plan_name)+'/'
+            if not os.path.exists(bd_file_path):
+                os.makedirs(bd_file_path)
+        
         if not os.path.exists(file_path):
             os.makedirs(file_path)
         all_data = b''
         
         # 保存文件名
-        if len(self.plan_name)>0:
-            name = '{}#{}'.format(name,self.plan_name)
+        # if len(self.plan_name)>0:
+        #     name = '{}#{}'.format(name,self.plan_name)
         hex_filename = '{}{}_{}_hex.hex'.format(file_path,name,save_time)
         hz_filename  = '{}{}_{}_hz.txt'.format(file_path,name,save_time)
         bd_filename  = '{}{}_{}_bd.txt'.format(file_path,name,save_time)
@@ -946,6 +955,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         f.write(cache_hex_data)
                 all_data += cache_hex_data
             if not self.turntable_ready:
+            # if not self.serial_test_begin_flag:
                 all_data = b''
             if len(all_data)>=decode_fram_leng*2:
                 frame = all_data[:decode_fram_leng]
@@ -956,26 +966,32 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     receive_hz_count+=1
                     receive_data_hz = decode_hex_frame_list(frame,decode_rule_list,decode_save_list,decode_para_list,decode_sort_list,decode_edia_list)
                     if self.config_save_ms:
-                        if self.config_save_BD_1file:
-                            save_file_name = hz_filename
-                        else:
-                            save_file_name = '{}{}_BD{}#{}_hz.txt'.format(file_path,name,self.bd_count,save_time)
-                        with open(save_file_name,'a+') as f:
-                            receive_data_save = '\t '.join(['{:.{}f}'.format(i,save_decimal_point) for i in receive_data_hz])
+                        with open(hz_filename,'a+') as f:
+                            # receive_data_save = '\t '.join(['{:.{}f}'.format(i,save_decimal_point) for i in receive_data_hz])
+                            receive_data_save = '\t '.join(['{:.{}f}'.format(i,save_decimal_point)if type(i)==float else str(i) for i in receive_data_hz])
                             f.write(receive_data_save+'\n') 
+                        if (self.config_save_BD_1file==0)&(self.serial_test_begin_flag):
+                            save_file_name = '{}{}_BD{}#{}_hz.txt'.format(bd_file_path,name,self.bd_count,save_time)
+                            with open(save_file_name,'a+') as f:
+                                receive_data_save = '\t '.join(['{:.{}f}'.format(i,save_decimal_point) for i in receive_data_hz])
+                                f.write(receive_data_save+'\n') 
+                            
                     if hz_count<receive_hz+1:
                         receive_data_s = [receive_data_s[i]+receive_data_hz[i] for i in range(len(receive_data_hz))]
                     else:
                         hz_count = 0
                         receive_s_count+=1
                         receive_data_s = [i/receive_hz for i in receive_data_s]
-                        receive_data_save = '\t '.join(['{:.{}f}'.format(i,save_decimal_point) for i in receive_data_s])
-                        if self.config_save_BD_1file:
-                            save_file_name = s_filename
-                        else:
-                            save_file_name = '{}{}_BD{}#{}_s.txt'.format(file_path,name,self.bd_count,save_time)
-                        with open(save_file_name,'a+') as f:
+                        receive_data_save = '\t '.join(['{:.{}f}'.format(i,save_decimal_point)if type(i)==float else str(i) for i in receive_data_s])
+                        with open(s_filename,'a+') as f:
                             f.write(receive_data_save+'\n')
+                        if (self.config_save_BD_1file==0)&(self.serial_test_begin_flag):
+                            save_file_name = '{}{}_BD{}#{}_s.txt'.format(bd_file_path,name,self.bd_count,save_time)
+                            with open(save_file_name,'a+') as f:
+                                f.write(receive_data_save+'\n')
+                            
+                            
+                            
                         receive_data_s = zeros_list
                         self.show_message_list[thread_num].append(receive_data_save)
                         self.show_message_dataframe[thread_num] = pd.concat([self.show_message_dataframe[thread_num],pd.DataFrame(receive_data_s).T],axis=0)
@@ -1012,7 +1028,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             if list_plan[0].startswith('#'):
                 count+=1
             elif list_plan[1]=='wait':
-                # print('等待时间:{:.2f}'.format(time.time()-real_time))
+                print('wait等待时间:{:.2f}'.format(time.time()-real_time))
                 if time.time()-begin_time>int(list_plan[2]):
                     count+=1
                     begin_time = time.time()
@@ -1022,7 +1038,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     wait_count+=1
             elif list_plan[1]=='power':
                 count+=1
-                print('电源时间:{:.2f}'.format(time.time()-real_time))
+                print('power电源时间:{:.2f}'.format(time.time()-real_time))
                 if 'on' in list_plan[2]:
                     if str(self.config_power_model)=='1':
                         serial_com = self.comboBox_power_com.currentText()
@@ -1072,33 +1088,40 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     print('未知电源命令')
                 begin_time = time.time()
             elif list_plan[1]=='name':
+                print('name电源时间:{:.2f}'.format(time.time()-real_time))
                 count+=1
                 self.plan_name = str(list_plan[2])
                 begin_time = time.time()
             elif list_plan[1]=='bd':
+                print('bd电源时间:{:.2f}'.format(time.time()-real_time))
                 count+=1
                 if list_plan[2]=='on':
-                    begin_time = time.time()
                     self.threading_test_flag = False
                     time.sleep(0.1)
                     self.threading_test_flag = True
                     time.sleep(0.1)
                     self.turntable_ready = False
                     self.bd_test()
+                    begin_time = time.time()
                 else:
                     try:
                         bd_name = int(list_plan[2])   
                         self.comboBox_turntable_rule.setCurrentIndex(bd_name)
-                        begin_time = time.time()
                         self.threading_test_flag = False
                         time.sleep(0.1)
                         self.threading_test_flag = True
                         time.sleep(0.1)
                         self.turntable_ready = False
                         self.bd_test()
+                        begin_time = time.time()
                     except:
                         # print('设置错误_bd_name')
                         self.show_message_automatic_list('自动测试错误:{} 错误'.format(bd_name))
+            elif list_plan[1]=='temp':
+                print('bd电源时间:{:.2f}'.format(time.time()-real_time))
+                count+=1
+                temp_com = self.comboBox_temp_com.currentText()
+                
             else:
                 print('未知控制命令:{}，跳过'.format(list_plan))
                 count+=1
@@ -1142,6 +1165,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 # print(rule_file[:][i])
                 send_check=False
                 bd_count = int(rule_file[0][i])
+                self.bd_count = bd_count
                 inside_location=int(rule_file[1][i])
                 outside_location=int(rule_file[2][i])
                 inside_speed=int(rule_file[3][i])
@@ -1183,14 +1207,35 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.bd_calib_flag = 1
             if time.time()-begin_time>waittime+self.config_hold_time:
                 print('一组测试结束')
-                self.serial_test_begin_flag = False
-                send_check = True
-                rule_count+=1
                 # 刹车指令
+                self.serial_test_begin_flag = False
                 message = 'aaaa555538000100800000000000000000000000008000000000000000000000000000000000000000000000000000ff000000ffffffff34'
                 turntable_serial.write(bytes.fromhex(message))
                 time.sleep(1)
-                begin_time = time.time()
+                if self.config_turntable_check_status:
+                    commands = turntable_serial.readlines()
+                    try:
+                        decode_commands = struct.unpack('<HHHIHHiiHiiHiixxxxxxxxxx',commands)
+                    except:
+                        self.show_message_dis1_list.append('解算失败:{}'.format(decode_commands))
+                        continue
+                    self.show_message_dis1_list.append(str(decode_commands))
+                    in_status = bin(decode_commands[5])[2:].rjust(16,'0')[6]
+                    ou_status = bin(decode_commands[8])[2:].rjust(16,'0')[6]
+                    self.show_message_dis1_list.append('内环状态:{} 外环状态:{}'.format(in_status,ou_status))
+                    if (str(in_status)=='1')&(str(ou_status)=='1'):
+                        time.sleep(1)
+                        begin_time = time.time()
+                        send_check = True
+                        rule_count+=1
+                    else:
+                        continue
+                    
+                else:
+                    time.sleep(self.config_hold_time)
+                    begin_time = time.time()
+                    send_check = True
+                    rule_count+=1
         # 转台停止 标定结束 
         self.threading_test_flag = False
          
