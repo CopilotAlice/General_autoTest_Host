@@ -1,6 +1,6 @@
 #ĞòºÅ	Ãû³Æ	ÉèÖÃ	×¢ÊÍ		
 #	Ò»ÂÖ²âÊÔ		
-0	temp	-55	
+0	temp	-56	
 1	wait	10	
 2	power	on:all	
 3	name	SL_-55	

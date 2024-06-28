@@ -29,7 +29,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
-        self.setWindowTitle("通用自动测试上位机_蔡_功能测试版_2406_V0.51")
+        self.setWindowTitle("通用自动测试上位机_蔡_功能测试版_2405_V0.2")
         self.show_message_length = 30   # 显示的最大行数
         
         # 初始化界面元素
@@ -117,13 +117,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
         # 配置文件默认设置
         self.config_hold_time = 15          # 转台稳定后等待时间
-        self.config_save_alldata_ms = 0     # 是否保存所哟毫秒值 
-        self.config_save_alldata_s = 0      # 是否保存所有秒值 
-        self.config_save_alldata_calib = 0	# 是否保存calib毫秒值 
-        self.config_save_readydata_ms = 0	# 是否保存到位毫秒值 
-        self.config_save_readydata_s = 0	# 是否保存到位秒值 
+        self.config_save_ms = 0             # 是否保存毫秒值 1True/0False
+        self.config_save_ms = 0             # 是否保存毫秒值 1True/0False
+        self.config_save_ms = 0             # 是否保存毫秒值 1True/0False
+        self.config_save_ms = 0             # 是否保存毫秒值 1True/0False
+        self.config_save_ms = 0             # 是否保存毫秒值 1True/0False
         self.config_save_BD_average = 1     # 是否将标定过程各点取均值存放
-        self.config_save_alldata_bin = 1         # 是否保存标定过程中16进制原始数
+        self.config_save_BD_bin = 1         # 是否保存标定过程中16进制原始数
         self.config_save_BD_1file = 1       # 将标定过程各点存储到一个文件/多个文件
         self.save_decimal_point = 6         # 保存时保留小数点后几位
         self.save_test_title = 1            # 创建文件时将协议中的标题内容一并保存
@@ -518,19 +518,19 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         self.config_hold_time = int(para_rule_list[2])
                     # 是否保存毫秒值
                     elif para_rule_list[1]=='save_alldata_ms':
-                        self.config_save_alldata_ms = int(para_rule_list[2])
+                        self.config_save_ms = int(para_rule_list[2])
                     # 是否保存毫秒值
                     elif para_rule_list[1]=='save_alldata_s':
-                        self.config_save_alldata_s = int(para_rule_list[2])
+                        self.config_save_ms = int(para_rule_list[2])
                     # 是否保存毫秒值
                     elif para_rule_list[1]=='save_alldata_calib':
-                        self.config_save_alldata_calib = int(para_rule_list[2])
+                        self.config_save_ms = int(para_rule_list[2])
                     # 是否保存毫秒值
                     elif para_rule_list[1]=='save_readydata_ms':
-                        self.config_save_readydata_ms = int(para_rule_list[2])
+                        self.config_save_ms = int(para_rule_list[2])
                     # 是否保存毫秒值
                     elif para_rule_list[1]=='save_readydata_s':
-                        self.config_save_readydata_s = int(para_rule_list[2])
+                        self.config_save_ms = int(para_rule_list[2])
                     # 是否保存标定各位置均值
                     elif para_rule_list[1]=='save_BD_average':
                         self.config_save_BD_average = int(para_rule_list[2])
@@ -544,8 +544,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     elif para_rule_list[1]=='save_test_title':
                         self.save_test_title = int(para_rule_list[2])
                     # 是否保存标定16进制原始数
-                    elif para_rule_list[1]=='save_alldata_bin':
-                        self.config_save_alldata_bin = int(para_rule_list[2])
+                    elif para_rule_list[1]=='save_BD_bin':
+                        self.config_save_BD_bin = int(para_rule_list[2])
                     # 程控电源模式/继电器模式
                     elif para_rule_list[1]=='power_model':
                         self.config_power_model = int(para_rule_list[2])
@@ -618,14 +618,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     continue
                 # 波特率
                 elif lines.split()[1].lower() == 'baund':
-                    # self.comboBox_protocal_baund.setCurrentText(lines.split()[2])
-                    # self.combox_set_baund_all.setCurrentText(lines.split()[2])
-                    continue
+                    self.comboBox_protocal_baund.setCurrentText(lines.split()[2])
+                    self.combox_set_baund_all.setCurrentText(lines.split()[2])
                 # 校验位
                 elif lines.split()[1].lower() == 'check':   
-                    # self.comboBox_protocal_check.setCurrentText(check2chinese(lines.split()[2]))
-                    # self.comboBox_set_check_all.setCurrentText(check2chinese(lines.split()[2]))
-                    continue
+                    self.comboBox_protocal_check.setCurrentText(check2chinese(lines.split()[2]))
+                    self.comboBox_set_check_all.setCurrentText(check2chinese(lines.split()[2]))
                 # 帧头
                 elif lines.split()[1].lower() == 'header':
                     self.decode_rule_header = bytes.fromhex(''.join(lines.split()[2:]))
@@ -867,7 +865,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         thread_decode_list = []
         self.threading_test_flag = True
         for i in range(12):
-            self.threading_list_flag[i] = False
             time.sleep(0.01)
             if self.combox_com_open_list[i].text() == '开启':
                 if protocal_com.lower()=='none':
@@ -950,15 +947,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         s_filename   = '{}{}_{}_s.txt'.format(file_path,name,save_time)
         ave_filename = '{}{}_{}_ave.txt'.format(file_path,name,save_time)
         
-        alldata_ms  = ''
-        alldata_s   = ''
-        alldata_bin = b''
-        alldata_calib=''
-        readydata_ms= ''
-        readydata_s = ''
-        
-        
-        
         sorted_title_list = []
         for i in range(len(decode_save_list)):
             sorted_title_list+=[decode_titl_list[i][decode_sort_list[i].index(str(j))] for j in range(len(decode_titl_list[i])) if decode_save_list[i][decode_sort_list[i].index(str(j))]=='1']
@@ -974,33 +962,22 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # 创建串口线程
         try:
             serials = serial.Serial(com, baund, parity=checks,stopbits=stops)
-        except :
-            time.sleep(1)
-            try:
-                self.show_message_dis1_list.append('tab_{}:第一次开启串口失败,com:{}'.format(thread_num,com))
-                serials = serial.Serial(com, baund, parity=checks,stopbits=stops)
-            except Exception as e:
-                self.show_message_dis1_list.append('tab_{}:第二次开启串口失败,com:{},线程关闭 {}'.format(thread_num,com,e))
-                self.threading_list_flag[thread_num] = False
-        threading_begin_time = time.time()
+        except Exception as e:
+            self.show_message_dis1_list.append('tab_{}:尝试开启串口失败,com:{},线程关闭 {}'.format(thread_num,com,e))
+            self.threading_list_flag[thread_num] = False
         while self.threading_test_flag & self.threading_list_flag[thread_num]:
         # while True:
             waiting = serials.in_waiting
             if waiting>=decode_fram_leng:
                 cache_hex_data = serials.read(waiting)
                 # print(cache_hex_data)
-                if self.config_save_alldata_bin:
-                    
-                    alldata_bin+=cache_hex_data
+                if self.config_save_BD_bin:
+                    with open(hex_filename,'ab+') as f:
+                        f.write(cache_hex_data)
                 all_data += cache_hex_data
             if not self.turntable_ready:
             # if not self.serial_test_begin_flag:
                 all_data = b''
-            if time.time()-threading_begin_time>10:
-                with open(hex_filename,'ab+') as f:
-                    f.write(alldata_bin)
-                    alldata_bin = b''
-                    threading_begin_time = time.time()
             if len(all_data)>=decode_fram_leng*2:
                 frame = all_data[:decode_fram_leng]
                 next_frame = all_data[decode_fram_leng:decode_fram_leng*2]
@@ -1009,16 +986,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     hz_count+=1
                     receive_hz_count+=1
                     receive_data_hz = decode_hex_frame_list(frame,decode_rule_list,decode_save_list,decode_para_list,decode_sort_list,decode_edia_list)
-                                
-                    alldata_ms += '\t '.join(['{:.{}f}'.format(i,save_decimal_point)if type(i)==float else str(i) for i in receive_data_hz])+'\n'
-                    readydata_ms += '\t '.join(['{:.{}f}'.format(i,save_decimal_point) for i in receive_data_hz])+'\n'
-                    
-                    # 处理累积calib数据
-                    alldata_calib+=str(receive_hz_count).ljust(10,' ')+'\t'
-                    for i in range(6):
-                        alldata_calib+=str(receive_data_hz[i+1]).rjust(16,' ')+'\t'
-                    alldata_calib+=str(will_turn_flag).rjust(2,' ')+'\n'
-                            # calib_receive_data_hz+=str(receive_data_hz[0]).ljust(10,' ')+'\t'
+                    if self.config_save_ms:
+                        with open(hz_filename,'a+') as f:
+                            # receive_data_save = '\t '.join(['{:.{}f}'.format(i,save_decimal_point) for i in receive_data_hz])
+                            receive_data_save = '\t '.join(['{:.{}f}'.format(i,save_decimal_point)if type(i)==float else str(i) for i in receive_data_hz])
+                            f.write(receive_data_save+'\n') 
+                        if (self.config_save_BD_1file==0)&(self.serial_test_begin_flag):
+                            save_file_name = '{}{}_BD{}#{}_hz.txt'.format(bd_file_path,name,self.bd_count,save_time)
+                            with open(save_file_name,'a+') as f:
+                                receive_data_save = '\t '.join(['{:.{}f}'.format(i,save_decimal_point) for i in receive_data_hz])
+                                f.write(receive_data_save+'\n') 
                             
                     if hz_count<receive_hz+1:
                         receive_data_s = [receive_data_s[i]+receive_data_hz[i] for i in range(len(receive_data_hz))]
@@ -1027,43 +1004,20 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         receive_s_count+=1
                         receive_data_s = [i/receive_hz for i in receive_data_s]
                         receive_data_save = '\t '.join(['{:.{}f}'.format(i,save_decimal_point)if type(i)==float else str(i) for i in receive_data_s])
-                        
-                        self.show_message_list[thread_num].append(receive_data_save)
-                        self.show_message_dataframe[thread_num] = pd.concat([self.show_message_dataframe[thread_num],pd.DataFrame(receive_data_s).T],axis=0)
-                        receive_data_s = zeros_list
-                        
-                        # 满1s开始保存
-                        # 常态保存
-                        if self.config_save_alldata_s:
-                            with open(s_filename,'a+') as f:
-                                f.write(receive_data_save+'\n')
-                        # 常态毫秒保存
-                        if self.config_save_alldata_ms:
-                            with open(hz_filename,'a+') as f:
-                                f.write(alldata_ms)
-                                alldata_ms = ''
-                        # 到位分文件秒值保存
+                        with open(s_filename,'a+') as f:
+                            f.write(receive_data_save+'\n')
                         if (self.config_save_BD_1file==0)&(self.serial_test_begin_flag):
                             save_file_name = '{}{}_BD{}#{}_s.txt'.format(bd_file_path,name,self.bd_count,save_time)
                             with open(save_file_name,'a+') as f:
                                 f.write(receive_data_save+'\n')
-                        # 到位分文件毫秒保存
-                        if (self.config_save_BD_1file==0)&(self.serial_test_begin_flag):
-                            save_file_name = '{}{}_BD{}#{}_hz.txt'.format(bd_file_path,name,self.bd_count,save_time)
-                            with open(save_file_name,'a+') as f:
-                                f.write(readydata_ms) 
-                                readydata_ms = ''
-                        # calib标定保存
-                        if self.config_save_alldata_calib:
-                            try:
-                                with open(calib_filename,'a+') as f:
-                                    f.write(alldata_calib+'\n')
-                                    alldata_calib = ''
-                            except:
-                                print('保存alldata_calib文件失败')
                             
-
+                            
+                            
+                        receive_data_s = zeros_list
+                        self.show_message_list[thread_num].append(receive_data_save)
+                        self.show_message_dataframe[thread_num] = pd.concat([self.show_message_dataframe[thread_num],pd.DataFrame(receive_data_s).T],axis=0)
                         
+                        receive_data_s = zeros_list
                 else:
                     all_data = all_data[1:]
                         
@@ -1410,8 +1364,7 @@ def decode_hex_frame_list(frame,decode_rule_list,decode_save_list,decode_para_li
                 continue
             if decode_save_list[i][decode_sort_num]=='1':
                 decode_para_num = decode_para_list[i][decode_sort_num]
-                # if (decode_para_num=='1')|(decode_para_num==1)|(round(float(decode_para_num),2)==1):
-                if round(float(decode_para_num),12)==1:
+                if decode_para_num=='1':
                     decode_bit_list.append(decode_tuple[decode_sort_num])
                 else:
                     decode_bit_list.append(decode_tuple[decode_sort_num]*float(decode_para_num))

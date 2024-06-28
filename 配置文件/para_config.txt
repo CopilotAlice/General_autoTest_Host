@@ -1,22 +1,24 @@
 #序号	名称	设置	注释
 #	默认配置文件，记录各通用参数默认设置，建议使用excel打开修改		
-#	打开上位机默认载入一次此配置文件，请!谨慎!修改此文件
+#	打开上位机默认载入一次此配置文件，请!谨慎!修改此文件		
 0	in_spd	36	转台内框速度
 1	in_acc	18	转台内框加速度
 2	out_spd	24	转台外框速度
 3	out_acc	12	转台外框加速度
 4	hold_time	15	转台转动后等待时间!!!!!!勿动!!!!!!
-5	save_ms	1	是否保存毫秒值 1True/0False
-6	save_BD_average	1	是否将标定过程各位置+取均值存放
-6	save_BD_bin	1	是否将标定过程中16进制原始数
-6	save_BD_1file	0	将标定过程各点存储到一个文件/0:多个文件
-6	save_decimal_point	6	保存时保留小数点后几位
-6	save_test_title	0	创建文件时将协议中的标题内容一并保存
-7	power_model	2	电源型号：1程控电源，2继电器
-#8	power_wait_time	0	不同路继电器之间切换时间
-8	default_protocal	4	默认通讯协议选择序号
-9	default_turntable	0	默认转台控制选择序号
-10	default_binding	0	默认装订选择序号
-11	default_automatic	0	默认自动测试选择序号
-12	decode_header_type	1	0:使用单帧头模式/1:使用2帧头中间模式/2:使用帧头帧尾模式
-13	turntable_check_status	0	1:根据转台状态反馈来决定是否到位/0:转动命令发送后固定等待hold_time
+5	save_alldata_ms	0	是否保存所有毫秒值 1True/0False
+6	save_alldata_s	1	是否保存所有秒值 1True/0False
+7	save_alldata_calib	1	是否保存calib标定毫秒值 1True/0False
+10	save_alldata_bin	1	是否保存标定过程中16进制原始数
+8	save_readydata_ms	1	是否保存到位毫秒值 1True/0False
+9	save_readydata_s	1	是否保存到位秒值 1True/0False
+11	save_BD_1file	0	将标定过程各点存储到一个文件/0:多个文件
+12	save_decimal_point	6	保存时保留小数点后几位
+13	save_test_title	0	创建文件时将协议中的标题内容一并保存
+14	power_model	2	电源型号：1程控电源，2继电器
+15	default_protocal	4	默认通讯协议选择序号
+16	default_turntable	0	默认转台控制选择序号
+17	default_binding	0	默认装订选择序号
+18	default_automatic	1	默认自动测试选择序号
+19	decode_header_type	1	0:使用单帧头模式/1:使用2帧头中间模式/2:使用帧头帧尾模式
+20	turntable_check_status	0	1:根据转台状态反馈来决定是否到位/0:转动命令发送后固定等待hold_time

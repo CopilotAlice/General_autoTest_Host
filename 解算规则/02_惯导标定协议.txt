@@ -1,5 +1,4 @@
 #	是否保存	系数	标题	排序	注释
-#	baund	460800			
 #	check	none	(none/odd/even		
 #	header	55	AA		
 #	ender	C0	FF		
