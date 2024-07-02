@@ -1,11 +1,9 @@
 #–Ú∫≈	√˚≥∆	…Ë÷√	◊¢ Õ		
 #	“ª¬÷≤‚ ‘		
-0	temp	-56	
-1	wait	10	
-2	power	on:all	
-3	name	SL_-55	
-4	bd	02
-3	name	BD_-55	
-4	bd	03
-2	power	off:all	
-1	wait	10	
+2	power	off
+1	wait	3	
+3	power	v:0
+1	wait	1
+2	power	on
+1	wait	3	
+3	power	step:10:0.01:5

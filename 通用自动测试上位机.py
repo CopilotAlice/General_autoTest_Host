@@ -655,10 +655,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     continue
                 # 读取规则文件-新
                 elif lines.split()[1].lower()=='rulehead':
-                    decode_edia_list.append(lines.split()[2])
+                    # decode_edia_list.append(lines.split()[2])
+                    # default_edia = lines.split()[2]
                     if len(decode_rule)==0:
+                        default_edia = lines.split()[2]
                         continue
                     else:
+                        decode_rule_list.append(decode_rule)
                         decode_save_list.append(decode_save)
                         decode_para_list.append(decode_para)
                         decode_titl_list.append(decode_titl)
@@ -670,7 +673,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         decode_para = []
                         decode_titl = []
                         decode_cout = []
-                    # default_edia = lines.split()[2]
+                    default_edia = lines.split()[2]
                 else:
                     if self.debug_flag | self.debug_read_rules:
                         print('未知规则:<{}>split:<{}>'.format(lines,lines.split()))
@@ -700,7 +703,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             decode_para_list.append(decode_para)
             decode_titl_list.append(decode_titl)
             decode_cout_list.append(decode_cout)
-            # decode_edia_list.append(default_edia)
+            decode_edia_list.append(default_edia)
         
         decode_sort_list = []
         for test_order in decode_cout_list:
@@ -880,12 +883,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 thread_receive.start()
     # 标定测试模式、转台同步控制
     def bd_test(self):
-        self.only_test()
-        self.begin_test_bd()
-        # thread_turn = threading.Thread(target=self.begin_test_bd)
-        # thread_turn.setDaemon(True)
-        # thread_turn.start()
-        # self.only_test()
+        if self.test_mode == 'turntable_test':
+            thread_turn = threading.Thread(target=self.begin_test_bd)
+            thread_turn.setDaemon(True)
+            thread_turn.start()
+            self.only_test()
+        elif self.test_mode == 'automatic_test':
+            self.only_test()
+            self.begin_test_bd()
+        else:
+            print('转台标定时未确定标定逻辑')
     def plan_test(self):
         thread_plan = threading.Thread(target=self.plan_test_threading)
         thread_plan.setDaemon(True)
@@ -946,7 +953,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         hex_filename = '{}{}_{}_hex.hex'.format(file_path,name,save_time)
         hz_filename  = '{}{}_{}_hz.txt'.format(file_path,name,save_time)
         bd_filename  = '{}{}_{}_bd.txt'.format(file_path,name,save_time)
-        calib_filename= '{}{}_{}_bd_calib.txt'.format(file_path,name,save_time)
+        calib_filename= '{}{}_{}_hz_calib.txt'.format(file_path,name,save_time)
         s_filename   = '{}{}_{}_s.txt'.format(file_path,name,save_time)
         ave_filename = '{}{}_{}_ave.txt'.format(file_path,name,save_time)
         
@@ -1010,25 +1017,26 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     receive_hz_count+=1
                     receive_data_hz = decode_hex_frame_list(frame,decode_rule_list,decode_save_list,decode_para_list,decode_sort_list,decode_edia_list)
                                 
-                    alldata_ms += '\t '.join(['{:.{}f}'.format(i,save_decimal_point)if type(i)==float else str(i) for i in receive_data_hz])+'\n'
+                    alldata_ms += '\t '.join(['{:.{}f}'.format(i,save_decimal_point)if not i.is_integer() else str(int(i)) for i in receive_data_hz])+'\n'
                     readydata_ms += '\t '.join(['{:.{}f}'.format(i,save_decimal_point) for i in receive_data_hz])+'\n'
                     
                     # 处理累积calib数据
                     alldata_calib+=str(receive_hz_count).ljust(10,' ')+'\t'
                     for i in range(6):
                         alldata_calib+=str(receive_data_hz[i+1]).rjust(16,' ')+'\t'
-                    alldata_calib+=str(will_turn_flag).rjust(2,' ')+'\n'
+                    alldata_calib+=str(self.bd_calib_flag).rjust(2,' ')+'\n'
                             # calib_receive_data_hz+=str(receive_data_hz[0]).ljust(10,' ')+'\t'
                             
                     if hz_count<receive_hz+1:
                         receive_data_s = [receive_data_s[i]+receive_data_hz[i] for i in range(len(receive_data_hz))]
                     else:
                         hz_count = 0
-                        receive_s_count+=1
+                        receive_s_count+=1  
                         receive_data_s = [i/receive_hz for i in receive_data_s]
-                        receive_data_save = '\t '.join(['{:.{}f}'.format(i,save_decimal_point)if type(i)==float else str(i) for i in receive_data_s])
-                        
-                        self.show_message_list[thread_num].append(receive_data_save)
+                        data_save_lists = ['{:.{}f}'.format(i,save_decimal_point)if not i.is_integer() else str(int(i)) for i in receive_data_s]
+                        receive_data_save = '\t'.join(data_save_lists)
+                        show_data_save = '    '.join(data_save_lists)
+                        self.show_message_list[thread_num].append(show_data_save)
                         self.show_message_dataframe[thread_num] = pd.concat([self.show_message_dataframe[thread_num],pd.DataFrame(receive_data_s).T],axis=0)
                         receive_data_s = zeros_list
                         
@@ -1057,7 +1065,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         if self.config_save_alldata_calib:
                             try:
                                 with open(calib_filename,'a+') as f:
-                                    f.write(alldata_calib+'\n')
+                                    f.write(alldata_calib)
                                     alldata_calib = ''
                             except:
                                 print('保存alldata_calib文件失败')
@@ -1079,7 +1087,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         count =0
         select_plan_name = self.comboBox_automatic_rule.currentText()
         plan_rule_name = './自动规则/{}.txt'.format(select_plan_name)
-        plan_files = pd.read_csv(plan_rule_name,sep='\\s+',header=None,encoding='gb2312')
+        try:
+            plan_files = pd.read_csv(plan_rule_name,sep='\\s+',header=None,encoding='gb2312')
+        except:
+            plan_files = pd.read_csv(plan_rule_name,sep='\\s+',header=None,encoding='utf-8')
         max_plan = len(plan_files)-1
         wait_count = 0
         real_time = time.time()
@@ -1106,7 +1117,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             elif list_plan[1]=='power':
                 count+=1
                 print('power电源时间:{:.2f}'.format(time.time()-real_time))
-                if 'on' in list_plan[2]:
+                if 'on' in list_plan[2].lower():
                     if str(self.config_power_model)=='1':
                         serial_com = self.comboBox_power_com.currentText()
                         power_serials = serial.Serial(serial_com, 57600)
@@ -1129,7 +1140,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         power_serials.close()
                     else:
                         self.show_message_automatic_list.append('未知命令:{}'.format())
-                elif 'off' in list_plan[2]:
+                elif 'off' in list_plan[2].lower():
                     self.plan_name = ''
                     if str(self.config_power_model)=='1':
                         serial_com = self.comboBox_power_com.currentText()
@@ -1149,8 +1160,38 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         power_serials.close()
                         
                     else:
-                        self.show_message_automatic_list.append('未知命令:{}'.format())
-                # elif 
+                        self.show_message_automatic_list.append('未知命令:{}'.format(list_plan[2]))
+                elif 'v' in list_plan[2].lower():
+                    serial_com = self.comboBox_power_com.currentText()
+                    power_serials = serial.Serial(serial_com, 57600)
+                    try:
+                        power_v = float(list_plan[2].split(':')[1])
+                    except:
+                        power_v = 0
+                        self.show_message_automatic_list.append('电压设置错误:{}'.format(list_plan[2]))
+                    power_serials.write(':VOLT:B {}\n'.format(power_v).encode())
+                    power_serials.close()
+                elif 'test' in list_plan[2].lower():
+                    serial_com = self.comboBox_power_com.currentText()
+                    power_serials = serial.Serial(serial_com, 57600)
+                    for i in range(3):
+                        power_v = float(2.5*i)
+                        power_serials.write(':VOLT:B {}\n'.format(power_v).encode())
+                        time.sleep(0.001)
+                    power_serials.close()
+                elif 'step' in list_plan[2].lower():
+                    serial_com = self.comboBox_power_com.currentText()
+                    power_serials = serial.Serial(serial_com, 57600)
+                    steps = int(list_plan[2].split(':')[1])
+                    waits = float(list_plan[2].split(':')[2])
+                    powev = float(list_plan[2].split(':')[3])
+                    for i in range(steps):
+                        power_v = float((powev/steps)*(i+1))
+                        power_serials.write(':VOLT:B {}\n'.format(power_v).encode())
+                        time.sleep(waits)
+                    power_serials.close()
+                        
+                    
                 else:
                     print('未知电源命令')
                 begin_time = time.time()
@@ -1226,7 +1267,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         last_mode = None
         # 读取规则文件
         bd_rulename = './{}/{}.txt'.format('标定规则',self.comboBox_turntable_rule.currentText())
-        rule_file = pd.read_csv(bd_rulename,header=None,skiprows=2,encoding='gb2312',sep='\\s+')
+        try:
+            rule_file = pd.read_csv(bd_rulename,header=None,skiprows=2,encoding='gb2312',sep='\\s+')
+        except:
+            rule_file = pd.read_csv(bd_rulename,header=None,skiprows=2,encoding='utf-8',sep='\\s+')
         # print(rule_file)
         com_port = self.comboBox_turntable_com.currentText()
         turntable_serial = serial.Serial(com_port, 115200, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE)
@@ -1400,13 +1444,25 @@ def decode_hex_frame_list(frame,decode_rule_list,decode_save_list,decode_para_li
         decode_bit_list = []
         decode_struct = decode_edia_list[i]+''.join(decode_rule_list[i])
         decode_struct_length =struct.calcsize(decode_struct)
-        decode_tuple = list(struct.unpack(decode_struct,frame[decode_struct_tolegth:decode_struct_length]))
+        # decode_tuple = list(struct.unpack(decode_struct,frame[decode_struct_tolegth:decode_struct_length]))
+        try:
+            decode_tuple = list(struct.unpack(decode_struct,frame[decode_struct_tolegth:decode_struct_tolegth+decode_struct_length]))
+        except:
+            print('decode_struct:{}'.format(decode_struct))
+            print('decode_struct_length:{}'.format(decode_struct_length))
+            print('decode_hex_frame_list')
+            print(decode_struct)
+            print(frame.hex())
+            print('decode_struct_tolegth:{}  decode_struct_length:{}'.format(decode_struct_tolegth,decode_struct_length))
+            print(frame[decode_struct_tolegth:decode_struct_length])
         decode_struct_tolegth += decode_struct_length
         for j in range(len(decode_tuple)):
             try:
                 decode_sort_num = decode_sort_list[i].index(str(j))
             except:
                 print('decode_hex_frame_list:排序序号超出列表长度')
+                print('decode_tuple:{}'.format(decode_tuple))
+                print('decode_sort_list[i]:{} index:{}'.format(decode_sort_list[i],j))
                 continue
             if decode_save_list[i][decode_sort_num]=='1':
                 decode_para_num = decode_para_list[i][decode_sort_num]

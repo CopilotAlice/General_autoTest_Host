@@ -1895,35 +1895,41 @@ class Ui_MainWindow(object):
         self.gridLayout_2.setSpacing(0)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.textBrowser_3 = QTextBrowser(self.tab)
-        self.textBrowser_3.setObjectName(u"textBrowser_3")
-
-        self.gridLayout_2.addWidget(self.textBrowser_3, 2, 0, 1, 1)
-
-        self.textBrowser_4 = QTextBrowser(self.tab)
-        self.textBrowser_4.setObjectName(u"textBrowser_4")
-
-        self.gridLayout_2.addWidget(self.textBrowser_4, 3, 0, 1, 1)
-
         self.textBrowser_2 = QTextBrowser(self.tab)
         self.textBrowser_2.setObjectName(u"textBrowser_2")
+        self.textBrowser_2.setLineWrapMode(QTextEdit.NoWrap)
 
         self.gridLayout_2.addWidget(self.textBrowser_2, 1, 0, 1, 1)
 
-        self.textBrowser_5 = QTextBrowser(self.tab)
-        self.textBrowser_5.setObjectName(u"textBrowser_5")
-
-        self.gridLayout_2.addWidget(self.textBrowser_5, 4, 0, 1, 1)
-
         self.textBrowser_1 = QTextBrowser(self.tab)
         self.textBrowser_1.setObjectName(u"textBrowser_1")
+        self.textBrowser_1.setLineWrapMode(QTextEdit.NoWrap)
 
         self.gridLayout_2.addWidget(self.textBrowser_1, 0, 0, 1, 1)
 
+        self.textBrowser_5 = QTextBrowser(self.tab)
+        self.textBrowser_5.setObjectName(u"textBrowser_5")
+        self.textBrowser_5.setLineWrapMode(QTextEdit.NoWrap)
+
+        self.gridLayout_2.addWidget(self.textBrowser_5, 4, 0, 1, 1)
+
+        self.textBrowser_3 = QTextBrowser(self.tab)
+        self.textBrowser_3.setObjectName(u"textBrowser_3")
+        self.textBrowser_3.setLineWrapMode(QTextEdit.NoWrap)
+
+        self.gridLayout_2.addWidget(self.textBrowser_3, 2, 0, 1, 1)
+
         self.textBrowser_6 = QTextBrowser(self.tab)
         self.textBrowser_6.setObjectName(u"textBrowser_6")
+        self.textBrowser_6.setLineWrapMode(QTextEdit.NoWrap)
 
         self.gridLayout_2.addWidget(self.textBrowser_6, 5, 0, 1, 1)
+
+        self.textBrowser_4 = QTextBrowser(self.tab)
+        self.textBrowser_4.setObjectName(u"textBrowser_4")
+        self.textBrowser_4.setLineWrapMode(QTextEdit.NoWrap)
+
+        self.gridLayout_2.addWidget(self.textBrowser_4, 3, 0, 1, 1)
 
         self.tabWidget.addTab(self.tab, "")
         self.tab_4 = QWidget()
@@ -1934,31 +1940,37 @@ class Ui_MainWindow(object):
         self.verticalLayout_7.setContentsMargins(0, 0, 0, 0)
         self.textBrowser_7 = QTextBrowser(self.tab_4)
         self.textBrowser_7.setObjectName(u"textBrowser_7")
+        self.textBrowser_7.setLineWrapMode(QTextEdit.NoWrap)
 
         self.verticalLayout_7.addWidget(self.textBrowser_7)
 
         self.textBrowser_8 = QTextBrowser(self.tab_4)
         self.textBrowser_8.setObjectName(u"textBrowser_8")
+        self.textBrowser_8.setLineWrapMode(QTextEdit.NoWrap)
 
         self.verticalLayout_7.addWidget(self.textBrowser_8)
 
         self.textBrowser_9 = QTextBrowser(self.tab_4)
         self.textBrowser_9.setObjectName(u"textBrowser_9")
+        self.textBrowser_9.setLineWrapMode(QTextEdit.NoWrap)
 
         self.verticalLayout_7.addWidget(self.textBrowser_9)
 
         self.textBrowser_10 = QTextBrowser(self.tab_4)
         self.textBrowser_10.setObjectName(u"textBrowser_10")
+        self.textBrowser_10.setLineWrapMode(QTextEdit.NoWrap)
 
         self.verticalLayout_7.addWidget(self.textBrowser_10)
 
         self.textBrowser_11 = QTextBrowser(self.tab_4)
         self.textBrowser_11.setObjectName(u"textBrowser_11")
+        self.textBrowser_11.setLineWrapMode(QTextEdit.NoWrap)
 
         self.verticalLayout_7.addWidget(self.textBrowser_11)
 
         self.textBrowser_12 = QTextBrowser(self.tab_4)
         self.textBrowser_12.setObjectName(u"textBrowser_12")
+        self.textBrowser_12.setLineWrapMode(QTextEdit.NoWrap)
 
         self.verticalLayout_7.addWidget(self.textBrowser_12)
 

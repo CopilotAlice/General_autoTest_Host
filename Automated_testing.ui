@@ -4389,23 +4389,47 @@ p, li { white-space: pre-wrap; }
         <property name="spacing">
          <number>0</number>
         </property>
-        <item row="2" column="0">
-         <widget class="QTextBrowser" name="textBrowser_3"/>
-        </item>
-        <item row="3" column="0">
-         <widget class="QTextBrowser" name="textBrowser_4"/>
-        </item>
         <item row="1" column="0">
-         <widget class="QTextBrowser" name="textBrowser_2"/>
-        </item>
-        <item row="4" column="0">
-         <widget class="QTextBrowser" name="textBrowser_5"/>
+         <widget class="QTextBrowser" name="textBrowser_2">
+          <property name="lineWrapMode">
+           <enum>QTextEdit::NoWrap</enum>
+          </property>
+         </widget>
         </item>
         <item row="0" column="0">
-         <widget class="QTextBrowser" name="textBrowser_1"/>
+         <widget class="QTextBrowser" name="textBrowser_1">
+          <property name="lineWrapMode">
+           <enum>QTextEdit::NoWrap</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QTextBrowser" name="textBrowser_5">
+          <property name="lineWrapMode">
+           <enum>QTextEdit::NoWrap</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QTextBrowser" name="textBrowser_3">
+          <property name="lineWrapMode">
+           <enum>QTextEdit::NoWrap</enum>
+          </property>
+         </widget>
         </item>
         <item row="5" column="0">
-         <widget class="QTextBrowser" name="textBrowser_6"/>
+         <widget class="QTextBrowser" name="textBrowser_6">
+          <property name="lineWrapMode">
+           <enum>QTextEdit::NoWrap</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QTextBrowser" name="textBrowser_4">
+          <property name="lineWrapMode">
+           <enum>QTextEdit::NoWrap</enum>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -4430,22 +4454,46 @@ p, li { white-space: pre-wrap; }
          <number>0</number>
         </property>
         <item>
-         <widget class="QTextBrowser" name="textBrowser_7"/>
+         <widget class="QTextBrowser" name="textBrowser_7">
+          <property name="lineWrapMode">
+           <enum>QTextEdit::NoWrap</enum>
+          </property>
+         </widget>
         </item>
         <item>
-         <widget class="QTextBrowser" name="textBrowser_8"/>
+         <widget class="QTextBrowser" name="textBrowser_8">
+          <property name="lineWrapMode">
+           <enum>QTextEdit::NoWrap</enum>
+          </property>
+         </widget>
         </item>
         <item>
-         <widget class="QTextBrowser" name="textBrowser_9"/>
+         <widget class="QTextBrowser" name="textBrowser_9">
+          <property name="lineWrapMode">
+           <enum>QTextEdit::NoWrap</enum>
+          </property>
+         </widget>
         </item>
         <item>
-         <widget class="QTextBrowser" name="textBrowser_10"/>
+         <widget class="QTextBrowser" name="textBrowser_10">
+          <property name="lineWrapMode">
+           <enum>QTextEdit::NoWrap</enum>
+          </property>
+         </widget>
         </item>
         <item>
-         <widget class="QTextBrowser" name="textBrowser_11"/>
+         <widget class="QTextBrowser" name="textBrowser_11">
+          <property name="lineWrapMode">
+           <enum>QTextEdit::NoWrap</enum>
+          </property>
+         </widget>
         </item>
         <item>
-         <widget class="QTextBrowser" name="textBrowser_12"/>
+         <widget class="QTextBrowser" name="textBrowser_12">
+          <property name="lineWrapMode">
+           <enum>QTextEdit::NoWrap</enum>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
