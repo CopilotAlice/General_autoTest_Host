@@ -2,8 +2,8 @@
 #	baund	460800				
 #	check	none	(none/odd/even			
 #	header	4D	49	58			
-#	longitude	39.73675				
-#	dimensions	116.50984				
+#	latitude	39.73675				
+#	longitude	116.50984				
 #	height	1300				
 #	alignment_time	200				
 #	comm_hz	200					

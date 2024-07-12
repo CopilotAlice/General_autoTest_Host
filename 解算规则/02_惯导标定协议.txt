@@ -2,8 +2,8 @@
 #	check	none	(none/odd/even		
 #	header	55	AA		
 #	ender	C0	FF		
-#	longitude	39.73675			
-#	dimensions	116.50984			
+#	latitude	39.73675			
+#	longitude	116.50984			
 #	height	20			
 #	alignment_time	200			
 #	receive_hz	200	

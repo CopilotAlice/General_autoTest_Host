@@ -2,8 +2,8 @@
 #	baund	230400				
 #	check	none	(none/odd/even			
 #	header	55	AA	3A			
-#	longitude	39.73675				
-#	dimensions	116.50984				
+#	latitude	39.73675				
+#	longitude	116.50984				
 #	height	20				
 #	alignment_time	100				
 #	receive_hz	200	

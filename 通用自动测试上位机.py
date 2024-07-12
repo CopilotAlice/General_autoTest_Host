@@ -41,6 +41,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.power_flag = False
         self.plan_name = ''             # 自动标定进度名称
         
+        # 初始化绘图元素
+        self.graphicsView_gyr_X_adp = self.graphicsView_gyr_X.addPlot()
+        self.graphicsView_gyr_Y_adp = self.graphicsView_gyr_Y.addPlot()
+        self.graphicsView_gyr_Z_adp = self.graphicsView_gyr_Z.addPlot()
+        self.gv_pen_x = self.graphicsView_gyr_X_adp.plot(pen='y')
+        self.gv_pen_y = self.graphicsView_gyr_Y_adp.plot(pen='y')
+        self.gv_pen_z = self.graphicsView_gyr_Z_adp.plot(pen='y')
+        self.list_gv_pen = [self.gv_pen_x,self.gv_pen_y,self.gv_pen_z]
+        self.list_mean_data = [self.lineEdit_inside_plot_mean1,self.lineEdit_inside_plot_mean2,self.lineEdit_inside_plot_mean3]
+        self.list_std_data = [self.lineEdit_inside_plot_stds1,self.lineEdit_inside_plot_stds2,self.lineEdit_inside_plot_stds3]
         
         # 初始化使用元素
         self.short_time = '000000'
@@ -103,7 +113,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.decode_edia_list = []    # 大小端
         self.sorted_titl_list = []    # 排序后保存标题
         self.receive_hz = 200
-        self.receive_wait_time = 0.01
+        self.receive_wait_time = 0.005
         
         
         # 配置文件路径
@@ -148,7 +158,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                                 self.comboBox_turntable_com, 
                                 self.comboBox_power_com,
                                 self.comboBox_tempbox_com,
-                                self.comboBox_binding_com,
                                 self.combox_set_com_all]
         # 12路com口
         self.combox_com_list = [self.combox_set_com_1,
@@ -176,6 +185,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                                     self.pushButton_com_open_10,
                                     self.pushButton_com_open_11,
                                     self.pushButton_com_open_12]
+        # 12路装订缓存区
+        self.binding_cache_list = []
+        for i in range(12):
+            self.binding_cache_list.append([])
         # 装订自动更新
         self.comboBox_binding_list = [self.lineEdit_binding_latitude,
                                       self.lineEdit_binding_longitude,
@@ -191,6 +204,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         for i in range(12):
             self.comboBox_plot_choiceTab.addItem('{} {}'.format(i+1,'路'))
         self.comboBox_plot_choiceTab.setCurrentIndex(1)
+        # 装订选择设置
+        self.comboBox_binding_com.clear()
+        self.comboBox_binding_com.addItem('all')
+        for i in range(12):
+            self.comboBox_binding_com.addItem('{} tab'.format(i+1))
+        self.comboBox_binding_com.setCurrentIndex(0)
         
         # 总控开关切换
         self.pushButton_com_open_all.clicked.connect(self.change_button_all)
@@ -209,6 +228,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.pushButton_stop_test.clicked.connect(self.stop_test)
         # 绘图逻辑更新
         self.comboBox_plot_beginAxis.currentTextChanged.connect(self.update_plot_axis)
+        # 发送装订
+        self.pushButton_binding_send.clicked.connect(self.binding_send)
         
         
         
@@ -285,6 +306,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.normal_time = datetime.datetime.now().strftime('%H:%M:%S')
         # 绘图 # 若有绘图更新标志
         if self.auto_plot_always | self.auto_plot_1time:
+            # print('self.auto_plot_always{}  {}'.format(self.auto_plot_always,self.auto_plot_1time))
             self.auto_plot_1time = False
             try:
                 plot_data_tab = int(self.comboBox_plot_choiceTab.currentText().split()[0])-1
@@ -311,21 +333,52 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     plot_para_list.append(float(1))
                     print('函数show_message_1s中plot_para错误:{}'.format(e))
             if self.debug_update_1s:
-                # print('当前绘制{}： axis:{}  para:{}'.format(plot_data_tab,plot_axis_list,plot_para_list))
-                a = 1
+                print('当前绘制{}： axis:{}  para:{}'.format(plot_data_tab,plot_axis_list,plot_para_list))
                 
             
-        '''
-        plot_axis = self.comboBox_multiple_choice.currentText()
-        axis_list = []
-        # title_list = []
-        for i in range(3):
-            plot_axis_text = self.findChild(QtWidgets.QLineEdit, 'lineEdit_plot_axis_{}'.format(i+1)).text()
-            try:
-                axis_list.append(int(plot_axis_text.split()[0]))
-            except:
-                axis_list.append(i+1)
-            '''
+            # 获取绘图参数
+            list_axis = []
+            list_title = []
+            list_para = []
+            list_data = []
+            for i in range(3):
+                plot_axis_text = self.findChild(QtWidgets.QLineEdit, 'lineEdit_inside_plot_axis{}'.format(i+1)).text()
+                try:plot_axis = int(plot_axis_text.split()[0])
+                except:plot_axis = 1
+                try:plot_title = str(plot_axis_text.split()[1])
+                except:plot_title = 'None'
+                plot_para_text = self.findChild(QtWidgets.QLineEdit, 'lineEdit_inside_plot_para{}'.format(i+1)).text()
+                try:plot_para = float(plot_para_text)
+                except:
+                    plot_para = 1
+                list_axis.append(plot_axis)
+                list_title.append(plot_title)
+                list_para.append(plot_para)
+                
+            try:plot_tab = int(self.comboBox_plot_choiceTab.currentText().split()[0])
+            except:plot_tab = 1
+            skip_count = try_get_text(self.lineEdit_plot_skipcount,int,1)
+            rolls = try_get_text(self.lineEdit_plot_rolling,int,1)
+            plot_dataframe = self.show_message_dataframe[plot_tab-1]
+            # print(self.show_message_dataframe[0])
+            # '''
+            for i in range(3):
+                if len(plot_dataframe)==0:
+                    continue
+                try:
+                    plot_data = list_para[i]*plot_dataframe.iloc[skip_count:,list_axis[i]].reset_index(drop=True).rolling(rolls).mean()
+                    self.list_gv_pen[i].setData(plot_data)
+                    mean_data = plot_data.mean()
+                    self.list_mean_data[i].setText('{:.4f}'.format(mean_data))
+                    stds_data = float(plot_data.std())
+                    # print(stds_data)
+                    self.list_std_data[i].setText('{:.4f}'.format(stds_data))
+                except Exception as e:
+                    print('绘图报错{}'.format(e))
+                    # messagess = '暂无数据'
+                # '''
+            
+            
     # 事件更新5s线程，用于更新串口等对时间不敏感内容
     def show_message_5s(self):
         self.show_timer_count3 += 1
@@ -448,6 +501,17 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 lineEdit.setText(filenames+'_'+str(i+1))
             else:
                 print('未找到对应控件：lineEdit_file_names_%s'%(i+1))
+    # 发送装订 20240712
+    def binding_send(self):
+        send_tab = self.comboBox_binding_com.CurrentText()
+        chosen_tab = send_tab.split()[0]
+        send_commands = self.lineEdit_binding_command.toPlainText()
+        try:
+            chosen_tab_int = int(chosen_tab)
+            self.binding_cache_list[chosen_tab_int-1].append(send_commands)
+        except:
+            for i in range(12):
+                self.binding_cache_list[i].append(send_commands)
     # 读取默认配置文件-全局串口 20240427
     def read_default_para_com(self):
         # 串口默认配置
@@ -639,7 +703,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 elif lines.split()[1].lower() == 'longitude':
                     self.lineEdit_binding_longitude.setText(lines.split()[2])
                 # 纬度
-                elif lines.split()[1].lower() == 'dimensions':
+                elif lines.split()[1].lower() == 'latitude':
                     self.lineEdit_binding_latitude.setText(lines.split()[2])
                 # 高度
                 elif lines.split()[1].lower() == 'height':
@@ -772,8 +836,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         command_list = []
         command_list.append('FF')
         command_list.append('66')
-        command_list+=hexcut2list(struct.pack('>i', binding_longitude).hex().upper())
         command_list+=hexcut2list(struct.pack('>i', binding_latitude).hex().upper())
+        command_list+=hexcut2list(struct.pack('>i', binding_longitude).hex().upper())
         command_list+=hexcut2list(struct.pack('>i', binding_height).hex().upper())[-2:]
         command_list+=hexcut2list(struct.pack('>i', binding_time).hex().upper())[-1:]
         try:
@@ -790,11 +854,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         try:
             begin_axis = int(self.comboBox_plot_beginAxis.currentText().split()[0])
         except Exception as e:
-            # print('update_plot_axis函数错误:{}\t当前项{}'.format(e,self.comboBox_plot_beginAxis.currentText()))
+            print('update_plot_axis函数错误:{}\t当前项{}'.format(e,self.comboBox_plot_beginAxis.currentText()))
             return False
+        if begin_axis<len(self.sorted_titl_list)-3:
+            begin_axis = begin_axis
+        else:
+            begin_axis = len(self.sorted_titl_list)-3
         for i in range(3):
             self.findChild(QtWidgets.QLineEdit, 'lineEdit_inside_plot_axis{}'.format(i+1)).setText('{} {}'.format(i+begin_axis,self.sorted_titl_list[i+begin_axis]))
-    
+        
     
     
     
@@ -938,10 +1006,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         now = datetime.datetime.now()
         save_time = '{}{}{}'.format(now.hour,now.minute,now.second)
         file_path = './测试数据/{}{}/{}/'.format(int2str(now.year),int2str(now.month),int2str(now.day))
-        if self.config_save_BD_1file==0:
-            bd_file_path=file_path+str(self.plan_name)+'/'
-            if not os.path.exists(bd_file_path):
-                os.makedirs(bd_file_path)
+        # 
+        bd_file_path=file_path+str(self.plan_name)+'/'
+        
         
         if not os.path.exists(file_path):
             os.makedirs(file_path)
@@ -963,7 +1030,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         alldata_calib=''
         readydata_ms= ''
         readydata_s = ''
-        
+        self.show_message_dataframe[thread_num] = pd.DataFrame([])
         
         
         sorted_title_list = []
@@ -972,7 +1039,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         zeros_list = [0 for i in range(len(sorted_title_list))]
         receive_data_s = zeros_list
         print('当前:{} turntable_ready:{}'.format(thread_num,self.turntable_ready))
-        
+        continue_check = False
         # 创建标题
         if save_test_title &self.config_save_BD_1file:
             if not os.path.exists(s_filename):
@@ -991,19 +1058,24 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.threading_list_flag[thread_num] = False
         threading_begin_time = time.time()
         while self.threading_test_flag & self.threading_list_flag[thread_num]:
-        # while True:
+            try:
+                if len(self.binding_cache_list[thread_num])>0:
+                    send_commands = self.binding_cache_list[thread_num].pop(0)
+                    serials.write(bytes.fromhex(send_commands))
+            except:
+                print('发送装订失败')
+                
             waiting = serials.in_waiting
             if waiting>=decode_fram_leng:
                 cache_hex_data = serials.read(waiting)
                 # print(cache_hex_data)
                 if self.config_save_alldata_bin:
-                    
                     alldata_bin+=cache_hex_data
                 all_data += cache_hex_data
             if not self.turntable_ready:
             # if not self.serial_test_begin_flag:
                 all_data = b''
-            if time.time()-threading_begin_time>10:
+            if (self.config_save_alldata_bin)&(time.time()-threading_begin_time>10):
                 with open(hex_filename,'ab+') as f:
                     f.write(alldata_bin)
                     alldata_bin = b''
@@ -1016,8 +1088,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     hz_count+=1
                     receive_hz_count+=1
                     receive_data_hz = decode_hex_frame_list(frame,decode_rule_list,decode_save_list,decode_para_list,decode_sort_list,decode_edia_list)
-                                
-                    alldata_ms += '\t '.join(['{:.{}f}'.format(i,save_decimal_point)if not i.is_integer() else str(int(i)) for i in receive_data_hz])+'\n'
+                    for err_check in receive_data_hz:
+                        if float(err_check)>1e20:
+                            continue_check = True
+                            continue
+                    if continue_check:
+                        continue_check = False
+                        print('跳过')
+                        continue
+                    alldata_ms += '\t '.join(['{:.{}f}'.format(i,save_decimal_point)if type(i)==float else str(int(i)) for i in receive_data_hz])+'\n'
                     readydata_ms += '\t '.join(['{:.{}f}'.format(i,save_decimal_point) for i in receive_data_hz])+'\n'
                     
                     # 处理累积calib数据
@@ -1033,11 +1112,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         hz_count = 0
                         receive_s_count+=1  
                         receive_data_s = [i/receive_hz for i in receive_data_s]
-                        data_save_lists = ['{:.{}f}'.format(i,save_decimal_point)if not i.is_integer() else str(int(i)) for i in receive_data_s]
+                        data_save_lists = ['{:.{}f}'.format(i,save_decimal_point)if type(i)==float else str(int(i)) for i in receive_data_s]
                         receive_data_save = '\t'.join(data_save_lists)
                         show_data_save = '    '.join(data_save_lists)
                         self.show_message_list[thread_num].append(show_data_save)
                         self.show_message_dataframe[thread_num] = pd.concat([self.show_message_dataframe[thread_num],pd.DataFrame(receive_data_s).T],axis=0)
+                        # print(self.show_message_dataframe[thread_num])
                         receive_data_s = zeros_list
                         
                         # 满1s开始保存
@@ -1051,12 +1131,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                                 f.write(alldata_ms)
                                 alldata_ms = ''
                         # 到位分文件秒值保存
-                        if (self.config_save_BD_1file==0)&(self.serial_test_begin_flag):
+                        if (self.config_save_readydata_s==0)&(self.serial_test_begin_flag):
+                            if not os.path.exists(bd_file_path):
+                                os.makedirs(bd_file_path)
                             save_file_name = '{}{}_BD{}#{}_s.txt'.format(bd_file_path,name,self.bd_count,save_time)
                             with open(save_file_name,'a+') as f:
                                 f.write(receive_data_save+'\n')
                         # 到位分文件毫秒保存
-                        if (self.config_save_BD_1file==0)&(self.serial_test_begin_flag):
+                        if (self.config_save_readydata_ms==0)&(self.serial_test_begin_flag):
+                            if not os.path.exists(bd_file_path):
+                                os.makedirs(bd_file_path)
                             save_file_name = '{}{}_BD{}#{}_hz.txt'.format(bd_file_path,name,self.bd_count,save_time)
                             with open(save_file_name,'a+') as f:
                                 f.write(readydata_ms) 
@@ -1447,6 +1531,11 @@ def decode_hex_frame_list(frame,decode_rule_list,decode_save_list,decode_para_li
         # decode_tuple = list(struct.unpack(decode_struct,frame[decode_struct_tolegth:decode_struct_length]))
         try:
             decode_tuple = list(struct.unpack(decode_struct,frame[decode_struct_tolegth:decode_struct_tolegth+decode_struct_length]))
+            for errors in decode_tuple:
+                if float(errors)>100000000:
+                    print(errors)
+                    print(frame[decode_struct_tolegth:decode_struct_tolegth+decode_struct_length].hex())
+                    print(decode_struct)
         except:
             print('decode_struct:{}'.format(decode_struct))
             print('decode_struct_length:{}'.format(decode_struct_length))

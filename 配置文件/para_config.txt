@@ -8,7 +8,7 @@
 4	hold_time	15	转台转动后等待时间!!!!!!勿动!!!!!!
 5	save_alldata_ms	1	是否保存所有毫秒值 1True/0False
 6	save_alldata_s	1	是否保存所有秒值 1True/0False
-7	save_alldata_calib	1	是否保存calib标定毫秒值 1True/0False
+7	save_alldata_calib	0	是否保存calib标定毫秒值 1True/0False
 10	save_alldata_bin	0	是否保存标定过程中16进制原始数
 8	save_readydata_ms	0	是否保存到位毫秒值 1True/0False
 9	save_readydata_s	0	是否保存到位秒值 1True/0False

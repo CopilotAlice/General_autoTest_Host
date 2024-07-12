@@ -4,8 +4,8 @@
 1	turntable	COM39	115200	无校验	Stop1	无	转台
 2	power	COM38	9600	无校验	Stop1	无	电源
 3	temp	COM4	460800	无校验	Stop1	无	温箱
-3	binding	COM1	460800	无校验	Stop1	无	装订
-4	tab_1	COM4	921600	无校验	Stop1	开启	多路1/单路，同步更新
+3	binding	all	460800	无校验	Stop1	无	装订
+4	tab_1	COM4	460800	无校验	Stop1	开启	多路1/单路，同步更新
 5	tab_2	COM24	230400	无校验	Stop1	关闭	多路2
 6	tab_3	COM25	230400	无校验	Stop1	关闭	多路3
 7	tab_4	COM8	460800	无校验	Stop1	关闭	多路4

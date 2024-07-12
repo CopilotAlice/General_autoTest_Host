@@ -549,8 +549,6 @@ class Ui_MainWindow(object):
         self.comboBox_binding_com.addItem("")
         self.comboBox_binding_com.addItem("")
         self.comboBox_binding_com.addItem("")
-        self.comboBox_binding_com.addItem("")
-        self.comboBox_binding_com.addItem("")
         self.comboBox_binding_com.setObjectName(u"comboBox_binding_com")
         sizePolicy10 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Fixed)
         sizePolicy10.setHorizontalStretch(0)
@@ -584,12 +582,12 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_10.addWidget(self.label_31)
 
-        self.lineEdit_binding_longitude = QLineEdit(self.widget6)
-        self.lineEdit_binding_longitude.setObjectName(u"lineEdit_binding_longitude")
-        sizePolicy4.setHeightForWidth(self.lineEdit_binding_longitude.sizePolicy().hasHeightForWidth())
-        self.lineEdit_binding_longitude.setSizePolicy(sizePolicy4)
+        self.lineEdit_binding_latitude = QLineEdit(self.widget6)
+        self.lineEdit_binding_latitude.setObjectName(u"lineEdit_binding_latitude")
+        sizePolicy4.setHeightForWidth(self.lineEdit_binding_latitude.sizePolicy().hasHeightForWidth())
+        self.lineEdit_binding_latitude.setSizePolicy(sizePolicy4)
 
-        self.horizontalLayout_10.addWidget(self.lineEdit_binding_longitude)
+        self.horizontalLayout_10.addWidget(self.lineEdit_binding_latitude)
 
         self.label_32 = QLabel(self.widget6)
         self.label_32.setObjectName(u"label_32")
@@ -598,12 +596,12 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_10.addWidget(self.label_32)
 
-        self.lineEdit_binding_latitude = QLineEdit(self.widget6)
-        self.lineEdit_binding_latitude.setObjectName(u"lineEdit_binding_latitude")
-        sizePolicy4.setHeightForWidth(self.lineEdit_binding_latitude.sizePolicy().hasHeightForWidth())
-        self.lineEdit_binding_latitude.setSizePolicy(sizePolicy4)
+        self.lineEdit_binding_longitude = QLineEdit(self.widget6)
+        self.lineEdit_binding_longitude.setObjectName(u"lineEdit_binding_longitude")
+        sizePolicy4.setHeightForWidth(self.lineEdit_binding_longitude.sizePolicy().hasHeightForWidth())
+        self.lineEdit_binding_longitude.setSizePolicy(sizePolicy4)
 
-        self.horizontalLayout_10.addWidget(self.lineEdit_binding_latitude)
+        self.horizontalLayout_10.addWidget(self.lineEdit_binding_longitude)
 
 
         self.verticalLayout_6.addWidget(self.widget6)
@@ -827,6 +825,13 @@ class Ui_MainWindow(object):
 
         self.gridLayout_9.addWidget(self.graphicsView_gyr_Y, 1, 0, 1, 1)
 
+        self.graphicsView_gyr_Z = GraphicsLayoutWidget(self.tab_6)
+        self.graphicsView_gyr_Z.setObjectName(u"graphicsView_gyr_Z")
+        self.graphicsView_gyr_Z.setAcceptDrops(False)
+        self.graphicsView_gyr_Z.setAutoFillBackground(False)
+
+        self.gridLayout_9.addWidget(self.graphicsView_gyr_Z, 2, 0, 1, 1)
+
         self.gridLayout_5 = QGridLayout()
         self.gridLayout_5.setObjectName(u"gridLayout_5")
         self.label_15 = QLabel(self.tab_6)
@@ -1027,19 +1032,7 @@ class Ui_MainWindow(object):
         self.gridLayout_5.addItem(self.horizontalSpacer_2, 1, 13, 1, 1)
 
 
-        self.gridLayout_9.addLayout(self.gridLayout_5, 5, 0, 1, 1)
-
-        self.textBrowser_single_test = QTextBrowser(self.tab_6)
-        self.textBrowser_single_test.setObjectName(u"textBrowser_single_test")
-
-        self.gridLayout_9.addWidget(self.textBrowser_single_test, 3, 0, 1, 1)
-
-        self.graphicsView_gyr_Z = GraphicsLayoutWidget(self.tab_6)
-        self.graphicsView_gyr_Z.setObjectName(u"graphicsView_gyr_Z")
-        self.graphicsView_gyr_Z.setAcceptDrops(False)
-        self.graphicsView_gyr_Z.setAutoFillBackground(False)
-
-        self.gridLayout_9.addWidget(self.graphicsView_gyr_Z, 2, 0, 1, 1)
+        self.gridLayout_9.addLayout(self.gridLayout_5, 4, 0, 1, 1)
 
         self.tabWidget.addTab(self.tab_6, "")
         self.tab_2 = QWidget()
@@ -2105,20 +2098,18 @@ class Ui_MainWindow(object):
         self.label_14.setText(QCoreApplication.translate("MainWindow", u"\u8bbe\u5b9a", None))
         self.label_34.setText(QCoreApplication.translate("MainWindow", u"\u5b9e\u65f6", None))
         self.groupBox_6.setTitle(QCoreApplication.translate("MainWindow", u"\u60ef\u5bfc\u88c5\u8ba2\u6a21\u5757", None))
-        self.comboBox_binding_com.setItemText(0, QCoreApplication.translate("MainWindow", u"COM1", None))
-        self.comboBox_binding_com.setItemText(1, QCoreApplication.translate("MainWindow", u"COM2", None))
-        self.comboBox_binding_com.setItemText(2, QCoreApplication.translate("MainWindow", u"COM3", None))
-        self.comboBox_binding_com.setItemText(3, QCoreApplication.translate("MainWindow", u"COM4", None))
-        self.comboBox_binding_com.setItemText(4, QCoreApplication.translate("MainWindow", u"COM5", None))
+        self.comboBox_binding_com.setItemText(0, QCoreApplication.translate("MainWindow", u"1 tab", None))
+        self.comboBox_binding_com.setItemText(1, QCoreApplication.translate("MainWindow", u"2 tab", None))
+        self.comboBox_binding_com.setItemText(2, QCoreApplication.translate("MainWindow", u"3 tab", None))
 
 #if QT_CONFIG(tooltip)
         self.comboBox_binding_com.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>\u4e32\u53e3</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.pushButton_binding_send.setText(QCoreApplication.translate("MainWindow", u"\u53d1\u9001\u88c5\u8ba2", None))
-        self.label_31.setText(QCoreApplication.translate("MainWindow", u"\u7ecf\u5ea6", None))
-        self.lineEdit_binding_longitude.setText(QCoreApplication.translate("MainWindow", u"0", None))
-        self.label_32.setText(QCoreApplication.translate("MainWindow", u"\u7eac\u5ea6", None))
+        self.label_31.setText(QCoreApplication.translate("MainWindow", u"\u7eac\u5ea6", None))
         self.lineEdit_binding_latitude.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.label_32.setText(QCoreApplication.translate("MainWindow", u"\u7ecf\u5ea6", None))
+        self.lineEdit_binding_longitude.setText(QCoreApplication.translate("MainWindow", u"0", None))
         self.label_33.setText(QCoreApplication.translate("MainWindow", u"\u9ad8\u5ea6", None))
         self.lineEdit_binding_height.setText(QCoreApplication.translate("MainWindow", u"0", None))
         self.label_43.setText(QCoreApplication.translate("MainWindow", u"\u5bf9\u51c6", None))

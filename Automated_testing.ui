@@ -1139,27 +1139,17 @@
                </property>
                <item>
                 <property name="text">
-                 <string>COM1</string>
+                 <string>1 tab</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>COM2</string>
+                 <string>2 tab</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>COM3</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>COM4</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>COM5</string>
+                 <string>3 tab</string>
                 </property>
                </item>
               </widget>
@@ -1207,12 +1197,12 @@
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>经度</string>
+                <string>纬度</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_binding_longitude">
+              <widget class="QLineEdit" name="lineEdit_binding_latitude">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -1233,12 +1223,12 @@
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>纬度</string>
+                <string>经度</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_binding_latitude">
+              <widget class="QLineEdit" name="lineEdit_binding_longitude">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -1690,7 +1680,17 @@ p, li { white-space: pre-wrap; }
         <item row="1" column="0">
          <widget class="GraphicsLayoutWidget" name="graphicsView_gyr_Y"/>
         </item>
-        <item row="5" column="0">
+        <item row="2" column="0">
+         <widget class="GraphicsLayoutWidget" name="graphicsView_gyr_Z">
+          <property name="acceptDrops">
+           <bool>false</bool>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
          <layout class="QGridLayout" name="gridLayout_5">
           <item row="0" column="5">
            <widget class="QLabel" name="label_15">
@@ -1987,19 +1987,6 @@ p, li { white-space: pre-wrap; }
            </spacer>
           </item>
          </layout>
-        </item>
-        <item row="3" column="0">
-         <widget class="QTextBrowser" name="textBrowser_single_test"/>
-        </item>
-        <item row="2" column="0">
-         <widget class="GraphicsLayoutWidget" name="graphicsView_gyr_Z">
-          <property name="acceptDrops">
-           <bool>false</bool>
-          </property>
-          <property name="autoFillBackground">
-           <bool>false</bool>
-          </property>
-         </widget>
         </item>
        </layout>
       </widget>

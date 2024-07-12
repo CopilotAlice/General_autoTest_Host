@@ -2,8 +2,8 @@
 #	baund	230400				
 #	check	none	(none/odd/even			
 #	header	EB	90	23		
-#	longitude	39.73675	装订经度			
-#	dimensions	116.50984	装订纬度			
+#	latitude	39.73675	装订纬度			
+#	longitude	116.50984	装订经度			
 #	height	20	装订高度			
 #	alignment_time	100	装订时间			
 #	receive_hz	200	接收频率
