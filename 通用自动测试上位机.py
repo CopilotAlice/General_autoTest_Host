@@ -1206,6 +1206,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         serial_com = self.comboBox_power_com.currentText()
                         power_serials = serial.Serial(serial_com, 57600)
                         power_serials.write(':OUTP 1\n'.encode())
+                        time.sleep(0.1)
+                        power_serials.write(':OUTP 1\n'.encode())
                         power_serials.close()
                     elif str(self.config_power_model)=='2':
                         serial_com = self.comboBox_power_com.currentText()
@@ -1216,6 +1218,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                             power_serials = serial.Serial(serial_com, 9600)
                         command = try_split_power_command(list_plan[2])
                         if command=='all':
+                            for power_count in range(4):
+                                power_serials.write(('{\"A0%s\":110000}'%(power_count+1)).encode())
+                            time.sleep(0.1)
                             for power_count in range(4):
                                 power_serials.write(('{\"A0%s\":110000}'%(power_count+1)).encode())
                             power_serials.close()
@@ -1237,6 +1242,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         command = try_split_power_command(list_plan[2])
                         print('com{} 电源off 命令{}'.format(serial_com,command))
                         if command=='all':
+                            for power_count in range(4):
+                                power_serials.write(('{\"A0%s\":100000}'%(power_count+1)).encode())
+                            time.sleep(0.1)
                             for power_count in range(4):
                                 power_serials.write(('{\"A0%s\":100000}'%(power_count+1)).encode())
                         else:
@@ -1334,11 +1342,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         outside_speed = 0
         inside_acceleration = 20
         outside_acceleration = 20
-        
-        # self.config_in_spd = 36
-        # self.config_in_acc = 36
-        # self.config_out_spd = 24
-        # self.config_out_acc = 24
         
         # config_speed = self.config
         waittime = 2
