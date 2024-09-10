@@ -1970,9 +1970,10 @@ class Ui_MainWindow(object):
         self.tabWidget.addTab(self.tab_4, "")
         self.tab_3 = QWidget()
         self.tab_3.setObjectName(u"tab_3")
+        self.verticalLayout_9 = QVBoxLayout(self.tab_3)
+        self.verticalLayout_9.setObjectName(u"verticalLayout_9")
         self.groupBox_7 = QGroupBox(self.tab_3)
         self.groupBox_7.setObjectName(u"groupBox_7")
-        self.groupBox_7.setGeometry(QRect(10, 10, 871, 281))
         self.gridLayout_7 = QGridLayout(self.groupBox_7)
         self.gridLayout_7.setObjectName(u"gridLayout_7")
         self.graphicsView_gyr_X_3 = GraphicsLayoutWidget(self.groupBox_7)
@@ -1980,15 +1981,219 @@ class Ui_MainWindow(object):
 
         self.gridLayout_7.addWidget(self.graphicsView_gyr_X_3, 0, 0, 1, 1)
 
+
+        self.verticalLayout_9.addWidget(self.groupBox_7)
+
         self.groupBox_8 = QGroupBox(self.tab_3)
         self.groupBox_8.setObjectName(u"groupBox_8")
-        self.groupBox_8.setGeometry(QRect(10, 300, 881, 271))
         self.gridLayout_8 = QGridLayout(self.groupBox_8)
         self.gridLayout_8.setObjectName(u"gridLayout_8")
         self.graphicsView_gyr_X_4 = GraphicsLayoutWidget(self.groupBox_8)
         self.graphicsView_gyr_X_4.setObjectName(u"graphicsView_gyr_X_4")
 
         self.gridLayout_8.addWidget(self.graphicsView_gyr_X_4, 0, 0, 1, 1)
+
+
+        self.verticalLayout_9.addWidget(self.groupBox_8)
+
+        self.gridLayout_6 = QGridLayout()
+        self.gridLayout_6.setObjectName(u"gridLayout_6")
+        self.label_45 = QLabel(self.tab_3)
+        self.label_45.setObjectName(u"label_45")
+
+        self.gridLayout_6.addWidget(self.label_45, 0, 5, 1, 1)
+
+        self.lineEdit_inside_plot_axis2_2 = QLineEdit(self.tab_3)
+        self.lineEdit_inside_plot_axis2_2.setObjectName(u"lineEdit_inside_plot_axis2_2")
+
+        self.gridLayout_6.addWidget(self.lineEdit_inside_plot_axis2_2, 1, 6, 1, 1)
+
+        self.label_47 = QLabel(self.tab_3)
+        self.label_47.setObjectName(u"label_47")
+
+        self.gridLayout_6.addWidget(self.label_47, 2, 7, 1, 1)
+
+        self.lineEdit_inside_plot_para3_2 = QLineEdit(self.tab_3)
+        self.lineEdit_inside_plot_para3_2.setObjectName(u"lineEdit_inside_plot_para3_2")
+
+        self.gridLayout_6.addWidget(self.lineEdit_inside_plot_para3_2, 2, 8, 1, 1)
+
+        self.label_48 = QLabel(self.tab_3)
+        self.label_48.setObjectName(u"label_48")
+
+        self.gridLayout_6.addWidget(self.label_48, 2, 5, 1, 1)
+
+        self.label_50 = QLabel(self.tab_3)
+        self.label_50.setObjectName(u"label_50")
+
+        self.gridLayout_6.addWidget(self.label_50, 1, 3, 1, 1)
+
+        self.label_52 = QLabel(self.tab_3)
+        self.label_52.setObjectName(u"label_52")
+
+        self.gridLayout_6.addWidget(self.label_52, 0, 3, 1, 1)
+
+        self.lineEdit_inside_plot_stds2_2 = QLineEdit(self.tab_3)
+        self.lineEdit_inside_plot_stds2_2.setObjectName(u"lineEdit_inside_plot_stds2_2")
+
+        self.gridLayout_6.addWidget(self.lineEdit_inside_plot_stds2_2, 1, 12, 1, 1)
+
+        self.comboBox_plot_beginAxis_2 = QComboBox(self.tab_3)
+        self.comboBox_plot_beginAxis_2.addItem("")
+        self.comboBox_plot_beginAxis_2.setObjectName(u"comboBox_plot_beginAxis_2")
+        self.comboBox_plot_beginAxis_2.setEditable(True)
+
+        self.gridLayout_6.addWidget(self.comboBox_plot_beginAxis_2, 0, 4, 1, 1)
+
+        self.lineEdit_inside_plot_axis3_2 = QLineEdit(self.tab_3)
+        self.lineEdit_inside_plot_axis3_2.setObjectName(u"lineEdit_inside_plot_axis3_2")
+
+        self.gridLayout_6.addWidget(self.lineEdit_inside_plot_axis3_2, 2, 6, 1, 1)
+
+        self.label_54 = QLabel(self.tab_3)
+        self.label_54.setObjectName(u"label_54")
+
+        self.gridLayout_6.addWidget(self.label_54, 1, 9, 1, 1)
+
+        self.label_55 = QLabel(self.tab_3)
+        self.label_55.setObjectName(u"label_55")
+
+        self.gridLayout_6.addWidget(self.label_55, 1, 7, 1, 1)
+
+        self.lineEdit_inside_plot_para2_2 = QLineEdit(self.tab_3)
+        self.lineEdit_inside_plot_para2_2.setObjectName(u"lineEdit_inside_plot_para2_2")
+
+        self.gridLayout_6.addWidget(self.lineEdit_inside_plot_para2_2, 1, 8, 1, 1)
+
+        self.lineEdit_plot_rolling_2 = QLineEdit(self.tab_3)
+        self.lineEdit_plot_rolling_2.setObjectName(u"lineEdit_plot_rolling_2")
+
+        self.gridLayout_6.addWidget(self.lineEdit_plot_rolling_2, 1, 4, 1, 1)
+
+        self.label_56 = QLabel(self.tab_3)
+        self.label_56.setObjectName(u"label_56")
+
+        self.gridLayout_6.addWidget(self.label_56, 0, 11, 1, 1)
+
+        self.comboBox_plot_choiceTab_2 = QComboBox(self.tab_3)
+        self.comboBox_plot_choiceTab_2.addItem("")
+        self.comboBox_plot_choiceTab_2.setObjectName(u"comboBox_plot_choiceTab_2")
+        sizePolicy14.setHeightForWidth(self.comboBox_plot_choiceTab_2.sizePolicy().hasHeightForWidth())
+        self.comboBox_plot_choiceTab_2.setSizePolicy(sizePolicy14)
+        self.comboBox_plot_choiceTab_2.setEditable(True)
+
+        self.gridLayout_6.addWidget(self.comboBox_plot_choiceTab_2, 0, 2, 1, 1)
+
+        self.lineEdit_inside_plot_stds1_2 = QLineEdit(self.tab_3)
+        self.lineEdit_inside_plot_stds1_2.setObjectName(u"lineEdit_inside_plot_stds1_2")
+
+        self.gridLayout_6.addWidget(self.lineEdit_inside_plot_stds1_2, 0, 12, 1, 1)
+
+        self.lineEdit_plot_skipcount_2 = QLineEdit(self.tab_3)
+        self.lineEdit_plot_skipcount_2.setObjectName(u"lineEdit_plot_skipcount_2")
+
+        self.gridLayout_6.addWidget(self.lineEdit_plot_skipcount_2, 2, 4, 1, 1)
+
+        self.label_57 = QLabel(self.tab_3)
+        self.label_57.setObjectName(u"label_57")
+
+        self.gridLayout_6.addWidget(self.label_57, 0, 7, 1, 1)
+
+        self.label_58 = QLabel(self.tab_3)
+        self.label_58.setObjectName(u"label_58")
+
+        self.gridLayout_6.addWidget(self.label_58, 1, 5, 1, 1)
+
+        self.lineEdit_inside_plot_mean2_2 = QLineEdit(self.tab_3)
+        self.lineEdit_inside_plot_mean2_2.setObjectName(u"lineEdit_inside_plot_mean2_2")
+
+        self.gridLayout_6.addWidget(self.lineEdit_inside_plot_mean2_2, 1, 10, 1, 1)
+
+        self.label_59 = QLabel(self.tab_3)
+        self.label_59.setObjectName(u"label_59")
+
+        self.gridLayout_6.addWidget(self.label_59, 0, 1, 1, 1)
+
+        self.lineEdit_inside_plot_mean3_2 = QLineEdit(self.tab_3)
+        self.lineEdit_inside_plot_mean3_2.setObjectName(u"lineEdit_inside_plot_mean3_2")
+
+        self.gridLayout_6.addWidget(self.lineEdit_inside_plot_mean3_2, 2, 10, 1, 1)
+
+        self.lineEdit_inside_plot_para1_2 = QLineEdit(self.tab_3)
+        self.lineEdit_inside_plot_para1_2.setObjectName(u"lineEdit_inside_plot_para1_2")
+
+        self.gridLayout_6.addWidget(self.lineEdit_inside_plot_para1_2, 0, 8, 1, 1)
+
+        self.label_60 = QLabel(self.tab_3)
+        self.label_60.setObjectName(u"label_60")
+
+        self.gridLayout_6.addWidget(self.label_60, 1, 1, 1, 1)
+
+        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_6.addItem(self.horizontalSpacer_3, 1, 0, 1, 1)
+
+        self.label_61 = QLabel(self.tab_3)
+        self.label_61.setObjectName(u"label_61")
+
+        self.gridLayout_6.addWidget(self.label_61, 2, 11, 1, 1)
+
+        self.label_62 = QLabel(self.tab_3)
+        self.label_62.setObjectName(u"label_62")
+
+        self.gridLayout_6.addWidget(self.label_62, 2, 3, 1, 1)
+
+        self.lineEdit_inside_plot_stds3_2 = QLineEdit(self.tab_3)
+        self.lineEdit_inside_plot_stds3_2.setObjectName(u"lineEdit_inside_plot_stds3_2")
+
+        self.gridLayout_6.addWidget(self.lineEdit_inside_plot_stds3_2, 2, 12, 1, 1)
+
+        self.label_63 = QLabel(self.tab_3)
+        self.label_63.setObjectName(u"label_63")
+
+        self.gridLayout_6.addWidget(self.label_63, 0, 9, 1, 1)
+
+        self.label_64 = QLabel(self.tab_3)
+        self.label_64.setObjectName(u"label_64")
+
+        self.gridLayout_6.addWidget(self.label_64, 1, 11, 1, 1)
+
+        self.lineEdit_inside_location_19 = QLineEdit(self.tab_3)
+        self.lineEdit_inside_location_19.setObjectName(u"lineEdit_inside_location_19")
+
+        self.gridLayout_6.addWidget(self.lineEdit_inside_location_19, 2, 2, 1, 1)
+
+        self.label_65 = QLabel(self.tab_3)
+        self.label_65.setObjectName(u"label_65")
+
+        self.gridLayout_6.addWidget(self.label_65, 2, 9, 1, 1)
+
+        self.lineEdit_inside_plot_mean1_2 = QLineEdit(self.tab_3)
+        self.lineEdit_inside_plot_mean1_2.setObjectName(u"lineEdit_inside_plot_mean1_2")
+
+        self.gridLayout_6.addWidget(self.lineEdit_inside_plot_mean1_2, 0, 10, 1, 1)
+
+        self.lineEdit_inside_plot_axis1_2 = QLineEdit(self.tab_3)
+        self.lineEdit_inside_plot_axis1_2.setObjectName(u"lineEdit_inside_plot_axis1_2")
+
+        self.gridLayout_6.addWidget(self.lineEdit_inside_plot_axis1_2, 0, 6, 1, 1)
+
+        self.label_66 = QLabel(self.tab_3)
+        self.label_66.setObjectName(u"label_66")
+
+        self.gridLayout_6.addWidget(self.label_66, 2, 1, 1, 1)
+
+        self.lineEdit_inside_location_20 = QLineEdit(self.tab_3)
+        self.lineEdit_inside_location_20.setObjectName(u"lineEdit_inside_location_20")
+
+        self.gridLayout_6.addWidget(self.lineEdit_inside_location_20, 1, 2, 1, 1)
+
+        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_6.addItem(self.horizontalSpacer_4, 1, 13, 1, 1)
+
+
+        self.verticalLayout_9.addLayout(self.gridLayout_6)
 
         self.tabWidget.addTab(self.tab_3, "")
 
@@ -2542,6 +2747,44 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), QCoreApplication.translate("MainWindow", u"7-12", None))
         self.groupBox_7.setTitle(QCoreApplication.translate("MainWindow", u"\u901f\u5ea6", None))
         self.groupBox_8.setTitle(QCoreApplication.translate("MainWindow", u"\u4f4d\u7f6e", None))
+        self.label_45.setText(QCoreApplication.translate("MainWindow", u"X\u8f74", None))
+        self.lineEdit_inside_plot_axis2_2.setText(QCoreApplication.translate("MainWindow", u"2", None))
+        self.label_47.setText(QCoreApplication.translate("MainWindow", u"\u7cfb\u6570", None))
+        self.lineEdit_inside_plot_para3_2.setText(QCoreApplication.translate("MainWindow", u"1", None))
+        self.label_48.setText(QCoreApplication.translate("MainWindow", u"Z\u8f74", None))
+        self.label_50.setText(QCoreApplication.translate("MainWindow", u"\u5e73\u6ed1", None))
+        self.label_52.setText(QCoreApplication.translate("MainWindow", u"\u8d77\u59cb", None))
+        self.lineEdit_inside_plot_stds2_2.setText("")
+        self.comboBox_plot_beginAxis_2.setItemText(0, QCoreApplication.translate("MainWindow", u"None", None))
+
+        self.lineEdit_inside_plot_axis3_2.setText(QCoreApplication.translate("MainWindow", u"3", None))
+        self.label_54.setText(QCoreApplication.translate("MainWindow", u"\u5747\u503c", None))
+        self.label_55.setText(QCoreApplication.translate("MainWindow", u"\u7cfb\u6570", None))
+        self.lineEdit_inside_plot_para2_2.setText(QCoreApplication.translate("MainWindow", u"1", None))
+        self.lineEdit_plot_rolling_2.setText(QCoreApplication.translate("MainWindow", u"1", None))
+        self.label_56.setText(QCoreApplication.translate("MainWindow", u"\u6807\u51c6\u5dee", None))
+        self.comboBox_plot_choiceTab_2.setItemText(0, QCoreApplication.translate("MainWindow", u"None", None))
+
+        self.lineEdit_inside_plot_stds1_2.setText("")
+        self.lineEdit_plot_skipcount_2.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.label_57.setText(QCoreApplication.translate("MainWindow", u"\u7cfb\u6570", None))
+        self.label_58.setText(QCoreApplication.translate("MainWindow", u"Y\u8f74", None))
+        self.lineEdit_inside_plot_mean2_2.setText("")
+        self.label_59.setText(QCoreApplication.translate("MainWindow", u"\u591a\u8def", None))
+        self.lineEdit_inside_plot_mean3_2.setText("")
+        self.lineEdit_inside_plot_para1_2.setText(QCoreApplication.translate("MainWindow", u"1", None))
+        self.label_60.setText(QCoreApplication.translate("MainWindow", u"\u5907\u7528", None))
+        self.label_61.setText(QCoreApplication.translate("MainWindow", u"\u6807\u51c6\u5dee", None))
+        self.label_62.setText(QCoreApplication.translate("MainWindow", u"\u8df3\u8fc7", None))
+        self.lineEdit_inside_plot_stds3_2.setText("")
+        self.label_63.setText(QCoreApplication.translate("MainWindow", u"\u5747\u503c", None))
+        self.label_64.setText(QCoreApplication.translate("MainWindow", u"\u6807\u51c6\u5dee", None))
+        self.lineEdit_inside_location_19.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.label_65.setText(QCoreApplication.translate("MainWindow", u"\u5747\u503c", None))
+        self.lineEdit_inside_plot_mean1_2.setText("")
+        self.lineEdit_inside_plot_axis1_2.setText(QCoreApplication.translate("MainWindow", u"1", None))
+        self.label_66.setText(QCoreApplication.translate("MainWindow", u"\u5907\u7528", None))
+        self.lineEdit_inside_location_20.setText(QCoreApplication.translate("MainWindow", u"0", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QCoreApplication.translate("MainWindow", u"\u60ef\u5bfc", None))
     # retranslateUi
 

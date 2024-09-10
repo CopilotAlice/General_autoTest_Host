@@ -1661,7 +1661,7 @@ p, li { white-space: pre-wrap; }
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab_6">
        <attribute name="title">
@@ -4488,42 +4488,369 @@ p, li { white-space: pre-wrap; }
        <attribute name="title">
         <string>惯导</string>
        </attribute>
-       <widget class="QGroupBox" name="groupBox_7">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>871</width>
-          <height>281</height>
-         </rect>
-        </property>
-        <property name="title">
-         <string>速度</string>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_7">
-         <item row="0" column="0">
-          <widget class="GraphicsLayoutWidget" name="graphicsView_gyr_X_3"/>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QGroupBox" name="groupBox_8">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>300</y>
-          <width>881</width>
-          <height>271</height>
-         </rect>
-        </property>
-        <property name="title">
-         <string>位置</string>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_8">
-         <item row="0" column="0">
-          <widget class="GraphicsLayoutWidget" name="graphicsView_gyr_X_4"/>
-         </item>
-        </layout>
-       </widget>
+       <layout class="QVBoxLayout" name="verticalLayout_9">
+        <item>
+         <widget class="QGroupBox" name="groupBox_7">
+          <property name="title">
+           <string>速度</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_7">
+           <item row="0" column="0">
+            <widget class="GraphicsLayoutWidget" name="graphicsView_gyr_X_3"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_8">
+          <property name="title">
+           <string>位置</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_8">
+           <item row="0" column="0">
+            <widget class="GraphicsLayoutWidget" name="graphicsView_gyr_X_4"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <layout class="QGridLayout" name="gridLayout_6">
+          <item row="0" column="5">
+           <widget class="QLabel" name="label_45">
+            <property name="text">
+             <string>X轴</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="6">
+           <widget class="QLineEdit" name="lineEdit_inside_plot_axis2_2">
+            <property name="text">
+             <string>2</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="7">
+           <widget class="QLabel" name="label_47">
+            <property name="text">
+             <string>系数</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="8">
+           <widget class="QLineEdit" name="lineEdit_inside_plot_para3_2">
+            <property name="text">
+             <string>1</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="5">
+           <widget class="QLabel" name="label_48">
+            <property name="text">
+             <string>Z轴</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <widget class="QLabel" name="label_50">
+            <property name="text">
+             <string>平滑</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QLabel" name="label_52">
+            <property name="text">
+             <string>起始</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="12">
+           <widget class="QLineEdit" name="lineEdit_inside_plot_stds2_2">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="4">
+           <widget class="QComboBox" name="comboBox_plot_beginAxis_2">
+            <property name="editable">
+             <bool>true</bool>
+            </property>
+            <item>
+             <property name="text">
+              <string>None</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="2" column="6">
+           <widget class="QLineEdit" name="lineEdit_inside_plot_axis3_2">
+            <property name="text">
+             <string>3</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="9">
+           <widget class="QLabel" name="label_54">
+            <property name="text">
+             <string>均值</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="7">
+           <widget class="QLabel" name="label_55">
+            <property name="text">
+             <string>系数</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="8">
+           <widget class="QLineEdit" name="lineEdit_inside_plot_para2_2">
+            <property name="text">
+             <string>1</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="4">
+           <widget class="QLineEdit" name="lineEdit_plot_rolling_2">
+            <property name="text">
+             <string>1</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="11">
+           <widget class="QLabel" name="label_56">
+            <property name="text">
+             <string>标准差</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QComboBox" name="comboBox_plot_choiceTab_2">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="editable">
+             <bool>true</bool>
+            </property>
+            <item>
+             <property name="text">
+              <string>None</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="0" column="12">
+           <widget class="QLineEdit" name="lineEdit_inside_plot_stds1_2">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="4">
+           <widget class="QLineEdit" name="lineEdit_plot_skipcount_2">
+            <property name="text">
+             <string>0</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="7">
+           <widget class="QLabel" name="label_57">
+            <property name="text">
+             <string>系数</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="5">
+           <widget class="QLabel" name="label_58">
+            <property name="text">
+             <string>Y轴</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="10">
+           <widget class="QLineEdit" name="lineEdit_inside_plot_mean2_2">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLabel" name="label_59">
+            <property name="text">
+             <string>多路</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="10">
+           <widget class="QLineEdit" name="lineEdit_inside_plot_mean3_2">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="8">
+           <widget class="QLineEdit" name="lineEdit_inside_plot_para1_2">
+            <property name="text">
+             <string>1</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLabel" name="label_60">
+            <property name="text">
+             <string>备用</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="2" column="11">
+           <widget class="QLabel" name="label_61">
+            <property name="text">
+             <string>标准差</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="3">
+           <widget class="QLabel" name="label_62">
+            <property name="text">
+             <string>跳过</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="12">
+           <widget class="QLineEdit" name="lineEdit_inside_plot_stds3_2">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="9">
+           <widget class="QLabel" name="label_63">
+            <property name="text">
+             <string>均值</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="11">
+           <widget class="QLabel" name="label_64">
+            <property name="text">
+             <string>标准差</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QLineEdit" name="lineEdit_inside_location_19">
+            <property name="text">
+             <string>0</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="9">
+           <widget class="QLabel" name="label_65">
+            <property name="text">
+             <string>均值</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="10">
+           <widget class="QLineEdit" name="lineEdit_inside_plot_mean1_2">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="6">
+           <widget class="QLineEdit" name="lineEdit_inside_plot_axis1_2">
+            <property name="text">
+             <string>1</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLabel" name="label_66">
+            <property name="text">
+             <string>备用</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QLineEdit" name="lineEdit_inside_location_20">
+            <property name="text">
+             <string>0</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="13">
+           <spacer name="horizontalSpacer_4">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_5">
+       <attribute name="title">
+        <string>静态</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_7">
+       <attribute name="title">
+        <string>速率</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_8">
+       <attribute name="title">
+        <string>零位</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_9">
+       <attribute name="title">
+        <string>非正交</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_10">
+       <attribute name="title">
+        <string>调试</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_10">
+        <item row="0" column="0">
+         <widget class="QTextBrowser" name="textBrowser_debug_1"/>
+        </item>
+        <item row="0" column="1">
+         <widget class="QTextBrowser" name="textBrowser_debug_2"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QTextBrowser" name="textBrowser_debug_3"/>
+        </item>
+        <item row="1" column="1">
+         <widget class="QTextBrowser" name="textBrowser_debug_4"/>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>

@@ -2,6 +2,7 @@ from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtCore import QThread, pyqtSignal, QTimer
 from Automated_testing import Ui_MainWindow
 from pyqtgraph.Qt import QtCore
+from fun_chy2 import *
 import binascii
 import datetime
 import os
@@ -24,12 +25,12 @@ pd.set_option('display.width', 1000)
 pd.set_option('display.unicode.ambiguous_as_wide', True)
 pd.set_option('display.unicode.east_asian_width', True)
 
-
+debug_test = 1
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
-        self.setWindowTitle("通用自动测试上位机_蔡_功能测试版_2407_V0.61")
+        self.setWindowTitle("通用自动测试上位机_蔡_功能测试版_2408_V0.64")
         self.show_message_length = 30   # 显示的最大行数
         
         # 初始化界面元素
@@ -216,7 +217,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         for i in range(12):
             self.comboBox_binding_com.addItem('{} tab'.format(i+1))
         self.comboBox_binding_com.setCurrentIndex(0)
-        
+
+        # 选择事件集
         # 总控开关切换
         self.pushButton_com_open_all.clicked.connect(self.change_button_all)
         # 单路通讯协议同步多路更新
@@ -226,16 +228,20 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.combox_set_com_1.currentTextChanged.connect(self.comboBox_com_change)
         self.combox_set_baund_1.currentTextChanged.connect(self.comboBox_com_change)
         self.comboBox_set_check_1.currentTextChanged.connect(self.comboBox_com_change)
+        # 绘图逻辑更新
+        self.comboBox_plot_beginAxis.currentTextChanged.connect(self.update_plot_axis)
         # 多路文件名同步更新
         self.lineEdit_file_names_all.textChanged.connect(self.filenames_change)
         # 规则更新同步
         self.comboBox_protocal_rule.currentTextChanged.connect(self.read_rules)
+
+        # 点击事件集
         self.pushButton_begin_test.clicked.connect(self.begin_test)
         self.pushButton_stop_test.clicked.connect(self.stop_test)
-        # 绘图逻辑更新
-        self.comboBox_plot_beginAxis.currentTextChanged.connect(self.update_plot_axis)
         # 发送装订
         self.pushButton_binding_send.clicked.connect(self.binding_send)
+        # 载入文件
+        self.pushButton_load_data.clicked.connect(self.event_load_file)
         
         
         
@@ -528,6 +534,94 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.debug_list_1.append('装订载入缓存:{}'.format(str(send_commands)))
             for i in range(12):
                 self.binding_cache_list[i].append(send_commands)
+    # 开启电源事件 20240813
+    def event_power_on(self):
+        if str(self.config_power_model)=='1':
+            serial_com = self.comboBox_power_com.currentText()
+            power_serials = serial.Serial(serial_com, 57600)
+            power_serials.write(':OUTP 1\n'.encode())
+            time.sleep(0.1)
+            power_serials.write(':OUTP 1\n'.encode())
+            power_serials.close()
+        elif str(self.config_power_model)=='2':
+            serial_com = self.comboBox_power_com.currentText()
+            try:
+                power_serials.close()
+                power_serials = serial.Serial(serial_com, 9600)
+            except:
+                power_serials = serial.Serial(serial_com, 9600)
+            command = try_split_power_command(list_plan[2])
+            if command=='all':
+                for power_count in range(4):
+                    power_serials.write(('{\"A0%s\":110000}'%(power_count+1)).encode())
+                time.sleep(0.1)
+                for power_count in range(4):
+                    power_serials.write(('{\"A0%s\":110000}'%(power_count+1)).encode())
+                power_serials.close()
+            else:
+                power_serials.write(('{\"A0%s\":110000}'%(int(command))).encode())
+            power_serials.close()
+        else:
+            self.show_message_automatic_list.append('未知命令:{}'.format())
+
+    # 关闭电源事件 20240813
+    def event_power_off(self):
+        if str(self.config_power_model)=='1':
+            serial_com = self.comboBox_power_com.currentText()
+            power_serials = serial.Serial(serial_com, 57600)
+            power_serials.write(':OUTP 0\n'.encode())
+            power_serials.close()
+        elif str(self.config_power_model)=='2':
+            serial_com = self.comboBox_power_com.currentText()
+            power_serials = serial.Serial(serial_com,9600)
+            command = try_split_power_command(list_plan[2])
+            print('com{} 电源off 命令{}'.format(serial_com,command))
+            if command=='all':
+                for power_count in range(4):
+                    power_serials.write(('{\"A0%s\":100000}'%(power_count+1)).encode())
+                time.sleep(0.1)
+                for power_count in range(4):
+                    power_serials.write(('{\"A0%s\":100000}'%(power_count+1)).encode())
+            else:
+                power_serials.write(('{\"A0%s\":100000}'%(int(command))).encode())
+            power_serials.close()
+            
+        else:
+            self.show_message_automatic_list.append('未知命令:{}'.format(list_plan[2]))
+
+    # 载入文件事件 使用df打开文件/使用数据解算hex 20240814
+    def event_load_file(self):
+        hex_flag = False
+        dir = QtWidgets.QFileDialog()
+        try:
+            # dir.setDirectory('.//')
+            path = os.getcwd()  
+            dir.setDirectory(path)
+        except:
+            dir.setDirectory('C:\\')
+        if dir.exec_():
+            file_path = str(dir.selectedFiles()[0])
+            print(file_path)
+        else:
+            return False
+        try:
+            with open(file_path,'r') as f:
+                for i in range(10):
+                    print(f.readlines())
+        except Exception as e:
+            hex_flag = True
+            with open(file_path,'rb+') as f:
+                hex_data = f.read()
+            print(hex_data[:100].hex())
+            print(len(hex_data))
+        decode_rule_name = self.comboBox_protocal_rule.currentText()
+        with open('./解算规则/{}'.format(decode_rule_name), 'r+') as f:
+            decode_rule_file = f.read()
+        decode_struct = class_rule()
+        decode_struct.read_rule_file(decode_rule_file)
+
+
+ 
     # 读取默认配置文件-全局串口 20240427
     def read_default_para_com(self):
         # 串口默认配置
@@ -965,6 +1059,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.threading_list_flag[i] = True
                 thread_receive = threading.Thread(target=self.threading_receive_data,args=(i,))
                 thread_receive.setDaemon(True)
+                # thread_receive.daemon = True
                 thread_receive_list.append(thread_receive)
                 thread_receive.start()
     # 标定测试模式、转台同步控制
@@ -1129,7 +1224,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     readydata_ms += '\t '.join(['{:.{}f}'.format(i,save_decimal_point) for i in receive_data_hz])+'\n'
                     
                     # 处理累积calib数据
-                    alldata_calib+=str(receive_hz_count).ljust(10,' ')+'\t'
+                    # alldata_calib+=str(receive_hz_count).ljust(10,' ')+'\t'
+                    
+                    alldata_calib+=str(receive_data_hz[0]).ljust(10,' ')+'\t'
                     for i in range(6):
                         alldata_calib+=str(receive_data_hz[i+1]).rjust(16,' ')+'\t'
                     alldata_calib+=str(self.bd_calib_flag).rjust(2,' ')+'\n'
@@ -1270,57 +1367,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 count+=1
                 print('power电源时间:{:.2f}'.format(time.time()-real_time))
                 if 'on' in list_plan[2].lower():
-                    if str(self.config_power_model)=='1':
-                        serial_com = self.comboBox_power_com.currentText()
-                        power_serials = serial.Serial(serial_com, 57600)
-                        power_serials.write(':OUTP 1\n'.encode())
-                        time.sleep(0.1)
-                        power_serials.write(':OUTP 1\n'.encode())
-                        power_serials.close()
-                    elif str(self.config_power_model)=='2':
-                        serial_com = self.comboBox_power_com.currentText()
-                        try:
-                            power_serials.close()
-                            power_serials = serial.Serial(serial_com, 9600)
-                        except:
-                            power_serials = serial.Serial(serial_com, 9600)
-                        command = try_split_power_command(list_plan[2])
-                        if command=='all':
-                            for power_count in range(4):
-                                power_serials.write(('{\"A0%s\":110000}'%(power_count+1)).encode())
-                            time.sleep(0.1)
-                            for power_count in range(4):
-                                power_serials.write(('{\"A0%s\":110000}'%(power_count+1)).encode())
-                            power_serials.close()
-                        else:
-                            power_serials.write(('{\"A0%s\":110000}'%(int(command))).encode())
-                        power_serials.close()
-                    else:
-                        self.show_message_automatic_list.append('未知命令:{}'.format())
+                    self.event_power_on()
                 elif 'off' in list_plan[2].lower():
+                    self.event_power_off()
                     self.plan_name = ''
-                    if str(self.config_power_model)=='1':
-                        serial_com = self.comboBox_power_com.currentText()
-                        power_serials = serial.Serial(serial_com, 57600)
-                        power_serials.write(':OUTP 0\n'.encode())
-                        power_serials.close()
-                    elif str(self.config_power_model)=='2':
-                        serial_com = self.comboBox_power_com.currentText()
-                        power_serials = serial.Serial(serial_com,9600)
-                        command = try_split_power_command(list_plan[2])
-                        print('com{} 电源off 命令{}'.format(serial_com,command))
-                        if command=='all':
-                            for power_count in range(4):
-                                power_serials.write(('{\"A0%s\":100000}'%(power_count+1)).encode())
-                            time.sleep(0.1)
-                            for power_count in range(4):
-                                power_serials.write(('{\"A0%s\":100000}'%(power_count+1)).encode())
-                        else:
-                            power_serials.write(('{\"A0%s\":100000}'%(int(command))).encode())
-                        power_serials.close()
-                        
-                    else:
-                        self.show_message_automatic_list.append('未知命令:{}'.format(list_plan[2]))
                 # elif 'v' in list_plan[2].lower():
                 #     serial_com = self.comboBox_power_com.currentText()
                 #     power_serials = serial.Serial(serial_com, 57600)
@@ -1392,9 +1442,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         self.turntable_ready = False
                         self.bd_test()
                         begin_time = time.time()
-                    except:
+                    except Exception as e:
                         # print('设置错误_bd_name')
                         self.show_message_automatic_list.append('自动测试错误:{} 错误'.format(bd_name))
+                        self.debug_list_1.append('自动测试错误:{} 错误\n{}'.format(bd_name,e))
             elif list_plan[1]=='temp':
                 print('bd电源时间:{:.2f}'.format(time.time()-real_time))
                 count+=1
@@ -1456,11 +1507,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 if commands.startswith(b'\xaa\xaa') & (len(commands)>=52):
                     decode_hex = commands[:52]
                     commands = commands[52:]
-                    decode_commands = struct.unpack('>HHHIHHiiHiiHiixxxxxxxxxx',decode_hex)
+                    decode_commands = struct.unpack('<HHHIHHiiHiiHiixxxxxxxxxx',decode_hex)
                     self.debug_list_1.append('{} 解算成功:{}'.format(self.normal_time,decode_commands)) 
                     try:
                         with open(file_path+'运行记录_串口.txt','a+') as f:
-                            f.write('{} {}\n'.format(self.normal_time,commands.hex().upper()))
+                            f.write('{} {}\n'.format(self.normal_time,decode_hex.hex().upper()))
                         with open(file_path+'运行记录_解算.txt','a+') as f:
                             f.write('{} {}\n'.format(self.normal_time,decode_commands))
                     except Exception as e:
