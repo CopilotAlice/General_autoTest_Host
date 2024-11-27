@@ -347,22 +347,30 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # 卫导板卡 更新内容构建
         self.sate_send1_line_list = []  
         self.sate_send2_line_list = []
-        self.sate_send1_autotime = 1000
+        self.sate_send3_line_list = []
+        self.sate_send1_autotime = 200
         self.sate_send2_autotime = 1000
+        self.sate_send3_autotime = 1000
         # self.sate_send1_line_list.append(self.comboBox_sate_1_1.currentText())
         # self.sate_send2_line_list.append(self.comboBox_sate_2_1.currentText())
         for i in range(10):
             self.sate_send1_line_list.append( self.findChild(QtWidgets.QLineEdit,'lineEdit_sate_1_%s'%(i+1)) )
         for i in range(9):
             self.sate_send2_line_list.append( self.findChild(QtWidgets.QLineEdit,'lineEdit_sate_2_%s'%(i+1)) )
+        for i in range(26):
+            self.sate_send3_line_list.append( self.findChild(QtWidgets.QLineEdit,'lineEdit_sate_3_%s'%(i+1)) )
         self.lineEdit_sate_1_0.textChanged.connect(self.sate_send1_change_time)
         self.lineEdit_sate_2_0.textChanged.connect(self.sate_send2_change_time)
+        self.lineEdit_sate_3_0.textChanged.connect(self.sate_send3_change_time)
         for sate_line in self.sate_send1_line_list:
             sate_line.textChanged.connect(self.event_update_sate1)
         for sate_line in self.sate_send2_line_list:
             sate_line.textChanged.connect(self.event_update_sate2)
+        for sate_line in self.sate_send3_line_list:
+            sate_line.textChanged.connect(self.event_update_sate3)
         self.event_update_sate1()
         self.event_update_sate2()
+        self.event_update_sate3()
 
 
 
@@ -997,7 +1005,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.sate_send2_autotime = auto_time
                 self.sate_time2.start(self.event_send_sate2)
         except Exception as e:
-            self.debug_list_2.append('{} 模块2获取定时时间错误{} {}'.format(self.normal_time,self.lineEdit_sate_1_0.text(),e))
+            self.debug_list_2.append('{} 模块2获取定时时间错误{} {}'.format(self.normal_time,self.lineEdit_sate_2_0.text(),e))
+    def sate_send3_change_time(self):
+        try:
+            auto_time = int(self.lineEdit_sate_3_0.text())
+            if auto_time>=10:
+                self.sate_send3_autotime = auto_time
+                self.sate_time3.start(self.event_send_sate3)
+        except Exception as e:
+            self.debug_list_3.append('{} 模块3获取定时时间错误{} {}'.format(self.normal_time,self.lineEdit_sate_3_0.text(),e))
 
 
     def event_update_sate1(self):
@@ -1090,7 +1106,90 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         check_result = hex(check_result&0xff)[2:].rjust(2,'0').upper()
         ascii_text = '$'+ascii_text+'*'+check_result
         self.textEdit_sate_msg_2.setText(ascii_text)
-
+        
+    def event_update_sate3(self):
+        ascii_list = []
+        sate_list = []
+        header = self.comboBox_sate_3_1.currentText()
+        for item in self.sate_send3_line_list:
+            try:
+                sate_list.append(item.text())
+            except:
+                sate_list.append('')
+                
+        if len(sate_list[0])>0:
+            try:sate_list[0] = str(sate_list[0])
+            except:sate_list[0] = 'COM1'
+        if len(sate_list[1])>0:
+            try:sate_list[1] = str(int(sate_list[1]))
+            except:sate_list[1] = '0'
+        # 处理器空闲时间的最小百分比，每秒计算 1 次。
+        if len(sate_list[2])>0:
+            try:sate_list[2] = str('{:.1f}'.format(float(sate_list[2])))
+            except:sate_list[2] = '0.0'
+        # GPS 时间质量。当前取值 Unknown或 Fine，前者表明接收机还未能计算出准确的 GPS 时间。
+        if len(sate_list[3])>0:
+            try:sate_list[3] = str(sate_list[3])
+            except:sate_list[3] = 'Unknown'
+        # GPS 周数
+        if len(sate_list[4])>0:
+            try:sate_list[4] = str(int(sate_list[4]))
+            except:sate_list[4] = '0'
+        # GPS 周内秒，精确到 ms。
+        if len(sate_list[5])>0:
+            try:sate_list[5] = str('{:.3f}'.format(float(sate_list[2])))
+            except:sate_list[5] = '0.000'
+        # 保留位 保留位 当前闰秒 678
+        for i in range(3):
+            if len(sate_list[6+i])>0:
+                try:sate_list[6+i] = str(int(sate_list[6+i]))
+                except:sate_list[6+i] = '0'
+        sate_list[8]+=';'
+        # 解状态，参考表 9- 48 解的状态 
+        if len(sate_list[9])>0:
+            try:sate_list[9] = str(sate_list[9])
+            except:sate_list[9] = 'INSUFFICIENT_OBS'
+        # 位置类型
+        if len(sate_list[10])>0:
+            try:sate_list[10] = str(sate_list[10])
+            except:sate_list[10] = 'NONE'
+        # 基线长 航向 俯仰 保留 航向标准偏差 俯仰标准偏差 
+        for i in range(6):
+            if len(sate_list[11+i])>0:
+                try:sate_list[11+i] = str('{:.4f}'.format(float(sate_list[11+i])))
+                except:sate_list[11+i] = '0.0000'
+        # 基站 ID 
+        if len(sate_list[17])>0:
+            try:sate_list[17] = str('\"{}\"'.format(int(sate_list[17])))
+            except:sate_list[17] = '\"0\"'
+        else:
+            sate_list[17] = '\"\"'
+        for i in range(5):
+            if len(sate_list[18+i])>0:
+                try:sate_list[18+i] = str(int(sate_list[18+i]))
+                except:sate_list[18+i] = '0'
+        # 保留位
+        if len(sate_list[23])>0:
+            try:sate_list[23] = str(sate_list[23])
+            except:sate_list[23] = '00'
+        if len(sate_list[24])>0:
+            try:sate_list[24] = str(int(sate_list[24]))
+            except:sate_list[24] = '0'
+        if len(sate_list[25])>0:
+            try:sate_list[25] = str(int(sate_list[24]))
+            except:sate_list[25] = '0'
+            
+        
+        ascii_list.append(header)
+        for i in range(26):
+            ascii_list.append(sate_list[i])
+        ascii_text = ','.join(ascii_list)
+        # print(ascii_text)
+        # check_result = 0x00
+        ascii_text = ascii_text.replace(';,',',')
+        check_result = hex(calculate_crc32(ascii_text.encode('ascii')))[2:].rjust(8,'0').lower()
+        ascii_text = '#'+ascii_text+'*'+check_result
+        self.textEdit_sate_msg_3.setText(ascii_text)
 
         
     def event_send_sate1(self):
@@ -1111,7 +1210,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 send_tab = 'all'
                 for i in range(12):
                     self.ascii_cache_list[i].append(send_commands)
-            self.debug_list_1.append('{} 卫导模块1_{}路发送装订:\n  {}'.format(self.normal_time,send_tab,send_commands))
+            # self.debug_list_1.append('{} 卫导模块1_{}路发送装订:\n  {}'.format(self.normal_time,send_tab,send_commands))
 
     def event_send_sate2(self):
         if (self.checkBox_sate_time_2.isChecked()) | (isinstance(self.sender(),QtWidgets.QPushButton)):
@@ -1127,10 +1226,22 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 send_tab = 'all'
                 for i in range(12):
                     self.ascii_cache_list[i].append(send_commands)
-            self.debug_list_1.append('{} 卫导模块1_{}路发送装订:\n  {}'.format(self.normal_time,send_tab,send_commands))
+            # self.debug_list_1.append('{} 卫导模块1_{}路发送装订:\n  {}'.format(self.normal_time,send_tab,send_commands))
     def event_send_sate3(self):
-        self.debug_list_2.append('{} 模块3装订未设置'.format(self.normal_time))
-        return False
+        if (self.checkBox_sate_time_3.isChecked()) | (isinstance(self.sender(),QtWidgets.QPushButton)):
+            # self.debug_list_2.append('{} 卫导模块2发送装订:{}'.format(self.normal_time,'default'))
+            send_commands = self.textEdit_sate_msg_3.toPlainText()
+            send_tab = 'all'
+            try:
+                send_tab = self.comboBox_sate_com_3.currentText()
+                chosen_tab = int(send_tab.split()[0])
+                self.ascii_cache_list[chosen_tab-1].append(send_commands)
+                send_tab = str(chosen_tab)
+            except Exception as e:
+                send_tab = 'all'
+                for i in range(12):
+                    self.ascii_cache_list[i].append(send_commands)
+            # self.debug_list_1.append('{} 卫导模块1_{}路发送装订:\n  {}'.format(self.normal_time,send_tab,send_commands))
     
 
 
