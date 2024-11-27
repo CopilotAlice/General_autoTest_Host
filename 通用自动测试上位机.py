@@ -1212,6 +1212,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     all_data = all_data[1:]
                         
 
+
                 
             else:
                 time.sleep(self.receive_wait_time)
