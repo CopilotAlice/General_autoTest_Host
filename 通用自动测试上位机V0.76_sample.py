@@ -1,7 +1,7 @@
 from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtCore import QThread, pyqtSignal, QTimer
-from Automated_testingV13 import Ui_MainWindow
-# from sample_testingV13 import Ui_MainWindow
+# from Automated_testingV13 import Ui_MainWindow
+from sample_testingV13 import Ui_MainWindow
 from pyqtgraph.Qt import QtCore
 from fun_chy2 import *
 import binascii
@@ -48,7 +48,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
-        self.setWindowTitle("通用自动测试上位机_蔡_功能测试版_2412_V0.75")
+        self.setWindowTitle("通用自动测试上位机_蔡_功能测试版_2411_V0.73")
         self.show_message_length = 30   # 显示的最大行数
         
         # 初始化界面元素
@@ -238,9 +238,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
         # 总控-刷新comboBox串口
         self.comboBox_update_com_flag = True
-        self.comboBox_update_rules_flag = True
+        self.comboBox_update_rules_flag = False
         self.comboBox_update_para_flag = True
 
+        # 手动设定结算内容
+        self.comboBox_protocal_rule.clear()
+        self.comboBox_protocal_rule.addItem('选择协议')
+        self.comboBox_protocal_rule.addItem('01_60所激光惯导飞控接收协议')
+        self.comboBox_protocal_rule.addItem('02_60所惯导通用协议_卫导改')
 
         # 全部设置区com口列表
         self.comboBox_com_list = [self.comboBox_protocal_com, 
@@ -524,10 +529,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.textBrowser_automatic_ruleline_2.verticalScrollBar().setValue(self.textBrowser_automatic_ruleline_2.verticalScrollBar().maximum())
         for i in range(12):
             while len(self.show_message_list[i])>0:
+                self.show_message_list[i] = []
                 # textBrowsers = self.findChild(QtWidgets.QTextBrowser,'textBrowser_%s'%(i+1))
                 # textBrowsers.append(self.show_message_list[i].pop(0))
                 # textBrowsers.verticalScrollBar().setValue(textBrowsers.verticalScrollBar().maximum())
-                self.textBrowser_list[i].append( self.show_message_list[i].pop(0) )
+                # self.textBrowser_list[i].append( self.show_message_list[i].pop(0) )
 
                 
 
@@ -649,19 +655,24 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         # 调试信息输出
         while len(self.debug_list_1)>0:
-            self.textBrowser_debug_1.append(self.debug_list_1.pop(0))
+            self.debug_list_1 = []
+            # self.textBrowser_debug_1.append(self.debug_list_1.pop(0))
         while len(self.debug_list_2)>0:
-            self.textBrowser_debug_2.append(self.debug_list_2.pop(0))
+            self.debug_list_2 = []
+            # self.textBrowser_debug_2.append(self.debug_list_2.pop(0))
         while len(self.debug_list_3)>0:
-            self.textBrowser_debug_3.append(self.debug_list_3.pop(0))
+            self.debug_list_3 = []
+            # self.textBrowser_debug_3.append(self.debug_list_3.pop(0))
         while len(self.debug_list_4)>0:
-            self.textBrowser_debug_4.append(self.debug_list_4.pop(0))
+            self.debug_list_4 = []
+            # self.textBrowser_debug_4.append(self.debug_list_4.pop(0))
         self.lineEdit_debug_message_list[2].append('总接收数:{}'.format(self.all_rec_hex))
         self.lineEdit_debug_message_list[3].append('校验失败:{}'.format(self.sum_check_err_count))
 
         for i in range(8):
             while len(self.lineEdit_debug_message_list[i])>0:
-                self.lineEdit_debug_QlineEdit_list[i].setText(str(self.lineEdit_debug_message_list[i].pop(0)))
+                self.lineEdit_debug_message_list[i] = []
+                # self.lineEdit_debug_QlineEdit_list[i].setText(str(self.lineEdit_debug_message_list[i].pop(0)))
         
 
     #  事件更新2s线程，用于更新INU等需要时间计算的内容
@@ -1341,6 +1352,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         else:
             return False
         try:
+            # with open(file_path,'r') as f:
+            #     for i in range(10):
+            #         print(f.readlines())
             df = pd.read_csv(file_path,sep='\\s+',header=None,skiprows=1)
             self.show_message_dataframe[0] = df
             self.show_message_automatic_list.append('{} 文件长度{} 文件路径:\n{}'.format(self.normal_time,len(df),file_path))
@@ -1353,13 +1367,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             except Exception as e:
                 self.debug_list_3.append('{} 使用逗号打开文件失败:{}'.format(self.normal_time,e))
                 try:
-                    if '.hex' in file_path:
-                        with open(file_path,'rb+') as f:
-                            hex_data = f.read()
-                    else:
-                        with open(file_path,'r') as f:
-                            hex_data = f.read()
-                            hex_data = bytes.fromhex(hex_data)
+                    with open(file_path,'rb+') as f:
+                        hex_data = f.read()
                     self.read_rules()
                     self.save_data_flag = True      # 开启保存
                     self.turntable_ready = True     # 忽略转台/ 转台到位标志位
@@ -1380,8 +1389,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             # print(hex_data[:100].hex())
             # print(len(hex_data))
         decode_rule_name = self.comboBox_protocal_rule.currentText()
-        with open('./解算规则/{}.txt'.format(decode_rule_name), 'r+') as f:
-            decode_rule_file = f.read()
+        if '01_' in decode_rule_name:
+            decode_rule_file = decode_rule_01
+        elif '02_' in decode_rule_name:
+            decode_rule_file = decode_rule_02
+        else:
+            self.show_message_automatic_list.append('未知解算规则:{}'.format(decode_rule_name))
+        # with open('./解算规则/{}.txt'.format(decode_rule_name), 'r+') as f:
+        #     decode_rule_file = f.read()
         decode_struct = class_rule()
         decode_struct.read_rule_file(decode_rule_file)
 
@@ -1542,14 +1557,21 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # 打开规则文件
         try:
             rule_name = self.comboBox_protocal_rule.currentText()
-            if len(rule_name)==0:
-                if self.debug_flag:
-                    print('没有选择规则文件:{}'.format(rule_name))
+            if '01_' in rule_name:
+                rules = decode_rule_01
+            elif '02_' in rule_name:
+                rules = decode_rule_02
+            else:
+                self.show_message_automatic_list.append('未知规则文件:{}'.format(rule_name))
                 return False
-            if rule_name=='选择协议':
-                return False
-            with open('./解算规则/{}.txt'.format(rule_name), 'r',encoding='gb2312',errors='ignore') as files:
-                rules = files.read()
+            # if len(rule_name)==0:
+            #     if self.debug_flag:
+            #         print('没有选择规则文件:{}'.format(rule_name))
+            #     return False
+            # if rule_name=='选择协议':
+            #     return False
+            # with open('./解算规则/{}.txt'.format(rule_name), 'r',encoding='gb2312',errors='ignore') as files:
+            #     rules = files.read()
                 
         except Exception as e:
             self.show_message_automatic_list.append('读取规则文件失败:'+str(e))

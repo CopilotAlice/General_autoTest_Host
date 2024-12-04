@@ -1,7 +1,6 @@
 from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtCore import QThread, pyqtSignal, QTimer
-from Automated_testingV13 import Ui_MainWindow
-# from sample_testingV13 import Ui_MainWindow
+from sample_testingV13 import Ui_MainWindow
 from pyqtgraph.Qt import QtCore
 from fun_chy2 import *
 import binascii
@@ -48,7 +47,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
-        self.setWindowTitle("通用自动测试上位机_蔡_功能测试版_2412_V0.75")
+        self.setWindowTitle("通用自动测试上位机_便携测试版_2411_V0.75")
         self.show_message_length = 30   # 显示的最大行数
         
         # 初始化界面元素
@@ -122,6 +121,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.tableWidget_table_show.setRowCount(40)
         self.tableWidget_table_show.setColumnCount(10)
         
+        self.comboBox_protocal_rule.clear()
+        self.comboBox_protocal_rule.addItem('选择协议')
+        self.comboBox_protocal_rule.addItem('01_60所激光惯导飞控接收协议')
+        self.comboBox_protocal_rule.addItem('02_60所惯导通用协议_卫导改')
         
         # 初始化多线程标志位
         self.test_mode = None
@@ -197,9 +200,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.para_com_filename = './配置文件/para_com.txt'
         self.para_config_filename = './配置文件/para_config.txt'
         self.model_list = [
-            ['通讯','转台','电源','温箱','装订','自动'],
-            ['protocal','turntable','power','tempbox','binding','automatic'],
-            ['解算规则','标定规则','none','none','装订规则','自动规则']
+            ['转台','电源','温箱','装订','自动'],
+            ['turntable','power','tempbox','binding','automatic'],
+            ['标定规则','none','none','装订规则','自动规则']
         ]
         
         # 配置文件默认设置
@@ -243,11 +246,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
         # 全部设置区com口列表
-        self.comboBox_com_list = [self.comboBox_protocal_com, 
-                                self.comboBox_turntable_com, 
-                                self.comboBox_power_com,
-                                self.comboBox_tempbox_com,
-                                self.combox_set_com_all]
+        # self.comboBox_com_list = [self.comboBox_protocal_com, 
+        #                         self.comboBox_turntable_com, 
+        #                         self.comboBox_power_com,
+        #                         self.comboBox_tempbox_com,
+        #                         self.combox_set_com_all]
         # 12路com口
         self.combox_com_list = [self.combox_set_com_1,
                                 self.combox_set_com_2,
@@ -295,8 +298,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.combox_com_open_list[i].clicked.connect(self.change_button)
         for binding in self.comboBox_binding_list:
             binding.textChanged.connect(self.binding_change)
-        for combox in self.comboBox_com_list+self.combox_com_list:
-            combox.view().setMinimumWidth(85)
+        # for combox in self.comboBox_com_list+self.combox_com_list:
+        #     combox.view().setMinimumWidth(85)
         # 多路选择combobox 
         combobox_lists = [
             self.comboBox_plot_choiceTab,
@@ -407,23 +410,23 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # 点击事件集
         self.pushButton_begin_test.clicked.connect(self.begin_test)
         self.pushButton_stop_test.clicked.connect(self.stop_test)
-        self.pushButton_begin_test_2.clicked.connect(self.begin_test)
-        self.pushButton_stop_test_2.clicked.connect(self.stop_test)
+        # self.pushButton_begin_test_2.clicked.connect(self.begin_test)
+        # self.pushButton_stop_test_2.clicked.connect(self.stop_test)
         # 发送装订
         self.pushButton_binding_send.clicked.connect(self.binding_send)
         # 载入文件
         self.pushButton_load_data.clicked.connect(self.event_load_file)
-        self.pushButton_load_data_2.clicked.connect(self.event_load_file)
+        # self.pushButton_load_data_2.clicked.connect(self.event_load_file)
         # 自动获取经纬度
         self.pushButton_autoset_INU.clicked.connect(self.event_autoset_inu)
         # 重新载入para_config文件
-        self.pushButton_debug_1.clicked.connect(self.event_reload_config)
+        # self.pushButton_debug_1.clicked.connect(self.event_reload_config)
         # 激光惯导#60所祥光装订
         # self.pushButton_update_binding_60s.clicked.connect(self.event_update_bingding_60s)
         self.pushButton_binding_send_60s.clicked.connect(self.event_send_bingding_60s)
         # 开关电源
-        self.pushButton_power_open.clicked.connect(self.event_power_on)
-        self.pushButton_power_close.clicked.connect(self.event_power_off)
+        # self.pushButton_power_open.clicked.connect(self.event_power_on)
+        # self.pushButton_power_close.clicked.connect(self.event_power_off)
         
         self.lineEdit_inside_plot_axis_list = []
         self.lineEdit_inside_plot_para_list = []
@@ -503,9 +506,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     # 事件更新0.1s线程，用于更新数据输出和绘图
     def show_message_01s(self):
         if self.show_message_clear:
-            for i in range(12):
-                # textBrowsers = self.findChild(QtWidgets.QTextBrowser,'textBrowser_%s'%(i+1))
-                self.textBrowser_list[i].clear()
+            # for i in range(12):
+            #     # textBrowsers = self.findChild(QtWidgets.QTextBrowser,'textBrowser_%s'%(i+1))
+            #     self.textBrowser_list[i].clear()
             self.show_message_clear = False
         if len(self.show_message_dis1_list)>0:
             self.textBrowser_progress_display1.append(self.show_message_dis1_list.pop(0))
@@ -527,7 +530,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 # textBrowsers = self.findChild(QtWidgets.QTextBrowser,'textBrowser_%s'%(i+1))
                 # textBrowsers.append(self.show_message_list[i].pop(0))
                 # textBrowsers.verticalScrollBar().setValue(textBrowsers.verticalScrollBar().maximum())
-                self.textBrowser_list[i].append( self.show_message_list[i].pop(0) )
+                # self.textBrowser_list[i].append( self.show_message_list[i].pop(0) )
+                # self.textBrowser_list[i] = []
+                self.show_message_list[i] = []
 
                 
 
@@ -538,7 +543,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         while len(self.lineEdit_automatic_mode_list)>0:
             automatic_show_text = str(self.lineEdit_automatic_mode_list.pop(0))
             self.lineEdit_automatic_mode.setText(automatic_show_text)
-            self.lineEdit_automatic_mode_2.setText(automatic_show_text)
+            # self.lineEdit_automatic_mode_2.setText(automatic_show_text)
         self.show_timer_count1 += 1
         begin_time = time.time()
         for thread_num in range(12):
@@ -649,19 +654,24 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         # 调试信息输出
         while len(self.debug_list_1)>0:
-            self.textBrowser_debug_1.append(self.debug_list_1.pop(0))
+            self.debug_list_1 = []
+            # self.textBrowser_debug_1.append(self.debug_list_1.pop(0))
         while len(self.debug_list_2)>0:
-            self.textBrowser_debug_2.append(self.debug_list_2.pop(0))
+            self.debug_list_2 = []
+            # self.textBrowser_debug_2.append(self.debug_list_2.pop(0))
         while len(self.debug_list_3)>0:
-            self.textBrowser_debug_3.append(self.debug_list_3.pop(0))
+            self.debug_list_3 = []
+            # self.textBrowser_debug_3.append(self.debug_list_3.pop(0))
         while len(self.debug_list_4)>0:
-            self.textBrowser_debug_4.append(self.debug_list_4.pop(0))
-        self.lineEdit_debug_message_list[2].append('总接收数:{}'.format(self.all_rec_hex))
-        self.lineEdit_debug_message_list[3].append('校验失败:{}'.format(self.sum_check_err_count))
+            self.debug_list_4 = []
+            # self.textBrowser_debug_4.append(self.debug_list_4.pop(0))
+        # self.lineEdit_debug_message_list[2].append('总接收数:{}'.format(self.all_rec_hex))
+        # self.lineEdit_debug_message_list[3].append('校验失败:{}'.format(self.sum_check_err_count))
 
         for i in range(8):
             while len(self.lineEdit_debug_message_list[i])>0:
-                self.lineEdit_debug_QlineEdit_list[i].setText(str(self.lineEdit_debug_message_list[i].pop(0)))
+                self.lineEdit_debug_message_list[i] = []
+                # self.lineEdit_debug_QlineEdit_list[i].setText(str(self.lineEdit_debug_message_list[i].pop(0)))
         
 
     #  事件更新2s线程，用于更新INU等需要时间计算的内容
@@ -802,7 +812,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 com_lists.append(str(list(com)[0]))
             # com_lists.sort()
             com_lists = sorted(com_lists,key=lambda x:int(x[3:]))
-            for comboBox in self.comboBox_com_list+self.combox_com_list:
+            for comboBox in self.combox_com_list:
                 comboBox_com_list = []
                 for count in range(comboBox.count()):
                     comboBox_com_list.append(comboBox.itemText(count))
@@ -829,6 +839,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 # else:
                 #     comboBox.setCurrentIndex(0)
         # 更新规则文件 #协议更新
+        '''
         if self.comboBox_update_rules_flag:
             model_list = self.model_list
             for i in range(len(model_list[0])):
@@ -842,7 +853,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     file_name = file_name.split('.txt')[0]
                     file_list.append(file_name)
                 file_list.sort()
-                
                 comboBox = self.findChild(QtWidgets.QComboBox,'comboBox_%s_rule'%(model_list[1][i]))
                 comboBox_file_list = []
                 for count in range(comboBox.count()):
@@ -873,7 +883,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     comboBox.setCurrentText(select_combo)
                 else:
                     comboBox.setCurrentIndex(0)
+                    '''
             
+
     # 多路开关按钮切换 20240425
     def change_button(self):
         sender = self.sender()
@@ -1091,7 +1103,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             try:sate_list[4] = str('{:03.3f}'.format(float(sate_list[4])))
             except:sate_list[4] = '0.000'
         if len(sate_list[6])>0:
-            try:sate_list[6] = str('{:04.3f}'.format(float(sate_list[6])))
+            try:sate_list[6] = str('{:04.3f}'.format(float(sate_list[4])))
             except:sate_list[6] = '0.000'
         if len(sate_list[7])>0:
             try:sate_list[7] = str(sate_list[7])
@@ -1341,6 +1353,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         else:
             return False
         try:
+            # with open(file_path,'r') as f:
+            #     for i in range(10):
+            #         print(f.readlines())
             df = pd.read_csv(file_path,sep='\\s+',header=None,skiprows=1)
             self.show_message_dataframe[0] = df
             self.show_message_automatic_list.append('{} 文件长度{} 文件路径:\n{}'.format(self.normal_time,len(df),file_path))
@@ -1353,13 +1368,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             except Exception as e:
                 self.debug_list_3.append('{} 使用逗号打开文件失败:{}'.format(self.normal_time,e))
                 try:
-                    if '.hex' in file_path:
-                        with open(file_path,'rb+') as f:
-                            hex_data = f.read()
-                    else:
-                        with open(file_path,'r') as f:
-                            hex_data = f.read()
-                            hex_data = bytes.fromhex(hex_data)
+                    with open(file_path,'rb+') as f:
+                        hex_data = f.read()
                     self.read_rules()
                     self.save_data_flag = True      # 开启保存
                     self.turntable_ready = True     # 忽略转台/ 转台到位标志位
@@ -1380,8 +1390,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             # print(hex_data[:100].hex())
             # print(len(hex_data))
         decode_rule_name = self.comboBox_protocal_rule.currentText()
-        with open('./解算规则/{}.txt'.format(decode_rule_name), 'r+') as f:
-            decode_rule_file = f.read()
+        # with open('./解算规则/{}.txt'.format(decode_rule_name), 'r+') as f:
+        #     decode_rule_file = f.read()
+        if '01_' in decode_rule_name:
+            decode_rule_file = decode_rule_01
+        elif '02_' in decode_rule_name:
+            decode_rule_file = decode_rule_02
+        else:
+            self.show_message_automatic_list.append('未知解算规则:{}'.format(decode_rule_name))
         decode_struct = class_rule()
         decode_struct.read_rule_file(decode_rule_file)
 
@@ -1405,12 +1421,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         self.comboBox_protocal_com.setCurrentText(para_rule_list[2])
                         self.comboBox_protocal_baund.setCurrentText(para_rule_list[3])
                         self.comboBox_protocal_check.setCurrentText(para_rule_list[4])
-                    elif para_rule_list[1]=='turntable':
-                        self.comboBox_turntable_com.setCurrentText(para_rule_list[2])
-                    elif para_rule_list[1]=='power':
-                        self.comboBox_power_com.setCurrentText(para_rule_list[2])
-                    elif para_rule_list[1]=='temp':
-                        self.comboBox_tempbox_com.setCurrentText(para_rule_list[2])
+                    # elif para_rule_list[1]=='turntable':
+                    #     self.comboBox_turntable_com.setCurrentText(para_rule_list[2])
+                    # elif para_rule_list[1]=='power':
+                    #     self.comboBox_power_com.setCurrentText(para_rule_list[2])
+                    # elif para_rule_list[1]=='temp':
+                    #     self.comboBox_tempbox_com.setCurrentText(para_rule_list[2])
                     elif para_rule_list[1]=='binding':
                         self.comboBox_binding_com.setCurrentText(para_rule_list[2])
                     elif 'tab_' in para_rule_list[1]:
@@ -1420,7 +1436,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         self.findChild(QtWidgets.QComboBox,'comboBox_stopbit_%s'%(para_rule_list[1][4:])).setCurrentText(para_rule_list[5])
                         self.findChild(QtWidgets.QPushButton,'pushButton_com_open_%s'%(para_rule_list[1][4:])).setText(para_rule_list[6])
                     else:
-                        self.show_message_automatic_list.append('read_default_para_com未知配置项：%s'%(para_rule_list))
+                        continue
+                        # self.show_message_automatic_list.append('read_default_para_com未知配置项：%s'%(para_rule_list))
     # 读取默认配置文件-全局设置 20240507
     def read_default_para_config(self):
         para_name = self.para_config_filename
@@ -1441,16 +1458,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         continue
                     # 默认转台速度设置
                     if para_rule_list[1]=='in_spd':
-                        self.lineEdit_inside_speed.setText(para_rule_list[2])
+                        # self.lineEdit_inside_speed.setText(para_rule_list[2])
                         self.config_in_spd = int(para_rule_list[2])
                     elif para_rule_list[1]=='in_acc':
-                        self.lineEdit_inside_acceleration.setText(para_rule_list[2])
+                        # self.lineEdit_inside_acceleration.setText(para_rule_list[2])
                         self.config_in_acc = int(para_rule_list[2])
                     elif para_rule_list[1]=='out_spd':
-                        self.lineEdit_outside_speed.setText(para_rule_list[2])
+                        # self.lineEdit_outside_speed.setText(para_rule_list[2])
                         self.config_out_spd = int(para_rule_list[2])
                     elif para_rule_list[1]=='out_acc':
-                        self.lineEdit_outside_acceleration.setText(para_rule_list[2])
+                        # self.lineEdit_outside_acceleration.setText(para_rule_list[2])
                         self.config_out_acc = int(para_rule_list[2])
                     # 默认转台稳定后等待时间
                     elif para_rule_list[1]=='hold_time':
@@ -1491,12 +1508,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     # 默认使用对应规则列表中的对应序号
                     elif para_rule_list[1]=='default_protocal':
                         self.comboBox_protocal_rule.setCurrentIndex(int(para_rule_list[2]))
-                    elif para_rule_list[1]=='default_turntable':
-                        self.comboBox_turntable_rule.setCurrentIndex(int(para_rule_list[2]))
+                    # elif para_rule_list[1]=='default_turntable':
+                    #     self.comboBox_turntable_rule.setCurrentIndex(int(para_rule_list[2]))
                     elif para_rule_list[1]=='default_binding':
                         self.comboBox_binding_rule.setCurrentIndex(int(para_rule_list[2]))
-                    elif para_rule_list[1]=='default_automatic':
-                        self.comboBox_automatic_rule.setCurrentIndex(int(para_rule_list[2]))
+                    # elif para_rule_list[1]=='default_automatic':
+                    #     self.comboBox_automatic_rule.setCurrentIndex(int(para_rule_list[2]))
                     # 默认使用寻找帧头模式
                     elif para_rule_list[1]=='decode_header_type':
                         self.config_decode_header_type = int(para_rule_list[2])
@@ -1525,7 +1542,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     elif para_rule_list[1]=='default_sumcheck_flag':
                         self.default_sumcheck_flag = int(para_rule_list[2])
                     else:
-                        self.show_message_automatic_list.append('read_default_para_config未知配置项：%s'%(para_rule_list))
+                        continue
+                        # self.show_message_automatic_list.append('read_default_para_config未知配置项：%s'%(para_rule_list))
     # 读取载入解算规则文件  20240513
     # 读取规则文件并更新全局变量
     # debug:惯导协议改文件中行60标题无法使用"卫星数"，暂时替换为其他
@@ -1542,14 +1560,21 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # 打开规则文件
         try:
             rule_name = self.comboBox_protocal_rule.currentText()
-            if len(rule_name)==0:
-                if self.debug_flag:
-                    print('没有选择规则文件:{}'.format(rule_name))
+            if '01_' in rule_name:
+                rules = decode_rule_01
+            elif '02_' in rule_name:
+                rules = decode_rule_02
+            else:
+                self.show_message_automatic_list.append('未知规则文件:{}'.format(rule_name))
                 return False
-            if rule_name=='选择协议':
-                return False
-            with open('./解算规则/{}.txt'.format(rule_name), 'r',encoding='gb2312',errors='ignore') as files:
-                rules = files.read()
+            # if len(rule_name)==0:
+            #     if self.debug_flag:
+            #         print('没有选择规则文件:{}'.format(rule_name))
+            #     return False
+            # if rule_name=='选择协议':
+            #     return False
+            # with open('./解算规则/{}.txt'.format(rule_name), 'r',encoding='gb2312',errors='ignore') as files:
+            #     rules = files.read()
                 
         except Exception as e:
             self.show_message_automatic_list.append('读取规则文件失败:'+str(e))
@@ -1911,12 +1936,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         protocal_com = self.comboBox_protocal_com.currentText()
         protocal_baund = self.comboBox_protocal_baund.currentText()
         protocal_check = self.comboBox_protocal_check.currentText()
-        turntable_rule = self.comboBox_turntable_rule.currentText()
-        turntable_com = self.comboBox_turntable_com.currentText()
-        power_com = self.comboBox_power_com.currentText()
-        binding_rule = self.comboBox_binding_rule.currentText()
-        tempbox_com = self.comboBox_tempbox_com.currentText()
-        automatic_rule = self.comboBox_automatic_rule.currentText()
+        # turntable_rule = self.comboBox_turntable_rule.currentText()
+        # turntable_com = self.comboBox_turntable_com.currentText()
+        # power_com = self.comboBox_power_com.currentText()
+        # binding_rule = self.comboBox_binding_rule.currentText()
+        # tempbox_com = self.comboBox_tempbox_com.currentText()
+        # automatic_rule = self.comboBox_automatic_rule.currentText()
         
         if self.debug_flag | self.debug_begin_test:
             print('protocal::rule: {}\tcom:{}\tbaund:{}\tcheck:{}'.format(protocal_rule,protocal_com,protocal_baund,protocal_check))
@@ -1934,10 +1959,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.show_message_clear = True  # 清空12路显示信息
         
         
-        if not ((turntable_rule.lower()=='none')|(turntable_rule.lower()=='选择协议')):
-            begin_test_mode = 'turntable_test'
-        if not ((automatic_rule.lower()=='none')|(automatic_rule.lower()=='选择协议')):
-            begin_test_mode = 'automatic_test'
+        # if not ((turntable_rule.lower()=='none')|(turntable_rule.lower()=='选择协议')):
+        #     begin_test_mode = 'turntable_test'
+        # if not ((automatic_rule.lower()=='none')|(automatic_rule.lower()=='选择协议')):
+        #     begin_test_mode = 'automatic_test'
         self.test_mode = begin_test_mode
         self.show_message_automatic_list.append('{} 模式:{}'.format(self.normal_time,testmode2chinese(begin_test_mode))) 
         if begin_test_mode=='only_test':
