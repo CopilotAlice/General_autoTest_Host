@@ -289,7 +289,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.binding_cache_list.append([])
         self.ascii_cache_list = []
         for i in range(12):
-            self.ascii_cache_list.append([])
+            self.ascii_cache_list.append('')
         # 装订自动更新
         self.comboBox_binding_list = [self.lineEdit_binding_latitude,
                                       self.lineEdit_binding_longitude,
@@ -1216,12 +1216,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             try:
                 send_tab = self.comboBox_sate_com_1.currentText()
                 chosen_tab = int(send_tab.split()[0])
-                self.ascii_cache_list[chosen_tab-1].append(send_commands)
+                self.ascii_cache_list[chosen_tab-1] = send_commands
                 send_tab = str(chosen_tab)
             except:
                 send_tab = 'all'
                 for i in range(12):
-                    self.ascii_cache_list[i].append(send_commands)
+                    self.ascii_cache_list[i] = send_commands
             # self.debug_list_1.append('{} 卫导模块1_{}路发送装订:\n  {}'.format(self.normal_time,send_tab,send_commands))
 
     def event_send_sate2(self):
@@ -1232,12 +1232,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             try:
                 send_tab = self.comboBox_sate_com_2.currentText()
                 chosen_tab = int(send_tab.split()[0])
-                self.ascii_cache_list[chosen_tab-1].append(send_commands)
+                self.ascii_cache_list[chosen_tab-1] = send_commands
                 send_tab = str(chosen_tab)
             except Exception as e:
                 send_tab = 'all'
                 for i in range(12):
-                    self.ascii_cache_list[i].append(send_commands)
+                    self.ascii_cache_list[i] = send_commands
             # self.debug_list_1.append('{} 卫导模块1_{}路发送装订:\n  {}'.format(self.normal_time,send_tab,send_commands))
     def event_send_sate3(self):
         if (self.checkBox_sate_time_3.isChecked()) | (isinstance(self.sender(),QtWidgets.QPushButton)):
@@ -1247,12 +1247,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             try:
                 send_tab = self.comboBox_sate_com_3.currentText()
                 chosen_tab = int(send_tab.split()[0])
-                self.ascii_cache_list[chosen_tab-1].append(send_commands)
+                self.ascii_cache_list[chosen_tab-1] = send_commands
                 send_tab = str(chosen_tab)
             except Exception as e:
                 send_tab = 'all'
                 for i in range(12):
-                    self.ascii_cache_list[i].append(send_commands)
+                    self.ascii_cache_list[i] = send_commands
             # self.debug_list_1.append('{} 卫导模块1_{}路发送装订:\n  {}'.format(self.normal_time,send_tab,send_commands))
     
 
@@ -2184,8 +2184,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             
             try:
                 if len(self.ascii_cache_list[thread_num])>0:
-                    send_commands = str(self.ascii_cache_list[thread_num].pop(0))+'\r\n'
+                    send_commands = str(self.ascii_cache_list[thread_num])+'\r\n'
                     serials.write(send_commands.encode('ascii'))
+                    self.ascii_cache_list[thread_num] = ''
                     self.debug_list_1.append('{}：发送装订:{}'.format(thread_num,send_commands))
             except Exception as e:
                 # print('发送装订失败')

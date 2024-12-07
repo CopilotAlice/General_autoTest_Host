@@ -37,6 +37,7 @@ V0.69   转台控制	反应转台状况,状态字显示
 V0.71	转台控制	根据转台状态决定是否收数及刹车是否到位
 V0.72	惯导协议	加入"drop0datav [num]"，由num判断是否丢弃对应包中为0的数据
 V0.73	数据处理	解算数据时判断校验并根据配置决定是否保存
+V0.76   数据装订    提供60所装订协议，自动装订功能
 '''
 updating_log = '''
 转台控制    模块化控制 根据状态字决定是否下一步
@@ -189,10 +190,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.receive_wait_time = 0.005
         self.config_sum_check = None        # 累加校验和位置及其累加位置 格式： [校验和位置,累加起始:累加结束]
         self.drop0data = []             # 惯导通用协议中，在秒值处理中丢弃对应数据中为0的数
+        # 解算规则配置
+        self.rules_lists_format = 'xcbB?hHiIlLqQfdspPtyY'   # 解算规则可用范围
         # 初始化结算规则-方法类实现
         self.decode_class = class_rule()
         
         
+        
+# ------------------------------------配置文件默认设置---------------------------------
         # 配置文件路径
         self.para_com_filename = './配置文件/para_com.txt'
         self.para_config_filename = './配置文件/para_config.txt'
@@ -201,8 +206,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             ['protocal','turntable','power','tempbox','binding','automatic'],
             ['解算规则','标定规则','none','none','装订规则','自动规则']
         ]
-        
-        # 配置文件默认设置
         self.config_hold_time = 15          # 转台稳定后等待时间
         self.config_save_alldata_ms = 0     # 是否保存所哟毫秒值 
         self.config_save_alldata_s = 0      # 是否保存所有秒值 
@@ -233,8 +236,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.default_sumcheck_flag = 0
 
         
-        # 解算规则配置
-        self.rules_lists_format = 'xcbB?hHiIlLqQfdspPtyY'   # 解算规则可用范围
         
         # 总控-刷新comboBox串口
         self.comboBox_update_com_flag = True
@@ -242,61 +243,53 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.comboBox_update_para_flag = True
 
 
-        # 全部设置区com口列表
-        self.comboBox_com_list = [self.comboBox_protocal_com, 
-                                self.comboBox_turntable_com, 
-                                self.comboBox_power_com,
-                                self.comboBox_tempbox_com,
-                                self.combox_set_com_all]
+# --------------------------------全部设置区com口列表---------------------------------------
+        self.comboBox_com_list = [
+            self.comboBox_protocal_com, 
+            self.comboBox_turntable_com, 
+            self.comboBox_power_com,
+            self.comboBox_tempbox_com,
+            self.combox_set_com_all]
         # 12路com口
-        self.combox_com_list = [self.combox_set_com_1,
-                                self.combox_set_com_2,
-                                self.combox_set_com_3,
-                                self.combox_set_com_4,
-                                self.combox_set_com_5,
-                                self.combox_set_com_6,
-                                self.combox_set_com_7,
-                                self.combox_set_com_8,
-                                self.combox_set_com_9,
-                                self.combox_set_com_10,
-                                self.combox_set_com_11,
-                                self.combox_set_com_12]
+        self.combox_com_list = [
+            self.combox_set_com_1,
+            self.combox_set_com_2,
+            self.combox_set_com_3,
+            self.combox_set_com_4,
+            self.combox_set_com_5,
+            self.combox_set_com_6,
+            self.combox_set_com_7,
+            self.combox_set_com_8,
+            self.combox_set_com_9,
+            self.combox_set_com_10,
+            self.combox_set_com_11,
+            self.combox_set_com_12]
+        for combox in self.comboBox_com_list+self.combox_com_list:
+            combox.view().setMinimumWidth(85)
+        
         # 12路开关按键
-        self.combox_com_open_list = [self.pushButton_com_open_1,
-                                    self.pushButton_com_open_2,
-                                    self.pushButton_com_open_3,
-                                    self.pushButton_com_open_4,
-                                    self.pushButton_com_open_5,
-                                    self.pushButton_com_open_6,
-                                    self.pushButton_com_open_7,
-                                    self.pushButton_com_open_8,
-                                    self.pushButton_com_open_9,
-                                    self.pushButton_com_open_10,
-                                    self.pushButton_com_open_11,
-                                    self.pushButton_com_open_12]
-        self.textBrowser_list = []
-        for i in range(12):
-            self.textBrowser_list.append( self.findChild(QtWidgets.QTextBrowser,'textBrowser_%s'%(i+1)) )
-
-        # 12路装订缓存区
-        self.binding_cache_list = []
-        for i in range(12):
-            self.binding_cache_list.append([])
-        self.ascii_cache_list = []
-        for i in range(12):
-            self.ascii_cache_list.append([])
-        # 装订自动更新
-        self.comboBox_binding_list = [self.lineEdit_binding_latitude,
-                                      self.lineEdit_binding_longitude,
-                                      self.lineEdit_binding_height,
-                                      self.lineEdit_binding_time]
+        self.combox_com_open_list = [
+            self.pushButton_com_open_1,
+            self.pushButton_com_open_2,
+            self.pushButton_com_open_3,
+            self.pushButton_com_open_4,
+            self.pushButton_com_open_5,
+            self.pushButton_com_open_6,
+            self.pushButton_com_open_7,
+            self.pushButton_com_open_8,
+            self.pushButton_com_open_9,
+            self.pushButton_com_open_10,
+            self.pushButton_com_open_11,
+            self.pushButton_com_open_12]
         # 十二路开关设置
         for i in range(12):
             self.combox_com_open_list[i].clicked.connect(self.change_button)
-        for binding in self.comboBox_binding_list:
-            binding.textChanged.connect(self.binding_change)
-        for combox in self.comboBox_com_list+self.combox_com_list:
-            combox.view().setMinimumWidth(85)
+            
+        # textBrowser_list
+        self.textBrowser_list = []
+        for i in range(12):
+            self.textBrowser_list.append( self.findChild(QtWidgets.QTextBrowser,'textBrowser_%s'%(i+1)) )
+        
         # 多路选择combobox 
         combobox_lists = [
             self.comboBox_plot_choiceTab,
@@ -308,15 +301,33 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             for i in range(12):
                 item.addItem('{} {}'.format(i+1,'路'))
             item.setCurrentIndex(0)
-        # for i in range(12):
-        #     self.comboBox_plot_choiceTab.addItem('{} {}'.format(i+1,'路'))
-        # self.comboBox_plot_choiceTab.setCurrentIndex(1)
+            
+        # 装订自动更新
+        self.comboBox_binding_list = [self.lineEdit_binding_latitude,
+                                      self.lineEdit_binding_longitude,
+                                      self.lineEdit_binding_height,
+                                      self.lineEdit_binding_time]
+        for binding in self.comboBox_binding_list:
+            binding.textChanged.connect(self.binding_change)
+            
+            
+        
+        
+# -------------------------------装订事件集合-----------------------------------
+        # 12路装订缓存区
+        self.binding_cache_list = []
+        for i in range(12):
+            self.binding_cache_list.append('')
+        self.ascii_cache_list = []
+        for i in range(12):
+            self.ascii_cache_list.append('')
         # 默认装订选择设置
         self.comboBox_binding_com.clear()
         self.comboBox_binding_com.addItem('all')
         for i in range(12):
             self.comboBox_binding_com.addItem('{} tab'.format(i+1))
         self.comboBox_binding_com.setCurrentIndex(1)
+        
         # 60所装订选择设置
         self.comboBox_binding_com_60s.clear()
         self.comboBox_binding_com_60s.addItem('all')
@@ -329,9 +340,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.binding_list_60s.append( self.findChild(QtWidgets.QLineEdit,'lineEdit_binding_60s_%s'%(i+1)) )
         for binding in self.binding_list_60s:
             binding.textChanged.connect(self.event_update_bingding_60s)
-
-
-        # 卫导板卡 自动装订构造
+            
+        # 卫导板卡仿真 自动装订构造
         self.sate_com_list = []
         for i in range(3):
             self.sate_com_list.append(self.findChild(QtWidgets.QComboBox,'comboBox_sate_com_%s'%(i+1)) )
@@ -352,8 +362,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.sate_send1_autotime = 200
         self.sate_send2_autotime = 1000
         self.sate_send3_autotime = 1000
-        # self.sate_send1_line_list.append(self.comboBox_sate_1_1.currentText())
-        # self.sate_send2_line_list.append(self.comboBox_sate_2_1.currentText())
         for i in range(10):
             self.sate_send1_line_list.append( self.findChild(QtWidgets.QLineEdit,'lineEdit_sate_1_%s'%(i+1)) )
         for i in range(9):
@@ -372,8 +380,33 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.event_update_sate1()
         self.event_update_sate2()
         self.event_update_sate3()
-
-
+        
+        # 滕盾惯导 下拉框更新
+        self.td_send_autotime = 1000
+        # 命令字更新    
+        self.td_command_update_list = []
+        for i in range(6):
+            self.td_command_update_list.append( self.findChild(QtWidgets.QComboBox,'comboBox_binding_td_%s'%(i+1)) )
+        for td_command in self.td_command_update_list:
+            td_command.currentTextChanged.connect(self.td_command_change)
+        # GNSS更新
+        self.td_gnss_updae_list = []
+        for i in range(5):
+            self.td_gnss_updae_list.append( self.findChild(QtWidgets.QComboBox,'comboBox_binding_td_%s'%(i+7)) )
+        for td_gnss in self.td_gnss_updae_list:
+            td_gnss.currentTextChanged.connect(self.td_gnss_change)
+        # 大气数据有效字 软件升级指令 升级软件配置 更新
+        self.comboBox_binding_td_12.currentTextChanged.connect(self.td_atmos_change)
+        self.comboBox_binding_td_13.currentTextChanged.connect(self.td_softUpdate_change)
+        self.comboBox_binding_td_14.currentTextChanged.connect(self.td_softPara_change)
+        # 滕盾惯导 内容更新
+        self.td_command_list = []
+        for i in range(30):
+            self.td_command_list.append( self.findChild(QtWidgets.QLineEdit,'lineEdit_binding_td_%s'%(i+1)) )
+        for td_command in self.td_command_list:
+            td_command.textChanged.connect(self.td_command_change)
+        self.lineEdit_binding_td_1.textChanged.connect(self.td_command_time_change)
+        
 
 
 
@@ -383,7 +416,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
 
-        # 选择事件集
+# ---------------------------------选择事件集----------------------------
         # 总控开关切换
         self.pushButton_com_open_all.clicked.connect(self.change_button_all)
         # 单路通讯协议同步多路更新
@@ -404,7 +437,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.comboBox_protocal_rule.currentTextChanged.connect(self.read_rules)
 
 
-        # 点击事件集
+
+
+
+# ----------------------------点击事件集------------------------------
         self.pushButton_begin_test.clicked.connect(self.begin_test)
         self.pushButton_stop_test.clicked.connect(self.stop_test)
         self.pushButton_begin_test_2.clicked.connect(self.begin_test)
@@ -429,8 +465,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.lineEdit_inside_plot_para_list = []
         self.init_all_coef()
 
+
+
+
+
         
-        # 事件更新计数
+# -----------------------------------事件更新计数---------------------------------------
         self.show_timer_count0 = 0
         self.show_timer_count1 = 0
         self.show_timer_count2 = 0
@@ -474,8 +514,25 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.sate_time2 = QTimer(self)
         self.sate_time2.timeout.connect(self.event_send_sate2)
         self.sate_time2.start(self.sate_send2_autotime)
+        
+        # 滕盾惯导 定时发送
+        self.td_time1 = QTimer(self)
+        self.td_time1.timeout.connect(self.event_td_send1)
+        self.td_time1.start(self.td_send_autotime)
 
         self.init_all_coef_end()
+
+
+
+
+
+
+
+
+
+
+
+
 
     def init_all_coef_end(self):
         self.lineEdit_INU_plot_stand_lon.setText(str(self.default_longitude))
@@ -920,11 +977,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             send_tab = self.comboBox_binding_com.CurrentText()
             chosen_tab = send_tab.split()[0]
             chosen_tab_int = int(chosen_tab)
-            self.binding_cache_list[chosen_tab_int-1].append(send_commands)
+            self.binding_cache_list[chosen_tab_int-1] = send_commands
         except:
             self.debug_list_1.append('装订载入缓存:{}'.format(str(send_commands)))
             for i in range(12):
-                self.binding_cache_list[i].append(send_commands)
+                self.binding_cache_list[i] = (send_commands)
     # 激光惯导#60所 构造装订函数
     def event_update_bingding_60s(self):
         lineedit_data_list = []
@@ -982,15 +1039,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             send_tab = self.comboBox_binding_com_60s.CurrentText()
             chosen_tab = send_tab.split()[0]
             chosen_tab_int = int(chosen_tab)
-            self.binding_cache_list[chosen_tab_int-1].append(send_commands)
+            self.binding_cache_list[chosen_tab_int-1] = (send_commands)
         except:
             self.debug_list_1.append('装订载入缓存12路:{}'.format(str(send_commands)))
             for i in range(12):
-                self.binding_cache_list[i].append(send_commands)
+                self.binding_cache_list[i] = (send_commands)
     
 
 
-    # 通用卫导板卡发送函数
+    # 通用卫导板卡更新发送频率
     def sate_send1_change_time(self):
         try:
             auto_time = int(self.lineEdit_sate_1_0.text())
@@ -1014,7 +1071,18 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.sate_send3_autotime = auto_time
                 self.sate_time3.start(self.event_send_sate3)
         except Exception as e:
-            self.debug_list_3.append('{} 模块3获取定时时间错误{} {}'.format(self.normal_time,self.lineEdit_sate_3_0.text(),e))
+            self.debug_list_2.append('{} 模块3获取定时时间错误{} {}'.format(self.normal_time,self.lineEdit_sate_3_0.text(),e))
+    # 滕盾惯导非控更新发送频率
+    def td_command_time_change(self):
+        try:
+            auto_time = int(self.lineEdit_binding_td_1.text())
+            if auto_time>=10:
+                self.td_send_autotime = auto_time
+                self.td_time1.start(self.td_send_autotime)
+        except Exception as e:
+            self.debug_list_2.append('{} 滕盾惯导获取定时时间错误{} {}'.format(self.normal_time,self.lineEdit_binding_td_1.text(),e))
+    
+
 
 
     def event_update_sate1(self):
@@ -1205,12 +1273,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             try:
                 send_tab = self.comboBox_sate_com_1.currentText()
                 chosen_tab = int(send_tab.split()[0])
-                self.ascii_cache_list[chosen_tab-1].append(send_commands)
+                self.ascii_cache_list[chosen_tab-1] = send_commands
                 send_tab = str(chosen_tab)
             except:
                 send_tab = 'all'
                 for i in range(12):
-                    self.ascii_cache_list[i].append(send_commands)
+                    self.ascii_cache_list[i]= send_commands
             # self.debug_list_1.append('{} 卫导模块1_{}路发送装订:\n  {}'.format(self.normal_time,send_tab,send_commands))
 
     def event_send_sate2(self):
@@ -1221,12 +1289,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             try:
                 send_tab = self.comboBox_sate_com_2.currentText()
                 chosen_tab = int(send_tab.split()[0])
-                self.ascii_cache_list[chosen_tab-1].append(send_commands)
+                self.ascii_cache_list[chosen_tab-1]= send_commands
                 send_tab = str(chosen_tab)
             except Exception as e:
                 send_tab = 'all'
                 for i in range(12):
-                    self.ascii_cache_list[i].append(send_commands)
+                    self.ascii_cache_list[i] = send_commands
             # self.debug_list_1.append('{} 卫导模块1_{}路发送装订:\n  {}'.format(self.normal_time,send_tab,send_commands))
     def event_send_sate3(self):
         if (self.checkBox_sate_time_3.isChecked()) | (isinstance(self.sender(),QtWidgets.QPushButton)):
@@ -1236,14 +1304,30 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             try:
                 send_tab = self.comboBox_sate_com_3.currentText()
                 chosen_tab = int(send_tab.split()[0])
-                self.ascii_cache_list[chosen_tab-1].append(send_commands)
+                self.ascii_cache_list[chosen_tab-1] = send_commands
                 send_tab = str(chosen_tab)
             except Exception as e:
                 send_tab = 'all'
                 for i in range(12):
-                    self.ascii_cache_list[i].append(send_commands)
+                    self.ascii_cache_list[i]= send_commands
             # self.debug_list_1.append('{} 卫导模块1_{}路发送装订:\n  {}'.format(self.normal_time,send_tab,send_commands))
-    
+    # 滕盾飞控发送装订事件
+    def event_td_send1(self):
+        if (self.checkBox_binding_td.isChecked()) | (isinstance(self.sender(),QtWidgets.QPushButton)):
+            send_commands = self.textEdit_binging_td.toPlainText()
+            send_tab = 'all'
+            try:
+                send_tab = self.comboBox_binding_td.currentText()
+                chosen_tab = int(send_tab.split()[0])
+                self.ascii_cache_list[chosen_tab-1] = send_commands
+                send_tab = str(chosen_tab)
+            except Exception as e:
+                send_tab = 'all'
+                for i in range(12):
+                    self.ascii_cache_list[i] = send_commands
+            
+        
+        
 
 
 
@@ -2155,7 +2239,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             # 发送装订指令
             try:
                 if len(self.binding_cache_list[thread_num])>0:
-                    send_commands = self.binding_cache_list[thread_num].pop(0)
+                    send_commands = self.binding_cache_list[thread_num]
+                    self.binding_cache_list[thread_num] = ''
                     serials.write(bytes.fromhex(send_commands))
                     self.debug_list_1.append('{}：发送装订:{}'.format(thread_num,send_commands))
             except Exception as e:
@@ -2164,8 +2249,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             
             try:
                 if len(self.ascii_cache_list[thread_num])>0:
-                    send_commands = str(self.ascii_cache_list[thread_num].pop(0))+'\r\n'
+                    send_commands = str(self.ascii_cache_list[thread_num])+'\r\n'
                     serials.write(send_commands.encode('ascii'))
+                    self.ascii_cache_list[thread_num] = ''
                     self.debug_list_1.append('{}：发送装订:{}'.format(thread_num,send_commands))
             except Exception as e:
                 # print('发送装订失败')
@@ -2407,13 +2493,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             if list_plan[0].startswith('#'):
                 count+=1
             elif list_plan[1]=='wait':
+                try:    wait_time = int(list_plan[2])
+                except: wait_time = 1
                 # print('wait等待时间:{:.2f}'.format(time.time()-real_time))
                 self.lineEdit_automatic_mode_list.append('自动模式:等待中')
-                if time.time()-begin_time>int(list_plan[2]):
+                if time.time()-begin_time>wait_time:
                     count+=1
                     begin_time = time.time()
                 else:
-                    self.automatic_time = int(list_plan[2])-(time.time()-begin_time)
+                    self.automatic_time = wait_time-(time.time()-begin_time)
                     time.sleep(1)
                     wait_count+=1
             elif list_plan[1]=='time':
@@ -2496,7 +2584,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             elif list_plan[1]=='name':
                 print('name电源时间:{:.2f}'.format(time.time()-real_time))
                 count+=1
-                self.plan_name = str(list_plan[2])
+                try:    self.plan_name = str(list_plan[2])
+                except: self.plan_name = 'None'
                 begin_time = time.time()
             elif list_plan[1]=='bd':
                 print('bd电源时间:{:.2f}'.format(time.time()-real_time))
@@ -2525,7 +2614,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         self.show_message_automatic_list.append('{}自动测试错误:{} 错误'.format(self.normal_time,bd_name))
                         self.debug_list_1.append('{}自动测试错误:{} 错误\n{}'.format(self.normal_time,bd_name,e))
             elif list_plan[1]=='temp':
-                print('bd电源时间:{:.2f}'.format(time.time()-real_time))
+                # print('bd电源时间:{:.2f}'.format(time.time()-real_time))
                 count+=1
                 try:
                     temp_com = self.comboBox_tempbox_com.currentText()

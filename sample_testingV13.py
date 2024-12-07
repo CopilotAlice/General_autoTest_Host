@@ -1122,6 +1122,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.groupBox_6.sizePolicy().hasHeightForWidth())
         self.groupBox_6.setSizePolicy(sizePolicy)
+        self.groupBox_6.setMaximumSize(QtCore.QSize(0, 0))
         self.groupBox_6.setObjectName("groupBox_6")
         self.verticalLayout_11 = QtWidgets.QVBoxLayout(self.groupBox_6)
         self.verticalLayout_11.setContentsMargins(0, 11, 0, 11)
