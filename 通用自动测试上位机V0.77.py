@@ -401,10 +401,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.comboBox_binding_td_14.currentTextChanged.connect(self.td_softPara_change)
         # 滕盾惯导 内容更新
         self.td_command_list = []
-        for i in range(30):
+        for i in range(2,30):
             self.td_command_list.append( self.findChild(QtWidgets.QLineEdit,'lineEdit_binding_td_%s'%(i+1)) )
         for td_command in self.td_command_list:
-            td_command.textChanged.connect(self.td_command_change)
+            td_command.textChanged.connect(self.td_command_send_update)
         self.lineEdit_binding_td_1.textChanged.connect(self.td_command_time_change)
         
 
@@ -1080,7 +1080,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.td_send_autotime = auto_time
                 self.td_time1.start(self.td_send_autotime)
         except Exception as e:
-            self.debug_list_2.append('{} 滕盾惯导获取定时时间错误{} {}'.format(self.normal_time,self.lineEdit_binding_td_1.text(),e))
+            self.debug_list_2.append('{} 滕盾惯导获取定时时间错误{} {}'.format(self.normal_time, self.lineEdit_binding_td_1.text(), e))
     
 
 
@@ -1311,6 +1311,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 for i in range(12):
                     self.ascii_cache_list[i]= send_commands
             # self.debug_list_1.append('{} 卫导模块1_{}路发送装订:\n  {}'.format(self.normal_time,send_tab,send_commands))
+    
     # 滕盾飞控发送装订事件
     def event_td_send1(self):
         if (self.checkBox_binding_td.isChecked()) | (isinstance(self.sender(),QtWidgets.QPushButton)):
@@ -1325,6 +1326,59 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 send_tab = 'all'
                 for i in range(12):
                     self.ascii_cache_list[i] = send_commands
+    def td_command_change(self):
+        td_command_count = -1
+        double_text = [0,5]
+        td_command_out = []
+        for td_command in self.td_command_update_list:
+            td_command_count += 1
+            get_text = td_command.currentText()
+            try:
+                int_text = int(get_text)
+                # td_command_out.append(get_text)
+                append_list = [get_text]
+            except:
+                append_list = ['00' if td_command_count in double_text else '0']
+            td_command_out += append_list
+        # self.lineEdit_binding_td_3.setText(''.join(td_command_out))
+        try: int_text = int(''.join(td_command_out),2)
+        except: int_text = 0
+        self.lineEdit_binding_td_3.setText(str(int_text))
+    def td_gnss_change(self):
+        td_command_count = -1
+        double_text = [3]
+        td_command_out = []
+        for td_command in self.td_gnss_updae_list:  
+            td_command_count += 1
+            get_text = td_command.currentText()
+            try:
+                int_text = int(get_text)
+                td_command_out.append(get_text)
+            except:
+                td_command_out += ['000' if td_command_count in double_text else '0']
+        # self.lineEdit_binding_td_3.setText(''.join(td_command_out))
+        try: int_text = int(''.join(td_command_out),2)
+        except: int_text = 0
+        self.lineEdit_binding_td_22.setText(str(int_text))
+    def td_atmos_change(self):
+        get_text = self.comboBox_binding_td_12.currentText()
+        try: int_text = int(get_text)
+        except: int_text = 0
+        self.lineEdit_binding_td_28.setText(str(int_text))
+    def td_softUpdate_change(self):
+        get_text = self.comboBox_binding_td_13.currentText()
+        try: int_text = int(get_text,16)
+        except: int_text = 0
+        self.lineEdit_binding_td_30.setText(str(int_text))
+    def td_softPara_change(self):
+        get_text = self.comboBox_binding_td_14.currentText()
+        try: int_text = int(get_text,16)
+        except: int_text = 0
+        self.lineEdit_binding_td_31.setText(str(int_text))
+    def td_command_send_update(self):
+        pass
+        
+        
             
         
         
