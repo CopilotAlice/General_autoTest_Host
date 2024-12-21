@@ -3,7 +3,11 @@ from PyQt5.QtCore import QThread, pyqtSignal, QTimer
 from Automated_testingV13 import Ui_MainWindow
 # from sample_testingV13 import Ui_MainWindow
 from pyqtgraph.Qt import QtCore
-from fun_chy2 import *
+from ui.fun_chy2 import *
+from ui.event import MainWindowEvent
+from ui.constants import MainWindowConstants
+from ui.logic import MainWindowLogic
+from ui.init_ui import MainWindowInit
 import binascii
 import datetime
 from datetime import timezone,datetime,timedelta
@@ -38,6 +42,8 @@ V0.71	转台控制	根据转台状态决定是否收数及刹车是否到位
 V0.72	惯导协议	加入"drop0datav [num]"，由num判断是否丢弃对应包中为0的数据
 V0.73	数据处理	解算数据时判断校验并根据配置决定是否保存
 V0.76   数据装订    提供60所装订协议，自动装订功能
+V0.77   数据装订    提供腾盾装订协议，自动装订功能
+V0.78   数据装订    更新腾盾装订协议，自动装订功能
 '''
 updating_log = '''
 转台控制    模块化控制 根据状态字决定是否下一步
@@ -49,8 +55,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
-        self.setWindowTitle("通用自动测试上位机_蔡_功能测试版_2412_V0.75")
-        self.show_message_length = 30   # 显示的最大行数
+        self.setWindowTitle("通用自动测试上位机_蔡_功能测试版_2412_V0.80")
+        self.init_ui = MainWindowInit(self)
+        # 全部变量函数
+        self.constants = MainWindowConstants(self)
+        # 事件处理函数
+        self.events = MainWindowEvent(self)
+        # 各类定时函数
+        # 各类UI逻辑
+        self.uilogic = MainWindowLogic(self)
+
         
         # 初始化界面元素
         self.inside_location = 0.0
@@ -66,6 +80,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.default_alpha = 0.6
         self.all_rec_hex = 0
         self.sum_check_err_count = 0
+        self.show_message_length = 30   # 显示的最大行数
         
         # 初始化绘图元素
         self.graphicsView_gyr_X_adp = self.graphicsView_gyr_X.addPlot()
@@ -213,8 +228,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.config_save_readydata_ms = 0	# 是否保存到位毫秒值 
         self.config_save_readydata_s = 0	# 是否保存到位秒值 
         self.config_save_BD_average = 1     # 是否将标定过程各点取均值存放
-        self.config_save_alldata_bin = 1         # 是否保存标定过程中16进制原始数
+        self.config_save_alldata_bin = 1    # 是否保存标定过程中16进制原始数
         self.config_save_BD_1file = 1       # 将标定过程各点存储到一个文件/多个文件
+        self.config_save_ascii_log = 0      # 保存装订的ascii内容
+        self.config_save_hex_log = 0        # 保存装订的hex内容
         self.save_decimal_point = 6         # 保存时保留小数点后几位
         self.save_test_title = 1            # 创建文件时将协议中的标题内容一并保存
         self.config_power_model = 1         # 电源型号：1程控电源，2继电器
@@ -233,7 +250,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.default_plot_flag = True       # 允许检测文件长度判断是否切换刷新时间
         self.default_plot_time = 1500
         self.default_plot_load = 1200
-        self.default_sumcheck_flag = 0
+        self.default_sumcheck_flag = 0      # 是否根据校验位保存数据
+        self.default_loc_decimal = 9        # 在表格显示时检测经纬度并使用指定精度
+        self.default_plot_decimal = 6       # 绘图栏显示信息时使用精度
+        self.save_turntable_status = 0      # 保存转台运动状态
 
         
         
@@ -384,6 +404,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # 滕盾惯导 下拉框更新
         self.td_send_autotime = 1000
         self.fz_send_autotime = 1000
+        self.gnss_send_autotime = 1000
         # 命令字更新    
         self.td_command_update_list = []
         for i in range(6):
@@ -408,6 +429,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             td_command.textChanged.connect(self.td_command_send_update)
         self.lineEdit_binding_td_1.textChanged.connect(self.td_command_time_change)
         self.pushButton_binding_td.clicked.connect(self.event_td_send1)
+
         # 地面仿真 内容更新
         self.fz_command_list = []
         for i in range(1,10):
@@ -416,6 +438,21 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             fz_command.textChanged.connect(self.fz_command_send_update)
         self.lineEdit_binding_fz_1.textChanged.connect(self.fz_command_time_change)
         self.pushButton_binding_fz.clicked.connect(self.event_fz_send1)
+
+        # GNSS仿真 内容更新
+        self.gnss_command_list = []
+        for i in range(1,33):
+            self.gnss_command_list.append( self.findChild(QtWidgets.QLineEdit,'lineEdit_binding_gnss_%s'%(i+1)) )
+        for gnss_command in self.gnss_command_list:
+            gnss_command.textChanged.connect(self.gnss_command_send_update)
+        self.lineEdit_binding_gnss_1.textChanged.connect(self.gnss_command_time_change)
+        self.pushButton_binding_gnss.clicked.connect(self.event_gnss_send1)
+        # GNSS仿真 命令字更新
+        self.gnss_status_updae_list = []
+        for i in range(5):
+            self.gnss_status_updae_list.append( self.findChild(QtWidgets.QComboBox,'comboBox_binding_gnss_%s'%(i+1)) )
+        for gnss_status in self.gnss_status_updae_list:
+            gnss_status.currentTextChanged.connect(self.gnss_status_change)
         
 
 
@@ -532,6 +569,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.fz_time1 = QTimer(self)
         self.fz_time1.timeout.connect(self.event_fz_send1)
         self.fz_time1.start(self.fz_send_autotime)
+        self.gnss_time1 = QTimer(self)
+        self.gnss_time1.timeout.connect(self.event_gnss_send1)
+        self.gnss_time1.start(self.gnss_send_autotime)
+
 
         self.init_all_coef_end()
 
@@ -554,6 +595,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.lineEdit_binding_60s_3.setText(str(self.default_latitude))
         self.lineEdit_sate_1_3.setText(str(self.default_longitude))
         self.lineEdit_sate_1_2.setText(str(self.default_latitude))
+        self.lineEdit_binding_td_10.setText(str(self.default_longitude))
+        self.lineEdit_binding_td_11.setText(str(self.default_latitude))
+        self.lineEdit_binding_gnss_8.setText(str(self.default_longitude))
+        self.lineEdit_binding_gnss_9.setText(str(self.default_latitude))
         self.tableWidget_table_show.setRowCount(self.config_table_row)
         self.tableWidget_table_show.setColumnCount(self.config_table_col*2)
 
@@ -690,13 +735,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     except Exception as e:
                         self.debug_list_1.append('{}设置绘图标题错误:{}'.format(self.normal_time,e))
                     mean_data = plot_data.mean()
-                    self.list_mean_data[i].setText('{:.4f}'.format(mean_data))
+                    self.list_mean_data[i].setText('{:.{}f}'.format(mean_data,self.default_plot_decimal))
                     stds_data = float(plot_data.std())
                     # print(stds_data)
-                    self.list_std_data[i].setText('{:.4f}'.format(stds_data))
+                    self.list_std_data[i].setText('{:.{}f}'.format(stds_data,self.default_plot_decimal))
                 except Exception as e:
                     print('绘图报错{}'.format(e))
                     # messagess = '暂无数据'
+
             # 表格绘图
             try:
                 table_count = 0 
@@ -704,7 +750,21 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     for i in plot_dataframe.iloc[-1,:]:
                         row = table_count//self.config_table_col
                         col = table_count%self.config_table_col*2+1
-                        item = str(round(i,self.config_table_round))
+                        try: title = self.sorted_titl_list[table_count]
+                        except: title = 'None'
+                        try:
+                            if ('字节' in title) & (float(i).is_integer()):
+                                item = bin(int(i)).upper()
+                            elif ('字' in title) & (float(i).is_integer()):
+                                item = hex(int(i)).upper()
+                            elif ('经度'in title)|('纬度' in title):
+                                item = '{:.{}f}'.format(i,self.default_loc_decimal)
+                            else:
+                                item = '{:.{}f}'.format(i,self.config_table_round)
+                            # print('{} {} title\t{} {} integer\t item:{}'.format( title,('字' in title),i,float(i).is_integer(),item ))
+                        except :
+                            # item = str(round(i,self.config_table_round))
+                            item = str(i)
                         try:
                             self.tableWidget_table_show.setItem(row,col,QtWidgets.QTableWidgetItem(item))
                         except Exception as e:
@@ -713,7 +773,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
             except Exception as e:
                 self.debug_list_3.append('{} table填充内容失败:{}'.format(self.normal_time,e))
-                print(plot_dataframe)
+
             
 
 
@@ -1103,6 +1163,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.fz_time1.start(self.fz_send_autotime)
         except Exception as e:
             self.debug_list_2.append('{} 滕盾惯导获取仿真时间错误{} {}'.format(self.normal_time, self.lineEdit_binding_fz_1.text(), e))
+    # 滕盾GNSS仿真更新发送频率
+    def gnss_command_time_change(self):
+        try:
+            auto_time = int(self.lineEdit_binding_gnss_1.text())
+            if auto_time>=10:
+                self.gnss_send_autotime = auto_time
+                self.gnss_time1.start(self.gnss_send_autotime)
+        except Exception as e:
+            self.debug_list_2.append('{} 滕盾惯导获取GNSS时间错误{} {}'.format(self.normal_time, self.lineEdit_binding_gnss_1.text(), e))
     
 
 
@@ -1341,6 +1410,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 try:int_loop_count = int(self.lineEdit_binding_td_2.text())
                 except:int_loop_count = -1
                 self.lineEdit_binding_td_2.setText(str((int_loop_count+1)%256))
+            if self.checkBox_td_update.isChecked():
+                now = datetime.now()
+                all_now = [now.year, now.month,now.day,now.hour,now.minute,now.second,now.microsecond/1000]
+                for i in range(7):
+                    self.td_command_list[i+11].setText(str(int(all_now[i])))
             send_commands = self.textEdit_binging_td.toPlainText()
             send_tab = 'all'
             try:
@@ -1412,7 +1486,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         header1 = ['AA','55']
         hex_strings = 'B13C'
         for item in self.td_command_list:
-            try: td_list.append(int(item.text()))
+            try: td_list.append(float(item.text()))
             except Exception as e:
                 td_list.append(0)
         hex_data = b''.join(calculate_td_hex(td_list)).hex().upper()
@@ -1448,7 +1522,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         header1 = ['AA','55']
         hex_strings = 'D120'
         for item in self.fz_command_list:
-            try: fz_list.append(int(item.text()))
+            try: fz_list.append(float(item.text()))
             except Exception as e:
                 fz_list.append(0)
         hex_data = b''.join(calculate_fz_hex(fz_list)).hex().upper()
@@ -1458,9 +1532,62 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         hex_strings_sum = hex(hex_strings_sum)[2:].upper().rjust(2,'0')
         show_data = header1+hex_strings_split+[hex_strings_sum]
         self.textEdit_binging_fz.setText(' '.join(show_data))
-            
-        
-        
+    
+    
+    # 滕盾GNSS发送装订事件
+    def event_gnss_send1(self):
+        if (self.checkBox_binding_gnss.isChecked()) | (isinstance(self.sender(),QtWidgets.QPushButton)):
+            if self.checkBox_binding_gnss_loop.isChecked():
+                try:int_loop_count = int(self.lineEdit_binding_gnss_2.text())
+                except:int_loop_count = -1
+                self.lineEdit_binding_gnss_2.setText(str((int_loop_count+1)%256))
+            if self.checkBox_gnss_update.isChecked():
+                now = datetime.now()
+                all_now = [now.year, now.month,now.day,now.hour,now.minute,now.second,now.microsecond/1000]
+                for i in range(7):
+                    self.gnss_command_list[i+10].setText(str(int(all_now[i])))
+            send_commands = self.textEdit_binging_gnss.toPlainText()
+            try:
+                send_tab = self.comboBox_binding_gnss.currentText()
+                chosen_tab = int(send_tab.split()[0])
+                self.binding_cache_list[chosen_tab-1] = send_commands
+            except Exception as e:
+                for i in range(12):
+                    self.binding_cache_list[i] = send_commands
+    # 腾盾GNSS更新事件
+    def gnss_status_change(self):
+        td_command_count = -1
+        double_text = [0]
+        td_command_out = []
+        for td_command in self.gnss_status_updae_list:  
+            td_command_count += 1
+            get_text = td_command.currentText()
+            try:
+                int_text = float(get_text)
+                td_command_out.append(get_text)
+            except:
+                td_command_out += ['00' if td_command_count in double_text else '0']
+        # self.lineEdit_binding_td_3.setText(''.join(td_command_out))
+        try: int_text = int(''.join(td_command_out[::-1]),2)
+        except: int_text = 0
+        self.lineEdit_binding_gnss_3.setText(str(int_text))
+    # 仿真装订hex更修事件
+    def gnss_command_send_update(self):
+        fz_list = []
+        header1 = ['AA','55']
+        hex_strings = '3C'
+        for item in self.gnss_command_list:
+            try: fz_list.append(float(item.text()))
+            except Exception as e:
+                fz_list.append(0)
+        # print(fz_list)
+        hex_data = b''.join(calculate_gnss_hex(fz_list)).hex().upper()
+        hex_strings+=hex_data
+        hex_strings_split = [hex_strings[i:i+2] for i in range(0,len(hex_strings),2)]
+        hex_strings_sum = sum([int(i,16) for i in hex_strings_split]) & 0xFF
+        hex_strings_sum = hex(hex_strings_sum)[2:].upper().rjust(2,'0')
+        show_data = header1+hex_strings_split+[hex_strings_sum]
+        self.textEdit_binging_gnss.setText(' '.join(show_data))
 
 
 
@@ -1526,7 +1653,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def event_autoset_inu(self):
         self.lineEdit_INU_plot_stand_lon.setText(str(self.default_longitude))
         self.lineEdit_INU_plot_stand_lat.setText(str(self.default_latitude))
-        self.lineEdit_INU_skipcount.setText('300')
+        self.lineEdit_INU_skipcount.setText('300')  
         for i in range(len(self.sorted_titl_list)):
             if '经度' in self.sorted_titl_list[i]:
                 self.lineEdit_INU_plot_target_lon.setText('{} {}'.format(i,self.sorted_titl_list[i]))
@@ -1547,20 +1674,19 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.auto_plot_always = True
         dir = QtWidgets.QFileDialog()
         try:
-            # dir.setDirectory('.//')
-            path = os.getcwd()  
+            path = self.constants.load_filepath
             dir.setDirectory(path)
         except:
             dir.setDirectory('C:\\')
         if dir.exec_():
             file_path = str(dir.selectedFiles()[0])
-            print(file_path)
+            self.constants.load_filepath = os.path.dirname(file_path)
         else:
             return False
         try:
             df = pd.read_csv(file_path,sep='\\s+',header=None,skiprows=1)
             self.show_message_dataframe[0] = df
-            self.show_message_automatic_list.append('{} 文件长度{} 文件路径:\n{}'.format(self.normal_time,len(df),file_path))
+            self.show_message_automatic_list.append('{} 载入文件 长度:{} 路径:\n  {}'.format(self.normal_time,len(df),file_path))
             self.show_timer2.start(self.default_plot_load)
         except Exception as e:
             self.debug_list_3.append('{} 使用空格打开文件失败:{}'.format(self.normal_time,e))
@@ -1570,7 +1696,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             except Exception as e:
                 self.debug_list_3.append('{} 使用逗号打开文件失败:{}'.format(self.normal_time,e))
                 try:
-                    if '.hex' in file_path:
+                    if ('.bin' in file_path)|('.hex' in file_path):
                         with open(file_path,'rb+') as f:
                             hex_data = f.read()
                         self.debug_list_3.append('{} 使用hex打开文件:{}'.format(self.normal_time,e))
@@ -1743,6 +1869,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         self.default_plot_load = int(para_rule_list[2])
                     elif para_rule_list[1]=='default_sumcheck_flag':
                         self.default_sumcheck_flag = int(para_rule_list[2])
+                    elif para_rule_list[1]=='save_ascii_log':
+                        self.config_save_ascii_log = int(para_rule_list[2])
+                    elif para_rule_list[1]=='save_hex_log':
+                        self.config_save_hex_log = int(para_rule_list[2])
+                    elif para_rule_list[1]=='default_loc_decimal':
+                        self.default_loc_decimal = int(para_rule_list[2])
+                    elif para_rule_list[1]=='default_plot_decimal':
+                        self.default_plot_decimal = int(para_rule_list[2])
+                    elif para_rule_list[1]=='save_turntable_status':
+                        self.save_turntable_status = int(para_rule_list[2])
                     else:
                         self.show_message_automatic_list.append('read_default_para_config未知配置项：%s'%(para_rule_list))
     # 读取载入解算规则文件  20240513
@@ -2110,6 +2246,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     
     
     
+
+
+
+
+
+
+
+
+
+
     
     def stop_test(self):
         if self.debug_flag:
@@ -2285,6 +2431,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         calib_filename= '{}{}_{}_hz_calib.txt'.format(file_path,name,save_time)
         s_filename   = '{}{}_{}_s.txt'.format(file_path,name,save_time)
         ave_filename = '{}{}_{}_ave.txt'.format(file_path,name,save_time)
+        hex_log_filename = '{}{}_{}_hexLog.txt'.format(file_path,name,save_time)
+        ascii_log_filename = '{}{}_{}_asciiLog.txt'.format(file_path,name,save_time)
         
         alldata_ms  = ''
         alldata_s   = ''
@@ -2367,6 +2515,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             frame_list = [ all_data[i*decode_fram_leng:(i+1)*decode_fram_leng] for i in range(len(all_data)//decode_fram_leng) ]
             frame_list_len = len(frame_list)
             frame_list_count = 0
+
+        hex_log_list = []
+        ascii_log_list = []
+
         # 开始测试
         while self.threading_test_flag & self.threading_list_flag[thread_num]:
             # 发送装订指令
@@ -2376,6 +2528,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     self.binding_cache_list[thread_num] = ''
                     serials.write(bytes.fromhex(send_commands))
                     # self.debug_list_1.append('{}：发送装订:{}'.format(thread_num,send_commands))
+                    if self.config_save_hex_log:
+                        hex_log_list.append(send_commands)
+                        if len(hex_log_list)>100:
+                            with open(hex_log_filename,'a+') as f:
+                                f.write('\n'.join(hex_log_list)+'\n')
+                            hex_log_list = []
             except Exception as e:
                 # print('发送装订失败')
                 self.debug_list_1.append('{} 发送装订失败{}\n{}发送装订失败{}'.format(self.normal_time,send_commands,self.normal_time,e))
@@ -2385,6 +2543,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     send_commands = str(self.ascii_cache_list[thread_num])+'\r\n'
                     serials.write(send_commands.encode('ascii'))
                     self.ascii_cache_list[thread_num] = ''
+                    if self.config_save_ascii_log:
+                        ascii_log_list.append(send_commands)
+                        if len(ascii_log_list)>100:
+                            with open(ascii_log_filename,'a+') as f:
+                                f.write('\n'.join(ascii_log_list)+'\n')
+                            ascii_log_list = []
                     # self.debug_list_1.append('{}：发送装订:{}'.format(thread_num,send_commands))
             except Exception as e:
                 # print('发送装订失败')
@@ -2762,7 +2926,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             else:
                 print('未知控制命令:{}，跳过'.format(list_plan))
                 count+=1
-               
+    
+
+
+    # 转台标定_转动
     def begin_test_bd(self):
         # print('开始转台标定')
         self.show_message_dis1_list.append('{} 开始转台标定'.format(self.normal_time))
@@ -2802,6 +2969,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 turntable_serial = serial.Serial(com_port, 115200, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE)
             except Exception as e:
                 self.debug_list_1.append('{} 第二次开启转台串口错误:{}'.format(self.normal_time,e))
+                self.show_message_automatic_list.append('{} 开启转台串口错误'.format(self.normal_time))
 
 
         # 创建保存log文件夹
@@ -2844,11 +3012,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     o_status = conver_turntable_status(decode_commands[8])
                     turntable_message = '{} 转台解算成功:{}\n\t{}\n\t{}'.format(self.normal_time,decode_commands,i_status,o_status)
                     # self.debug_list_1.append(turntable_message) 
-                    try:
-                        with open(file_path+'运行记录_转台解算.txt','a+') as f:
-                            f.write(turntable_message)
-                    except Exception as e:
-                        self.debug_list_4.append('{} 写入文件失败 {}'.format(self.normal_time,e))
+                    if self.save_turntable_status:
+                        try:
+                            with open(file_path+'运行记录_转台信息.txt','a+') as f:
+                                f.write(turntable_message)
+                        except Exception as e:
+                            self.debug_list_4.append('{} 写入文件失败 {}'.format(self.normal_time,e))
                     self.inside_location = decode_commands[6]
                     self.inside_speed = decode_commands[7]
                     self.outside_location = decode_commands[9]
