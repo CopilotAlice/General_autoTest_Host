@@ -218,7 +218,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.para_config_filename = './配置文件/para_config.txt'
         self.model_list = [
             ['通讯','转台','电源','温箱','装订','自动'],
-            ['protocal','turntable','power','tempbox','binding','automatic'],
+            ['protocal','turntable','power','tempbox','general','automatic'],
             ['解算规则','标定规则','none','none','装订规则','自动规则']
         ]
         self.config_hold_time = 15          # 转台稳定后等待时间
@@ -974,6 +974,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 file_list.sort()
                 
                 comboBox = self.findChild(QtWidgets.QComboBox,'comboBox_%s_rule'%(model_list[1][i]))
+                if comboBox is None:
+                    if self.debug_update_5s_file:
+                        print('未找到对应控件：comboBox_%s_rule'%(model_list[1][i]))
+                    continue
                 comboBox_file_list = []
                 for count in range(comboBox.count()):
                     comboBox_file_list.append(comboBox.itemText(count))
@@ -1839,7 +1843,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     elif para_rule_list[1]=='default_turntable':
                         self.comboBox_turntable_rule.setCurrentIndex(int(para_rule_list[2]))
                     elif para_rule_list[1]=='default_binding':
-                        self.comboBox_binding_rule.setCurrentIndex(int(para_rule_list[2]))
+                        self.comboBox_general_rule.setCurrentIndex(int(para_rule_list[2]))
                     elif para_rule_list[1]=='default_automatic':
                         self.comboBox_automatic_rule.setCurrentIndex(int(para_rule_list[2]))
                     # 默认使用寻找帧头模式

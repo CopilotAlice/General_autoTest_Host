@@ -4,10 +4,13 @@ from PyQt5 import QtWidgets, QtGui, QtCore
 class MainWindowInit:
     def __init__(self,mainWindow):
         self.mainWindow = mainWindow
+        
+        
 
         # 初始化时间
         self.init_ui_time()
-
+        
+        
 
 
 # ------------------接收转发/卫导数据接收&转发--------------
@@ -17,6 +20,7 @@ class MainWindowInit:
         self.init_recforward_check()
         # 设置 时间
         self.init_ui_recforward()
+        
 
 
 
@@ -24,6 +28,7 @@ class MainWindowInit:
 
 
 
+# ---------------初始化事件相关内容----------------
     def init_ui_time(self):
         now = datetime.now()
         self.year = now.year
@@ -44,6 +49,9 @@ class MainWindowInit:
         ]
 
 
+
+        
+            
 
 # ------------------接收转发/卫导数据接收&转发--------------
     def init_ui_recforward(self):
