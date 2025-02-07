@@ -25,7 +25,7 @@ class MainWindowConstants:
     def init_12tab_setting(self):
         self.structList_12tab = []
         self.structList_12tab.append(struct_tab_setting(self.mw,'all'))
-        for i in range(12):
+        for i in range(14):
             self.structList_12tab.append(struct_tab_setting(self.mw,i+1))
         
     def init_general_bind(self):

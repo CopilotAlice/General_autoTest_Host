@@ -21,7 +21,7 @@ class MainWindowEvent:
 # ------------------通用装订逻辑事件 开发中--------------
     # 更新装订规则事件
     def changeEvent_general_rule(self):
-        print('changeEvent_general_rule事件：{}'.format(self.mw.comboBox_general_rule.currentText()))
+        # print('changeEvent_general_rule事件：{}'.format(self.mw.comboBox_general_rule.currentText()))
         try:
             filename = './装订规则/{}.txt'.format(self.mw.comboBox_general_rule.currentText())
             if os.path.exists(filename):
@@ -32,7 +32,7 @@ class MainWindowEvent:
             else:
                 return False
         except Exception as e:
-            print('更新装订规则失败:{}'.format(e))
+            # print('更新装订规则失败:{}'.format(e))
             return False
         # self.mainWindow.read_binding()
         
@@ -72,3 +72,11 @@ class MainWindowEvent:
     def changeEvent_check_update_main(self):
         self.mw.constants.structList_12tab[0].set_check(self.mw.comboBox_protocal_check.currentText())
             
+            
+# ---------------卫导接收事件-----------------
+    def changeEvent_auxsate_com(self):
+        self.mw.combox_set_com_13.setCurrentText(self.mw.comboBox_ascii_com.currentText())
+    def changeEvent_auxsate_baund(self):
+        self.mw.combox_set_baund_13.setCurrentText(self.mw.comboBox_ascii_baund.currentText())
+    def changeEvent_auxsate_check(self):
+        self.mw.comboBox_set_check_13.setCurrentText(self.mw.comboBox_ascii_check.currentText())
