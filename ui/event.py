@@ -2,6 +2,7 @@ import os
 # 各类点击事件
 class MainWindowEvent:
     def __init__(self,mainWindow):
+        self.debug_flag_event = False
         self.mw = mainWindow
 
 
