@@ -12,6 +12,9 @@ class MainWindowLogic:
         # 通讯协议选择更新事件
         self.logic_protocal_rule_change()
         
+        # 辅助卫导接收事件逻辑
+        self.logic_auxsate()
+
 
     # 卫导转发逻辑事件
     def logic_recforward(self):
@@ -26,7 +29,7 @@ class MainWindowLogic:
     
     # 12路设置模块 逻辑 12路串口更新设定
     def logic_12tab_setting(self):
-        for i in range(13):
+        for i in range(15):
             self.mw.constants.structList_12tab[i].open.clicked.connect(self.mw.constants.structList_12tab[i].switch_open)
         self.mw.constants.structList_12tab[0].com.currentTextChanged.connect(self.mw.events.changeEvent_com_update_all)
         self.mw.constants.structList_12tab[0].baund.currentTextChanged.connect(self.mw.events.changeEvent_baund_update_all)
@@ -43,4 +46,9 @@ class MainWindowLogic:
     def logic_protocal_rule_change(self):
         pass
         
-        
+    # 辅助卫导接收事件逻辑
+    def logic_auxsate(self):
+        self.mw.comboBox_ascii_com.currentTextChanged.connect(self.mw.events.changeEvent_auxsate_com)
+        self.mw.comboBox_ascii_baund.currentTextChanged.connect(self.mw.events.changeEvent_auxsate_baund)
+        self.mw.comboBox_ascii_check.currentTextChanged.connect(self.mw.events.changeEvent_auxsate_check)
+    
