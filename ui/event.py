@@ -2,6 +2,7 @@ import os
 # 各类点击事件
 class MainWindowEvent:
     def __init__(self,mainWindow):
+        self.debug_flag_event = False
         self.mw = mainWindow
 
 
@@ -73,10 +74,16 @@ class MainWindowEvent:
         self.mw.constants.structList_12tab[0].set_check(self.mw.comboBox_protocal_check.currentText())
             
             
-# ---------------卫导接收事件-----------------
+# ---------------卫导接收事件集-----------------
+    # 同步更新事件
     def changeEvent_auxsate_com(self):
         self.mw.combox_set_com_13.setCurrentText(self.mw.comboBox_ascii_com.currentText())
     def changeEvent_auxsate_baund(self):
         self.mw.combox_set_baund_13.setCurrentText(self.mw.comboBox_ascii_baund.currentText())
     def changeEvent_auxsate_check(self):
         self.mw.comboBox_set_check_13.setCurrentText(self.mw.comboBox_ascii_check.currentText())
+    # 发送事件
+    def clickEvent_auxsate_send(self):
+        send_text = self.mw.comboBox_sate_smsg.toPlainText()
+        self.mw.constants.struct_sate.append_sare_send(send_text)
+        self.mw.textBrowser_ascii_0.append('{} 载入:{}'.format(self.mw.init_ui.short_time,send_text))

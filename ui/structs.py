@@ -86,3 +86,72 @@ class struct_tab_setting:
         return self.name.text()
     def get_plan(self):
         return self.plan.text()
+
+class struct_sate:
+    def __init__(self):
+        self.flag_sate_receive = False
+        self.threading_flag_sate = False
+        # 卫导串口
+        self.serials = None
+        # 发送缓存
+        self.list_sate_send = []
+        # 接收缓存
+        self.list_sate_receive = []     
+        # 分类接收缓存
+        self.list_sate_ascii_msg = []
+        for i in range(8):
+            self.list_sate_ascii_msg.append([])
+        # 分类保存缓存
+        self.list_sate_save = []
+        for i in range(8):
+            self.list_sate_save.append(False)
+        # 分类保存文件名
+        self.list_sate_name = []
+        for i in range(8):
+            self.list_sate_name.append('')
+    
+    def init_sate_name(self):
+        self.list_sate_name[0] = '发送'
+        self.list_sate_name[1] = '反馈'
+        self.list_sate_name[2] = 'GNGGA'
+        self.list_sate_name[3] = 'GPGGA'
+        self.list_sate_name[4] = 'BDGGA'
+        self.list_sate_name[5] = 'GPVTG'
+        self.list_sate_name[6] = 'HEADINGA'
+        self.list_sate_name[7] = 'KSXT'
+    def init_sate_save(self):
+        if self.mw.settings.sate_append_sate:
+            self.list_sate_save[0] = True
+        if self.mw.settings.sate_save_sate:
+            self.list_sate_save[1] = True
+        if self.mw.settings.sate_save_GNGGA:
+            self.list_sate_save[2] = True
+        if self.mw.settings.sate_save_GPGGA:
+            self.list_sate_save[3] = True
+        if self.mw.settings.sate_save_BDGGA:
+            self.list_sate_save[4] = True
+        if self.mw.settings.sate_save_GPVTG:
+            self.list_sate_save[5] = True
+        if self.mw.settings.sate_save_HEADINGA:
+            self.list_sate_save[6] = True
+        if self.mw.settings.sate_save_KSXT:
+            self.list_sate_save[7] = True
+        
+    def append_sare_send(self,send_data):
+        self.list_sate_send.append('{}\r\n'.format(send_data).encode('ascii'))
+        
+    def append_sate_receive(self,receive_data):
+        self.list_sate_receive.append(receive_data)
+        self.replace_sate_receive()
+    
+    def replace_sate_receive(self):
+        while len(self.list_sate_receive)>0:
+            sate_data = self.list_sate_receive.pop(0)
+            on_rule = False
+            for i in range(6):
+                if self.list_sate_name[i+2] in sate_data:
+                    self.list_sate_ascii_msg[i+2].append(sate_data)
+                    on_rule = True
+                    break
+            if not on_rule:
+                self.list_sate_ascii_msg[1].append(sate_data)

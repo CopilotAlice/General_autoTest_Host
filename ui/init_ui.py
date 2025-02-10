@@ -1,4 +1,4 @@
-# ³õÊ¼»¯½çÃæ
+# åˆå§‹åŒ–ç•Œé¢
 from datetime import datetime
 from PyQt5 import QtWidgets, QtGui, QtCore
 class MainWindowInit:
@@ -7,20 +7,21 @@ class MainWindowInit:
         
         
 
-        # ³õÊ¼»¯Ê±¼ä
+        # åˆå§‹åŒ–æ—¶é—´
         self.init_ui_time()
         
         
 
 
-# ------------------½ÓÊÕ×ª·¢/ÎÀµ¼Êı¾İ½ÓÊÕ&×ª·¢--------------
-        # ³õÊ¼»¯  ÎÀµ¼Êı¾İÁĞ±í
+# ------------------æ¥æ”¶è½¬å‘/å«å¯¼æ•°æ®æ¥æ”¶&è½¬å‘--------------
+        # åˆå§‹åŒ–  å«å¯¼æ•°æ®åˆ—è¡¨
         self.init_recforward_data()
-        # ³õÊ¼»¯  ÎÀµ¼Êı¾İÁĞ±í
+        # åˆå§‹åŒ–  å«å¯¼æ•°æ®åˆ—è¡¨
         self.init_recforward_check()
-        # ÉèÖÃ Ê±¼ä
+        # è®¾ç½® æ—¶é—´
         self.init_ui_recforward()
-        
+        # åˆå§‹åŒ–  å«å¯¼æ•°æ®åˆ—è¡¨
+        self.init_sate_textBrowser_ascii()
 
 
 
@@ -28,7 +29,7 @@ class MainWindowInit:
 
 
 
-# ---------------³õÊ¼»¯ÊÂ¼şÏà¹ØÄÚÈİ----------------
+# ---------------åˆå§‹åŒ–äº‹ä»¶ç›¸å…³å†…å®¹----------------
     def init_ui_time(self):
         now = datetime.now()
         self.year = now.year
@@ -47,13 +48,29 @@ class MainWindowInit:
             now.second,
             now.microsecond/1000
         ]
+        # è½¬æ¢æ—¶åˆ†ç§’
+        self.test_time = now.strftime('%H%M%S')
+        self.normal_time = now.strftime('%H:%M:%S')
+        self.long_time = now.strftime('%Y%m%d_%H%M%S')
+        self.update_time()
+        
+    def update_time(self):
+        now = datetime.now()
+        # è½¬æ¢æ—¶åˆ†ç§’
+        self.test_time = now.strftime('%H%M%S')
+        self.normal_time = now.strftime('%H:%M:%S')
+        self.long_time = now.strftime('%Y%m%d_%H%M%S')
+        
+    def get_normal_time(self):
+        self.update_time()
+        return self.normal_time
 
 
 
         
             
 
-# ------------------½ÓÊÕ×ª·¢/ÎÀµ¼Êı¾İ½ÓÊÕ&×ª·¢--------------
+# ------------------æ¥æ”¶è½¬å‘/å«å¯¼æ•°æ®æ¥æ”¶&è½¬å‘--------------
     def init_ui_recforward(self):
         for i in range(7):
             self.recforward_data_list[i].setText(
@@ -76,4 +93,10 @@ class MainWindowInit:
         for i in range(16):
             self.recforward_check_list.append(
                 self.mainWindow.findChild(QtWidgets.QLineEdit, 'lineEdit_rf_flycontrol_{}'.format(i+1))
+            )
+    def init_sate_textBrowser_ascii(self):
+        self.textBrowser_ascii_list = []
+        for i in range(8):
+            self.textBrowser_ascii_list.append(
+                self.mainWindow.findChild(QtWidgets.QTextBrowser, 'textBrowser_ascii_{}'.format(i))
             )
