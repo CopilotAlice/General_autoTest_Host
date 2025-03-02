@@ -62,6 +62,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.setWindowTitle("通用自动测试上位机_蔡_功能测试版_2412_V0.80")
         
+        # 调试模式函数
+        self.debug = MainWindowDebug(self)
         # UI初始化函数
         self.init_ui = MainWindowInit(self)
         # 结构体初始函数
@@ -74,9 +76,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.times = MainWindowTimes(self)
         # 全局变量及设定
         self.settings = MainWindowSetting(self)
-        # 调试模式函数
-        self.debug = MainWindowDebug(self)
-
+        # self.tabWidget.setTabVisible(12, False)
         self.tableWidget_general_show.setColumnWidth(0, 10)
         # 初始化界面元素
         self.inside_location = 0.0
@@ -1866,7 +1866,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         self.findChild(QtWidgets.QComboBox,'comboBox_stopbit_%s'%(para_rule_list[1][4:])).setCurrentText(para_rule_list[5])
                         self.findChild(QtWidgets.QPushButton,'pushButton_com_open_%s'%(para_rule_list[1][4:])).setText(para_rule_list[6])
                     else:
-                        self.show_message_automatic_list.append('read_default_para_com未知配置项：%s'%(para_rule_list))
+                        # self.show_message_automatic_list.append('read_default_para_com未知配置项：%s'%(para_rule_list))
+                        continue
     # 读取默认配置文件-全局设置 20240507
     def read_default_para_config(self):
         para_name = self.para_config_filename

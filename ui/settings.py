@@ -64,17 +64,20 @@ class MainWindowSetting:
                     continue
                 elif len(para_rule_list)<3:
                     continue
+                # 尝试获取配置文件中的变量及赋值，限定符合要求
                 try:
                     config_name = para_rule_list[1]
                     config_value = float(para_rule_list[2])
                 except:
                     self.list_read_wrong.append('init_read_config 未知配置-值:<{}>'.format(para_rule_list))
                     continue
-                if not hasattr(self,config_name):
-                    self.list_read_wrong.append('init_read_config 未知配置-项:<{}>'.format(config_name))
-                    continue
+                # 若配置文件中的变量不在默认配置中，记录错误
+                # if not hasattr(self,config_name):
+                #     self.list_read_wrong.append('init_read_config 未知配置-项:<{}>'.format(config_name))
+                #     continue
                 try:
                     self.__dict__[config_name] = config_value
+                    print('init_read_config 配置赋值成功:<{}:{}>'.format(config_name,config_value))
                 except Exception as e:
                     self.list_read_error.append('init_read_config 配置赋值错误:<{}>'.format(e))
                     continue

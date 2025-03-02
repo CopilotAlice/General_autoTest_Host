@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1145</width>
-    <height>842</height>
+    <width>1108</width>
+    <height>792</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -14139,10 +14139,10 @@ p, li { white-space: pre-wrap; }
        <widget class="QTableWidget" name="tableWidget">
         <property name="geometry">
          <rect>
-          <x>530</x>
+          <x>570</x>
           <y>20</y>
-          <width>201</width>
-          <height>461</height>
+          <width>191</width>
+          <height>641</height>
          </rect>
         </property>
         <row>
@@ -14177,7 +14177,7 @@ p, li { white-space: pre-wrap; }
           <x>0</x>
           <y>20</y>
           <width>561</width>
-          <height>504</height>
+          <height>641</height>
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout_31">
@@ -14333,6 +14333,57 @@ p, li { white-space: pre-wrap; }
            </item>
            <item>
             <widget class="QTextBrowser" name="textBrowser_debugMode_logic"/>
+           </item>
+          </layout>
+         </item>
+         <item row="0" column="2">
+          <layout class="QVBoxLayout" name="verticalLayout_51">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_45">
+             <item>
+              <widget class="QCheckBox" name="checkBox_debugMode_setting">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="text">
+                <string>调试输出_setting</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="checkBox_onlyLast_event_2">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="text">
+                <string>仅显示最后_setting</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_46">
+             <item>
+              <widget class="QLabel" name="label_232">
+               <property name="text">
+                <string>调试计数</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLCDNumber" name="lcdNumber_debugMode_setting"/>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QTextBrowser" name="textBrowser_debugMode_setting"/>
            </item>
           </layout>
          </item>
