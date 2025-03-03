@@ -1884,7 +1884,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     try:
                         int_para_confing = float(para_rule_list[2])
                     except:
-                        self.show_message_automatic_list.append('未知配置项：%s read_default_para_config'%(para_rule_list))
+                        # self.show_message_automatic_list.append('未知配置项：%s read_default_para_config'%(para_rule_list))
                         continue
                     # 默认转台速度设置
                     if para_rule_list[1]=='in_spd':
@@ -1996,7 +1996,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     elif para_rule_list[1]=='default_sate_length':
                         self.default_sate_length = int(para_rule_list[2])
                     else:
-                        self.show_message_automatic_list.append('read_default_para_config未知配置项：%s'%(para_rule_list))
+                        # self.show_message_automatic_list.append('read_default_para_config未知配置项：%s'%(para_rule_list))\
+                        continue
     # 读取载入解算规则文件  20240513
     # 读取规则文件并更新全局变量
     # debug:惯导协议改文件中行60标题无法使用"卫星数"，暂时替换为其他

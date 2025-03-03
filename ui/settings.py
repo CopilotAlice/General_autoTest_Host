@@ -45,7 +45,6 @@ class MainWindowSetting:
 
 
     def init_read_config(self):
-        save_alldata_ms ='test'
         para_name = self.para_config_filename
         if not os.path.exists(para_name):
             self.flag_read_config   = False
@@ -80,8 +79,11 @@ class MainWindowSetting:
                     print('init_read_config 配置赋值成功:<{}:{}>'.format(config_name,config_value))
                 except Exception as e:
                     self.list_read_error.append('init_read_config 配置赋值错误:<{}>'.format(e))
+                    print('init_read_config 配置赋值失败:<{}:{}>'.format(config_name,config_value))
                     continue
-                
+        # print('-'*20)
+        # for i in self.__dict__:
+        #     print(i,self.__dict__[i])
                 
                 
         
