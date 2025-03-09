@@ -12,10 +12,12 @@ class MainWindowSetting:
 
         # 读取para_config默认配置----------最后执行-------------
         self.init_read_config()
+        self.init_read_root()
 
 
     def init_default_config(self):
         self.para_config_filename = './配置文件/para_config.txt'
+        self.root_config_filename = './配置文件/root_config.txt'
         self.flag_read_config   = False # 读取到配置文件
         self.flag_read_all  = False     # 配置文件全部正常
         self.list_read_error    = []    # 读取配置文件错误记录
@@ -84,6 +86,9 @@ class MainWindowSetting:
         # print('-'*20)
         # for i in self.__dict__:
         #     print(i,self.__dict__[i])
+    def init_read_root(self):
+        para_name = self.root_config_filename
+        
                 
                 
         

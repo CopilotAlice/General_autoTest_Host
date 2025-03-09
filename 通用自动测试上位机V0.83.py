@@ -60,7 +60,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
-        self.setWindowTitle("通用自动测试上位机_蔡_功能测试版_2412_V0.80")
+        self.setWindowTitle("通用自动测试上位机_蔡_功能测试版_2503_V0.83")
         
         # 调试模式函数
         self.debug = MainWindowDebug(self)
@@ -76,8 +76,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.times = MainWindowTimes(self)
         # 全局变量及设定
         self.settings = MainWindowSetting(self)
+        
+        
         # self.tabWidget.setTabVisible(12, False)
-        self.tableWidget_general_show.setColumnWidth(0, 10)
+        
         # 初始化界面元素
         self.inside_location = 0.0
         self.inside_speed = 0.0
