@@ -27,7 +27,7 @@
        <bool>false</bool>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <property name="usesScrollButtons">
        <bool>true</bool>
@@ -8248,7 +8248,7 @@ p, li { white-space: pre-wrap; }
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>12</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_6">
        <attribute name="title">
@@ -14147,57 +14147,12 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>916</width>
-             <height>1208</height>
+             <width>640</width>
+             <height>1408</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout_35">
-            <item row="0" column="1">
-             <widget class="QTableWidget" name="tableWidget">
-              <property name="minimumSize">
-               <size>
-                <width>400</width>
-                <height>0</height>
-               </size>
-              </property>
-              <row>
-               <property name="text">
-                <string>1</string>
-               </property>
-              </row>
-              <row>
-               <property name="text">
-                <string>2</string>
-               </property>
-              </row>
-              <row>
-               <property name="text">
-                <string>3</string>
-               </property>
-              </row>
-              <column>
-               <property name="text">
-                <string>名称</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>内容</string>
-               </property>
-              </column>
-             </widget>
-            </item>
             <item row="2" column="0">
-             <widget class="QTextBrowser" name="textBrowser_15">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
              <widget class="QTextBrowser" name="textBrowser_14">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -14418,7 +14373,17 @@ p, li { white-space: pre-wrap; }
              </layout>
             </item>
             <item row="3" column="0">
-             <widget class="QTextBrowser" name="textBrowser_16">
+             <widget class="QTextBrowser" name="textBrowser_15">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="0">
+             <widget class="QTextBrowser" name="textBrowser_17">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                 <horstretch>0</horstretch>
@@ -14428,7 +14393,7 @@ p, li { white-space: pre-wrap; }
              </widget>
             </item>
             <item row="4" column="0">
-             <widget class="QTextBrowser" name="textBrowser_17">
+             <widget class="QTextBrowser" name="textBrowser_16">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                 <horstretch>0</horstretch>
@@ -14436,6 +14401,89 @@ p, li { white-space: pre-wrap; }
                </sizepolicy>
               </property>
              </widget>
+            </item>
+            <item row="1" column="0">
+             <layout class="QHBoxLayout" name="horizontalLayout_47">
+              <item>
+               <widget class="QTableWidget" name="tableWidget_paraConfig">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>400</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <row>
+                 <property name="text">
+                  <string>1</string>
+                 </property>
+                </row>
+                <row>
+                 <property name="text">
+                  <string>新建行</string>
+                 </property>
+                </row>
+                <row>
+                 <property name="text">
+                  <string>新建行</string>
+                 </property>
+                </row>
+                <row>
+                 <property name="text">
+                  <string>新建行</string>
+                 </property>
+                </row>
+                <row>
+                 <property name="text">
+                  <string>新建行</string>
+                 </property>
+                </row>
+                <row>
+                 <property name="text">
+                  <string>新建行</string>
+                 </property>
+                </row>
+                <row>
+                 <property name="text">
+                  <string>新建行</string>
+                 </property>
+                </row>
+                <row>
+                 <property name="text">
+                  <string>新建行</string>
+                 </property>
+                </row>
+                <row>
+                 <property name="text">
+                  <string>2</string>
+                 </property>
+                </row>
+                <row>
+                 <property name="text">
+                  <string>3</string>
+                 </property>
+                </row>
+                <column>
+                 <property name="text">
+                  <string>名称</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>内容</string>
+                 </property>
+                </column>
+               </widget>
+              </item>
+              <item>
+               <widget class="QTextBrowser" name="textBrowser_paraConfig"/>
+              </item>
+             </layout>
             </item>
            </layout>
           </widget>
