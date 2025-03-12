@@ -35,4 +35,15 @@ class MainWindowConstants:
     
     # 初始化结构体 发送卫导数据
     def init_send_struct(self):
+        lists = [
+            self.mw.settings.sate_append_sate,
+            self.mw.settings.sate_save_sate,
+            self.mw.settings.sate_save_GNGGA,
+            self.mw.settings.sate_save_GPGGA,
+            self.mw.settings.sate_save_BDGGA,
+            self.mw.settings.sate_save_GPVTG,
+            self.mw.settings.sate_save_HEADINGA,
+            self.mw.settings.sate_save_KSXT
+        ]
         self.struct_sate = struct_sate()
+        self.struct_sate.init_sate_save(lists)

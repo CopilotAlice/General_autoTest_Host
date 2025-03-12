@@ -9,6 +9,7 @@ class MainWindowInit:
         self.init_ui_setting()
         # 初始化时间
         self.init_ui_time()
+        self.init_ui_toolTip()
         
         
 
@@ -23,6 +24,7 @@ class MainWindowInit:
         # 初始化  卫导数据列表
         self.init_sate_textBrowser_ascii()
 
+        self.init_para_input()
 
 
 
@@ -73,7 +75,12 @@ class MainWindowInit:
         self.update_time()
         return self.normal_time
 
-
+# ---------------初始化"这是什么"相关内容----------------
+    def init_ui_toolTip(self):
+        self.mw.pushButton_para_loadOld.setToolTip('载入文件夹路径并重新排序\n适用于低版本文件路径重新排序\n—打开文件夹路径/\n——[测试项目1 ... 测试项目9]/\n———[产品名称1 ... 产品名称9]/\n—————[到位文件1 ... 到位文件9]')
+        self.mw.pushButton_para_loadNew.setToolTip('载入文件夹路径并重新排序\n—打开文件夹路径/\n——[产品名称1 ... 产品名称9]/\n———[测试项目1 ... 测试项目9]/\n—————[到位文件1 ... 到位文件9]')
+    
+    
 
         
             
@@ -108,3 +115,11 @@ class MainWindowInit:
             self.textBrowser_ascii_list.append(
                 self.mw.findChild(QtWidgets.QTextBrowser, 'textBrowser_ascii_{}'.format(i))
             )
+
+    def init_para_input(self):
+        self.list_para_input = []
+        for i in range(10):
+            self.list_para_input.append(
+                self.mw.findChild(QtWidgets.QLineEdit, 'lineEdit_para_input_{}'.format(i))
+            )
+        

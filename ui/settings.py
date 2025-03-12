@@ -78,10 +78,10 @@ class MainWindowSetting:
                 #     continue
                 try:
                     self.__dict__[config_name] = config_value
-                    print('init_read_config 配置赋值成功:<{}:{}>'.format(config_name,config_value))
+                    # print('init_read_config 配置赋值成功:<{}:{}>'.format(config_name,config_value))
                 except Exception as e:
                     self.list_read_error.append('init_read_config 配置赋值错误:<{}>'.format(e))
-                    print('init_read_config 配置赋值失败:<{}:{}>'.format(config_name,config_value))
+                    # print('init_read_config 配置赋值失败:<{}:{}>'.format(config_name,config_value))
                     continue
         # print('-'*20)
         # for i in self.__dict__:

@@ -14,7 +14,8 @@ class MainWindowLogic:
         
         # 辅助卫导接收事件逻辑
         self.logic_auxsate()
-
+        # 处理标定数据
+        self.logic_cal_BD_data()
 
     # 卫导转发逻辑事件
     def logic_recforward(self):
@@ -55,3 +56,15 @@ class MainWindowLogic:
         # 辅助卫导发送事件
         self.mw.pushButton_sate_send.clicked.connect(self.mw.events.clickEvent_auxsate_send)
     
+    def logic_cal_BD_data(self):
+        self.mw.pushButton_para_loadOld.clicked.connect(self.mw.events.clickEvent_para_loadPath)
+        self.mw.pushButton_para_loadNew.clicked.connect(self.mw.events.clickEvent_para_loadPath)
+        self.mw.pushButton_para_createPara.clicked.connect(self.mw.events.clickEvent_para_createPara)
+        self.mw.pushButton_para_savePara.clicked.connect(self.mw.events.clickEvent_para_savePara)
+    
+    def logic_comboBoxPath_update(self):
+        mode_list = ['protocal','turntable','general','automatic']
+        for mode in mode_list:
+            comboBox = self.mw.findChild(self.mw.QtWidgets.QComboBox,'comboBox_{}_path'.format(mode))
+            if comboBox:
+                comboBox.currentTextChanged.connect(self.mw.show_message_5s)
