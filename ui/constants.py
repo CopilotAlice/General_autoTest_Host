@@ -1,4 +1,5 @@
 # 全局变量/结构体控制模块
+# 全局变量/结构体控制模块
 import os
 from ui.structs import *
 class MainWindowConstants:
@@ -15,6 +16,8 @@ class MainWindowConstants:
         self.struct_general_bind = None
         self.init_general_bind()
         
+        # 初始化结构体 发送卫导数据
+        self.init_send_struct()
         # 初始化结构体 发送卫导数据
         self.init_send_struct()
         

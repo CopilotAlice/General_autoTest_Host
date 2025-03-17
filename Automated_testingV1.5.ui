@@ -9288,6 +9288,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QWidget" name="tab_2">
        <attribute name="title">
         <string>惯导</string>
+        <string>惯导</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
@@ -12016,10 +12017,33 @@ p, li { white-space: pre-wrap; }
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_50">
         <item>
+         <widget class="QGroupBox" name="groupBox_9">
+          <property name="title">
+           <string>进度显示模块</string>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_42">
+           <item>
+            <widget class="QTextBrowser" name="textBrowser_progress_display2"/>
+           </item>
+           <item>
+            <widget class="QTextBrowser" name="textBrowser_progress_display1"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_19">
+       <attribute name="title">
+        <string>卫导</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_50">
+        <item>
          <widget class="QGroupBox" name="groupBox_34">
           <property name="title">
            <string>多路设置模块#sate</string>
           </property>
+          <layout class="QGridLayout" name="gridLayout_34" rowstretch="0,0,0,0" rowminimumheight="0,0,0,0">
           <layout class="QGridLayout" name="gridLayout_34" rowstretch="0,0,0,0" rowminimumheight="0,0,0,0">
            <property name="bottomMargin">
             <number>1</number>
@@ -12029,7 +12053,10 @@ p, li { white-space: pre-wrap; }
            </property>
            <item row="0" column="1">
             <widget class="QLabel" name="label_228">
+           <item row="0" column="1">
+            <widget class="QLabel" name="label_228">
              <property name="text">
+              <string>串口</string>
               <string>串口</string>
              </property>
             </widget>
@@ -12042,18 +12069,53 @@ p, li { white-space: pre-wrap; }
                <height>30</height>
               </size>
              </property>
+           <item row="1" column="6">
+            <widget class="QLineEdit" name="lineEdit_file_names_13">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>30</height>
+              </size>
+             </property>
              <property name="text">
+              <string>autosave1</string>
               <string>autosave1</string>
              </property>
             </widget>
            </item>
            <item row="0" column="7">
             <widget class="QLabel" name="label_237">
+           <item row="0" column="7">
+            <widget class="QLabel" name="label_237">
              <property name="text">
+              <string>项目名</string>
               <string>项目名</string>
              </property>
             </widget>
            </item>
+           <item row="1" column="3">
+            <widget class="QComboBox" name="comboBox_set_check_13">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>30</height>
+              </size>
+             </property>
+             <item>
+              <property name="text">
+               <string>无校验</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>偶校验</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>奇校验</string>
+              </property>
+             </item>
            <item row="1" column="3">
             <widget class="QComboBox" name="comboBox_set_check_13">
              <property name="minimumSize">
@@ -12088,7 +12150,32 @@ p, li { white-space: pre-wrap; }
            </item>
            <item row="0" column="5">
             <widget class="QLabel" name="label_234">
+           <item row="0" column="5">
+            <widget class="QLabel" name="label_234">
              <property name="text">
+              <string>开关</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="7">
+            <widget class="QLineEdit" name="lineEdit_plan_names_14">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
               <string>开关</string>
              </property>
             </widget>
@@ -12140,12 +12227,55 @@ p, li { white-space: pre-wrap; }
              <property name="enabled">
               <bool>false</bool>
              </property>
+           <item row="0" column="6">
+            <widget class="QLabel" name="label_226">
+             <property name="text">
+              <string>保存文件名</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <widget class="QComboBox" name="combox_set_baund_14">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="minimumSize">
               <size>
                <width>0</width>
                <height>30</height>
               </size>
              </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;波特率&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="editable">
+              <bool>true</bool>
+             </property>
+             <item>
+              <property name="text">
+               <string>115200</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>230400</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>460800</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>614400</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>921600</string>
+              </property>
+             </item>
              <property name="toolTip">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;波特率&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
@@ -12225,6 +12355,9 @@ p, li { white-space: pre-wrap; }
              <property name="enabled">
               <bool>false</bool>
              </property>
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -12269,6 +12402,11 @@ p, li { white-space: pre-wrap; }
              <property name="enabled">
               <bool>false</bool>
              </property>
+           <item row="2" column="3">
+            <widget class="QComboBox" name="comboBox_set_check_14">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -12278,15 +12416,18 @@ p, li { white-space: pre-wrap; }
              <item>
               <property name="text">
                <string>无校验</string>
+               <string>无校验</string>
               </property>
              </item>
              <item>
               <property name="text">
                <string>偶校验</string>
+               <string>偶校验</string>
               </property>
              </item>
              <item>
               <property name="text">
+               <string>奇校验</string>
                <string>奇校验</string>
               </property>
              </item>
@@ -12344,18 +12485,76 @@ p, li { white-space: pre-wrap; }
                <height>30</height>
               </size>
              </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_239">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Tab_2</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="5">
+            <widget class="QPushButton" name="pushButton_com_open_14">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>关闭</string>
+             </property>
+             <property name="checkable">
+              <bool>false</bool>
+             </property>
+             <property name="autoDefault">
+              <bool>false</bool>
+             </property>
+             <property name="default">
+              <bool>false</bool>
+             </property>
+             <property name="flat">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="4">
+            <widget class="QComboBox" name="comboBox_stopbit_14">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>30</height>
+              </size>
+             </property>
              <item>
               <property name="text">
+               <string>Stop1</string>
                <string>Stop1</string>
               </property>
              </item>
              <item>
               <property name="text">
                <string>Stop2</string>
+               <string>Stop2</string>
               </property>
              </item>
             </widget>
            </item>
+           <item row="1" column="2">
+            <widget class="QComboBox" name="combox_set_baund_13">
            <item row="1" column="2">
             <widget class="QComboBox" name="combox_set_baund_13">
              <property name="minimumSize">
@@ -12397,6 +12596,15 @@ p, li { white-space: pre-wrap; }
              </item>
             </widget>
            </item>
+           <item row="0" column="2">
+            <widget class="QLabel" name="label_235">
+             <property name="text">
+              <string>波特率</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="5">
+            <widget class="QPushButton" name="pushButton_com_open_13">
            <item row="0" column="2">
             <widget class="QLabel" name="label_235">
              <property name="text">
@@ -12466,8 +12674,64 @@ p, li { white-space: pre-wrap; }
              <property name="text">
               <string/>
              </property>
+             <property name="text">
+              <string>关闭</string>
+             </property>
+             <property name="autoDefault">
+              <bool>false</bool>
+             </property>
+             <property name="default">
+              <bool>false</bool>
+             </property>
+             <property name="flat">
+              <bool>false</bool>
+             </property>
             </widget>
            </item>
+           <item row="2" column="6">
+            <widget class="QLineEdit" name="lineEdit_file_names_14">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>autosave2</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QLabel" name="label_227">
+             <property name="text">
+              <string>校验位</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="7">
+            <widget class="QLineEdit" name="lineEdit_plan_names_13">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="4">
+            <widget class="QComboBox" name="comboBox_stopbit_13">
            <item row="1" column="4">
             <widget class="QComboBox" name="comboBox_stopbit_13">
              <property name="minimumSize">
@@ -12479,13 +12743,35 @@ p, li { white-space: pre-wrap; }
              <item>
               <property name="text">
                <string>Stop1</string>
+               <string>Stop1</string>
               </property>
              </item>
              <item>
               <property name="text">
                <string>Stop2</string>
+               <string>Stop2</string>
               </property>
              </item>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_233">
+             <property name="text">
+              <string>通道</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_240">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Tab_3</string>
+             </property>
             </widget>
            </item>
            <item row="0" column="0">
@@ -12513,6 +12799,11 @@ p, li { white-space: pre-wrap; }
              <property name="enabled">
               <bool>false</bool>
              </property>
+           <item row="3" column="1">
+            <widget class="QComboBox" name="combox_set_com_15">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -12525,13 +12816,36 @@ p, li { white-space: pre-wrap; }
              <property name="editable">
               <bool>true</bool>
              </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;串口&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="editable">
+              <bool>true</bool>
+             </property>
              <item>
               <property name="text">
+               <string>COM1</string>
                <string>COM1</string>
               </property>
              </item>
              <item>
               <property name="text">
+               <string>COM2</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>COM3</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>COM4</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>COM5</string>
                <string>COM2</string>
               </property>
              </item>
@@ -12557,6 +12871,11 @@ p, li { white-space: pre-wrap; }
              <property name="enabled">
               <bool>false</bool>
              </property>
+           <item row="3" column="2">
+            <widget class="QComboBox" name="combox_set_baund_15">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -12569,13 +12888,36 @@ p, li { white-space: pre-wrap; }
              <property name="editable">
               <bool>true</bool>
              </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;波特率&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="editable">
+              <bool>true</bool>
+             </property>
              <item>
               <property name="text">
+               <string>115200</string>
                <string>115200</string>
               </property>
              </item>
              <item>
               <property name="text">
+               <string>230400</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>460800</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>614400</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>921600</string>
                <string>230400</string>
               </property>
              </item>
@@ -12601,12 +12943,37 @@ p, li { white-space: pre-wrap; }
              <property name="enabled">
               <bool>false</bool>
              </property>
+           <item row="3" column="3">
+            <widget class="QComboBox" name="comboBox_set_check_15">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="minimumSize">
               <size>
                <width>0</width>
                <height>30</height>
               </size>
              </property>
+             <item>
+              <property name="text">
+               <string>无校验</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>偶校验</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>奇校验</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="3" column="4">
+            <widget class="QComboBox" name="comboBox_stopbit_15">
+             <property name="enabled">
              <item>
               <property name="text">
                <string>无校验</string>
@@ -12645,8 +13012,29 @@ p, li { white-space: pre-wrap; }
                <string>Stop2</string>
               </property>
              </item>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>30</height>
+              </size>
+             </property>
+             <item>
+              <property name="text">
+               <string>Stop1</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Stop2</string>
+              </property>
+             </item>
             </widget>
            </item>
+           <item row="3" column="5">
+            <widget class="QPushButton" name="pushButton_com_open_15">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
            <item row="3" column="5">
             <widget class="QPushButton" name="pushButton_com_open_15">
              <property name="enabled">
@@ -12679,6 +13067,10 @@ p, li { white-space: pre-wrap; }
             <widget class="QLineEdit" name="lineEdit_file_names_15">
              <property name="enabled">
               <bool>false</bool>
+           <item row="3" column="6">
+            <widget class="QLineEdit" name="lineEdit_file_names_15">
+             <property name="enabled">
+              <bool>false</bool>
              </property>
              <property name="minimumSize">
               <size>
@@ -12688,9 +13080,15 @@ p, li { white-space: pre-wrap; }
              </property>
              <property name="text">
               <string>autosave3</string>
+              <string>autosave3</string>
              </property>
             </widget>
            </item>
+           <item row="3" column="7">
+            <widget class="QLineEdit" name="lineEdit_plan_names_15">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
            <item row="3" column="7">
             <widget class="QLineEdit" name="lineEdit_plan_names_15">
              <property name="enabled">
@@ -12713,6 +13111,237 @@ p, li { white-space: pre-wrap; }
              </property>
             </widget>
            </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <layout class="QGridLayout" name="gridLayout_33">
+          <item row="0" column="0">
+           <widget class="QGroupBox" name="groupBox_35">
+            <property name="title">
+             <string>发送</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_8">
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_44">
+               <item>
+                <widget class="QComboBox" name="comboBox_sate_smsg">
+                 <property name="editable">
+                  <bool>true</bool>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>GNGGA 1</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>GPGGA 1</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>BDGGA 1</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>GPVTG 1</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>HEADINGA 1</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>KSXT 1</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_sate_send">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>卫导命令</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QTextBrowser" name="textBrowser_ascii_0">
+               <property name="lineWrapMode">
+                <enum>QTextEdit::NoWrap</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QGroupBox" name="groupBox_41">
+            <property name="title">
+             <string>反馈/其他</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_49">
+             <item>
+              <widget class="QTextBrowser" name="textBrowser_ascii_1">
+               <property name="lineWrapMode">
+                <enum>QTextEdit::NoWrap</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QGroupBox" name="groupBox_37">
+            <property name="title">
+             <string>GNGGA</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_42">
+             <item>
+              <widget class="QTextBrowser" name="textBrowser_ascii_2">
+               <property name="lineWrapMode">
+                <enum>QTextEdit::NoWrap</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QGroupBox" name="groupBox_36">
+            <property name="title">
+             <string>GPGGA</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_44">
+             <item>
+              <widget class="QTextBrowser" name="textBrowser_ascii_3">
+               <property name="lineWrapMode">
+                <enum>QTextEdit::NoWrap</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QGroupBox" name="groupBox_38">
+            <property name="title">
+             <string>BDGGA</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_47">
+             <item>
+              <widget class="QTextBrowser" name="textBrowser_ascii_4">
+               <property name="lineWrapMode">
+                <enum>QTextEdit::NoWrap</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QGroupBox" name="groupBox_40">
+            <property name="title">
+             <string>GPVTG</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_45">
+             <item>
+              <widget class="QTextBrowser" name="textBrowser_ascii_5">
+               <property name="lineWrapMode">
+                <enum>QTextEdit::NoWrap</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QGroupBox" name="groupBox_39">
+            <property name="title">
+             <string>HEADINGA</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_48">
+             <item>
+              <widget class="QTextBrowser" name="textBrowser_ascii_6">
+               <property name="lineWrapMode">
+                <enum>QTextEdit::NoWrap</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QGroupBox" name="groupBox_42">
+            <property name="title">
+             <string>KSXT</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_46">
+             <item>
+              <widget class="QTextBrowser" name="textBrowser_ascii_7">
+               <property name="lineWrapMode">
+                <enum>QTextEdit::NoWrap</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_8">
+       <attribute name="title">
+        <string>表格</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_23">
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="groupBox_20">
+          <property name="title">
+           <string>GroupBox</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_19">
+           <item>
+            <widget class="QTableWidget" name="tableWidget_table_show">
+             <property name="sortingEnabled">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QGroupBox" name="groupBox_22">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="title">
+           <string>GroupBox</string>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_18">
+           <item>
+            <widget class="QTextBrowser" name="textBrowser_table_message"/>
           </layout>
          </widget>
         </item>

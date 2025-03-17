@@ -50,6 +50,7 @@ class MainWindowLogic:
     # 辅助卫导接收事件逻辑
     def logic_auxsate(self):
         # 快捷栏同步更新事件
+        # 快捷栏同步更新事件
         self.mw.comboBox_ascii_com.currentTextChanged.connect(self.mw.events.changeEvent_auxsate_com)
         self.mw.comboBox_ascii_baund.currentTextChanged.connect(self.mw.events.changeEvent_auxsate_baund)
         self.mw.comboBox_ascii_check.currentTextChanged.connect(self.mw.events.changeEvent_auxsate_check)

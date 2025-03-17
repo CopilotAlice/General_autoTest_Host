@@ -13,6 +13,7 @@ from ui.logic import MainWindowLogic
 from ui.debug import MainWindowDebug
 from ui.times import MainWindowTimes
 from ui.settings import MainWindowSetting
+from ui.settings import MainWindowSetting
 
 # 其他正常模块
 import datetime
@@ -60,8 +61,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
-        self.setWindowTitle("通用自动测试上位机_蔡_功能测试版_2412_V0.80")
+        self.setWindowTitle("通用自动测试上位机_蔡_功能测试版_2503_V0.83")
         
+        # 调试模式函数
+        self.debug = MainWindowDebug(self)
         # 调试模式函数
         self.debug = MainWindowDebug(self)
         # UI初始化函数
@@ -1981,6 +1984,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         int_para_confing = float(para_rule_list[2])
                     except:
                         # self.show_message_automatic_list.append('未知配置项：%s read_default_para_config'%(para_rule_list))
+                        # self.show_message_automatic_list.append('未知配置项：%s read_default_para_config'%(para_rule_list))
                         continue
                     # 默认转台速度设置
                     if para_rule_list[1]=='in_spd':
@@ -2516,6 +2520,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.plan_threading_flag = False
         self.threading_flag_sate = False
         self.constants.struct_sate.serials = None
+        self.constants.struct_sate.serials = None
     # 点击开始测试事件，判断测试模式
     def begin_test(self):
         if self.debug_flag:
@@ -2747,6 +2752,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         sorted_title_list = []
         for i in range(len(decode_save_list)):
             sorted_title_list+=[decode_titl_list[i][decode_sort_list[i].index(str(j))] for j in range(len(decode_titl_list[i])) if decode_save_list[i][decode_sort_list[i].index(str(j))]=='1']
+        # print(sorted_title_list)
         # print(sorted_title_list)
         zeros_list = [0 for i in range(len(sorted_title_list))]
         sate_zeros = []
@@ -3076,6 +3082,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             try:
                 serials = serial.Serial(com, baund, parity=check,stopbits=stop)
                 self.constants.struct_sate.serials = serials
+                self.constants.struct_sate.serials = serials
             except Exception as e:
                 self.threading_flag_sate = False
                 self.debug_list_2.append('{} tab_{}:开启串口失败,com:{},线程关闭 {}'.format(self.normal_time,13,com,e))
@@ -3090,6 +3097,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         save_time = '{:02d}{:02d}{:02d}{:02d}{:02d}{:02d}'.format(now.year,now.month,now.day,now.hour,now.minute,now.second)
         save_name = '{}{}_sate_{}.txt'.format(file_path,name,save_time)
         # serials.write('GPGGA 0.1\r\n'.encode('ascii'))
+        # serials.write('KSXT 0.1\r\n'.encode('ascii'))
         # serials.write('KSXT 0.1\r\n'.encode('ascii'))
         
         chche_text = ''
@@ -3774,6 +3782,7 @@ def KSXT2spd(strings):
     except Exception as e:
         # print('KSXT2spd:{}'.format(e))
         return defalut_KSXT
+
 
 class Turntable_class:
     def __init__(self):

@@ -62,20 +62,20 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.setWindowTitle("通用自动测试上位机_蔡_功能测试版_2412_V0.80")
         
+        # 调试模式函数
+        self.debug = MainWindowDebug(self)
         # UI初始化函数
         self.init_ui = MainWindowInit(self)
+        # 定时事件函数
+        self.times = MainWindowTimes(self)
+        # 全局变量及设定
+        self.settings = MainWindowSetting(self)
         # 结构体初始函数
         self.constants = MainWindowConstants(self)
         # 事件处理函数
         self.events = MainWindowEvent(self)
         # 逻辑事件逻辑
         self.uilogic = MainWindowLogic(self)
-        # 定时事件函数
-        self.times = MainWindowTimes(self)
-        # 全局变量及设定
-        self.settings = MainWindowSetting(self)
-        # 调试模式函数
-        self.debug = MainWindowDebug(self)
 
         self.tableWidget_general_show.setColumnWidth(0, 10)
         # 初始化界面元素
@@ -194,17 +194,18 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # 卫导接收缓存区
         self.list_sate_receive = []
         # 卫导信息处理缓存
-        self.list_sate_ascii_msg = [[],[],[]]
-        self.textBrowser_ascii_list = [
-            self.textBrowser_ascii_1,
-            self.textBrowser_ascii_2,
-            self.textBrowser_ascii_3
-        ]
+        self.list_sate_ascii_msg = []
+        for i in range(8):
+            self.list_sate_ascii_msg.append([])
+        self.textBrowser_ascii_list = []
+        
         # 卫导信息解算
         self.default_sate_GGA = [0]*2
         self.list_sate_GGA = self.default_sate_GGA
         self.default_sate_KSXT = [0]*7
         self.list_sate_KSXT = self.default_sate_KSXT
+        self.default_sate_list = []
+        self.default_sate_data = []
         
         
         # debug调试状态
@@ -251,6 +252,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # 配置文件路径
         self.para_com_filename = './配置文件/para_com.txt'
         self.para_config_filename = './配置文件/para_config.txt'
+        self.list_notpath = ['选择路径','',None,'none','None']
         self.model_list = [
             ['通讯','转台','电源','温箱','装订','自动'],
             ['protocal','turntable','power','tempbox','general','automatic'],
@@ -387,6 +389,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.binding_cache_list = []
         for i in range(12):
             self.binding_cache_list.append('')
+        # 12路装订缓存区_定时发送
+        self.list_binding_cache_waitTime = 0
+        self.list_binding_cache = []
+        for i in range(12):
+            self.list_binding_cache.append([])
+        
         self.ascii_cache_list = []
         for i in range(12):
             self.ascii_cache_list.append('')
@@ -600,7 +608,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # 事件5s更新
         self.show_timer3 = QTimer(self)
         self.show_timer3.timeout.connect(self.show_message_5s)
-        self.show_timer3.start(5000)
+        self.show_timer3.start(2000)
         # 事件2s更新
         self.show_timer4 = QTimer(self)
         self.show_timer4.timeout.connect(self.show_message_2s)
@@ -658,6 +666,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.tableWidget_general_show.setColumnWidth(0, self.default_bindWidth_0)
         self.tableWidget_general_show.setColumnWidth(1, self.default_bindWidth_1)
         self.tableWidget_general_show.setColumnWidth(2, self.default_bindWidth_2)
+        self.change_sate_button()
 
     def init_all_coef(self):
         self.lineEdit_inside_plot_axis_list = []
@@ -678,6 +687,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.list_sate_receive = []
         for i in range(self.default_sate_length):
             self.list_sate_receive.append(0)
+        for i in range(8):
+            self.textBrowser_ascii_list.append(
+                self.findChild(QtWidgets.QTextBrowser, 'textBrowser_ascii_{}'.format(i))
+            )
+            
     
     # 事件更新0.1s线程，用于更新数据输出和绘图
     def show_message_01s(self):
@@ -724,9 +738,27 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             while len(self.show_message_dataframe_cache[thread_num])>0:
                 add_item = self.show_message_dataframe_cache[thread_num].pop(0)
                 self.show_message_dataframe[thread_num] = pd.concat([self.show_message_dataframe[thread_num],pd.DataFrame(add_item).T],axis=0)
-        for i in range(3):
+        for i in range(8):
             while len(self.list_sate_ascii_msg[i])>0:
-                self.textBrowser_ascii_list[i].append(self.list_sate_ascii_msg[i].pop(0))
+                # self.textBrowser_ascii_list[i].append(self.list_sate_ascii_msg[i].pop(0))
+                msg = self.list_sate_ascii_msg[i].pop(0)
+                self.init_ui.textBrowser_ascii_list[i].append(msg)
+        # for i in range(8):
+        #     self.init_ui.textBrowser_ascii_list[i].append(str(i))
+        # print('self.list_binding_cache_waitTime:>0:{} <0:{} val:{} data:{}'.format(
+        #     self.list_binding_cache_waitTime>0,
+        #     self.list_binding_cache_waitTime<0,
+        #     self.list_binding_cache_waitTime,
+        #     self.list_binding_cache[0]
+        # ))
+        if (self.list_binding_cache_waitTime>=0)&(len(self.list_binding_cache[0])>0):
+            self.list_binding_cache_waitTime-=0.5
+        if self.list_binding_cache_waitTime<0:
+            self.list_binding_cache_waitTime = 0
+            for i in range(12):
+                if len(self.list_binding_cache[i])>0:
+                    self.binding_cache_list[i] = self.list_binding_cache[i].pop(0)
+                    # print(self.list_binding_cache[i])
 
 
     # 事件更新1s线程，用于按秒更新界面元素
@@ -835,7 +867,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         pass
 
                 except Exception as e:
-                    print('绘图报错:{}'.format(e))
+                    print('绘图报错{}:{}'.format(i,e))
                     # messagess = '暂无数据'
 
             # 表格绘图
@@ -1053,6 +1085,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 #     comboBox.setCurrentText(select_combo)
                 # else:
                 #     comboBox.setCurrentIndex(0)
+                
         # 更新规则文件 #协议更新
         if self.comboBox_update_rules_flag:
             model_list = self.model_list
@@ -1061,18 +1094,60 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 if file_path.lower()=='none':
                     continue
                 file_list = []
-                if not os.path.exists(file_path):
-                    os.makedirs(file_path)
-                for file_name in os.listdir('./'+file_path):
-                    file_name = file_name.split('.txt')[0]
-                    file_list.append(file_name)
-                file_list.sort()
+                path_list = []
                 
                 comboBox = self.findChild(QtWidgets.QComboBox,'comboBox_%s_rule'%(model_list[1][i]))
                 if comboBox is None:
                     if self.debug_update_5s_file:
                         print('未找到对应控件：comboBox_%s_rule'%(model_list[1][i]))
                     continue
+                comboBox_path = self.findChild(QtWidgets.QComboBox,'comboBox_%s_path'%(model_list[1][i]))
+                if comboBox_path is None:
+                    if self.debug_update_5s_file:
+                        print('未找到对应控件：comboBox_%s_path'%(model_list[1][i]))
+                    continue
+                
+                for file_name in os.listdir('./'+file_path):
+                    if os.path.isdir(file_path+'/'+file_name):
+                        path_list.append(file_name)
+                if len(path_list)==0:
+                    comboBox_path.clear()
+                    comboBox_path.addItem('')
+                else:
+                    comboBox_file_list = []
+                    for count in range(comboBox_path.count()):
+                        comboBox_file_list.append(comboBox.itemText(count))
+                    if '选择路径' in comboBox_file_list:
+                        comboBox_file_list.remove('选择路径')
+                    if '' in comboBox_file_list:
+                        comboBox_file_list.remove('')
+                    if not (comboBox_file_list==path_list):
+                        select_combo = comboBox_path.currentText()
+                        comboBox_path.clear()
+                        comboBox_path.addItem('选择路径')
+                        for path in path_list:
+                            comboBox_path.addItem(path)
+                        if select_combo in path_list:
+                            comboBox_path.setCurrentText(select_combo)
+                        else:
+                            comboBox_path.setCurrentIndex(0)
+                select_path_name = comboBox_path.currentText()
+                if not (select_path_name=='选择路径')|(select_path_name==''):
+                    file_path = file_path+'/'+select_path_name
+                    
+                
+                if not os.path.exists(file_path):
+                    os.makedirs(file_path)
+                
+                for file_name in os.listdir('./'+file_path):
+                    file_name = file_name.split('.txt')[0]
+                    file_list.append(file_name)
+                file_list.sort()
+                if self.debug_update_5s_file:
+                    print('file_list:{}\ncomboBox_file_list:{}'.format(file_list,comboBox_file_list))
+                
+                
+                
                 comboBox_file_list = []
                 for count in range(comboBox.count()):
                     comboBox_file_list.append(comboBox.itemText(count))
@@ -1143,17 +1218,26 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             else:
                 print('未找到对应控件：lineEdit_file_names_%s'%(i+1))
     # 发送装订 20240723
-    def binding_send(self):
+    def binding_send(self,count=1):
         send_commands = self.lineEdit_binding_command.text()
+        if not count:
+            count = 1
+        if count>2:
+            for i in range(count):
+                for j in range(12):
+                    self.list_binding_cache[j].append(send_commands)
         try:
             send_tab = self.comboBox_binding_com.CurrentText()
             chosen_tab = send_tab.split()[0]
             chosen_tab_int = int(chosen_tab)
-            self.binding_cache_list[chosen_tab_int-1] = send_commands
+            for i in range(count):
+                self.binding_cache_list[chosen_tab_int-1] = send_commands
         except:
-            self.debug_list_1.append('装订载入缓存:{}'.format(str(send_commands)))
-            for i in range(12):
-                self.binding_cache_list[i] = (send_commands)
+            self.debug_list_1.append('{} 装订载入缓存:{}'.format(self.normal_time,str(send_commands)))
+            for j in range(count):
+                for i in range(12):
+                    self.binding_cache_list[i] = send_commands
+        
     # 激光惯导#60所 构造装订函数
     def event_update_bingding_60s(self):
         lineedit_data_list = []
@@ -1729,9 +1813,17 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         serial_com = self.comboBox_power_com.currentText()
         self.debug_list_1.append('{} 关闭电源{}:{}'.format(self.normal_time,serial_com,command))
         if str(self.config_power_model)=='1':
-            power_serials = serial.Serial(serial_com, 57600)
+            try:
+                power_serials = serial.Serial(serial_com, 57600)
+            except:
+                time.sleep(1)
+                try:
+                    power_serials = serial.Serial(serial_com, 57600)
+                except:
+                    print('电源关闭失败')
+                    return
             power_serials.write(':OUTP 0\n'.encode('ascii'))
-            time.sleep(0.1)
+            time.sleep(0.2)
             power_serials.write(':OUTP 0\n'.encode())
             power_serials.close()
         elif str(self.config_power_model)=='2':
@@ -1825,8 +1917,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
             # print(hex_data[:100].hex())
             # print(len(hex_data))
+        load_path = './解算规则'
+        decode_rule_path = self.comboBox_protocal_path.currentText()
+        if decode_rule_path not in self.list_notpath:
+            load_path+= '/{}'.format(decode_rule_path)
         decode_rule_name = self.comboBox_protocal_rule.currentText()
-        with open('./解算规则/{}.txt'.format(decode_rule_name), 'r+') as f:
+        with open('{}/{}.txt'.format(load_path,decode_rule_name), 'r+') as f:
             decode_rule_file = f.read()
         decode_struct = class_rule()
         decode_struct.read_rule_file(decode_rule_file)
@@ -1866,7 +1962,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         self.findChild(QtWidgets.QComboBox,'comboBox_stopbit_%s'%(para_rule_list[1][4:])).setCurrentText(para_rule_list[5])
                         self.findChild(QtWidgets.QPushButton,'pushButton_com_open_%s'%(para_rule_list[1][4:])).setText(para_rule_list[6])
                     else:
-                        self.show_message_automatic_list.append('read_default_para_com未知配置项：%s'%(para_rule_list))
+                        continue
+                        # self.show_message_automatic_list.append('read_default_para_com未知配置项：%s'%(para_rule_list))
     # 读取默认配置文件-全局设置 20240507
     def read_default_para_config(self):
         para_name = self.para_config_filename
@@ -1883,7 +1980,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     try:
                         int_para_confing = float(para_rule_list[2])
                     except:
-                        self.show_message_automatic_list.append('未知配置项：%s read_default_para_config'%(para_rule_list))
+                        # self.show_message_automatic_list.append('未知配置项：%s read_default_para_config'%(para_rule_list))
                         continue
                     # 默认转台速度设置
                     if para_rule_list[1]=='in_spd':
@@ -1995,7 +2092,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     elif para_rule_list[1]=='default_sate_length':
                         self.default_sate_length = int(para_rule_list[2])
                     else:
-                        self.show_message_automatic_list.append('read_default_para_config未知配置项：%s'%(para_rule_list))
+                        continue
+                        # self.show_message_automatic_list.append('read_default_para_config未知配置项：%s'%(para_rule_list))
     # 读取载入解算规则文件  20240513
     # 读取规则文件并更新全局变量
     # debug:惯导协议改文件中行60标题无法使用"卫星数"，暂时替换为其他
@@ -2011,6 +2109,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             print('def_read_rules')
         # 打开规则文件
         try:
+            load_path = './解算规则'
+            path_name = self.comboBox_protocal_path.currentText()
+            if path_name not in self.list_notpath:
+                load_path+= '/{}'.format(path_name)
             rule_name = self.comboBox_protocal_rule.currentText()
             if len(rule_name)==0:
                 if self.debug_flag:
@@ -2018,7 +2120,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 return False
             if rule_name=='选择协议':
                 return False
-            with open('./解算规则/{}.txt'.format(rule_name), 'r',encoding='gb2312',errors='ignore') as files:
+            with open('{}/{}.txt'.format(load_path,rule_name), 'r',encoding='gb2312',errors='ignore') as files:
                 rules = files.read()
                 
         except Exception as e:
@@ -2191,7 +2293,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             sorted_title_list+=[decode_titl_list[i][decode_sort_list[i].index(str(j))] for j in range(len(decode_titl_list[i])) if decode_save_list[i][decode_sort_list[i].index(str(j))]=='1']
         
         if self.flag_sate_receive:
-            sorted_title_list+=['KSXT时间','KSXT经度','KSXT纬度','KSXT高度','KSXT东速','KSXT北速','KSXT天速']
+            # sorted_title_list+=['KSXT时间','KSXT经度','KSXT纬度','KSXT高度','KSXT东速','KSXT北速','KSXT天速']
+            for i in range(6):
+                if self.constants.struct_sate.list_sate_flag[i+2]:
+                    append_title = [ self.constants.struct_sate.list_sate_name[i+2]+'_'+self.constants.struct_sate.list_sate_titl[i+2][j] for j in range(self.constants.struct_sate.list_sate_leng[i+2])]
+                    sorted_title_list += append_title
+
         
         self.decode_rule_list = decode_rule_list    # 解算规则
         self.decode_save_list = decode_save_list    # 是否保存
@@ -2202,10 +2309,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.decode_edia_list = decode_edia_list    # 大小端
         self.decode_fram_leng = decode_fram_leng    # 帧长度
         self.sorted_titl_list = sorted_title_list   # 排序后的标题
-        # print('解算规则长度:')
-        # for i in decode_rule_list:
-        #     rule_string = '<'+''.join(i)
-        #     print(struct.calcsize(rule_string))
+        list_string = []
+        for i in decode_rule_list:
+            rule_string = '<'+''.join(i)
+            list_string.append(struct.calcsize(rule_string))
+        print('解算规则长度:{}'.format(' '.join([str(i) for i in list_string])))
         
         # self.comboBox_plot_beginAxis.clear()
         # for i in range(len(sorted_title_list)):
@@ -2419,6 +2527,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         protocal_com = self.comboBox_protocal_com.currentText()
         protocal_baund = self.comboBox_protocal_baund.currentText()
         protocal_check = self.comboBox_protocal_check.currentText()
+        turntable_path = self.comboBox_turntable_path.currentText()
         turntable_rule = self.comboBox_turntable_rule.currentText()
         turntable_com = self.comboBox_turntable_com.currentText()
         power_com = self.comboBox_power_com.currentText()
@@ -2640,15 +2749,21 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             sorted_title_list+=[decode_titl_list[i][decode_sort_list[i].index(str(j))] for j in range(len(decode_titl_list[i])) if decode_save_list[i][decode_sort_list[i].index(str(j))]=='1']
         # print(sorted_title_list)
         zeros_list = [0 for i in range(len(sorted_title_list))]
+        sate_zeros = []
+        for i in range(6):
+            if self.constants.struct_sate.list_sate_flag[i+2]:
+                sate_zeros += [0]*self.constants.struct_sate.list_sate_leng[i+2]
+        self.default_sate_list = sate_zeros
         if self.flag_sate_receive:
-            zeros_list+=self.default_sate_KSXT
+            zeros_list+=self.default_sate_list
+        # print('len_default_sate_list:{}'.format(len(self.default_sate_list)))
         last_not0data = zeros_list
         receive_data_s = zeros_list
         # print('当前:{} turntable_ready:{}'.format(thread_num,self.turntable_ready))
         continue_check = False
         
         if self.flag_sate_receive:
-            last_not0data_sate = self.default_sate_KSXT
+            last_not0data_sate = self.default_sate_list
             
         # 创建标题
         if save_test_title &self.config_save_BD_1file:
@@ -2689,6 +2804,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     send_commands = self.binding_cache_list[thread_num]
                     self.binding_cache_list[thread_num] = ''
                     serials.write(bytes.fromhex(send_commands))
+                    # print(send_commands)
                     # self.debug_list_1.append('{}：发送装订:{}'.format(thread_num,send_commands))
                     if self.config_save_hex_log:
                         hex_log_list.append(send_commands)
@@ -2768,9 +2884,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     receive_data_hz,sum_check_result = decode_hex_frame_list(frame,decode_rule_list,decode_save_list,decode_para_list,decode_sort_list,decode_edia_list,config_sum_check)
                     # 追加卫导
                     if self.flag_sate_receive:
-                        receive_data_hz = receive_data_hz +self.list_sate_KSXT
-                        if self.default_clear_msg:
-                            self.list_sate_KSXT = self.default_sate_KSXT
+                        # print(self.constants.struct_sate.list_sate_msg)
+                        for num in range(6):
+                            if (self.settings.sate_append_sate==True)&(self.constants.struct_sate.list_sate_flag[num+2]==True):
+                                # receive_data_hz +=self.list_sate_KSXT
+                                receive_data_hz += self.constants.struct_sate.list_sate_msg[num+2]
+                                # print(self.constants.struct_sate.list_sate_msg[i+2])
+                            # if self.settings.sate_clear_msg:
+                            #     # self.list_sate_KSXT = self.default_sate_list
+                                # self.constants.struct_sate.clear_sate_list(i+2)
                     alldata_ms += '\t '.join(['{:.{}f}'.format(i,save_decimal_point)if type(i)==float else str(int(i)) for i in receive_data_hz])+'\n'
                     readydata_ms += '\t '.join(['{:.{}f}'.format(i,save_decimal_point) for i in receive_data_hz])+'\n'
                     # 去除卫导转发时的零
@@ -2947,6 +3069,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         stop = stop2chinese(stop)   
         try:
             serials = serial.Serial(com, baund, parity=check,stopbits=stop)
+            # self.constants.init_send_struct()
             self.constants.struct_sate.serials = serials
         except:
             time.sleep(0.01)
@@ -2971,32 +3094,44 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
         chche_text = ''
         while self.threading_flag_sate:
+            while len(self.constants.struct_sate.list_sate_send)>0:
+                self.constants.struct_sate.serials.write(self.constants.struct_sate.list_sate_send.pop(0))
             try:
                 waiting = serials.in_waiting
                 if waiting>0:
-                    chche_text = serials.readline().decode('ascii')
+                    chche_text = serials.readline().decode('ascii').replace('\r','').replace('\n','')
+                    # print(chche_text)
+                    self.constants.struct_sate.append_sate_receive(chche_text)
                     
             except Exception as e:
-                self.debug_list_1.append('threading_receive_sate错误:{}'.format(e))
+                self.debug_list_1.append('threading_receive_sate错误1:{}'.format(e))
             
             try:
                 if len(chche_text)>0:
-                    with open(save_name,'a+') as f:
-                        f.write(chche_text)
-                    if '$GNGGA' in chche_text:
-                        self.list_sate_ascii_msg[1].append(chche_text)
-                        self.list_sate_GGA = GPGGA2loc(chche_text)
-                    elif '$KSXT' in chche_text:
-                        self.list_sate_ascii_msg[2].append(chche_text)
-                        self.list_sate_KSXT = KSXT2spd(chche_text)
-                    else:
-                        self.list_sate_ascii_msg[0].append(chche_text)
-                    chche_text = ''
-                    for i in range(6):
-                        while len(self.constants.struct_sate.list_sate_name[i+2])>0:
-                            self.init_ui.textBrowser_ascii_list[i+2].append(self.constants.struct_sate.list_sate_name[i+2].pop(0))
+                    if self.settings.sate_save_sate:
+                        with open(save_name,'a+') as f:
+                            f.write(chche_text+'\n')
+                    # if '$GNGGA' in chche_text:
+                    #     self.list_sate_ascii_msg[1].append(chche_text)
+                    #     self.list_sate_GGA = GPGGA2loc(chche_text)
+                    # elif '$KSXT' in chche_text:
+                    #     self.list_sate_ascii_msg[2].append(chche_text)
+                    #     self.list_sate_KSXT = KSXT2spd(chche_text)
+                    # else:
+                    #     self.list_sate_ascii_msg[0].append(chche_text)
+                    for i in range(8):
+                        while len(self.constants.struct_sate.list_sate_ascii_msg[i])>0:
+                            show_msg = self.constants.struct_sate.list_sate_ascii_msg[i].pop(0)
+                            # print('{} :{}'.format(i,show_msg))
+                            # self.init_ui.textBrowser_ascii_list[i].append(show_msg)
+                            self.list_sate_ascii_msg[i].append(show_msg)
+
+                    # chche_text = ''
+                    # for i in range(6):
+                    #     while len(self.constants.struct_sate.list_sate_name[i+2])>0:
+                    #         self.init_ui.textBrowser_ascii_list[i+2].append(self.constants.struct_sate.list_sate_name[i+2].pop(0))
             except Exception as e:
-                self.debug_list_1.append('threading_receive_sate错误:{}'.format(e))
+                self.debug_list_1.append('threading_receive_sate错误2:{}'.format(e))
             
             time.sleep(0.01)
         self.constants.struct_sate.serials = None
@@ -3095,9 +3230,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 # else:
                 # begin_time = time.time()
                 #     print('未知电源命令')
-            elif 'bind' in list_plan[1].lower():
+            elif 'bwat' in list_plan[1].lower():
+                try:num = int(list_plan[2])
+                except:num = 1
                 count+=1
-                self.binding_send()
+                self.list_binding_cache_waitTime = num
+            elif 'bind' in list_plan[1].lower():
+                try:num = int(list_plan[2])
+                except:num = 1
+                count+=1
+                self.binding_send(count=num)
                 begin_time = time.time()
             elif 'test' in list_plan[1].lower():
                 count+=1
@@ -3190,7 +3332,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         begin_time = time.time()
         last_mode = None
         # 读取规则文件
-        bd_rulename = './{}/{}.txt'.format('标定规则',self.comboBox_turntable_rule.currentText())
+        bd_pathname = self.comboBox_turntable_path.currentText()
+        if not bd_pathname in self.list_notpath:
+            bd_rulename = './{}/{}/{}.txt'.format('标定规则',bd_pathname,self.comboBox_turntable_rule.currentText())
+        else:
+            bd_rulename = './{}/{}.txt'.format('标定规则',self.comboBox_turntable_rule.currentText())
         try:
             rule_file = pd.read_csv(bd_rulename,header=None,skiprows=2,encoding='gb2312',sep='\\s+')
         except:
@@ -3590,7 +3736,7 @@ def try_split_power_command(strings):
     else:
         return 'all'
 def GPGGA2loc(strings):
-    defalut_GGA = [0]*2
+    defalut_GGA = [0]*5
     try:
         strings = strings.split(',')
         if len(strings)<6: return 0
@@ -3599,7 +3745,13 @@ def GPGGA2loc(strings):
         else:
             lat = sate2location(strings[2])
             lon = sate2location(strings[4])
-            return [lat,lon]
+            sat = strings[7]
+            num = strings[8]
+            try:
+                high = str(float(strings[9])+float(strings[11]))
+            except:
+                high = '0.0'
+            return [lat,lon,sat,num,high]
     except Exception as e:
         print('GPGGA2loc:{}'.format(e))
         return defalut_GGA

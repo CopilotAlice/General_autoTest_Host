@@ -6,6 +6,7 @@ import pandas as pd
 class MainWindowEvent:
     def __init__(self,mainWindow):
         self.debug_flag_event = False
+        self.debug_flag_event = False
         self.mw = mainWindow
 
 
@@ -82,6 +83,8 @@ class MainWindowEvent:
         self.mw.constants.structList_12tab[0].set_check(self.mw.comboBox_protocal_check.currentText())
             
             
+# ---------------卫导接收事件集-----------------
+    # 同步更新事件
 # ---------------卫导接收事件集-----------------
     # 同步更新事件
     def changeEvent_auxsate_com(self):

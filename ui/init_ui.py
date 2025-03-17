@@ -4,8 +4,10 @@ from PyQt5 import QtWidgets, QtGui, QtCore
 class MainWindowInit:
     def __init__(self,mainWindow):
         self.mw = mainWindow
+        self.mw = mainWindow
         
         
+        self.init_ui_setting()
         self.init_ui_setting()
         # 初始化时间
         self.init_ui_time()
