@@ -1,33 +1,34 @@
-# ¸÷ÀàÂß¼­ÊÂ¼ş
+# å„ç±»é€»è¾‘äº‹ä»¶
 class MainWindowLogic:
     def __init__(self,mainWindow):
         self.mw = mainWindow
         
-        # ÎÀµ¼×ª·¢Âß¼­ÊÂ¼ş
+        # å«å¯¼è½¬å‘é€»è¾‘äº‹ä»¶
         self.logic_recforward()
-        # ×°¶©¹æÔò¸üĞÂÊÂ¼ş
+        # è£…è®¢è§„åˆ™æ›´æ–°äº‹ä»¶
         self.logic_general_bind()
-        # 12Â·ÉèÖÃÄ£¿é Âß¼­
+        # 12è·¯è®¾ç½®æ¨¡å— é€»è¾‘
         self.logic_12tab_setting()
-        # Í¨Ñ¶Ğ­ÒéÑ¡Ôñ¸üĞÂÊÂ¼ş
+        # é€šè®¯åè®®é€‰æ‹©æ›´æ–°äº‹ä»¶
         self.logic_protocal_rule_change()
         
-        # ¸¨ÖúÎÀµ¼½ÓÊÕÊÂ¼şÂß¼­
+        # è¾…åŠ©å«å¯¼æ¥æ”¶äº‹ä»¶é€»è¾‘
         self.logic_auxsate()
+        # å¤„ç†æ ‡å®šæ•°æ®
+        self.logic_cal_BD_data()
 
-
-    # ÎÀµ¼×ª·¢Âß¼­ÊÂ¼ş
+    # å«å¯¼è½¬å‘é€»è¾‘äº‹ä»¶
     def logic_recforward(self):
         self.mw.textEdit_recforward_msg.textChanged.connect(self.mw.events.changeEvent_recforward)
         self.mw.checkBox_recforward_all.clicked.connect(self.mw.events.clkEvent_recforward_all)
 
 
-    # ×°¶©¹æÔò¸üĞÂÊÂ¼ş
+    # è£…è®¢è§„åˆ™æ›´æ–°äº‹ä»¶
     def logic_general_bind(self):
         self.mw.comboBox_general_rule.currentTextChanged.connect(self.mw.events.changeEvent_general_rule)
 
     
-    # 12Â·ÉèÖÃÄ£¿é Âß¼­ 12Â·´®¿Ú¸üĞÂÉè¶¨
+    # 12è·¯è®¾ç½®æ¨¡å— é€»è¾‘ 12è·¯ä¸²å£æ›´æ–°è®¾å®š
     def logic_12tab_setting(self):
         for i in range(15):
             self.mw.constants.structList_12tab[i].open.clicked.connect(self.mw.constants.structList_12tab[i].switch_open)
@@ -37,18 +38,34 @@ class MainWindowLogic:
         self.mw.constants.structList_12tab[0].stop.currentTextChanged.connect(self.mw.events.changeEvent_stop_update_all)
         self.mw.constants.structList_12tab[0].open.clicked.connect(self.mw.events.changeEvent_open_update_all)
         self.mw.constants.structList_12tab[0].plan.textChanged.connect(self.mw.events.changeEvent_plan_update_all)
-        # Ö÷´®¿Ú¸üĞÂÂß¼­ Í¬²½¸üĞÂÖ÷¿Ø
+        # ä¸»ä¸²å£æ›´æ–°é€»è¾‘ åŒæ­¥æ›´æ–°ä¸»æ§
         self.mw.comboBox_protocal_baund.currentTextChanged.connect(self.mw.events.changeEvent_baund_update_main)
         self.mw.comboBox_protocal_check.currentTextChanged.connect(self.mw.events.changeEvent_check_update_main)
         
     
-    # Í¨Ñ¶Ğ­ÒéÑ¡Ôñ¸üĞÂÊÂ¼ş
+    # é€šè®¯åè®®é€‰æ‹©æ›´æ–°äº‹ä»¶
     def logic_protocal_rule_change(self):
         pass
         
-    # ¸¨ÖúÎÀµ¼½ÓÊÕÊÂ¼şÂß¼­
+    # è¾…åŠ©å«å¯¼æ¥æ”¶äº‹ä»¶é€»è¾‘
     def logic_auxsate(self):
+        # å¿«æ·æ åŒæ­¥æ›´æ–°äº‹ä»¶
         self.mw.comboBox_ascii_com.currentTextChanged.connect(self.mw.events.changeEvent_auxsate_com)
         self.mw.comboBox_ascii_baund.currentTextChanged.connect(self.mw.events.changeEvent_auxsate_baund)
         self.mw.comboBox_ascii_check.currentTextChanged.connect(self.mw.events.changeEvent_auxsate_check)
+        # è¾…åŠ©å«å¯¼å‘é€äº‹ä»¶
+        self.mw.pushButton_sate_send.clicked.connect(self.mw.events.clickEvent_auxsate_send)
     
+    def logic_cal_BD_data(self):
+        self.mw.pushButton_para_loadOld.clicked.connect(self.mw.events.clickEvent_para_loadPath)
+        self.mw.pushButton_para_loadNew.clicked.connect(self.mw.events.clickEvent_para_loadPath)
+        self.mw.pushButton_para_createPara.clicked.connect(self.mw.events.clickEvent_para_createPara)
+        self.mw.pushButton_para_savePara.clicked.connect(self.mw.events.clickEvent_para_savePara)
+    
+    def logic_comboBoxPath_update(self):
+        mode_list = ['protocal','turntable','general','automatic']
+        for mode in mode_list:
+            comboBox = self.mw.findChild(self.mw.QtWidgets.QComboBox,'comboBox_{}_path'.format(mode))
+            if comboBox:
+                comboBox.currentTextChanged.connect(self.mw.show_message_5s)
+                

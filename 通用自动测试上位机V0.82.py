@@ -12,6 +12,7 @@ from ui.event import MainWindowEvent
 from ui.logic import MainWindowLogic
 from ui.debug import MainWindowDebug
 from ui.times import MainWindowTimes
+from ui.settings import MainWindowSetting
 
 # 其他正常模块
 import datetime
@@ -71,6 +72,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.uilogic = MainWindowLogic(self)
         # 定时事件函数
         self.times = MainWindowTimes(self)
+        # 全局变量及设定
+        self.settings = MainWindowSetting(self)
         # 调试模式函数
         self.debug = MainWindowDebug(self)
 
@@ -2188,7 +2191,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             sorted_title_list+=[decode_titl_list[i][decode_sort_list[i].index(str(j))] for j in range(len(decode_titl_list[i])) if decode_save_list[i][decode_sort_list[i].index(str(j))]=='1']
         
         if self.flag_sate_receive:
-            sorted_title_list+=['GGA纬度','GGA经度','KSXT时间','KSXT经度','KSXT纬度','KSXT高度','KSXT东速','KSXT北速','KSXT天速']
+            sorted_title_list+=['KSXT时间','KSXT经度','KSXT纬度','KSXT高度','KSXT东速','KSXT北速','KSXT天速']
         
         self.decode_rule_list = decode_rule_list    # 解算规则
         self.decode_save_list = decode_save_list    # 是否保存
@@ -2404,6 +2407,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.threading_test_flag = False
         self.plan_threading_flag = False
         self.threading_flag_sate = False
+        self.constants.struct_sate.serials = None
     # 点击开始测试事件，判断测试模式
     def begin_test(self):
         if self.debug_flag:
@@ -2634,14 +2638,17 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         sorted_title_list = []
         for i in range(len(decode_save_list)):
             sorted_title_list+=[decode_titl_list[i][decode_sort_list[i].index(str(j))] for j in range(len(decode_titl_list[i])) if decode_save_list[i][decode_sort_list[i].index(str(j))]=='1']
+        # print(sorted_title_list)
         zeros_list = [0 for i in range(len(sorted_title_list))]
+        if self.flag_sate_receive:
+            zeros_list+=self.default_sate_KSXT
         last_not0data = zeros_list
         receive_data_s = zeros_list
         # print('当前:{} turntable_ready:{}'.format(thread_num,self.turntable_ready))
         continue_check = False
         
         if self.flag_sate_receive:
-            last_not0data_sate = self.default_sate_GGA+self.default_sate_KSXT
+            last_not0data_sate = self.default_sate_KSXT
             
         # 创建标题
         if save_test_title &self.config_save_BD_1file:
@@ -2761,7 +2768,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     receive_data_hz,sum_check_result = decode_hex_frame_list(frame,decode_rule_list,decode_save_list,decode_para_list,decode_sort_list,decode_edia_list,config_sum_check)
                     # 追加卫导
                     if self.flag_sate_receive:
-                        receive_data_hz = receive_data_hz + self.default_sate_GGA+self.list_sate_KSXT
+                        receive_data_hz = receive_data_hz +self.list_sate_KSXT
+                        if self.default_clear_msg:
+                            self.list_sate_KSXT = self.default_sate_KSXT
                     alldata_ms += '\t '.join(['{:.{}f}'.format(i,save_decimal_point)if type(i)==float else str(int(i)) for i in receive_data_hz])+'\n'
                     readydata_ms += '\t '.join(['{:.{}f}'.format(i,save_decimal_point) for i in receive_data_hz])+'\n'
                     # 去除卫导转发时的零
@@ -2938,10 +2947,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         stop = stop2chinese(stop)   
         try:
             serials = serial.Serial(com, baund, parity=check,stopbits=stop)
+            self.constants.struct_sate.serials = serials
         except:
             time.sleep(0.01)
             try:
                 serials = serial.Serial(com, baund, parity=check,stopbits=stop)
+                self.constants.struct_sate.serials = serials
             except Exception as e:
                 self.threading_flag_sate = False
                 self.debug_list_2.append('{} tab_{}:开启串口失败,com:{},线程关闭 {}'.format(self.normal_time,13,com,e))
@@ -2956,7 +2967,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         save_time = '{:02d}{:02d}{:02d}{:02d}{:02d}{:02d}'.format(now.year,now.month,now.day,now.hour,now.minute,now.second)
         save_name = '{}{}_sate_{}.txt'.format(file_path,name,save_time)
         # serials.write('GPGGA 0.1\r\n'.encode('ascii'))
-        serials.write('KSXT 0.1\r\n'.encode('ascii'))
+        # serials.write('KSXT 0.1\r\n'.encode('ascii'))
         
         chche_text = ''
         while self.threading_flag_sate:
@@ -2972,7 +2983,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 if len(chche_text)>0:
                     with open(save_name,'a+') as f:
                         f.write(chche_text)
-                    if '$GPGGA' in chche_text:
+                    if '$GNGGA' in chche_text:
                         self.list_sate_ascii_msg[1].append(chche_text)
                         self.list_sate_GGA = GPGGA2loc(chche_text)
                     elif '$KSXT' in chche_text:
@@ -2981,9 +2992,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     else:
                         self.list_sate_ascii_msg[0].append(chche_text)
                     chche_text = ''
+                    for i in range(6):
+                        while len(self.constants.struct_sate.list_sate_name[i+2])>0:
+                            self.init_ui.textBrowser_ascii_list[i+2].append(self.constants.struct_sate.list_sate_name[i+2].pop(0))
             except Exception as e:
                 self.debug_list_1.append('threading_receive_sate错误:{}'.format(e))
-            time.sleep(0.04)
+            
+            time.sleep(0.01)
+        self.constants.struct_sate.serials = None
         
     
     def plan_test_threading(self):
@@ -3606,7 +3622,7 @@ def KSXT2spd(strings):
     except Exception as e:
         # print('KSXT2spd:{}'.format(e))
         return defalut_KSXT
-    
+
 class Turntable_class:
     def __init__(self):
         # 转台通讯协议数据帧格式

@@ -1,27 +1,29 @@
-# È«¾Ö±äÁ¿¿ØÖÆÄ£¿é
+# å…¨å±€å˜é‡/ç»“æ„ä½“æ§åˆ¶æ¨¡å—
 import os
 from ui.structs import *
 class MainWindowConstants:
     def __init__(self,mainWindow):
         self.mw = mainWindow
-        # ´ıÍê³É ÔØÈëÅäÖÃÎÄ¼ş
+        # å¾…å®Œæˆ è½½å…¥é…ç½®æ–‡ä»¶
         self.init_load_path()
 
-        # ³õÊ¼»¯½á¹¹Ìå 12Â·ÉèÖÃÄÚÈİ
+        # åˆå§‹åŒ–ç»“æ„ä½“ 12è·¯è®¾ç½®å†…å®¹
         self.structList_12tab = []
         self.init_12tab_setting()
 
-        # ³õÊ¼»¯½á¹¹Ìå Í¨ÓÃ×°¶©¹æÔò 
+        # åˆå§‹åŒ–ç»“æ„ä½“ é€šç”¨è£…è®¢è§„åˆ™ 
         self.struct_general_bind = None
         self.init_general_bind()
         
+        # åˆå§‹åŒ–ç»“æ„ä½“ å‘é€å«å¯¼æ•°æ®
+        self.init_send_struct()
         
         
-    # ³õÊ¼»¯ÔØÈëÎÄ¼şÈ«¾Ö±äÁ¿
+    # åˆå§‹åŒ–è½½å…¥æ–‡ä»¶å…¨å±€å˜é‡
     def init_load_path(self):
         self.load_filepath = os.getcwd()
         
-    # ³õÊ¼»¯½á¹¹Ìå 12Â·ÉèÖÃÄÚÈİ
+    # åˆå§‹åŒ–ç»“æ„ä½“ 12è·¯è®¾ç½®å†…å®¹
     def init_12tab_setting(self):
         self.structList_12tab = []
         self.structList_12tab.append(struct_tab_setting(self.mw,'all'))
@@ -29,5 +31,19 @@ class MainWindowConstants:
             self.structList_12tab.append(struct_tab_setting(self.mw,i+1))
         
     def init_general_bind(self):
-        self.struct_general_bind = struct_general_bind()
-        
+        self.mw.struct_general_bind = struct_general_bind()
+    
+    # åˆå§‹åŒ–ç»“æ„ä½“ å‘é€å«å¯¼æ•°æ®
+    def init_send_struct(self):
+        lists = [
+            self.mw.settings.sate_append_sate,
+            self.mw.settings.sate_save_sate,
+            self.mw.settings.sate_save_GNGGA,
+            self.mw.settings.sate_save_GPGGA,
+            self.mw.settings.sate_save_BDGGA,
+            self.mw.settings.sate_save_GPVTG,
+            self.mw.settings.sate_save_HEADINGA,
+            self.mw.settings.sate_save_KSXT
+        ]
+        self.struct_sate = struct_sate()
+        self.struct_sate.init_sate_save(lists)
