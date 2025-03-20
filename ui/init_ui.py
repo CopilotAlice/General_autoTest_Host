@@ -120,8 +120,8 @@ class MainWindowInit:
 
     def init_para_input(self):
         self.list_para_input = []
-        for i in range(10):
+        for i in range(5):
             self.list_para_input.append(
-                self.mw.findChild(QtWidgets.QLineEdit, 'lineEdit_para_input_{}'.format(i))
+                self.mw.findChild(QtWidgets.QLineEdit, 'lineEdit_para_input_{}'.format(i+1))
             )
         

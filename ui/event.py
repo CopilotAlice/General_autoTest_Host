@@ -103,16 +103,17 @@ class MainWindowEvent:
     def clickEvent_para_loadPath(self):
         oldMode = self.mw.sender().objectName() == 'pushButton_para_loadOld'
         list_para_input = []
-        for i in range(10):
+        for i in range(5):
             list_para_input.append(self.mw.init_ui.list_para_input[i].text())
             # print(list_para_input)
-        for i in range(3):
+        for i in range(5):
             try: list_para_input[i] = int(list_para_input[i])
             except: list_para_input[i] = 1
-        if list_para_input[1]==0:
-            list_para_input[1]=None
+        if list_para_input[2]==0:
+            list_para_input[2]=None
+        if list_para_input[3]==0:
+            list_para_input[3]=None
         # print(list_para_input)
-        self.auto_plot_always = True
         flag_move_dir = True
         flag_del_empty = self.mw.checkBox_para_delEmptyFolder.isChecked()
             # dir = QtWidgets.QFileDialog.getExistingDirectory(self,'选择文件夹')
@@ -171,68 +172,76 @@ class MainWindowEvent:
                 if len(list_ave_file)==0:
                     continue
                 self.mw.textBrowser_para_show.append('处理文件夹:{}/{}'.format(fog_name,plan_name))
-                if not os.path.exists(save_path):
-                    os.makedirs(save_path)
+                sort_save_path = save_path/fog_name
+                if not os.path.exists(sort_save_path):
+                    os.makedirs(sort_save_path)
                 flag_hztxt = any('hz.txt' in i for i in list_ave_file)
                 flag_stxt = any('s.txt' in i for i in list_ave_file)
                 # print(list_ave_file)
-                save_file_hz = save_path/'{}_ave_hz.txt'.format(plan_name)
-                save_file_s = save_path/'{}_ave_s.txt'.format(plan_name)
+                save_file_hz = sort_save_path/'{}_ave_hz.txt'.format(plan_name)
+                save_file_s = sort_save_path/'{}_ave_s.txt'.format(plan_name)
                 if flag_hztxt:
                     lists = [fn for fn in list_ave_file if 'hz.txt' in fn]
-                elif flag_stxt:
-                    lists = [fn for fn in list_ave_file if 's.txt' in fn]
-                else:
-                    continue
-                for filename in sorted( 
+                    for filename in sorted( 
                         lists, key= lambda itemname:int(itemname.split('BD')[1].split('#')[0]) 
                         ):
-                    # print(filename)
-                    mod_list = ['spd[','loc[']
-                    turn_table = 'None'
-                    for mod in mod_list:
-                        if mod in filename:
-                            turn_table = filename.split(mod)[1].split(']')[0]
-                            break
+                        try:
+                            files = pd.read_csv(load_paths/fog_name/plan_name/filename,sep='\\s+',header=None,skiprows=1, encoding='gb2312')
+                        except:
+                            continue
+                        
+                        if ('spd[' in filename):
+                            turn_table = filename.split('spd[')[1].split(']')[0]
+                            fbegin = list_para_input[0]
+                            fend = -list_para_input[2]
+                        elif ('loc[' in filename):
+                            turn_table = filename.split('loc[')[1].split(']')[0]
+                            fbegin = list_para_input[1]
+                            fend = -list_para_input[3]
                         else:
                             turn_table = 'None'
-                    try:
-                        files = pd.read_csv(load_paths/fog_name/plan_name/filename,sep='\\s+',header=None,skiprows=1, encoding='gb2312')
-                    except:
-                        # print('pd打开文件失败:{}'.format(filename))
-                        continue
-                    # if 'loc' not in filename:
-                    #     print(load_paths/fog_name/plan_name/filename)
-                    #     print(files.head)
-                    if flag_hztxt:
-                        files = files.iloc[
-                            list_para_input[0]*list_para_input[2]:-list_para_input[1]*list_para_input[2],
-                            0:12
-                            ]
-                    else:
-                        files = files.iloc[
-                            list_para_input[0]:-list_para_input[1],
-                            0:12
-                            ]
-                    # if 'loc' not in filename:
-                    #     print(files.head())
-                    #     return 
-                    mean_data = files.mean()
-                    len_data = len(files)
-                    save_data = '{}\t{}\t{}\n'.format(
-                        turn_table,
-                        '\t'.join(['{:.6f}'.format(i) for i in mean_data]),
-                        len_data
-                    )
-                    if save_file_hz:
-                        save_name = save_file_hz
-                    else:
-                        save_name = save_file_s
-                    # print('plan:{} save:{}'.format(plan_name,save_name))
-                    with open(save_name,encoding='gb2312',mode='a+') as f:
-                        f.write(save_data)
+                        files = files.iloc[fbegin:fend,:]
+                        mean_data = files.mean()
+                        len_data = len(files)
+                        save_data = '{}\t{}\t{}\n'.format(
+                            turn_table,
+                            '\t'.join(['{:.6f}'.format(i) for i in mean_data]),
+                            len_data
+                        )
+                        with open(save_file_hz,encoding='gb2312',mode='a+') as f:
+                            f.write(save_data)
+                    
+                    
+                if flag_stxt:
+                    lists = [fn for fn in list_ave_file if 's.txt' in fn]
+                    for filename in sorted( 
+                        lists, key= lambda itemname:int(itemname.split('BD')[1].split('#')[0]) 
+                        ):
+                        try:
+                            files = pd.read_csv(load_paths/fog_name/plan_name/filename,sep='\\s+',header=None,skiprows=1, encoding='gb2312')
+                        except:
+                            continue
                         
-                        
+                        if ('spd[' in filename):
+                            turn_table = filename.split('spd[')[1].split(']')[0]
+                            fbegin = list_para_input[0]
+                            fend = -list_para_input[2]
+                        elif ('loc[' in filename):
+                            turn_table = filename.split('loc[')[1].split(']')[0]
+                            fbegin = list_para_input[1]
+                            fend = -list_para_input[3]
+                        else:
+                            turn_table = 'None'
+                        files = files.iloc[fbegin:fend,:]
+                        mean_data = files.mean()
+                        len_data = len(files)
+                        save_data = '{}\t{}\t{}\n'.format(
+                            turn_table,
+                            '\t'.join(['{:.6f}'.format(i) for i in mean_data]),
+                            len_data
+                        )
+                        with open(save_file_s,encoding='gb2312',mode='a+') as f:
+                            f.write(save_data)
 
                     
                     
