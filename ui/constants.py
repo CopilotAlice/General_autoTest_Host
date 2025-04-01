@@ -1,4 +1,5 @@
 # 全局变量/结构体控制模块
+# 全局变量/结构体控制模块
 import os
 from ui.structs import *
 class MainWindowConstants:
@@ -17,6 +18,8 @@ class MainWindowConstants:
         
         # 初始化结构体 发送卫导数据
         self.init_send_struct()
+        # 初始化结构体 发送卫导数据
+        self.init_send_struct()
         
         
     # 初始化载入文件全局变量
@@ -31,7 +34,7 @@ class MainWindowConstants:
             self.structList_12tab.append(struct_tab_setting(self.mw,i+1))
         
     def init_general_bind(self):
-        self.struct_general_bind = struct_general_bind()
+        self.mw.struct_general_bind = struct_general_bind()
     
     # 初始化结构体 发送卫导数据
     def init_send_struct(self):

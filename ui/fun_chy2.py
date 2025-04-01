@@ -98,22 +98,6 @@ def calculate_crc32(buffer: bytearray) -> int:
         ul_crc = crc_table[(ul_crc ^ byte) & 0xff] ^ (ul_crc >> 8)
     return ul_crc
 
-def try_int_data(data,default=1):
-    try:
-        return int(data),False
-    except Exception as e:
-        return default,e
-def try_float_data(data,default=1):
-    try:
-        return float(data),False
-    except Exception as e:
-        return default,e
-def try_hex_data(data,default=1):
-    try:
-        return bytes.fromhex(data),False
-    except Exception as e:
-        return bytes.fromhex(default),e
-
 def crc_1188a(data_add):
     len_word = len(data_add) // 2  # 计算数据长度的一半
     word = [0] * len_word  # 初始化word数组
@@ -130,7 +114,7 @@ def crc_1188a(data_add):
 def move_dir(src,dest):
     if not os.path.exists(dest):
         os.makedirs(dest)
-    shutil.move(src,dest)
+    shutil.move(str(src),str(dest))
 def split_pro(data):
     split_symbol = [' ',',','，']
     for symbol in split_symbol:
@@ -164,7 +148,33 @@ def del_empty_folder(path):
             del_empty_folder(folder_path)
             if not os.listdir(folder_path):
                 os.rmdir(folder_path)
-                
+
+# 尝试返回格式
+def try_return_format(format):
+    format = str(format)
+    if '>' in format:
+        return '>'
+    else:
+        return '<'
+def try_return_int(data,default=1):
+    try:return int(data)
+    except:return default
+def try_int_data(data,default=1):
+    try:
+        return int(data),False
+    except Exception as e:
+        return default,e
+def try_float_data(data,default=1):
+    try:
+        return float(data),False
+    except Exception as e:
+        return default,e
+def try_hex_data(data,default=1):
+    try:
+        return bytes.fromhex(data),False
+    except Exception as e:
+        return bytes.fromhex(default),e
+
 class class_rule:
     def __init__(self):
         self.rules_lists_format = 'xcbB?hHiIlLqQfdspPtyY'   # 解算规则可用范围

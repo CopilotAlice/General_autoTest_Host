@@ -4,8 +4,10 @@ from PyQt5 import QtWidgets, QtGui, QtCore
 class MainWindowInit:
     def __init__(self,mainWindow):
         self.mw = mainWindow
+        self.mw = mainWindow
         
         
+        self.init_ui_setting()
         self.init_ui_setting()
         # 初始化时间
         self.init_ui_time()
@@ -118,8 +120,8 @@ class MainWindowInit:
 
     def init_para_input(self):
         self.list_para_input = []
-        for i in range(10):
+        for i in range(5):
             self.list_para_input.append(
-                self.mw.findChild(QtWidgets.QLineEdit, 'lineEdit_para_input_{}'.format(i))
+                self.mw.findChild(QtWidgets.QLineEdit, 'lineEdit_para_input_{}'.format(i+1))
             )
         

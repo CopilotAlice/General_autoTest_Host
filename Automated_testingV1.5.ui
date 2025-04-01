@@ -6,8 +6,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
+<<<<<<< HEAD
     <width>1145</width>
     <height>842</height>
+=======
+    <width>1161</width>
+    <height>884</height>
+>>>>>>> b70681f7ef1e46b1014ce5a513fd0ff3c2d348e8
    </rect>
   </property>
   <property name="windowTitle">
@@ -568,10 +573,13 @@
              </property>
              <property name="html">
               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Microsoft YaHei UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'SimSun';&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="overwriteMode">
               <bool>false</bool>
@@ -1847,10 +1855,13 @@ p, li { white-space: pre-wrap; }
              </property>
              <property name="html">
               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Microsoft YaHei UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'SimSun';&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="overwriteMode">
               <bool>false</bool>
@@ -2114,7 +2125,7 @@ p, li { white-space: pre-wrap; }
              <x>0</x>
              <y>0</y>
              <width>240</width>
-             <height>2154</height>
+             <height>2222</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_26">
@@ -5550,7 +5561,7 @@ p, li { white-space: pre-wrap; }
       </widget>
       <widget class="QWidget" name="tab_16">
        <attribute name="title">
-        <string>通用装订</string>
+        <string>通用控制</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_33">
         <property name="spacing">
@@ -5588,7 +5599,11 @@ p, li { white-space: pre-wrap; }
              <x>0</x>
              <y>0</y>
              <width>257</width>
+<<<<<<< HEAD
              <height>799</height>
+=======
+             <height>838</height>
+>>>>>>> b70681f7ef1e46b1014ce5a513fd0ff3c2d348e8
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_34">
@@ -5638,13 +5653,6 @@ p, li { white-space: pre-wrap; }
                   </widget>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="pushButton_general_update">
-                   <property name="text">
-                    <string>更新装订</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
                   <widget class="QPushButton" name="pushButton_general_send">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
@@ -5660,6 +5668,27 @@ p, li { white-space: pre-wrap; }
                 </layout>
                </item>
                <item>
+<<<<<<< HEAD
+=======
+                <layout class="QHBoxLayout" name="horizontalLayout_51">
+                 <item>
+                  <widget class="QCheckBox" name="checkBox_3">
+                   <property name="text">
+                    <string>自动发送(Hz)</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="lineEdit">
+                   <property name="text">
+                    <string>1</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+>>>>>>> b70681f7ef1e46b1014ce5a513fd0ff3c2d348e8
                 <layout class="QHBoxLayout" name="horizontalLayout_50">
                  <item>
                   <widget class="QLabel" name="label_255">
@@ -5756,7 +5785,6 @@ p, li { white-space: pre-wrap; }
                   </property>
                   <property name="font">
                    <font>
-                    <weight>50</weight>
                     <bold>false</bold>
                    </font>
                   </property>
@@ -5846,7 +5874,7 @@ p, li { white-space: pre-wrap; }
              <x>0</x>
              <y>0</y>
              <width>240</width>
-             <height>1051</height>
+             <height>1086</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_25">
@@ -7675,7 +7703,11 @@ p, li { white-space: pre-wrap; }
              <x>0</x>
              <y>0</y>
              <width>255</width>
+<<<<<<< HEAD
              <height>779</height>
+=======
+             <height>818</height>
+>>>>>>> b70681f7ef1e46b1014ce5a513fd0ff3c2d348e8
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_32">
@@ -13094,10 +13126,361 @@ p, li { white-space: pre-wrap; }
         <string>参数</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_16">
+<<<<<<< HEAD
         <item row="1" column="3">
          <widget class="QGroupBox" name="groupBox_13">
           <property name="title">
            <string>数据处理模块</string>
+=======
+        <item row="0" column="3">
+         <widget class="QGroupBox" name="groupBox_15">
+          <property name="title">
+           <string>报告生成模块</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_15">
+           <item row="0" column="0">
+            <widget class="QTableWidget" name="tableWidget_gener">
+             <property name="sortingEnabled">
+              <bool>true</bool>
+             </property>
+             <attribute name="horizontalHeaderDefaultSectionSize">
+              <number>80</number>
+             </attribute>
+             <row>
+              <property name="text">
+               <string>标度#标度因数</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>标度#非线性度</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>标度#不对称性</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>零位#合成零位</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>零位#矢量和</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>非正交#Dxn</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>非正交#Dyn</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>非正交#Dzn</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>稳定性#1s</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>稳定性#10s</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>稳定性#100s</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>温度#均值</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>温度#变化</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>其他#标度正负误差</string>
+              </property>
+             </row>
+             <row>
+              <property name="text">
+               <string>其他#加表正负误差</string>
+              </property>
+             </row>
+             <column>
+              <property name="text">
+               <string>Gx</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Gy</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Gz</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Ax</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Ay</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Az</string>
+              </property>
+             </column>
+             <item row="3" column="0">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="background">
+               <brush brushstyle="NoBrush">
+                <color alpha="255">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
+                </color>
+               </brush>
+              </property>
+             </item>
+             <item row="3" column="1">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="background">
+               <brush brushstyle="NoBrush">
+                <color alpha="255">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
+                </color>
+               </brush>
+              </property>
+             </item>
+             <item row="3" column="2">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="background">
+               <brush brushstyle="NoBrush">
+                <color alpha="255">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
+                </color>
+               </brush>
+              </property>
+             </item>
+             <item row="3" column="4">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="background">
+               <brush brushstyle="NoBrush">
+                <color alpha="255">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
+                </color>
+               </brush>
+              </property>
+             </item>
+             <item row="3" column="5">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="background">
+               <brush brushstyle="NoBrush">
+                <color alpha="255">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
+                </color>
+               </brush>
+              </property>
+             </item>
+             <item row="4" column="0">
+              <property name="text">
+               <string/>
+              </property>
+             </item>
+             <item row="4" column="1">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="background">
+               <brush brushstyle="Dense7Pattern">
+                <color alpha="255">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
+                </color>
+               </brush>
+              </property>
+             </item>
+             <item row="4" column="2">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="background">
+               <brush brushstyle="Dense7Pattern">
+                <color alpha="255">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
+                </color>
+               </brush>
+              </property>
+             </item>
+             <item row="4" column="3">
+              <property name="text">
+               <string/>
+              </property>
+             </item>
+             <item row="4" column="4">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="background">
+               <brush brushstyle="Dense7Pattern">
+                <color alpha="255">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
+                </color>
+               </brush>
+              </property>
+             </item>
+             <item row="4" column="5">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="background">
+               <brush brushstyle="Dense7Pattern">
+                <color alpha="255">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
+                </color>
+               </brush>
+              </property>
+             </item>
+             <item row="5" column="0">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="background">
+               <brush brushstyle="Dense7Pattern">
+                <color alpha="255">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
+                </color>
+               </brush>
+              </property>
+             </item>
+             <item row="5" column="3">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="background">
+               <brush brushstyle="Dense7Pattern">
+                <color alpha="255">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
+                </color>
+               </brush>
+              </property>
+             </item>
+             <item row="6" column="1">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="background">
+               <brush brushstyle="Dense7Pattern">
+                <color alpha="255">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
+                </color>
+               </brush>
+              </property>
+             </item>
+             <item row="6" column="4">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="background">
+               <brush brushstyle="Dense7Pattern">
+                <color alpha="255">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
+                </color>
+               </brush>
+              </property>
+             </item>
+             <item row="7" column="2">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="background">
+               <brush brushstyle="Dense7Pattern">
+                <color alpha="255">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
+                </color>
+               </brush>
+              </property>
+             </item>
+             <item row="7" column="5">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="background">
+               <brush brushstyle="Dense7Pattern">
+                <color alpha="255">
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
+                </color>
+               </brush>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QGroupBox" name="groupBox_14">
+          <property name="title">
+           <string>参数预处理模块</string>
+>>>>>>> b70681f7ef1e46b1014ce5a513fd0ff3c2d348e8
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_16">
            <item>
@@ -13224,6 +13607,7 @@ p, li { white-space: pre-wrap; }
           </layout>
          </widget>
         </item>
+<<<<<<< HEAD
         <item row="0" column="3">
          <widget class="QGroupBox" name="groupBox_15">
           <property name="title">
@@ -13552,11 +13936,16 @@ p, li { white-space: pre-wrap; }
         </item>
         <item row="0" column="2">
          <widget class="QGroupBox" name="groupBox_14">
+=======
+        <item row="1" column="3">
+         <widget class="QGroupBox" name="groupBox_13">
+>>>>>>> b70681f7ef1e46b1014ce5a513fd0ff3c2d348e8
           <property name="title">
            <string>数据预处理模块</string>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_24">
            <item>
+<<<<<<< HEAD
             <widget class="QTableWidget" name="tableWidget_mean">
              <property name="layoutDirection">
               <enum>Qt::LeftToRight</enum>
@@ -14019,6 +14408,422 @@ p, li { white-space: pre-wrap; }
              <property name="checked">
               <bool>true</bool>
              </property>
+=======
+            <layout class="QHBoxLayout" name="horizontalLayout_53">
+             <item>
+              <widget class="QCheckBox" name="checkBox_para_delEmptyFolder">
+               <property name="text">
+                <string>自动删除空文件夹</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="checkBox_4">
+               <property name="text">
+                <string>CheckBox</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_52">
+             <item>
+              <widget class="QLabel" name="label_268">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>使用预设</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="comboBox_para_plan2_3">
+               <item>
+                <property name="text">
+                 <string/>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_21">
+             <item>
+              <widget class="QPushButton" name="pushButton_para_loadOld">
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="text">
+                <string>处理数据(旧)</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_para_loadOld"/>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_22">
+             <item>
+              <widget class="QPushButton" name="pushButton_para_loadNew">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>处理数据(新)</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_para_loadNew"/>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <item>
+              <widget class="QPushButton" name="pushButton_para_createPara">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>生成参数</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="comboBox_para_plan">
+               <item>
+                <property name="text">
+                 <string>ALL</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="comboBox_para_plan2">
+               <item>
+                <property name="text">
+                 <string>SL</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>LW</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>JT</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>other</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_23">
+             <item>
+              <widget class="QPushButton" name="pushButton_para_savePara">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>保存报告</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="comboBox_para_saverule"/>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QTextBrowser" name="textBrowser_para_show">
+             <property name="lineWrapMode">
+              <enum>QTextEdit::NoWrap</enum>
+             </property>
+             <property name="html">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Microsoft YaHei UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'SimSun';&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QWidget" name="widget" native="true">
+          <layout class="QVBoxLayout" name="verticalLayout_53">
+           <item>
+            <widget class="QGroupBox" name="groupBox_43">
+             <property name="title">
+              <string>数据处理模块_Step.1</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_37">
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_273">
+                <property name="text">
+                 <string>均值_掐头</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_263">
+                <property name="text">
+                 <string>均值_去尾</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="2">
+               <widget class="QLabel" name="label_272">
+                <property name="text">
+                 <string>均值_掐头</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="2">
+               <widget class="QLabel" name="label_275">
+                <property name="text">
+                 <string>均值_去尾</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QLabel" name="label_269">
+                <property name="text">
+                 <string>loc文件</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QLineEdit" name="lineEdit_para_input_1">
+                <property name="text">
+                 <string>1</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QLabel" name="label_271">
+                <property name="text">
+                 <string>Hz文件频率</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_264">
+                <property name="text">
+                 <string>spd文件</string>
+                </property>
+               </widget>
+              </item>
+              <item row="12" column="0">
+               <spacer name="verticalSpacer_2">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="2" column="3">
+               <widget class="QLineEdit" name="lineEdit_para_input_2">
+                <property name="text">
+                 <string>1</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QLineEdit" name="lineEdit_para_input_3">
+                <property name="text">
+                 <string>1</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="QLineEdit" name="lineEdit_para_input_5">
+                <property name="text">
+                 <string>1</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="3">
+               <widget class="QLineEdit" name="lineEdit_para_input_4">
+                <property name="text">
+                 <string>1</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="groupBox_44">
+             <property name="title">
+              <string>数据处理模块_Step.2</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_38">
+              <item row="3" column="2">
+               <widget class="QLabel" name="label_270">
+                <property name="text">
+                 <string>速率标定</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_266">
+                <property name="text">
+                 <string>XYZ轴陀螺</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QLineEdit" name="lineEdit_para_input2_7">
+                <property name="text">
+                 <string>10 50 100 150 180</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="3">
+               <widget class="QLineEdit" name="lineEdit_para_input2_2">
+                <property name="text">
+                 <string>1 2 3</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <spacer name="verticalSpacer_3">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_261">
+                <property name="text">
+                 <string>平滑系数</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="3">
+               <widget class="QLineEdit" name="lineEdit_para_input2_4">
+                <property name="text">
+                 <string>1 1 1</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="lineEdit_para_input2_1">
+                <property name="text">
+                 <string>1 1 1</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="3">
+               <widget class="QLineEdit" name="lineEdit_para_input2_6">
+                <property name="text">
+                 <string>0 1 2</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLineEdit" name="lineEdit_para_input2_3">
+                <property name="text">
+                 <string>4 5 6</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QLabel" name="label_274">
+                <property name="text">
+                 <string>XYZ轴加表</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_262">
+                <property name="text">
+                 <string>标度正负</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="3">
+               <widget class="QLineEdit" name="lineEdit_para_input2_8">
+                <property name="text">
+                 <string>2 0 1</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="2">
+               <widget class="QLabel" name="label_267">
+                <property name="text">
+                 <string>零位标定</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_265">
+                <property name="text">
+                 <string>速率点</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QLineEdit" name="lineEdit_para_input2_5">
+                <property name="text">
+                 <string>10</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QLabel" name="label_277">
+                <property name="text">
+                 <string>标度正负</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+>>>>>>> b70681f7ef1e46b1014ce5a513fd0ff3c2d348e8
             </widget>
            </item>
           </layout>
@@ -14526,8 +15331,13 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
+<<<<<<< HEAD
              <width>809</width>
              <height>1408</height>
+=======
+             <width>825</width>
+             <height>1417</height>
+>>>>>>> b70681f7ef1e46b1014ce5a513fd0ff3c2d348e8
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout_35">

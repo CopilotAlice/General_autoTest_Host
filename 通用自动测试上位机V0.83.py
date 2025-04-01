@@ -13,6 +13,7 @@ from ui.logic import MainWindowLogic
 from ui.debug import MainWindowDebug
 from ui.times import MainWindowTimes
 from ui.settings import MainWindowSetting
+from ui.settings import MainWindowSetting
 
 # 其他正常模块
 import datetime
@@ -62,6 +63,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.setWindowTitle("通用自动测试上位机_蔡_功能测试版_2412_V0.80")
         
+        # 调试模式函数
+        self.debug = MainWindowDebug(self)
         # 调试模式函数
         self.debug = MainWindowDebug(self)
         # UI初始化函数
@@ -389,6 +392,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.binding_cache_list = []
         for i in range(12):
             self.binding_cache_list.append('')
+        # 12路装订缓存区_定时发送
+        self.list_binding_cache_waitTime = 0
+        self.list_binding_cache = []
+        for i in range(12):
+            self.list_binding_cache.append([])
+        
         self.ascii_cache_list = []
         for i in range(12):
             self.ascii_cache_list.append('')
@@ -739,6 +748,20 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.init_ui.textBrowser_ascii_list[i].append(msg)
         # for i in range(8):
         #     self.init_ui.textBrowser_ascii_list[i].append(str(i))
+        # print('self.list_binding_cache_waitTime:>0:{} <0:{} val:{} data:{}'.format(
+        #     self.list_binding_cache_waitTime>0,
+        #     self.list_binding_cache_waitTime<0,
+        #     self.list_binding_cache_waitTime,
+        #     self.list_binding_cache[0]
+        # ))
+        if (self.list_binding_cache_waitTime>=0)&(len(self.list_binding_cache[0])>0):
+            self.list_binding_cache_waitTime-=0.5
+        if self.list_binding_cache_waitTime<0:
+            self.list_binding_cache_waitTime = 0
+            for i in range(12):
+                if len(self.list_binding_cache[i])>0:
+                    self.binding_cache_list[i] = self.list_binding_cache[i].pop(0)
+                    # print(self.list_binding_cache[i])
 
 
     # 事件更新1s线程，用于按秒更新界面元素
@@ -1198,17 +1221,26 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             else:
                 print('未找到对应控件：lineEdit_file_names_%s'%(i+1))
     # 发送装订 20240723
-    def binding_send(self):
+    def binding_send(self,count=1):
         send_commands = self.lineEdit_binding_command.text()
+        if not count:
+            count = 1
+        if count>2:
+            for i in range(count):
+                for j in range(12):
+                    self.list_binding_cache[j].append(send_commands)
         try:
             send_tab = self.comboBox_binding_com.CurrentText()
             chosen_tab = send_tab.split()[0]
             chosen_tab_int = int(chosen_tab)
-            self.binding_cache_list[chosen_tab_int-1] = send_commands
+            for i in range(count):
+                self.binding_cache_list[chosen_tab_int-1] = send_commands
         except:
-            self.debug_list_1.append('装订载入缓存:{}'.format(str(send_commands)))
-            for i in range(12):
-                self.binding_cache_list[i] = (send_commands)
+            self.debug_list_1.append('{} 装订载入缓存:{}'.format(self.normal_time,str(send_commands)))
+            for j in range(count):
+                for i in range(12):
+                    self.binding_cache_list[i] = send_commands
+        
     # 激光惯导#60所 构造装订函数
     def event_update_bingding_60s(self):
         lineedit_data_list = []
@@ -1784,9 +1816,17 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         serial_com = self.comboBox_power_com.currentText()
         self.debug_list_1.append('{} 关闭电源{}:{}'.format(self.normal_time,serial_com,command))
         if str(self.config_power_model)=='1':
-            power_serials = serial.Serial(serial_com, 57600)
+            try:
+                power_serials = serial.Serial(serial_com, 57600)
+            except:
+                time.sleep(1)
+                try:
+                    power_serials = serial.Serial(serial_com, 57600)
+                except:
+                    print('电源关闭失败')
+                    return
             power_serials.write(':OUTP 0\n'.encode('ascii'))
-            time.sleep(0.1)
+            time.sleep(0.2)
             power_serials.write(':OUTP 0\n'.encode())
             power_serials.close()
         elif str(self.config_power_model)=='2':
@@ -1885,7 +1925,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         if decode_rule_path not in self.list_notpath:
             load_path+= '/{}'.format(decode_rule_path)
         decode_rule_name = self.comboBox_protocal_rule.currentText()
-        with open('/{}.txt'.format(load_path,decode_rule_name), 'r+') as f:
+        with open('{}/{}.txt'.format(load_path,decode_rule_name), 'r+') as f:
             decode_rule_file = f.read()
         decode_struct = class_rule()
         decode_struct.read_rule_file(decode_rule_file)
@@ -1943,6 +1983,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     try:
                         int_para_confing = float(para_rule_list[2])
                     except:
+                        # self.show_message_automatic_list.append('未知配置项：%s read_default_para_config'%(para_rule_list))
                         # self.show_message_automatic_list.append('未知配置项：%s read_default_para_config'%(para_rule_list))
                         continue
                     # 默认转台速度设置
@@ -2273,10 +2314,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.decode_edia_list = decode_edia_list    # 大小端
         self.decode_fram_leng = decode_fram_leng    # 帧长度
         self.sorted_titl_list = sorted_title_list   # 排序后的标题
-        # print('解算规则长度:')
-        # for i in decode_rule_list:
-        #     rule_string = '<'+''.join(i)
-        #     print(struct.calcsize(rule_string))
+        list_string = []
+        for i in decode_rule_list:
+            rule_string = '<'+''.join(i)
+            list_string.append(struct.calcsize(rule_string))
+        print('解算规则长度:{}'.format(' '.join([str(i) for i in list_string])))
         
         # self.comboBox_plot_beginAxis.clear()
         # for i in range(len(sorted_title_list)):
@@ -2478,6 +2520,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.threading_test_flag = False
         self.plan_threading_flag = False
         self.threading_flag_sate = False
+        self.constants.struct_sate.serials = None
         self.constants.struct_sate.serials = None
     # 点击开始测试事件，判断测试模式
     def begin_test(self):
@@ -2711,6 +2754,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         for i in range(len(decode_save_list)):
             sorted_title_list+=[decode_titl_list[i][decode_sort_list[i].index(str(j))] for j in range(len(decode_titl_list[i])) if decode_save_list[i][decode_sort_list[i].index(str(j))]=='1']
         # print(sorted_title_list)
+        # print(sorted_title_list)
         zeros_list = [0 for i in range(len(sorted_title_list))]
         sate_zeros = []
         for i in range(6):
@@ -2767,6 +2811,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     send_commands = self.binding_cache_list[thread_num]
                     self.binding_cache_list[thread_num] = ''
                     serials.write(bytes.fromhex(send_commands))
+                    # print(send_commands)
                     # self.debug_list_1.append('{}：发送装订:{}'.format(thread_num,send_commands))
                     if self.config_save_hex_log:
                         hex_log_list.append(send_commands)
@@ -3038,6 +3083,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             try:
                 serials = serial.Serial(com, baund, parity=check,stopbits=stop)
                 self.constants.struct_sate.serials = serials
+                self.constants.struct_sate.serials = serials
             except Exception as e:
                 self.threading_flag_sate = False
                 self.debug_list_2.append('{} tab_{}:开启串口失败,com:{},线程关闭 {}'.format(self.normal_time,13,com,e))
@@ -3052,6 +3098,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         save_time = '{:02d}{:02d}{:02d}{:02d}{:02d}{:02d}'.format(now.year,now.month,now.day,now.hour,now.minute,now.second)
         save_name = '{}{}_sate_{}.txt'.format(file_path,name,save_time)
         # serials.write('GPGGA 0.1\r\n'.encode('ascii'))
+        # serials.write('KSXT 0.1\r\n'.encode('ascii'))
         # serials.write('KSXT 0.1\r\n'.encode('ascii'))
         
         chche_text = ''
@@ -3192,9 +3239,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 # else:
                 # begin_time = time.time()
                 #     print('未知电源命令')
-            elif 'bind' in list_plan[1].lower():
+            elif 'bwat' in list_plan[1].lower():
+                try:num = int(list_plan[2])
+                except:num = 1
                 count+=1
-                self.binding_send()
+                self.list_binding_cache_waitTime = num
+            elif 'bind' in list_plan[1].lower():
+                try:num = int(list_plan[2])
+                except:num = 1
+                count+=1
+                self.binding_send(count=num)
                 begin_time = time.time()
             elif 'test' in list_plan[1].lower():
                 count+=1
@@ -3729,6 +3783,7 @@ def KSXT2spd(strings):
     except Exception as e:
         # print('KSXT2spd:{}'.format(e))
         return defalut_KSXT
+
 
 class Turntable_class:
     def __init__(self):

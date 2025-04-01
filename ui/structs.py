@@ -2,6 +2,7 @@ import struct
 import ctypes
 import numpy as np
 import pandas as pd
+from ui.fun_chy2 import *
 from PyQt5 import QtWidgets, QtGui, QtCore
 
 
@@ -15,25 +16,38 @@ class struct_general_bind:
     def __init__(self):
         self.struct_path = './'
         self.struct_name = 'general_bind'
+        self.struct_decode = 'xcbB?hHiIlLqQfdspPtyY'
         self.struct_format = '<'
         self.struct_packRule = ''
         self.struct_len = 0
+        self.struct_sendHz = 1
         self.struct_dataList = []
         self.struct_packList = []
         self.struct_paraList = []
         self.struct_titlList = []
-        self.struct_sumCheck = []
-        self.struct_orcCheck = []
+        self.struct_default = ''
+        self.struct_sumCheck = None
+        self.struct_crcCheck = None
         self.struct_debugList = []
         self.struct_debugFlag = False
     def read_struct_file(self,struct_file):
-        print('struct_general_bind初始化\nread_struct_file运行')
-        print(struct_file[:100])
-        # with open(struct_file,'r') as f:
-        #     self.struct_data = f.read(self.struct_len)
-        #     self.struct_unpack = struct.unpack(self.struct_fmt,self.struct_data)
-        #     self.struct_dict = {self.struct_name:self.struct_unpack}
-        # return self.struct_dict
+        if len(struct_file)==0:
+            return 
+        for line in struct_file.split('\n'):
+            split_data = line.split()
+            if len(split_data)<3:
+                continue
+            if '#' in split_data[0]:
+                tar = split_data[1].lower()
+                val = split_data[2]
+                if 'default' in tar:
+                    self.struct_default = ''.join(split_data[2:])
+                if ('rulehead' in tar)|('format' in tar):
+                    self.struct_format = try_return_format(val)
+                if 'send_hz' in tar:
+                    self.struct_sendHz = try_return_int(val,1)
+            elif split_data[0] in self.struct_decode:
+                self.struct_packList.apppend(split_data[0])
       
       
         
