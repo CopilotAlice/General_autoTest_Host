@@ -6,7 +6,7 @@ from PyQt5.QtCore import QThread, pyqtSignal, QTimer
 # 逻辑 事件 自定义等模块
 from Automated_testingV15 import Ui_MainWindow
 from ui.constants import MainWindowConstants
-from ui.fun_chy2 import *
+from funs.fun_chy2 import *
 from ui.init_ui import MainWindowInit
 from ui.event import MainWindowEvent
 from ui.logic import MainWindowLogic

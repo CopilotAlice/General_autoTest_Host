@@ -1,6 +1,6 @@
 import os
 from PyQt5 import QtWidgets
-from ui.fun_chy2 import *
+from funs.fun_chy2 import *
 import pandas as pd 
 # 各类点击事件
 class MainWindowEvent:

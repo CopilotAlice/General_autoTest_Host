@@ -2,7 +2,7 @@ from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtCore import QThread, pyqtSignal, QTimer
 from Automated_testingV14 import Ui_MainWindow
 from pyqtgraph.Qt import QtCore
-from ui.fun_chy2 import *
+from funs.fun_chy2 import *
 from ui.event import MainWindowEvent
 from ui.constants import MainWindowConstants
 from ui.logic import MainWindowLogic

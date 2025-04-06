@@ -1,7 +1,7 @@
-#	系数	标题	默认
-#	sum_check	"77,2:76"	
-#	send_hz	200	
-#	default	None
+#标题	设定
+#类型	系数	标题	默认
+#	sum	77,2:76
+#	autoHz	200	
 #	rulehead	<	
 B	1	帧头1	0x55
 B	1	帧头2	0xAA

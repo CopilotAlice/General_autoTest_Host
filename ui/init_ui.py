@@ -1,5 +1,6 @@
 # 初始化界面
 from datetime import datetime
+from funs.fun_locals import *
 from PyQt5 import QtWidgets, QtGui, QtCore
 class MainWindowInit:
     def __init__(self,mainWindow):
@@ -12,7 +13,7 @@ class MainWindowInit:
         # 初始化时间
         self.init_ui_time()
         self.init_ui_toolTip()
-        
+        self.init_ui_paths()
         
 
 
@@ -27,6 +28,7 @@ class MainWindowInit:
         self.init_sate_textBrowser_ascii()
 
         self.init_para_input()
+        
 
 
 
@@ -82,8 +84,20 @@ class MainWindowInit:
         self.mw.pushButton_para_loadOld.setToolTip('载入文件夹路径并重新排序\n适用于低版本文件路径重新排序\n—打开文件夹路径/\n——[测试项目1 ... 测试项目9]/\n———[产品名称1 ... 产品名称9]/\n—————[到位文件1 ... 到位文件9]')
         self.mw.pushButton_para_loadNew.setToolTip('载入文件夹路径并重新排序\n—打开文件夹路径/\n——[产品名称1 ... 产品名称9]/\n———[测试项目1 ... 测试项目9]/\n—————[到位文件1 ... 到位文件9]')
     
-    
-
+# ---------------初始化路径相关内容----------------
+    def init_ui_paths(self):
+        model_list = locals_model_list
+        self.list_comboBox_localNames = []
+        self.list_comboBox_localPaths = []
+        self.list_comboBox_localFiles = []
+        for name in model_list[0]:
+            self.list_comboBox_localNames.append(name)
+        for name in model_list[1]:
+            comboBox_file = self.mw.findChild(QtWidgets.QComboBox,'comboBox_%s_rule'%(name))
+            comboBox_path = self.mw.findChild(QtWidgets.QComboBox,'comboBox_%s_path'%(name))
+            self.list_comboBox_localFiles.append(comboBox_file)
+            self.list_comboBox_localPaths.append(comboBox_path)
+            
         
             
 
