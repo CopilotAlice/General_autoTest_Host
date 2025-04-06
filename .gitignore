@@ -3,3 +3,5 @@
 ./旧文件/
 旧文件/
 __pycache__
+./__pycache__/
+./ui/__pycache__/
