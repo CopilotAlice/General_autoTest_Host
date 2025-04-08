@@ -27,7 +27,7 @@
        <bool>false</bool>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>3</number>
       </property>
       <property name="usesScrollButtons">
        <bool>true</bool>
@@ -5622,6 +5622,11 @@ p, li { white-space: pre-wrap; }
                    </property>
                    <item>
                     <property name="text">
+                     <string>all</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
                      <string>1 tab</string>
                     </property>
                    </item>
@@ -5647,6 +5652,76 @@ p, li { white-space: pre-wrap; }
                    </property>
                    <property name="text">
                     <string>发送装订</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QGridLayout" name="gridLayout_2">
+                 <property name="horizontalSpacing">
+                  <number>0</number>
+                 </property>
+                 <item row="0" column="0">
+                  <widget class="QPushButton" name="pushButton_general_1">
+                   <property name="text">
+                    <string>预设指令</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QPushButton" name="pushButton_general_2">
+                   <property name="text">
+                    <string>预设指令</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QPushButton" name="pushButton_general_3">
+                   <property name="text">
+                    <string>预设指令</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QPushButton" name="pushButton_general_4">
+                   <property name="text">
+                    <string>预设指令</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QPushButton" name="pushButton_general_5">
+                   <property name="text">
+                    <string>预设指令</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="2">
+                  <widget class="QPushButton" name="pushButton_general_6">
+                   <property name="text">
+                    <string>预设指令</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QPushButton" name="pushButton_general_7">
+                   <property name="text">
+                    <string>预设指令</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QPushButton" name="pushButton_general_8">
+                   <property name="text">
+                    <string>预设指令</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="2">
+                  <widget class="QPushButton" name="pushButton_general_9">
+                   <property name="text">
+                    <string>预设指令</string>
                    </property>
                   </widget>
                  </item>
@@ -5716,6 +5791,25 @@ p, li { white-space: pre-wrap; }
                      <string>1188A</string>
                     </property>
                    </item>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="lineEdit_general_check_loc">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>40</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="placeholderText">
+                    <string>位置</string>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -8511,7 +8605,7 @@ p, li { white-space: pre-wrap; }
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>10</number>
+       <number>6</number>
       </property>
       <widget class="QWidget" name="tab_6">
        <attribute name="title">
@@ -14987,6 +15081,57 @@ p, li { white-space: pre-wrap; }
                 </item>
                 <item>
                  <widget class="QTextBrowser" name="textBrowser_debugMode_setting"/>
+                </item>
+               </layout>
+              </item>
+              <item row="0" column="3">
+               <layout class="QVBoxLayout" name="verticalLayout_54">
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_55">
+                  <item>
+                   <widget class="QCheckBox" name="checkBox_debugMode_times">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="text">
+                     <string>调试输出_times</string>
+                    </property>
+                    <property name="checkable">
+                     <bool>true</bool>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QCheckBox" name="checkBox_onlyLast_times">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="text">
+                     <string>仅显示最后_times</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_56">
+                  <item>
+                   <widget class="QLabel" name="label_241">
+                    <property name="text">
+                     <string>调试计数</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLCDNumber" name="lcdNumber_debugMode_times"/>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <widget class="QTextBrowser" name="textBrowser_debugMode_times"/>
                 </item>
                </layout>
               </item>

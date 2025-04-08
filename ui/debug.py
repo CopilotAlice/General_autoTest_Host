@@ -18,7 +18,7 @@ class MainWindowDebug:
             
     def debug_struct_init(self):
         self.struct_debug_list = []
-        self.debug_name_list = ['constants','logic','event','struct','setting']
+        self.debug_name_list = ['constants','logic','event','struct','setting','times']
         for debug_name in self.debug_name_list:
             self.struct_debug_list.append(struct_debug(self.mw,debug_name))
     
@@ -110,6 +110,7 @@ class struct_debug:
                 self.debug_count += 1
             
     def append_ui_msg(self,msg):
+        print(msg)
         # 若msg类型为string
         if isinstance(msg,str):
             self.debug_msgList.append(msg)

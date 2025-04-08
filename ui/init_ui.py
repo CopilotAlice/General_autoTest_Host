@@ -87,11 +87,13 @@ class MainWindowInit:
 # ---------------初始化路径相关内容----------------
     def init_ui_paths(self):
         model_list = locals_model_list
-        self.list_comboBox_localNames = []
+        self.list_comboBox_localLength = len(model_list[0])
+        self.list_localNames = []
+        
         self.list_comboBox_localPaths = []
         self.list_comboBox_localFiles = []
-        for name in model_list[0]:
-            self.list_comboBox_localNames.append(name)
+        for name in model_list[2]:
+            self.list_localNames.append(name)
         for name in model_list[1]:
             comboBox_file = self.mw.findChild(QtWidgets.QComboBox,'comboBox_%s_rule'%(name))
             comboBox_path = self.mw.findChild(QtWidgets.QComboBox,'comboBox_%s_path'%(name))
