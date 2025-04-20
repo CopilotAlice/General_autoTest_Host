@@ -8,7 +8,7 @@
 3	out_acc	20	转台外框加速度
 4	hold_time	15	转台转动后等待时间!!!!!!勿动!!!!!!
 5	turntable_check_status	0	1:根据转台状态反馈来决定是否到位/0:转动命令发送后固定等待hold_time
-6	save_turntable_status   0   是否保存转台运动信息		
+6	save_turntable_status	0	是否保存转台运动信息		
 # --------------保存文件配置项#202402#--------------			
 5	save_alldata_ms	1	是否保存所有毫秒值 1True/0False
 6	save_alldata_s	1	是否保存所有秒值 1True/0False

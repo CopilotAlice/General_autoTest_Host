@@ -22,6 +22,9 @@ class MainWindowConstants:
         # 初始化结构体 发送卫导数据
         self.init_send_struct()
         
+        # # 初始化结构体 装订信息缓存
+        # self.init_send_cache()
+        
     # 初始化载入文件全局变量
     def init_load_path(self):
         self.load_filepath = os.getcwd()
@@ -32,9 +35,15 @@ class MainWindowConstants:
         self.structList_12tab.append(struct_tab_setting(self.mw,'all'))
         for i in range(14):
             self.structList_12tab.append(struct_tab_setting(self.mw,i+1))
+        self.cache_sendHexList = []
+        for i in range(12):
+            self.cache_sendHexList.append('')
+        self.cache_sendAsciiList = []
+        for i in range(12):
+            self.cache_sendAsciiList.append('')
         
     def init_general_bind(self):
-        self.mw.struct_general_bind = struct_general_bind()
+        self.mw.class_general_bind = struct_general_bind()
     
     # 初始化结构体 发送卫导数据
     def init_send_struct(self):
@@ -50,4 +59,3 @@ class MainWindowConstants:
         ]
         self.struct_sate = struct_sate()
         self.struct_sate.init_sate_save(lists)
-        

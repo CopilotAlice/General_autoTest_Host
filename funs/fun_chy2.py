@@ -159,6 +159,48 @@ def try_return_format(format):
 def try_return_int(data,default=1):
     try:return int(data)
     except:return default
+def try_return_num(data,default=1):
+    try:
+        data = float(data)
+        return int(data) if data.is_integer() else data
+    except:
+        return default
+def try_return_checkRule(data,default=False):
+    # 77,2:76
+    try:
+        for i in [' ',',','，',':','：']:
+            data = data.replace(i,' ')
+        check_tar = int(data.split()[0])
+        check_beg = int(data.split()[1])
+        check_end = int(data.split()[2])
+        return [check_tar,check_beg,check_end]
+    except:
+        return default
+def try_return_bdx(data,default=1):
+    if '0x' in data:
+        try: return int(data,16)
+        except: return default
+    elif '0b' in data:
+        try: return int(data,2)
+        except:return default
+    else:
+        return try_return_num(data,default)
+def try_return_check(data,type):
+    limits = {
+        'b': 256,
+        'B': 256,
+        'h': 65536,
+        'H': 65536,
+        'i': 2**32,
+        'I': 2**32,
+        'q': 2**64,
+        'Q': 2**64
+    }
+    try:
+        return int(data) % limits[type]
+    except:
+        return 0
+        
 def try_int_data(data,default=1):
     try:
         return int(data),False

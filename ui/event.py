@@ -32,19 +32,136 @@ class MainWindowEvent:
             load_path+= '/{}'.format(comboxpath)
         load_name = self.mw.comboBox_general_rule.currentText()
         # print('changeEvent_general_rule事件：{}'.format(self.mw.comboBox_general_rule.currentText()))
+        if (len(load_name)==0)|(load_name=='选择协议'):
+            return False
         try:
+            print('载入文件:{}'.format(load_name))
             filename = '{}/{}.txt'.format(load_path,load_name)
             if os.path.exists(filename):
                 with open(filename,'r+',encoding='gb2312') as f:
                     bind_rule_file = f.read()
-                self.mw.struct_general_bind.read_struct_file(bind_rule_file)
+                self.mw.class_general_bind.read_struct_file(bind_rule_file)
+                self.funcEvent_general_changeButton()
+                self.funcEvent_general_changeTable()
+                self.changeEvent_general_bind_table()
                 return True
             else:
                 return False
         except Exception as e:
             # print('更新装订规则失败:{}'.format(e))
             return False
-        # self.mainWindow.read_binding()
+    # 设定装订规则事件按钮
+    def funcEvent_general_changeButton(self):
+        count = 0
+        for lists in self.mw.class_general_bind.struct_buttonList:
+            self.mw.init_ui.list_general_button[count].setText(lists[0])
+            count += 1
+    def funcEvent_general_changeTable(self):
+        self.mw.init_ui.flag_general_tableReady = False
+        table = self.mw.tableWidget_general_show
+        table.clear()
+        len_pack = len(self.mw.class_general_bind.struct_packList)
+        table.setRowCount(len_pack)
+        table.setColumnCount(4)
+        table_title = ['类型','系数','标题','输入']
+        for i in range(4):
+            table.setHorizontalHeaderItem(i,QtWidgets.QTableWidgetItem(table_title[i]))
+        table.setColumnWidth(0,35)
+        table.setColumnWidth(1,35)
+        table.setColumnWidth(2,60)
+        table.setColumnWidth(3,100)
+        try:
+            for i in range(len_pack):
+                table.setItem(i,0,QtWidgets.QTableWidgetItem(str(self.mw.class_general_bind.struct_packList[i])))
+                table.setItem(i,1,QtWidgets.QTableWidgetItem(str(self.mw.class_general_bind.struct_paraList[i])))
+                table.setItem(i,2,QtWidgets.QTableWidgetItem(str(self.mw.class_general_bind.struct_titlList[i])))
+                table.setItem(i,3,QtWidgets.QTableWidgetItem(str(self.mw.class_general_bind.struct_dataList[i])))
+            self.mw.init_ui.flag_general_tableReady = True
+        except Exception as e:
+            print('更新装订规则表格失败:{}'.format(e))
+            pass
+    def changeEvent_general_bind_table(self):
+        if not self.mw.init_ui.flag_general_tableReady:
+            return
+        table_widget = self.mw.tableWidget_general_show
+        rows = table_widget.rowCount()
+        cols = table_widget.columnCount()
+        struct_head = self.mw.class_general_bind.struct_format
+        data = []
+        for row in range(rows):
+            row_data = []
+            for col in range(cols):
+                item = table_widget.item(row, col)
+                text = item.text() if item is not None else ""
+                row_data.append(text)
+            data.append(row_data)
+        send_command = b''
+        send_command_list = []
+        for i in range(len(data)):
+            send_rule = data[i]
+            try:
+                if ('f' in send_rule[0].lower())|('d' in send_rule[0].lower()):
+                    send_byte = struct.pack(
+                        struct_head+send_rule[0],try_return_bdx(send_rule[3])/float(send_rule[1])
+                        )
+                else:
+                    send_byte = struct.pack(
+                        struct_head+send_rule[0],int( try_return_bdx(send_rule[3])/float(send_rule[1]) )
+                        )
+            except Exception as e:
+                send_byte = struct.calcsize(struct_head+send_rule[0])*b'\xFF'
+            # send_command += send_byte
+            send_command_list.append(send_byte)
+        try:
+            ruleCheck = self.mw.class_general_bind.struct_ruleCheck
+            if ruleCheck:
+                check_type = self.mw.class_general_bind.struct_typeCheck
+                if check_type=='sum':
+                    check_string = b''.join(send_command_list[ruleCheck[1]:ruleCheck[2]])
+                    check_sum = try_return_check(sum(check_string),data[ruleCheck[0]][0])
+                    send_command_list[ruleCheck[0]] = struct.pack(
+                        struct_head+data[ruleCheck[0]][0],check_sum
+                    )
+        except Exception as e:
+            print('更新装订规则校验位失败:{}'.format(e))
+        send_command = b''.join(send_command_list)
+            
+        self.mw.textEdit_general_msg.setPlainText(' '.join(f'{byte:02X}' for byte in send_command))
+    def clickEvent_general_send(self):
+        send_text = self.mw.textEdit_general_msg.toPlainText()
+        send_tab = self.mw.comboBox_general_com.currentText()
+        send_text = send_text.replace(' ','')
+        if len(send_text)%2==1:
+            send_text += '0'
+        try:
+            send_index = int(send_tab.spplit(' ')[0])
+        except:
+            send_index = False
+        if send_index:
+            self.mw.constants.cache_sendHexList[send_index-1] = send_text
+        else:
+            for i in range(12):
+                self.mw.constants.cache_sendHexList[i] = send_text
+        
+    # 装订规则事件按钮触发
+    def clickEvent_general_bind(self):
+        sender = self.mw.sender()
+        button_name = sender.objectName()
+        button_index = int(button_name.split('_')[2])
+        try:
+            send_command = self.mw.class_general_bind.struct_buttonList[button_index-1][1]
+        except:
+            send_command = ''
+        send_tab = self.mw.comboBox_general_com.currentText()
+        try:
+            send_index = int(send_tab.spplit(' ')[0])
+        except:
+            send_index = False
+        if send_index:
+            self.mw.constants.cache_sendHexList[send_index-1] = send_command
+        else:
+            for i in range(12):
+                self.mw.constants.cache_sendHexList[i] = send_command
         
 
 # -----------------12路设置模块事件-----------------

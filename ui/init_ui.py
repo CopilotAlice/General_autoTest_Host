@@ -29,6 +29,8 @@ class MainWindowInit:
         self.init_para_input()
         
 
+# ------------------初始化装订----------------
+        self.init_general_button()
 
 
 # ------------------初始化界面----------------
@@ -139,4 +141,10 @@ class MainWindowInit:
             self.list_para_input.append(
                 self.mw.findChild(QtWidgets.QLineEdit, 'lineEdit_para_input_{}'.format(i+1))
             )
-        
+    def init_general_button(self):
+        self.flag_general_tableReady = False
+        self.list_general_button = []
+        for i in range(9):
+            self.list_general_button.append(
+                self.mw.findChild(QtWidgets.QPushButton, 'pushButton_general_{}'.format(i+1))
+            )

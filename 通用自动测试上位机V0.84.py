@@ -62,7 +62,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
-        self.setWindowTitle("通用自动测试上位机_蔡_功能测试版_2503_V0.83")
+        self.setWindowTitle("通用自动测试上位机_蔡_功能测试版_2504_V0.84")
         
         # 调试模式函数
         self.debug = MainWindowDebug(self)
@@ -81,7 +81,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # 获取UI函数
         self.getui = MainWindowGetUI(self)
 
-        self.tableWidget_general_show.setColumnWidth(0, 10)
+        # self.tableWidget_general_show.setColumnWidth(0, 10)
         # 初始化界面元素
         self.inside_location = 0.0
         self.inside_speed = 0.0
@@ -143,7 +143,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.default_latitude = 39.73155
         self.default_g = 9.801538877
         self.show_message_automatic_list = []
-        self.show_message_automatic_list_2 = []
         self.show_message_singletest = None
         self.lineEdit_automatic_mode_list = []
         self.show_message_dis1_list = []
@@ -212,6 +211,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.list_sate_KSXT = self.default_sate_KSXT
         self.default_sate_list = []
         self.default_sate_data = []
+        
         
         
         # debug调试状态
@@ -614,7 +614,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # 事件5s更新
         self.show_timer3 = QTimer(self)
         self.show_timer3.timeout.connect(self.show_message_5s)
-        self.show_timer3.start(2000)
+        self.show_timer3.start(1000)
         # 事件2s更新
         self.show_timer4 = QTimer(self)
         self.show_timer4.timeout.connect(self.show_message_2s)
@@ -718,14 +718,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.textBrowser_automatic_ruleline.append(self.show_message_automatic_list.pop(0))
             self.textBrowser_automatic_ruleline.verticalScrollBar().setValue(self.textBrowser_automatic_ruleline.verticalScrollBar().maximum())
         
-        if len(self.show_message_automatic_list_2)>0:
-            self.textBrowser_automatic_ruleline_2.append(self.show_message_automatic_list_2.pop(0))
-            self.textBrowser_automatic_ruleline_2.verticalScrollBar().setValue(self.textBrowser_automatic_ruleline_2.verticalScrollBar().maximum())
         for i in range(12):
             while len(self.show_message_list[i])>0:
-                # textBrowsers = self.findChild(QtWidgets.QTextBrowser,'textBrowser_%s'%(i+1))
-                # textBrowsers.append(self.show_message_list[i].pop(0))
-                # textBrowsers.verticalScrollBar().setValue(textBrowsers.verticalScrollBar().maximum())
                 self.textBrowser_list[i].append( self.show_message_list[i].pop(0) )
 
                 
@@ -1068,7 +1062,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             com_lists = []
             for com in plist:
                 com_lists.append(str(list(com)[0]))
-            # com_lists.sort()
             com_lists = sorted(com_lists,key=lambda x:int(x[3:]))
             for comboBox in self.comboBox_com_list+self.combox_com_list:
                 comboBox_com_list = []
@@ -1081,24 +1074,17 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         print('comboBox_com_list中没有None项:{}'.format(comboBox_com_list))
                 comboBox_com_list = sorted(comboBox_com_list,key=lambda x:int(x[3:]))
                 if comboBox_com_list==com_lists:
-                    if self.debug_update_5s:
-                        print('没有新的com口')
                     continue
-                elif self.debug_update_5s:
-                    print('选择了新的com口:{}'.format(com_lists))
                 select_combo = comboBox.currentText()
                 comboBox.clear()
                 comboBox.addItem('None')
                 for com in com_lists:
                     comboBox.addItem(com)
                 comboBox.setCurrentText(select_combo)
-                # if select_combo in com_lists:
-                #     comboBox.setCurrentText(select_combo)
-                # else:
-                #     comboBox.setCurrentIndex(0)
         if self.comboBox_update_com_flag:
             self.times.timeEvent_update_combobox()
-        
+            
+            
     # 单路多路同步更新 20240425
     def protocal_com_change(self):
         protocal_com = self.comboBox_protocal_com.currentText()
@@ -2724,6 +2710,18 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             except Exception as e:
                 # print('发送装订失败')
                 self.debug_list_1.append('{} 发送装订失败{}\n{}发送装订失败{}'.format(self.normal_time,send_commands,self.normal_time,e))
+            try:
+                if len(self.constants.cache_sendHexList[thread_num])>0:
+                    send_commands = self.constants.cache_sendHexList[thread_num]
+                    self.constants.cache_sendHexList[thread_num] = ''
+                    serials.write(bytes.fromhex(send_commands))
+                if len(self.constants.cache_sendAsciiList[thread_num])>0:
+                    send_commands = self.constants.cache_sendAsciiList[thread_num]
+                    self.constants.cache_sendAsciiList[thread_num] = ''
+                    serials.write(send_commands.encode('ascii'))
+            except Exception as e:
+                # print('发送装订失败')
+                self.debug_list_1.append('{} 发送装订失败{}\n{}发送装订失败{}'.format(self.normal_time,send_commands,self.normal_time,e))
             
             try:
                 if len(self.ascii_cache_list[thread_num])>0:
@@ -3385,11 +3383,19 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                             self.debug_list_1.append('{} 转台未到位 继续等待中...'.format(self.normal_time))
                             time.sleep(1)
                 else:
-                    self.serial_test_begin_flag = True
-                    self.turntable_ready = True
-                    self.show_message_dis2_list.append('{} 转台已稳定 开始收数中...'.format(self.normal_time))
-                    self.turntable_will_turn = False
-                    self.bd_calib_flag = 0
+                    if ('到位' in i_status) &('到位' in o_status):
+                        self.debug_list_1.append('{} 转台到位'.format(self.normal_time))
+                        self.serial_test_begin_flag = True
+                        self.turntable_ready = True
+                        self.show_message_dis2_list.append('{} 转台已稳定 开始收数中...'.format(self.normal_time))
+                        self.turntable_will_turn = False
+                        self.bd_calib_flag = 0
+                    else:
+                        self.serial_test_begin_flag = True
+                        self.turntable_ready = True
+                        self.show_message_dis2_list.append('{} ！转台未到位！ 开始收数中...'.format(self.normal_time))
+                        self.turntable_will_turn = False
+                        self.bd_calib_flag = 0
             # 即将转位标志位 用于calib生成
             if (time.time()-begin_time>waittime+self.config_hold_time-1)&(rule_count<len(rule_file)-1):
                 self.turntable_will_turn = True
@@ -3796,3 +3802,4 @@ if __name__ == '__main__':
     mainWindow = MainWindow()
     mainWindow.show()
     sys.exit(app.exec_())
+    print('fun end')

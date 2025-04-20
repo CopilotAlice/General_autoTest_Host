@@ -1,7 +1,9 @@
 #标题	设定
 #类型	系数	标题	默认
-#	sum	77,2:76
+#	sum	27,2:26
 #	autoHz	200	
+#	button	发送原始脉冲	55 AA BB 22 49 01
+#	button	发送误差补偿	55 AA 49 22 01
 #	rulehead	<	
 B	1	帧头1	0x55
 B	1	帧头2	0xAA

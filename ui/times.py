@@ -26,6 +26,8 @@ class MainWindowTimes:
     
     # 更新事件-扫描文件夹路径 更新规则文件
     def timeEvent_update_combobox(self):
+        if (self.mw.sender() is None)|(isinstance(self.mw.sender(),QtWidgets.QComboBox)):
+            return False
         for counts in range(self.mw.init_ui.list_comboBox_localLength):
             comboBox_path = self.mw.init_ui.list_comboBox_localPaths[counts]
             comboBox_name = self.mw.init_ui.list_comboBox_localFiles[counts]
@@ -40,7 +42,7 @@ class MainWindowTimes:
                 continue
             if not os.path.exists(file_path):
                 os.makedirs(file_path)
-            
+            # 更新文件夹列表
             path_list = []
             for file_name in os.listdir('./'+file_path):
                 if os.path.isdir(file_path+'/'+file_name):
@@ -74,9 +76,11 @@ class MainWindowTimes:
             if not (select_path_name=='选择路径')|(select_path_name==''):
                 file_path = file_path+'/'+select_path_name
             
-            
+            # 更新文件夹下的文件列表
             file_list = []
             for file_name in os.listdir('./'+file_path):
+                if os.path.isdir(file_path+'/'+file_name):
+                    continue
                 file_name = file_name.split('.txt')[0]
                 file_list.append(file_name)
             file_list.sort()
@@ -97,6 +101,5 @@ class MainWindowTimes:
                     comboBox_name.setCurrentText(select_combo)
                 else:
                     comboBox_name.setCurrentIndex(0)
-            
             
         

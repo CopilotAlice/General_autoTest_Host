@@ -13,6 +13,7 @@ class MainWindowLogic:
         self.logic_protocal_rule_change()
         self.logic_comboBoxPath_update()
         
+        
         # 辅助卫导接收事件逻辑
         self.logic_auxsate()
         # 处理标定数据
@@ -27,7 +28,10 @@ class MainWindowLogic:
     # 装订规则更新事件
     def logic_general_bind(self):
         self.mw.comboBox_general_rule.currentTextChanged.connect(self.mw.events.changeEvent_general_rule)
-
+        for i in range(9):
+            self.mw.init_ui.list_general_button[i].clicked.connect(self.mw.events.clickEvent_general_bind)
+        self.mw.tableWidget_general_show.itemChanged.connect(self.mw.events.changeEvent_general_bind_table)
+        self.mw.pushButton_general_send.clicked.connect(self.mw.events.clickEvent_general_send)
     
     # 12路设置模块 逻辑 12路串口更新设定
     def logic_12tab_setting(self):
@@ -65,6 +69,8 @@ class MainWindowLogic:
         self.mw.pushButton_para_savePara.clicked.connect(self.mw.events.clickEvent_para_savePara)
     
     def logic_comboBoxPath_update(self):
-        for paths in self.mw.init_ui.list_comboBox_localPaths:
-            paths.currentTextChanged.connect(self.mw.times.timeEvent_update_combobox)
-                
+        try:
+            for paths in self.mw.init_ui.list_comboBox_localPaths:
+                paths.currentTextChanged.connect(self.mw.times.timeEvent_update_combobox)
+        except Exception as e:
+            print("comboBoxPath_update error:",e)

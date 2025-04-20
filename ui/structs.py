@@ -22,23 +22,26 @@ class struct_general_bind:
         self.struct_packRule = ''
         self.struct_len = 0
         self.struct_sendHz = 1
-        self.struct_dataList = []
         self.struct_packList = []
         self.struct_paraList = []
         self.struct_titlList = []
+        self.struct_dataList = []
+        self.struct_buttonList = []
         self.struct_default = ''
-        self.struct_sumCheck = None
-        self.struct_crcCheck = None
+        self.struct_typeCheck = False
+        self.struct_ruleCheck = False
         self.struct_debugList = []
         self.struct_debugFlag = False
+        
     def read_struct_file(self,struct_file):
+        self.init_structList()
         if len(struct_file)==0:
             return 
         for line in struct_file.split('\n'):
             split_data = line.split()
             if len(split_data)<3:
                 continue
-            if '#' in split_data[0]:
+            if line.startswith('#'):
                 tar = split_data[1].lower()
                 val = split_data[2]
                 if 'default' in tar:
@@ -47,8 +50,40 @@ class struct_general_bind:
                     self.struct_format = try_return_format(val)
                 if 'send_hz' in tar:
                     self.struct_sendHz = try_return_int(val,1)
+                if 'sum' in tar.lower():
+                    self.struct_typeCheck = 'sum'
+                    self.struct_ruleCheck = try_return_checkRule(val)
+                if 'crc' in tar.lower():
+                    self.struct_typeCheck = 'crc'
+                    self.struct_ruleCheck = try_return_checkRule(val)
+                if 'button' in tar.lower():
+                    self.struct_buttonList.append([val,''.join(split_data[3:])])
+                    
+            elif len(split_data)<4:
+                self.struct_debugList.append('未知规则行:{}'.format(line))
             elif split_data[0] in self.struct_decode:
-                self.struct_packList.apppend(split_data[0])
+                self.struct_packList.append(split_data[0])
+                self.struct_paraList.append(try_return_num(split_data[1]))
+                self.struct_titlList.append(split_data[2])
+                self.struct_dataList.append(split_data[3])
+            else:
+                self.struct_debugList.append('未知规则行:{}'.format(line))
+                continue
+        self.get_struct_len()
+    def init_structList(self):
+        self.struct_ruleCheck = False
+        self.struct_typeCheck = False
+        self.struct_packList = []
+        self.struct_paraList = []
+        self.struct_titlList = []
+        self.struct_dataList = []
+        self.struct_buttonList = []
+        self.struct_debugList = []
+    def get_struct_len(self):
+        self.struct_len = 0
+        self.struct_packRule = self.struct_format+''.join(self.struct_packList)
+        self.struct_len = struct.calcsize(self.struct_packRule)
+        return self.struct_len,self.struct_packRule 
       
       
         
