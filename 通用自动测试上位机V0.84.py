@@ -14,7 +14,7 @@ from ui.logic import MainWindowLogic
 from ui.debug import MainWindowDebug
 from ui.times import MainWindowTimes
 from ui.settings import MainWindowSetting
-from ui.settings import MainWindowSetting
+from ui.get_ui import MainWindowGetUI
 
 # 其他正常模块
 import datetime
@@ -78,6 +78,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.events = MainWindowEvent(self)
         # 逻辑事件逻辑
         self.uilogic = MainWindowLogic(self)
+        # 获取UI函数
+        self.getui = MainWindowGetUI(self)
 
         self.tableWidget_general_show.setColumnWidth(0, 10)
         # 初始化界面元素
@@ -114,7 +116,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.list_gv_pen2 = [self.gv_pen_x2,self.gv_pen_y2,self.gv_pen_z2]
         self.list_gv_adp = [self.graphicsView_gyr_X_adp,self.graphicsView_gyr_Y_adp,self.graphicsView_gyr_Z_adp]
         self.list_mean_data = [self.lineEdit_inside_plot_mean1,self.lineEdit_inside_plot_mean2,self.lineEdit_inside_plot_mean3]
+        self.list_ffz_data = [self.lineEdit_inside_plot_ffz1,self.lineEdit_inside_plot_ffz2,self.lineEdit_inside_plot_ffz3]
         self.list_std_data = [self.lineEdit_inside_plot_stds1,self.lineEdit_inside_plot_stds2,self.lineEdit_inside_plot_stds3]
+        
         
         self.graphicsView_INU_loc_adp = self.graphicsView_INU_loc.addPlot()
         self.graphicsView_INU_loc_error_adp = self.graphicsView_INU_loc_error.addPlot()
@@ -847,13 +851,18 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         plot_data = list_para[i]*plot_dataframe.iloc[skip_count:-end_count,list_axis[i]].reset_index(drop=True).rolling(rolls).mean()
                     self.list_gv_pen[i].setData(plot_data)
                     try:
-                        self.list_gv_adp[i].setTitle('{} + {}'.format(list_title[i],list_title2[i]))
+                        if ('none' in list_title2[i])|(len(list_title2[i])==0):
+                            show_title = list_title[i]
+                        else:
+                            show_title = '{} + {}'.format(list_title[i],list_title2[i])
+                        self.list_gv_adp[i].setTitle(show_title)
                     except Exception as e:
-                        self.debug_list_1.append('{}设置绘图标题错误:{}'.format(self.normal_time,e))
+                        self.debug_list_1.append('{}设置绘图标题错误:{}'.format(self .normal_time,e))
                     mean_data = plot_data.mean()
                     self.list_mean_data[i].setText('{:.{}f}'.format(mean_data,self.default_plot_decimal))
+                    ffz_data = plot_data.max()-plot_data.min()
+                    self.list_ffz_data[i].setText('{:.{}f}'.format(ffz_data,self.default_plot_decimal))
                     stds_data = float(plot_data.std())
-                    # print(stds_data)
                     self.list_std_data[i].setText('{:.{}f}'.format(stds_data,self.default_plot_decimal))
                     # 绘制双Y轴
                     try:

@@ -11,6 +11,7 @@ class MainWindowLogic:
         self.logic_12tab_setting()
         # 通讯协议选择更新事件
         self.logic_protocal_rule_change()
+        self.logic_comboBoxPath_update()
         
         # 辅助卫导接收事件逻辑
         self.logic_auxsate()
@@ -64,9 +65,6 @@ class MainWindowLogic:
         self.mw.pushButton_para_savePara.clicked.connect(self.mw.events.clickEvent_para_savePara)
     
     def logic_comboBoxPath_update(self):
-        mode_list = ['protocal','turntable','general','automatic']
-        for mode in mode_list:
-            comboBox = self.mw.findChild(self.mw.QtWidgets.QComboBox,'comboBox_{}_path'.format(mode))
-            if comboBox:
-                comboBox.currentTextChanged.connect(self.mw.show_message_5s)
+        for paths in self.mw.init_ui.list_comboBox_localPaths:
+            paths.currentTextChanged.connect(self.mw.times.timeEvent_update_combobox)
                 

@@ -2,6 +2,7 @@
 # 全局变量/结构体控制模块
 import os
 from ui.structs import *
+from funs.fun_locals import *
 class MainWindowConstants:
     def __init__(self,mainWindow):
         self.mw = mainWindow
@@ -20,7 +21,6 @@ class MainWindowConstants:
         self.init_send_struct()
         # 初始化结构体 发送卫导数据
         self.init_send_struct()
-        
         
     # 初始化载入文件全局变量
     def init_load_path(self):
@@ -50,3 +50,4 @@ class MainWindowConstants:
         ]
         self.struct_sate = struct_sate()
         self.struct_sate.init_sate_save(lists)
+        

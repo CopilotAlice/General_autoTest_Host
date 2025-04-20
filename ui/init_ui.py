@@ -16,7 +16,6 @@ class MainWindowInit:
         self.init_ui_paths()
         
 
-
 # ------------------接收转发/卫导数据接收&转发--------------
         # 初始化  卫导数据列表
         self.init_recforward_data()
@@ -26,7 +25,7 @@ class MainWindowInit:
         self.init_ui_recforward()
         # 初始化  卫导数据列表
         self.init_sate_textBrowser_ascii()
-
+        # 初始化 数据处理模块
         self.init_para_input()
         
 
