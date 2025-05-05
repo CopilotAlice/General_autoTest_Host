@@ -10,20 +10,20 @@ class MainWindowEvent:
         self.mw = mainWindow
 
 
-# ------------------接收转发/卫导数据接收&转发 开发中--------------
-    def clkEvent_recforward_all(self):
-        checked = self.mw.checkBox_recforward_all.isChecked()
-        for checkbox in self.mw.init_ui.recforward_check_list:
-            checkbox.setChecked(checked)
+# ------------------接收转发/卫导数据接收&转发 202502 废弃中--------------
+    # def clkEvent_recforward_all(self):
+    #     checked = self.mw.checkBox_recforward_all.isChecked()
+    #     for checkbox in self.mw.init_ui.recforward_check_list:
+    #         checkbox.setChecked(checked)
 
-    def changeEvent_recforward(self):
-        recforward_text = self.mw.textEdit_recforward_msg.toPlainText()
-        print(recforward_text)
-        rf_list = recforward_text.split(',')
+    # def changeEvent_recforward(self):
+    #     recforward_text = self.mw.textEdit_recforward_msg.toPlainText()
+    #     print(recforward_text)
+    #     rf_list = recforward_text.split(',')
 
 
 
-# ------------------通用装订逻辑事件 开发中--------------
+# ------------------通用装订逻辑事件--------------
     # 更新装订规则事件
     def changeEvent_general_rule(self):
         load_path = './装订规则'
@@ -35,7 +35,7 @@ class MainWindowEvent:
         if (len(load_name)==0)|(load_name=='选择协议'):
             return False
         try:
-            print('载入文件:{}'.format(load_name))
+            # print('载入文件:{}'.format(load_name))
             filename = '{}/{}.txt'.format(load_path,load_name)
             if os.path.exists(filename):
                 with open(filename,'r+',encoding='gb2312') as f:
@@ -50,11 +50,16 @@ class MainWindowEvent:
         except Exception as e:
             # print('更新装订规则失败:{}'.format(e))
             return False
+    def funcEvent_general_clearButton(self):
+        for i in range(9):
+            self.mw.init_ui.list_general_button[i].setText('预设指令')
+            self.mw.init_ui.list_general_mainWindowButton[i].setText('预设指令')
     # 设定装订规则事件按钮
     def funcEvent_general_changeButton(self):
         count = 0
         for lists in self.mw.class_general_bind.struct_buttonList:
             self.mw.init_ui.list_general_button[count].setText(lists[0])
+            self.mw.init_ui.list_general_mainWindowButton[count].setText(lists[0])
             count += 1
     def funcEvent_general_changeTable(self):
         self.mw.init_ui.flag_general_tableReady = False
@@ -100,14 +105,24 @@ class MainWindowEvent:
         for i in range(len(data)):
             send_rule = data[i]
             try:
+                pack_rule = struct_head+send_rule[0]
                 if ('f' in send_rule[0].lower())|('d' in send_rule[0].lower()):
-                    send_byte = struct.pack(
-                        struct_head+send_rule[0],try_return_bdx(send_rule[3])/float(send_rule[1])
-                        )
+                    pack_data = try_return_bdx(send_rule[3])/float(send_rule[1])
                 else:
-                    send_byte = struct.pack(
-                        struct_head+send_rule[0],int( try_return_bdx(send_rule[3])/float(send_rule[1]) )
-                        )
+                    pack_data = int( try_return_bdx(send_rule[3])/float(send_rule[1]) )
+                send_byte = struct.pack(
+                    pack_rule,try_return_check(pack_data,send_rule[0])
+                )
+                # if ('f' in send_rule[0].lower())|('d' in send_rule[0].lower()):
+                #     send_byte = struct.pack(
+                #         struct_head+send_rule[0],
+                #         try_return_bdx(send_rule[3])/float(send_rule[1])
+                #         )
+                # else:
+                #     send_byte = struct.pack(
+                #         struct_head+send_rule[0],
+                #         int( try_return_bdx(send_rule[3])/float(send_rule[1]) )
+                #         )
             except Exception as e:
                 send_byte = struct.calcsize(struct_head+send_rule[0])*b'\xFF'
             # send_command += send_byte
@@ -127,6 +142,7 @@ class MainWindowEvent:
         send_command = b''.join(send_command_list)
             
         self.mw.textEdit_general_msg.setPlainText(' '.join(f'{byte:02X}' for byte in send_command))
+    # 点击事件触发
     def clickEvent_general_send(self):
         send_text = self.mw.textEdit_general_msg.toPlainText()
         send_tab = self.mw.comboBox_general_com.currentText()
@@ -147,21 +163,29 @@ class MainWindowEvent:
     def clickEvent_general_bind(self):
         sender = self.mw.sender()
         button_name = sender.objectName()
+        # print('clickEvent_general_bind事件：{}'.format(button_name))
         button_index = int(button_name.split('_')[2])
+        button_index = (button_index-1)%9
         try:
-            send_command = self.mw.class_general_bind.struct_buttonList[button_index-1][1]
+            send_command = self.mw.class_general_bind.struct_buttonList[button_index][1]
         except:
             send_command = ''
-        send_tab = self.mw.comboBox_general_com.currentText()
-        try:
-            send_index = int(send_tab.spplit(' ')[0])
-        except:
-            send_index = False
-        if send_index:
-            self.mw.constants.cache_sendHexList[send_index-1] = send_command
-        else:
-            for i in range(12):
-                self.mw.constants.cache_sendHexList[i] = send_command
+        send_command = send_command.replace(' ','')
+        if len(send_command)%2==1:
+            send_command += '0'
+        send_command = ' '.join([send_command[i:i+2] for i in range(0, len(send_command), 2)])
+        self.mw.textEdit_general_msg.setPlainText(send_command)
+        self.clickEvent_general_send()
+        # send_tab = self.mw.comboBox_general_com.currentText()
+        # try:
+        #     send_index = int(send_tab.spplit(' ')[0])
+        # except:
+        #     send_index = False
+        # if send_index:
+        #     self.mw.constants.cache_sendHexList[send_index-1] = send_command
+        # else:
+        #     for i in range(12):
+        #         self.mw.constants.cache_sendHexList[i] = send_command
         
 
 # -----------------12路设置模块事件-----------------

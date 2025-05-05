@@ -3,8 +3,8 @@ class MainWindowLogic:
     def __init__(self,mainWindow):
         self.mw = mainWindow
         
-        # 卫导转发逻辑事件
-        self.logic_recforward()
+        # # 卫导转发逻辑事件
+        # self.logic_recforward()
         # 装订规则更新事件
         self.logic_general_bind()
         # 12路设置模块 逻辑
@@ -19,10 +19,10 @@ class MainWindowLogic:
         # 处理标定数据
         self.logic_cal_BD_data()
 
-    # 卫导转发逻辑事件
-    def logic_recforward(self):
-        self.mw.textEdit_recforward_msg.textChanged.connect(self.mw.events.changeEvent_recforward)
-        self.mw.checkBox_recforward_all.clicked.connect(self.mw.events.clkEvent_recforward_all)
+    # # 卫导转发逻辑事件
+    # def logic_recforward(self):
+    #     self.mw.textEdit_recforward_msg.textChanged.connect(self.mw.events.changeEvent_recforward)
+    #     self.mw.checkBox_recforward_all.clicked.connect(self.mw.events.clkEvent_recforward_all)
 
 
     # 装订规则更新事件
@@ -30,6 +30,7 @@ class MainWindowLogic:
         self.mw.comboBox_general_rule.currentTextChanged.connect(self.mw.events.changeEvent_general_rule)
         for i in range(9):
             self.mw.init_ui.list_general_button[i].clicked.connect(self.mw.events.clickEvent_general_bind)
+            self.mw.init_ui.list_general_mainWindowButton[i].clicked.connect(self.mw.events.clickEvent_general_bind)
         self.mw.tableWidget_general_show.itemChanged.connect(self.mw.events.changeEvent_general_bind_table)
         self.mw.pushButton_general_send.clicked.connect(self.mw.events.clickEvent_general_send)
     

@@ -16,20 +16,20 @@ class MainWindowInit:
         self.init_ui_paths()
         
 
-# ------------------接收转发/卫导数据接收&转发--------------
-        # 初始化  卫导数据列表
-        self.init_recforward_data()
-        # 初始化  卫导数据列表
-        self.init_recforward_check()
-        # 设置 时间
-        self.init_ui_recforward()
-        # 初始化  卫导数据列表
-        self.init_sate_textBrowser_ascii()
-        # 初始化 数据处理模块
-        self.init_para_input()
+# ------------------接收转发/卫导数据接收&转发 202503废弃中--------------
+        # # 初始化  卫导数据列表
+        # self.init_recforward_data()
+        # # 初始化  卫导数据列表
+        # self.init_recforward_check()
+        # # 设置 时间
+        # self.init_ui_recforward()
+        # # 初始化  卫导数据列表
+        # self.init_sate_textBrowser_ascii()
+        # # 初始化 数据处理模块
+        # self.init_para_input()
         
 
-# ------------------初始化装订----------------
+# ------------------初始化通用装订 202504----------------
         self.init_general_button()
 
 
@@ -104,47 +104,51 @@ class MainWindowInit:
         
             
 
-# ------------------接收转发/卫导数据接收&转发--------------
-    def init_ui_recforward(self):
-        for i in range(7):
-            self.recforward_data_list[i].setText(
-                str(self.date_time_list[i])
-            )
-    def init_recforward_check(self):
-        self.recforward_check_list = []
-        for i in range(16):
-            self.recforward_check_list.append(
-                self.mw.findChild(QtWidgets.QCheckBox, 'checkBox_recforward_{}'.format(i+1))
-            )
-    def init_recforward_data(self):
-        self.recforward_data_list = []
-        for i in range(16):
-            self.recforward_data_list.append(
-                self.mw.findChild(QtWidgets.QLineEdit, 'lineEdit_recforward_{}'.format(i+1))
-            )
-    def init_recforward_shift(self):
-        self.recforward_shift_list = []
-        for i in range(16):
-            self.recforward_check_list.append(
-                self.mw.findChild(QtWidgets.QLineEdit, 'lineEdit_rf_flycontrol_{}'.format(i+1))
-            )
-    def init_sate_textBrowser_ascii(self):
-        self.textBrowser_ascii_list = []
-        for i in range(8):
-            self.textBrowser_ascii_list.append(
-                self.mw.findChild(QtWidgets.QTextBrowser, 'textBrowser_ascii_{}'.format(i))
-            )
+# ------------------接收转发/卫导数据接收&转发 废弃中--------------
+    # def init_ui_recforward(self):
+    #     for i in range(7):
+    #         self.recforward_data_list[i].setText(
+    #             str(self.date_time_list[i])
+    #         )
+    # def init_recforward_check(self):
+    #     self.recforward_check_list = []
+    #     for i in range(16):
+    #         self.recforward_check_list.append(
+    #             self.mw.findChild(QtWidgets.QCheckBox, 'checkBox_recforward_{}'.format(i+1))
+    #         )
+    # def init_recforward_data(self):
+    #     self.recforward_data_list = []
+    #     for i in range(16):
+    #         self.recforward_data_list.append(
+    #             self.mw.findChild(QtWidgets.QLineEdit, 'lineEdit_recforward_{}'.format(i+1))
+    #         )
+    # def init_recforward_shift(self):
+    #     self.recforward_shift_list = []
+    #     for i in range(16):
+    #         self.recforward_check_list.append(
+    #             self.mw.findChild(QtWidgets.QLineEdit, 'lineEdit_rf_flycontrol_{}'.format(i+1))
+    #         )
+    # def init_sate_textBrowser_ascii(self):
+    #     self.textBrowser_ascii_list = []
+    #     for i in range(8):
+    #         self.textBrowser_ascii_list.append(
+    #             self.mw.findChild(QtWidgets.QTextBrowser, 'textBrowser_ascii_{}'.format(i))
+    #         )
 
-    def init_para_input(self):
-        self.list_para_input = []
-        for i in range(5):
-            self.list_para_input.append(
-                self.mw.findChild(QtWidgets.QLineEdit, 'lineEdit_para_input_{}'.format(i+1))
-            )
+    # def init_para_input(self):
+    #     self.list_para_input = []
+    #     for i in range(5):
+    #         self.list_para_input.append(
+    #             self.mw.findChild(QtWidgets.QLineEdit, 'lineEdit_para_input_{}'.format(i+1))
+    #         )
     def init_general_button(self):
         self.flag_general_tableReady = False
         self.list_general_button = []
+        self.list_general_mainWindowButton = []
         for i in range(9):
             self.list_general_button.append(
                 self.mw.findChild(QtWidgets.QPushButton, 'pushButton_general_{}'.format(i+1))
+            )
+            self.list_general_mainWindowButton.append(
+                self.mw.findChild(QtWidgets.QPushButton, 'pushButton_general_{}'.format(i+10))
             )
