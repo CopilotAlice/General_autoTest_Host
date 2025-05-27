@@ -829,6 +829,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             skip_count = try_get_text(self.lineEdit_plot_skipcount,int,1)
             end_count = try_get_text(self.lineEdit_plot_endcoun,int,0)
             rolls = try_get_text(self.lineEdit_plot_rolling,int,1)
+            roll_string = self.lineEdit_plot_rolling.text()
+            try:rolls = int(roll_string.split()[0])
+            except:rolls = 1
+            try:rsteps = int(roll_string.split()[1])
+            except:rsteps = 1
             plot_dataframe = self.show_message_dataframe[plot_tab-1]
             if self.default_plot_flag:
                 if len(plot_dataframe)>self.default_plot_limit:
@@ -840,9 +845,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     continue
                 try:
                     if end_count==0:
-                        plot_data = list_para[i]*plot_dataframe.iloc[skip_count:,list_axis[i]].reset_index(drop=True).rolling(rolls).mean()
+                        plot_data = list_para[i]*plot_dataframe.iloc[skip_count:,list_axis[i]].reset_index(drop=True).rolling(rolls,step=rsteps).mean()
                     else:    
-                        plot_data = list_para[i]*plot_dataframe.iloc[skip_count:-end_count,list_axis[i]].reset_index(drop=True).rolling(rolls).mean()
+                        plot_data = list_para[i]*plot_dataframe.iloc[skip_count:-end_count,list_axis[i]].reset_index(drop=True).rolling(rolls,step=rsteps).mean()
                     self.list_gv_pen[i].setData(plot_data)
                     try:
                         if ('none' in list_title2[i])|(len(list_title2[i])==0):
@@ -2044,50 +2049,37 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         drop0data = []
         
-        # 帧头帧尾
         self.decode_rule_header = b'' 
         self.decode_rule_ender = b'' 
         read_line_count = 0
-        # 逐行读取规则文件
         for lines in rules.split('\n'):
             read_line_count+=1
-            # 规则文件配置项
             if lines.startswith('#'):
                 if len(lines.split())<3:
                     print('规则文件长度过少:{}'.format(lines))
                     continue
-                # 波特率
                 elif lines.split()[1].lower() == 'baund':
                     if sender_from_combox:
                         self.comboBox_protocal_baund.setCurrentText(lines.split()[2])
                         self.combox_set_baund_all.setCurrentText(lines.split()[2])
-                # 校验位
                 elif lines.split()[1].lower() == 'check':   
                     if sender_from_combox:
                         self.comboBox_protocal_check.setCurrentText(check2chinese(lines.split()[2]))
                         self.comboBox_set_check_all.setCurrentText(check2chinese(lines.split()[2]))
-                # 帧头
                 elif lines.split()[1].lower() == 'header':
                     self.decode_rule_header = bytes.fromhex(''.join(lines.split()[2:]))
-                # 帧尾
                 elif lines.split()[1].lower() == 'ender':
                     self.decode_rule_ender = bytes.fromhex(''.join(lines.split()[2:]))
-                # 帧率
                 elif lines.split()[1].lower() == 'receive_hz':
                     self.receive_hz = try_set_text(lines.split()[2],int,200)
-                # 经度
                 elif lines.split()[1].lower() == 'longitude':
                     self.lineEdit_binding_longitude.setText(lines.split()[2])
-                # 纬度
                 elif lines.split()[1].lower() == 'latitude':
                     self.lineEdit_binding_latitude.setText(lines.split()[2])
-                # 高度
                 elif lines.split()[1].lower() == 'height':
                     self.lineEdit_binding_height.setText(lines.split()[2])
-                # 对准时间
                 elif lines.split()[1].lower() == 'alignment_time':
                     self.lineEdit_binding_time.setText(lines.split()[2])
-                # 特殊标志位
                 elif lines.split()[1].lower() == 'special_flag':
                     self.config_special_flag = lines.split()[2]
                 elif lines.split()[1].lower() == 'sum_check':
@@ -2824,9 +2816,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         alldata_calib+=str(self.bd_calib_flag).rjust(2,' ')+'\n'
                             # calib_receive_data_hz+=str(receive_data_hz[0]).ljust(10,' ')+'\t'
                             
-                    if hz_count<receive_hz+1:
-                        receive_data_s = [receive_data_s[i]+receive_data_hz[i] for i in range(len(receive_data_hz))]
-                    else:
+                    receive_data_s = [receive_data_s[i]+receive_data_hz[i] for i in range(len(receive_data_hz))]
+                    
+                    if hz_count>=receive_hz:
+                    # else:
                         save_data_begin_time = time.time()
                         hz_count = 0
                         receive_s_count+=1  
@@ -3048,8 +3041,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     
     def plan_test_threading(self):
         count =0
+        load_path = './自动规则'
+        decode_rule_path = self.comboBox_automatic_path.currentText()
+        if decode_rule_path not in self.list_notpath:
+            load_path+= '/{}'.format(decode_rule_path)
         select_plan_name = self.comboBox_automatic_rule.currentText()
-        plan_rule_name = './自动规则/{}.txt'.format(select_plan_name)
+        plan_rule_name = '{}/{}.txt'.format(load_path,select_plan_name)
         try:
             plan_files = pd.read_csv(plan_rule_name,sep='\\s+',header=None,encoding='gb2312')
         except:
@@ -3204,11 +3201,23 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 try:
                     temp_com = self.comboBox_tempbox_com.currentText()
                     temp_serial = serial.Serial(temp_com, 9600)
-                    temp_commands = 'TEMP,S{}'.format(int(list_plan[2]))
-                    temp_serial.write(temp_commands.encode())
-                    self.show_message_automatic_list.append('{} 温箱:{}'.format(self.normal_time ,temp_commands))
-                except Exception as e:
-                    self.show_message_automatic_list.append('{} 错误:{}'.format(self.normal_time,temp_commands))
+                    if 'on' in list_plan[2].lower():
+                        temp_commands = 'POWER,ON'
+                    elif 'off' in list_plan[2].lower():
+                        temp_commands = 'POWER,OFF'
+                    else :
+                        temp_commands = 'TEMP,S{}'.format(int(list_plan[2]))
+                    result = '命令发送失败'
+                    for i in range(3):
+                        temp_serial.write(temp_commands.encode())
+                        time.sleep(0.1)
+                        wait = temp_serial.in_waiting
+                        if wait>0:
+                            result = temp_serial.read(wait).decode()
+                            break
+                    self.show_message_automatic_list.append('{} 温箱: {}'.format(self.normal_time, result))
+                except Exception as e:  
+                    self.show_message_automatic_list.append('{} 错误: {}'.format(self.normal_time,temp_commands))
                     self.debug_list_1.append('{} 设置温箱温度错误:{}\n\t{}'.format(self.normal_time,temp_commands,e))
                 temp_serial.close()
             else:
