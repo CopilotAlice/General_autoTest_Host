@@ -120,6 +120,11 @@ def split_pro(data):
     for symbol in split_symbol:
         data = '#*#'.join(data.split(symbol))
     return [item for item in data.split('#*#') if item]
+def split_plus(data):
+    split_list = data.replace('[','').replace(']','')
+    for flag in [',','，',':','：']:
+        split_list = split_list.replace(flag,' ')
+    return split_list.split()
 def move_dir_para_old(from_path,skip_name = ['all_ave']):
     from_path = Path(from_path)
     to_path = from_path
@@ -199,8 +204,12 @@ def try_return_check(data,type):
     try:
         return int(data) % limits[type]
     except:
-        return 0
-        
+        return data
+def try_int(data):
+    if isinstance(data,float) and data.is_integer():
+        return int(data)
+    return data
+
 def try_int_data(data,default=1):
     try:
         return int(data),False
@@ -393,268 +402,103 @@ class class_rule:
 
         
 
-class Turntable_class:
-    def __init__(self):
-        # 转台通讯协议数据帧格式
-        self.header='AAAA5555'
-        self.command_length = '3800'
-        self.command_count = '0100'
-        self.inside_command='80'
-        self.inside_para1 = '00000000'
-        self.inside_para2 = '00000000'
-        self.inside_para3 = '00000000'
-        self.outside_command='00'
-        self.outside_para1 = '00000000'
-        self.outside_para2 = '00000000'
-        self.outside_para3 = '00000000'
-        self.otherside_command='00'
-        self.otherside_para1 = '00000000'
-        self.otherside_para2 = '00000000'
-        self.otherside_para3 = '00000000'
-        self.thermostat_command = 'FF'
-        self.thermostat_speed = '00'
-        self.thermostat_target= '0000'
-        self.spare_command = 'FFFFFFFF'
-        self.check_command = '00'
-        self.all_hex = ''
-        self.split_hex = ''
-    # 组合各数据帧 计算校验并返回总指令
-    def get_command(self):
-        all_hex = ''.join([self.command_length,self.command_count,self.inside_command,self.inside_para1,self.inside_para2,self.inside_para3,self.outside_command,self.outside_para1,self.outside_para2,self.outside_para3,self.otherside_command,self.otherside_para1,self.otherside_para2,self.otherside_para3,self.thermostat_command,self.thermostat_speed,self.thermostat_target,self.spare_command])
-        # self.command_count = int2hex(int(reverse(self.command_count),16)+1,4)
-        # print(self.command_count)
-        split_hex = ''
-        check = 0
-        for i in range(len(all_hex)//2):
-            bit = all_hex[i*2:i*2+2]
-            split_hex+=bit+' '
-            check+=int(bit,16)
-        check = int2hex(check)
-        all_hex += check
-        split_hex += check
-        self.check_command = check
-        self.all_hex = self.header+all_hex
-        self.split_hex = 'AA AA 55 55 '+split_hex
-        return self.all_hex
-    # 内框置零
-    def reset_inside(self):
-        self.inside_command='00'
-        self.inside_para1 = '00000000'
-        self.inside_para2 = '00000000'
-        self.inside_para3 = '00000000'
-        return self.get_command()
-    # 外框置零
-    def reset_outside(self):
-        self.outside_command='00'
-        self.outside_para1 = '00000000'
-        self.outside_para2 = '00000000'
-        self.outside_para3 = '00000000'
-        return self.get_command()
-    # 内框归零
-    def reset_inside(self):
-        self.inside_command = '81'
-        self.inside_para1 = reverse(int2hex(0*10000,8))
-        self.inside_para2 = reverse(int2hex(10*10000,8))
-        self.inside_para3 = reverse(int2hex(10*100,8))
-        return self.get_command()
-    # 外框归零
-    def reset_outside(self):
-        self.outside_command = '81'
-        self.outside_para1 = reverse(int2hex(0*10000,8))
-        self.outside_para2 = reverse(int2hex(10*10000,8))
-        self.outside_para3 = reverse(int2hex(10*100,8))
-        return self.get_command()
-    # 内框设置位置
-    def inside_location(self,location=0,speed=10,acceleration=10):
-        self.inside_command = '81'
-        self.inside_para1 = reverse(int2hex(int(location*10000),8))
-        self.inside_para2 = reverse(int2hex(int(speed*10000),8))
-        self.inside_para3 = reverse(int2hex(int(acceleration*100),8))
-        return self.get_command()
-    # 内框设置速率
-    def inside_speed(self,speed=10,acceleration=10):
-        self.inside_command = '82'
-        self.inside_para1 = reverse(int2hex(int(speed*10000),8))
-        self.inside_para2 = reverse(int2hex(int(acceleration*100),8))
-        self.inside_para3 = '00000000'
-        return self.get_command()
-    # 外框设置位置
+# class Turntable_class:
+#     def __init__(self):
+#         # 转台通讯协议数据帧格式
+#         self.header='AAAA5555'
+#         self.command_length = '3800'
+#         self.command_count = '0100'
+#         self.inside_command='80'
+#         self.inside_para1 = '00000000'
+#         self.inside_para2 = '00000000'
+#         self.inside_para3 = '00000000'
+#         self.outside_command='00'
+#         self.outside_para1 = '00000000'
+#         self.outside_para2 = '00000000'
+#         self.outside_para3 = '00000000'
+#         self.otherside_command='00'
+#         self.otherside_para1 = '00000000'
+#         self.otherside_para2 = '00000000'
+#         self.otherside_para3 = '00000000'
+#         self.thermostat_command = 'FF'
+#         self.thermostat_speed = '00'
+#         self.thermostat_target= '0000'
+#         self.spare_command = 'FFFFFFFF'
+#         self.check_command = '00'
+#         self.all_hex = ''
+#         self.split_hex = ''
+#     # 组合各数据帧 计算校验并返回总指令
+#     def get_command(self):
+#         all_hex = ''.join([self.command_length,self.command_count,self.inside_command,self.inside_para1,self.inside_para2,self.inside_para3,self.outside_command,self.outside_para1,self.outside_para2,self.outside_para3,self.otherside_command,self.otherside_para1,self.otherside_para2,self.otherside_para3,self.thermostat_command,self.thermostat_speed,self.thermostat_target,self.spare_command])
+#         # self.command_count = int2hex(int(reverse(self.command_count),16)+1,4)
+#         # print(self.command_count)
+#         split_hex = ''
+#         check = 0
+#         for i in range(len(all_hex)//2):
+#             bit = all_hex[i*2:i*2+2]
+#             split_hex+=bit+' '
+#             check+=int(bit,16)
+#         check = int2hex(check)
+#         all_hex += check
+#         split_hex += check
+#         self.check_command = check
+#         self.all_hex = self.header+all_hex
+#         self.split_hex = 'AA AA 55 55 '+split_hex
+#         return self.all_hex
+#     # 内框置零
+#     def reset_inside(self):
+#         self.inside_command='00'
+#         self.inside_para1 = '00000000'
+#         self.inside_para2 = '00000000'
+#         self.inside_para3 = '00000000'
+#         return self.get_command()
+#     # 外框置零
+#     def reset_outside(self):
+#         self.outside_command='00'
+#         self.outside_para1 = '00000000'
+#         self.outside_para2 = '00000000'
+#         self.outside_para3 = '00000000'
+#         return self.get_command()
+#     # 内框归零
+#     def reset_inside(self):
+#         self.inside_command = '81'
+#         self.inside_para1 = reverse(int2hex(0*10000,8))
+#         self.inside_para2 = reverse(int2hex(10*10000,8))
+#         self.inside_para3 = reverse(int2hex(10*100,8))
+#         return self.get_command()
+#     # 外框归零
+#     def reset_outside(self):
+#         self.outside_command = '81'
+#         self.outside_para1 = reverse(int2hex(0*10000,8))
+#         self.outside_para2 = reverse(int2hex(10*10000,8))
+#         self.outside_para3 = reverse(int2hex(10*100,8))
+#         return self.get_command()
+#     # 内框设置位置
+#     def inside_location(self,location=0,speed=10,acceleration=10):
+#         self.inside_command = '81'
+#         self.inside_para1 = reverse(int2hex(int(location*10000),8))
+#         self.inside_para2 = reverse(int2hex(int(speed*10000),8))
+#         self.inside_para3 = reverse(int2hex(int(acceleration*100),8))
+#         return self.get_command()
+#     # 内框设置速率
+#     def inside_speed(self,speed=10,acceleration=10):
+#         self.inside_command = '82'
+#         self.inside_para1 = reverse(int2hex(int(speed*10000),8))
+#         self.inside_para2 = reverse(int2hex(int(acceleration*100),8))
+#         self.inside_para3 = '00000000'
+#         return self.get_command()
+#     # 外框设置位置
 
-    def outside_location(self,location=0,speed=10,acceleration=10):
-        self.outside_command = '81'
-        self.outside_para1 = reverse(int2hex(int(location*10000),8))
-        self.outside_para2 = reverse(int2hex(int(speed*10000),8))
-        self.outside_para3 = reverse(int2hex(int(acceleration*100),8))
-        return self.get_command()
-    # 外框设置速率
-    def outside_speed(self,speed=10,acceleration=10):
-        self.outside_command = '82'
-        self.outside_para1 = reverse(int2hex(int(speed*10000),8))
-        self.outside_para2 = reverse(int2hex(int(acceleration*100),8))
-        self.outside_para3 = '00000000'
-        return self.get_command()
-
-decode_rule_01 = '''#	大小端	是否保存	系数	标题	排序	注释
-#	baund	115200				
-#	check	none	(none/odd/even			
-#	header	99	66			
-#	latitude	39.73675				
-#	longitude	116.50984				
-#	height	20				
-#	alignment_time	100				
-#	receive_hz	50		
-#	drop0data    None   [1]					
-#	rulehead	<				
-B	0	1	0x99	N		
-B	0	1	0x66	N		
-B	0	1	帧数据长度	N		
-I	1	1	导航时间	0		
-i	1	8.381903175442434e-08	纬度	1		
-i	1	7.628928873515189e-06	高度	2		
-i	1	8.381903175442434e-08	经度	3		
-h	1	0.007812738425855281	X轴速度	N		
-h	1	0.007812738425855281	Y轴速度	N		
-h	1	0.007812738425855281	Z轴速度	N		
-h	1	0.005493331705679495	横滚角	N		
-h	1	0.005493331705679495	航向角	N		
-h	1	0.005493331705679495	俯仰角	N		
-h	1	0.009155552842799158	X轴角速率	N		
-h	1	0.009155552842799158	Y轴角速率	N		
-h	1	0.009155552842799158	Z轴角速率	N		
-h	1	0.0030518509475997192	X轴加速度	N		
-h	1	0.0030518509475997192	Y轴加速度	N		
-h	1	0.0030518509475997192	Z轴加速度	N		
-I	1	1	状态字低32位	N		
-I	1	1	状态字高32位	N		
-I	1	1	算法状态字低32位	N		
-B	1	1	导航方式状态字	N						
-#	rulehead	<	
-B	1	1	GPS状态	N		
-B	1	1	接收机定位星数	N		
-B	1	1	备份	N		
-i	1	8.381903175442434e-08	接收机纬度	N		
-i	1	7.628928873515189e-06	接收机高度	N		
-i	1	8.381903175442434e-08	接收机经度	N		
-h	1	0.005493331705679495	接收机航向	N		
-h	1	0.028125878933716678	接收机前向速度	N		
-h	1	0.007812738425855281	接收机PDOP值	N					
-#	rulehead	<		
-h	1	1	导航软件版本号	N		
-I	1	1	惯导产品编号	N		
-h	1	1	惯导滚动角误差估计值	N		
-h	1	1	惯导俯仰角误差估计值	N		
-h	1	1	X加表零位估计值	N		
-h	1	1	Y加表零位估计值	N		
-h	1	1	Z加表零位估计值	N		
-h	1	0	备份	N		
-h	1	0	备份	N		
-B	1	0	备份	N		
-B	1	0	异或校验	N		
-B	1	0	和校验	N		'''
-decode_rule_02 = '''#	是否保存	系数	标题	排序	注释
-#	baund	460800			
-#	check	none	(none/odd/even		
-#	header	55	AA		
-#	ender	C0	FF		
-#	latitude	39.73675			
-#	longitude	116.50984			
-#	height	20			
-#	alignment_time	200			
-#	receive_hz	200			
-#	special_flag	gd1s_wd			
-#	sum_check	None	[2,3:61]
-#	drop0data    [1]			
-#	rulehead	>			
-B	0	1	0x55	N	
-B	0	1	0xAA	N	
-B	0	1	校验和	N	（3~61字节的和）
-B	0	1	PPS到来时间差	N	（4us/LSB
-H	0	1	状态字	N	（0x07:标识PPS到来；）
-h	1	0.0625	z加表温度	12	（输出值/16为加表温度℃）
-I	1	0.005	5ms计数	0	
-f	1	41256000	Gx	1	（5ms的角度增量，单位为弧度）
-f	1	41256000	Gy	2	（5ms的角度增量，单位为弧度）
-f	1	41256000	Gz	3	（5ms的角度增量，单位为弧度）
-f	1	200	Ax	4	（5ms的速度增量，m/s）
-f	1	200	Ay	5	（5ms的速度增量，m/s）
-f	1	200	Az	6	（5ms的速度增量，m/s）
-h	1	0.0625	x陀螺温度	7	（输出值为陀螺温度℃）
-h	1	0.0625	y陀螺温度	8	（输出值为陀螺温度℃）
-h	1	0.0625	z陀螺温度	9	（输出值为陀螺温度℃）
-h	1	0.0625	x加表温度	10	（输出值/16为加表温度℃）
-h	1	0.0625	y加表温度	11	（输出值/16为加表温度℃）
-B	1	1	校正使能	N	
-B	1	1	无线电有效标志	N	
-B	1	1	气压高度标志	N	
-B	1	1	卫导模式	N	
-B	1	1	保留	N	
-B	1	1	系统工作状态	N	
-B	1	1	卫导1更新标志	N	
-B	1	1	卫导2更新标志	N	
-B	1	1	5ms标志	N	
-x	0	1	状态0	N	
-x	0	1	状态1	N	
-x	0	1	状态2	N	
-x	0	1	保留	N	
-x	0	1	保留	N	
-x	0	1	保留	N	
-x	0	1	保留	N	
-x	0	1	0xC0	N	
-x	0	1	0xFF	N	
-#	rulehead	<			
-B	0	1	0x66	N	
-B	0	1	0x99	N	
-B	0	1	校验和	N	（3~61字节的和）
-H	1	1	GPS周	N	
-I	1	1.00E-03	GPS秒	N	
-i	1	1.00E-07	卫导1纬度	N	
-i	1	1.00E-07	卫导1经度	N	
-i	1	1.00E-03	卫导1高度	N	
-H	1	1.00E-03	卫导1PDOP	N	
-B	1	1.00E+00	卫导1定位状态	N	
-B	1	1.00E+00	卫导1卫星数	N	
-i	1	1.00E-03	真北航向角	N	
-i	1	1.00E-03	地面速度	N	
-B	1	1.00E+00	模式指示	N	
-B	1	1.00E+00	卫导选择使能	N	
-B	1	1.00E+00	卫导通道标志	N	
-B	1	1.00E+00	卫导模式	N	
-i	1	1.00E-07	卫导2纬度	N	
-i	1	1.00E-07	卫导2经度	N	
-i	1	1.00E-03	卫导2高度	N	
-H	1	1.00E-03	卫导2PDOP	N	
-B	1	1.00E+00	卫导2定位状态	N	
-B	1	1.00E+00	卫导2卫星数	N	
-i	1	1.00E-03	卫导2真北航向角	N	
-i	1	1.00E-03	卫导2地面速度	N	
-B	1	1.00E+00	卫导2模式指示	N	
-B	0	1	0xC0	N	
-B	0	1	0xFF	N	
-#	rulehead	<			
-B	0	1	0xAA	N	
-B	0	1	0xBB	N	
-B	0	1	校验和	N	（3~61字节的和）
-H	1	1	周	N	（低字节在前）
-I	1	0.001	秒	N	（低字节在前），量纲：1e-3
-i	1	1.00E-07	纬度	N	（4字节，低字节在前，单位：度）
-i	1	1.00E-07	经度	N	（4字节，低字节在前，单位：度）
-i	1	1.00E-03	高度	N	（4字节，低字节在前，单位：米）
-i	1	1.00E-04	东向速度x	N	（低字节在前），量纲：1e-4，单位：m/s
-i	1	1.00E-04	北向速度y	N	（低字节在前），量纲：1e-4，单位：m/s
-i	1	1.00E-04	天向速度z	N	（低字节在前），量纲：1e-4，单位：m/s
-i	1	1.00E-06	俯仰角x	N	（低字节在前），量纲：1e-6，单位：度
-i	1	1.00E-06	滚转角y	N	（低字节在前），量纲：1e-6，单位：度
-i	1	1.00E-06	偏航角z	N	（低字节在前），量纲：1e-6，单位：度
-B	1	1	状态字	N	（0x01：初始对准；0x02：纯惯性；0x03：纯惯性
-H	1	1	耗时	N	
-h	1	1	加表X零位	N	（低字节在前，单位：ug）
-h	1	1	加表Y零位	N	（低字节在前，单位：ug）
-h	1	1	加表Z零位	N	（低字节在前，单位：ug）
-b	1	1.00E-03	陀螺X零位	N	（低字节在前，单位：度）
-b	1	1.00E-03	陀螺Y零位	N	（低字节在前，单位：度）
-b	1	1.00E-03	陀螺Z零位	N	（低字节在前，单位：度）
-B	0	1	保留	N	
-H	0	1	保留	N	
-H	0	1	保留	N	
-B	0	1	0xC0	N	
-B	0	1	0xFF	N	'''
+#     def outside_location(self,location=0,speed=10,acceleration=10):
+#         self.outside_command = '81'
+#         self.outside_para1 = reverse(int2hex(int(location*10000),8))
+#         self.outside_para2 = reverse(int2hex(int(speed*10000),8))
+#         self.outside_para3 = reverse(int2hex(int(acceleration*100),8))
+#         return self.get_command()
+#     # 外框设置速率
+#     def outside_speed(self,speed=10,acceleration=10):
+#         self.outside_command = '82'
+#         self.outside_para1 = reverse(int2hex(int(speed*10000),8))
+#         self.outside_para2 = reverse(int2hex(int(acceleration*100),8))
+#         self.outside_para3 = '00000000'
+#         return self.get_command()

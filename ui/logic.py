@@ -19,6 +19,9 @@ class MainWindowLogic:
         # 处理标定数据
         self.logic_cal_BD_data()
 
+        # 读取规则文件
+        self.logic_readDecodeRule()
+
     # # 卫导转发逻辑事件
     # def logic_recforward(self):
     #     self.mw.textEdit_recforward_msg.textChanged.connect(self.mw.events.changeEvent_recforward)
@@ -33,6 +36,8 @@ class MainWindowLogic:
             self.mw.init_ui.list_general_mainWindowButton[i].clicked.connect(self.mw.events.clickEvent_general_bind)
         self.mw.tableWidget_general_show.itemChanged.connect(self.mw.events.changeEvent_general_bind_table)
         self.mw.pushButton_general_send.clicked.connect(self.mw.events.clickEvent_general_send)
+        self.mw.checkBox_general_autoSend.clicked.connect(self.mw.events.changeEvent_general_autoSend)
+            
     
     # 12路设置模块 逻辑 12路串口更新设定
     def logic_12tab_setting(self):
@@ -75,3 +80,7 @@ class MainWindowLogic:
                 paths.currentTextChanged.connect(self.mw.times.timeEvent_update_combobox)
         except Exception as e:
             print("comboBoxPath_update error:",e)
+            
+    def logic_readDecodeRule(self):
+        self.mw.comboBox_protocal_rule.currentTextChanged.connect(self.mw.events.changeEvent_deocdeRuleToTableWidget)
+        self.mw.pushButton_decodeShow_reload.clicked.connect(self.mw.events.changeEvent_deocdeRuleToTableWidget)

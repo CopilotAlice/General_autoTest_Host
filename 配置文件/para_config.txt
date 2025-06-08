@@ -13,7 +13,7 @@
 5	save_alldata_ms	1	是否保存所有毫秒值 1True/0False
 6	save_alldata_s	1	是否保存所有秒值 1True/0False
 7	save_alldata_calib	0	是否保存19位置标定calib文件 1True/0False
-8	save_alldata_bin	1	是否保存所有16进制原始数
+8	save_alldata_bin	0	是否保存所有16进制原始数
 8	save_readydata_ms	0	是否保存到位毫秒值 1True/0False
 9	save_readydata_s	1	是否保存到位秒值 1True/0False
 11	save_BD_1file	1	将标定过程各点存储到一个文件/0:多个文件----废弃中----
@@ -35,19 +35,17 @@
 24	default_loc_decimal	9	默认经纬度保留精度
 # --------------表格显示配置项#202407#--------------			
 21	default_table_row	50	默认表格行数
-22	default_table_col	6	默认表格列数
+22	default_table_col	8	默认表格列数
 23	default_table_round	6	默认表格精度
-24	default_table_left	0	默认表格显示页面_左侧
-25	default_table_right	0	默认表格显示页面_右侧
 # --------------绘图刷新配置项#202406#--------------			
 20	default_plot_enable	1	是否开启绘图
 21	default_plot_limit	100000	大于此项时改变刷新频率
-22	default_plot_time	1000	更改后的刷新频率(ms)
+22	default_plot_time	2000	更改后的刷新频率(ms)
 23	default_plot_load	1000	载入文件时使用的更新频率(ms)
 24	default_plot_decimal	6	绘图栏显示数据精度
 # --------------数据解算配置项#202311#--------------			
 23	decode_header_type	1	0:使用单帧头模式/1:使用2帧头中间模式/2:使用帧头帧尾模式----废弃中----
-24	default_sumcheck_flag	0	是否根据校验保存数据：0:全部保存/1:校验通过保存
+24	default_sumcheck_flag	1	是否根据校验保存数据：0:全部保存/1:校验通过保存
 # --------------通用装订配置项#202409#--------------			
 25	default_bindWidth_0	50	通用装订0列宽度
 26	default_bindWidth_1	100	通用装订0列宽度
@@ -56,7 +54,7 @@
 25	sate_append_sate	1	是否将卫导数据追加到惯导数据后
 26	sate_save_sate	1	是否保存卫导数据到文件中
 27	sate_clear_msg	1	惯导保存卫导数据一次后，是否清零数据等待下次卫导
-28	sate_save_1file	1	是否将所有卫导内容保存到一个文件中，否则根据帧头分别保存
+28	sate_save_1file	1	是否将所有卫导内容保存到一个文件中，否则根据帧头分别保存----废弃中----
 29	sate_save_GNGGA	1	是否保存GNGGA
 30	sate_save_GPGGA	1	是否保存GPGGA
 31	sate_save_BDGGA	1	是否保存BDGGA

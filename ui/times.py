@@ -10,12 +10,17 @@ class MainWindowTimes:
         self.mw = mainWindow
         # 规则文件更新 【名称】 【ui名称】 【文件夹名称】
         self.test_count = 0
+        self.time_autoSend = QTimer(self.mw)
+        # self.time_autoSend.timeout.connect(self.timeEvent_update_combobox)
+        self.time_autoSend.start(1000)
         self.update_test_time()
         
     def update_test_time(self):
         self.test_time = QTimer(self.mw)
         self.test_time.timeout.connect(self.timeEvent_test)
         # self.test_time.start(1000)
+    
+
         
         
         

@@ -48,7 +48,7 @@ class struct_general_bind:
                     self.struct_default = ''.join(split_data[2:])
                 if ('rulehead' in tar)|('format' in tar):
                     self.struct_format = try_return_format(val)
-                if 'send_hz' in tar:
+                if ('send_hz' in tar)|('autohz' in tar):
                     self.struct_sendHz = try_return_int(val,1)
                 if 'sum' in tar.lower():
                     self.struct_typeCheck = 'sum'

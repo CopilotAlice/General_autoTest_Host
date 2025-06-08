@@ -1,7 +1,10 @@
 import os
-from PyQt5 import QtWidgets
-from funs.fun_chy2 import *
+import struct 
+import time
 import pandas as pd 
+from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QTableWidgetItem
+from funs.fun_chy2 import *
 # 各类点击事件
 class MainWindowEvent:
     def __init__(self,mainWindow):
@@ -31,16 +34,15 @@ class MainWindowEvent:
         if comboxpath not in self.mw.list_notpath:
             load_path+= '/{}'.format(comboxpath)
         load_name = self.mw.comboBox_general_rule.currentText()
-        # print('changeEvent_general_rule事件：{}'.format(self.mw.comboBox_general_rule.currentText()))
         if (len(load_name)==0)|(load_name=='选择协议'):
             return False
         try:
-            # print('载入文件:{}'.format(load_name))
             filename = '{}/{}.txt'.format(load_path,load_name)
             if os.path.exists(filename):
                 with open(filename,'r+',encoding='gb2312') as f:
                     bind_rule_file = f.read()
                 self.mw.class_general_bind.read_struct_file(bind_rule_file)
+                self.mw.lineEdit_general_sendHz.setText(str(self.mw.class_general_bind.struct_sendHz))
                 self.funcEvent_general_changeButton()
                 self.funcEvent_general_changeTable()
                 self.changeEvent_general_bind_table()
@@ -48,7 +50,7 @@ class MainWindowEvent:
             else:
                 return False
         except Exception as e:
-            # print('更新装订规则失败:{}'.format(e))
+            print('装订规则文件读取失败:{}'.format(e))
             return False
     def funcEvent_general_clearButton(self):
         for i in range(9):
@@ -64,7 +66,7 @@ class MainWindowEvent:
     def funcEvent_general_changeTable(self):
         self.mw.init_ui.flag_general_tableReady = False
         table = self.mw.tableWidget_general_show
-        table.clear()
+        table.clearContents()
         len_pack = len(self.mw.class_general_bind.struct_packList)
         table.setRowCount(len_pack)
         table.setColumnCount(4)
@@ -102,6 +104,7 @@ class MainWindowEvent:
             data.append(row_data)
         send_command = b''
         send_command_list = []
+        
         for i in range(len(data)):
             send_rule = data[i]
             try:
@@ -110,6 +113,7 @@ class MainWindowEvent:
                     pack_data = try_return_bdx(send_rule[3])/float(send_rule[1])
                 else:
                     pack_data = int( try_return_bdx(send_rule[3])/float(send_rule[1]) )
+                # print(pack_data)
                 send_byte = struct.pack(
                     pack_rule,try_return_check(pack_data,send_rule[0])
                 )
@@ -123,6 +127,7 @@ class MainWindowEvent:
                 #         struct_head+send_rule[0],
                 #         int( try_return_bdx(send_rule[3])/float(send_rule[1]) )
                 #         )
+                # print(send_byte)
             except Exception as e:
                 send_byte = struct.calcsize(struct_head+send_rule[0])*b'\xFF'
             # send_command += send_byte
@@ -140,12 +145,17 @@ class MainWindowEvent:
         except Exception as e:
             print('更新装订规则校验位失败:{}'.format(e))
         send_command = b''.join(send_command_list)
+        send_hex = ' '.join(f'{byte:02X}' for byte in send_command)
             
-        self.mw.textEdit_general_msg.setPlainText(' '.join(f'{byte:02X}' for byte in send_command))
+        self.mw.textEdit_general_msg.setPlainText(send_hex)
+        self.mw.lineEdit_binding_command.setText(send_hex)
     # 点击事件触发
     def clickEvent_general_send(self):
         send_text = self.mw.textEdit_general_msg.toPlainText()
         send_tab = self.mw.comboBox_general_com.currentText()
+        # print('time:{} 发送装订:{}'.format(1,send_text)) 
+        send_time = time.strftime('%H:%M:%S',time.localtime())
+        self.mw.lineEdit_general_log.setText('{} 发送装订:[{}]...'.format(send_time,send_text[:15]))
         send_text = send_text.replace(' ','')
         if len(send_text)%2==1:
             send_text += '0'
@@ -175,6 +185,7 @@ class MainWindowEvent:
             send_command += '0'
         send_command = ' '.join([send_command[i:i+2] for i in range(0, len(send_command), 2)])
         self.mw.textEdit_general_msg.setPlainText(send_command)
+        self.mw.lineEdit_binding_command.setText(send_command)
         self.clickEvent_general_send()
         # send_tab = self.mw.comboBox_general_com.currentText()
         # try:
@@ -186,6 +197,17 @@ class MainWindowEvent:
         # else:
         #     for i in range(12):
         #         self.mw.constants.cache_sendHexList[i] = send_command
+    def changeEvent_general_autoSend(self):
+        checked = self.mw.checkBox_general_autoSend.isChecked()
+        try: times = 1000//int(self.mw.lineEdit_general_sendHz.text())
+        except: times = 1000
+        if checked:
+            # self.mw.textEdit_general_msg.textChanged.connect(self.clickEvent_general_send)
+            self.mw.times.time_autoSend.timeout.connect(self.clickEvent_general_send)
+            self.mw.times.time_autoSend.start(times)
+        else:
+            self.mw.times.time_autoSend.timeout.disconnect(self.clickEvent_general_send)
+            self.mw.times.time_autoSend.stop()
         
 
 # -----------------12路设置模块事件-----------------
@@ -389,9 +411,69 @@ class MainWindowEvent:
                     
                 
                     
+    # 实时更新规则文件并更新至表格
+    def changeEvent_deocdeRuleToTableWidget(self):
+        rules_lists_format = 'xcbB?hHiIlLqQfdspPtyY'
+        baund = 460800
+        check = 'none'
+        heade = '55AA'
+        decodeList = []
+        decodeLine = ''
+        headList = ['标志','格式','保存','系数','标题','排序','接收']
+        showTable = self.mw.tableWidget_decode_show
+        path_name = self.mw.comboBox_protocal_path.currentText()
+        rule_name = self.mw.comboBox_protocal_rule.currentText()
+        if path_name not in ['选择路径','',None,'none','None']:
+            filename = './解算规则/{}/{}.txt'.format(path_name,rule_name)
+        else:
+            filename = './解算规则/{}.txt'.format(rule_name)
+        if not os.path.exists(filename):
+            return False
+        try:
+            with open(filename, 'r',encoding='gb2312',errors='ignore') as files:
+                rules = files.read()
+        except Exception as e:
+            self.mw.lineEdit_decodeShow_MSG.setText('规则文件读取失败: {}'.format(e))
+        showTable.clear()
+        showTable.setRowCount(0)
+        showTable.setColumnCount(len(headList))
+        showTable.setHorizontalHeaderLabels(headList)
+        flag_list = ['√','×']
+        for line in rules.split('\n'):
+            row_position = showTable.rowCount()
+            showTable.insertRow(row_position)
+            split_data  = line.split()
+            if line.startswith('#'): shift=0
+            else:shift = 1
+            flags = 1
+            for index,value in enumerate(split_data):
+                if index>4:
+                    continue    
+                showTable.setItem(row_position,index+shift,QTableWidgetItem(value))
+                if (shift==0)&(index==1)&(value=='check'):
+                    check = split_data[index+1]
+                if (shift==0)&(index==1)&(value=='baund'):
+                    baund = split_data[index+1]
+                if (shift==0)&(index==1)&(value=='header'):
+                    heade = ''.join(split_data[index+1:])
+                if (shift==0)&(index==1)&(value=='rulehead'):
+                    decodeList.append('')
+                    decodeList[-1]+=split_data[index+1]
+                if (index==0)&(value in rules_lists_format):
+                    flags = 0
+                    decodeList[-1]+=value
+                    decodeLine+=value
+            showTable.setItem(row_position,0,QTableWidgetItem(flag_list[flags]))
+        showTable.setColumnWidth(0, 40)
+        showTable.setColumnWidth(1, 40)
+        showTable.setColumnWidth(5, 40)
+        decodeLength = struct.calcsize('>'+decodeLine)
+        self.mw.lineEdit_decodeShow_ruleLength.setText(str(decodeLength))
+        self.mw.lineEdit_decodeShow_rules.setText(' '.join(decodeList))
+        self.mw.lineEdit_decodeShow_MSG.setText('规则文件读取完毕: {}.txt'.format(rule_name))
                 
-                
-                
+        # time.sleep(10)
+        
                     
         
         
