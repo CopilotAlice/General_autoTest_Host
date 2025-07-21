@@ -21,6 +21,7 @@ class MainWindowLogic:
 
         # 读取规则文件
         self.logic_readDecodeRule()
+        self.logic_readAutoTest()
 
     # # 卫导转发逻辑事件
     # def logic_recforward(self):
@@ -80,7 +81,14 @@ class MainWindowLogic:
                 paths.currentTextChanged.connect(self.mw.times.timeEvent_update_combobox)
         except Exception as e:
             print("comboBoxPath_update error:",e)
-            
+    
+    # 解算规则更新
     def logic_readDecodeRule(self):
         self.mw.comboBox_protocal_rule.currentTextChanged.connect(self.mw.events.changeEvent_deocdeRuleToTableWidget)
         self.mw.pushButton_decodeShow_reload.clicked.connect(self.mw.events.changeEvent_deocdeRuleToTableWidget)
+        # self.mw.pushButton_decodeShow_reload.clicked.connect(self.mw.event.)
+        self.mw.pushButton_decodeShow_tryReceive.clicked.connect(self.mw.events.clickEvent_decodeShow_tryReceive)
+    # 自动规则更新
+    def logic_readAutoTest(self):
+        self.mw.comboBox_automatic_rule.currentTextChanged.connect(self.mw.events.changeEvent_readAtuoTestRule)
+        

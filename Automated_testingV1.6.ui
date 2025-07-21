@@ -2391,7 +2391,12 @@ p, li { white-space: pre-wrap; }
                    </item>
                    <item>
                     <property name="text">
-                     <string>crc</string>
+                     <string>crc16</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>crc32</string>
                     </property>
                    </item>
                    <item>

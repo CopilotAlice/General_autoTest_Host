@@ -1,9 +1,12 @@
 import os
 import struct 
 import time
+import serial
 import pandas as pd 
 from PyQt5 import QtWidgets
+from PyQt5.QtGui import QBrush,QColor
 from PyQt5.QtWidgets import QTableWidgetItem
+from PyQt5.QtCore import Qt
 from funs.fun_chy2 import *
 # 各类点击事件
 class MainWindowEvent:
@@ -63,7 +66,9 @@ class MainWindowEvent:
             self.mw.init_ui.list_general_button[count].setText(lists[0])
             self.mw.init_ui.list_general_mainWindowButton[count].setText(lists[0])
             count += 1
+    # 更改装订页面逻辑
     def funcEvent_general_changeTable(self):
+        rules_lists_format = 'xcbB?hHiIlLqQfdspPtyY'
         self.mw.init_ui.flag_general_tableReady = False
         table = self.mw.tableWidget_general_show
         table.clearContents()
@@ -77,12 +82,37 @@ class MainWindowEvent:
         table.setColumnWidth(1,35)
         table.setColumnWidth(2,60)
         table.setColumnWidth(3,100)
+        check_list = [
+            self.mw.lineEdit_general_check_loc,
+            self.mw.lineEdit_general_check_begin,
+            self.mw.lineEdit_general_check_end
+        ]
+        brush_check = QBrush(QColor('red'),Qt.BDiagPattern)
+        brush_value = QBrush(QColor('red'),Qt.Dense7Pattern)
         try:
             for i in range(len_pack):
                 table.setItem(i,0,QtWidgets.QTableWidgetItem(str(self.mw.class_general_bind.struct_packList[i])))
                 table.setItem(i,1,QtWidgets.QTableWidgetItem(str(self.mw.class_general_bind.struct_paraList[i])))
                 table.setItem(i,2,QtWidgets.QTableWidgetItem(str(self.mw.class_general_bind.struct_titlList[i])))
                 table.setItem(i,3,QtWidgets.QTableWidgetItem(str(self.mw.class_general_bind.struct_dataList[i])))
+            self.mw.comboBox_general_check.setCurrentText(str(self.mw.class_general_bind.struct_typeCheck))
+            for i in range(3):
+                try:
+                    check_list[i].setText(str(self.mw.class_general_bind.struct_ruleCheck[i]))
+                except:
+                    check_list[i].setText('')
+            if self.mw.class_general_bind.struct_ruleCheck:
+                for table_row in range(table.rowCount()):
+                    table_flag = table.item(table_row,0).text()
+                    if table_flag not in rules_lists_format:
+                        continue
+                    if table_row == self.mw.class_general_bind.struct_ruleCheck[0]:
+                        table.item(table_row,0).setBackground(brush_check)
+                    if table_row>= self.mw.class_general_bind.struct_ruleCheck[1] and \
+                    table_row < self.mw.class_general_bind.struct_ruleCheck[2]:
+                        table.item(table_row,0).setBackground(brush_value)
+                
+                
             self.mw.init_ui.flag_general_tableReady = True
         except Exception as e:
             print('更新装订规则表格失败:{}'.format(e))
@@ -90,6 +120,8 @@ class MainWindowEvent:
     def changeEvent_general_bind_table(self):
         if not self.mw.init_ui.flag_general_tableReady:
             return
+        sender = self.mw.sender()
+        # print(sender)
         table_widget = self.mw.tableWidget_general_show
         rows = table_widget.rowCount()
         cols = table_widget.columnCount()
@@ -142,6 +174,22 @@ class MainWindowEvent:
                     send_command_list[ruleCheck[0]] = struct.pack(
                         struct_head+data[ruleCheck[0]][0],check_sum
                     )
+                    self.mw.init_ui.flag_general_tableReady = False
+                    table_widget.setItem(ruleCheck[0],3,QTableWidgetItem(send_command_list[ruleCheck[0]].hex().upper()))
+                    self.mw.init_ui.flag_general_tableReady = True
+                if (check_type=='crc16')|(check_type=='crc'):
+                    check_string = b''.join(send_command_list[ruleCheck[1]:ruleCheck[2]])
+                    check_crc = calculate_crc16(check_string)
+                    check_crc = try_return_check(check_crc,data[ruleCheck[0]][0])
+                    send_command_list[ruleCheck[0]] = struct.pack(
+                        struct_head+data[ruleCheck[0]][0],check_crc
+                    )
+                    self.mw.init_ui.flag_general_tableReady = False
+                    table_widget.setItem(ruleCheck[0],3,QTableWidgetItem(send_command_list[ruleCheck[0]].hex().upper()))
+                    self.mw.init_ui.flag_general_tableReady = True
+                    pass
+                    
+                    
         except Exception as e:
             print('更新装订规则校验位失败:{}'.format(e))
         send_command = b''.join(send_command_list)
@@ -410,7 +458,7 @@ class MainWindowEvent:
                     
                     
                 
-                    
+# --------------解算规则表格事件集-----------------
     # 实时更新规则文件并更新至表格
     def changeEvent_deocdeRuleToTableWidget(self):
         rules_lists_format = 'xcbB?hHiIlLqQfdspPtyY'
@@ -419,6 +467,10 @@ class MainWindowEvent:
         heade = '55AA'
         decodeList = []
         decodeLine = ''
+        checkSum_headList = ['sum1','sum2','sum3']
+        chechSum_colorList = ['red','green','blue']
+        checkSum_checkList = []
+        color_count = 0
         headList = ['标志','格式','保存','系数','标题','排序','接收']
         showTable = self.mw.tableWidget_decode_show
         path_name = self.mw.comboBox_protocal_path.currentText()
@@ -447,9 +499,9 @@ class MainWindowEvent:
             else:shift = 1
             flags = 1
             for index,value in enumerate(split_data):
+                item = QTableWidgetItem(value)
                 if index>4:
                     continue    
-                showTable.setItem(row_position,index+shift,QTableWidgetItem(value))
                 if (shift==0)&(index==1)&(value=='check'):
                     check = split_data[index+1]
                 if (shift==0)&(index==1)&(value=='baund'):
@@ -459,22 +511,148 @@ class MainWindowEvent:
                 if (shift==0)&(index==1)&(value=='rulehead'):
                     decodeList.append('')
                     decodeList[-1]+=split_data[index+1]
+                if (shift==0)&(index==1)&(value.lower() in checkSum_headList)&(color_count<len(chechSum_colorList)):
+                    checkSum_checkList.append(split_data[index+1])
+                    brush = QBrush(QColor(chechSum_colorList[color_count]),Qt.FDiagPattern)
+                    item.setBackground(brush)
+                    color_count+=1
+                    
                 if (index==0)&(value in rules_lists_format):
                     flags = 0
                     decodeList[-1]+=value
                     decodeLine+=value
+                    
+                showTable.setItem(row_position,index+shift,item)
             showTable.setItem(row_position,0,QTableWidgetItem(flag_list[flags]))
+        for index,value in enumerate(checkSum_checkList):
+            checkSum_checkList[index] = split_plus(checkSum_checkList[index])
+            try:checkSum_checkList[index] = [int(num) for num in checkSum_checkList[index]]
+            except:checkSum_checkList[index] = None
+        checkSum_checkList = [num for num in checkSum_checkList if num is not None]
+        if len(checkSum_checkList)>0:
+            byte_count = -1
+            for table_row in range(showTable.rowCount()):
+                table_flag = showTable.item(table_row,0).text()
+                table_decode = showTable.item(table_row,1).text()
+                if (table_flag=='√')&(table_decode in rules_lists_format):
+                    decode_length = struct.calcsize('>'+table_decode)
+                    byte_count+=decode_length
+                for index,value in enumerate(checkSum_checkList):
+                    if byte_count==value[0]:
+                        brush = QBrush(QColor(chechSum_colorList[index]),Qt.BDiagPattern)
+                        showTable.item(table_row,1).setBackground(brush)
+                    if (byte_count>=value[1])&(byte_count<value[2]):
+                        brush = QBrush(QColor(chechSum_colorList[index]),Qt.Dense7Pattern)
+                        showTable.item(table_row,1).setBackground(brush)
+                        
+
         showTable.setColumnWidth(0, 40)
         showTable.setColumnWidth(1, 40)
         showTable.setColumnWidth(5, 40)
         decodeLength = struct.calcsize('>'+decodeLine)
         self.mw.lineEdit_decodeShow_ruleLength.setText(str(decodeLength))
         self.mw.lineEdit_decodeShow_rules.setText(' '.join(decodeList))
-        self.mw.lineEdit_decodeShow_MSG.setText('规则文件读取完毕: {}.txt'.format(rule_name))
+        
+        send_time = time.strftime('%H:%M:%S',time.localtime())
+        self.mw.lineEdit_decodeShow_MSG.setText('{} 规则文件读取完毕: {}.txt'.format(send_time,rule_name))
                 
         # time.sleep(10)
+    # 串口解算事件
+    def clickEvent_decodeShow_tryReceive(self):
+        decode_struct = self.mw.lineEdit_decodeShow_rules.text()
+        decode_string = ''
+        rules_lists_format = 'xcbB?hHiIlLqQfdspPtyY'
+        for bite in decode_struct:
+            if bite in rules_lists_format:
+                decode_string+=bite
+        try:
+            decode_length = struct.calcsize('>'+decode_string)
+        except Exception as e:
+            send_time = time.strftime('%H:%M:%S',time.localtime())
+            self.mw.lineEdit_decodeShow_MSG.setText('{} 读取解算规则错误:{}'.format(send_time,com))
         
-                    
+        
+        table = self.mw.tableWidget_decode_show
+        rows = table.rowCount()
+        cols = table.columnCount()
+        tableData = []
+        for row in range(rows):
+            row_data = []
+            for col in range(cols):
+                item = table.item(row,col)
+                if item is not None:
+                    row_data.append(item.text())
+                else:
+                    continue
+            tableData.append(row_data)
+        
+        # print(decode_string)
+        com = self.mw.comboBox_protocal_com.currentText()
+        baund = self.mw.comboBox_protocal_baund.currentText()
+        check = self.mw.comboBox_protocal_check.currentText()
+        check = check2serial(check)
+        for i in range(5):
+            try:
+                serials = serial.Serial(com, baund, parity=check)
+                break
+            except Exception as e:
+                time.sleep(0.05)
+                serials = None
+        if serials is None:
+            send_time = time.strftime('%H:%M:%S',time.localtime())
+            self.mw.lineEdit_decodeShow_MSG.setText('{} 尝试开启串口错误:{}'.format(send_time,com))
+            return False
+        begin_time = time.time()
+        waits = 0
+
+        send_time = time.strftime('%H:%M:%S',time.localtime())
+        while True:
+            time.sleep(0.01)
+            waits = serials.in_waiting
+            if waits>2*decode_length:
+                rec_data = serials.read(2*decode_length)
+                serials.close()
+                break
+            if time.time()-begin_time>0.3:
+                serials.close()
+                self.mw.lineEdit_decodeShow_MSG.setText('{} 串口接收超时，已接收:{}'.format(send_time,waits))
+                return False
+        for lineData in tableData:
+            if (len(lineData)>2)&(lineData[1].lower()=='header'):
+                decode_header = ''.join(lineData[2:]).lower()
+                break
+        rec_data = rec_data.hex().lower()
+        idx = rec_data.find(decode_header)
+        if idx!=-1:
+            rec_data = rec_data[idx:]
+        for index,lineData in enumerate(tableData):
+            if (len(lineData)>2)&(lineData[1] in rules_lists_format)&(len(rec_data)>1):
+                decode_bit_length = struct.calcsize('>'+lineData[1])
+                table.setItem(index,6,QTableWidgetItem(rec_data[:2*decode_bit_length].upper()))
+                rec_data = rec_data[2*decode_bit_length:]
+        if rec_data.startswith(decode_header):
+            self.mw.lineEdit_decodeShow_MSG.setText('{} 协议与接收对应'.format(send_time))
+        elif len(rec_data)==0:
+            self.mw.lineEdit_decodeShow_MSG.setText('{} 帧头对应但当前协议内容过多'.format(send_time))
+        else:
+            self.mw.lineEdit_decodeShow_MSG.setText('{} 帧头对应但当前协议内容过少'.format(send_time))
+        if idx==-1:
+            self.mw.lineEdit_decodeShow_MSG.setText('{} 找不到帧头:{}'.format(send_time,decode_header))
+            
+            
+            
+            
+                
+        
+        
+        
+        
+    def changeEvent_readAtuoTestRule(self):
+        pass    
+        
+        # table = self.mw.textBrowser_automatic_ruleline_2
+        # rows = table.rowCount()
+        # cols = table.columnCount()
         
         
         

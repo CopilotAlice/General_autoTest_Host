@@ -1,5 +1,6 @@
 import struct 
 import ctypes
+import time
 import numpy as np
 import pandas as pd
 from funs.fun_chy2 import *
@@ -28,7 +29,7 @@ class struct_general_bind:
         self.struct_dataList = []
         self.struct_buttonList = []
         self.struct_default = ''
-        self.struct_typeCheck = False
+        self.struct_typeCheck = 'None'
         self.struct_ruleCheck = False
         self.struct_debugList = []
         self.struct_debugFlag = False
@@ -56,6 +57,12 @@ class struct_general_bind:
                 if 'crc' in tar.lower():
                     self.struct_typeCheck = 'crc'
                     self.struct_ruleCheck = try_return_checkRule(val)
+                if 'crc16' in tar.lower():
+                    self.struct_typeCheck = 'crc16'
+                    self.struct_ruleCheck = try_return_checkRule(val)
+                if 'crc32' in tar.lower():
+                    self.struct_typeCheck = 'crc32'
+                    self.struct_ruleCheck = try_return_checkRule(val)
                 if 'button' in tar.lower():
                     self.struct_buttonList.append([val,''.join(split_data[3:])])
                     
@@ -72,7 +79,7 @@ class struct_general_bind:
         self.get_struct_len()
     def init_structList(self):
         self.struct_ruleCheck = False
-        self.struct_typeCheck = False
+        self.struct_typeCheck = 'None'
         self.struct_packList = []
         self.struct_paraList = []
         self.struct_titlList = []
@@ -272,4 +279,10 @@ class struct_sate:
     def clear_sate_list(self,num):
         self.list_sate_msg[num] = [0]*len(self.list_sate_msg[num])
 
-
+class clickEventThread_decodeShow(QtCore.QThread):
+    update_signal = QtCore.pyqtSignal(str)
+    def run(self):
+        for i in range(10):
+            time.sleep(1)
+            self.update_signal.emit('事件更新:{}s'.format(i+1))
+            
