@@ -4,6 +4,7 @@ from funs.fun_locals import *
 from PyQt5 import QtWidgets, QtGui, QtCore
 import pyqtgraph as pg 
 import os,re
+
 class MainWindowInit:
     def __init__(self,mainWindow):
         self.mw = mainWindow

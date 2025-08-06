@@ -6,7 +6,7 @@ import pyqtgraph as pg
 from pyqtgraph.Qt import QtGui,QtCore
 
 # 逻辑 事件 自定义等模块
-from Automated_testingV16 import Ui_MainWindow
+from Automated_testingV17 import Ui_MainWindow
 from funs.fun_chy2 import *
 from funs.fun_serial import *
 from funs.fun_locals import *
@@ -55,7 +55,7 @@ V0.73	数据处理	解算数据时判断校验并根据配置决定是否保存
 V0.76   数据装订    提供60所装订协议，自动装订功能
 V0.77   数据装订    提供腾盾装订协议，自动装订功能
 V0.78   数据装订    更新腾盾装订协议，自动装订功能
-V0.81   数据装订    更新自动装订功能，增加自动装订功能
+V0.81   数据装订    更新自动装订功能，增加自动装订/通用装订功能
 V0.82   数据处理    将新老版本转台到位的数据进行均值处理
 V0.83   数据处理    初步实现验证流程自动化
 V0.84   绘图更新    双Y轴绘图
@@ -101,7 +101,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.turntable_i_status = '{}'.format('N')    # 转台运动状态
         self.turntable_o_status = '{}'.format('N')     # 转台运动状态
         self.automatic_time = 0          # 自动测试时间  
-        self.power_flag = False
         self.plan_name = ''             # 自动标定进度名称
         self.threading_begin_time = 0
         self.default_alpha = 0.6
@@ -265,9 +264,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.para_config_filename = './配置文件/para_config.txt'
         self.list_notpath = ['选择路径','',None,'none','None']
         self.model_list = [
-            ['通讯','转台','电源','温箱','装订','自动'],
-            ['protocal','turntable','power','tempbox','general','automatic'],
-            ['解算规则','标定规则','none','none','装订规则','自动规则']
+            ['通讯','转台','电源','温箱','装订','自动','三轴'],
+            ['protocal','turntable','power','tempbox','general','automatic', '3xturntable'],
+            ['解算规则','标定规则','none','none','装订规则','自动规则','三轴规则'],
         ]
         self.config_hold_time = 15          # 转台稳定后等待时间
         self.config_save_alldata_ms = 0     # 是否保存所哟毫秒值 
@@ -333,7 +332,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.comboBox_power_com,
             self.comboBox_tempbox_com,
             self.combox_set_com_all,
-            self.comboBox_ascii_com]
+            self.comboBox_ascii_com,
+            self.comboBox_3xturntable_com]
         # 12路com口
         self.combox_com_list = [
             self.combox_set_com_1,
@@ -771,7 +771,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.lineEdit_turntable_o_status.setText(self.turntable_o_status)
             self.lcdNumber_automatic_time.display(int(self.automatic_time))
             self.lcdNumber_automatic_time_2.display(int(self.automatic_time))
-            self.radioButton_power_flag.setChecked(self.power_flag)
+            # self.radioButton_power_flag.setChecked(self.power_flag)
         except Exception as e:
             self.debug_list_3.append('{} UI内容设置错误:{} {}'.format(self.normal_time,'0.5s',e))
         # 转换时分秒
@@ -2467,6 +2467,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         protocal_check = self.comboBox_protocal_check.currentText()
         turntable_path = self.comboBox_turntable_path.currentText()
         turntable_rule = self.comboBox_turntable_rule.currentText()
+        x3turntable_rule = self.comboBox_3xturntable_rule.currentText()
         turntable_com = self.comboBox_turntable_com.currentText()
         power_com = self.comboBox_power_com.currentText()
         binding_rule = self.comboBox_general_rule.currentText()
@@ -2489,6 +2490,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.show_message_clear = True  # 清空12路显示信息
         
         
+        if not ((x3turntable_rule.lower()=='none')|(x3turntable_rule.lower()=='选择协议')):
+            begin_test_mode = 'x3turntable_test'
         if not ((turntable_rule.lower()=='none')|(turntable_rule.lower()=='选择协议')):
             begin_test_mode = 'turntable_test'
         if not ((automatic_rule.lower()=='none')|(automatic_rule.lower()=='选择协议')):
@@ -2500,6 +2503,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.turntable_ready = True     # 忽略转台/ 转台到位标志位
             self.auto_plot_always = True    # 持续更新绘图
             self.only_test()
+        elif begin_test_mode=='x3turntable_test':
+            self.plan_threading_flag = True
+            self.bd3x_test()
         elif begin_test_mode=='turntable_test':
             self.plan_threading_flag = True
             self.bd_test()
@@ -2562,6 +2568,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.begin_test_bd()
         else:
             print('转台标定时未确定标定逻辑')
+    # 标定测试模式、转台同步控制
+    def bd3x_test(self):
+        thread_turn = threading.Thread(target=self.begin_test_3xbd)
+        thread_turn.setDaemon(True)
+        thread_turn.start()
+        self.only_test()
+        
     def plan_test(self):
         thread_plan = threading.Thread(target=self.plan_test_threading)
         thread_plan.setDaemon(True)
@@ -3195,11 +3208,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     begin_time = time.time()
                 else:
                     try:
+                        # self.test_mode = 'turntable_test'
                         bd_name = int(list_plan[2])   
                         self.comboBox_turntable_rule.setCurrentIndex(bd_name)
                         self.threading_test_flag = False
                         time.sleep(0.2)
-                        # self.test_mode = 'turntable_test'
                         self.threading_test_flag = True
                         time.sleep(0.1)
                         self.turntable_ready = False
@@ -3208,7 +3221,27 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     except Exception as e:
                         # print('设置错误_bd_name')
                         self.show_message_automatic_list.append('{} 自动测试错误:{} 错误'.format(self.normal_time,list_plan[2]))
-                        self.debug_list_1.append('{} 自动测试错误:{} 错误\n{}'.format(self.normal_time,list_plan[2],e))
+                        self.debug_list_1.append('{} 双轴错误:{} 错误\n{}'.format(self.normal_time,list_plan[2],e))
+            elif list_plan[1].lower()=='3xbd':
+                count+=1
+                try:
+                    bd_name = int(list_plan[2])
+                    self.comboBox_3xturntable_rule.setCurrentIndex(bd_name)
+                    self.threading_test_flag = False
+                    time.sleep(0.2)
+                    self.threading_test_flag = True
+                    time.sleep(0.1)
+                    self.turntable_ready = False
+                    self.bd3x_test()
+                    begin_time = time.time()
+                    
+                    
+                except Exception as e:
+                    self.show_message_automatic_list.append('{} 自动测试错误:{} 错误'.format(self.normal_time,list_plan[2]))
+                    self.debug_list_1.append('{} 三轴标定错误:{} 错误\n{}'.format(self.normal_time,list_plan[2],e))
+                    
+                
+                
             elif list_plan[1]=='temp':
                 # print('bd电源时间:{:.2f}'.format(time.time()-real_time))
                 count+=1
@@ -3511,7 +3544,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.threading_test_flag = False
          
 
-
+    def begin_test_3xbd(self):
+        self.show_message_dis1_list.append('{} 开始三轴标定'.format(self.normal_time))
+        
+        
+        
 # 根据规则解算数据 - 旧
 def decode_hex_frame(frame,rules_format,rules_head,rules_saveck,rules_paras):
     bit_data = []
