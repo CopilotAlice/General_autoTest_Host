@@ -7,9 +7,11 @@ from pyqtgraph.Qt import QtGui,QtCore
 
 # 逻辑 事件 自定义等模块
 from Automated_testingV17 import Ui_MainWindow
+from funs.checks import *
 from funs.fun_chy2 import *
 from funs.fun_serial import *
 from funs.fun_locals import *
+
 
 from ui.event import MainWindowEvent
 from ui.logic import MainWindowLogic
@@ -566,13 +568,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 # ----------------------------点击事件集------------------------------
         self.pushButton_begin_test.clicked.connect(self.begin_test)
         self.pushButton_stop_test.clicked.connect(self.stop_test)
-        self.pushButton_begin_test_2.clicked.connect(self.begin_test)
-        self.pushButton_stop_test_2.clicked.connect(self.stop_test)
         # 发送装订
         self.pushButton_binding_send.clicked.connect(self.binding_send)
         # 载入文件
         self.pushButton_load_data.clicked.connect(self.event_load_file)
-        self.pushButton_load_data_2.clicked.connect(self.event_load_file)
         # 自动获取经纬度
         self.pushButton_autoset_INU.clicked.connect(self.event_autoset_inu)
         # 重新载入para_config文件

@@ -54,14 +54,17 @@ class struct_general_bind:
                 if 'sum' in tar.lower():
                     self.struct_typeCheck = 'sum'
                     self.struct_ruleCheck = try_return_checkRule(val)
-                if 'crc' in tar.lower():
+                if 'crc' == tar.lower():
                     self.struct_typeCheck = 'crc'
                     self.struct_ruleCheck = try_return_checkRule(val)
-                if 'crc16' in tar.lower():
+                if 'crc16' == tar.lower():
                     self.struct_typeCheck = 'crc16'
                     self.struct_ruleCheck = try_return_checkRule(val)
-                if 'crc32' in tar.lower():
+                if 'crc32' == tar.lower():
                     self.struct_typeCheck = 'crc32'
+                    self.struct_ruleCheck = try_return_checkRule(val)
+                if 'crc_mcrf4' == tar.lower():
+                    self.struct_typeCheck = 'crc_mcrf4'
                     self.struct_ruleCheck = try_return_checkRule(val)
                 if 'button' in tar.lower():
                     self.struct_buttonList.append([val,''.join(split_data[3:])])

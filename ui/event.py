@@ -8,6 +8,7 @@ from PyQt5.QtGui import QBrush,QColor
 from PyQt5.QtWidgets import QTableWidgetItem
 from PyQt5.QtCore import Qt
 from funs.fun_chy2 import *
+from funs.checks import *
 # 各类点击事件
 class MainWindowEvent:
     def __init__(self,mainWindow):
@@ -188,6 +189,19 @@ class MainWindowEvent:
                     table_widget.setItem(ruleCheck[0],3,QTableWidgetItem(send_command_list[ruleCheck[0]].hex().upper()))
                     self.mw.init_ui.flag_general_tableReady = True
                     pass
+                elif check_type=='crc_mcrf4':
+                    check_string = b''.join(send_command_list[ruleCheck[1]:ruleCheck[2]])
+                    check_crc = calculate_crc16_mcrf4xx(check_string)
+                    check_crc = try_return_check(check_crc,data[ruleCheck[0]][0])
+                    send_command_list[ruleCheck[0]] = struct.pack(
+                        struct_head+data[ruleCheck[0]][0],check_crc
+                    )
+                    self.mw.init_ui.flag_general_tableReady = False
+                    table_widget.setItem(ruleCheck[0],3,QTableWidgetItem(send_command_list[ruleCheck[0]].hex().upper()))
+                    self.mw.init_ui.flag_general_tableReady = True
+                    
+                    
+                    
                     
                     
         except Exception as e:
