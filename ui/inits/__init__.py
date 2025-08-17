@@ -1,0 +1,2 @@
+from .inits_debugMsg import MainWindowInitDebugMsg
+from .inits_showMsg import MainWindowInitShowMsg

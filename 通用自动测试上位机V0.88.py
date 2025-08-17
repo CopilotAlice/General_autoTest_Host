@@ -12,6 +12,8 @@ from funs.fun_chy2 import *
 from funs.fun_serial import *
 from funs.fun_locals import *
 
+import ui.events
+import ui.inits
 
 from ui.event import MainWindowEvent
 from ui.logic import MainWindowLogic
@@ -74,6 +76,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
         self.setWindowTitle("通用自动测试上位机_蔡_功能测试版_2506_V0.87")
+        # 初始化调试信息
+        self.inits_debugMsg = ui.inits.MainWindowInitDebugMsg(self)
+        self.inits_showMsg = ui.inits.MainWindowInitShowMsg(self)
+        print(self.showMsgList_devide)
         
         # 调试模式函数
         self.debug = MainWindowDebug(self)
@@ -93,6 +99,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.uilogic = MainWindowLogic(self)
         # 获取UI函数
         self.getui = MainWindowGetUI(self)
+        
+        # 初始化events.events_devide
+        self.events_devide = ui.events.MainWindowEventDevide(self)
 
         # self.tableWidget_general_show.setColumnWidth(0, 10)
         # 初始化界面元素
@@ -267,7 +276,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.list_notpath = ['选择路径','',None,'none','None']
         self.model_list = [
             ['通讯','转台','电源','温箱','装订','自动','三轴'],
-            ['protocal','turntable','power','tempbox','general','automatic', '3xturntable'],
+            ['protocal','turntable','power','tempbox','general','automatic', 'turntable3x'],
             ['解算规则','标定规则','none','none','装订规则','自动规则','三轴规则'],
         ]
         self.config_hold_time = 15          # 转台稳定后等待时间
@@ -335,7 +344,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.comboBox_tempbox_com,
             self.combox_set_com_all,
             self.comboBox_ascii_com,
-            self.comboBox_3xturntable_com]
+            self.comboBox_turntable3x_com]
         # 12路com口
         self.combox_com_list = [
             self.combox_set_com_1,
@@ -734,6 +743,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             while len(self.show_message_list[i])>0:
                 self.textBrowser_list[i].append( self.show_message_list[i].pop(0) )
 
+        if len(self.showMsgList_devide)>0:
+            self.textBrowser_automatic_ruleline.append('{} {}'.format(self.normal_time, self.showMsgList_devide.pop(0)))
+
                 
 
             
@@ -919,6 +931,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.textBrowser_debug_3.append(self.debug_list_3.pop(0))
         while len(self.debug_list_4)>0:
             self.textBrowser_debug_4.append(self.debug_list_4.pop(0))
+        while len(self.debugMsgList_devide)>0:
+            self.textBrowser_debug_5.append(self.debugMsgList_devide.pop(0))
         self.lineEdit_debug_message_list[2].append('总接收数:{}'.format(self.all_rec_hex))
         self.lineEdit_debug_message_list[3].append('校验失败:{}'.format(self.sum_check_err_count))
 
@@ -2464,7 +2478,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         protocal_check = self.comboBox_protocal_check.currentText()
         turntable_path = self.comboBox_turntable_path.currentText()
         turntable_rule = self.comboBox_turntable_rule.currentText()
-        x3turntable_rule = self.comboBox_3xturntable_rule.currentText()
+        x3turntable_rule = self.comboBox_turntable3x_rule.currentText()
         turntable_com = self.comboBox_turntable_com.currentText()
         power_com = self.comboBox_power_com.currentText()
         binding_rule = self.comboBox_general_rule.currentText()
@@ -3223,7 +3237,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 count+=1
                 try:
                     bd_name = int(list_plan[2])
-                    self.comboBox_3xturntable_rule.setCurrentIndex(bd_name)
+                    self.comboBox_turntable3x_rule.setCurrentIndex(bd_name)
                     self.threading_test_flag = False
                     time.sleep(0.2)
                     self.threading_test_flag = True

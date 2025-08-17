@@ -12,6 +12,8 @@ class MainWindowLogic:
         # 通讯协议选择更新事件
         self.logic_protocal_rule_change()
         self.logic_comboBoxPath_update()
+        # # 温箱控制逻辑
+        # self.logic_temobox_control()
         
         
         # 辅助卫导接收事件逻辑
@@ -25,6 +27,7 @@ class MainWindowLogic:
         
         # 三轴逻辑
         self.logic_turntable3x()
+        
 
     # # 卫导转发逻辑事件
     # def logic_recforward(self):
@@ -61,6 +64,10 @@ class MainWindowLogic:
     # 通讯协议选择更新事件
     def logic_protocal_rule_change(self):
         pass
+    
+    # def logic_temobox_control(self):
+    #     self.mw.pushButton_tempbox_set.clicked.connect(self.mw.events.clickEvent_tempbox_set)
+        
         
     # 辅助卫导接收事件逻辑
     def logic_auxsate(self):
