@@ -22,6 +22,9 @@ class MainWindowLogic:
         # 读取规则文件
         self.logic_readDecodeRule()
         self.logic_readAutoTest()
+        
+        # 三轴逻辑
+        self.logic_turntable3x()
 
     # # 卫导转发逻辑事件
     # def logic_recforward(self):
@@ -92,3 +95,5 @@ class MainWindowLogic:
     def logic_readAutoTest(self):
         self.mw.comboBox_automatic_rule.currentTextChanged.connect(self.mw.events.changeEvent_readAtuoTestRule)
         
+    def logic_turntable3x(self):
+        pass

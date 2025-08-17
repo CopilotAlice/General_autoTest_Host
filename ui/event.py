@@ -8,7 +8,7 @@ from PyQt5.QtGui import QBrush,QColor
 from PyQt5.QtWidgets import QTableWidgetItem
 from PyQt5.QtCore import Qt
 from funs.fun_chy2 import *
-from funs.checks import *
+from funs.fun_checks import *
 # 各类点击事件
 class MainWindowEvent:
     def __init__(self,mainWindow):
