@@ -7,7 +7,7 @@ from pyqtgraph.Qt import QtGui,QtCore
 
 # 逻辑 事件 自定义等模块
 from Automated_testingV17 import Ui_MainWindow
-from funs.checks import *
+from funs.fun_checks import *
 from funs.fun_chy2 import *
 from funs.fun_serial import *
 from funs.fun_locals import *
@@ -1964,7 +1964,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     elif para_rule_list[1]=='default_sumhceck_used':
                         self.config_default_sumhceck_used = int(para_rule_list[2])
                     elif para_rule_list[1]=='default_sumcheck_flag':
-                        self.config_default_sumcheck_flag = int(para_rule_list[2])
+                        self.default_sumcheck_flag = int(para_rule_list[2])
                     elif para_rule_list[1]=='default_sumcheck_save':
                         self.config_default_sumcheck_save = int(para_rule_list[2])
                     
@@ -1991,8 +1991,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         self.default_plot_time = int(para_rule_list[2])
                     elif para_rule_list[1]=='default_plot_load':
                         self.default_plot_load = int(para_rule_list[2])
-                    elif para_rule_list[1]=='default_sumcheck_flag':
-                        self.default_sumcheck_flag = int(para_rule_list[2])
                     elif para_rule_list[1]=='save_ascii_log':
                         self.config_save_ascii_log = int(para_rule_list[2])
                     elif para_rule_list[1]=='save_hex_log':
@@ -3714,6 +3712,8 @@ def decode_hex_frame_list(frame,decode_rule_list,decode_save_list,decode_para_li
             #             print(errors)
             #             print(frame[decode_struct_tolegth:decode_struct_tolegth+decode_struct_length].hex())
             #             print(decode_struct)
+            # if decode_tuple[8]>477218588:
+            #     print('errordecode:{}'.format(frame.hex()))
         except Exception as e:
             print('decode_struct:{}'.format(decode_struct))
             print('decode_struct_length:{}'.format(decode_struct_length))
