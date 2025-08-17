@@ -19,6 +19,8 @@ class MainWindowInit:
         # 初始化绘图
         self.init_ui_graphview()
         # self.init_ui_input()
+        # 初始化三轴输入输出
+        self.init_ui_turntable3x()
         
         
 
@@ -228,6 +230,54 @@ class MainWindowInit:
                 # print('{}\t{}'.format(name,self.__dict__[name]))
                 rows = table_widget.rowCount()
                 cols = table_widget.columnCount()
+                
+    # 初始化三轴转台输入输出
+    def init_ui_turntable3x(self):
+        self.mw.list_turntable3x_output = []
+        self.mw.list_turntable3x_status = []
+        self.mw.list_turntable3x_input = []
+        self.mw.list_turntable3x_inStatus = self.mw.lineEdit_turntable3x_returnMsg
+        for i in range(6):
+            self.mw.list_turntable3x_output.append(
+                self.mw.findChild(QtWidgets.QLCDNumber, 'lcdNumber_turntable3x_{}'.format(i))
+            )
+        for i in range(3):
+            self.mw.list_turntable3x_status.append(
+                self.mw.findChild(QtWidgets.QLineEdit, 'lineEdit_turntable3x_status_{}'.format(i))
+            )
+        for i in range(9):
+            self.mw.list_turntable3x_input.append(
+                self.mw.findChild(QtWidgets.QLineEdit, 'lineEdit_turntable3x_{}'.format(i))
+            )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def del_empty_folder(path):
     list_delFolder = []
@@ -777,3 +827,4 @@ class struct_paraCal:
     def load_JT_file(self,paths):
         
         pass
+    

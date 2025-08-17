@@ -79,7 +79,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # 初始化调试信息
         self.inits_debugMsg = ui.inits.MainWindowInitDebugMsg(self)
         self.inits_showMsg = ui.inits.MainWindowInitShowMsg(self)
-        print(self.showMsgList_devide)
         
         # 调试模式函数
         self.debug = MainWindowDebug(self)
@@ -100,7 +99,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # 获取UI函数
         self.getui = MainWindowGetUI(self)
         
-        # 初始化events.events_devide
+        # 初始化多设备自动控制事件集
         self.events_devide = ui.events.MainWindowEventDevide(self)
 
         # self.tableWidget_general_show.setColumnWidth(0, 10)
@@ -2998,8 +2997,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                             all_data = all_data[hex_find_hex:]
                         except:
                             all_data = all_data[1:]
-                    
-                        self.debug_list_3.append('{} 检测丢帧 重新排序 all_data:{} '.format(
+                        # 等待
+                        self.lineEdit_debug_message_list[6].append('{} 丢帧重排:{} '.format(
                             self.normal_time,len(all_data)
                             ))
                     pop_count+=1

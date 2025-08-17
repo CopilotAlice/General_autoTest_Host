@@ -386,6 +386,21 @@ QGroupBox::title {
               <item>
                <widget class="QWidget" name="widget" native="true">
                 <layout class="QHBoxLayout" name="horizontalLayout_26">
+                 <property name="spacing">
+                  <number>1</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>1</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>1</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>1</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>1</number>
+                 </property>
                  <item>
                   <widget class="QLabel" name="label_76">
                    <property name="text">
@@ -2097,7 +2112,7 @@ QGroupBox::title {
                      <item>
                       <widget class="QPushButton" name="pushButton_turntable3x_command">
                        <property name="text">
-                        <string>预设指令</string>
+                        <string>发送指令</string>
                        </property>
                       </widget>
                      </item>
@@ -2140,7 +2155,7 @@ QGroupBox::title {
                       </widget>
                      </item>
                      <item>
-                      <widget class="QLineEdit" name="lineEdit_2"/>
+                      <widget class="QLineEdit" name="lineEdit_turntable3x_returnMsg"/>
                      </item>
                     </layout>
                    </widget>
