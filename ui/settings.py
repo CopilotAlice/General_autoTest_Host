@@ -1,5 +1,6 @@
 import os
 from funs.fun_chy2 import *
+import uuid,hashlib
 class MainWindowSetting:
     def __init__(self,mainWindow):
         self.mw = mainWindow
@@ -13,6 +14,7 @@ class MainWindowSetting:
         # 读取para_config默认配置----------最后执行-------------
         self.init_read_para()
         self.init_read_root()
+        self.init_load_setting()
 
 
     def init_default_config(self):
@@ -106,6 +108,17 @@ class MainWindowSetting:
                     self.list_read_error.append('init_read_root 配置赋值错误:<{}>'.format(e))
                     continue
         
-                
+    def init_load_setting(self):
+        mac_uuid = get_machine_code()
+        self.mw.lineEdit_debug_6.setText('UUID:{}'.format( mac_uuid ))
+        if mac_uuid not in [
+            'AE:DC:28:8F:A9:D8'
+        ]:
+            print('当前UUID非ROOT:{}'.format(mac_uuid))
+            tabwidget = self.mw.tabWidget
+            tab = self.mw.tab_debug2
+            index = tabwidget.indexOf(tab)
+            if index!=-1:
+                tabwidget.setTabVisible(index,False)
                 
         

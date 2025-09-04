@@ -297,14 +297,22 @@ class struct_turnTable3x:
     def __init__(self):
         self.list_debugMsg = []
         self.list_showMsg = []
+        self.str_lastRec = ''
         self.list_mode = [0, 0, 0]  # 运行模式
+        # 默认位置
         self.list_commandLocation = [0, 0, 0]
-        self.list_commandSpeed = [0, 0, 0]
+        # 默认速度
+        self.list_commandSpeed = [10, 10, 10]
+        # 默认加速度
         self.list_commandAcceleration = [10, 10, 10]
+        self.list_recLocation = [0,0,0]
+        self.list_recSpeed = [0,0,0]
+        self.list_recReadySts = [False,False,False]
         self.flag_theading = False
         self.serial = None
         self.serial_com = 'COM1'
         self.serial_check = False
+        
 
     def append_debugMsg(self, msg):
         if isinstance(msg, list):
@@ -324,33 +332,31 @@ class struct_turnTable3x:
         self.list_showMsg.clear()
         self.list_debugMsg.clear()
     def serial_open(self):
-        if self.serial is None:
-            try:
-                self.serial = serial.Serial(self.serial_com, 115200)
-            except Exception as e:
-                self.append_debugMsg('开启串口异常: {}'.format(e))
-                self.serial = None
-        else:
-            try:
-                self.serial.close()
-                self.serial = None
-                self.serial = serial.Serial(self.serial_com, 115200)
-            except Exception as e:
-                self.append_debugMsg('重启串口异常: {}'.format(e))
-                self.serial = None
+        emsg = ''
+        result,emsg =  self.serial_close()
+        if not result:
+            return False, emsg
+        try:
+            self.serial = serial.Serial(self.serial_com, 115200)
+            return True, '串口已打开:{}'.format(self.serial_com)
+        except Exception as e:
+            self.append_debugMsg('开启串口异常: {}'.format(e))
+            self.serial = None
+            return False, '串口打开失败: {}'.format(e)
 
     def serial_close(self):
         if self.serial is None:
-            return True
+            return True,'串口未打开'
         else:
             try:
                 self.serial.close()
                 self.serial = None
+                return True, '串口已关闭'
             except Exception as e:
                 self.append_debugMsg('重启串口异常: {}'.format(e))
+                return False, '串口关闭失败: {}'.format(e)
     # 尝试读取串口数据
-    def serial_tryRec(self, tryCount=20, waitTime=0.01):
-        print('tryCount:{},waitTime{}'.format(tryCount, waitTime))
+    def serial_tryRec(self, tryCount=30, waitTime=0.01):
         count = 0
         while count < tryCount:
             count += 1
@@ -362,13 +368,13 @@ class struct_turnTable3x:
             except Exception as e:
                 self.append_debugMsg('获取数据错误: {}'.format(e))
             time.sleep(waitTime)
-        print('串口未收到内容:{}'.format(count))
         return False
     def serial_try_clear(self):
         try:
             wait = self.serial.in_waiting
             if wait > 0:
                 rec_data = self.serial.read(wait)
+                self.append_debugMsg('清除接收缓存:{}'.format(rec_data.decode()))
                 return rec_data
             else:
                 return False
@@ -378,38 +384,44 @@ class struct_turnTable3x:
     # 尝试发送和读取校验
     def sendAndRec(self, sendMsg='', recMsg=''):
         clear_result = self.serial_try_clear()
-        if clear_result:
-            print('清理转台控制缓存区:{}'.format(clear_result))
+        # if clear_result:
+        #     print('清理转台控制缓存区:{}'.format(clear_result))
         if len(sendMsg) > 0:
             # print('sendMsg: {}'.format(sendMsg))
             try:
                 self.serial.write(sendMsg.encode())
             except Exception as e:
-                self.append_debugMsg('tt_chk send error: {}'.format(e))
+                self.append_debugMsg('发送指令错误: {}'.format(e))
                 return False
         try:
             rec = self.serial_tryRec()
             if not rec:
-                self.append_debugMsg('未接收到转台指令')
+                self.append_showMsg('未接收到转台指令')
                 return False
             if len(recMsg) > 0:
                 if isinstance(recMsg, list):
                     if all(item in rec.decode() for item in recMsg):
+                        self.append_showMsg('OK:{}'.format(sendMsg))
                         return True
                 elif isinstance(recMsg, str):
                     if recMsg in rec.decode():
+                        self.append_showMsg('OK:{}'.format(sendMsg))
                         return True
                 else:
-                    self.append_showMsg('回读校验失败: {}'.format(recMsg))
-                    self.append_debugMsg(
-                        '回读校验失败: send:<{}> check:<{}> rec:<{}>'.format(sendMsg, recMsg, rec.decode())
-                    )
+                    self.append_showMsg('错误校验指令')
+                    self.append_debugMsg('指令格式错误: {}'.format(recMsg))
                     return False
             else:
+                # self.append_debugMsg('Rec:{}'.format(rec.decode()))
+                self.str_lastRec = rec.decode()
                 return rec.decode()
         except Exception as e:
-            self.append_debugMsg('tt_chk rec error: {}'.format(e))
+            self.append_debugMsg('接收指令错误: {}'.format(e))
             return False
+        self.append_showMsg('校验失败: {}'.format(recMsg))
+        self.append_debugMsg(
+            '校验失败: send:<{}> check:<{}> rec:<{}>'.format(sendMsg, recMsg, rec.decode())
+        )
         return False
 
     # 通讯校验和
@@ -440,6 +452,7 @@ class struct_turnTable3x:
         for i in msg_list:
             if str(i) not in ['0', '1', '2']:
                 self.append_showMsg('转台运行模式设置错误: {}'.format([a, b, c]))
+                self.append_debugMsg('转台运行模式设置错误: {}'.format([a, b, c]))
                 return False
         sendMsg = 'MNMOD,{},{},{}'.format(a, b, c)
         # recMsg = 'ASMOD,{},{},{},OK'.format(a, b, c)
@@ -455,6 +468,7 @@ class struct_turnTable3x:
             try:float(i)
             except:
                 self.append_showMsg('转台位置设置错误: {}'.format([a, b, c]))
+                self.append_debugMsg('转台位置设置错误: {}'.format([a, b, c]))
                 return False
         sendMsg = 'MNPOS,{},{},{}'.format(a, b, c)
         # recMsg = 'ASPOS,{},{},{},OK'.format(a, b, c)
@@ -471,6 +485,7 @@ class struct_turnTable3x:
             try:send_list.append(float(i))
             except:
                 self.append_showMsg('转台速度设置错误: {}'.format([a, b, c]))
+                self.append_debugMsg('转台速度设置错误: {}'.format([a, b, c]))
                 return False
         sendMsg = 'MNVEL,{},{},{}'.format(a, b, c)
         # recMsg = 'ASVEL,{},{},{},OK'.format(a, b, c)

@@ -12,6 +12,8 @@ from funs.fun_chy2 import *
 from funs.fun_serial import *
 from funs.fun_locals import *
 
+import ui.events
+import ui.inits
 
 from ui.event import MainWindowEvent
 from ui.logic import MainWindowLogic
@@ -73,7 +75,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
-        self.setWindowTitle("通用自动测试上位机_蔡_功能测试版_2506_V0.87")
+        self.setWindowTitle("通用自动测试上位机_蔡_功能测试版_2508_V0.88")
+        # 初始化调试信息
+        self.inits_debugMsg = ui.inits.MainWindowInitDebugMsg(self)
+        self.inits_showMsg = ui.inits.MainWindowInitShowMsg(self)
         
         # 调试模式函数
         self.debug = MainWindowDebug(self)
@@ -93,6 +98,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.uilogic = MainWindowLogic(self)
         # 获取UI函数
         self.getui = MainWindowGetUI(self)
+        
+        # 初始化多设备自动控制事件集
+        self.events_devide = ui.events.MainWindowEventDevide(self)
+        self.events_hidden = ui.events.MainWindowEventHidden(self)
 
         # self.tableWidget_general_show.setColumnWidth(0, 10)
         # 初始化界面元素
@@ -267,7 +276,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.list_notpath = ['选择路径','',None,'none','None']
         self.model_list = [
             ['通讯','转台','电源','温箱','装订','自动','三轴'],
-            ['protocal','turntable','power','tempbox','general','automatic', '3xturntable'],
+            ['protocal','turntable','power','tempbox','general','automatic', 'turntable3x'],
             ['解算规则','标定规则','none','none','装订规则','自动规则','三轴规则'],
         ]
         self.config_hold_time = 15          # 转台稳定后等待时间
@@ -335,7 +344,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.comboBox_tempbox_com,
             self.combox_set_com_all,
             self.comboBox_ascii_com,
-            self.comboBox_3xturntable_com]
+            self.comboBox_turntable3x_com]
         # 12路com口
         self.combox_com_list = [
             self.combox_set_com_1,
@@ -602,7 +611,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.show_timer_count3 = 0
         # 打开软件自动更新一次所有状态
         self.show_message_01s()
-        self.show_message_05s()
+        self.show_message_05s() 
         self.show_message_1s()
         self.show_message_5s()
         
@@ -724,7 +733,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         if len(self.show_message_dis2_list)>0:
             self.textBrowser_progress_display2.append(self.show_message_dis2_list.pop(0))
-            self.textBrowser_progress_display2.verticalScrollBar().setValue(self.textBrowser_progress_display1.verticalScrollBar().maximum())
+            self.textBrowser_progress_display2.verticalScrollBar().setValue(self.textBrowser_progress_display2.verticalScrollBar().maximum())
         
         if len(self.show_message_automatic_list)>0:
             self.textBrowser_automatic_ruleline.append(self.show_message_automatic_list.pop(0))
@@ -733,6 +742,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         for i in range(12):
             while len(self.show_message_list[i])>0:
                 self.textBrowser_list[i].append( self.show_message_list[i].pop(0) )
+
+        if len(self.showMsgList_devide)>0:
+            self.textBrowser_automatic_ruleline.append('{} {}'.format(self.normal_time, self.showMsgList_devide.pop(0)))
 
                 
 
@@ -919,6 +931,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.textBrowser_debug_3.append(self.debug_list_3.pop(0))
         while len(self.debug_list_4)>0:
             self.textBrowser_debug_4.append(self.debug_list_4.pop(0))
+        while len(self.debugMsgList_devide)>0:
+            self.textBrowser_debug_5.append(self.debugMsgList_devide.pop(0))
         self.lineEdit_debug_message_list[2].append('总接收数:{}'.format(self.all_rec_hex))
         self.lineEdit_debug_message_list[3].append('校验失败:{}'.format(self.sum_check_err_count))
 
@@ -2462,9 +2476,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         protocal_com = self.comboBox_protocal_com.currentText()
         protocal_baund = self.comboBox_protocal_baund.currentText()
         protocal_check = self.comboBox_protocal_check.currentText()
-        turntable_path = self.comboBox_turntable_path.currentText()
         turntable_rule = self.comboBox_turntable_rule.currentText()
-        x3turntable_rule = self.comboBox_3xturntable_rule.currentText()
+        turntable3x_rule = self.comboBox_turntable3x_rule.currentText()
         turntable_com = self.comboBox_turntable_com.currentText()
         power_com = self.comboBox_power_com.currentText()
         binding_rule = self.comboBox_general_rule.currentText()
@@ -2487,8 +2500,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.show_message_clear = True  # 清空12路显示信息
         
         
-        if not ((x3turntable_rule.lower()=='none')|(x3turntable_rule.lower()=='选择协议')):
-            begin_test_mode = 'x3turntable_test'
+        if not ((turntable3x_rule.lower()=='none')|(turntable3x_rule.lower()=='选择协议')):
+            begin_test_mode = 'turntable3x_test'
         if not ((turntable_rule.lower()=='none')|(turntable_rule.lower()=='选择协议')):
             begin_test_mode = 'turntable_test'
         if not ((automatic_rule.lower()=='none')|(automatic_rule.lower()=='选择协议')):
@@ -2500,7 +2513,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.turntable_ready = True     # 忽略转台/ 转台到位标志位
             self.auto_plot_always = True    # 持续更新绘图
             self.only_test()
-        elif begin_test_mode=='x3turntable_test':
+        elif begin_test_mode=='turntable3x_test':
             self.plan_threading_flag = True
             self.bd3x_test()
         elif begin_test_mode=='turntable_test':
@@ -2553,6 +2566,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
     # 标定测试模式、转台同步控制
     def bd_test(self):
+        self.debugMsgList_devide.append('{} run:bd_test,test_mode:{}'.format(self.normal_time,self.test_mode))
         if self.test_mode == 'only_test':
             self.only_test()
         elif self.test_mode == 'turntable_test':
@@ -2567,10 +2581,23 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             print('转台标定时未确定标定逻辑')
     # 标定测试模式、转台同步控制
     def bd3x_test(self):
-        thread_turn = threading.Thread(target=self.begin_test_3xbd)
-        thread_turn.setDaemon(True)
-        thread_turn.start()
-        self.only_test()
+        self.debugMsgList_devide.append('{} run:bd3x_test,test_mode:{}'.format(self.normal_time,self.test_mode))
+        if self.test_mode == 'only_test':
+            self.only_test()
+        elif self.test_mode == 'turntable3x_test':
+            self.events_devide.clickEvent_turntable3x_open()
+            thread_turn = threading.Thread(target=self.begin_test_3xbd)
+            thread_turn.setDaemon(True)
+            # thread_turn.daemon = True
+            thread_turn.start()
+            self.only_test()
+        elif self.test_mode == 'automatic_test':
+            self.events_devide.clickEvent_turntable3x_open()
+            self.only_test()
+            self.begin_test_3xbd()
+        else:
+            print('转台标定时未确定标定逻辑')
+            
         
     def plan_test(self):
         thread_plan = threading.Thread(target=self.plan_test_threading)
@@ -2814,7 +2841,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 hex_length_result = (len(frame_list)>0) & (frame_list_count<(len(frame_list)-1))
                 # print(len())
             else:
-                hex_length_result = (len(all_data)>=decode_fram_leng*2)
+                hex_length_result = (len(all_data)>=decode_fram_leng*2)&(len(all_data)>1)
             if hex_length_result:
                 decode_begin_time = time.time()
                 if isinstance(decode_hex,bytes):
@@ -2984,8 +3011,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                             all_data = all_data[hex_find_hex:]
                         except:
                             all_data = all_data[1:]
-                    
-                        self.debug_list_3.append('{} 检测丢帧 重新排序 all_data:{} '.format(
+                        # 等待
+                        self.lineEdit_debug_message_list[6].append('{} 丢帧重排:{} '.format(
                             self.normal_time,len(all_data)
                             ))
                     pop_count+=1
@@ -3223,7 +3250,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 count+=1
                 try:
                     bd_name = int(list_plan[2])
-                    self.comboBox_3xturntable_rule.setCurrentIndex(bd_name)
+                    self.comboBox_turntable3x_rule.setCurrentIndex(bd_name)
                     self.threading_test_flag = False
                     time.sleep(0.2)
                     self.threading_test_flag = True
@@ -3332,19 +3359,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             except Exception as e:
                 time.sleep(1)
         if not turntable_serial:
-            self.debug_list_1.append('{} 第五次开启转台串口错误:{}'.format(self.normal_time,e))
+            self.debug_list_1.append('{} 重复开启转台串口错误:{}'.format(self.normal_time,e))
             return False
                 
-        # try:
-        #     turntable_serial = serial.Serial(com_port, 115200, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE)
-        # except Exception as e:
-        #     self.debug_list_1.append('{} 第一次开启转台串口错误:{}'.format(self.normal_time,e))
-        #     time.sleep(1)
-        #     try:
-        #         turntable_serial = serial.Serial(com_port, 115200, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE)
-        #     except Exception as e:
-        #         self.debug_list_1.append('{} 第二次开启转台串口错误:{}'.format(self.normal_time,e))
-        #         self.show_message_automatic_list.append('{} 开启转台串口错误'.format(self.normal_time))
         i_status = ''
         o_status = ''
 
@@ -3543,8 +3560,125 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def begin_test_3xbd(self):
         self.show_message_dis1_list.append('{} 开始三轴标定'.format(self.normal_time))
+        self.struct_turntable3x.sendMsg_stp()
         
+        bd_pathname = self.comboBox_turntable3x_path.currentText()
+        bd_filename = self.comboBox_turntable3x_rule.currentText()
+        if not bd_pathname in self.list_notpath:
+            bd_rulename = './{}/{}/{}.txt'.format('三轴规则',bd_pathname,bd_filename)
+        else:
+            bd_rulename = './{}/{}.txt'.format('三轴规则',bd_filename)
+        try:
+            rule_file = pd.read_csv(bd_rulename,header=None,skiprows=2,encoding='gb2312',sep='\\s+')
+        except:
+            rule_file = pd.read_csv(bd_rulename,header=None,skiprows=2,encoding='utf-8',sep='\\s+')
         
+        now = datetime.now()
+        file_path = './测试数据/{}{}/{}/'.format(int2str(now.year),int2str(now.month),int2str(now.day))
+        commands = b''
+        if not os.path.exists(file_path):
+            os.makedirs(file_path)
+        
+        # 标定规则计数
+        rule_count = 0
+        # 等待命令标志位
+        send_check=True
+        # 可以开始测试标志位
+        self.serial_test_begin_flag = False
+        # 等待到位时间
+        # wait_time = self.config_hold_time
+        wait_time = 10
+        test_time = 5
+        # 转台位置判断范围
+        turntable3x_locReadySts = 0.01
+        turntable3x_spdReadySts = 0.01
+        # 每次名命令开始时间
+        begin_time = time.time()
+        # 重新发送指令
+        retry_maxCount = 10
+        retry_count = 0
+        try:
+            while (rule_count<len(rule_file)) & self.plan_threading_flag:
+                time.sleep(0.5)
+                
+                i = rule_count
+                # 判断发送转动指令
+                if send_check:
+                    send_check=False
+                    list_bd_rule = list(rule_file.iloc[i,1:7])
+                    print('{} 转台指令:{}'.format(self.normal_time,list_bd_rule))
+                    test_time = int(rule_file.iloc[i,7])
+                    stop_flag = False
+                    for j in range(3):
+                        if rule_file.iloc[i,j+4]!=0:
+                            stop_flag = True
+                    if stop_flag:
+                        self.struct_turntable3x.sendMsg_stp()
+                        time.sleep(3)
+                        print('发送停止指令')
+                    self.events_devide.turntable3x_set_input(list_bd_rule)
+                    self.events_devide.clickEvent_turntable3x_turn()
+                    begin_time = time.time()
+                # 判断是否到位并开始测试
+                if ((time.time()-begin_time)>wait_time) & (not self.serial_test_begin_flag):
+                    print('{} 判断转台到位'.format(self.normal_time))
+                    turntable3x_stsReady = (False not in self.struct_turntable3x.list_recReadySts)
+                    list_ready = []
+                    list_bd_rule = list(rule_file.iloc[i,1:7])
+                    test_time = int(rule_file.iloc[i,7])
+                    for i in range(3):
+                        # 位置模式判断
+                        if float(list_bd_rule[i+3])==0:
+                            turntable3x_onReady = angular_distance(
+                                list_bd_rule[i],
+                                self.struct_turntable3x.list_recLocation[i]
+                                )<turntable3x_locReadySts
+                        # 速度模式判断
+                        else:
+                            turntable3x_onReady = angular_distance(
+                                list_bd_rule[i+3],
+                                self.struct_turntable3x.list_recSpeed[i]
+                                )<turntable3x_spdReadySts
+                        list_ready.append(turntable3x_onReady)
+                    
+                    # if ((False not in list_ready)&(turntable3x_stsReady)) :
+                    if (False not in list_ready) :
+                        print('{} 转台到位'.format(self.normal_time))
+                        self.serial_test_begin_flag = True
+                        self.turntable_ready = True
+                        retry_count = 0
+                        begin_time = time.time() 
+                    elif retry_count>retry_maxCount:
+                        print('{} 重试次数超限'.format(self.normal_time))
+                        self.serial_test_begin_flag = True
+                        self.turntable_ready = True
+                        retry_count = 0
+                        begin_time = time.time()
+                    else:
+                        print('{} 等待重试'.format(self.normal_time))
+                        retry_count+=1
+                        begin_time = time.time()
+                        self.events_devide.turntable3x_set_input(list_bd_rule)
+                        self.events_devide.clickEvent_turntable3x_turn()
+                # 判断是否测试结束
+                if ((time.time()-begin_time)>(test_time+1))&self.serial_test_begin_flag:
+                    print('{} 测试结束'.format(self.normal_time))
+                    self.serial_test_begin_flag = False
+                    begin_time = time.time()
+                    send_check = True
+                    rule_count+=1
+        except Exception as  e:
+            print('转动错误:{}'.format(e))
+        self.struct_turntable3x.sendMsg_stp()
+        print('测试结束')
+        # self.events_devide.clickEvent_turntable3x_close()
+        # self.pushButton_turntable3x_close.click()
+        self.threading_test_flag = False
+                    
+                
+            
+            
+            
         
 # 根据规则解算数据 - 旧
 def decode_hex_frame(frame,rules_format,rules_head,rules_saveck,rules_paras):

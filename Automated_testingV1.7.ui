@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1064</width>
-    <height>839</height>
+    <width>1225</width>
+    <height>872</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -57,7 +57,7 @@
           <bool>false</bool>
          </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>0</number>
          </property>
          <property name="usesScrollButtons">
           <bool>true</bool>
@@ -312,7 +312,7 @@ QGroupBox::title {
                </widget>
               </item>
               <item>
-               <widget class="QWidget" name="widget" native="true">
+               <widget class="QWidget" name="widget_quickButton" native="true">
                 <layout class="QGridLayout" name="gridLayout_30">
                  <property name="horizontalSpacing">
                   <number>0</number>
@@ -386,6 +386,21 @@ QGroupBox::title {
               <item>
                <widget class="QWidget" name="widget" native="true">
                 <layout class="QHBoxLayout" name="horizontalLayout_26">
+                 <property name="spacing">
+                  <number>1</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>1</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>1</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>1</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>1</number>
+                 </property>
                  <item>
                   <widget class="QLabel" name="label_76">
                    <property name="text">
@@ -835,8 +850,8 @@ p, li { white-space: pre-wrap; }
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>242</width>
-                <height>988</height>
+                <width>296</width>
+                <height>1068</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_30">
@@ -856,7 +871,7 @@ p, li { white-space: pre-wrap; }
                 <number>0</number>
                </property>
                <item>
-                <widget class="QGroupBox" name="groupBox">
+                <widget class="QGroupBox" name="groupBox_turntable">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -877,6 +892,9 @@ QGroupBox::title {
                  </property>
                  <property name="title">
                   <string>双轴转台模块</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_11">
                   <property name="spacing">
@@ -1573,7 +1591,7 @@ QGroupBox::title {
                 </widget>
                </item>
                <item>
-                <widget class="QGroupBox" name="groupBox_16">
+                <widget class="QGroupBox" name="groupBox_turntable3x">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
                    <horstretch>0</horstretch>
@@ -1594,6 +1612,9 @@ QGroupBox::title {
                  </property>
                  <property name="title">
                   <string>三轴转台模块</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_17">
                   <property name="spacing">
@@ -1630,7 +1651,7 @@ QGroupBox::title {
                       <number>0</number>
                      </property>
                      <item>
-                      <widget class="QComboBox" name="comboBox_3xturntable_com">
+                      <widget class="QComboBox" name="comboBox_turntable3x_com">
                        <property name="sizePolicy">
                         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
                          <horstretch>0</horstretch>
@@ -1671,7 +1692,7 @@ QGroupBox::title {
                       </widget>
                      </item>
                      <item>
-                      <widget class="QPushButton" name="pushButton_turntable_close_2">
+                      <widget class="QPushButton" name="pushButton_turntable3x_open">
                        <property name="sizePolicy">
                         <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
                          <horstretch>0</horstretch>
@@ -1684,7 +1705,7 @@ QGroupBox::title {
                       </widget>
                      </item>
                      <item>
-                      <widget class="QPushButton" name="pushButton_turntable_open_2">
+                      <widget class="QPushButton" name="pushButton_turntable3x_close">
                        <property name="sizePolicy">
                         <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
                          <horstretch>0</horstretch>
@@ -1717,173 +1738,17 @@ QGroupBox::title {
                      <property name="spacing">
                       <number>0</number>
                      </property>
-                     <item row="6" column="0">
-                      <widget class="QLabel" name="label_248">
-                       <property name="text">
-                        <string>速度</string>
-                       </property>
-                       <property name="alignment">
-                        <set>Qt::AlignCenter</set>
-                       </property>
-                      </widget>
-                     </item>
                      <item row="6" column="3">
-                      <widget class="QLineEdit" name="lineEdit_3xturntable_5">
+                      <widget class="QLineEdit" name="lineEdit_turntable3x_5">
                        <property name="text">
                         <string>0</string>
                        </property>
                       </widget>
                      </item>
-                     <item row="2" column="3">
-                      <widget class="QLCDNumber" name="lcdNumber_3xturntable_5">
-                       <property name="segmentStyle">
-                        <enum>QLCDNumber::Flat</enum>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="7" column="2">
-                      <widget class="QLineEdit" name="lineEdit_3xturntable_7">
+                     <item row="7" column="0">
+                      <widget class="QLabel" name="label_250">
                        <property name="text">
-                        <string>0</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="4" column="1">
-                      <widget class="QLabel" name="label_244">
-                       <property name="text">
-                        <string>内框</string>
-                       </property>
-                       <property name="alignment">
-                        <set>Qt::AlignCenter</set>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="5" column="1">
-                      <widget class="QLineEdit" name="lineEdit_3xturntable_0">
-                       <property name="text">
-                        <string>0</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="6" column="1">
-                      <widget class="QLineEdit" name="lineEdit_3xturntable_3">
-                       <property name="text">
-                        <string>0</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="1">
-                      <widget class="QLabel" name="label_69">
-                       <property name="text">
-                        <string>内框</string>
-                       </property>
-                       <property name="alignment">
-                        <set>Qt::AlignCenter</set>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="7" column="1">
-                      <widget class="QLineEdit" name="lineEdit_3xturntable_6">
-                       <property name="text">
-                        <string>0</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="5" column="2">
-                      <widget class="QLineEdit" name="lineEdit_3xturntable_1">
-                       <property name="enabled">
-                        <bool>true</bool>
-                       </property>
-                       <property name="text">
-                        <string>0</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="1" column="0">
-                      <widget class="QLabel" name="label_75">
-                       <property name="text">
-                        <string>位置</string>
-                       </property>
-                       <property name="alignment">
-                        <set>Qt::AlignCenter</set>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="1" column="1">
-                      <widget class="QLCDNumber" name="lcdNumber_3xturntable_0">
-                       <property name="segmentStyle">
-                        <enum>QLCDNumber::Flat</enum>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="6" column="2">
-                      <widget class="QLineEdit" name="lineEdit_3xturntable_4">
-                       <property name="text">
-                        <string>0</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="4" column="2">
-                      <widget class="QLabel" name="label_245">
-                       <property name="text">
-                        <string>中框</string>
-                       </property>
-                       <property name="alignment">
-                        <set>Qt::AlignCenter</set>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="0">
-                      <widget class="QLabel" name="label_68">
-                       <property name="text">
-                        <string>显示</string>
-                       </property>
-                       <property name="alignment">
-                        <set>Qt::AlignCenter</set>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="4" column="0">
-                      <widget class="QLabel" name="label_243">
-                       <property name="text">
-                        <string>设置</string>
-                       </property>
-                       <property name="alignment">
-                        <set>Qt::AlignCenter</set>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="4" column="3">
-                      <widget class="QLabel" name="label_246">
-                       <property name="text">
-                        <string>外框</string>
-                       </property>
-                       <property name="alignment">
-                        <set>Qt::AlignCenter</set>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="5" column="3">
-                      <widget class="QLineEdit" name="lineEdit_3xturntable_2">
-                       <property name="text">
-                        <string>0</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="2">
-                      <widget class="QLabel" name="label_73">
-                       <property name="text">
-                        <string>中框</string>
-                       </property>
-                       <property name="alignment">
-                        <set>Qt::AlignCenter</set>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="5" column="0">
-                      <widget class="QLabel" name="label_247">
-                       <property name="text">
-                        <string>位置</string>
+                        <string>模式</string>
                        </property>
                        <property name="alignment">
                         <set>Qt::AlignCenter</set>
@@ -1900,30 +1765,20 @@ QGroupBox::title {
                        </property>
                       </widget>
                      </item>
-                     <item row="7" column="0">
-                      <widget class="QLabel" name="label_250">
-                       <property name="text">
-                        <string>模式</string>
-                       </property>
-                       <property name="alignment">
-                        <set>Qt::AlignCenter</set>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="3">
-                      <widget class="QLabel" name="label_74">
-                       <property name="text">
-                        <string>外框</string>
-                       </property>
-                       <property name="alignment">
-                        <set>Qt::AlignCenter</set>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="7" column="3">
-                      <widget class="QLineEdit" name="lineEdit_3xturntable_8">
+                     <item row="6" column="2">
+                      <widget class="QLineEdit" name="lineEdit_turntable3x_4">
                        <property name="text">
                         <string>0</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="4" column="2">
+                      <widget class="QLabel" name="label_245">
+                       <property name="text">
+                        <string>中框</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignCenter</set>
                        </property>
                       </widget>
                      </item>
@@ -1937,54 +1792,40 @@ QGroupBox::title {
                        </property>
                       </widget>
                      </item>
-                     <item row="1" column="3">
-                      <widget class="QLCDNumber" name="lcdNumber_3xturntable_2">
-                       <property name="segmentStyle">
-                        <enum>QLCDNumber::Flat</enum>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="1" column="2">
-                      <widget class="QLCDNumber" name="lcdNumber_3xturntable_1">
-                       <property name="segmentStyle">
-                        <enum>QLCDNumber::Flat</enum>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="2" column="1">
-                      <widget class="QLCDNumber" name="lcdNumber_3xturntable_3">
-                       <property name="segmentStyle">
-                        <enum>QLCDNumber::Flat</enum>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="2" column="2">
-                      <widget class="QLCDNumber" name="lcdNumber_3xturntable_4">
-                       <property name="segmentStyle">
-                        <enum>QLCDNumber::Flat</enum>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="3" column="1">
-                      <widget class="QLineEdit" name="lineEdit_3xturntablestatus_0">
-                       <property name="enabled">
-                        <bool>false</bool>
-                       </property>
+                     <item row="4" column="3">
+                      <widget class="QLabel" name="label_246">
                        <property name="text">
-                        <string>无</string>
+                        <string>外框</string>
                        </property>
                        <property name="alignment">
                         <set>Qt::AlignCenter</set>
                        </property>
                       </widget>
                      </item>
-                     <item row="3" column="2">
-                      <widget class="QLineEdit" name="lineEdit_3xturntablestatus_1">
-                       <property name="enabled">
-                        <bool>false</bool>
+                     <item row="1" column="1">
+                      <widget class="QLCDNumber" name="lcdNumber_turntable3x_0">
+                       <property name="digitCount">
+                        <number>8</number>
                        </property>
+                       <property name="segmentStyle">
+                        <enum>QLCDNumber::Flat</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="4" column="1">
+                      <widget class="QLabel" name="label_244">
                        <property name="text">
-                        <string>无</string>
+                        <string>内框</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="4" column="0">
+                      <widget class="QLabel" name="label_243">
+                       <property name="text">
+                        <string>设置</string>
                        </property>
                        <property name="alignment">
                         <set>Qt::AlignCenter</set>
@@ -1992,7 +1833,7 @@ QGroupBox::title {
                       </widget>
                      </item>
                      <item row="3" column="3">
-                      <widget class="QLineEdit" name="lineEdit_3xturntablestatus_2">
+                      <widget class="QLineEdit" name="lineEdit_turntable3x_status_2">
                        <property name="enabled">
                         <bool>false</bool>
                        </property>
@@ -2001,6 +1842,204 @@ QGroupBox::title {
                        </property>
                        <property name="alignment">
                         <set>Qt::AlignCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="6" column="1">
+                      <widget class="QLineEdit" name="lineEdit_turntable3x_3">
+                       <property name="text">
+                        <string>0</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="5" column="0">
+                      <widget class="QLabel" name="label_247">
+                       <property name="text">
+                        <string>位置</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="label_68">
+                       <property name="text">
+                        <string>显示</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="7" column="3">
+                      <widget class="QLineEdit" name="lineEdit_turntable3x_8">
+                       <property name="text">
+                        <string>0</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="7" column="2">
+                      <widget class="QLineEdit" name="lineEdit_turntable3x_7">
+                       <property name="text">
+                        <string>0</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="2">
+                      <widget class="QLabel" name="label_73">
+                       <property name="text">
+                        <string>中框</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QLabel" name="label_69">
+                       <property name="text">
+                        <string>内框</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="5" column="1">
+                      <widget class="QLineEdit" name="lineEdit_turntable3x_0">
+                       <property name="text">
+                        <string>0</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="6" column="0">
+                      <widget class="QLabel" name="label_248">
+                       <property name="text">
+                        <string>速度</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="3">
+                      <widget class="QLCDNumber" name="lcdNumber_turntable3x_5">
+                       <property name="digitCount">
+                        <number>8</number>
+                       </property>
+                       <property name="segmentStyle">
+                        <enum>QLCDNumber::Flat</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="5" column="3">
+                      <widget class="QLineEdit" name="lineEdit_turntable3x_2">
+                       <property name="text">
+                        <string>0</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="0">
+                      <widget class="QLabel" name="label_75">
+                       <property name="text">
+                        <string>位置</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="1">
+                      <widget class="QLCDNumber" name="lcdNumber_turntable3x_3">
+                       <property name="digitCount">
+                        <number>8</number>
+                       </property>
+                       <property name="segmentStyle">
+                        <enum>QLCDNumber::Flat</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="7" column="1">
+                      <widget class="QLineEdit" name="lineEdit_turntable3x_6">
+                       <property name="text">
+                        <string>0</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="2">
+                      <widget class="QLCDNumber" name="lcdNumber_turntable3x_4">
+                       <property name="digitCount">
+                        <number>8</number>
+                       </property>
+                       <property name="segmentStyle">
+                        <enum>QLCDNumber::Flat</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="1">
+                      <widget class="QLineEdit" name="lineEdit_turntable3x_status_0">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                       <property name="text">
+                        <string>无</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="5" column="2">
+                      <widget class="QLineEdit" name="lineEdit_turntable3x_1">
+                       <property name="enabled">
+                        <bool>true</bool>
+                       </property>
+                       <property name="text">
+                        <string>0</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="3">
+                      <widget class="QLabel" name="label_74">
+                       <property name="text">
+                        <string>外框</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="2">
+                      <widget class="QLineEdit" name="lineEdit_turntable3x_status_1">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                       <property name="text">
+                        <string>无</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="2">
+                      <widget class="QLCDNumber" name="lcdNumber_turntable3x_1">
+                       <property name="digitCount">
+                        <number>8</number>
+                       </property>
+                       <property name="segmentStyle">
+                        <enum>QLCDNumber::Flat</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="3">
+                      <widget class="QLCDNumber" name="lcdNumber_turntable3x_2">
+                       <property name="digitCount">
+                        <number>8</number>
+                       </property>
+                       <property name="segmentStyle">
+                        <enum>QLCDNumber::Flat</enum>
                        </property>
                       </widget>
                      </item>
@@ -2026,7 +2065,7 @@ QGroupBox::title {
                       <number>0</number>
                      </property>
                      <item>
-                      <widget class="QComboBox" name="comboBox_3xturntable_command">
+                      <widget class="QComboBox" name="comboBox_turntable3x_command">
                        <item>
                         <property name="text">
                          <string>转台急停</string>
@@ -2095,18 +2134,52 @@ QGroupBox::title {
                       </widget>
                      </item>
                      <item>
-                      <widget class="QPushButton" name="pushButton_3xturntable_command">
+                      <widget class="QPushButton" name="pushButton_turntable3x_command">
                        <property name="text">
-                        <string>预设指令</string>
+                        <string>发送指令</string>
                        </property>
                       </widget>
                      </item>
                      <item>
-                      <widget class="QPushButton" name="pushButton_3xturntable_turn">
+                      <widget class="QPushButton" name="pushButton_turntable3x_turn">
                        <property name="text">
                         <string>转台转动</string>
                        </property>
                       </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QWidget" name="widget" native="true">
+                    <layout class="QHBoxLayout" name="horizontalLayout_16">
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
+                     <item>
+                      <widget class="QLabel" name="label_258">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="text">
+                        <string>反馈:</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLineEdit" name="lineEdit_turntable3x_returnMsg"/>
                      </item>
                     </layout>
                    </widget>
@@ -2143,7 +2216,7 @@ QGroupBox::title {
                       </widget>
                      </item>
                      <item>
-                      <widget class="QComboBox" name="comboBox_3xturntable_path">
+                      <widget class="QComboBox" name="comboBox_turntable3x_path">
                        <property name="sizePolicy">
                         <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
                          <horstretch>0</horstretch>
@@ -2192,7 +2265,7 @@ QGroupBox::title {
                       </widget>
                      </item>
                      <item>
-                      <widget class="QComboBox" name="comboBox_3xturntable_rule">
+                      <widget class="QComboBox" name="comboBox_turntable3x_rule">
                        <property name="sizePolicy">
                         <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
                          <horstretch>0</horstretch>
@@ -2255,7 +2328,7 @@ QGroupBox::title {
                    <number>0</number>
                   </property>
                   <item row="0" column="1">
-                   <widget class="QLineEdit" name="lineEdit">
+                   <widget class="QLineEdit" name="lineEdit_tempbox_set">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
                       <horstretch>0</horstretch>
@@ -2274,7 +2347,7 @@ QGroupBox::title {
                    </widget>
                   </item>
                   <item row="0" column="2">
-                   <widget class="QPushButton" name="pushButton">
+                   <widget class="QPushButton" name="pushButton_tempbox_set">
                     <property name="text">
                      <string>定值启动</string>
                     </property>
@@ -2778,8 +2851,8 @@ p, li { white-space: pre-wrap; }
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>259</width>
-                <height>718</height>
+                <width>317</width>
+                <height>740</height>
                </rect>
               </property>
               <property name="sizePolicy">
@@ -3225,8 +3298,8 @@ QGroupBox::title {
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>115</width>
-                <height>1033</height>
+                <width>296</width>
+                <height>1119</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_25">
@@ -5093,8 +5166,8 @@ QGroupBox::title {
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>220</width>
-                <height>2154</height>
+                <width>296</width>
+                <height>2403</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_26">
@@ -8626,7 +8699,6 @@ QGroupBox::title {
               <weight>9</weight>
               <italic>false</italic>
               <bold>false</bold>
-              <kerning>true</kerning>
              </font>
             </property>
             <property name="styleSheet">
@@ -8659,7 +8731,6 @@ QGroupBox::title {
               <weight>9</weight>
               <italic>false</italic>
               <bold>false</bold>
-              <kerning>true</kerning>
              </font>
             </property>
             <property name="styleSheet">
@@ -8692,7 +8763,6 @@ QGroupBox::title {
               <weight>9</weight>
               <italic>false</italic>
               <bold>false</bold>
-              <kerning>true</kerning>
              </font>
             </property>
             <property name="styleSheet">
@@ -8752,7 +8822,7 @@ QGroupBox::title {
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>5</number>
       </property>
       <widget class="QWidget" name="tab_plot">
        <attribute name="title">
@@ -9867,9 +9937,9 @@ QGroupBox::title {
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
-             <width>563</width>
-             <height>1342</height>
+             <y>-495</y>
+             <width>837</width>
+             <height>1468</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_55">
@@ -12640,7 +12710,7 @@ QGroupBox::title {
              </widget>
             </item>
             <item>
-             <widget class="QGroupBox" name="groupBox_34">
+             <widget class="QGroupBox" name="groupBox_sate_config">
               <property name="styleSheet">
                <string notr="true">QGroupBox {
     border: 2px solid #555;
@@ -12655,6 +12725,9 @@ QGroupBox::title {
               </property>
               <property name="title">
                <string>多路设置模块 #Ascii #Satellite</string>
+              </property>
+              <property name="checkable">
+               <bool>true</bool>
               </property>
               <layout class="QGridLayout" name="gridLayout_34" rowstretch="0,0,0,0" rowminimumheight="0,0,0,0">
                <property name="bottomMargin">
@@ -13353,12 +13426,24 @@ QGroupBox::title {
              </widget>
             </item>
             <item>
-             <widget class="QGroupBox" name="groupBox_47">
+             <widget class="QGroupBox" name="groupBox_sate_show">
               <property name="styleSheet">
-               <string notr="true"/>
+               <string notr="true">QGroupBox#groupBox_sate_show{
+    border: 2px solid #555;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+QGroupBox#groupBox_sate_show::title{
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
               </property>
               <property name="title">
                <string>卫导内容显示</string>
+              </property>
+              <property name="checkable">
+               <bool>true</bool>
               </property>
               <layout class="QGridLayout" name="gridLayout_40">
                <item row="0" column="0">
@@ -13559,7 +13644,7 @@ QGroupBox::title {
       </widget>
       <widget class="QWidget" name="tab_receive">
        <attribute name="title">
-        <string>接收</string>
+        <string>记录</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_13">
         <item>
@@ -13572,8 +13657,8 @@ QGroupBox::title {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>726</width>
-             <height>2484</height>
+             <width>815</width>
+             <height>2499</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -13741,7 +13826,7 @@ QGroupBox::title {
       </widget>
       <widget class="QWidget" name="tab_protocal">
        <attribute name="title">
-        <string>协议</string>
+        <string>实时</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_23">
         <item row="0" column="0">
@@ -14022,12 +14107,220 @@ QGroupBox::title {
         <item row="0" column="0">
          <widget class="QTabWidget" name="tabWidget_3">
           <property name="currentIndex">
-           <number>2</number>
+           <number>1</number>
           </property>
-          <widget class="QWidget" name="tab_tools_3xbd">
+          <widget class="QWidget" name="tab_2">
+           <attribute name="title">
+            <string>双轴标定</string>
+           </attribute>
+          </widget>
+          <widget class="QWidget" name="tab">
            <attribute name="title">
             <string>三轴标定</string>
            </attribute>
+           <layout class="QGridLayout" name="gridLayout_12">
+            <item row="0" column="0">
+             <widget class="QGroupBox" name="groupBox">
+              <property name="title">
+               <string>文件目录</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_41">
+               <item>
+                <widget class="QListWidget" name="listWidget_tools_bd3x_pathShow"/>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QGroupBox" name="groupBox_16">
+              <property name="title">
+               <string>文件预览</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_56">
+               <item>
+                <widget class="QTextEdit" name="textEdit_tools_bd3x_fileShow"/>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_tools_imgShow">
+                 <property name="text">
+                  <string>TextLabel</string>
+                 </property>
+                 <property name="scaledContents">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QGroupBox" name="groupBox_18">
+              <property name="title">
+               <string>功能区域</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_57">
+               <item>
+                <widget class="QScrollArea" name="scrollArea_9">
+                 <property name="widgetResizable">
+                  <bool>true</bool>
+                 </property>
+                 <widget class="QWidget" name="scrollAreaWidgetContents_10">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>387</width>
+                    <height>341</height>
+                   </rect>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_58">
+                   <item>
+                    <layout class="QGridLayout" name="gridLayout_21">
+                     <item row="0" column="2">
+                      <widget class="QLabel" name="label_261">
+                       <property name="text">
+                        <string>正则_非</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="label_259">
+                       <property name="text">
+                        <string>正则_与</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QLineEdit" name="lineEdit_tools_bd3x_and">
+                       <property name="text">
+                        <string>s txt</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="3">
+                      <widget class="QLineEdit" name="lineEdit_tools_bd3x_nor">
+                       <property name="text">
+                        <string>hz</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="0">
+                      <widget class="QLabel" name="label_260">
+                       <property name="text">
+                        <string>平均数</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="1">
+                      <widget class="QLineEdit" name="lineEdit_tools_bd3x_aveCount">
+                       <property name="text">
+                        <string>36</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="2">
+                      <widget class="QLabel" name="label_262">
+                       <property name="text">
+                        <string>转换数</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="3">
+                      <widget class="QLineEdit" name="lineEdit_tools_bd3x_transCount">
+                       <property name="text">
+                        <string>10</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <layout class="QGridLayout" name="gridLayout_20">
+                     <item row="1" column="0">
+                      <widget class="QPushButton" name="pushButton_tools_bd3x_avePath">
+                       <property name="text">
+                        <string>平均处理</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="0">
+                      <widget class="QPushButton" name="pushButton_tools_bd3x_createBin">
+                       <property name="text">
+                        <string>生成bin</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="0">
+                      <widget class="QPushButton" name="pushButton_tools_bd3x_ave2file">
+                       <property name="text">
+                        <string>格式转换</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="1">
+                      <widget class="QLineEdit" name="lineEdit_tools_bd3x_createBin"/>
+                     </item>
+                     <item row="2" column="1">
+                      <widget class="QLineEdit" name="lineEdit_tools_bd3x_ave2file"/>
+                     </item>
+                     <item row="0" column="0">
+                      <widget class="QPushButton" name="pushButton_tools_bd3x_loadPath">
+                       <property name="text">
+                        <string>载入路径</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="1">
+                      <widget class="QLineEdit" name="lineEdit_tools_bd3x_avePath"/>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QLineEdit" name="lineEdit_tools_bd3x_loadPath"/>
+                     </item>
+                     <item row="4" column="0">
+                      <widget class="QPushButton" name="pushButton_tools_bd3x_autoRun">
+                       <property name="text">
+                        <string>一键处理</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="4" column="1">
+                      <widget class="QLineEdit" name="lineEdit_tools_bd3x_autoRun"/>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <spacer name="verticalSpacer">
+                     <property name="orientation">
+                      <enum>Qt::Vertical</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>81</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </widget>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QGroupBox" name="groupBox_17">
+              <property name="title">
+               <string>执行信息</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_50">
+               <item>
+                <widget class="QTextBrowser" name="textBrowser_tools_bd3x_msgShow"/>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
           </widget>
           <widget class="QWidget" name="tab_tools_dropframe">
            <attribute name="title">
@@ -14855,8 +15148,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>256</width>
-             <height>249</height>
+             <width>533</width>
+             <height>437</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_53">
@@ -14975,16 +15268,46 @@ p, li { white-space: pre-wrap; }
        <attribute name="title">
         <string>调试</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_10">
-        <item row="2" column="0">
+       <layout class="QVBoxLayout" name="verticalLayout_32">
+        <item>
+         <widget class="QScrollArea" name="scrollArea_3">
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents_8">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>836</width>
+             <height>705</height>
+            </rect>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_10">
+            <item row="1" column="0">
+             <widget class="QTextBrowser" name="textBrowser_debug_3"/>
+            </item>
+            <item row="0" column="1">
+             <widget class="QTextBrowser" name="textBrowser_debug_2"/>
+            </item>
+            <item row="0" column="0">
+             <widget class="QTextBrowser" name="textBrowser_debug_1"/>
+            </item>
+            <item row="1" column="1">
+             <widget class="QTextBrowser" name="textBrowser_debug_4"/>
+            </item>
+            <item row="2" column="0">
+             <widget class="QTextBrowser" name="textBrowser_debug_5"/>
+            </item>
+            <item row="2" column="1">
+             <widget class="QTextBrowser" name="textBrowser_debug_6"/>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item>
          <layout class="QGridLayout" name="gridLayout_6">
-          <item row="2" column="0">
-           <widget class="QPushButton" name="pushButton_debug_1">
-            <property name="text">
-             <string>reload para_config</string>
-            </property>
-           </widget>
-          </item>
           <item row="1" column="1">
            <widget class="QLineEdit" name="lineEdit_debug_4"/>
           </item>
@@ -14994,8 +15317,15 @@ p, li { white-space: pre-wrap; }
           <item row="0" column="0">
            <widget class="QLineEdit" name="lineEdit_debug_1"/>
           </item>
-          <item row="1" column="0">
-           <widget class="QLineEdit" name="lineEdit_debug_3"/>
+          <item row="0" column="2">
+           <widget class="QLineEdit" name="lineEdit_debug_5"/>
+          </item>
+          <item row="2" column="0">
+           <widget class="QPushButton" name="pushButton_debug_1">
+            <property name="text">
+             <string>reload para_config</string>
+            </property>
+           </widget>
           </item>
           <item row="2" column="1">
            <widget class="QPushButton" name="pushButton_debug_2">
@@ -15004,30 +15334,26 @@ p, li { white-space: pre-wrap; }
             </property>
            </widget>
           </item>
-         </layout>
-        </item>
-        <item row="2" column="1">
-         <layout class="QGridLayout" name="gridLayout_12">
-          <item row="0" column="1">
+          <item row="1" column="0">
+           <widget class="QLineEdit" name="lineEdit_debug_3"/>
+          </item>
+          <item row="0" column="3">
            <widget class="QLineEdit" name="lineEdit_debug_6"/>
           </item>
-          <item row="0" column="0">
-           <widget class="QLineEdit" name="lineEdit_debug_5"/>
-          </item>
-          <item row="1" column="0">
+          <item row="1" column="2">
            <widget class="QLineEdit" name="lineEdit_debug_7"/>
           </item>
-          <item row="1" column="1">
+          <item row="1" column="3">
            <widget class="QLineEdit" name="lineEdit_debug_8"/>
           </item>
-          <item row="2" column="0">
+          <item row="2" column="2">
            <widget class="QPushButton" name="pushButton_debug_3">
             <property name="text">
              <string>PushButton</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="1">
+          <item row="2" column="3">
            <widget class="QPushButton" name="pushButton_debug_4">
             <property name="text">
              <string>PushButton</string>
@@ -15035,18 +15361,6 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
          </layout>
-        </item>
-        <item row="0" column="0">
-         <widget class="QTextBrowser" name="textBrowser_debug_1"/>
-        </item>
-        <item row="1" column="0">
-         <widget class="QTextBrowser" name="textBrowser_debug_3"/>
-        </item>
-        <item row="0" column="1">
-         <widget class="QTextBrowser" name="textBrowser_debug_2"/>
-        </item>
-        <item row="1" column="1">
-         <widget class="QTextBrowser" name="textBrowser_debug_4"/>
         </item>
        </layout>
       </widget>
@@ -15064,9 +15378,9 @@ p, li { white-space: pre-wrap; }
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
-             <width>522</width>
-             <height>1439</height>
+             <y>-60</y>
+             <width>815</width>
+             <height>1519</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout_35">
