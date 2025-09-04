@@ -401,6 +401,21 @@ QGroupBox::title {
                  <property name="bottomMargin">
                   <number>1</number>
                  </property>
+                 <property name="spacing">
+                  <number>1</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>1</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>1</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>1</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>1</number>
+                 </property>
                  <item>
                   <widget class="QLabel" name="label_76">
                    <property name="text">
@@ -1661,6 +1676,7 @@ QGroupBox::title {
                      </property>
                      <item>
                       <widget class="QComboBox" name="comboBox_turntable3x_com">
+                      <widget class="QComboBox" name="comboBox_turntable3x_com">
                        <property name="sizePolicy">
                         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
                          <horstretch>0</horstretch>
@@ -1702,6 +1718,7 @@ QGroupBox::title {
                      </item>
                      <item>
                       <widget class="QPushButton" name="pushButton_turntable3x_open">
+                      <widget class="QPushButton" name="pushButton_turntable3x_open">
                        <property name="sizePolicy">
                         <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
                          <horstretch>0</horstretch>
@@ -1714,6 +1731,7 @@ QGroupBox::title {
                       </widget>
                      </item>
                      <item>
+                      <widget class="QPushButton" name="pushButton_turntable3x_close">
                       <widget class="QPushButton" name="pushButton_turntable3x_close">
                        <property name="sizePolicy">
                         <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
@@ -1749,6 +1767,7 @@ QGroupBox::title {
                      </property>
                      <item row="6" column="3">
                       <widget class="QLineEdit" name="lineEdit_turntable3x_5">
+                      <widget class="QLineEdit" name="lineEdit_turntable3x_5">
                        <property name="text">
                         <string>0</string>
                        </property>
@@ -1756,7 +1775,13 @@ QGroupBox::title {
                      </item>
                      <item row="7" column="0">
                       <widget class="QLabel" name="label_250">
+                     <item row="7" column="0">
+                      <widget class="QLabel" name="label_250">
                        <property name="text">
+                        <string>模式</string>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignCenter</set>
                         <string>模式</string>
                        </property>
                        <property name="alignment">
@@ -1766,7 +1791,10 @@ QGroupBox::title {
                      </item>
                      <item row="2" column="0">
                       <widget class="QLabel" name="label_242">
+                     <item row="2" column="0">
+                      <widget class="QLabel" name="label_242">
                        <property name="text">
+                        <string>速度</string>
                         <string>速度</string>
                        </property>
                        <property name="alignment">
@@ -1776,6 +1804,8 @@ QGroupBox::title {
                      </item>
                      <item row="6" column="2">
                       <widget class="QLineEdit" name="lineEdit_turntable3x_4">
+                     <item row="6" column="2">
+                      <widget class="QLineEdit" name="lineEdit_turntable3x_4">
                        <property name="text">
                         <string>0</string>
                        </property>
@@ -1783,7 +1813,10 @@ QGroupBox::title {
                      </item>
                      <item row="4" column="2">
                       <widget class="QLabel" name="label_245">
+                     <item row="4" column="2">
+                      <widget class="QLabel" name="label_245">
                        <property name="text">
+                        <string>中框</string>
                         <string>中框</string>
                        </property>
                        <property name="alignment">
@@ -1793,9 +1826,14 @@ QGroupBox::title {
                      </item>
                      <item row="3" column="0">
                       <widget class="QLabel" name="label_251">
+                     <item row="3" column="0">
+                      <widget class="QLabel" name="label_251">
                        <property name="text">
                         <string>状态</string>
+                        <string>状态</string>
                        </property>
+                       <property name="alignment">
+                        <set>Qt::AlignCenter</set>
                        <property name="alignment">
                         <set>Qt::AlignCenter</set>
                        </property>
@@ -1803,7 +1841,10 @@ QGroupBox::title {
                      </item>
                      <item row="4" column="3">
                       <widget class="QLabel" name="label_246">
+                     <item row="4" column="3">
+                      <widget class="QLabel" name="label_246">
                        <property name="text">
+                        <string>外框</string>
                         <string>外框</string>
                        </property>
                        <property name="alignment">
@@ -1821,6 +1862,8 @@ QGroupBox::title {
                        </property>
                       </widget>
                      </item>
+                     <item row="4" column="1">
+                      <widget class="QLabel" name="label_244">
                      <item row="4" column="1">
                       <widget class="QLabel" name="label_244">
                        <property name="text">
@@ -1895,10 +1938,10 @@ QGroupBox::title {
                        </property>
                       </widget>
                      </item>
-                     <item row="0" column="2">
-                      <widget class="QLabel" name="label_73">
+                     <item row="5" column="0">
+                      <widget class="QLabel" name="label_247">
                        <property name="text">
-                        <string>中框</string>
+                        <string>位置</string>
                        </property>
                        <property name="alignment">
                         <set>Qt::AlignCenter</set>
@@ -1976,6 +2019,13 @@ QGroupBox::title {
                        </property>
                       </widget>
                      </item>
+                     <item row="7" column="1">
+                      <widget class="QLineEdit" name="lineEdit_turntable3x_6">
+                       <property name="text">
+                        <string>0</string>
+                       </property>
+                      </widget>
+                     </item>
                      <item row="2" column="2">
                       <widget class="QLCDNumber" name="lcdNumber_turntable3x_4">
                        <property name="digitCount">
@@ -1987,6 +2037,7 @@ QGroupBox::title {
                       </widget>
                      </item>
                      <item row="3" column="1">
+                      <widget class="QLineEdit" name="lineEdit_turntable3x_status_0">
                       <widget class="QLineEdit" name="lineEdit_turntable3x_status_0">
                        <property name="enabled">
                         <bool>false</bool>
@@ -2001,10 +2052,21 @@ QGroupBox::title {
                      </item>
                      <item row="5" column="2">
                       <widget class="QLineEdit" name="lineEdit_turntable3x_1">
+                     <item row="5" column="2">
+                      <widget class="QLineEdit" name="lineEdit_turntable3x_1">
                        <property name="enabled">
+                        <bool>true</bool>
                         <bool>true</bool>
                        </property>
                        <property name="text">
+                        <string>0</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="3">
+                      <widget class="QLabel" name="label_74">
+                       <property name="text">
+                        <string>外框</string>
                         <string>0</string>
                        </property>
                       </widget>
@@ -2019,6 +2081,8 @@ QGroupBox::title {
                        </property>
                       </widget>
                      </item>
+                     <item row="3" column="2">
+                      <widget class="QLineEdit" name="lineEdit_turntable3x_status_1">
                      <item row="3" column="2">
                       <widget class="QLineEdit" name="lineEdit_turntable3x_status_1">
                        <property name="enabled">
@@ -2074,6 +2138,7 @@ QGroupBox::title {
                       <number>0</number>
                      </property>
                      <item>
+                      <widget class="QComboBox" name="comboBox_turntable3x_command">
                       <widget class="QComboBox" name="comboBox_turntable3x_command">
                        <item>
                         <property name="text">
@@ -2144,17 +2209,54 @@ QGroupBox::title {
                      </item>
                      <item>
                       <widget class="QPushButton" name="pushButton_turntable3x_command">
+                      <widget class="QPushButton" name="pushButton_turntable3x_command">
                        <property name="text">
+                        <string>发送指令</string>
                         <string>发送指令</string>
                        </property>
                       </widget>
                      </item>
                      <item>
                       <widget class="QPushButton" name="pushButton_turntable3x_turn">
+                      <widget class="QPushButton" name="pushButton_turntable3x_turn">
                        <property name="text">
                         <string>转台转动</string>
                        </property>
                       </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QWidget" name="widget" native="true">
+                    <layout class="QHBoxLayout" name="horizontalLayout_16">
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
+                     <item>
+                      <widget class="QLabel" name="label_258">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="text">
+                        <string>反馈:</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLineEdit" name="lineEdit_turntable3x_returnMsg"/>
                      </item>
                     </layout>
                    </widget>
@@ -2226,6 +2328,7 @@ QGroupBox::title {
                      </item>
                      <item>
                       <widget class="QComboBox" name="comboBox_turntable3x_path">
+                      <widget class="QComboBox" name="comboBox_turntable3x_path">
                        <property name="sizePolicy">
                         <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
                          <horstretch>0</horstretch>
@@ -2274,6 +2377,7 @@ QGroupBox::title {
                       </widget>
                      </item>
                      <item>
+                      <widget class="QComboBox" name="comboBox_turntable3x_rule">
                       <widget class="QComboBox" name="comboBox_turntable3x_rule">
                        <property name="sizePolicy">
                         <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
@@ -2338,6 +2442,7 @@ QGroupBox::title {
                   </property>
                   <item row="0" column="1">
                    <widget class="QLineEdit" name="lineEdit_tempbox_set">
+                   <widget class="QLineEdit" name="lineEdit_tempbox_set">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
                       <horstretch>0</horstretch>
@@ -2356,6 +2461,7 @@ QGroupBox::title {
                    </widget>
                   </item>
                   <item row="0" column="2">
+                   <widget class="QPushButton" name="pushButton_tempbox_set">
                    <widget class="QPushButton" name="pushButton_tempbox_set">
                     <property name="text">
                      <string>定值启动</string>
@@ -13653,6 +13759,7 @@ QGroupBox#groupBox_sate_show::title{
       <widget class="QWidget" name="tab_receive">
        <attribute name="title">
         <string>记录</string>
+        <string>记录</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_13">
         <item>
@@ -13834,6 +13941,7 @@ QGroupBox#groupBox_sate_show::title{
       </widget>
       <widget class="QWidget" name="tab_protocal">
        <attribute name="title">
+        <string>实时</string>
         <string>实时</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_23">
@@ -15337,6 +15445,15 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <string>reload para_config</string>
             </property>
            </widget>
+          <item row="0" column="2">
+           <widget class="QLineEdit" name="lineEdit_debug_5"/>
+          </item>
+          <item row="2" column="0">
+           <widget class="QPushButton" name="pushButton_debug_1">
+            <property name="text">
+             <string>reload para_config</string>
+            </property>
+           </widget>
           </item>
           <item row="2" column="1">
            <widget class="QPushButton" name="pushButton_debug_2">
@@ -15349,14 +15466,21 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <widget class="QLineEdit" name="lineEdit_debug_3"/>
           </item>
           <item row="0" column="3">
+          <item row="1" column="0">
+           <widget class="QLineEdit" name="lineEdit_debug_3"/>
+          </item>
+          <item row="0" column="3">
            <widget class="QLineEdit" name="lineEdit_debug_6"/>
           </item>
+          <item row="1" column="2">
           <item row="1" column="2">
            <widget class="QLineEdit" name="lineEdit_debug_7"/>
           </item>
           <item row="1" column="3">
+          <item row="1" column="3">
            <widget class="QLineEdit" name="lineEdit_debug_8"/>
           </item>
+          <item row="2" column="2">
           <item row="2" column="2">
            <widget class="QPushButton" name="pushButton_debug_3">
             <property name="text">
@@ -15364,6 +15488,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
             </property>
            </widget>
           </item>
+          <item row="2" column="3">
           <item row="2" column="3">
            <widget class="QPushButton" name="pushButton_debug_4">
             <property name="text">

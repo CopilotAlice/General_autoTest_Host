@@ -64,6 +64,7 @@ class struct_general_bind:
                     self.struct_typeCheck = 'crc32'
                     self.struct_ruleCheck = try_return_checkRule(val)
                 if ('crc_mcrf4' == tar.lower())|( ('crc' in tar.lower())&('mcrf4' in tar.lower()) ):
+                if ('crc_mcrf4' == tar.lower())|( ('crc' in tar.lower())&('mcrf4' in tar.lower()) ):
                     self.struct_typeCheck = 'crc_mcrf4'
                     self.struct_ruleCheck = try_return_checkRule(val)
                 if 'button' in tar.lower():
