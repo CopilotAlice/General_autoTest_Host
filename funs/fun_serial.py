@@ -3,9 +3,6 @@ import serial,time
 ############## 事件函数-串口操作函数
 
 # 尝试开启串口
-############## 事件函数-串口操作函数
-
-# 尝试开启串口
 def tryOpenSerial(com,baund=460800,parity='N',stopbits=1,maxReryCount=3,delay=0.5):
     debug_list = []
     serials = False
@@ -17,8 +14,6 @@ def tryOpenSerial(com,baund=460800,parity='N',stopbits=1,maxReryCount=3,delay=0.
         debug_list.append(emsg)
         debug_list.append('{} in {}?'.format(com,list(serial.tools.list_ports.comports())))
     return serials,debug_list
-# 尝试发送数据
-# 废弃
 # 尝试发送数据
 # 废弃
 def trySendSerial( serials,delay:float=0.5,msgList:list = [],msgType='hex' ):

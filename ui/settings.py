@@ -112,8 +112,7 @@ class MainWindowSetting:
         mac_uuid = get_machine_code()
         self.mw.lineEdit_debug_6.setText('UUID:{}'.format( mac_uuid ))
         if mac_uuid not in [
-            'AE:DC:28:8F:A9:D8',
-            '40:EC:99:76:18:CF'
+            'AE:DC:28:8F:A9:D8'
         ]:
             print('当前UUID非ROOT:{}'.format(mac_uuid))
             tabwidget = self.mw.tabWidget

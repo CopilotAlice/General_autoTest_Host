@@ -75,7 +75,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
-        self.setWindowTitle("通用自动测试上位机_蔡_功能测试版_2506_V0.87")
+        self.setWindowTitle("通用自动测试上位机_蔡_功能测试版_2508_V0.88")
+        # 初始化调试信息
+        self.inits_debugMsg = ui.inits.MainWindowInitDebugMsg(self)
+        self.inits_showMsg = ui.inits.MainWindowInitShowMsg(self)
         
         # 调试模式函数
         self.debug = MainWindowDebug(self)
@@ -2474,7 +2477,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         protocal_baund = self.comboBox_protocal_baund.currentText()
         protocal_check = self.comboBox_protocal_check.currentText()
         turntable_rule = self.comboBox_turntable_rule.currentText()
-        x3turntable_rule = self.comboBox_3xturntable_rule.currentText()
+        turntable3x_rule = self.comboBox_turntable3x_rule.currentText()
         turntable_com = self.comboBox_turntable_com.currentText()
         power_com = self.comboBox_power_com.currentText()
         binding_rule = self.comboBox_general_rule.currentText()

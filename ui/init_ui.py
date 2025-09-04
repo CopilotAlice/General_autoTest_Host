@@ -897,4 +897,3 @@ class struct_paraCal:
         
         pass
     
-    
