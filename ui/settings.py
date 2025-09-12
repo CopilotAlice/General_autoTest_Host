@@ -111,14 +111,20 @@ class MainWindowSetting:
     def init_load_setting(self):
         mac_uuid = get_machine_code()
         self.mw.lineEdit_debug_6.setText('UUID:{}'.format( mac_uuid ))
-        if mac_uuid not in [
-            'AE:DC:28:8F:A9:D8'
-        ]:
-            print('当前UUID非ROOT:{}'.format(mac_uuid))
-            tabwidget = self.mw.tabWidget
-            tab = self.mw.tab_debug2
-            index = tabwidget.indexOf(tab)
-            if index!=-1:
-                tabwidget.setTabVisible(index,False)
-                
+        tabwidget = self.mw.tabWidget
+        tabwidget_show_list = [
+            self.mw.tab_para,
+            self.mw.tab_debug2
+        ]
+        flag_show_tab = mac_uuid not in [
+            'AE:DC:28:8F:A9:D8',
+            '40:EC:99:76:18:CC',
+            '40:EC:99:76:18:CF'
+        ]
+        if flag_show_tab:
+            for tab in tabwidget_show_list:
+                index = tabwidget.indexOf(tab)
+                if index!=-1:
+                    tabwidget.setTabVisible(index,False)
+
         

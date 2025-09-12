@@ -6,6 +6,9 @@ import pandas as pd
 from funs.fun_chy2 import *
 from funs.fun_sate import *
 from PyQt5 import QtWidgets, QtGui, QtCore
+# 三轴转台结构体
+import serial
+import time
 
 
 
@@ -289,9 +292,6 @@ class clickEventThread_decodeShow(QtCore.QThread):
             time.sleep(1)
             self.update_signal.emit('事件更新:{}s'.format(i+1))
             
-# 三轴转台结构体
-import serial
-import time
 
 class struct_turnTable3x:
     def __init__(self):

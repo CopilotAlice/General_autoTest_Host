@@ -14,6 +14,7 @@ from funs.fun_locals import *
 
 import ui.events
 import ui.inits
+import ui.tools
 
 from ui.event import MainWindowEvent
 from ui.logic import MainWindowLogic
@@ -99,9 +100,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # 获取UI函数
         self.getui = MainWindowGetUI(self)
         
+        
         # 初始化多设备自动控制事件集
         self.events_devide = ui.events.MainWindowEventDevide(self)
+        # 初始化显示模块 根据uuid判断 后续测试功能需加装测试时间
         self.events_hidden = ui.events.MainWindowEventHidden(self)
+        # 初始化工具栏-处理标定数据
+        self.tools_bdcalib = ui.tools.MainWindowToolBdcalib(self)
 
         # self.tableWidget_general_show.setColumnWidth(0, 10)
         # 初始化界面元素
