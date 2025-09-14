@@ -7,7 +7,6 @@ class MainWindowDebug:
         
         self.debug_time_init()
         self.debug_struct_init()
-        self.debug_test()
         
     
     def debug_time_init(self):

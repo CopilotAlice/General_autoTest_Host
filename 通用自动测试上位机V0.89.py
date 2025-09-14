@@ -1214,6 +1214,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.debug_list_1.append('装订载入缓存12路:{}'.format(str(send_commands)))
             for i in range(12):
                 self.binding_cache_list[i] = (send_commands)
+    def tools_bd3x_taskDone(self,msg):
+        now = datetime.datetime.now()
+        try: self.textBrowser_tools_bd3x_msglast.setText('{} {}'.format(now.strftime('%H:%M:%S'), msg))
+        except Exception as e: print('Error:append_degugMsg: {}'.format(e))
     
     # 卫导接收切换
     def change_sate_button(self):

@@ -4,6 +4,7 @@ class MainWindowEventHidden:
         self.mw = mainWindow
         self.logic_clickHidden()
         self.logic_changeHidden()
+        self.init_hidden()
     
     # groupbox 点击隐藏 
     def logic_clickHidden(self):
@@ -11,6 +12,14 @@ class MainWindowEventHidden:
         self.mw.groupBox_sate_show.toggled.connect(self.clickEvent_childHidden)
         self.mw.groupBox_turntable.toggled.connect(self.clickEvent_childHidden)
         self.mw.groupBox_turntable3x.toggled.connect(self.clickEvent_childHidden)
+        self.mw.groupBox_tools_calibbd_allpara.toggled.connect(self.clickEvent_childHidden)
+        self.mw.groupBox_tools_calibbd_basepara.toggled.connect(self.clickEvent_childHidden)
+        
+        
+    def init_hidden(self):
+        self.mw.groupBox_tools_calibbd_allpara.setChecked(False)
+        self.mw.groupBox_tools_calibbd_basepara.setChecked(False)
+        
     def clickEvent_childHidden(self,checked):
         sender = self.mw.sender()
         for child in sender.findChildren(QWidget):
