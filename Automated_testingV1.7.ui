@@ -14202,9 +14202,9 @@ QGroupBox#groupBox_sate_show::title{
                   <property name="geometry">
                    <rect>
                     <x>0</x>
-                    <y>-35</y>
+                    <y>0</y>
                     <width>410</width>
-                    <height>480</height>
+                    <height>638</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_58">
@@ -14252,7 +14252,7 @@ QGroupBox#groupBox_sate_show::title{
                       </widget>
                      </item>
                      <item>
-                      <widget class="QCheckBox" name="checkBox">
+                      <widget class="QCheckBox" name="checkBox_tools_bd3x_delEmptyFolder">
                        <property name="text">
                         <string>遍历删除空文件夹</string>
                        </property>
@@ -14282,7 +14282,7 @@ QGroupBox::title {
 }</string>
                      </property>
                      <property name="title">
-                      <string>标定数据预处理</string>
+                      <string>标定数据处理</string>
                      </property>
                      <property name="checkable">
                       <bool>true</bool>
@@ -14303,24 +14303,17 @@ QGroupBox::title {
                           </property>
                          </widget>
                         </item>
-                        <item row="4" column="0">
+                        <item row="5" column="3">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_11">
+                          <property name="text">
+                           <string>1 1</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="5" column="0">
                          <widget class="QLabel" name="label_260">
                           <property name="text">
                            <string>取平均数</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="4" column="1">
-                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_8">
-                          <property name="text">
-                           <string>36</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="4" column="3">
-                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_9">
-                          <property name="text">
-                           <string>10</string>
                           </property>
                          </widget>
                         </item>
@@ -14338,10 +14331,24 @@ QGroupBox::title {
                           </property>
                          </widget>
                         </item>
+                        <item row="4" column="3">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_9">
+                          <property name="text">
+                           <string>1 1 1 </string>
+                          </property>
+                         </widget>
+                        </item>
                         <item row="3" column="3">
                          <widget class="QLineEdit" name="lineEdit_tools_bd3x_7">
                           <property name="text">
                            <string>1 1 1</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="4" column="0">
+                         <widget class="QLabel" name="label_281">
+                          <property name="text">
+                           <string>温度系数</string>
                           </property>
                          </widget>
                         </item>
@@ -14352,10 +14359,24 @@ QGroupBox::title {
                           </property>
                          </widget>
                         </item>
+                        <item row="5" column="1">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_10">
+                          <property name="text">
+                           <string>36</string>
+                          </property>
+                         </widget>
+                        </item>
                         <item row="0" column="0">
                          <widget class="QLabel" name="label_259">
                           <property name="text">
                            <string>正则_与</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="6" column="0">
+                         <widget class="QLabel" name="label_279">
+                          <property name="text">
+                           <string>取平滑数</string>
                           </property>
                          </widget>
                         </item>
@@ -14380,6 +14401,13 @@ QGroupBox::title {
                           </property>
                          </widget>
                         </item>
+                        <item row="4" column="2">
+                         <widget class="QLabel" name="label_282">
+                          <property name="text">
+                           <string>温度系数</string>
+                          </property>
+                         </widget>
+                        </item>
                         <item row="1" column="1">
                          <widget class="QLineEdit" name="lineEdit_tools_bd3x_2">
                           <property name="text">
@@ -14401,10 +14429,24 @@ QGroupBox::title {
                           </property>
                          </widget>
                         </item>
+                        <item row="6" column="1">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_12">
+                          <property name="text">
+                           <string>1</string>
+                          </property>
+                         </widget>
+                        </item>
                         <item row="2" column="1">
                          <widget class="QLineEdit" name="lineEdit_tools_bd3x_4">
                           <property name="text">
                            <string>7 8 9</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="6" column="2">
+                         <widget class="QLabel" name="label_280">
+                          <property name="text">
+                           <string>转换数</string>
                           </property>
                          </widget>
                         </item>
@@ -14415,6 +14457,13 @@ QGroupBox::title {
                           </property>
                          </widget>
                         </item>
+                        <item row="4" column="1">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_8">
+                          <property name="text">
+                           <string>1 1 1</string>
+                          </property>
+                         </widget>
+                        </item>
                         <item row="1" column="3">
                          <widget class="QLineEdit" name="lineEdit_tools_bd3x_3">
                           <property name="text">
@@ -14422,10 +14471,17 @@ QGroupBox::title {
                           </property>
                          </widget>
                         </item>
-                        <item row="4" column="2">
+                        <item row="5" column="2">
                          <widget class="QLabel" name="label_262">
                           <property name="text">
-                           <string>转换数</string>
+                           <string>掐头去尾</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="6" column="3">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_13">
+                          <property name="text">
+                           <string>10</string>
                           </property>
                          </widget>
                         </item>
@@ -14436,31 +14492,31 @@ QGroupBox::title {
                           </property>
                          </widget>
                         </item>
-                        <item row="5" column="0">
-                         <widget class="QLabel" name="label_279">
+                        <item row="7" column="0">
+                         <widget class="QLabel" name="label_283">
                           <property name="text">
-                           <string>取平滑数</string>
+                           <string>保存精度</string>
                           </property>
                          </widget>
                         </item>
-                        <item row="5" column="1">
-                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_10">
+                        <item row="7" column="1">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_14">
                           <property name="text">
-                           <string>10</string>
+                           <string>6</string>
                           </property>
                          </widget>
                         </item>
-                        <item row="5" column="3">
-                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_11">
+                        <item row="7" column="2">
+                         <widget class="QLabel" name="label_284">
                           <property name="text">
-                           <string>1 1</string>
+                           <string>备用</string>
                           </property>
                          </widget>
                         </item>
-                        <item row="5" column="2">
-                         <widget class="QLabel" name="label_280">
+                        <item row="7" column="3">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_15">
                           <property name="text">
-                           <string>掐头去尾</string>
+                           <string>0</string>
                           </property>
                          </widget>
                         </item>
@@ -14489,7 +14545,128 @@ QGroupBox::title {
                      <property name="checkable">
                       <bool>true</bool>
                      </property>
-                     <layout class="QHBoxLayout" name="horizontalLayout_59"/>
+                     <layout class="QVBoxLayout" name="verticalLayout_61">
+                      <item>
+                       <layout class="QHBoxLayout" name="horizontalLayout_59">
+                        <item>
+                         <widget class="QCheckBox" name="checkBox">
+                          <property name="text">
+                           <string>备用</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QCheckBox" name="checkBox_3">
+                          <property name="text">
+                           <string>备用</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QCheckBox" name="checkBox_5">
+                          <property name="text">
+                           <string>备用</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QCheckBox" name="checkBox_6">
+                          <property name="text">
+                           <string>备用</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                      <item>
+                       <layout class="QGridLayout" name="gridLayout_37">
+                        <item row="1" column="3">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_global_3">
+                          <property name="text">
+                           <string>10,50,100,150,180</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="1">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_global_2">
+                          <property name="text">
+                           <string>1 2 0</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="0">
+                         <widget class="QLabel" name="label_285">
+                          <property name="text">
+                           <string>G0序号</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="3">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_global_1">
+                          <property name="text">
+                           <string>1 0 2</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="2">
+                         <widget class="QLabel" name="label_286">
+                          <property name="text">
+                           <string>A1序号</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="1">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_global_0">
+                          <property name="text">
+                           <string>0 2 1</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="2">
+                         <widget class="QLabel" name="label_288">
+                          <property name="text">
+                           <string>速率点</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="0">
+                         <widget class="QLabel" name="label_287">
+                          <property name="text">
+                           <string>速率顺序</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="2" column="2">
+                         <widget class="QLabel" name="label_289">
+                          <property name="text">
+                           <string>速率系数</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="2" column="1">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_global_4">
+                          <property name="text">
+                           <string/>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="2" column="3">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_global_5">
+                          <property name="text">
+                           <string>1 1 1</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="2" column="0">
+                         <widget class="QLabel" name="label_290">
+                          <property name="text">
+                           <string>Hz频率</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                     </layout>
                     </widget>
                    </item>
                    <item>
@@ -14604,7 +14781,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                   </widget>
                  </item>
                  <item row="0" column="1">
-                  <widget class="QComboBox" name="comboBox">
+                  <widget class="QComboBox" name="comboBoxt_tools_bd3x_preset">
                    <item>
                     <property name="text">
                      <string>双轴标定_正式流程</string>
@@ -14642,24 +14819,17 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item row="1" column="1">
                   <widget class="QLineEdit" name="lineEdit_tools_bd3x_loadPath"/>
                  </item>
-                 <item row="4" column="1">
+                 <item row="5" column="1">
                   <widget class="QLineEdit" name="lineEdit_tools_bd3x_createBin"/>
                  </item>
                  <item row="6" column="0">
-                  <widget class="QPushButton" name="pushButton_tools_bd3x_createPng">
-                   <property name="text">
-                    <string>生成图片</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="5" column="0">
                   <widget class="QPushButton" name="pushButton_tools_bd3x_autoRun">
                    <property name="text">
                     <string>一键处理</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="4" column="0">
+                 <item row="5" column="0">
                   <widget class="QPushButton" name="pushButton_tools_bd3x_createBin">
                    <property name="text">
                     <string>生成bin</string>
@@ -14669,13 +14839,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item row="2" column="1">
                   <widget class="QLineEdit" name="lineEdit_tools_bd3x_avePath"/>
                  </item>
-                 <item row="6" column="1">
-                  <widget class="QLineEdit" name="lineEdit_tools_bd3x_autoRun_2"/>
-                 </item>
                  <item row="0" column="0">
                   <widget class="QLabel" name="label_274">
                    <property name="text">
                     <string>使用预设</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
                    </property>
                   </widget>
                  </item>
@@ -14686,25 +14856,21 @@ li.checked::marker { content: &quot;\2612&quot;; }
                    </property>
                   </widget>
                  </item>
-                 <item row="5" column="1">
+                 <item row="6" column="1">
                   <widget class="QLineEdit" name="lineEdit_tools_bd3x_autoRun"/>
                  </item>
                  <item row="3" column="1">
-                  <widget class="QLineEdit" name="lineEdit_tools_bd3x_ave2file"/>
+                  <widget class="QLineEdit" name="lineEdit_tools_bd3x_formatPath"/>
                  </item>
-                 <item row="7" column="0">
-                  <widget class="QPushButton" name="pushButton_test1">
+                 <item row="4" column="0">
+                  <widget class="QPushButton" name="pushButton_tools_bd3x_calPara">
                    <property name="text">
-                    <string>PushButton</string>
+                    <string>计算参数</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="7" column="1">
-                  <widget class="QPushButton" name="pushButton_test2">
-                   <property name="text">
-                    <string>PushButton</string>
-                   </property>
-                  </widget>
+                 <item row="4" column="1">
+                  <widget class="QLineEdit" name="lineEdit_tools_bd3x_calPath"/>
                  </item>
                 </layout>
                </item>

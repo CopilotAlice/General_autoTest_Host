@@ -19,6 +19,8 @@ class MainWindowEventHidden:
     def init_hidden(self):
         self.mw.groupBox_tools_calibbd_allpara.setChecked(False)
         self.mw.groupBox_tools_calibbd_basepara.setChecked(False)
+        self.mw.groupBox_tools_bd3x_plotSetting.setChecked(False)
+        self.mw.groupBox_tools_bd3x_previewSetting.setChecked(False)
         
     def clickEvent_childHidden(self,checked):
         sender = self.mw.sender()

@@ -126,5 +126,8 @@ class MainWindowSetting:
                 index = tabwidget.indexOf(tab)
                 if index!=-1:
                     tabwidget.setTabVisible(index,False)
+        else:
+            self.mw.root_mode = True
+            print('开发者模式')
 
         

@@ -76,7 +76,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
-        self.setWindowTitle("通用自动测试上位机_蔡_功能测试版_2508_V0.88")
+        self.setWindowTitle("通用自动测试上位机_蔡_功能测试版_25089_V0.89")
         # 初始化调试信息
         self.inits_debugMsg = ui.inits.MainWindowInitDebugMsg(self)
         self.inits_showMsg = ui.inits.MainWindowInitShowMsg(self)
@@ -239,6 +239,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.debug_update_5s = False
         self.debug_update_5s_file = False
         self.debug_update_1s = False
+        if not hasattr(self, "root_mode"):
+            self.root_mode = False
         self.debug_list_1 = []
         self.debug_list_2 = []
         self.debug_list_3 = []
