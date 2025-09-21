@@ -2,13 +2,35 @@
 # 处理标定数据
 import os,re,datetime,shutil,threading#,debugpy
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt 
 from PyQt5.QtWidgets import QWidget, QFileDialog,QLineEdit, QListWidgetItem, QTableWidgetItem
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import QSize,Qt,QTimer,QThread,pyqtSignal
-
+import matplotlib
+matplotlib.use("Agg")
+from matplotlib.pylab import mpl
+mpl.rcParams['font.sans-serif'] = ['SimHei']
+mpl.rcParams['axes.unicode_minus'] = False
 def extract_number(filename):
     match = re.search(r'BD(\d+)#',filename)
     return int(match.group(1)) if match else float('inf')
+def sort_key(fname,split_rule):
+    parts = fname.split(split_rule[0])
+    try: return int(parts[split_rule[1]])
+    except (IndexError, ValueError):
+        return float("inf")
+def init_sdf():
+    # 初始化文件
+    list_columns = [
+        "G0", "G+", "G-", 
+        "ScaleFactor+", "ScaleFactor-", "NonLinear", 
+        "K*x", "K*y", "K*z", 
+        "Temp"
+    ]
+    list_rows = ["Gx", "Gy", "Gz", "Ax", "Ay", "Az"]
+    sdf = pd.DataFrame(0,index=list_rows, columns=list_columns)
+    return sdf  
 
 class MainWindowToolBdcalib:
     def __init__(self, mainWindow):
@@ -24,6 +46,9 @@ class MainWindowToolBdcalib:
         # 快捷路径
         self.show_path = self.mw.lineEdit_tools_bd3x_showPath
         self.show_file = self.mw.listWidget_tools_bd3x_pathShow
+        # 初始化
+        self.init_list()
+        self.init_data()
         # 逻辑事件
         self.mw.pushButton_tools_bd3x_loadPath.clicked.connect(self.load_path)
         self.mw.listWidget_tools_bd3x_pathShow.itemClicked.connect(self.item_click_showMsg)
@@ -33,19 +58,22 @@ class MainWindowToolBdcalib:
         self.mw.checkBox_tools_bd3x_regexFolder.clicked.connect(self.show_all_files)
         self.mw.pushButton_tools_bd3x_avePath.clicked.connect(self.click_avePath)
         self.mw.pushButton_tools_bd3x_modTransform.clicked.connect(self.click_formatConversion)
-        self.mw.comboBoxt_tools_bd3x_preset.currentTextChanged.connect(self.change_preset)
+        self.mw.comboBox_tools_bd3x_preset.currentTextChanged.connect(self.change_preset)
         self.mw.pushButton_tools_bd3x_createBin.clicked.connect(self.click_createBin)
         self.mw.pushButton_tools_bd3x_autoRun.clicked.connect(self.click_autoRun)
         self.mw.pushButton_tools_bd3x_calPara.clicked.connect(self.click_calPara)
-        # 初始化
-        self.init_list()
-        self.init_data()
+        self.mw.pushButton_tools_bd3x_polyFit.clicked.connect(self.click_polyfit)
+        self.mw.pushButton_tools_bd3x_flush.clicked.connect(self.show_all_files)
         
     # 初始化所有输入框
     def init_list(self):
-        lineEdit_length = 16
-        for i in range(lineEdit_length):
-            self.list_input_lineEdit.append(self.mw.findChild(QLineEdit,'lineEdit_tools_bd3x_{}'.format(i)))
+        lineEdit_length_count = 40
+        for i in range(lineEdit_length_count):
+            try:
+                lineedit =  self.mw.findChild(QLineEdit,'lineEdit_tools_bd3x_{}'.format(i))
+                if lineedit is None: break
+                else:self.list_input_lineEdit.append(lineedit)
+            except: break
             
             
     # 初始化输入框所有变量
@@ -82,10 +110,15 @@ class MainWindowToolBdcalib:
     def show_all_files(self,folder):
         if self.mw.sender() == self.mw.checkBox_tools_bd3x_regexFolder:
             folder = self.show_path.text()
+        if self.mw.sender() == self.mw.pushButton_tools_bd3x_flush:
+            folder = self.show_path.text()
+        if len(folder)==0:
+            folder = './'
+            
         self.init_data()
-        self.show_file.clear()
         try:
             files = os.listdir(folder)
+            self.show_file.clear()
             for file in files:
                 if os.path.isdir(os.path.join(folder, file)):
                     self.show_file.addItem('[{}]'.format(file))
@@ -156,7 +189,7 @@ class MainWindowToolBdcalib:
             self.update_imgShow_pixmap()
             self.mw.label_tools_imgShow.setScaledContents(False)
         elif any([item.text().lower().endswith('.'+ext) for ext in txt_list]):
-            # 尝试使用pd.read_csv读取前10行
+            # 尝试使用pd读取前10行
             try:
                 import pandas as pd
                 # 尝试使用gb2312和utf-8打开文件
@@ -166,8 +199,7 @@ class MainWindowToolBdcalib:
                     delim_whitespace=True, 
                     nrows=100,
                     dtype='str',
-                    encoding_errors="replace",
-                    index_col=False
+                    encoding_errors="replace"
                 )
                 self.preview_file(mode=0)
                 table = self.mw.tableWidget_tools_bd3x_fileShow
@@ -228,7 +260,6 @@ class MainWindowToolBdcalib:
             self.work_processData.mode = 1
             self.work_processData.start()
     def click_formatConversion(self):
-        # 打开文件夹
         folder_path = QFileDialog.getExistingDirectory(self.mw, '选择文件夹_格式转换_通用')
         if folder_path:
             self.show_path.setText(folder_path)
@@ -241,7 +272,6 @@ class MainWindowToolBdcalib:
             self.work_processData.mode = 2
             self.work_processData.start()
     def click_calPara(self):
-        # 打开文件夹
         folder_path = QFileDialog.getExistingDirectory(self.mw, '选择文件夹_参数计算_通用')
         if folder_path:
             self.show_path.setText(folder_path)
@@ -250,9 +280,24 @@ class MainWindowToolBdcalib:
             self.show_all_files(folder_path)
             self.append_degugMsg('参数计算中...')
             self.work_processData = class_Worker(folder_path, self.list_input_data, self.list_pathrule_and, self.list_pathrule_nor,self.mw.root_mode)
+            self.work_processData.preset_name = self.mw.comboBox_tools_bd3x_preset.currentText()
             self.work_processData.finished.connect(self.task_done)
             self.work_processData.mode = 3
             self.work_processData.start()
+    def click_polyfit(self):
+        folder_path = QFileDialog.getExistingDirectory(self.mw, '选择文件夹_拟合曲线_通用')
+        if folder_path:
+            self.show_path.setText(folder_path)
+            self.mw.lineEdit_tools_bd3x_calPath.setText(folder_path)
+            self.init_data()
+            self.show_all_files(folder_path)
+            self.append_degugMsg('拟合曲线中...')
+            self.work_processData = class_Worker(folder_path, self.list_input_data, self.list_pathrule_and, self.list_pathrule_nor,self.mw.root_mode)
+            self.work_processData.preset_name = self.mw.comboBox_tools_bd3x_preset.currentText()
+            self.work_processData.finished.connect(self.task_done)
+            self.work_processData.mode = 4
+            self.work_processData.start()
+            
     def task_done(self):
         try:debug_info = self.work_processData.debug_info;self.work_processData.debug_info = ''
         except Exception as e: debug_info = '未读取到信息'
@@ -296,6 +341,7 @@ class class_Worker(QThread):
         self.folder_path = folder_path
         self.list_pathrule_and = list_pathrule_and
         self.list_pathrule_nor = list_pathrule_nor
+        self.preset_name = ''
         self.debug_info = ''
         self.mode = 0
         self.G = 9.801538877
@@ -310,12 +356,24 @@ class class_Worker(QThread):
                 self.debug_info = '无法开启调试: {}'.format(e)
         if self.mode==0:
             self.debug_info = '未设置处理模式'
+        # 对所有数据取均值
         elif self.mode==1:
             self.ave_all_data()
+        # 格式转换为matlab处理格式
         elif self.mode==2:
             self.format_all_data()
+        # 计算所有参数[零位、标度、非线性、非正交]
         elif self.mode==3:
-            self.cal_all_para()
+            if 'chy' in self.preset_name:
+                self.cal_all_para_chy()
+            else:   
+                self.cal_all_para()
+        # 计算全温拟合曲线
+        elif self.mode==4:
+            if 'chy' in self.preset_name:
+                self.cal_all_polyfit_chy()
+            else:
+                self.cal_all_polyfit()
             
         else:
             self.debug_info = '未知的处理模式'
@@ -404,8 +462,7 @@ class class_Worker(QThread):
                     df = pd.read_csv(
                         os.path.join(load_paths, plan_name, file_name),
                         encoding='gb2312',
-                        delim_whitespace=True,skiprows=drop_row_footer[0], skipfooter=drop_row_footer[1],
-                        index_col=False
+                        delim_whitespace=True,skiprows=drop_row_footer[0], skipfooter=drop_row_footer[1]
                     )
                     if len(df) < ave_length_split:
                         ave_length = len(df)
@@ -507,7 +564,7 @@ class class_Worker(QThread):
             ], axis=1)
             save_name = filename.split('.txt')[0] + '_format.txt'
             save_data = sdf.values.tolist()
-            f = open(os.path.join(format_path, filename),'w+')
+            f = open(os.path.join(format_path, save_name),'w+')
             count = 0
             for line in save_data:
                 # save_line = '\t'.join([ '{:.6f}'.format(data) for data in line ])
@@ -522,22 +579,10 @@ class class_Worker(QThread):
             
         self.debug_info = f'文件夹：{total_folder}，文件：{total_file}，错误：{total_error}'
 
-    def init_save_paraFile(self,save_file_path):
-        save_title_list = [
-            'filename','Gx0(°h)','Gy0(°h)','Gz0(°h)','Ax0(m/s²)','Ay0(m/s²)','Az0(m/s²)',
-             'GxSF','GySF','GzSF','AxSF','AySF','AzSF',
-             'GKxy','GKxz','GKyx','GKyz','GKzx','GKzy',
-             'AKxy','AKxz','AKyx','AKyz','AKzx','AKzy',
-             
-        ]
-        try:
-            with open(save_file_path, 'w+', newline='', encoding='gb2312') as f:
-                f.write('{}\n'.format('\t'.join(save_title_list)))
-        except Exception as e:
-            self.append_degugMsg('初始化保存文件失败:\n {}'.format(e))
-        
+
     def cal_all_para(self):
         # 初始化文件夹
+        path = self.folder_path
         if os.path.isdir(os.path.join(path, 'all_ave')):
             pass
         elif os.path.basename(path) == 'all_ave':
@@ -547,20 +592,14 @@ class class_Worker(QThread):
             return
         ave_path = os.path.join(path, 'all_ave')
         para_path = os.path.join(path, 'all_para')
+        polyfit_path = os.path.join(path, 'all_polyfit')
         if os.path.exists(para_path):
             shutil.rmtree(para_path)
         os.makedirs(para_path)
+        if os.path.exists(polyfit_path):
+            shutil.rmtree(polyfit_path)
+        os.makedirs(polyfit_path)
         
-        # 初始化文件
-        list_columns = [
-            "G0", "G+", "G-", 
-            "ScaleFactor+", "ScaleFactor-", 
-            "NonLinear+", "NonLinear-", 
-            "K*x", "K*y", "K*z", 
-            "Temp"
-        ]
-        list_rows = ["Gx", "Gy", "Gz", "Ax", "Ay", "Az"]
-        # df = pd.DataFrame(index=rows, columns=columns)
         # 遍历文件生成参数表和总参数表
         total_folder = 1
         total_file = 0
@@ -579,24 +618,309 @@ class class_Worker(QThread):
                 print('读取文件{}失败:\n {}'.format(filename, e))
                 continue
             para_name = filename.split('.txt')[0] + '_para.txt'
-            save_data = []
-            save_data.append('[{}]\n'.format(para_name))
-            save_data.append('Turntable\tLength\tAverage\tStandard Deviation\tMax\tMin\n')
-            for i in range(len(df)):
-                row = df.iloc[i]
-                turntable = row['Turntable']
-                length = row['Length']
-                average = row[1:7].mean()
-                
-                
-                
-                
+            self.cal_paraSave(df,os.path.join(para_path, para_name))
             total_error-=1
+        # self.cal_para_polyFit(para_path,polyfit_path)
         self.debug_info = f'文件夹：{total_folder}，文件：{total_file}，错误：{total_error}'
         
-                    
-                    
-                    
-                    
 
         
+    # 计算参数
+    def cal_paraSave(self,df,save_name):
+        if df.columns[0].lower() == 'turntable':
+            df = df.drop(df.columns[0], axis=1).reset_index(drop=True)
+        save_data_accuracy = self.list_input_data[14]
+        try: save_data_accuracy = int(save_data_accuracy)
+        except: save_data_accuracy = 6
+        degree = self.list_input_data[16]
+        try:degree = int(degree)
+        except:degree = 1
+        # 零位列表
+        list_ave = [
+            [0,2],
+            [1,3,4,6],
+            [5,7]
+        ]
+        list_gZ = [
+            [1],
+            [0,7],
+            [4]
+        ]
+        list_gF = [
+            [3],
+            [2,5],
+            [6]
+        ]
+        # 标度列表
+        list_scale = [
+            [8,10,9,11],
+            [18,16,19,17],
+            [14,13,15,12]
+        ]
+        list_turntable = [10,-10,30,-30]
+        sdf = init_sdf()
+        for i in range(3):
+            sdf.iloc[i,0] = np.mean([df.iloc[idx,i] for idx in list_ave[i]])
+            sdf.iloc[i+3,0] = np.mean([df.iloc[idx,i+3] for idx in list_ave[i]])
+            sdf.iloc[i,1] = np.mean([df.iloc[idx,i] for idx in list_gZ[i]])
+            sdf.iloc[i+3,1] = np.mean([df.iloc[idx,i+3] for idx in list_gZ[i]]) 
+            sdf.iloc[i,2] = np.mean([df.iloc[idx,i] for idx in list_gF[i]])
+            sdf.iloc[i+3,2] = np.mean([df.iloc[idx,i+3] for idx in list_gF[i]])
+            sdf.iloc[i,3] = np.mean([  df.iloc[list_scale[i][j*2],i] / list_turntable[j*2]  for j in range(2) ])
+            sdf.iloc[i+3,3] = np.mean([df.iloc[idx,i+3] for idx in list_gZ[i]])
+            sdf.iloc[i,4] = np.mean([  df.iloc[list_scale[i][j*2+1],i] / list_turntable[j*2+1] for j in range(2) ])
+            sdf.iloc[i+3,4] = np.mean([df.iloc[idx,i+3] for idx in list_gF[i]])
+            # 拟合函数时是否减零位
+            data_x = np.array([ df.iloc[idx,i]-sdf.iloc[i,0] for idx in list_scale[i] ])
+            # data_x = np.array([ df.iloc[idx,i] for idx in list_scale[i] ])
+            data_y = np.array(list_turntable)
+            fits = np.polyfit(data_y, data_x, degree)
+            y_fit = np.polyval(fits, data_y)
+            errors = data_x - y_fit
+            sdf.iloc[i,5] = np.abs(errors/fits[0]*1e6/(np.max(list_turntable))).max()
+            sdf.iloc[i+3,5] = 0
+            begin_axis = np.min(list_scale[i])
+            length_axis = len(list_scale[i])
+            for j in range(3):
+                if i==j: sdf.iloc[i,j+6] = fits[0]
+                else:
+                    zd_data = df.iloc[begin_axis:length_axis+begin_axis,i] - sdf.iloc[i,0]
+                    cd_data = df.iloc[begin_axis:length_axis+begin_axis,j] - sdf.iloc[j,0]
+                    sdf.iloc[i,j+6] = (np.arcsin(cd_data/zd_data)/np.pi*180*60).mean()
+                    
+            for j in range(3):
+                if i==j: sdf.iloc[i+3,j+6] = (sdf.iloc[i,1]-sdf.iloc[i,2])/2
+                else:
+                    sdf.iloc[i+3,j+6] = np.mean([
+                        np.arcsin(
+                            (df.iloc[axis,j+3]- sdf.iloc[j+3,0]) / (df.iloc[axis,i+3]-sdf.iloc[i+3,0])
+                            )/np.pi*180*60 for axis in (list_gZ[i]+list_gF[i])
+                        ])
+        sdf.iloc[0:6,9] = df.iloc[0:6,6:12].mean(axis=0).to_numpy()
+        sdf.to_csv(save_name,sep='\t',encoding='gb2312', float_format=f"%.{save_data_accuracy}f",index_label="axis")
+            
+    def cal_all_polyfit(self):
+            # 初始化文件夹
+        path = self.folder_path
+        if os.path.isdir(os.path.join(path, 'all_ave')):
+            pass
+        elif os.path.basename(path) == 'all_ave':
+            path = os.path.dirname(path)
+        else:
+            self.debug_info = '未找到all_ave文件夹'
+            return
+        para_path = os.path.join(path, 'all_para')
+        polyfit_path = os.path.join(path, 'all_polyfit')
+        if os.path.exists(polyfit_path):
+            shutil.rmtree(polyfit_path)
+        os.makedirs(polyfit_path)
+        self.cal_para_polyFit(para_path,polyfit_path)    
+            
+    def cal_para_polyFit(self,para_path,polyfit_path):
+        font = 16
+        degree = self.list_input_data[17]
+        try:degree = int(degree)
+        except:degree = 1
+        split_rule =  self.list_input_data[15]
+        try:split_rule = [split_rule.split()[0], int(split_rule.split()[1])]
+        except:
+            self.debug_info+='[任务排序]输入错误'
+            split_rule = ['_',1]
+        list_columns = [
+            "零位", "正G", "负G", 
+            "正标度", "负标度", "非线性度", 
+            "K*x", "K*y", "K*z", 
+            "Temp"
+        ]
+        list_rows = ["Gx", "Gy", "Gz", "Ax", "Ay", "Az"]
+        list_all_dfFit = []
+        for title in list_columns:
+            df_fit = pd.DataFrame([])
+            list_all_dfFit.append(df_fit)
+        list_regex = [filename for filename in os.listdir(para_path) if 'para.txt' in filename]
+        list_regex = sorted(list_regex,key=lambda x:sort_key(x, split_rule))
+        total_img = 0
+        total_file = 0
+        total_error = 0
+        for filename in list_regex:
+            total_file+=1
+            total_error+=1
+            df = pd.read_csv(os.path.join(para_path, filename), encoding='gb2312', delim_whitespace=True)
+            if df.columns[0].lower() == 'axis':
+                df = df.drop(df.columns[0], axis=1)
+            for axis in range(df.shape[1]): 
+                list_all_dfFit[axis] = pd.concat([list_all_dfFit[axis],df.iloc[:,axis]],axis=1)
+            total_error-=1
+        save_fitname1 = 'all_polyfit.txt'
+        save_fitname2 = 'all_fiterrors.txt'
+        f1 = open(os.path.join(polyfit_path,save_fitname1),'w+',encoding='gb2312')
+        f2 = open(os.path.join(polyfit_path,save_fitname2),'w+',encoding='gb2312')
+        for i in range(6):
+            save_msg1 = '[{}_{}阶拟合]\n'.format(list_columns[i],degree)
+            save_msg2 = '[{}_拟合残差]\n'.format(list_columns[i])
+            for j in range(2):
+                total_error+=1
+                GA_title = list_rows[j*3:(j+1)*3]
+                fig,ax = plt.subplots(1,3,figsize=(18,6))
+                for k in range(3):
+                    ax[k].set_ylabel(GA_title[k],fontsize=font)
+                    ax[k].set_xlabel('Temp',fontsize=font)
+                    ax[k].set_title('{}_polyFit'.format(list_columns[i]))
+                    ax[k].grid(alpha=0.5)
+                    data_y = list_all_dfFit[-1].iloc[j*3+k,:]
+                    data_x = list_all_dfFit[i].iloc[j*3+k,:]
+                    ax[k].plot(data_y,data_x,'o',label='原始数据')
+                    fits = np.polyfit(data_y, data_x, degree)
+                    y_fit = np.polyval(fits, data_y)
+                    errors = data_x - y_fit
+                    data_y_new = np.linspace(data_y.min(), data_y.max(), 100)  
+                    y_fit_new = np.polyval(fits, data_y_new)
+                    ax[k].scatter(data_y,errors+data_x.mean(),label="残差", color="green", marker="x")
+                    ax[k].plot(data_y_new,y_fit_new,label=f"{degree}阶拟合", color="red")
+                    ax[k].legend()
+                    save_msg1 += '{}:{};\n'.format(
+                        GA_title[k],
+                        ','.join([f'{fit:.{save_data_accuracy}f}' for fit in fits])
+                    )
+                    save_msg2+='{}:{};\n'.format(
+                        GA_title[k],
+                        ','.join([f'{error:.{save_data_accuracy}f}' for error in errors])
+                    )
+                save_msg1+='\n'
+                save_msg2+='\n'
+                save_name = str(i)+'_'+''.join(GA_title)+'_{}_degree{}.png'.format(list_columns[i],degree)
+                plt.savefig(os.path.join(polyfit_path,save_name))
+                total_img+=1
+                plt.close(fig)
+                total_error-=1
+            f1.write(save_msg1)
+            f2.write(save_msg2)
+        axis_title = list_columns[6:9]
+        save_msg1 = '[{}_{}阶拟合]\n'.format(','.join(axis_title),degree)
+        save_msg2 = '[{}_拟合残差]\n'.format(','.join(axis_title))
+        for j in range(2):
+            total_error+=1
+            GA_title = list_rows[j*3:(j+1)*3]
+            fig,ax = plt.subplots(3,3,figsize=(18,12))
+            for i in range(3):
+                for k in range(3):
+                    ax[i,k].set_ylabel(GA_title[i],fontsize=font)
+                    ax[i,k].set_xlabel('{}Temp'.format(' '*30),fontsize=font)
+                    ax[i,k].set_title('{}_{}_polyFit'.format(GA_title[i],axis_title[k]))
+                    ax[i,k].grid(alpha=0.5)
+                    data_y = list_all_dfFit[-1].iloc[j*3+k,:]
+                    data_x = list_all_dfFit[i+6].iloc[j*3+k,:]
+                    fits = np.polyfit(data_y, data_x, degree)
+                    y_fit = np.polyval(fits, data_y)
+                    errors = data_x - y_fit
+                    data_y_new = np.linspace(data_y.min(), data_y.max(), 100)  
+                    y_fit_new = np.polyval(fits, data_y_new)
+                    ax[i,k].plot(data_y,data_x,'o',label='原始数据')
+                    ax[i,k].scatter(data_y,errors+data_x.mean(),label="残差", color="green", marker="x")
+                    ax[i,k].plot(data_y_new,y_fit_new,label=f"{degree}阶拟合", color="red")
+                    ax[i,k].legend()
+                    save_msg1 += '{}-{}:{};\n'.format(
+                        GA_title[i],
+                        axis_title[k],
+                        ','.join([f'{fit:.{save_data_accuracy}f}' for fit in fits])
+                    )
+                    save_msg2+='{}-{}:{};\n'.format(
+                        GA_title[i],
+                        axis_title[k],
+                        ','.join([f'{error:.{save_data_accuracy}f}' for error in errors])
+                    )
+                save_msg1+='\n'
+                save_msg2+='\n'
+            save_name = '{}_{}_[{}]_degree{}.png'.format(
+                str(i+6),''.join(GA_title),''.join(axis_title),degree 
+                )
+            save_name = re.sub(r'[\\/:*?"<>|]', "n", save_name) 
+            plt.savefig(os.path.join(polyfit_path,save_name))
+            total_img+=1
+            plt.close(fig)
+            total_error-=1
+        f1.write(save_msg1)
+        f2.write(save_msg2)
+        f1.close()
+        f2.close()
+        self.debug_info = f'图像：{total_img}，文件：{total_file}，错误：{total_error}'
+        
+    
+    def cal_all_para_chy(self):
+        # 初始化变量
+        split_rule_list = []
+        for i in range(3):
+            rule = self.list_input_data[18+i].strip()
+            try:
+                split_rule = re.split(r'[\s,，]+',rule) 
+                rule = [split_rule[0],split_rule[1], int(split_rule[2])]
+            except:
+                rule = ['notFoundRule','_',1]
+            split_rule_list.append(rule+[i])
+        # 初始化文件夹
+        path = self.folder_path
+        if os.path.isdir(os.path.join(path, 'all_ave')):
+            pass
+        elif os.path.basename(path) == 'all_ave':
+            path = os.path.dirname(path)
+        else:
+            self.debug_info = '未找到all_ave文件夹'
+            return
+        ave_path = os.path.join(path, 'all_ave')
+        para_path = os.path.join(path, 'all_para')
+        if os.path.exists(para_path):
+            shutil.rmtree(para_path)
+        os.makedirs(para_path)
+        total_folder = 1
+        total_file = 0
+        total_error = 0
+        for filename in os.listdir(ave_path):
+            if not filename.endswith('.txt'):
+                continue
+            split_in_name = any([re.search(r[0], filename) and re.search(r[1], filename) for r in split_rule_list])
+            if not split_in_name:
+                continue
+            split_rule = [r for r in split_rule_list if re.search(r[0], filename) and re.search(r[1], filename)][0]
+            try:
+                df = pd.read_csv(os.path.join(ave_path, filename), encoding='gb2312', delim_whitespace=True)
+                # 跳过静态数据和尺寸不对的数据
+                if split_rule[3]==2:
+                    continue
+                if df.shape[0] < 2 or df.shape[1] < 13:
+                    print('文件{}尺寸不正确{}'.format(filename, df.shape))
+                    continue
+            except Exception as e:
+                print('读取文件{}失败:\n {}'.format(filename, e))
+                continue
+            para_name = filename.split('.txt')[0] + '_para.txt'
+
+            if split_rule[3]==0:
+                self.cal_paraSave_chy_LW(df,os.path.join(para_path, para_name), split_rule)
+            elif split_rule[3]==1:
+                self.cal_paraSave_chy_SL(df,os.path.join(para_path, para_name), split_rule)
+            elif split_rule[3]==2:
+                self.cal_paraSave_chy_JT(df,os.path.join(para_path, para_name), split_rule)
+            else:
+                self.debug_info+='未识别的任务排序\n'
+                continue
+
+    def cal_paraSave_chy_LW(self,df,save_name, split_rule):
+        g0_sort_rule = self.list_input_data[21].strip()
+        a1_sort_rule = self.list_input_data[22].strip()
+        try:
+            split_data = re.split(r'[\s,，]+',g0_sort_rule)
+            g0_sort_rule = [int(split_data[0]),int(split_data[1]), int(split_data[2])]
+        except: g0_sort_rule = [0,1,2]
+        try:
+            split_data = re.split(r'[\s,，]+',a1_sort_rule)
+            a1_sort_rule = [int(split_data[0]),int(split_data[1]), int(split_data[2])]
+        except: a1_sort_rule = [1,0,2]
+
+        pass
+    def cal_paraSave_chy_SL(self,df,save_name, split_rule):
+        pass
+    def cal_paraSave_chy_JT(self,df,save_name, split_rule):
+        pass
+    def cal_all_polyfit_chy(self):
+        print('chy拟合曲线')
+        pass

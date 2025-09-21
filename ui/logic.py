@@ -29,6 +29,7 @@ class MainWindowLogic:
         self.logic_turntable3x()
         
 
+
     # # 卫导转发逻辑事件
     # def logic_recforward(self):
     #     self.mw.textEdit_recforward_msg.textChanged.connect(self.mw.events.changeEvent_recforward)

@@ -80,6 +80,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # 初始化调试信息
         self.inits_debugMsg = ui.inits.MainWindowInitDebugMsg(self)
         self.inits_showMsg = ui.inits.MainWindowInitShowMsg(self)
+        self.inits_funcTest = ui.inits.MainWindowInitFuncTest(self)
         
         # 调试模式函数
         self.debug = MainWindowDebug(self)
