@@ -31,6 +31,22 @@ def init_sdf():
     list_rows = ["Gx", "Gy", "Gz", "Ax", "Ay", "Az"]
     sdf = pd.DataFrame(0,index=list_rows, columns=list_columns)
     return sdf  
+def decode_zfG(zfG_str,A_length=4):
+    zfG_list = zfG_str.split(' ')[:3]
+    if len(zfG_list)<3:
+        zfG_list = [zfG_str[:A_length]]*3
+    zfG_decode = []
+    for cout,strs in enumerate(zfG_list):
+        if strs!=4:
+            strs = strs.ljust(4,'0')[:4]
+        zfg_list = [[],[]]
+        for i in range(A_length):
+            if strs[i]=='1':
+                zfg_list[0].append(i)
+            else:
+                zfg_list[1].append(i)
+        zfG_decode.append(zfg_list)
+    return zfG_decode
 
 class MainWindowToolBdcalib:
     def __init__(self, mainWindow):
@@ -660,16 +676,19 @@ class class_Worker(QThread):
         list_turntable = [10,-10,30,-30]
         sdf = init_sdf()
         for i in range(3):
+            # 计算零位及正负G
             sdf.iloc[i,0] = np.mean([df.iloc[idx,i] for idx in list_ave[i]])
             sdf.iloc[i+3,0] = np.mean([df.iloc[idx,i+3] for idx in list_ave[i]])
             sdf.iloc[i,1] = np.mean([df.iloc[idx,i] for idx in list_gZ[i]])
             sdf.iloc[i+3,1] = np.mean([df.iloc[idx,i+3] for idx in list_gZ[i]]) 
             sdf.iloc[i,2] = np.mean([df.iloc[idx,i] for idx in list_gF[i]])
+            # 计算正负标度（不减零位）
             sdf.iloc[i+3,2] = np.mean([df.iloc[idx,i+3] for idx in list_gF[i]])
             sdf.iloc[i,3] = np.mean([  df.iloc[list_scale[i][j*2],i] / list_turntable[j*2]  for j in range(2) ])
             sdf.iloc[i+3,3] = np.mean([df.iloc[idx,i+3] for idx in list_gZ[i]])
             sdf.iloc[i,4] = np.mean([  df.iloc[list_scale[i][j*2+1],i] / list_turntable[j*2+1] for j in range(2) ])
             sdf.iloc[i+3,4] = np.mean([df.iloc[idx,i+3] for idx in list_gF[i]])
+            # 计算非线性度
             # 拟合函数时是否减零位
             data_x = np.array([ df.iloc[idx,i]-sdf.iloc[i,0] for idx in list_scale[i] ])
             # data_x = np.array([ df.iloc[idx,i] for idx in list_scale[i] ])
@@ -679,6 +698,7 @@ class class_Worker(QThread):
             errors = data_x - y_fit
             sdf.iloc[i,5] = np.abs(errors/fits[0]*1e6/(np.max(list_turntable))).max()
             sdf.iloc[i+3,5] = 0
+            # 计算非正交角（减零位）
             begin_axis = np.min(list_scale[i])
             length_axis = len(list_scale[i])
             for j in range(3):
@@ -700,7 +720,7 @@ class class_Worker(QThread):
         sdf.to_csv(save_name,sep='\t',encoding='gb2312', float_format=f"%.{save_data_accuracy}f",index_label="axis")
             
     def cal_all_polyfit(self):
-            # 初始化文件夹
+        # 初始化文件夹
         path = self.folder_path
         if os.path.isdir(os.path.join(path, 'all_ave')):
             pass
@@ -892,21 +912,28 @@ class class_Worker(QThread):
             except Exception as e:
                 print('读取文件{}失败:\n {}'.format(filename, e))
                 continue
-            para_name = filename.split('.txt')[0] + '_para.txt'
-
+            para_name = filename.split('.txt')[0] + '_chip.txt'
+            # 处理零位数据
             if split_rule[3]==0:
-                self.cal_paraSave_chy_LW(df,os.path.join(para_path, para_name), split_rule)
+                self.cal_paraSave_chy_LW(df,os.path.join(para_path, para_name))
+            # 处理标度数据
             elif split_rule[3]==1:
-                self.cal_paraSave_chy_SL(df,os.path.join(para_path, para_name), split_rule)
+                self.cal_paraSave_chy_SL(df,os.path.join(para_path, para_name))
+            # 处理静态数据
             elif split_rule[3]==2:
-                self.cal_paraSave_chy_JT(df,os.path.join(para_path, para_name), split_rule)
+                self.cal_paraSave_chy_JT(df,os.path.join(para_path, para_name))
             else:
                 self.debug_info+='未识别的任务排序\n'
                 continue
-
-    def cal_paraSave_chy_LW(self,df,save_name, split_rule):
+    # 执行处理零位数据操作 G0 G± A0 A± AKxx
+    def cal_paraSave_chy_LW(self,df,save_name):
+        save_data_accuracy = self.list_input_data[14].strip()
         g0_sort_rule = self.list_input_data[21].strip()
         a1_sort_rule = self.list_input_data[22].strip()
+        GA_shift = self.list_input_data[26].strip()
+        zfG_encode = self.list_input_data[27].strip()
+        try: save_data_accuracy = int(save_data_accuracy)
+        except: save_data_accuracy = 6
         try:
             split_data = re.split(r'[\s,，]+',g0_sort_rule)
             g0_sort_rule = [int(split_data[0]),int(split_data[1]), int(split_data[2])]
@@ -915,11 +942,67 @@ class class_Worker(QThread):
             split_data = re.split(r'[\s,，]+',a1_sort_rule)
             a1_sort_rule = [int(split_data[0]),int(split_data[1]), int(split_data[2])]
         except: a1_sort_rule = [1,0,2]
+        try:
+            split_data = re.split(r'[\s,，]+',GA_shift)
+            GA_shift = [int(split_data[0]),int(split_data[1]), int(split_data[2])]
+        except: GA_shift = [4,4,4]
+        zfG_decode = decode_zfG(zfG_encode,GA_shift[1])
+        sdf = init_sdf()
+        if df.columns[0].lower() == 'turntable':
+            df = df.drop(df.columns[0], axis=1).reset_index(drop=True)
+        for i in range(3):
+            sdf.iloc[g0_sort_rule[i],0] = df.iloc[ GA_shift[0]*i:GA_shift[0]*(i+1),g0_sort_rule[i] ].mean()
+            sdf.iloc[g0_sort_rule[i]+3,0] = df.iloc[ GA_shift[0]*i:GA_shift[0]*(i+1),g0_sort_rule[i]+3 ].mean()
+            # 正负输出
+            sdf.iloc[a1_sort_rule[i],1] = np.mean([
+                df.iloc[num+GA_shift[2]+GA_shift[1]*i,a1_sort_rule[i]] for num in zfG_decode[i][0]
+            ])
+            sdf.iloc[a1_sort_rule[i]+3,1] = np.mean([
+                df.iloc[num+GA_shift[2]+GA_shift[1]*i,a1_sort_rule[i]+3] for num in zfG_decode[i][0]
+            ])
+            sdf.iloc[a1_sort_rule[i],2] = np.mean([
+                df.iloc[num+GA_shift[2]+GA_shift[1]*i,a1_sort_rule[i]]   for num in zfG_decode[i][1]    
+            ])
+            sdf.iloc[a1_sort_rule[i]+3,2] = np.mean([
+                df.iloc[num+GA_shift[2]+GA_shift[1]*i,a1_sort_rule[i]+3] for num in zfG_decode[i][1]
+            ])
+            sdf.iloc[a1_sort_rule[i]+3,3] = sdf.iloc[a1_sort_rule[i]+3,1]
+            sdf.iloc[a1_sort_rule[i]+3,4] = sdf.iloc[a1_sort_rule[i]+3,2]
+            sdf.iloc[0:6,9] = df.iloc[0:6,6:12].mean(axis=0).to_numpy()
+        for count,i in enumerate(a1_sort_rule):
+            zd_data = df.iloc[GA_shift[2]+GA_shift[1]*i:GA_shift[2]+GA_shift[1]*(i+1),count+3]
+            for j in range(3):
+                if count==j:result = (sdf.iloc[i+3,1]-sdf.iloc[i+3,2])/2
+                else:
+                    cd_data = df.iloc[GA_shift[2]+GA_shift[1]*i:GA_shift[2]+GA_shift[1]*(i+1),j+3]
+                    result = (np.arcsin(cd_data/zd_data)/np.pi*180*60).mean()
+                sdf.iloc[j+3,count+6] = result
 
-        pass
-    def cal_paraSave_chy_SL(self,df,save_name, split_rule):
-        pass
-    def cal_paraSave_chy_JT(self,df,save_name, split_rule):
+        sdf.to_csv(save_name,sep='\t',encoding='gb2312', float_format=f"%.{save_data_accuracy}f",index_label="axis")
+        
+    def cal_paraSave_chy_SL(self,df,save_name):
+        save_data_accuracy = self.list_input_data[14].strip()
+        try: save_data_accuracy = int(save_data_accuracy)
+        except: save_data_accuracy = 6
+        sl_sort_list = self.list_input_data[23].strip()
+        try:
+            sl_sort_list = re.split(r'[\s,，]+',sl_sort_list)
+            sl_sort_list = [int(sl_sort_list[0]),int(sl_sort_list[1]), int(sl_sort_list[2])]
+        except: sl_sort_list = [0,1,2]
+        sl_point_list = self.list_input_data[24].strip()
+        try:
+            sl_point_list_split = re.split(r'[\s,，]+',sl_point_list)
+            sl_point_list = []
+            if len(sl_point_list_split) != 1:
+                for point in sl_point_list_split:
+                    sl_point_list.append(int(point))
+            else:
+                sl_point_list = int(sl_point_list_split[0])
+        except: sl_point_list = [10,50,100,150,180]
+        
+
+
+    def cal_paraSave_chy_JT(self,df,save_name):
         pass
     def cal_all_polyfit_chy(self):
         print('chy拟合曲线')
