@@ -211,6 +211,20 @@ class MainWindowEvent:
             
         self.mw.textEdit_general_msg.setPlainText(send_hex)
         self.mw.lineEdit_binding_command.setText(send_hex)
+    def setEvent_lonlat_to_table(self):
+        indexs = self.mw.comboBox_general_forward.currentIndex()
+        if indexs<2:
+            return
+        try: ascii_msg = self.mw.list_sate_last[indexs]
+        except: return
+        if ascii_msg=='': return
+        split_msg = ascii_msg.split(',')
+        # GNGGA
+        if indexs==2:
+            lat = split_msg[2]
+            lon = split_msg[4]
+        
+        
     # 点击事件触发
     def clickEvent_general_send(self):
         send_text = self.mw.textEdit_general_msg.toPlainText()

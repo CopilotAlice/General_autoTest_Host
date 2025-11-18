@@ -10,6 +10,8 @@ from PyQt5.QtCore import QSize,Qt,QTimer,QThread,pyqtSignal
 import matplotlib
 matplotlib.use("Agg")
 from matplotlib.pylab import mpl
+from matplotlib.ticker import ScalarFormatter
+from matplotlib.ticker import FuncFormatter
 mpl.rcParams['font.sans-serif'] = ['SimHei']
 mpl.rcParams['axes.unicode_minus'] = False
 def extract_number(filename):
@@ -741,6 +743,9 @@ class class_Worker(QThread):
         degree = self.list_input_data[17]
         try:degree = int(degree)
         except:degree = 1
+        save_data_accuracy = self.list_input_data[14].strip()
+        try:save_data_accuracy = int(save_data_accuracy)
+        except:save_data_accuracy = 6
         split_rule =  self.list_input_data[15]
         try:split_rule = [split_rule.split()[0], int(split_rule.split()[1])]
         except:
@@ -999,7 +1004,78 @@ class class_Worker(QThread):
             else:
                 sl_point_list = int(sl_point_list_split[0])
         except: sl_point_list = [10,50,100,150,180]
-        
+        sl_para_list = self.list_input_data[25].strip()
+        try:
+            sl_para_list = re.split(r'[\s,，]+',sl_para_list)
+            if len(sl_para_list)==1:
+                sl_para_list = [float(sl_para_list[0])]*3
+            else:
+                sl_para_list = [float(sl_para_list[0]),float(sl_para_list[1]), float(sl_para_list[2])]
+        except: sl_para_list = [1,1,1]
+        degree = self.list_input_data[16].strip()
+        try:degree = int(degree)
+        except:degree = 1
+
+        if type(sl_point_list)==int:
+            sl_point_list*=2
+            sl_point_length = sl_point_list
+        elif type(sl_point_list)==list:
+            sl_point_list = [i*j for i in sl_point_list for j in [1,-1]]
+            sl_point_length = len(sl_point_list)
+        else:
+            print('速率计数点数输入错误，默认5点')
+        def get_max_abs_with_sign(s):
+            s = s.replace('[', '').replace(']', '')
+            parts = s.split('_')
+            nums = []
+            for pnum in parts:
+                try: nums.append(float(pnum))
+                except: pass
+            if not nums: 
+                return None
+            max_num = max(nums, key=lambda x: abs(x))
+            return max_num
+
+        sdf = init_sdf()
+        if df.columns[0].lower() == 'turntable':
+            # 将第一列用下划线分隔并获取绝对值最大的数据,保留正负
+            df.iloc[:,0] = df.iloc[:,0].apply(get_max_abs_with_sign)
+        fig,ax = plt.subplots(1,3,figsize=(18,6))
+        for count,i in enumerate(sl_sort_list):
+            data_x = df.iloc[count*sl_point_length:(count+1)*sl_point_length,i+1].reset_index(drop=True)*sl_para_list[i]
+            data_x_lw = data_x.mean()
+            if type(sl_point_list)==list:
+                data_y = pd.Series(sl_point_list).reset_index(drop=True)
+            else:
+                data_y = df.iloc[count*sl_point_length:(count+1)*sl_point_length,0].reset_index(drop=True)
+            fits = np.polyfit(data_x-data_x_lw, data_y, degree)
+            y_fit = np.polyval(fits, data_y)
+            errors = data_x-data_x_lw - y_fit
+            data_y_new = np.linspace(data_y.min(), data_y.max(), 100)  
+            y_fit_new = np.polyval(fits, data_y_new)
+            ax[i].scatter(data_y, (data_x-data_x_lw)/data_y, label='原始数据')
+            ax[i].plot(y_fit_new, data_y_new/y_fit_new, color='red', label='拟合曲线',linewidth=2)
+            ax[i].plot(data_y,1/fits[-2]*data_y/data_y,label='拟合标度倒数', color='orange', linestyle='--')
+            ax[i].set_xlabel('转台速率')
+            ax[i].set_ylabel('实际输出/转台速率')
+            ax[i].set_title('{}轴标度非线性度拟合'.format('XYZ'[i]))
+            ax[i].legend()
+            ax[i].grid(alpha=0.5)
+            ax[i].yaxis.set_major_formatter(ScalarFormatter(useMathText=False))
+            ax[i].yaxis.get_major_formatter().set_scientific(False)
+            ax[i].yaxis.set_major_formatter(FuncFormatter(lambda y, _: '{:.6f}'.format(y)))
+            sdf.iloc[i,3] = ((data_x[data_y>0])/(data_y[data_y>0])).mean()
+            sdf.iloc[i,4] = ((data_x[data_y<0])/(data_y[data_y<0])).mean()
+            sdf.iloc[i,5] = (errors/data_y/fits[0]).abs().max()*1e6/180
+            zd_data = data_x - data_x_lw
+            for j in range(3):
+                if i==j:
+                    result = fits[-2]
+                else:
+                    cd_data = df.iloc[count*sl_point_length:(count+1)*sl_point_length,j+1].reset_index(drop=True)*sl_para_list[j]
+                    result = (np.arcsin(cd_data/zd_data)/np.pi*180*60).mean()
+                sdf.iloc[j,i+6] = result
+        sdf.to_csv(save_name,sep='\t',encoding='gb2312', float_format=f"%.{save_data_accuracy}f",index_label="axis")
 
 
     def cal_paraSave_chy_JT(self,df,save_name):

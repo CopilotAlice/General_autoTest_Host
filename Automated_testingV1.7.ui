@@ -57,7 +57,7 @@
           <bool>false</bool>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>2</number>
          </property>
          <property name="usesScrollButtons">
           <bool>true</bool>
@@ -409,7 +409,7 @@ QGroupBox::title {
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLineEdit" name="lineEdit_4"/>
+                  <widget class="QLineEdit" name="lineEdit_alltab_msg_1"/>
                  </item>
                  <item>
                   <widget class="QLabel" name="label_77">
@@ -419,7 +419,7 @@ QGroupBox::title {
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLineEdit" name="lineEdit_5"/>
+                  <widget class="QLineEdit" name="lineEdit_alltab_msg_2"/>
                  </item>
                  <item>
                   <widget class="QLabel" name="label_79">
@@ -429,7 +429,7 @@ QGroupBox::title {
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLineEdit" name="lineEdit_6"/>
+                  <widget class="QLineEdit" name="lineEdit_alltab_msg_3"/>
                  </item>
                 </layout>
                </widget>
@@ -3159,6 +3159,70 @@ QGroupBox::title {
                       <property name="placeholderText">
                        <string>结束</string>
                       </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_61">
+                    <item>
+                     <widget class="QLabel" name="label_290">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="text">
+                       <string>转发:</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QComboBox" name="comboBox_general_forward">
+                      <property name="editable">
+                       <bool>true</bool>
+                      </property>
+                      <item>
+                       <property name="text">
+                        <string>不转发经纬度</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>其他配置项</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>GNGGA经纬度</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>GPGGA经纬度</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>BDGGA经纬度</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>GPVTG经纬度</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>HEADINGA经纬度</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>KSXT经纬度</string>
+                       </property>
+                      </item>
                      </widget>
                     </item>
                    </layout>
@@ -8851,7 +8915,7 @@ QGroupBox::title {
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>5</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab_plot">
        <attribute name="title">
@@ -9966,7 +10030,7 @@ QGroupBox::title {
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
+             <y>-548</y>
              <width>905</width>
              <height>1360</height>
             </rect>
@@ -13475,6 +13539,160 @@ QGroupBox#groupBox_sate_show::title{
                <bool>true</bool>
               </property>
               <layout class="QGridLayout" name="gridLayout_40">
+               <item row="1" column="1">
+                <widget class="QGroupBox" name="groupBox_36">
+                 <property name="title">
+                  <string>GPGGA</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_44">
+                  <item>
+                   <widget class="QTextBrowser" name="textBrowser_ascii_3">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>71</height>
+                     </size>
+                    </property>
+                    <property name="lineWrapMode">
+                     <enum>QTextEdit::NoWrap</enum>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QGroupBox" name="groupBox_38">
+                 <property name="title">
+                  <string>BDGGA</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_47">
+                  <item>
+                   <widget class="QTextBrowser" name="textBrowser_ascii_4">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>71</height>
+                     </size>
+                    </property>
+                    <property name="lineWrapMode">
+                     <enum>QTextEdit::NoWrap</enum>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QGroupBox" name="groupBox_40">
+                 <property name="title">
+                  <string>GPVTG</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_45">
+                  <item>
+                   <widget class="QTextBrowser" name="textBrowser_ascii_5">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>71</height>
+                     </size>
+                    </property>
+                    <property name="lineWrapMode">
+                     <enum>QTextEdit::NoWrap</enum>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QGroupBox" name="groupBox_39">
+                 <property name="title">
+                  <string>HEADINGA</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_48">
+                  <item>
+                   <widget class="QTextBrowser" name="textBrowser_ascii_6">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>71</height>
+                     </size>
+                    </property>
+                    <property name="lineWrapMode">
+                     <enum>QTextEdit::NoWrap</enum>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QGroupBox" name="groupBox_42">
+                 <property name="title">
+                  <string>KSXT</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_46">
+                  <item>
+                   <widget class="QTextBrowser" name="textBrowser_ascii_7">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>71</height>
+                     </size>
+                    </property>
+                    <property name="lineWrapMode">
+                     <enum>QTextEdit::NoWrap</enum>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QGroupBox" name="groupBox_41">
+                 <property name="title">
+                  <string>反馈/其他</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_49">
+                  <item>
+                   <widget class="QTextBrowser" name="textBrowser_ascii_1">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>71</height>
+                     </size>
+                    </property>
+                    <property name="lineWrapMode">
+                     <enum>QTextEdit::NoWrap</enum>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QGroupBox" name="groupBox_37">
+                 <property name="title">
+                  <string>GNGGA</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_42">
+                  <item>
+                   <widget class="QTextBrowser" name="textBrowser_ascii_2">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>71</height>
+                     </size>
+                    </property>
+                    <property name="lineWrapMode">
+                     <enum>QTextEdit::NoWrap</enum>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
                <item row="0" column="0">
                 <widget class="QGroupBox" name="groupBox_35">
                  <property name="title">
@@ -13542,118 +13760,12 @@ QGroupBox#groupBox_sate_show::title{
                   </item>
                   <item>
                    <widget class="QTextBrowser" name="textBrowser_ascii_0">
-                    <property name="lineWrapMode">
-                     <enum>QTextEdit::NoWrap</enum>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>71</height>
+                     </size>
                     </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item row="0" column="1">
-                <widget class="QGroupBox" name="groupBox_41">
-                 <property name="title">
-                  <string>反馈/其他</string>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_49">
-                  <item>
-                   <widget class="QTextBrowser" name="textBrowser_ascii_1">
-                    <property name="lineWrapMode">
-                     <enum>QTextEdit::NoWrap</enum>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item row="1" column="0">
-                <widget class="QGroupBox" name="groupBox_37">
-                 <property name="title">
-                  <string>GNGGA</string>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_42">
-                  <item>
-                   <widget class="QTextBrowser" name="textBrowser_ascii_2">
-                    <property name="lineWrapMode">
-                     <enum>QTextEdit::NoWrap</enum>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item row="1" column="1">
-                <widget class="QGroupBox" name="groupBox_36">
-                 <property name="title">
-                  <string>GPGGA</string>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_44">
-                  <item>
-                   <widget class="QTextBrowser" name="textBrowser_ascii_3">
-                    <property name="lineWrapMode">
-                     <enum>QTextEdit::NoWrap</enum>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item row="2" column="0">
-                <widget class="QGroupBox" name="groupBox_38">
-                 <property name="title">
-                  <string>BDGGA</string>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_47">
-                  <item>
-                   <widget class="QTextBrowser" name="textBrowser_ascii_4">
-                    <property name="lineWrapMode">
-                     <enum>QTextEdit::NoWrap</enum>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item row="2" column="1">
-                <widget class="QGroupBox" name="groupBox_40">
-                 <property name="title">
-                  <string>GPVTG</string>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_45">
-                  <item>
-                   <widget class="QTextBrowser" name="textBrowser_ascii_5">
-                    <property name="lineWrapMode">
-                     <enum>QTextEdit::NoWrap</enum>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item row="3" column="0">
-                <widget class="QGroupBox" name="groupBox_39">
-                 <property name="title">
-                  <string>HEADINGA</string>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_48">
-                  <item>
-                   <widget class="QTextBrowser" name="textBrowser_ascii_6">
-                    <property name="lineWrapMode">
-                     <enum>QTextEdit::NoWrap</enum>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item row="3" column="1">
-                <widget class="QGroupBox" name="groupBox_42">
-                 <property name="title">
-                  <string>KSXT</string>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_46">
-                  <item>
-                   <widget class="QTextBrowser" name="textBrowser_ascii_7">
                     <property name="lineWrapMode">
                      <enum>QTextEdit::NoWrap</enum>
                     </property>
@@ -14543,7 +14655,7 @@ QGroupBox::title {
                         <item>
                          <widget class="QCheckBox" name="checkBox_tools_bd3x_delEmptyFolder">
                           <property name="text">
-                           <string>遍历删除</string>
+                           <string>删除空目录</string>
                           </property>
                          </widget>
                         </item>
@@ -14826,7 +14938,7 @@ QGroupBox::title {
                         <item>
                          <widget class="QCheckBox" name="checkBox_tools_bd3x_autocombine">
                           <property name="text">
-                           <string>自动合并</string>
+                           <string>合并零位速率</string>
                           </property>
                          </widget>
                         </item>
@@ -16656,8 +16768,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
   <tabstop>lineEdit_tools_bd3x_13</tabstop>
   <tabstop>lineEdit_tools_bd3x_14</tabstop>
   <tabstop>lineEdit_tools_bd3x_15</tabstop>
-  <tabstop>lineEdit_5</tabstop>
-  <tabstop>lineEdit_6</tabstop>
+  <tabstop>lineEdit_alltab_msg_2</tabstop>
+  <tabstop>lineEdit_alltab_msg_3</tabstop>
   <tabstop>comboBox_ascii_com</tabstop>
   <tabstop>comboBox_ascii_baund</tabstop>
   <tabstop>comboBox_ascii_check</tabstop>
@@ -17157,7 +17269,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
   <tabstop>tabWidget_2</tabstop>
   <tabstop>pushButton_general_12</tabstop>
   <tabstop>pushButton_general_11</tabstop>
-  <tabstop>lineEdit_4</tabstop>
+  <tabstop>lineEdit_alltab_msg_1</tabstop>
   <tabstop>pushButton_general_17</tabstop>
   <tabstop>pushButton_general_13</tabstop>
   <tabstop>comboBox_protocal_baund</tabstop>
