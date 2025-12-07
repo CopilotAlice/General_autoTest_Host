@@ -61,11 +61,13 @@ def tryOpenAndSend(com,baund=460800,parity='N',stopbits=1,maxReryCount=3,delay=0
                 serials.write(msg.encode('ascii'))
             else:
                 emsg = 'msgType must be hex or ascii:{}'.format(msgType)
-            time.sleep(delay)
-            if serials.in_waiting > 0:
-                response = serials.read(serials.in_waiting)
-                receive_msg = response.hex() if msgType == 'hex' else response.decode('ascii')
-                serial_receive_list.append(receive_msg)
+            for i in range(maxReryCount):
+                if serials.in_waiting > 0:
+                    response = serials.read(serials.in_waiting)
+                    receive_msg = response.hex() if msgType == 'hex' else response.decode('ascii')
+                    serial_receive_list.append(receive_msg)
+                    break
+                time.sleep(delay)
         except Exception as e:
             serials.close()
             return False, '发送信息失败', e

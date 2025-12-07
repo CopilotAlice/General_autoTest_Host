@@ -1,12 +1,12 @@
 from PyQt5.QtCore import QTimer
 from PyQt5 import QtWidgets
+from PyQt5.QtGui import QPixmap
 class MainWindowDebug:
     def __init__(self,mainWindow):
         self.mw = mainWindow
         
         self.debug_time_init()
         self.debug_struct_init()
-        
         
     
     def debug_time_init(self):
@@ -27,6 +27,13 @@ class MainWindowDebug:
         for struct_debug in self.struct_debug_list:
             struct_debug.update_ui_msg()
             struct_debug.ui_lcd_count.display(struct_debug.debug_count)
+    def debug_test(self):
+        try:
+            self.mw.textEdit_tools_fileShow.hide()
+            pixmap = QPixmap('D:\\Data\\50惯导\\20250729#50GD_2501003\\50惯导全温冷启静态_20250729084322__G.png')
+            self.mw.label_tools_imgShow.setPixmap(pixmap)
+        except:
+            pass
     
     
 class struct_debug:

@@ -1,5 +1,6 @@
 # 逻辑及事件
 from funs.fun_serial import *
+from PyQt5.QtCore import QTimer
 class MainWindowEventDevide:
     def __init__(self, mainWindow):
         self.mw = mainWindow
@@ -48,6 +49,8 @@ class MainWindowEventDevide:
     '''
     # 三轴转台逻辑事件
     def logic_turntable3x(self):
+        self.qtimer_turntable3xUpdate = QTimer(self.mw)
+        self.qtimer_turntable3xUpdate.timeout.connect(self.turntable3x_update_status)
         self.mw.pushButton_turntable3x_open.clicked.connect(self.clickEvent_turntable3x_open)
         self.mw.pushButton_turntable3x_close.clicked.connect(self.clickEvent_turntable3x_close)
         self.mw.pushButton_turntable3x_command.clicked.connect(self.clickEvent_turntable3x_command)
@@ -61,10 +64,14 @@ class MainWindowEventDevide:
         result,emsg = self.mw.struct_turntable3x.serial_open()
         if not result:
             self.mw.debugMsgList_devide.append('三轴转台串口打开失败:{}'.format(emsg))
+            self.mw.lineEdit_turntable3x_returnMsg.setText('三轴转台串口开启失败')
         while len(self.mw.struct_turntable3x.list_debugMsg) > 0:
             self.mw.debugMsgList_devide.append(self.mw.struct_turntable3x.list_debugMsg.pop(0))
+        self.qtimer_turntable3xUpdate.timeout.connect(self.turntable3x_update_status)
+        self.qtimer_turntable3xUpdate.start(1000)
     # 点击三轴转台关闭串口
     def clickEvent_turntable3x_close(self):
+        self.qtimer_turntable3xUpdate.stop()
         result,emsg = self.mw.struct_turntable3x.serial_close()
         if not result:
             self.mw.debugMsgList_devide.append('三轴转台串口打开失败:{}'.format(emsg))
@@ -117,10 +124,18 @@ class MainWindowEventDevide:
     # 点击三轴转台转动
     def clickEvent_turntable3x_turn(self):
         list_input = self.turntable3x_get_input()
-        self.mw.struct_turntable3x.sendMsg_mod(*list_input[-3:])
-        self.mw.struct_turntable3x.sendMsg_pos(*list_input[:3])
-        self.mw.struct_turntable3x.sendMsg_vel(*list_input[3:6])
-        self.mw.struct_turntable3x.sendMsg_run()
+        if not self.mw.struct_turntable3x.sendMsg_mod(*list_input[-3:]):
+            self.mw.struct_turntable3x.sendMsg_mod(*list_input[-3:]) 
+        time.sleep(0.4)   
+        if not self.mw.struct_turntable3x.sendMsg_pos(*list_input[:3]):
+            self.mw.struct_turntable3x.sendMsg_pos(*list_input[:3])
+        time.sleep(0.4)
+        if not self.mw.struct_turntable3x.sendMsg_vel(*list_input[3:6]):
+            self.mw.struct_turntable3x.sendMsg_vel(*list_input[3:6])
+        time.sleep(0.4)
+        if not self.mw.struct_turntable3x.sendMsg_run():
+            self.mw.struct_turntable3x.sendMsg_run()
+        
         
         while len(self.mw.struct_turntable3x.list_showMsg) > 0:
             msg = self.mw.struct_turntable3x.list_showMsg.pop(0)
@@ -129,7 +144,7 @@ class MainWindowEventDevide:
             msg = self.mw.struct_turntable3x.list_debugMsg.pop(0)
             self.mw.debugMsgList_devide.append(msg)
         
-            
+    # 获取三轴输入信息
     def turntable3x_get_input(self):
         list_result_input = []
         for lineEdit in self.mw.list_turntable3x_input:
@@ -142,4 +157,59 @@ class MainWindowEventDevide:
                     list_result_input.append(0)
                     self.mw.debugMsgList_devide.append('三轴输入错误:{}'.format(lineEdit.text()))
         return list_result_input
+    # 设置三轴输入信息
+    def turntable3x_set_input(self,list_input:list):
+        set_input = list_input
+        if len(set_input)!=6:
+            self.mw.debugMsgList_devide.append('三轴参数长度错误:{}'.format(set_input))
+            return
+        for i in range(3):
+            if float(set_input[i+3])!=0: 
+                set_mod = '1'
+            else: 
+                set_input[i+3] = 10
+                set_mod = '0'
+            self.mw.list_turntable3x_input[i+6].setText(set_mod)
+        for i in range(6):
+            self.mw.list_turntable3x_input[i].setText(str(set_input[i]))
+    def turntable3x_update_status(self):
+        if self.mw.struct_turntable3x.serial is None:
+            return
+        result = self.mw.struct_turntable3x.sendMsg_sts()
+        if not result:
+            self.mw.lineEdit_debug_message_list[7].append('转台状态错误')
+            return
+        if ('ASSTS' not in  result)|('OK' not in result):
+            self.mw.debugMsgList_devide.append('转台状态更新错误:{}'.format(result))
+            return False
+        list_tt3xStatus = result.split(',')
+        if len(list_tt3xStatus)<11:
+            self.mw.debugMsgList_devide.append('转台状态更新错误:{}'.format(list_tt3xStatus))
+            return False
+        list_ttStatus = [0]*6
+        list_ckStatus = ['无']*3
+        self.mw.lineEdit_debug_message_list[7].append( ' '.join(list_tt3xStatus[1:-1]))
+        for i in range(3):
+            try: float_loc = float(list_tt3xStatus[i*3+1])
+            except:float_loc = -1
+            try: float_spd = float(list_tt3xStatus[i*3+2])
+            except:float_spd = -1
+            try: str_status = '到位' if '1D' not in list_tt3xStatus[i*3+3] else '转动中'
+            except: str_status = '错误'
+            list_ttStatus[i] = float_loc
+            list_ttStatus[i+3] = float_spd
+            list_ckStatus[i] = str_status
+            self.mw.struct_turntable3x.list_recLocation[i] = float_loc
+            self.mw.struct_turntable3x.list_recSpeed[i] = float_spd
+            self.mw.struct_turntable3x.list_recReadySts[i] = ('到位'==str_status)
+        for i in range(6):
+            self.mw.list_turntable3x_output[i].display('{:.4f}'.format(list_ttStatus[i]))
+        for i in range(3):
+            self.mw.list_turntable3x_status[i].setText(list_ckStatus[i])
+        
+        
+            
+        
+        
+        
         

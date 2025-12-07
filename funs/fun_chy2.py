@@ -1,5 +1,14 @@
 import struct, os, shutil
 from pathlib import Path
+import uuid,hashlib
+
+def angular_distance(a,b):
+    return abs( (a-b+180)%360 -180 )
+def get_machine_code():
+    mac = uuid.getnode()
+    mac_str = ':'.join(('%012X'%mac)[i:i+2] for i in range(0,12,2))
+    return mac_str
+
 def calculate_td_hex(data_list):
     struct_string = 'BbhhhhhhiiihBBBBBBBbhHhhHbBBb'
     struct_list = [i for i in struct_string]

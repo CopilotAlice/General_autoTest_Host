@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1064</width>
-    <height>839</height>
+    <width>1225</width>
+    <height>829</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -57,7 +57,7 @@
           <bool>false</bool>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>2</number>
          </property>
          <property name="usesScrollButtons">
           <bool>true</bool>
@@ -312,7 +312,7 @@ QGroupBox::title {
                </widget>
               </item>
               <item>
-               <widget class="QWidget" name="widget" native="true">
+               <widget class="QWidget" name="widget_quickButton" native="true">
                 <layout class="QGridLayout" name="gridLayout_30">
                  <property name="horizontalSpacing">
                   <number>0</number>
@@ -409,7 +409,7 @@ QGroupBox::title {
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLineEdit" name="lineEdit_4"/>
+                  <widget class="QLineEdit" name="lineEdit_alltab_msg_1"/>
                  </item>
                  <item>
                   <widget class="QLabel" name="label_77">
@@ -419,7 +419,7 @@ QGroupBox::title {
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLineEdit" name="lineEdit_5"/>
+                  <widget class="QLineEdit" name="lineEdit_alltab_msg_2"/>
                  </item>
                  <item>
                   <widget class="QLabel" name="label_79">
@@ -429,7 +429,7 @@ QGroupBox::title {
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLineEdit" name="lineEdit_6"/>
+                  <widget class="QLineEdit" name="lineEdit_alltab_msg_3"/>
                  </item>
                 </layout>
                </widget>
@@ -438,7 +438,7 @@ QGroupBox::title {
             </widget>
            </item>
            <item>
-            <widget class="QGroupBox" name="groupBox_33">
+            <widget class="QGroupBox" name="groupBox_sate_config_2">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -459,6 +459,9 @@ QGroupBox::title {
              </property>
              <property name="title">
               <string>通讯协议模块#Ascii</string>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_43">
               <property name="spacing">
@@ -757,10 +760,13 @@ QGroupBox::title {
                 </property>
                 <property name="html">
                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Microsoft YaHei UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'SimSun';&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                 <property name="overwriteMode">
                  <bool>false</bool>
@@ -851,7 +857,7 @@ p, li { white-space: pre-wrap; }
                 <x>0</x>
                 <y>0</y>
                 <width>242</width>
-                <height>1009</height>
+                <height>1034</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_30">
@@ -871,7 +877,7 @@ p, li { white-space: pre-wrap; }
                 <number>0</number>
                </property>
                <item>
-                <widget class="QGroupBox" name="groupBox">
+                <widget class="QGroupBox" name="groupBox_turntable">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -892,6 +898,9 @@ QGroupBox::title {
                  </property>
                  <property name="title">
                   <string>双轴转台模块</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_11">
                   <property name="spacing">
@@ -1588,7 +1597,7 @@ QGroupBox::title {
                 </widget>
                </item>
                <item>
-                <widget class="QGroupBox" name="groupBox_16">
+                <widget class="QGroupBox" name="groupBox_turntable3x">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
                    <horstretch>0</horstretch>
@@ -1609,6 +1618,9 @@ QGroupBox::title {
                  </property>
                  <property name="title">
                   <string>三轴转台模块</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_17">
                   <property name="spacing">
@@ -1798,6 +1810,9 @@ QGroupBox::title {
                      </item>
                      <item row="1" column="1">
                       <widget class="QLCDNumber" name="lcdNumber_turntable3x_0">
+                       <property name="digitCount">
+                        <number>8</number>
+                       </property>
                        <property name="segmentStyle">
                         <enum>QLCDNumber::Flat</enum>
                        </property>
@@ -1916,6 +1931,9 @@ QGroupBox::title {
                      </item>
                      <item row="2" column="3">
                       <widget class="QLCDNumber" name="lcdNumber_turntable3x_5">
+                       <property name="digitCount">
+                        <number>8</number>
+                       </property>
                        <property name="segmentStyle">
                         <enum>QLCDNumber::Flat</enum>
                        </property>
@@ -1940,6 +1958,9 @@ QGroupBox::title {
                      </item>
                      <item row="2" column="1">
                       <widget class="QLCDNumber" name="lcdNumber_turntable3x_3">
+                       <property name="digitCount">
+                        <number>8</number>
+                       </property>
                        <property name="segmentStyle">
                         <enum>QLCDNumber::Flat</enum>
                        </property>
@@ -1954,6 +1975,9 @@ QGroupBox::title {
                      </item>
                      <item row="2" column="2">
                       <widget class="QLCDNumber" name="lcdNumber_turntable3x_4">
+                       <property name="digitCount">
+                        <number>8</number>
+                       </property>
                        <property name="segmentStyle">
                         <enum>QLCDNumber::Flat</enum>
                        </property>
@@ -2007,6 +2031,9 @@ QGroupBox::title {
                      </item>
                      <item row="1" column="2">
                       <widget class="QLCDNumber" name="lcdNumber_turntable3x_1">
+                       <property name="digitCount">
+                        <number>8</number>
+                       </property>
                        <property name="segmentStyle">
                         <enum>QLCDNumber::Flat</enum>
                        </property>
@@ -2014,6 +2041,9 @@ QGroupBox::title {
                      </item>
                      <item row="1" column="3">
                       <widget class="QLCDNumber" name="lcdNumber_turntable3x_2">
+                       <property name="digitCount">
+                        <number>8</number>
+                       </property>
                        <property name="segmentStyle">
                         <enum>QLCDNumber::Flat</enum>
                        </property>
@@ -2626,10 +2656,13 @@ QGroupBox::title {
                     </property>
                     <property name="html">
                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Microsoft YaHei UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'SimSun';&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                     </property>
                     <property name="overwriteMode">
                      <bool>false</bool>
@@ -2828,7 +2861,7 @@ p, li { white-space: pre-wrap; }
                 <x>0</x>
                 <y>0</y>
                 <width>259</width>
-                <height>718</height>
+                <height>705</height>
                </rect>
               </property>
               <property name="sizePolicy">
@@ -3131,6 +3164,70 @@ QGroupBox::title {
                    </layout>
                   </item>
                   <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_61">
+                    <item>
+                     <widget class="QLabel" name="label_290">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="text">
+                       <string>转发:</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QComboBox" name="comboBox_general_forward">
+                      <property name="editable">
+                       <bool>true</bool>
+                      </property>
+                      <item>
+                       <property name="text">
+                        <string>不转发经纬度</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>其他配置项</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>GNGGA经纬度</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>GPGGA经纬度</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>BDGGA经纬度</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>GPVTG经纬度</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>HEADINGA经纬度</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>KSXT经纬度</string>
+                       </property>
+                      </item>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
                    <layout class="QHBoxLayout" name="horizontalLayout_50">
                     <item>
                      <widget class="QLabel" name="label_255">
@@ -3215,7 +3312,6 @@ QGroupBox::title {
                      </property>
                      <property name="font">
                       <font>
-                       <weight>50</weight>
                        <bold>false</bold>
                       </font>
                      </property>
@@ -3275,18 +3371,27 @@ QGroupBox::title {
                 <x>0</x>
                 <y>0</y>
                 <width>242</width>
-                <height>1033</height>
+                <height>1041</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_25">
+               <property name="spacing">
+                <number>6</number>
+               </property>
                <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
                 <number>0</number>
                </property>
                <property name="rightMargin">
                 <number>0</number>
                </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
                <item>
-                <widget class="QGroupBox" name="groupBox_23">
+                <widget class="QGroupBox" name="groupBox_sateSimulation_1">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
                    <horstretch>0</horstretch>
@@ -3307,6 +3412,9 @@ QGroupBox::title {
                  </property>
                  <property name="title">
                   <string>卫导数据装订#1</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_21">
                   <property name="spacing">
@@ -3742,7 +3850,7 @@ QGroupBox::title {
                 </widget>
                </item>
                <item>
-                <widget class="QGroupBox" name="groupBox_24">
+                <widget class="QGroupBox" name="groupBox_sateSimulation_2">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
                    <horstretch>0</horstretch>
@@ -3763,6 +3871,9 @@ QGroupBox::title {
                  </property>
                  <property name="title">
                   <string>卫导数据装订#2</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_22">
                   <property name="spacing">
@@ -4206,7 +4317,7 @@ QGroupBox::title {
                 </widget>
                </item>
                <item>
-                <widget class="QGroupBox" name="groupBox_25">
+                <widget class="QGroupBox" name="groupBox_sateSimulation_3">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
                    <horstretch>0</horstretch>
@@ -4227,6 +4338,9 @@ QGroupBox::title {
                  </property>
                  <property name="title">
                   <string>卫导数据装订#3</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_23">
                   <property name="spacing">
@@ -5115,7 +5229,7 @@ QGroupBox::title {
            </item>
           </layout>
          </widget>
-         <widget class="QWidget" name="tab_7">
+         <widget class="QWidget" name="tab_navBinding_old">
           <attribute name="title">
            <string>惯导装订</string>
           </attribute>
@@ -5143,14 +5257,20 @@ QGroupBox::title {
                 <x>0</x>
                 <y>0</y>
                 <width>242</width>
-                <height>2154</height>
+                <height>2189</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_26">
                <property name="leftMargin">
                 <number>0</number>
                </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
                <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
                 <number>0</number>
                </property>
                <item>
@@ -8672,10 +8792,8 @@ QGroupBox::title {
              <font>
               <family>Adobe Arabic</family>
               <pointsize>12</pointsize>
-              <weight>9</weight>
               <italic>false</italic>
-              <bold>false</bold>
-              <kerning>true</kerning>
+              <fontweight></fontweight>
              </font>
             </property>
             <property name="styleSheet">
@@ -8705,10 +8823,8 @@ QGroupBox::title {
              <font>
               <family>Adobe Arabic</family>
               <pointsize>12</pointsize>
-              <weight>9</weight>
               <italic>false</italic>
-              <bold>false</bold>
-              <kerning>true</kerning>
+              <fontweight></fontweight>
              </font>
             </property>
             <property name="styleSheet">
@@ -8738,10 +8854,8 @@ QGroupBox::title {
              <font>
               <family>Adobe Arabic</family>
               <pointsize>12</pointsize>
-              <weight>9</weight>
               <italic>false</italic>
-              <bold>false</bold>
-              <kerning>true</kerning>
+              <fontweight></fontweight>
              </font>
             </property>
             <property name="styleSheet">
@@ -8801,7 +8915,7 @@ QGroupBox::title {
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>7</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab_plot">
        <attribute name="title">
@@ -9916,9 +10030,9 @@ QGroupBox::title {
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
-             <width>744</width>
-             <height>1342</height>
+             <y>-548</y>
+             <width>905</width>
+             <height>1360</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_55">
@@ -12689,7 +12803,7 @@ QGroupBox::title {
              </widget>
             </item>
             <item>
-             <widget class="QGroupBox" name="groupBox_34">
+             <widget class="QGroupBox" name="groupBox_sate_config">
               <property name="styleSheet">
                <string notr="true">QGroupBox {
     border: 2px solid #555;
@@ -12704,6 +12818,9 @@ QGroupBox::title {
               </property>
               <property name="title">
                <string>多路设置模块 #Ascii #Satellite</string>
+              </property>
+              <property name="checkable">
+               <bool>true</bool>
               </property>
               <layout class="QGridLayout" name="gridLayout_34" rowstretch="0,0,0,0" rowminimumheight="0,0,0,0">
                <property name="bottomMargin">
@@ -13402,14 +13519,180 @@ QGroupBox::title {
              </widget>
             </item>
             <item>
-             <widget class="QGroupBox" name="groupBox_47">
+             <widget class="QGroupBox" name="groupBox_sate_show">
               <property name="styleSheet">
-               <string notr="true"/>
+               <string notr="true">QGroupBox#groupBox_sate_show{
+    border: 2px solid #555;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+QGroupBox#groupBox_sate_show::title{
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
               </property>
               <property name="title">
                <string>卫导内容显示</string>
               </property>
+              <property name="checkable">
+               <bool>true</bool>
+              </property>
               <layout class="QGridLayout" name="gridLayout_40">
+               <item row="1" column="1">
+                <widget class="QGroupBox" name="groupBox_36">
+                 <property name="title">
+                  <string>GPGGA</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_44">
+                  <item>
+                   <widget class="QTextBrowser" name="textBrowser_ascii_3">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>71</height>
+                     </size>
+                    </property>
+                    <property name="lineWrapMode">
+                     <enum>QTextEdit::NoWrap</enum>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QGroupBox" name="groupBox_38">
+                 <property name="title">
+                  <string>BDGGA</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_47">
+                  <item>
+                   <widget class="QTextBrowser" name="textBrowser_ascii_4">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>71</height>
+                     </size>
+                    </property>
+                    <property name="lineWrapMode">
+                     <enum>QTextEdit::NoWrap</enum>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QGroupBox" name="groupBox_40">
+                 <property name="title">
+                  <string>GPVTG</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_45">
+                  <item>
+                   <widget class="QTextBrowser" name="textBrowser_ascii_5">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>71</height>
+                     </size>
+                    </property>
+                    <property name="lineWrapMode">
+                     <enum>QTextEdit::NoWrap</enum>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QGroupBox" name="groupBox_39">
+                 <property name="title">
+                  <string>HEADINGA</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_48">
+                  <item>
+                   <widget class="QTextBrowser" name="textBrowser_ascii_6">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>71</height>
+                     </size>
+                    </property>
+                    <property name="lineWrapMode">
+                     <enum>QTextEdit::NoWrap</enum>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QGroupBox" name="groupBox_42">
+                 <property name="title">
+                  <string>KSXT</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_46">
+                  <item>
+                   <widget class="QTextBrowser" name="textBrowser_ascii_7">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>71</height>
+                     </size>
+                    </property>
+                    <property name="lineWrapMode">
+                     <enum>QTextEdit::NoWrap</enum>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QGroupBox" name="groupBox_41">
+                 <property name="title">
+                  <string>反馈/其他</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_49">
+                  <item>
+                   <widget class="QTextBrowser" name="textBrowser_ascii_1">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>71</height>
+                     </size>
+                    </property>
+                    <property name="lineWrapMode">
+                     <enum>QTextEdit::NoWrap</enum>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QGroupBox" name="groupBox_37">
+                 <property name="title">
+                  <string>GNGGA</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_42">
+                  <item>
+                   <widget class="QTextBrowser" name="textBrowser_ascii_2">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>71</height>
+                     </size>
+                    </property>
+                    <property name="lineWrapMode">
+                     <enum>QTextEdit::NoWrap</enum>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
                <item row="0" column="0">
                 <widget class="QGroupBox" name="groupBox_35">
                  <property name="title">
@@ -13477,118 +13760,12 @@ QGroupBox::title {
                   </item>
                   <item>
                    <widget class="QTextBrowser" name="textBrowser_ascii_0">
-                    <property name="lineWrapMode">
-                     <enum>QTextEdit::NoWrap</enum>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>71</height>
+                     </size>
                     </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item row="0" column="1">
-                <widget class="QGroupBox" name="groupBox_41">
-                 <property name="title">
-                  <string>反馈/其他</string>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_49">
-                  <item>
-                   <widget class="QTextBrowser" name="textBrowser_ascii_1">
-                    <property name="lineWrapMode">
-                     <enum>QTextEdit::NoWrap</enum>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item row="1" column="0">
-                <widget class="QGroupBox" name="groupBox_37">
-                 <property name="title">
-                  <string>GNGGA</string>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_42">
-                  <item>
-                   <widget class="QTextBrowser" name="textBrowser_ascii_2">
-                    <property name="lineWrapMode">
-                     <enum>QTextEdit::NoWrap</enum>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item row="1" column="1">
-                <widget class="QGroupBox" name="groupBox_36">
-                 <property name="title">
-                  <string>GPGGA</string>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_44">
-                  <item>
-                   <widget class="QTextBrowser" name="textBrowser_ascii_3">
-                    <property name="lineWrapMode">
-                     <enum>QTextEdit::NoWrap</enum>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item row="2" column="0">
-                <widget class="QGroupBox" name="groupBox_38">
-                 <property name="title">
-                  <string>BDGGA</string>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_47">
-                  <item>
-                   <widget class="QTextBrowser" name="textBrowser_ascii_4">
-                    <property name="lineWrapMode">
-                     <enum>QTextEdit::NoWrap</enum>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item row="2" column="1">
-                <widget class="QGroupBox" name="groupBox_40">
-                 <property name="title">
-                  <string>GPVTG</string>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_45">
-                  <item>
-                   <widget class="QTextBrowser" name="textBrowser_ascii_5">
-                    <property name="lineWrapMode">
-                     <enum>QTextEdit::NoWrap</enum>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item row="3" column="0">
-                <widget class="QGroupBox" name="groupBox_39">
-                 <property name="title">
-                  <string>HEADINGA</string>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_48">
-                  <item>
-                   <widget class="QTextBrowser" name="textBrowser_ascii_6">
-                    <property name="lineWrapMode">
-                     <enum>QTextEdit::NoWrap</enum>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item row="3" column="1">
-                <widget class="QGroupBox" name="groupBox_42">
-                 <property name="title">
-                  <string>KSXT</string>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_46">
-                  <item>
-                   <widget class="QTextBrowser" name="textBrowser_ascii_7">
                     <property name="lineWrapMode">
                      <enum>QTextEdit::NoWrap</enum>
                     </property>
@@ -13621,7 +13798,7 @@ QGroupBox::title {
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>726</width>
+             <width>887</width>
              <height>2484</height>
             </rect>
            </property>
@@ -14073,10 +14250,993 @@ QGroupBox::title {
           <property name="currentIndex">
            <number>0</number>
           </property>
-          <widget class="QWidget" name="tab_tools_3xbd">
+          <widget class="QWidget" name="tab">
            <attribute name="title">
-            <string>三轴标定</string>
+            <string>标定处理</string>
            </attribute>
+           <layout class="QGridLayout" name="gridLayout_12">
+            <item row="0" column="1">
+             <widget class="QGroupBox" name="groupBox_tools_bd3x_preview">
+              <property name="title">
+               <string>文件预览</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_56">
+               <item>
+                <widget class="QTableWidget" name="tableWidget_tools_bd3x_fileShow"/>
+               </item>
+               <item>
+                <widget class="QTextEdit" name="textEdit_tools_bd3x_fileShow"/>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_tools_imgShow">
+                 <property name="text">
+                  <string>TextLabel</string>
+                 </property>
+                 <property name="scaledContents">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QGroupBox" name="groupBox_17">
+              <property name="title">
+               <string>功能设置</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_50">
+               <property name="spacing">
+                <number>0</number>
+               </property>
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QScrollArea" name="scrollArea_10">
+                 <property name="frameShape">
+                  <enum>QFrame::NoFrame</enum>
+                 </property>
+                 <property name="widgetResizable">
+                  <bool>true</bool>
+                 </property>
+                 <widget class="QWidget" name="scrollAreaWidgetContents_11">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>445</width>
+                    <height>323</height>
+                   </rect>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_62">
+                   <item>
+                    <widget class="QGroupBox" name="groupBox_tools_bd3x_base">
+                     <property name="styleSheet">
+                      <string notr="true">QGroupBox {
+    border: 2px solid #555;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+                     </property>
+                     <property name="title">
+                      <string>基础处理</string>
+                     </property>
+                     <property name="checkable">
+                      <bool>true</bool>
+                     </property>
+                     <layout class="QGridLayout" name="gridLayout_20">
+                      <item row="2" column="1">
+                       <widget class="QLineEdit" name="lineEdit_tools_bd3x_avePath"/>
+                      </item>
+                      <item row="0" column="1">
+                       <widget class="QComboBox" name="comboBox_tools_bd3x_preset">
+                        <property name="enabled">
+                         <bool>true</bool>
+                        </property>
+                        <item>
+                         <property name="text">
+                          <string>01_双轴标定_正式流程</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>02_双轴标定_19位置标定</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>03_双轴标定_chy通用1_北天东</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>04_双轴标定_chy通用2_其他位置</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>05_三轴标定_补偿数验证</string>
+                         </property>
+                        </item>
+                       </widget>
+                      </item>
+                      <item row="0" column="0">
+                       <widget class="QLabel" name="label_274">
+                        <property name="text">
+                         <string>使用预设</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="1">
+                       <widget class="QLineEdit" name="lineEdit_tools_bd3x_formatPath"/>
+                      </item>
+                      <item row="2" column="0">
+                       <widget class="QPushButton" name="pushButton_tools_bd3x_avePath">
+                        <property name="text">
+                         <string>数据处理</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="0">
+                       <widget class="QPushButton" name="pushButton_tools_bd3x_modTransform">
+                        <property name="text">
+                         <string>格式转换</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="1">
+                       <widget class="QLineEdit" name="lineEdit_tools_bd3x_loadPath"/>
+                      </item>
+                      <item row="1" column="0">
+                       <widget class="QPushButton" name="pushButton_tools_bd3x_loadPath">
+                        <property name="text">
+                         <string>载入路径</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QGroupBox" name="groupBox_tools_bd3x_test">
+                     <property name="styleSheet">
+                      <string notr="true">QGroupBox {
+    border: 2px solid #555;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+                     </property>
+                     <property name="title">
+                      <string>测试功能</string>
+                     </property>
+                     <property name="checkable">
+                      <bool>true</bool>
+                     </property>
+                     <property name="checked">
+                      <bool>true</bool>
+                     </property>
+                     <layout class="QGridLayout" name="gridLayout_39">
+                      <item row="2" column="0">
+                       <widget class="QPushButton" name="pushButton_tools_bd3x_polyFit">
+                        <property name="text">
+                         <string>拟合曲线</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="4" column="1">
+                       <widget class="QLineEdit" name="lineEdit_tools_bd3x_autoRun"/>
+                      </item>
+                      <item row="4" column="0">
+                       <widget class="QPushButton" name="pushButton_tools_bd3x_autoRun">
+                        <property name="text">
+                         <string>一键处理</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="0">
+                       <widget class="QPushButton" name="pushButton_tools_bd3x_createBin">
+                        <property name="text">
+                         <string>生成bin</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="1">
+                       <widget class="QLineEdit" name="lineEdit_tools_bd3x_calPath"/>
+                      </item>
+                      <item row="1" column="0">
+                       <widget class="QPushButton" name="pushButton_tools_bd3x_calPara">
+                        <property name="text">
+                         <string>计算参数</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="3" column="1">
+                       <widget class="QLineEdit" name="lineEdit_tools_bd3x_createBin"/>
+                      </item>
+                      <item row="2" column="1">
+                       <widget class="QLineEdit" name="lineEdit_tools_bd3x_polyFit"/>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="verticalSpacer">
+                     <property name="orientation">
+                      <enum>Qt::Vertical</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>424</width>
+                       <height>98</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </widget>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QGroupBox" name="groupBox">
+              <property name="title">
+               <string>文件目录</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_41">
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_58">
+                 <item>
+                  <widget class="QLabel" name="label_276">
+                   <property name="text">
+                    <string>当前路径：</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="lineEdit_tools_bd3x_showPath">
+                   <property name="enabled">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton_tools_bd3x_flush">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>23</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>23</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string>↻</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pushButton_tools_bd3x_uppath">
+                   <property name="maximumSize">
+                    <size>
+                     <width>23</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string>↑</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QListWidget" name="listWidget_tools_bd3x_pathShow"/>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QGroupBox" name="groupBox_18">
+              <property name="title">
+               <string>参数设置</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_57">
+               <item>
+                <widget class="QScrollArea" name="scrollArea_9">
+                 <property name="frameShape">
+                  <enum>QFrame::NoFrame</enum>
+                 </property>
+                 <property name="widgetResizable">
+                  <bool>true</bool>
+                 </property>
+                 <widget class="QWidget" name="scrollAreaWidgetContents_10">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>410</width>
+                    <height>723</height>
+                   </rect>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_58">
+                   <property name="spacing">
+                    <number>6</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <widget class="QTextBrowser" name="textBrowser_tools_bd3x_msglast">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QGroupBox" name="groupBox_tools_calibbd_basepara">
+                     <property name="styleSheet">
+                      <string notr="true">QGroupBox {
+    border: 2px solid #555;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+                     </property>
+                     <property name="title">
+                      <string>基础处理_参数</string>
+                     </property>
+                     <property name="checkable">
+                      <bool>true</bool>
+                     </property>
+                     <layout class="QVBoxLayout" name="verticalLayout_59">
+                      <item>
+                       <layout class="QHBoxLayout" name="horizontalLayout_60">
+                        <item>
+                         <widget class="QCheckBox" name="checkBox_tools_bd3x_regexFolder">
+                          <property name="text">
+                           <string>正则预览</string>
+                          </property>
+                          <property name="checked">
+                           <bool>true</bool>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QCheckBox" name="checkBox_tools_bd3x_delEmptyFolder">
+                          <property name="text">
+                           <string>删除空目录</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QCheckBox" name="checkBox_tools_bd3x_SFsubZero">
+                          <property name="text">
+                           <string>标度减零位</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QCheckBox" name="checkBox_tools_bd3x_NOAsubZero">
+                          <property name="text">
+                           <string>非正交减零位</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                      <item>
+                       <layout class="QGridLayout" name="gridLayout_21">
+                        <item row="7" column="1">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_14">
+                          <property name="text">
+                           <string>6</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="1">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_0">
+                          <property name="toolTip">
+                           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;载入文件时正则表示&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                          </property>
+                          <property name="whatsThis">
+                           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                          </property>
+                          <property name="text">
+                           <string>s txt | png</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="5" column="3">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_11">
+                          <property name="text">
+                           <string>1 1</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="5" column="0">
+                         <widget class="QLabel" name="label_260">
+                          <property name="text">
+                           <string>取平均数</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="3" column="0">
+                         <widget class="QLabel" name="label_277">
+                          <property name="text">
+                           <string>陀螺系数</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="0">
+                         <widget class="QLabel" name="label_265">
+                          <property name="text">
+                           <string>陀螺序号</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="4" column="3">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_9">
+                          <property name="text">
+                           <string>1 1 1 </string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="7" column="3">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_15">
+                          <property name="text">
+                           <string>_ 1</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="3" column="3">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_7">
+                          <property name="text">
+                           <string>1 1 1</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="4" column="0">
+                         <widget class="QLabel" name="label_281">
+                          <property name="text">
+                           <string>温度系数</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="2">
+                         <widget class="QLabel" name="label_266">
+                          <property name="text">
+                           <string>加表序号</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="5" column="1">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_10">
+                          <property name="text">
+                           <string>36</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="0">
+                         <widget class="QLabel" name="label_259">
+                          <property name="text">
+                           <string>正则_与</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="6" column="0">
+                         <widget class="QLabel" name="label_279">
+                          <property name="text">
+                           <string>取平滑数</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="2" column="3">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_5">
+                          <property name="text">
+                           <string>10 11 12</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="2" column="2">
+                         <widget class="QLabel" name="label_270">
+                          <property name="text">
+                           <string>加表温度</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="3">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_1">
+                          <property name="text">
+                           <string>hz</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="4" column="2">
+                         <widget class="QLabel" name="label_282">
+                          <property name="text">
+                           <string>温度系数</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="1">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_2">
+                          <property name="text">
+                           <string>1 2 3</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="2">
+                         <widget class="QLabel" name="label_261">
+                          <property name="text">
+                           <string>正则_非</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="7" column="2">
+                         <widget class="QLabel" name="label_284">
+                          <property name="text">
+                           <string>任务排序</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="3" column="2">
+                         <widget class="QLabel" name="label_278">
+                          <property name="text">
+                           <string>加表系数</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="6" column="1">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_12">
+                          <property name="text">
+                           <string>1</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="2" column="1">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_4">
+                          <property name="text">
+                           <string>7 8 9</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="6" column="2">
+                         <widget class="QLabel" name="label_280">
+                          <property name="text">
+                           <string>转换数</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="2" column="0">
+                         <widget class="QLabel" name="label_267">
+                          <property name="text">
+                           <string>陀螺温度</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="4" column="1">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_8">
+                          <property name="text">
+                           <string>1 1 1</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="3">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_3">
+                          <property name="text">
+                           <string>4 5 6</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="5" column="2">
+                         <widget class="QLabel" name="label_262">
+                          <property name="text">
+                           <string>掐头去尾</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="6" column="3">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_13">
+                          <property name="text">
+                           <string>10</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="3" column="1">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_6">
+                          <property name="text">
+                           <string>1 1 1</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="7" column="0">
+                         <widget class="QLabel" name="label_283">
+                          <property name="text">
+                           <string>保存精度</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QGroupBox" name="groupBox_tools_bd3x_allpara">
+                     <property name="styleSheet">
+                      <string notr="true">QGroupBox {
+    border: 2px solid #555;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+                     </property>
+                     <property name="title">
+                      <string>测试处理_变量</string>
+                     </property>
+                     <property name="checkable">
+                      <bool>true</bool>
+                     </property>
+                     <layout class="QVBoxLayout" name="verticalLayout_61">
+                      <item>
+                       <layout class="QHBoxLayout" name="horizontalLayout_59">
+                        <item>
+                         <widget class="QCheckBox" name="checkBox_tools_bd3x_autocombine">
+                          <property name="text">
+                           <string>合并零位速率</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QCheckBox" name="checkBox_3">
+                          <property name="text">
+                           <string>备用</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="pushButton">
+                          <property name="text">
+                           <string>备用</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="pushButton_4">
+                          <property name="text">
+                           <string>备用</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                      <item>
+                       <layout class="QGridLayout" name="gridLayout_37">
+                        <item row="1" column="0">
+                         <widget class="QLabel" name="label_293">
+                          <property name="text">
+                           <string>零位规则</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="4" column="3">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_25">
+                          <property name="text">
+                           <string>1 1 1</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="4" column="2">
+                         <widget class="QLabel" name="label_289">
+                          <property name="text">
+                           <string>速率系数</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="3" column="2">
+                         <widget class="QLabel" name="label_287">
+                          <property name="text">
+                           <string>速率顺序</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="5" column="2">
+                         <widget class="QLabel" name="label_297">
+                          <property name="text">
+                           <string>±G编码</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="0">
+                         <widget class="QLabel" name="label_291">
+                          <property name="text">
+                           <string>标度拟合</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="1">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_16">
+                          <property name="text">
+                           <string>1</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="3" column="0">
+                         <widget class="QLabel" name="label_286">
+                          <property name="text">
+                           <string>A1顺序</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="5" column="1">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_26">
+                          <property name="text">
+                           <string>4 4 4</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="2" column="3">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_21">
+                          <property name="text">
+                           <string>0 2 1</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="4" column="0">
+                         <widget class="QLabel" name="label_288">
+                          <property name="text">
+                           <string>速率点</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="2" column="1">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_20">
+                          <property name="text">
+                           <string>JT _ 1</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="5" column="0">
+                         <widget class="QLabel" name="label_296">
+                          <property name="text">
+                           <string>计数偏移</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="2">
+                         <widget class="QLabel" name="label_292">
+                          <property name="text">
+                           <string>全温拟合</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="2">
+                         <widget class="QLabel" name="label_294">
+                          <property name="text">
+                           <string>速率规则</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="1">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_18">
+                          <property name="text">
+                           <string>LW _ 1</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="3">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_19">
+                          <property name="text">
+                           <string>SL _ 1</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="2" column="2">
+                         <widget class="QLabel" name="label_285">
+                          <property name="text">
+                           <string>G0顺序</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="3" column="3">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_23">
+                          <property name="text">
+                           <string>1 2 0</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="4" column="1">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_24">
+                          <property name="text">
+                           <string>10,50,100,150,180</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="3">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_17">
+                          <property name="text">
+                           <string>3</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="5" column="3">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_27">
+                          <property name="text">
+                           <string>1100 0101 1010</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="3" column="1">
+                         <widget class="QLineEdit" name="lineEdit_tools_bd3x_22">
+                          <property name="text">
+                           <string>1 0 2</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="2" column="0">
+                         <widget class="QLabel" name="label_295">
+                          <property name="text">
+                           <string>静态规则</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QGroupBox" name="groupBox_tools_bd3x_plotSetting">
+                     <property name="styleSheet">
+                      <string notr="true">QGroupBox {
+    border: 2px solid #555;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+                     </property>
+                     <property name="title">
+                      <string>绘图设置</string>
+                     </property>
+                     <property name="checkable">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QGroupBox" name="groupBox_tools_bd3x_previewSetting">
+                     <property name="styleSheet">
+                      <string notr="true">QGroupBox {
+    border: 2px solid #555;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+                     </property>
+                     <property name="title">
+                      <string>预览设置</string>
+                     </property>
+                     <property name="checkable">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QGroupBox" name="groupBox_16">
+                     <property name="styleSheet">
+                      <string notr="true">QGroupBox {
+    border: 2px solid #555;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 3px 0 3px;
+}</string>
+                     </property>
+                     <property name="title">
+                      <string>流程简介</string>
+                     </property>
+                     <layout class="QVBoxLayout" name="verticalLayout_60">
+                      <property name="leftMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="rightMargin">
+                       <number>0</number>
+                      </property>
+                      <item>
+                       <widget class="QTextBrowser" name="textBrowser_tools_bd3x_msgShow">
+                        <property name="html">
+                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Microsoft YaHei UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:700;&quot;&gt;处理标定数据：&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;1.点击&amp;lt;载入路径&amp;gt;，选择 [路径]/[测试项目]/[测试文件]，如：&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    [当前路径] / [[BD_-40]......[BD_60]] / [loc1_s.txt......spd10_hz,txt]&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;2.设置正则表达式&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;————————————————————————————&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
           </widget>
           <widget class="QWidget" name="tab_tools_dropframe">
            <attribute name="title">
@@ -14881,10 +16041,13 @@ QGroupBox::title {
              </property>
              <property name="html">
               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Microsoft YaHei UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'SimSun';&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
@@ -14904,8 +16067,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>432</width>
-             <height>400</height>
+             <width>450</width>
+             <height>407</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_53">
@@ -15035,8 +16198,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>743</width>
-             <height>693</height>
+             <width>904</width>
+             <height>678</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout_10">
@@ -15135,8 +16298,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>726</width>
-             <height>1439</height>
+             <width>887</width>
+             <height>1448</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout_35">
@@ -15588,6 +16751,635 @@ p, li { white-space: pre-wrap; }
    <header>pyqtgraph</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>lineEdit_tools_bd3x_0</tabstop>
+  <tabstop>lineEdit_tools_bd3x_1</tabstop>
+  <tabstop>lineEdit_tools_bd3x_2</tabstop>
+  <tabstop>lineEdit_tools_bd3x_3</tabstop>
+  <tabstop>lineEdit_tools_bd3x_4</tabstop>
+  <tabstop>lineEdit_tools_bd3x_5</tabstop>
+  <tabstop>lineEdit_tools_bd3x_6</tabstop>
+  <tabstop>lineEdit_tools_bd3x_7</tabstop>
+  <tabstop>lineEdit_tools_bd3x_8</tabstop>
+  <tabstop>lineEdit_tools_bd3x_9</tabstop>
+  <tabstop>lineEdit_tools_bd3x_10</tabstop>
+  <tabstop>lineEdit_tools_bd3x_11</tabstop>
+  <tabstop>lineEdit_tools_bd3x_12</tabstop>
+  <tabstop>lineEdit_tools_bd3x_13</tabstop>
+  <tabstop>lineEdit_tools_bd3x_14</tabstop>
+  <tabstop>lineEdit_tools_bd3x_15</tabstop>
+  <tabstop>lineEdit_alltab_msg_2</tabstop>
+  <tabstop>lineEdit_alltab_msg_3</tabstop>
+  <tabstop>comboBox_ascii_com</tabstop>
+  <tabstop>comboBox_ascii_baund</tabstop>
+  <tabstop>comboBox_ascii_check</tabstop>
+  <tabstop>lineEdit_automatic_mode</tabstop>
+  <tabstop>textBrowser_automatic_ruleline</tabstop>
+  <tabstop>scrollArea_autotest</tabstop>
+  <tabstop>groupBox_turntable</tabstop>
+  <tabstop>comboBox_turntable_com</tabstop>
+  <tabstop>pushButton_turntable_close</tabstop>
+  <tabstop>pushButton_turntable_open</tabstop>
+  <tabstop>lineEdit_inside_speed</tabstop>
+  <tabstop>lineEdit_inside_acceleration</tabstop>
+  <tabstop>pushButton_start_speed</tabstop>
+  <tabstop>pushButton_start_location</tabstop>
+  <tabstop>pushButton_outside_reset</tabstop>
+  <tabstop>lineEdit_inside_location</tabstop>
+  <tabstop>lineEdit_outside_acceleration</tabstop>
+  <tabstop>lineEdit_outside_speed</tabstop>
+  <tabstop>lineEdit_outside_location</tabstop>
+  <tabstop>pushButton_inside_reset</tabstop>
+  <tabstop>lineEdit_turntable_i_status</tabstop>
+  <tabstop>lineEdit_turntable_o_status</tabstop>
+  <tabstop>comboBox_turntable_path</tabstop>
+  <tabstop>comboBox_turntable_rule</tabstop>
+  <tabstop>groupBox_turntable3x</tabstop>
+  <tabstop>comboBox_turntable3x_com</tabstop>
+  <tabstop>pushButton_turntable3x_open</tabstop>
+  <tabstop>pushButton_turntable3x_close</tabstop>
+  <tabstop>widget_11</tabstop>
+  <tabstop>lineEdit_turntable3x_5</tabstop>
+  <tabstop>lineEdit_turntable3x_4</tabstop>
+  <tabstop>lineEdit_turntable3x_status_2</tabstop>
+  <tabstop>lineEdit_turntable3x_3</tabstop>
+  <tabstop>lineEdit_turntable3x_8</tabstop>
+  <tabstop>lineEdit_turntable3x_7</tabstop>
+  <tabstop>lineEdit_turntable3x_0</tabstop>
+  <tabstop>lineEdit_turntable3x_2</tabstop>
+  <tabstop>lineEdit_turntable3x_6</tabstop>
+  <tabstop>lineEdit_turntable3x_status_0</tabstop>
+  <tabstop>lineEdit_turntable3x_1</tabstop>
+  <tabstop>lineEdit_turntable3x_status_1</tabstop>
+  <tabstop>comboBox_turntable3x_command</tabstop>
+  <tabstop>pushButton_turntable3x_command</tabstop>
+  <tabstop>pushButton_turntable3x_turn</tabstop>
+  <tabstop>lineEdit_turntable3x_returnMsg</tabstop>
+  <tabstop>comboBox_turntable3x_path</tabstop>
+  <tabstop>comboBox_turntable3x_rule</tabstop>
+  <tabstop>lineEdit_tempbox_set</tabstop>
+  <tabstop>pushButton_tempbox_set</tabstop>
+  <tabstop>comboBox_tempbox_com</tabstop>
+  <tabstop>comboBox_power_com</tabstop>
+  <tabstop>pushButton_power_open</tabstop>
+  <tabstop>pushButton_power_close</tabstop>
+  <tabstop>lineEdit_automatic_mode_2</tabstop>
+  <tabstop>textBrowser_automatic_ruleline_2</tabstop>
+  <tabstop>comboBox_automatic_path</tabstop>
+  <tabstop>comboBox_automatic_rule</tabstop>
+  <tabstop>scrollArea_4</tabstop>
+  <tabstop>comboBox_general_com</tabstop>
+  <tabstop>pushButton_general_send</tabstop>
+  <tabstop>pushButton_general_1</tabstop>
+  <tabstop>pushButton_general_2</tabstop>
+  <tabstop>pushButton_general_3</tabstop>
+  <tabstop>pushButton_general_4</tabstop>
+  <tabstop>pushButton_general_5</tabstop>
+  <tabstop>pushButton_general_6</tabstop>
+  <tabstop>pushButton_general_7</tabstop>
+  <tabstop>pushButton_general_8</tabstop>
+  <tabstop>pushButton_general_9</tabstop>
+  <tabstop>checkBox_general_autoSend</tabstop>
+  <tabstop>lineEdit_general_sendHz</tabstop>
+  <tabstop>comboBox_general_check</tabstop>
+  <tabstop>lineEdit_general_check_loc</tabstop>
+  <tabstop>lineEdit_general_check_begin</tabstop>
+  <tabstop>lineEdit_general_check_end</tabstop>
+  <tabstop>comboBox_general_path</tabstop>
+  <tabstop>comboBox_general_rule</tabstop>
+  <tabstop>lineEdit_general_log</tabstop>
+  <tabstop>textEdit_general_msg</tabstop>
+  <tabstop>tableWidget_general_show</tabstop>
+  <tabstop>scrollArea</tabstop>
+  <tabstop>comboBox_sate_com_1</tabstop>
+  <tabstop>pushButton_sate_send_1</tabstop>
+  <tabstop>textEdit_sate_msg_1</tabstop>
+  <tabstop>lineEdit_sate_1_9</tabstop>
+  <tabstop>lineEdit_sate_1_10</tabstop>
+  <tabstop>lineEdit_sate_1_8</tabstop>
+  <tabstop>lineEdit_sate_1_5</tabstop>
+  <tabstop>lineEdit_sate_1_3</tabstop>
+  <tabstop>lineEdit_sate_1_4</tabstop>
+  <tabstop>lineEdit_sate_1_7</tabstop>
+  <tabstop>lineEdit_sate_1_6</tabstop>
+  <tabstop>lineEdit_sate_1_2</tabstop>
+  <tabstop>lineEdit_sate_1_1</tabstop>
+  <tabstop>comboBox_sate_1_1</tabstop>
+  <tabstop>checkBox_sate_time_1</tabstop>
+  <tabstop>lineEdit_sate_1_0</tabstop>
+  <tabstop>checkBox_sate_utc_1</tabstop>
+  <tabstop>comboBox_sate_com_2</tabstop>
+  <tabstop>pushButton_sate_send_2</tabstop>
+  <tabstop>textEdit_sate_msg_2</tabstop>
+  <tabstop>lineEdit_sate_2_9</tabstop>
+  <tabstop>lineEdit_sate_2_10</tabstop>
+  <tabstop>lineEdit_sate_2_8</tabstop>
+  <tabstop>lineEdit_sate_2_5</tabstop>
+  <tabstop>lineEdit_sate_2_3</tabstop>
+  <tabstop>lineEdit_sate_2_4</tabstop>
+  <tabstop>lineEdit_sate_2_7</tabstop>
+  <tabstop>lineEdit_sate_2_6</tabstop>
+  <tabstop>lineEdit_sate_2_2</tabstop>
+  <tabstop>lineEdit_sate_2_1</tabstop>
+  <tabstop>comboBox_sate_2_1</tabstop>
+  <tabstop>checkBox_sate_time_2</tabstop>
+  <tabstop>lineEdit_sate_2_0</tabstop>
+  <tabstop>comboBox_sate_com_3</tabstop>
+  <tabstop>pushButton_sate_send_3</tabstop>
+  <tabstop>textEdit_sate_msg_3</tabstop>
+  <tabstop>lineEdit_sate_3_21</tabstop>
+  <tabstop>lineEdit_sate_3_26</tabstop>
+  <tabstop>lineEdit_sate_3_6</tabstop>
+  <tabstop>lineEdit_sate_3_4</tabstop>
+  <tabstop>lineEdit_sate_3_20</tabstop>
+  <tabstop>lineEdit_sate_3_14</tabstop>
+  <tabstop>lineEdit_sate_3_13</tabstop>
+  <tabstop>lineEdit_sate_3_24</tabstop>
+  <tabstop>lineEdit_sate_3_8</tabstop>
+  <tabstop>lineEdit_sate_3_3</tabstop>
+  <tabstop>lineEdit_sate_3_23</tabstop>
+  <tabstop>lineEdit_sate_3_17</tabstop>
+  <tabstop>lineEdit_sate_3_2</tabstop>
+  <tabstop>checkBox_sate_time_3</tabstop>
+  <tabstop>lineEdit_sate_3_19</tabstop>
+  <tabstop>lineEdit_sate_3_10</tabstop>
+  <tabstop>lineEdit_sate_3_11</tabstop>
+  <tabstop>lineEdit_sate_3_9</tabstop>
+  <tabstop>lineEdit_sate_3_0</tabstop>
+  <tabstop>lineEdit_sate_3_22</tabstop>
+  <tabstop>lineEdit_sate_3_1</tabstop>
+  <tabstop>comboBox_sate_3_1</tabstop>
+  <tabstop>lineEdit_sate_3_15</tabstop>
+  <tabstop>lineEdit_sate_3_12</tabstop>
+  <tabstop>lineEdit_sate_3_18</tabstop>
+  <tabstop>lineEdit_sate_3_25</tabstop>
+  <tabstop>lineEdit_sate_3_7</tabstop>
+  <tabstop>lineEdit_sate_3_5</tabstop>
+  <tabstop>lineEdit_sate_3_16</tabstop>
+  <tabstop>scrollArea_2</tabstop>
+  <tabstop>comboBox_binding_com</tabstop>
+  <tabstop>pushButton_binding_send</tabstop>
+  <tabstop>lineEdit_binding_latitude</tabstop>
+  <tabstop>lineEdit_binding_longitude</tabstop>
+  <tabstop>lineEdit_binding_height</tabstop>
+  <tabstop>lineEdit_binding_time</tabstop>
+  <tabstop>lineEdit_binding_command</tabstop>
+  <tabstop>comboBox_binding_com_60s</tabstop>
+  <tabstop>pushButton_binding_send_60s</tabstop>
+  <tabstop>textEdit_binging_60s</tabstop>
+  <tabstop>lineEdit_binding_60s_6</tabstop>
+  <tabstop>lineEdit_binding_60s_7</tabstop>
+  <tabstop>lineEdit_binding_60s_5</tabstop>
+  <tabstop>lineEdit_binding_60s_1</tabstop>
+  <tabstop>lineEdit_binding_60s_8</tabstop>
+  <tabstop>lineEdit_binding_60s_9</tabstop>
+  <tabstop>lineEdit_binding_60s_10</tabstop>
+  <tabstop>lineEdit_binding_60s_4</tabstop>
+  <tabstop>lineEdit_binding_60s_3</tabstop>
+  <tabstop>lineEdit_binding_60s_2</tabstop>
+  <tabstop>comboBox_binding_td</tabstop>
+  <tabstop>pushButton_binding_td</tabstop>
+  <tabstop>textEdit_binging_td</tabstop>
+  <tabstop>lineEdit_binding_td_9</tabstop>
+  <tabstop>lineEdit_binding_td_27</tabstop>
+  <tabstop>lineEdit_binding_td_16</tabstop>
+  <tabstop>comboBox_binding_td_12</tabstop>
+  <tabstop>checkBox_binding_td</tabstop>
+  <tabstop>lineEdit_binding_td_8</tabstop>
+  <tabstop>comboBox_binding_td_4</tabstop>
+  <tabstop>comboBox_binding_td_5</tabstop>
+  <tabstop>comboBox_binding_td_8</tabstop>
+  <tabstop>lineEdit_binding_td_20</tabstop>
+  <tabstop>lineEdit_binding_td_18</tabstop>
+  <tabstop>lineEdit_binding_td_23</tabstop>
+  <tabstop>lineEdit_binding_td_6</tabstop>
+  <tabstop>lineEdit_binding_td_24</tabstop>
+  <tabstop>lineEdit_binding_td_4</tabstop>
+  <tabstop>lineEdit_binding_td_17</tabstop>
+  <tabstop>lineEdit_binding_td_29</tabstop>
+  <tabstop>lineEdit_binding_td_30</tabstop>
+  <tabstop>lineEdit_binding_td_12</tabstop>
+  <tabstop>comboBox_binding_td_13</tabstop>
+  <tabstop>lineEdit_binding_td_19</tabstop>
+  <tabstop>lineEdit_binding_td_15</tabstop>
+  <tabstop>comboBox_binding_td_1</tabstop>
+  <tabstop>lineEdit_binding_td_11</tabstop>
+  <tabstop>comboBox_binding_td_3</tabstop>
+  <tabstop>lineEdit_binding_td_7</tabstop>
+  <tabstop>lineEdit_binding_td_5</tabstop>
+  <tabstop>comboBox_binding_td_14</tabstop>
+  <tabstop>lineEdit_binding_td_2</tabstop>
+  <tabstop>lineEdit_binding_td_21</tabstop>
+  <tabstop>comboBox_binding_td_6</tabstop>
+  <tabstop>comboBox_binding_td_7</tabstop>
+  <tabstop>comboBox_binding_td_2</tabstop>
+  <tabstop>lineEdit_binding_td_10</tabstop>
+  <tabstop>lineEdit_binding_td_25</tabstop>
+  <tabstop>checkBox_binding_td_loop</tabstop>
+  <tabstop>lineEdit_binding_td_22</tabstop>
+  <tabstop>lineEdit_binding_td_13</tabstop>
+  <tabstop>lineEdit_binding_td_26</tabstop>
+  <tabstop>lineEdit_binding_td_3</tabstop>
+  <tabstop>lineEdit_binding_td_14</tabstop>
+  <tabstop>lineEdit_binding_td_1</tabstop>
+  <tabstop>lineEdit_binding_td_28</tabstop>
+  <tabstop>comboBox_binding_td_9</tabstop>
+  <tabstop>comboBox_binding_td_10</tabstop>
+  <tabstop>comboBox_binding_td_11</tabstop>
+  <tabstop>checkBox_td_update</tabstop>
+  <tabstop>comboBox_binding_fz</tabstop>
+  <tabstop>pushButton_binding_fz</tabstop>
+  <tabstop>textEdit_binging_fz</tabstop>
+  <tabstop>lineEdit_binding_fz_2</tabstop>
+  <tabstop>checkBox_binding_fz_loop</tabstop>
+  <tabstop>lineEdit_binding_fz_3</tabstop>
+  <tabstop>checkBox_binding_fz</tabstop>
+  <tabstop>lineEdit_binding_fz_5</tabstop>
+  <tabstop>lineEdit_binding_fz_6</tabstop>
+  <tabstop>lineEdit_binding_fz_8</tabstop>
+  <tabstop>lineEdit_binding_fz_4</tabstop>
+  <tabstop>lineEdit_binding_fz_1</tabstop>
+  <tabstop>lineEdit_binding_fz_7</tabstop>
+  <tabstop>lineEdit_binding_fz_9</tabstop>
+  <tabstop>lineEdit_binding_fz_10</tabstop>
+  <tabstop>comboBox_binding_gnss</tabstop>
+  <tabstop>pushButton_binding_gnss</tabstop>
+  <tabstop>textEdit_binging_gnss</tabstop>
+  <tabstop>checkBox_binding_gnss_loop</tabstop>
+  <tabstop>lineEdit_binding_gnss_2</tabstop>
+  <tabstop>lineEdit_binding_gnss_3</tabstop>
+  <tabstop>checkBox_binding_gnss</tabstop>
+  <tabstop>lineEdit_binding_gnss_1</tabstop>
+  <tabstop>lineEdit_binding_gnss_4</tabstop>
+  <tabstop>lineEdit_binding_gnss_13</tabstop>
+  <tabstop>comboBox_binding_gnss_1</tabstop>
+  <tabstop>lineEdit_binding_gnss_12</tabstop>
+  <tabstop>lineEdit_binding_gnss_20</tabstop>
+  <tabstop>comboBox_binding_gnss_2</tabstop>
+  <tabstop>lineEdit_binding_gnss_26</tabstop>
+  <tabstop>lineEdit_binding_gnss_5</tabstop>
+  <tabstop>lineEdit_binding_gnss_28</tabstop>
+  <tabstop>comboBox_binding_gnss_3</tabstop>
+  <tabstop>comboBox_binding_gnss_4</tabstop>
+  <tabstop>lineEdit_binding_gnss_23</tabstop>
+  <tabstop>comboBox_binding_gnss_5</tabstop>
+  <tabstop>lineEdit_binding_gnss_29</tabstop>
+  <tabstop>lineEdit_binding_gnss_25</tabstop>
+  <tabstop>lineEdit_binding_gnss_27</tabstop>
+  <tabstop>lineEdit_binding_gnss_9</tabstop>
+  <tabstop>lineEdit_binding_gnss_24</tabstop>
+  <tabstop>lineEdit_binding_gnss_10</tabstop>
+  <tabstop>lineEdit_binding_gnss_30</tabstop>
+  <tabstop>lineEdit_binding_gnss_6</tabstop>
+  <tabstop>lineEdit_binding_gnss_11</tabstop>
+  <tabstop>lineEdit_binding_gnss_8</tabstop>
+  <tabstop>lineEdit_binding_gnss_7</tabstop>
+  <tabstop>lineEdit_binding_gnss_14</tabstop>
+  <tabstop>lineEdit_binding_gnss_15</tabstop>
+  <tabstop>lineEdit_binding_gnss_21</tabstop>
+  <tabstop>lineEdit_binding_gnss_18</tabstop>
+  <tabstop>lineEdit_binding_gnss_22</tabstop>
+  <tabstop>lineEdit_binding_gnss_19</tabstop>
+  <tabstop>lineEdit_binding_gnss_17</tabstop>
+  <tabstop>lineEdit_binding_gnss_16</tabstop>
+  <tabstop>lineEdit_binding_gnss_31</tabstop>
+  <tabstop>lineEdit_binding_gnss_32</tabstop>
+  <tabstop>lineEdit_binding_gnss_33</tabstop>
+  <tabstop>checkBox_gnss_update</tabstop>
+  <tabstop>pushButton_load_data</tabstop>
+  <tabstop>pushButton_begin_test</tabstop>
+  <tabstop>pushButton_stop_test</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>graphicsView_gyr_Y</tabstop>
+  <tabstop>graphicsView_gyr_Z</tabstop>
+  <tabstop>graphicsView_gyr_X</tabstop>
+  <tabstop>lineEdit_inside_plot_axis2</tabstop>
+  <tabstop>lineEdit_inside_plot_ffz3</tabstop>
+  <tabstop>lineEdit_plot_endcoun</tabstop>
+  <tabstop>lineEdit_inside_plot_ffz2</tabstop>
+  <tabstop>lineEdit_inside_plot_axis1</tabstop>
+  <tabstop>lineEdit_inside_plot_para2</tabstop>
+  <tabstop>lineEdit_plot_skipcount</tabstop>
+  <tabstop>lineEdit_inside_plot_doubleAxis1</tabstop>
+  <tabstop>lineEdit_inside_plot_mean3</tabstop>
+  <tabstop>lineEdit_inside_plot_stds1</tabstop>
+  <tabstop>lineEdit_inside_plot_mean2</tabstop>
+  <tabstop>lineEdit_inside_plot_stds3</tabstop>
+  <tabstop>lineEdit_inside_plot_doubleAxis2</tabstop>
+  <tabstop>lineEdit_inside_plot_doubleAxis3</tabstop>
+  <tabstop>lineEdit_inside_plot_ffz1</tabstop>
+  <tabstop>lineEdit_inside_plot_stds2</tabstop>
+  <tabstop>lineEdit_inside_plot_para3</tabstop>
+  <tabstop>comboBox_plot_choiceTab</tabstop>
+  <tabstop>lineEdit_plot_rolling</tabstop>
+  <tabstop>comboBox_plot_beginAxis</tabstop>
+  <tabstop>lineEdit_inside_plot_para1</tabstop>
+  <tabstop>lineEdit_inside_plot_axis3</tabstop>
+  <tabstop>comboBox_plot_doubleAxis</tabstop>
+  <tabstop>lineEdit_inside_plot_mean1</tabstop>
+  <tabstop>graphicsView_INU_loc</tabstop>
+  <tabstop>graphicsView_INU_loc_error</tabstop>
+  <tabstop>graphicsView_INU_speed</tabstop>
+  <tabstop>lineEdit_standLat</tabstop>
+  <tabstop>checkBox_lock</tabstop>
+  <tabstop>comboBox_INU_beginAxis_spd</tabstop>
+  <tabstop>lineEdit_INU_skipcount</tabstop>
+  <tabstop>lineEdit_INU_plot_target_eastspd</tabstop>
+  <tabstop>lineEdit_INU_plot_target_northspd</tabstop>
+  <tabstop>lineEdit_INU_plot_stand_lon</tabstop>
+  <tabstop>lineEdit_INU_rolling</tabstop>
+  <tabstop>checkBox_INU_update_always</tabstop>
+  <tabstop>comboBox_INU_choiceTab_stand</tabstop>
+  <tabstop>comboBox_INU_beginAxis_loc</tabstop>
+  <tabstop>comboBox_INU_beginAxis_stand</tabstop>
+  <tabstop>lineEdit_INU_endcount</tabstop>
+  <tabstop>comboBox_INU_choiceTab_target</tabstop>
+  <tabstop>lineEdit_INU_plot_target_lat</tabstop>
+  <tabstop>lineEdit_INU_plot_target_lon</tabstop>
+  <tabstop>lineEdit_INU_plot_stand_lat</tabstop>
+  <tabstop>pushButton_2</tabstop>
+  <tabstop>pushButton_autoset_INU</tabstop>
+  <tabstop>checkBox_INU_update_once</tabstop>
+  <tabstop>pushButton_standRe</tabstop>
+  <tabstop>lineEdit_standDistance</tabstop>
+  <tabstop>lineEdit_standLoc</tabstop>
+  <tabstop>scrollArea_8</tabstop>
+  <tabstop>pushButton_com_open_2</tabstop>
+  <tabstop>lineEdit_file_names_12</tabstop>
+  <tabstop>comboBox_stopbit_10</tabstop>
+  <tabstop>lineEdit_plan_names_12</tabstop>
+  <tabstop>comboBox_stopbit_4</tabstop>
+  <tabstop>lineEdit_file_names_6</tabstop>
+  <tabstop>combox_set_baund_2</tabstop>
+  <tabstop>comboBox_set_check_9</tabstop>
+  <tabstop>combox_set_com_1</tabstop>
+  <tabstop>lineEdit_plan_names_8</tabstop>
+  <tabstop>lineEdit_file_names_11</tabstop>
+  <tabstop>combox_set_baund_all</tabstop>
+  <tabstop>pushButton_com_open_3</tabstop>
+  <tabstop>comboBox_set_check_11</tabstop>
+  <tabstop>combox_set_baund_3</tabstop>
+  <tabstop>lineEdit_file_names_3</tabstop>
+  <tabstop>pushButton_com_open_7</tabstop>
+  <tabstop>lineEdit_file_names_10</tabstop>
+  <tabstop>lineEdit_plan_names_6</tabstop>
+  <tabstop>comboBox_set_check_8</tabstop>
+  <tabstop>pushButton_com_open_12</tabstop>
+  <tabstop>combox_set_baund_12</tabstop>
+  <tabstop>lineEdit_plan_names_10</tabstop>
+  <tabstop>lineEdit_file_names_4</tabstop>
+  <tabstop>lineEdit_file_names_1</tabstop>
+  <tabstop>comboBox_stopbit_5</tabstop>
+  <tabstop>pushButton_com_open_1</tabstop>
+  <tabstop>comboBox_stopbit_all</tabstop>
+  <tabstop>combox_set_baund_4</tabstop>
+  <tabstop>comboBox_stopbit_11</tabstop>
+  <tabstop>pushButton_com_open_9</tabstop>
+  <tabstop>comboBox_stopbit_9</tabstop>
+  <tabstop>comboBox_stopbit_2</tabstop>
+  <tabstop>comboBox_set_check_12</tabstop>
+  <tabstop>combox_set_com_7</tabstop>
+  <tabstop>combox_set_com_11</tabstop>
+  <tabstop>lineEdit_file_names_9</tabstop>
+  <tabstop>lineEdit_plan_names_9</tabstop>
+  <tabstop>lineEdit_plan_names_4</tabstop>
+  <tabstop>lineEdit_plan_names_all</tabstop>
+  <tabstop>lineEdit_file_names_all</tabstop>
+  <tabstop>comboBox_set_check_10</tabstop>
+  <tabstop>lineEdit_plan_names_3</tabstop>
+  <tabstop>pushButton_com_open_6</tabstop>
+  <tabstop>combox_set_com_3</tabstop>
+  <tabstop>comboBox_stopbit_12</tabstop>
+  <tabstop>combox_set_baund_6</tabstop>
+  <tabstop>combox_set_com_all</tabstop>
+  <tabstop>combox_set_baund_9</tabstop>
+  <tabstop>lineEdit_plan_names_11</tabstop>
+  <tabstop>comboBox_set_check_6</tabstop>
+  <tabstop>combox_set_com_6</tabstop>
+  <tabstop>comboBox_set_check_5</tabstop>
+  <tabstop>comboBox_set_check_4</tabstop>
+  <tabstop>combox_set_baund_10</tabstop>
+  <tabstop>combox_set_com_8</tabstop>
+  <tabstop>lineEdit_file_names_8</tabstop>
+  <tabstop>lineEdit_plan_names_7</tabstop>
+  <tabstop>lineEdit_file_names_5</tabstop>
+  <tabstop>comboBox_stopbit_1</tabstop>
+  <tabstop>combox_set_baund_1</tabstop>
+  <tabstop>combox_set_com_5</tabstop>
+  <tabstop>comboBox_stopbit_3</tabstop>
+  <tabstop>comboBox_set_check_7</tabstop>
+  <tabstop>combox_set_com_12</tabstop>
+  <tabstop>comboBox_stopbit_8</tabstop>
+  <tabstop>lineEdit_plan_names_2</tabstop>
+  <tabstop>pushButton_com_open_5</tabstop>
+  <tabstop>pushButton_com_open_all</tabstop>
+  <tabstop>combox_set_com_4</tabstop>
+  <tabstop>comboBox_set_check_all</tabstop>
+  <tabstop>comboBox_set_check_3</tabstop>
+  <tabstop>pushButton_com_open_8</tabstop>
+  <tabstop>comboBox_set_check_2</tabstop>
+  <tabstop>comboBox_stopbit_6</tabstop>
+  <tabstop>combox_set_baund_5</tabstop>
+  <tabstop>pushButton_com_open_10</tabstop>
+  <tabstop>lineEdit_plan_names_1</tabstop>
+  <tabstop>combox_set_com_10</tabstop>
+  <tabstop>combox_set_baund_7</tabstop>
+  <tabstop>pushButton_com_open_4</tabstop>
+  <tabstop>lineEdit_file_names_2</tabstop>
+  <tabstop>combox_set_baund_8</tabstop>
+  <tabstop>comboBox_set_check_1</tabstop>
+  <tabstop>combox_set_com_9</tabstop>
+  <tabstop>lineEdit_plan_names_5</tabstop>
+  <tabstop>combox_set_baund_11</tabstop>
+  <tabstop>lineEdit_file_names_7</tabstop>
+  <tabstop>combox_set_com_2</tabstop>
+  <tabstop>comboBox_stopbit_7</tabstop>
+  <tabstop>pushButton_com_open_11</tabstop>
+  <tabstop>textBrowser_progress_display2</tabstop>
+  <tabstop>textBrowser_progress_display1</tabstop>
+  <tabstop>textBrowser_progress_display3</tabstop>
+  <tabstop>groupBox_sate_config</tabstop>
+  <tabstop>lineEdit_file_names_13</tabstop>
+  <tabstop>comboBox_set_check_13</tabstop>
+  <tabstop>lineEdit_plan_names_14</tabstop>
+  <tabstop>combox_set_baund_14</tabstop>
+  <tabstop>combox_set_com_13</tabstop>
+  <tabstop>combox_set_com_14</tabstop>
+  <tabstop>comboBox_set_check_14</tabstop>
+  <tabstop>pushButton_com_open_14</tabstop>
+  <tabstop>comboBox_stopbit_14</tabstop>
+  <tabstop>combox_set_baund_13</tabstop>
+  <tabstop>pushButton_com_open_13</tabstop>
+  <tabstop>lineEdit_file_names_14</tabstop>
+  <tabstop>lineEdit_plan_names_13</tabstop>
+  <tabstop>comboBox_stopbit_13</tabstop>
+  <tabstop>combox_set_com_15</tabstop>
+  <tabstop>combox_set_baund_15</tabstop>
+  <tabstop>comboBox_set_check_15</tabstop>
+  <tabstop>comboBox_stopbit_15</tabstop>
+  <tabstop>pushButton_com_open_15</tabstop>
+  <tabstop>lineEdit_file_names_15</tabstop>
+  <tabstop>lineEdit_plan_names_15</tabstop>
+  <tabstop>groupBox_sate_show</tabstop>
+  <tabstop>comboBox_sate_smsg</tabstop>
+  <tabstop>pushButton_sate_send</tabstop>
+  <tabstop>textBrowser_ascii_0</tabstop>
+  <tabstop>textBrowser_ascii_1</tabstop>
+  <tabstop>textBrowser_ascii_2</tabstop>
+  <tabstop>textBrowser_ascii_3</tabstop>
+  <tabstop>textBrowser_ascii_4</tabstop>
+  <tabstop>textBrowser_ascii_5</tabstop>
+  <tabstop>textBrowser_ascii_6</tabstop>
+  <tabstop>textBrowser_ascii_7</tabstop>
+  <tabstop>scrollArea_6</tabstop>
+  <tabstop>textBrowser_1</tabstop>
+  <tabstop>textBrowser_2</tabstop>
+  <tabstop>textBrowser_3</tabstop>
+  <tabstop>textBrowser_4</tabstop>
+  <tabstop>textBrowser_5</tabstop>
+  <tabstop>textBrowser_6</tabstop>
+  <tabstop>textBrowser_7</tabstop>
+  <tabstop>textBrowser_8</tabstop>
+  <tabstop>textBrowser_9</tabstop>
+  <tabstop>textBrowser_10</tabstop>
+  <tabstop>textBrowser_11</tabstop>
+  <tabstop>textBrowser_12</tabstop>
+  <tabstop>tableWidget_table_show</tabstop>
+  <tabstop>pushButton_decodeShow_reload</tabstop>
+  <tabstop>pushButton_decodeShow_tryReceive</tabstop>
+  <tabstop>pushButton_3</tabstop>
+  <tabstop>lineEdit_decodeShow_MSG</tabstop>
+  <tabstop>lineEdit_decodeShow_rules</tabstop>
+  <tabstop>lineEdit_decodeShow_ruleLength</tabstop>
+  <tabstop>tableWidget_decode_show</tabstop>
+  <tabstop>tabWidget_3</tabstop>
+  <tabstop>lineEdit_tools_bd3x_showPath</tabstop>
+  <tabstop>pushButton_tools_bd3x_flush</tabstop>
+  <tabstop>pushButton_tools_bd3x_uppath</tabstop>
+  <tabstop>listWidget_tools_bd3x_pathShow</tabstop>
+  <tabstop>tableWidget_tools_bd3x_fileShow</tabstop>
+  <tabstop>textEdit_tools_bd3x_fileShow</tabstop>
+  <tabstop>scrollArea_9</tabstop>
+  <tabstop>textBrowser_tools_bd3x_msglast</tabstop>
+  <tabstop>groupBox_tools_calibbd_basepara</tabstop>
+  <tabstop>checkBox_tools_bd3x_regexFolder</tabstop>
+  <tabstop>checkBox_tools_bd3x_delEmptyFolder</tabstop>
+  <tabstop>checkBox_tools_bd3x_SFsubZero</tabstop>
+  <tabstop>pushButton_general_18</tabstop>
+  <tabstop>tabWidget_2</tabstop>
+  <tabstop>pushButton_general_12</tabstop>
+  <tabstop>pushButton_general_11</tabstop>
+  <tabstop>lineEdit_alltab_msg_1</tabstop>
+  <tabstop>pushButton_general_17</tabstop>
+  <tabstop>pushButton_general_13</tabstop>
+  <tabstop>comboBox_protocal_baund</tabstop>
+  <tabstop>comboBox_protocal_com</tabstop>
+  <tabstop>comboBox_protocal_rule</tabstop>
+  <tabstop>pushButton_general_10</tabstop>
+  <tabstop>comboBox_protocal_path</tabstop>
+  <tabstop>pushButton_general_16</tabstop>
+  <tabstop>comboBox_protocal_check</tabstop>
+  <tabstop>pushButton_general_14</tabstop>
+  <tabstop>pushButton_general_15</tabstop>
+  <tabstop>lineEdit_tools_bd3x_16</tabstop>
+  <tabstop>lineEdit_tools_bd3x_17</tabstop>
+  <tabstop>groupBox_tools_bd3x_allpara</tabstop>
+  <tabstop>checkBox_tools_bd3x_autocombine</tabstop>
+  <tabstop>checkBox_3</tabstop>
+  <tabstop>groupBox_tools_bd3x_plotSetting</tabstop>
+  <tabstop>groupBox_tools_bd3x_previewSetting</tabstop>
+  <tabstop>textBrowser_tools_bd3x_msgShow</tabstop>
+  <tabstop>scrollArea_10</tabstop>
+  <tabstop>groupBox_tools_bd3x_base</tabstop>
+  <tabstop>pushButton_tools_bd3x_loadPath</tabstop>
+  <tabstop>lineEdit_tools_bd3x_avePath</tabstop>
+  <tabstop>lineEdit_tools_bd3x_loadPath</tabstop>
+  <tabstop>comboBox_tools_bd3x_preset</tabstop>
+  <tabstop>pushButton_tools_bd3x_avePath</tabstop>
+  <tabstop>pushButton_tools_bd3x_modTransform</tabstop>
+  <tabstop>lineEdit_tools_bd3x_formatPath</tabstop>
+  <tabstop>groupBox_tools_bd3x_test</tabstop>
+  <tabstop>pushButton_tools_bd3x_calPara</tabstop>
+  <tabstop>lineEdit_tools_bd3x_calPath</tabstop>
+  <tabstop>pushButton_tools_bd3x_polyFit</tabstop>
+  <tabstop>lineEdit_tools_bd3x_polyFit</tabstop>
+  <tabstop>pushButton_tools_bd3x_createBin</tabstop>
+  <tabstop>lineEdit_tools_bd3x_createBin</tabstop>
+  <tabstop>pushButton_tools_bd3x_autoRun</tabstop>
+  <tabstop>lineEdit_tools_bd3x_autoRun</tabstop>
+  <tabstop>tableWidget_gener</tabstop>
+  <tabstop>tableWidget_mean</tabstop>
+  <tabstop>checkBox_para_delEmptyFolder</tabstop>
+  <tabstop>checkBox_4</tabstop>
+  <tabstop>comboBox_para_plan2_3</tabstop>
+  <tabstop>pushButton_para_loadOld</tabstop>
+  <tabstop>lineEdit_para_loadOld</tabstop>
+  <tabstop>pushButton_para_loadNew</tabstop>
+  <tabstop>lineEdit_para_loadNew</tabstop>
+  <tabstop>pushButton_para_createPara</tabstop>
+  <tabstop>comboBox_para_plan</tabstop>
+  <tabstop>comboBox_para_plan2</tabstop>
+  <tabstop>pushButton_para_savePara</tabstop>
+  <tabstop>comboBox_para_saverule</tabstop>
+  <tabstop>textBrowser_para_show</tabstop>
+  <tabstop>scrollArea_7</tabstop>
+  <tabstop>lineEdit_para_input_1</tabstop>
+  <tabstop>lineEdit_para_input_2</tabstop>
+  <tabstop>lineEdit_para_input_3</tabstop>
+  <tabstop>lineEdit_para_input_4</tabstop>
+  <tabstop>lineEdit_para_input_5</tabstop>
+  <tabstop>tableWidget_para_input</tabstop>
+  <tabstop>scrollArea_3</tabstop>
+  <tabstop>textBrowser_debug_3</tabstop>
+  <tabstop>textBrowser_debug_2</tabstop>
+  <tabstop>textBrowser_debug_1</tabstop>
+  <tabstop>textBrowser_debug_4</tabstop>
+  <tabstop>textBrowser_debug_5</tabstop>
+  <tabstop>textBrowser_debug_6</tabstop>
+  <tabstop>lineEdit_debug_4</tabstop>
+  <tabstop>lineEdit_debug_2</tabstop>
+  <tabstop>lineEdit_debug_1</tabstop>
+  <tabstop>lineEdit_debug_5</tabstop>
+  <tabstop>pushButton_debug_1</tabstop>
+  <tabstop>pushButton_debug_2</tabstop>
+  <tabstop>lineEdit_debug_3</tabstop>
+  <tabstop>lineEdit_debug_6</tabstop>
+  <tabstop>lineEdit_debug_7</tabstop>
+  <tabstop>lineEdit_debug_8</tabstop>
+  <tabstop>pushButton_debug_3</tabstop>
+  <tabstop>pushButton_debug_4</tabstop>
+  <tabstop>scrollArea_5</tabstop>
+  <tabstop>tableWidget_paraConfig</tabstop>
+  <tabstop>textBrowser_paraConfig</tabstop>
+  <tabstop>checkBox_debugMode_constants</tabstop>
+  <tabstop>checkBox_onlyLast_constants</tabstop>
+  <tabstop>textBrowser_debugMode_constants</tabstop>
+  <tabstop>checkBox_debugMode_event</tabstop>
+  <tabstop>checkBox_onlyLast_event</tabstop>
+  <tabstop>textBrowser_debugMode_event</tabstop>
+  <tabstop>checkBox_debugMode_struct</tabstop>
+  <tabstop>checkBox_onlyLast_struct</tabstop>
+  <tabstop>textBrowser_debugMode_struct</tabstop>
+  <tabstop>checkBox_debugMode_logic</tabstop>
+  <tabstop>checkBox_onlyLast_logic</tabstop>
+  <tabstop>textBrowser_debugMode_logic</tabstop>
+  <tabstop>checkBox_debugMode_setting</tabstop>
+  <tabstop>checkBox_onlyLast_event_2</tabstop>
+  <tabstop>textBrowser_debugMode_setting</tabstop>
+  <tabstop>checkBox_debugMode_times</tabstop>
+  <tabstop>checkBox_onlyLast_times</tabstop>
+  <tabstop>textBrowser_debugMode_times</tabstop>
+  <tabstop>textBrowser_17</tabstop>
+  <tabstop>textBrowser_16</tabstop>
+  <tabstop>textBrowser_15</tabstop>
+  <tabstop>textBrowser_14</tabstop>
+  <tabstop>pushButton_debug</tabstop>
+  <tabstop>pushButton_debug_5</tabstop>
+  <tabstop>pushButton_debug_6</tabstop>
+  <tabstop>pushButton_debug_7</tabstop>
+  <tabstop>pushButton_debug_8</tabstop>
+  <tabstop>pushButton_debug_9</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

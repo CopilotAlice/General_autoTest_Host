@@ -22,7 +22,6 @@ class MainWindowInit:
         # 初始化三轴输入输出
         self.init_ui_turntable3x()
         
-        
 
 # ------------------接收转发/卫导数据接收&转发 202503废弃中--------------
         # # 初始化  卫导数据列表
@@ -46,6 +45,7 @@ class MainWindowInit:
         self.mw.tableWidget_general_show.setColumnWidth(0, 10)
         self.mw.tabWidget.setCurrentIndex(0)
         self.mw.tabWidget_2.setCurrentIndex(0)
+        
         
 
 # ---------------初始化事件相关内容----------------
@@ -249,6 +249,75 @@ class MainWindowInit:
             self.mw.list_turntable3x_input.append(
                 self.mw.findChild(QtWidgets.QLineEdit, 'lineEdit_turntable3x_{}'.format(i))
             )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

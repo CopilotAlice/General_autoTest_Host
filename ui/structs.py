@@ -6,6 +6,9 @@ import pandas as pd
 from funs.fun_chy2 import *
 from funs.fun_sate import *
 from PyQt5 import QtWidgets, QtGui, QtCore
+# 三轴转台结构体
+import serial
+import time
 
 
 
@@ -289,22 +292,27 @@ class clickEventThread_decodeShow(QtCore.QThread):
             time.sleep(1)
             self.update_signal.emit('事件更新:{}s'.format(i+1))
             
-# 三轴转台结构体
-import serial
-import time
 
 class struct_turnTable3x:
     def __init__(self):
         self.list_debugMsg = []
         self.list_showMsg = []
+        self.str_lastRec = ''
         self.list_mode = [0, 0, 0]  # 运行模式
+        # 默认位置
         self.list_commandLocation = [0, 0, 0]
-        self.list_commandSpeed = [0, 0, 0]
+        # 默认速度
+        self.list_commandSpeed = [10, 10, 10]
+        # 默认加速度
         self.list_commandAcceleration = [10, 10, 10]
+        self.list_recLocation = [0,0,0]
+        self.list_recSpeed = [0,0,0]
+        self.list_recReadySts = [False,False,False]
         self.flag_theading = False
         self.serial = None
         self.serial_com = 'COM1'
         self.serial_check = False
+        
 
     def append_debugMsg(self, msg):
         if isinstance(msg, list):
@@ -348,7 +356,7 @@ class struct_turnTable3x:
                 self.append_debugMsg('重启串口异常: {}'.format(e))
                 return False, '串口关闭失败: {}'.format(e)
     # 尝试读取串口数据
-    def serial_tryRec(self, tryCount=20, waitTime=0.01):
+    def serial_tryRec(self, tryCount=30, waitTime=0.01):
         count = 0
         while count < tryCount:
             count += 1
@@ -366,6 +374,7 @@ class struct_turnTable3x:
             wait = self.serial.in_waiting
             if wait > 0:
                 rec_data = self.serial.read(wait)
+                self.append_debugMsg('清除接收缓存:{}'.format(rec_data.decode()))
                 return rec_data
             else:
                 return False
@@ -382,7 +391,7 @@ class struct_turnTable3x:
             try:
                 self.serial.write(sendMsg.encode())
             except Exception as e:
-                self.append_debugMsg('tt_chk send error: {}'.format(e))
+                self.append_debugMsg('发送指令错误: {}'.format(e))
                 return False
         try:
             rec = self.serial_tryRec()
@@ -400,13 +409,14 @@ class struct_turnTable3x:
                         return True
                 else:
                     self.append_showMsg('错误校验指令')
-                    self.append_debugMsg('tt_chk recMsg error: {}'.format(recMsg))
+                    self.append_debugMsg('指令格式错误: {}'.format(recMsg))
                     return False
             else:
-                self.append_showMsg('Rec:{}'.format(rec.decode()))
+                # self.append_debugMsg('Rec:{}'.format(rec.decode()))
+                self.str_lastRec = rec.decode()
                 return rec.decode()
         except Exception as e:
-            self.append_debugMsg('tt_chk rec error: {}'.format(e))
+            self.append_debugMsg('接收指令错误: {}'.format(e))
             return False
         self.append_showMsg('校验失败: {}'.format(recMsg))
         self.append_debugMsg(
@@ -442,6 +452,7 @@ class struct_turnTable3x:
         for i in msg_list:
             if str(i) not in ['0', '1', '2']:
                 self.append_showMsg('转台运行模式设置错误: {}'.format([a, b, c]))
+                self.append_debugMsg('转台运行模式设置错误: {}'.format([a, b, c]))
                 return False
         sendMsg = 'MNMOD,{},{},{}'.format(a, b, c)
         # recMsg = 'ASMOD,{},{},{},OK'.format(a, b, c)
@@ -457,6 +468,7 @@ class struct_turnTable3x:
             try:float(i)
             except:
                 self.append_showMsg('转台位置设置错误: {}'.format([a, b, c]))
+                self.append_debugMsg('转台位置设置错误: {}'.format([a, b, c]))
                 return False
         sendMsg = 'MNPOS,{},{},{}'.format(a, b, c)
         # recMsg = 'ASPOS,{},{},{},OK'.format(a, b, c)
@@ -473,6 +485,7 @@ class struct_turnTable3x:
             try:send_list.append(float(i))
             except:
                 self.append_showMsg('转台速度设置错误: {}'.format([a, b, c]))
+                self.append_debugMsg('转台速度设置错误: {}'.format([a, b, c]))
                 return False
         sendMsg = 'MNVEL,{},{},{}'.format(a, b, c)
         # recMsg = 'ASVEL,{},{},{},OK'.format(a, b, c)
