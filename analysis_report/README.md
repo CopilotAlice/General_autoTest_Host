@@ -85,3 +85,13 @@
 4. **串口访问集中**：所有 `serial` 读写收敛到 `funs.fun_serial`/设备适配层，上层不直接持有 `serial` 对象，便于加入模拟设备进行无硬件测试。
 5. **补充测试**：优先覆盖 `funs.fun_chy2.class_rule`、`fun_checks`、`fun_sate`、`Turntable_class` 指令构造等纯函数。
 6. **规则 DSL 文档化/校验**：为规则 txt 增加 schema 校验，补上规则→代码的可追溯性。
+
+## 8. 图片导出 (`images/`)
+| 图片 | 内容 |
+|---|---|
+| `images/1_architecture.png` | 图1 项目架构图（分层与模块依赖） |
+| `images/1b_module_dependencies.png` | 模块 import 依赖图 |
+| `images/2_call_tree_entry.png` | 图2 自入口 `<module>` 展开的函数调用树 |
+| `images/3_interactive_dependency_graph.png` | 交互式依赖图截图（实际交互请打开 `index.html`：点击模块看详情、搜索函数、查看上下游） |
+
+由 `vendor/mermaid.min.js` + headless Chromium 渲染 `diagrams/*.mmd` 生成。
