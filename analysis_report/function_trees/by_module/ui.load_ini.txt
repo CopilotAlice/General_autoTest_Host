@@ -1,0 +1,21 @@
+# 模块 ui.load_ini  (ui/load_ini.py)
+
+## <module>  L1-100  args=()  <module_body>
+
+## MainWindowInitIni.__init__  L5-10  args=(self, mainWindow)  <constructor>
+  -> [call/high@L8] ui.load_ini::MainWindowInitIni.load_ini_debug_mode
+  -> [call/high@L9] ui.load_ini::MainWindowInitIni.event_load_ini_debug_mode
+  -> [call/high@L10] ui.load_ini::MainWindowInitIni.load_ini_ui_config
+  <- [dynamic/medium@L170] 通用自动测试上位机V0.95::MainWindow._init_modules_in_batches
+
+## MainWindowInitIni.load_ini_debug_mode  L13-20  args=(self)
+  => (外部库) pathlib.Path x1
+  <- [call/high@L8] ui.load_ini::MainWindowInitIni.__init__
+
+## MainWindowInitIni.event_load_ini_debug_mode  L22-41  args=(self)
+  <- [call/high@L9] ui.load_ini::MainWindowInitIni.__init__
+
+## MainWindowInitIni.load_ini_ui_config  L44-98  args=(self)
+  => (外部库) configparser.ConfigParser x1
+  => (外部库) pathlib.Path x1
+  <- [call/high@L10] ui.load_ini::MainWindowInitIni.__init__

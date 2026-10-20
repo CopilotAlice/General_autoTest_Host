@@ -1,0 +1,52 @@
+%% 模块局部调用树: ui.tools.tools_burn_ymodem (ui/tools/tools_burn_ymodem.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["YModemBurnWorker.run<br/><small>ui.tools.tools_burn_ymodem:49</small>"]
+  f1["YModemBurnWorker._send_ymodem<br/><small>ui.tools.tools_burn_ymodem:90</small>"]
+  f0 -->|"call/high"| f1
+  f2["YModemBurnWorker._wait_for_byte<br/><small>ui.tools.tools_burn_ymodem:169</small>"]
+  f1 -->|"call/high"| f2
+  f3["YModemBurnWorker._send_packet_with_retry<br/><small>ui.tools.tools_burn_ymodem:122</small>"]
+  f1 -->|"call/high"| f3
+  f1 -->|"call/high"| f3
+  f4["YModemBurnWorker._send_eot<br/><small>ui.tools.tools_burn_ymodem:150</small>"]
+  f1 -->|"call/high"| f4
+  f1 -->|"call/high"| f2
+  f1 -->|"call/high"| f3
+  f5["crc16_ccitt<br/><small>ui.tools.tools_burn_ymodem:21</small>"]
+  f3 -->|"call/high"| f5
+  f6["YModemBurnWorker._read_one<br/><small>ui.tools.tools_burn_ymodem:184</small>"]
+  f3 -->|"call/high"| f6
+  f4 -->|"call/high"| f6
+  f4 -->|"call/high"| f6
+  f2 -->|"call/high"| f6
+  f7["MainWindowToolBurnYmodem.__init__<br/><small>ui.tools.tools_burn_ymodem:194</small>"]
+  f8["MainWindowToolBurnYmodem._build_tab_if_needed<br/><small>ui.tools.tools_burn_ymodem:202</small>"]
+  f7 -->|"call/high"| f8
+  f9["MainWindowToolBurnYmodem._bind_events<br/><small>ui.tools.tools_burn_ymodem:267</small>"]
+  f7 -->|"call/high"| f9
+  f10["MainWindowToolBurnYmodem.refresh_ports<br/><small>ui.tools.tools_burn_ymodem:279</small>"]
+  f7 -->|"call/high"| f10
+  f9 ==>|"connect/high"| f10
+  f11["MainWindowToolBurnYmodem.pick_firmware_file<br/><small>ui.tools.tools_burn_ymodem:291</small>"]
+  f9 ==>|"connect/high"| f11
+  f12["MainWindowToolBurnYmodem.start_burn<br/><small>ui.tools.tools_burn_ymodem:302</small>"]
+  f9 ==>|"connect/high"| f12
+  f13["MainWindowToolBurnYmodem.stop_burn<br/><small>ui.tools.tools_burn_ymodem:335</small>"]
+  f9 ==>|"connect/high"| f13
+  f14["MainWindowToolBurnYmodem.append_log<br/><small>ui.tools.tools_burn_ymodem:275</small>"]
+  f10 -->|"call/high"| f14
+  f11 -->|"call/high"| f14
+  f12 -->|"call/high"| f14
+  f12 -->|"call/high"| f14
+  f12 -->|"call/high"| f14
+  f12 -->|"call/high"| f14
+  f15["YModemBurnWorker.__init__<br/><small>ui.tools.tools_burn_ymodem:39</small>"]
+  f12 -->|"create/high"| f15
+  f12 ==>|"connect/high"| f14
+  f16["MainWindowToolBurnYmodem._on_burn_result<br/><small>ui.tools.tools_burn_ymodem:340</small>"]
+  f12 ==>|"connect/high"| f16
+  f12 -->|"call/high"| f14
+  f17["YModemBurnWorker.stop<br/><small>ui.tools.tools_burn_ymodem:46</small>"]
+  f13 -->|"call/medium"| f17
+  f13 -->|"call/high"| f14
+  f16 -->|"call/high"| f14

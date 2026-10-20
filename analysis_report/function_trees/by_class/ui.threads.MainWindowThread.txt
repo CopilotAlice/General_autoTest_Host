@@ -1,0 +1,4 @@
+# 类 ui.threads::MainWindowThread  (ui/threads.py:6)  bases=[]
+
+## MainWindowThread.__init__  L7
+   ui.threads::MainWindowThread.__init__  (ui/threads.py:7)

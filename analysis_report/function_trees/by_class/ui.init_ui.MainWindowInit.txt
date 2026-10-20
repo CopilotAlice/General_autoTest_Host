@@ -1,0 +1,57 @@
+# 类 ui.init_ui::MainWindowInit  (ui/init_ui.py:13)  bases=[]
+
+## MainWindowInit.__init__  L14
+   ui.init_ui::MainWindowInit.__init__  (ui/init_ui.py:14)
+       [call/high@L18(+1 处: 19)] ui.init_ui::MainWindowInit.init_ui_setting  (ui/init_ui.py:49)
+       [call/high@L21] ui.init_ui::MainWindowInit.init_ui_time  (ui/init_ui.py:57)
+           [call/high@L79] ui.init_ui::MainWindowInit.update_time  (ui/init_ui.py:81)
+       [call/high@L22] ui.init_ui::MainWindowInit.init_ui_toolTip  (ui/init_ui.py:97)
+       [call/high@L23] ui.init_ui::MainWindowInit.init_ui_paths  (ui/init_ui.py:102)
+       [call/high@L25] ui.init_ui::MainWindowInit.init_ui_graphview  (ui/init_ui.py:170)
+           [connect/high@L207] ui.init_ui::MainWindowInit.init_ui_graphview.<locals>.updateViewDPb1  (ui/init_ui.py:204)  <qt_slot>
+           [connect/high@L219] ui.init_ui::MainWindowInit.init_ui_graphview.<locals>.updateViewDPb2  (ui/init_ui.py:216)  <qt_slot>
+           [connect/high@L231] ui.init_ui::MainWindowInit.init_ui_graphview.<locals>.updateViewDPb3  (ui/init_ui.py:228)  <qt_slot>
+       [call/high@L28] ui.init_ui::MainWindowInit.init_ui_turntable3x  (ui/init_ui.py:253)
+       [call/high@L45] ui.init_ui::MainWindowInit.init_general_button  (ui/init_ui.py:157)
+
+## MainWindowInit.init_ui_setting  L49
+   ui.init_ui::MainWindowInit.init_ui_setting  (ui/init_ui.py:49)
+
+## MainWindowInit.init_ui_time  L57
+   ui.init_ui::MainWindowInit.init_ui_time  (ui/init_ui.py:57)
+       [call/high@L79] ui.init_ui::MainWindowInit.update_time  (ui/init_ui.py:81)
+
+## MainWindowInit.update_time  L81
+   ui.init_ui::MainWindowInit.update_time  (ui/init_ui.py:81)
+
+## MainWindowInit.get_time_list  L88
+   ui.init_ui::MainWindowInit.get_time_list  (ui/init_ui.py:88)
+       [call/high@L89] ui.init_ui::MainWindowInit.update_time  (ui/init_ui.py:81)
+
+## MainWindowInit.get_normal_time  L92
+   ui.init_ui::MainWindowInit.get_normal_time  (ui/init_ui.py:92)
+       [call/high@L93] ui.init_ui::MainWindowInit.update_time  (ui/init_ui.py:81)
+
+## MainWindowInit.init_ui_toolTip  L97
+   ui.init_ui::MainWindowInit.init_ui_toolTip  (ui/init_ui.py:97)
+
+## MainWindowInit.init_ui_paths  L102
+   ui.init_ui::MainWindowInit.init_ui_paths  (ui/init_ui.py:102)
+
+## MainWindowInit.init_general_button  L157
+   ui.init_ui::MainWindowInit.init_general_button  (ui/init_ui.py:157)
+
+## MainWindowInit.init_ui_graphview  L170
+   ui.init_ui::MainWindowInit.init_ui_graphview  (ui/init_ui.py:170)
+       [connect/high@L207] ui.init_ui::MainWindowInit.init_ui_graphview.<locals>.updateViewDPb1  (ui/init_ui.py:204)  <qt_slot>
+       [connect/high@L219] ui.init_ui::MainWindowInit.init_ui_graphview.<locals>.updateViewDPb2  (ui/init_ui.py:216)  <qt_slot>
+       [connect/high@L231] ui.init_ui::MainWindowInit.init_ui_graphview.<locals>.updateViewDPb3  (ui/init_ui.py:228)  <qt_slot>
+
+## MainWindowInit.init_ui_input  L240
+   ui.init_ui::MainWindowInit.init_ui_input  (ui/init_ui.py:240)
+       [create/high@L241] ui.init_ui::struct_paraCal.__init__  (ui/init_ui.py:484)
+           [call/high@L485] ui.init_ui::struct_paraCal.init_list  (ui/init_ui.py:488)
+           [call/high@L486] ui.init_ui::struct_paraCal.init_conf  (ui/init_ui.py:512)
+
+## MainWindowInit.init_ui_turntable3x  L253
+   ui.init_ui::MainWindowInit.init_ui_turntable3x  (ui/init_ui.py:253)

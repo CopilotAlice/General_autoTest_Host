@@ -1,0 +1,19 @@
+# 类 ui.structs::struct_general_bind  (ui/structs.py:20)  bases=[]
+
+## struct_general_bind.__init__  L21
+   ui.structs::struct_general_bind.__init__  (ui/structs.py:21)
+
+## struct_general_bind.read_struct_file  L40
+   ui.structs::struct_general_bind.read_struct_file  (ui/structs.py:40)
+       [call/high@L41] ui.structs::struct_general_bind.init_structList  (ui/structs.py:92)
+       [call/high@L54] funs.fun_chy2::try_return_format  (funs/fun_chy2.py:108)
+       [call/high@L56] funs.fun_chy2::try_return_int  (funs/fun_chy2.py:114)
+       [call/high@L59(+6 处: 62,65,68,71,74)] funs.fun_chy2::try_return_checkRule  (funs/fun_chy2.py:123)
+       [call/high@L85] funs.fun_chy2::try_return_num  (funs/fun_chy2.py:117)
+       [call/high@L91] ui.structs::struct_general_bind.get_struct_len  (ui/structs.py:101)
+
+## struct_general_bind.init_structList  L92
+   ui.structs::struct_general_bind.init_structList  (ui/structs.py:92)
+
+## struct_general_bind.get_struct_len  L101
+   ui.structs::struct_general_bind.get_struct_len  (ui/structs.py:101)

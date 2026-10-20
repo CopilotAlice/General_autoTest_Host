@@ -1,0 +1,146 @@
+# 模块 ui.event  (ui/event.py)
+
+## <module>  L1-707  args=()  <module_body>
+
+## MainWindowEvent.__init__  L14-17  args=(self, mainWindow)  <constructor>
+  <- [create/high@L96] 通用自动测试上位机V0.90::MainWindow.__init__
+  <- [dynamic/medium@L176] 通用自动测试上位机V0.95::MainWindow._init_modules_in_batches
+
+## MainWindowEvent.changeEvent_general_rule  L35-58  args=(self)  <qt_slot>
+  -> [call/high@L50] ui.event::MainWindowEvent.funcEvent_general_changeButton
+  -> [call/high@L51] ui.event::MainWindowEvent.funcEvent_general_changeTable
+  -> [call/high@L52] ui.event::MainWindowEvent.changeEvent_general_bind_table
+  => (外部库) os.path.exists x1
+  <- [connect/medium@L41] ui.logic::MainWindowLogic.logic_general_bind
+
+## MainWindowEvent.funcEvent_general_clearButton  L59-62  args=(self)
+
+## MainWindowEvent.funcEvent_general_changeButton  L64-69  args=(self)
+  <- [call/high@L50] ui.event::MainWindowEvent.changeEvent_general_rule
+
+## MainWindowEvent.funcEvent_general_changeTable  L71-120  args=(self)
+  => (外部库) PyQt5.QtGui.QBrush x2
+  => (外部库) PyQt5.QtGui.QColor x2
+  => (外部库) PyQt5.QtWidgets.QTableWidgetItem x5
+  <- [call/high@L51] ui.event::MainWindowEvent.changeEvent_general_rule
+
+## MainWindowEvent.changeEvent_general_bind_table  L121-222  args=(self)  <qt_slot>
+  -> [call/high@L146] funs.fun_chy2::try_return_bdx
+  -> [call/high@L148] funs.fun_chy2::try_return_bdx
+  -> [call/high@L151] funs.fun_chy2::try_return_check
+  -> [call/high@L174] funs.fun_chy2::try_return_check
+  -> [call/high@L183] funs.fun_checks::calculate_crc16
+  -> [call/high@L184] funs.fun_chy2::try_return_check
+  -> [call/high@L194] funs.fun_checks::calculate_crc16_mcrf4xx
+  -> [call/high@L195] funs.fun_chy2::try_return_check
+  -> [call/high@L204] funs.fun_checks::calculate_crc16_0x00
+  -> [call/high@L205] funs.fun_chy2::try_return_check
+  => (外部库) PyQt5.QtWidgets.QTableWidgetItem x4
+  => (外部库) struct.calcsize x1
+  => (外部库) struct.pack x5
+  <- [call/high@L52] ui.event::MainWindowEvent.changeEvent_general_rule
+  <- [connect/medium@L45] ui.logic::MainWindowLogic.logic_general_bind
+
+## MainWindowEvent.setEvent_lonlat_to_table  L223-234  args=(self)
+
+## MainWindowEvent.clickEvent_general_send  L238-255  args=(self)  <qt_slot,timer_callback>
+  => (外部库) time.localtime x1
+  => (外部库) time.strftime x1
+  <- [call/high@L274] ui.event::MainWindowEvent.clickEvent_general_bind
+  <- [timer/high@L291] ui.event::MainWindowEvent.changeEvent_general_autoSend
+  <- [connect/medium@L46] ui.logic::MainWindowLogic.logic_general_bind
+
+## MainWindowEvent.clickEvent_general_bind  L258-274  args=(self)  <qt_slot>
+  -> [call/high@L274] ui.event::MainWindowEvent.clickEvent_general_send
+  <- [connect/medium@L43] ui.logic::MainWindowLogic.logic_general_bind
+  <- [connect/medium@L44] ui.logic::MainWindowLogic.logic_general_bind
+
+## MainWindowEvent.changeEvent_general_autoSend  L285-295  args=(self)  <qt_slot>
+  -> [timer/high@L291] ui.event::MainWindowEvent.clickEvent_general_send   # self.mw.times.time_autoSend.timeout.connect
+  <- [connect/medium@L47] ui.logic::MainWindowLogic.logic_general_bind
+
+## MainWindowEvent.changeEvent_com_update_all  L300-301  args=(self)  <qt_slot>
+  <- [connect/medium@L54] ui.logic::MainWindowLogic.logic_12tab_setting
+
+## MainWindowEvent.changeEvent_baund_update_all  L305-308  args=(self)  <qt_slot>
+  <- [connect/medium@L55] ui.logic::MainWindowLogic.logic_12tab_setting
+
+## MainWindowEvent.changeEvent_check_update_all  L309-312  args=(self)  <qt_slot>
+  <- [connect/medium@L56] ui.logic::MainWindowLogic.logic_12tab_setting
+
+## MainWindowEvent.changeEvent_stop_update_all  L313-316  args=(self)  <qt_slot>
+  <- [connect/medium@L57] ui.logic::MainWindowLogic.logic_12tab_setting
+
+## MainWindowEvent.changeEvent_open_update_all  L317-320  args=(self)  <qt_slot>
+  <- [connect/medium@L58] ui.logic::MainWindowLogic.logic_12tab_setting
+
+## MainWindowEvent.changeEvent_plan_update_all  L321-324  args=(self)  <qt_slot>
+  <- [connect/medium@L59] ui.logic::MainWindowLogic.logic_12tab_setting
+
+## MainWindowEvent.changeEvent_open_switch  L325-326  args=(self, tab)
+
+## MainWindowEvent.changeEvent_baund_update_main  L328-329  args=(self)  <qt_slot>
+  <- [connect/medium@L61] ui.logic::MainWindowLogic.logic_12tab_setting
+
+## MainWindowEvent.changeEvent_check_update_main  L330-331  args=(self)  <qt_slot>
+  <- [connect/medium@L62] ui.logic::MainWindowLogic.logic_12tab_setting
+
+## MainWindowEvent.changeEvent_auxsate_com  L338-339  args=(self)  <qt_slot>
+  <- [connect/medium@L77] ui.logic::MainWindowLogic.logic_auxsate
+
+## MainWindowEvent.changeEvent_auxsate_baund  L340-341  args=(self)  <qt_slot>
+  <- [connect/medium@L78] ui.logic::MainWindowLogic.logic_auxsate
+
+## MainWindowEvent.changeEvent_auxsate_check  L342-343  args=(self)  <qt_slot>
+  <- [connect/medium@L79] ui.logic::MainWindowLogic.logic_auxsate
+
+## MainWindowEvent.clickEvent_auxsate_send  L345-348  args=(self)  <qt_slot>
+  <- [connect/medium@L81] ui.logic::MainWindowLogic.logic_auxsate
+
+## MainWindowEvent.clickEvent_para_loadPath  L351-492  args=(self)  <qt_slot>
+  -> [call/high@L377] funs.fun_chy2::move_dir_para_old
+  -> [call/high@L400] funs.fun_chy2::del_empty_folder
+  => (外部库) PyQt5.QtWidgets.QFileDialog.getExistingDirectory x1
+  => (外部库) os.listdir x3
+  => (外部库) os.makedirs x1
+  => (外部库) os.path.exists x2
+  => (外部库) os.path.isdir x2
+  => (外部库) pandas.read_csv x2
+  => (外部库) pathlib.Path x1
+  => (外部库) shutil.rmtree x1
+  <- [connect/medium@L84] ui.logic::MainWindowLogic.logic_cal_BD_data
+  <- [connect/medium@L85] ui.logic::MainWindowLogic.logic_cal_BD_data
+
+## MainWindowEvent.changeEvent_deocdeRuleToTableWidget  L500-594  args=(self)  <qt_slot>
+  -> [call/high@L565] funs.fun_chy2::split_plus
+  => (外部库) PyQt5.QtGui.QBrush x3
+  => (外部库) PyQt5.QtGui.QColor x3
+  => (外部库) PyQt5.QtWidgets.QTableWidgetItem x2
+  => (外部库) os.path.exists x1
+  => (外部库) struct.calcsize x2
+  => (外部库) time.localtime x1
+  => (外部库) time.strftime x1
+  <- [connect/medium@L98] ui.logic::MainWindowLogic.logic_readDecodeRule
+  <- [connect/medium@L99] ui.logic::MainWindowLogic.logic_readDecodeRule
+
+## MainWindowEvent.clickEvent_decodeShow_tryReceive  L598-677  args=(self)  <hardware_io,qt_slot,serial_io_heuristic>
+  -> [call/high@L630] funs.fun_chy2::check2serial
+  => (外部库) PyQt5.QtWidgets.QTableWidgetItem x1
+  => (外部库) serial.Serial x1
+  => (外部库) struct.calcsize x2
+  => (外部库) time.localtime x3
+  => (外部库) time.sleep x2
+  => (外部库) time.strftime x3
+  => (外部库) time.time x2
+  <- [connect/medium@L101] ui.logic::MainWindowLogic.logic_readDecodeRule
+
+## MainWindowEvent.changeEvent_readAtuoTestRule  L687-688  args=(self)  <qt_slot>
+  <- [connect/medium@L104] ui.logic::MainWindowLogic.logic_readAutoTest
+
+## MainWindowEvent.clickEvent_para_createPara  L697-699  args=(self)  <qt_slot>
+  <- [connect/medium@L86] ui.logic::MainWindowLogic.logic_cal_BD_data
+
+## MainWindowEvent.clickEvent_para_savePara  L700-702  args=(self)  <qt_slot>
+  <- [connect/medium@L87] ui.logic::MainWindowLogic.logic_cal_BD_data
+
+## MainWindowEvent.changeEvent_protocal_path  L705-707  args=(self)

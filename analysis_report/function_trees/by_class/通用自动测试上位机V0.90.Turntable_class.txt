@@ -1,0 +1,51 @@
+# 类 通用自动测试上位机V0.90::Turntable_class  (通用自动测试上位机V0.90.py:4041)  bases=[]
+
+## Turntable_class.__init__  L4042
+   通用自动测试上位机V0.90::Turntable_class.__init__  (通用自动测试上位机V0.90.py:4042)
+
+## Turntable_class.get_command  L4067
+   通用自动测试上位机V0.90::Turntable_class.get_command  (通用自动测试上位机V0.90.py:4067)
+       [call/high@L4077] 通用自动测试上位机V0.90::int2hex  (通用自动测试上位机V0.90.py:3870)  <in_cycle>
+           [call/high@L3871] 通用自动测试上位机V0.90::int2hex  ↻ 递归/循环调用(不再展开)  (通用自动测试上位机V0.90.py:3870)
+
+## Turntable_class.reset_inside  L4085
+   通用自动测试上位机V0.90::Turntable_class.reset_inside  (通用自动测试上位机V0.90.py:4085)
+       [call/high@L4090] 通用自动测试上位机V0.90::Turntable_class.get_command  (通用自动测试上位机V0.90.py:4067)
+           [call/high@L4077] 通用自动测试上位机V0.90::int2hex  (通用自动测试上位机V0.90.py:3870)  <in_cycle>
+
+## Turntable_class.reset_outside  L4092
+   通用自动测试上位机V0.90::Turntable_class.reset_outside  (通用自动测试上位机V0.90.py:4092)
+       [call/high@L4097] 通用自动测试上位机V0.90::Turntable_class.get_command  (通用自动测试上位机V0.90.py:4067)
+           [call/high@L4077] 通用自动测试上位机V0.90::int2hex  (通用自动测试上位机V0.90.py:3870)  <in_cycle>
+
+## Turntable_class.inside_location  L4113
+   通用自动测试上位机V0.90::Turntable_class.inside_location  (通用自动测试上位机V0.90.py:4113)
+       [call/high@L4115(+2 处: 4116,4117)] 通用自动测试上位机V0.90::int2hex  (通用自动测试上位机V0.90.py:3870)  <in_cycle>
+           [call/high@L3871] 通用自动测试上位机V0.90::int2hex  ↻ 递归/循环调用(不再展开)  (通用自动测试上位机V0.90.py:3870)
+       [call/high@L4115(+2 处: 4116,4117)] 通用自动测试上位机V0.90::reverse  (通用自动测试上位机V0.90.py:3872)
+       [call/high@L4118] 通用自动测试上位机V0.90::Turntable_class.get_command  (通用自动测试上位机V0.90.py:4067)
+           [call/high@L4077] 通用自动测试上位机V0.90::int2hex  ↑ 已在上文展开  (通用自动测试上位机V0.90.py:3870)
+
+## Turntable_class.inside_speed  L4120
+   通用自动测试上位机V0.90::Turntable_class.inside_speed  (通用自动测试上位机V0.90.py:4120)
+       [call/high@L4122(+1 处: 4123)] 通用自动测试上位机V0.90::int2hex  (通用自动测试上位机V0.90.py:3870)  <in_cycle>
+           [call/high@L3871] 通用自动测试上位机V0.90::int2hex  ↻ 递归/循环调用(不再展开)  (通用自动测试上位机V0.90.py:3870)
+       [call/high@L4122(+1 处: 4123)] 通用自动测试上位机V0.90::reverse  (通用自动测试上位机V0.90.py:3872)
+       [call/high@L4125] 通用自动测试上位机V0.90::Turntable_class.get_command  (通用自动测试上位机V0.90.py:4067)
+           [call/high@L4077] 通用自动测试上位机V0.90::int2hex  ↑ 已在上文展开  (通用自动测试上位机V0.90.py:3870)
+
+## Turntable_class.outside_location  L4128
+   通用自动测试上位机V0.90::Turntable_class.outside_location  (通用自动测试上位机V0.90.py:4128)
+       [call/high@L4130(+2 处: 4131,4132)] 通用自动测试上位机V0.90::int2hex  (通用自动测试上位机V0.90.py:3870)  <in_cycle>
+           [call/high@L3871] 通用自动测试上位机V0.90::int2hex  ↻ 递归/循环调用(不再展开)  (通用自动测试上位机V0.90.py:3870)
+       [call/high@L4130(+2 处: 4131,4132)] 通用自动测试上位机V0.90::reverse  (通用自动测试上位机V0.90.py:3872)
+       [call/high@L4133] 通用自动测试上位机V0.90::Turntable_class.get_command  (通用自动测试上位机V0.90.py:4067)
+           [call/high@L4077] 通用自动测试上位机V0.90::int2hex  ↑ 已在上文展开  (通用自动测试上位机V0.90.py:3870)
+
+## Turntable_class.outside_speed  L4135
+   通用自动测试上位机V0.90::Turntable_class.outside_speed  (通用自动测试上位机V0.90.py:4135)
+       [call/high@L4137(+1 处: 4138)] 通用自动测试上位机V0.90::int2hex  (通用自动测试上位机V0.90.py:3870)  <in_cycle>
+           [call/high@L3871] 通用自动测试上位机V0.90::int2hex  ↻ 递归/循环调用(不再展开)  (通用自动测试上位机V0.90.py:3870)
+       [call/high@L4137(+1 处: 4138)] 通用自动测试上位机V0.90::reverse  (通用自动测试上位机V0.90.py:3872)
+       [call/high@L4140] 通用自动测试上位机V0.90::Turntable_class.get_command  (通用自动测试上位机V0.90.py:4067)
+           [call/high@L4077] 通用自动测试上位机V0.90::int2hex  ↑ 已在上文展开  (通用自动测试上位机V0.90.py:3870)

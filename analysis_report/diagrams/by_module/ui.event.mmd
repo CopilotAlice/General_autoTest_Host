@@ -1,0 +1,40 @@
+%% 模块局部调用树: ui.event (ui/event.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["MainWindowEvent.changeEvent_general_rule<br/><small>ui.event:35</small>"]
+  f1["MainWindowEvent.funcEvent_general_changeButton<br/><small>ui.event:64</small>"]
+  f0 -->|"call/high"| f1
+  f2["MainWindowEvent.funcEvent_general_changeTable<br/><small>ui.event:71</small>"]
+  f0 -->|"call/high"| f2
+  f3["MainWindowEvent.changeEvent_general_bind_table<br/><small>ui.event:121</small>"]
+  f0 -->|"call/high"| f3
+  f4["try_return_bdx<br/><small>funs.fun_chy2:134</small>"]
+  f3 -->|"call/high"| f4
+  f3 -->|"call/high"| f4
+  f5["try_return_check<br/><small>funs.fun_chy2:143</small>"]
+  f3 -->|"call/high"| f5
+  f3 -->|"call/high"| f5
+  f6["calculate_crc16<br/><small>funs.fun_checks:84</small>"]
+  f3 -->|"call/high"| f6
+  f3 -->|"call/high"| f5
+  f7["calculate_crc16_mcrf4xx<br/><small>funs.fun_checks:121</small>"]
+  f3 -->|"call/high"| f7
+  f3 -->|"call/high"| f5
+  f8["calculate_crc16_0x00<br/><small>funs.fun_checks:90</small>"]
+  f3 -->|"call/high"| f8
+  f3 -->|"call/high"| f5
+  f9["MainWindowEvent.clickEvent_general_bind<br/><small>ui.event:258</small>"]
+  f10["MainWindowEvent.clickEvent_general_send<br/><small>ui.event:238</small>"]
+  f9 -->|"call/high"| f10
+  f11["MainWindowEvent.changeEvent_general_autoSend<br/><small>ui.event:285</small>"]
+  f11 ==>|"timer/high"| f10
+  f12["MainWindowEvent.clickEvent_para_loadPath<br/><small>ui.event:351</small>"]
+  f13["move_dir_para_old<br/><small>funs.fun_chy2:78</small>"]
+  f12 -->|"call/high"| f13
+  f14["del_empty_folder<br/><small>funs.fun_chy2:99</small>"]
+  f12 -->|"call/high"| f14
+  f15["MainWindowEvent.changeEvent_deocdeRuleToTableWidget<br/><small>ui.event:500</small>"]
+  f16["split_plus<br/><small>funs.fun_chy2:73</small>"]
+  f15 -->|"call/high"| f16
+  f17["MainWindowEvent.clickEvent_decodeShow_tryReceive<br/><small>ui.event:598</small>"]
+  f18["check2serial<br/><small>funs.fun_chy2:167</small>"]
+  f17 -->|"call/high"| f18

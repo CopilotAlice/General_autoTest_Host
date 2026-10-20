@@ -1,0 +1,127 @@
+# 模块 ui.tools.tools_burn_ymodem  (ui/tools/tools_burn_ymodem.py)
+
+## <module>  L1-345  args=()  <module_body>
+  => (外部库) PyQt5.QtCore.pyqtSignal x3
+
+## crc16_ccitt  L21-31  args=(data)
+  <- [call/high@L134] ui.tools.tools_burn_ymodem::YModemBurnWorker._send_packet_with_retry
+
+## YModemBurnWorker.__init__  L39-44  args=(self, port, baud, file_path, parent)  <constructor>
+  => (外部库) threading.Event x1
+  <- [create/high@L324] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.start_burn
+
+## YModemBurnWorker.stop  L46-47  args=(self)
+  <- [call/medium@L337] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.stop_burn
+
+## YModemBurnWorker.run  L49-88  args=(self)  <hardware_io,serial_io_heuristic,thread_entry>
+  -> [call/high@L74] ui.tools.tools_burn_ymodem::YModemBurnWorker._send_ymodem
+  => (外部库) os.path.basename x1
+  => (外部库) os.path.getsize x1
+  => (外部库) os.path.isfile x1
+  => (外部库) serial.Serial x1
+
+## YModemBurnWorker._send_ymodem  L90-120  args=(self, ser, fw, file_name, file_size)
+  -> [call/high@L91] ui.tools.tools_burn_ymodem::YModemBurnWorker._wait_for_byte
+  -> [call/high@L95] ui.tools.tools_burn_ymodem::YModemBurnWorker._send_packet_with_retry
+  -> [call/high@L105] ui.tools.tools_burn_ymodem::YModemBurnWorker._send_packet_with_retry
+  -> [call/high@L116] ui.tools.tools_burn_ymodem::YModemBurnWorker._send_eot
+  -> [call/high@L117] ui.tools.tools_burn_ymodem::YModemBurnWorker._wait_for_byte
+  -> [call/high@L120] ui.tools.tools_burn_ymodem::YModemBurnWorker._send_packet_with_retry
+  <- [call/high@L74] ui.tools.tools_burn_ymodem::YModemBurnWorker.run
+
+## YModemBurnWorker._send_packet_with_retry  L122-148  args=(self, ser, block_no, payload, use_1k)  <hardware_io,serial_io_heuristic>
+  -> [call/high@L134] ui.tools.tools_burn_ymodem::crc16_ccitt
+  -> [call/high@L143] ui.tools.tools_burn_ymodem::YModemBurnWorker._read_one
+  <- [call/high@L95] ui.tools.tools_burn_ymodem::YModemBurnWorker._send_ymodem
+  <- [call/high@L105] ui.tools.tools_burn_ymodem::YModemBurnWorker._send_ymodem
+  <- [call/high@L120] ui.tools.tools_burn_ymodem::YModemBurnWorker._send_ymodem
+
+## YModemBurnWorker._send_eot  L150-167  args=(self, ser)  <hardware_io,serial_io_heuristic>
+  -> [call/high@L156] ui.tools.tools_burn_ymodem::YModemBurnWorker._read_one
+  -> [call/high@L160] ui.tools.tools_burn_ymodem::YModemBurnWorker._read_one
+  <- [call/high@L116] ui.tools.tools_burn_ymodem::YModemBurnWorker._send_ymodem
+
+## YModemBurnWorker._wait_for_byte  L169-181  args=(self, ser, expected, timeout, stage)
+  -> [call/high@L174] ui.tools.tools_burn_ymodem::YModemBurnWorker._read_one
+  => (外部库) time.time x2
+  <- [call/high@L91] ui.tools.tools_burn_ymodem::YModemBurnWorker._send_ymodem
+  <- [call/high@L117] ui.tools.tools_burn_ymodem::YModemBurnWorker._send_ymodem
+
+## YModemBurnWorker._read_one  L184-190  args=(ser, timeout)  <hardware_io,serial_io_heuristic>
+  => (外部库) time.time x2
+  <- [call/high@L143] ui.tools.tools_burn_ymodem::YModemBurnWorker._send_packet_with_retry
+  <- [call/high@L156] ui.tools.tools_burn_ymodem::YModemBurnWorker._send_eot
+  <- [call/high@L160] ui.tools.tools_burn_ymodem::YModemBurnWorker._send_eot
+  <- [call/high@L174] ui.tools.tools_burn_ymodem::YModemBurnWorker._wait_for_byte
+
+## MainWindowToolBurnYmodem.__init__  L194-200  args=(self, main_window)  <constructor>
+  -> [call/high@L198] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem._build_tab_if_needed
+  -> [call/high@L199] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem._bind_events
+  -> [call/high@L200] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.refresh_ports
+  <- [dynamic/medium@L183] 通用自动测试上位机V0.95::MainWindow._init_modules_in_batches
+
+## MainWindowToolBurnYmodem._build_tab_if_needed  L202-265  args=(self)
+  => (外部库) PyQt5.QtWidgets.QComboBox x2
+  => (外部库) PyQt5.QtWidgets.QGridLayout x1
+  => (外部库) PyQt5.QtWidgets.QGroupBox x2
+  => (外部库) PyQt5.QtWidgets.QHBoxLayout x2
+  => (外部库) PyQt5.QtWidgets.QLabel x2
+  => (外部库) PyQt5.QtWidgets.QLineEdit x1
+  => (外部库) PyQt5.QtWidgets.QProgressBar x1
+  => (外部库) PyQt5.QtWidgets.QPushButton x4
+  => (外部库) PyQt5.QtWidgets.QTextBrowser x1
+  => (外部库) PyQt5.QtWidgets.QVBoxLayout x1
+  => (外部库) PyQt5.QtWidgets.QWidget x1
+  <- [call/high@L198] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.__init__
+
+## MainWindowToolBurnYmodem._bind_events  L267-273  args=(self)
+  -> [connect/high@L270] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.refresh_ports   # self.mw.pushButton_tools_burn_scan.clicked.connect
+  -> [connect/high@L271] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.pick_firmware_file   # self.mw.pushButton_tools_burn_browse.clicked.connect
+  -> [connect/high@L272] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.start_burn   # self.mw.pushButton_tools_burn_start.clicked.connect
+  -> [connect/high@L273] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.stop_burn   # self.mw.pushButton_tools_burn_stop.clicked.connect
+  <- [call/high@L199] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.__init__
+
+## MainWindowToolBurnYmodem.append_log  L275-277  args=(self, msg)  <qt_slot>
+  => (外部库) time.strftime x1
+  <- [call/high@L289] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.refresh_ports
+  <- [call/high@L300] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.pick_firmware_file
+  <- [call/high@L304] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.start_burn
+  <- [call/high@L312] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.start_burn
+  <- [call/high@L315] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.start_burn
+  <- [call/high@L321] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.start_burn
+  <- [call/high@L332] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.start_burn
+  <- [connect/high@L325] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.start_burn
+  <- [call/high@L338] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.stop_burn
+  <- [call/high@L341] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem._on_burn_result
+
+## MainWindowToolBurnYmodem.refresh_ports  L279-289  args=(self)  <hardware_io,qt_slot>
+  -> [call/high@L289] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.append_log
+  => (外部库) serial.tools.list_ports.comports x1
+  <- [call/high@L200] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.__init__
+  <- [connect/high@L270] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem._bind_events
+
+## MainWindowToolBurnYmodem.pick_firmware_file  L291-300  args=(self)  <qt_slot>
+  -> [call/high@L300] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.append_log
+  => (外部库) PyQt5.QtWidgets.QFileDialog.getOpenFileName x1
+  <- [connect/high@L271] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem._bind_events
+
+## MainWindowToolBurnYmodem.start_burn  L302-333  args=(self)  <qt_slot>
+  -> [call/high@L304] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.append_log
+  -> [call/high@L312] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.append_log
+  -> [call/high@L315] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.append_log
+  -> [call/high@L321] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.append_log
+  -> [create/high@L324] ui.tools.tools_burn_ymodem::YModemBurnWorker.__init__   # ctor
+  -> [connect/high@L325] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.append_log   # self.worker.log_signal.connect
+  -> [connect/high@L327] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem._on_burn_result   # self.worker.result_signal.connect
+  -> [call/high@L332] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.append_log
+  => (外部库) os.path.isfile x1
+  <- [connect/high@L272] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem._bind_events
+
+## MainWindowToolBurnYmodem.stop_burn  L335-338  args=(self)  <qt_slot>
+  -> [call/medium@L337] ui.tools.tools_burn_ymodem::YModemBurnWorker.stop   # self.worker = YModemBurnWorker(...)
+  -> [call/high@L338] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.append_log
+  <- [connect/high@L273] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem._bind_events
+
+## MainWindowToolBurnYmodem._on_burn_result  L340-345  args=(self, success, message)  <qt_slot>
+  -> [call/high@L341] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.append_log
+  <- [connect/high@L327] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.start_burn

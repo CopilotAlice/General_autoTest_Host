@@ -1,0 +1,13 @@
+%% 模块局部调用树: ui.events.events_hidden (ui/events/events_hidden.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["MainWindowEventHidden.__init__<br/><small>ui.events.events_hidden:3</small>"]
+  f1["MainWindowEventHidden.logic_clickHidden<br/><small>ui.events.events_hidden:10</small>"]
+  f0 -->|"call/high"| f1
+  f2["MainWindowEventHidden.logic_changeHidden<br/><small>ui.events.events_hidden:50</small>"]
+  f0 -->|"call/high"| f2
+  f3["MainWindowEventHidden.init_hidden<br/><small>ui.events.events_hidden:29</small>"]
+  f0 -->|"call/high"| f3
+  f4["MainWindowEventHidden.clickEvent_childHidden<br/><small>ui.events.events_hidden:44</small>"]
+  f1 ==>|"connect/high"| f4
+  f5["MainWindowEventHidden.changeEvent_buttonHidden<br/><small>ui.events.events_hidden:52</small>"]
+  f2 ==>|"connect/high"| f5

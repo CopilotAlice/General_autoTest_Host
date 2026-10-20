@@ -1,0 +1,49 @@
+# 模块 ui.debug  (ui/debug.py)
+
+## <module>  L1-131  args=()  <module_body>
+
+## MainWindowDebug.__init__  L5-9  args=(self, mainWindow)  <constructor>
+  -> [call/high@L8] ui.debug::MainWindowDebug.debug_time_init
+  -> [call/high@L9] ui.debug::MainWindowDebug.debug_struct_init
+  <- [create/high@L86] 通用自动测试上位机V0.90::MainWindow.__init__
+  <- [dynamic/medium@L171] 通用自动测试上位机V0.95::MainWindow._init_modules_in_batches
+
+## MainWindowDebug.debug_time_init  L12-17  args=(self)
+  -> [timer/high@L16] ui.debug::MainWindowDebug.debug_message_1s   # self.debug_qtimer_1s.timeout.connect
+  => (外部库) PyQt5.QtCore.QTimer x1
+  <- [call/high@L8] ui.debug::MainWindowDebug.__init__
+
+## MainWindowDebug.debug_struct_init  L19-23  args=(self)
+  -> [create/high@L23] ui.debug::struct_debug.__init__   # ctor
+  <- [call/high@L9] ui.debug::MainWindowDebug.__init__
+
+## MainWindowDebug.debug_message_1s  L26-29  args=(self)  <timer_callback>
+  -> [call/high@L28] ui.debug::struct_debug.update_ui_msg   # Class.method
+  <- [timer/high@L16] ui.debug::MainWindowDebug.debug_time_init
+
+## MainWindowDebug.debug_test  L30-36  args=(self)
+  => (外部库) PyQt5.QtGui.QPixmap x1
+
+## struct_debug.__init__  L40-61  args=(self, mw, debugname)  <constructor>
+  -> [call/high@L61] ui.debug::struct_debug.update_ui_link
+  <- [create/high@L23] ui.debug::MainWindowDebug.debug_struct_init
+
+## struct_debug.update_ui_link  L64-84  args=(self)
+  -> [call/high@L72] ui.debug::struct_debug.update_ui_list
+  <- [call/high@L61] ui.debug::struct_debug.__init__
+
+## struct_debug.update_ui_list  L85-94  args=(self)
+  <- [call/high@L72] ui.debug::struct_debug.update_ui_link
+
+## struct_debug.get_check_out  L96-101  args=(self)
+  <- [call/high@L112] ui.debug::struct_debug.update_ui_msg
+
+## struct_debug.get_check_last  L102-107  args=(self)
+  <- [call/high@L113] ui.debug::struct_debug.update_ui_msg
+
+## struct_debug.update_ui_msg  L109-117  args=(self)
+  -> [call/high@L112] ui.debug::struct_debug.get_check_out
+  -> [call/high@L113] ui.debug::struct_debug.get_check_last
+  <- [call/high@L28] ui.debug::MainWindowDebug.debug_message_1s
+
+## struct_debug.append_ui_msg  L119-131  args=(self, msg)

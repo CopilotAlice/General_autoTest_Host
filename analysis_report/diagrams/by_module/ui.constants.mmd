@@ -1,0 +1,24 @@
+%% 模块局部调用树: ui.constants (ui/constants.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["MainWindowConstants.__init__<br/><small>ui.constants:11</small>"]
+  f1["MainWindowConstants.init_load_path<br/><small>ui.constants:34</small>"]
+  f0 -->|"call/high"| f1
+  f2["MainWindowConstants.init_12tab_setting<br/><small>ui.constants:38</small>"]
+  f0 -->|"call/high"| f2
+  f3["MainWindowConstants.init_general_bind<br/><small>ui.constants:50</small>"]
+  f0 -->|"call/high"| f3
+  f4["MainWindowConstants.init_send_struct<br/><small>ui.constants:54</small>"]
+  f0 -->|"call/high"| f4
+  f5["MainWindowConstants.init_struct_turntable3x<br/><small>ui.constants:69</small>"]
+  f0 -->|"call/high"| f5
+  f6["struct_tab_setting.__init__<br/><small>ui.structs:110</small>"]
+  f2 -->|"create/high"| f6
+  f2 -->|"create/high"| f6
+  f7["struct_general_bind.__init__<br/><small>ui.structs:21</small>"]
+  f3 -->|"create/high"| f7
+  f8["struct_sate.__init__<br/><small>ui.structs:166</small>"]
+  f4 -->|"create/high"| f8
+  f9["struct_sate.init_sate_save<br/><small>ui.structs:218</small>"]
+  f4 -->|"call/medium"| f9
+  f10["struct_turnTable3x.__init__<br/><small>ui.structs:309</small>"]
+  f5 -->|"create/high"| f10

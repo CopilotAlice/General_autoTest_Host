@@ -1,0 +1,7 @@
+# 模块 ui.threads  (ui/threads.py)
+
+## <module>  L1-8  args=()  <module_body>
+
+## MainWindowThread.__init__  L7-8  args=(self, mainWindow)  <constructor>
+  <- [create/high@L98] 通用自动测试上位机V0.90::MainWindow.__init__
+  <- [dynamic/medium@L177] 通用自动测试上位机V0.95::MainWindow._init_modules_in_batches

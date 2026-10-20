@@ -1,0 +1,815 @@
+# 模块 通用自动测试上位机V0.95  (通用自动测试上位机V0.95.py)
+
+## <module>  L1-4492  args=()  <entry,module_body>
+  -> [call/high@L93] 通用自动测试上位机V0.95::_prepare_runtime_workdir
+  -> [create/high@L4490] 通用自动测试上位机V0.95::MainWindow.__init__   # ctor
+  => (外部库) PyQt5.QtWidgets.QApplication x1
+  => (外部库) pandas.set_option x4
+  => (外部库) sys.exit x1
+
+## _find_runtime_root  L50-81  args=()
+  => (外部库) os.path.abspath x2
+  => (外部库) os.path.dirname x6
+  => (外部库) os.path.isdir x2
+  => (外部库) os.path.join x2
+  => (外部库) os.path.normpath x1
+  <- [call/high@L85] 通用自动测试上位机V0.95::_prepare_runtime_workdir
+
+## _prepare_runtime_workdir  L84-90  args=()
+  -> [call/high@L85] 通用自动测试上位机V0.95::_find_runtime_root
+  => (外部库) os.chdir x1
+  <- [call/high@L93] 通用自动测试上位机V0.95::<module>
+
+## MainWindow.__init__  L127-156  args=(self, parent)  <constructor>
+  -> [call/high@L136] Automated_testingV19::Ui_MainWindow.setupUi
+  -> [timer/high@L152] 通用自动测试上位机V0.95::MainWindow.init_after_show   # singleShot
+  => (外部库) PyQt5.QtCore.QTimer.singleShot x1
+  => (外部库) os.path.exists x1
+  => (外部库) pyqtgraph.Qt.QtGui.QIcon x1
+  => (外部库) pyqtgraph.Qt.QtGui.QPixmap x1
+  => (外部库) time.time x2
+  <- [create/high@L4490] 通用自动测试上位机V0.95::<module>
+
+## MainWindow._init_module  L159-164  args=(self, name, cls)
+  => (外部库) time.perf_counter x2
+  <- [call/high@L188] 通用自动测试上位机V0.95::MainWindow._init_modules_in_batches
+
+## MainWindow._init_modules_in_batches  L166-194  args=(self)
+  -> [dynamic/medium@L168] ui.inits.inits_debugMsg::MainWindowInitDebugMsg.__init__   # 经 _init_module(name, cls) -> cls(self) + setattr(self, attr, instance) 动态实例化
+  -> [dynamic/medium@L169] ui.inits.inits_showMsg::MainWindowInitShowMsg.__init__   # 经 _init_module(name, cls) -> cls(self) + setattr(self, attr, instance) 动态实例化
+  -> [dynamic/medium@L170] ui.load_ini::MainWindowInitIni.__init__   # 经 _init_module(name, cls) -> cls(self) + setattr(self, attr, instance) 动态实例化
+  -> [dynamic/medium@L171] ui.debug::MainWindowDebug.__init__   # 经 _init_module(name, cls) -> cls(self) + setattr(self, attr, instance) 动态实例化
+  -> [dynamic/medium@L172] ui.init_ui::MainWindowInit.__init__   # 经 _init_module(name, cls) -> cls(self) + setattr(self, attr, instance) 动态实例化
+  -> [dynamic/medium@L173] ui.times::MainWindowTimes.__init__   # 经 _init_module(name, cls) -> cls(self) + setattr(self, attr, instance) 动态实例化
+  -> [dynamic/medium@L174] ui.settings::MainWindowSetting.__init__   # 经 _init_module(name, cls) -> cls(self) + setattr(self, attr, instance) 动态实例化
+  -> [dynamic/medium@L175] ui.constants::MainWindowConstants.__init__   # 经 _init_module(name, cls) -> cls(self) + setattr(self, attr, instance) 动态实例化
+  -> [dynamic/medium@L176] ui.event::MainWindowEvent.__init__   # 经 _init_module(name, cls) -> cls(self) + setattr(self, attr, instance) 动态实例化
+  -> [dynamic/medium@L177] ui.threads::MainWindowThread.__init__   # 经 _init_module(name, cls) -> cls(self) + setattr(self, attr, instance) 动态实例化
+  -> [dynamic/medium@L178] ui.logic::MainWindowLogic.__init__   # 经 _init_module(name, cls) -> cls(self) + setattr(self, attr, instance) 动态实例化
+  -> [dynamic/medium@L179] ui.get_ui::MainWindowGetUI.__init__   # 经 _init_module(name, cls) -> cls(self) + setattr(self, attr, instance) 动态实例化
+  -> [dynamic/medium@L180] ui.events.events_devide::MainWindowEventDevide.__init__   # 经 _init_module(name, cls) -> cls(self) + setattr(self, attr, instance) 动态实例化
+  -> [dynamic/medium@L181] ui.events.events_hidden::MainWindowEventHidden.__init__   # 经 _init_module(name, cls) -> cls(self) + setattr(self, attr, instance) 动态实例化
+  -> [dynamic/medium@L182] ui.tools.tools_bdcalib::MainWindowToolBdcalib.__init__   # 经 _init_module(name, cls) -> cls(self) + setattr(self, attr, instance) 动态实例化
+  -> [dynamic/medium@L183] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.__init__   # 经 _init_module(name, cls) -> cls(self) + setattr(self, attr, instance) 动态实例化
+  -> [dynamic/medium@L184] ui.navs.nav_loc::MainWindowNavLoc.__init__   # 经 _init_module(name, cls) -> cls(self) + setattr(self, attr, instance) 动态实例化
+  -> [call/high@L188] 通用自动测试上位机V0.95::MainWindow._init_module
+  => (外部库) PyQt5.QtWidgets.QApplication.processEvents x1
+  <- [call/high@L199] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.init_after_show  L197-816  args=(self)  <timer_callback>
+  -> [call/high@L199] 通用自动测试上位机V0.95::MainWindow._init_modules_in_batches
+  -> [create/high@L377] funs.fun_chy2::class_rule.__init__   # ctor
+  -> [connect/high@L522] 通用自动测试上位机V0.95::MainWindow.binding_change   # binding.textChanged.connect
+  -> [connect/high@L595] 通用自动测试上位机V0.95::MainWindow.event_update_bingding_60s   # binding.textChanged.connect
+  -> [connect/high@L608] 通用自动测试上位机V0.95::MainWindow.event_send_sate1   # self.pushButton_sate_send_1.clicked.connect
+  -> [connect/high@L609] 通用自动测试上位机V0.95::MainWindow.event_send_sate2   # self.pushButton_sate_send_2.clicked.connect
+  -> [connect/high@L610] 通用自动测试上位机V0.95::MainWindow.event_send_sate3   # self.pushButton_sate_send_3.clicked.connect
+  -> [connect/high@L624] 通用自动测试上位机V0.95::MainWindow.sate_send1_change_time   # self.lineEdit_sate_1_0.textChanged.connect
+  -> [connect/high@L625] 通用自动测试上位机V0.95::MainWindow.sate_send2_change_time   # self.lineEdit_sate_2_0.textChanged.connect
+  -> [connect/high@L626] 通用自动测试上位机V0.95::MainWindow.sate_send3_change_time   # self.lineEdit_sate_3_0.textChanged.connect
+  -> [connect/high@L628] 通用自动测试上位机V0.95::MainWindow.event_update_sate1   # sate_line.textChanged.connect
+  -> [connect/high@L630] 通用自动测试上位机V0.95::MainWindow.event_update_sate2   # sate_line.textChanged.connect
+  -> [connect/high@L632] 通用自动测试上位机V0.95::MainWindow.event_update_sate3   # sate_line.textChanged.connect
+  -> [call/high@L633] 通用自动测试上位机V0.95::MainWindow.event_update_sate1
+  -> [call/high@L634] 通用自动测试上位机V0.95::MainWindow.event_update_sate2
+  -> [call/high@L635] 通用自动测试上位机V0.95::MainWindow.event_update_sate3
+  -> [connect/high@L646] 通用自动测试上位机V0.95::MainWindow.td_command_change   # td_command.currentTextChanged.connect
+  -> [connect/high@L652] 通用自动测试上位机V0.95::MainWindow.td_gnss_change   # td_gnss.currentTextChanged.connect
+  -> [connect/high@L654] 通用自动测试上位机V0.95::MainWindow.td_atmos_change   # self.comboBox_binding_td_12.currentTextChanged.connect
+  -> [connect/high@L655] 通用自动测试上位机V0.95::MainWindow.td_softUpdate_change   # self.comboBox_binding_td_13.currentTextChanged.connect
+  -> [connect/high@L656] 通用自动测试上位机V0.95::MainWindow.td_softPara_change   # self.comboBox_binding_td_14.currentTextChanged.connect
+  -> [connect/high@L662] 通用自动测试上位机V0.95::MainWindow.td_command_send_update   # td_command.textChanged.connect
+  -> [connect/high@L663] 通用自动测试上位机V0.95::MainWindow.td_command_time_change   # self.lineEdit_binding_td_1.textChanged.connect
+  -> [connect/high@L664] 通用自动测试上位机V0.95::MainWindow.event_td_send1   # self.pushButton_binding_td.clicked.connect
+  -> [connect/high@L671] 通用自动测试上位机V0.95::MainWindow.fz_command_send_update   # fz_command.textChanged.connect
+  -> [connect/high@L672] 通用自动测试上位机V0.95::MainWindow.fz_command_time_change   # self.lineEdit_binding_fz_1.textChanged.connect
+  -> [connect/high@L673] 通用自动测试上位机V0.95::MainWindow.event_fz_send1   # self.pushButton_binding_fz.clicked.connect
+  -> [connect/high@L680] 通用自动测试上位机V0.95::MainWindow.gnss_command_send_update   # gnss_command.textChanged.connect
+  -> [connect/high@L681] 通用自动测试上位机V0.95::MainWindow.gnss_command_time_change   # self.lineEdit_binding_gnss_1.textChanged.connect
+  -> [connect/high@L682] 通用自动测试上位机V0.95::MainWindow.event_gnss_send1   # self.pushButton_binding_gnss.clicked.connect
+  -> [connect/high@L688] 通用自动测试上位机V0.95::MainWindow.gnss_status_change   # gnss_status.currentTextChanged.connect
+  -> [connect/high@L703] 通用自动测试上位机V0.95::MainWindow.protocal_com_change   # self.comboBox_protocal_com.currentTextChanged.connect
+  -> [connect/high@L704] 通用自动测试上位机V0.95::MainWindow.protocal_com_change   # self.comboBox_protocal_baund.currentTextChanged.connect
+  -> [connect/high@L705] 通用自动测试上位机V0.95::MainWindow.protocal_com_change   # self.comboBox_protocal_check.currentTextChanged.connect
+  -> [connect/high@L706] 通用自动测试上位机V0.95::MainWindow.comboBox_com_change   # self.combox_set_com_1.currentTextChanged.connect
+  -> [connect/high@L707] 通用自动测试上位机V0.95::MainWindow.comboBox_com_change   # self.combox_set_baund_1.currentTextChanged.connect
+  -> [connect/high@L708] 通用自动测试上位机V0.95::MainWindow.comboBox_com_change   # self.comboBox_set_check_1.currentTextChanged.connect
+  -> [connect/high@L710] 通用自动测试上位机V0.95::MainWindow.update_plot_axis   # self.comboBox_plot_beginAxis.currentTextChanged.connect
+  -> [connect/high@L711] 通用自动测试上位机V0.95::MainWindow.update_double_axis   # self.comboBox_plot_doubleAxis.currentTextChanged.connect
+  -> [connect/high@L713] 通用自动测试上位机V0.95::MainWindow.update_stand_axis   # self.comboBox_INU_beginAxis_stand.currentTextChanged.connect
+  -> [connect/high@L715] 通用自动测试上位机V0.95::MainWindow.update_target_loc   # self.comboBox_INU_beginAxis_loc.currentTextChanged.connect
+  -> [connect/high@L717] 通用自动测试上位机V0.95::MainWindow.update_target_spd   # self.comboBox_INU_beginAxis_spd.currentTextChanged.connect
+  -> [connect/high@L719] 通用自动测试上位机V0.95::MainWindow.filenames_change   # self.lineEdit_file_names_all.textChanged.connect
+  -> [connect/high@L721] 通用自动测试上位机V0.95::MainWindow.read_rules   # self.comboBox_protocal_rule.currentTextChanged.connect
+  -> [connect/high@L728] 通用自动测试上位机V0.95::MainWindow.begin_test   # self.pushButton_begin_test.clicked.connect
+  -> [connect/high@L729] 通用自动测试上位机V0.95::MainWindow.stop_test   # self.pushButton_stop_test.clicked.connect
+  -> [connect/high@L731] 通用自动测试上位机V0.95::MainWindow.binding_send   # self.pushButton_binding_send.clicked.connect
+  -> [connect/high@L733] 通用自动测试上位机V0.95::MainWindow.event_load_file   # self.pushButton_load_data.clicked.connect
+  -> [connect/high@L735] 通用自动测试上位机V0.95::MainWindow.event_autoset_inu   # self.pushButton_autoset_INU.clicked.connect
+  -> [connect/high@L737] 通用自动测试上位机V0.95::MainWindow.event_reload_config   # self.pushButton_debug_1.clicked.connect
+  -> [connect/high@L740] 通用自动测试上位机V0.95::MainWindow.event_send_bingding_60s   # self.pushButton_binding_send_60s.clicked.connect
+  -> [connect/high@L742] 通用自动测试上位机V0.95::MainWindow.event_power_on   # self.pushButton_power_open.clicked.connect
+  -> [connect/high@L743] 通用自动测试上位机V0.95::MainWindow.event_power_off   # self.pushButton_power_close.clicked.connect
+  -> [connect/high@L745] 通用自动测试上位机V0.95::MainWindow.change_sate_button   # self.pushButton_com_open_13.clicked.connect
+  -> [call/high@L750] 通用自动测试上位机V0.95::MainWindow.init_all_coef
+  -> [call/high@L751] 通用自动测试上位机V0.95::MainWindow._bind_plot_imu_lineedit_sync
+  -> [call/high@L752] 通用自动测试上位机V0.95::MainWindow._sync_plot_window_to_imu
+  -> [call/high@L765] 通用自动测试上位机V0.95::MainWindow.show_message_01s
+  -> [call/high@L766] 通用自动测试上位机V0.95::MainWindow.show_message_05s
+  -> [call/high@L767] 通用自动测试上位机V0.95::MainWindow.show_message_1s
+  -> [call/high@L768] 通用自动测试上位机V0.95::MainWindow.show_message_5s
+  -> [call/high@L771] 通用自动测试上位机V0.95::MainWindow.read_default_para_com
+  -> [call/high@L772] 通用自动测试上位机V0.95::MainWindow.read_default_para_config
+  -> [timer/high@L776] 通用自动测试上位机V0.95::MainWindow.show_message_01s   # self.show_timer0.timeout.connect
+  -> [timer/high@L780] 通用自动测试上位机V0.95::MainWindow.show_message_05s   # self.show_timer1.timeout.connect
+  -> [timer/high@L784] 通用自动测试上位机V0.95::MainWindow.show_message_1s   # self.show_timer2.timeout.connect
+  -> [timer/high@L788] 通用自动测试上位机V0.95::MainWindow.show_message_5s   # self.show_timer3.timeout.connect
+  -> [timer/high@L792] 通用自动测试上位机V0.95::MainWindow.show_message_2s   # self.show_timer4.timeout.connect
+  -> [timer/high@L797] 通用自动测试上位机V0.95::MainWindow.event_send_sate1   # self.sate_time1.timeout.connect
+  -> [timer/high@L801] 通用自动测试上位机V0.95::MainWindow.event_send_sate2   # self.sate_time2.timeout.connect
+  -> [timer/high@L806] 通用自动测试上位机V0.95::MainWindow.event_td_send1   # self.td_time1.timeout.connect
+  -> [timer/high@L809] 通用自动测试上位机V0.95::MainWindow.event_fz_send1   # self.fz_time1.timeout.connect
+  -> [timer/high@L812] 通用自动测试上位机V0.95::MainWindow.event_gnss_send1   # self.gnss_time1.timeout.connect
+  -> [call/high@L816] 通用自动测试上位机V0.95::MainWindow.init_all_coef_end
+  => (外部库) PyQt5.QtCore.QTimer x10
+  => (外部库) pandas.DataFrame x1
+  => (外部库) time.perf_counter x2
+  <- [timer/high@L152] 通用自动测试上位机V0.95::MainWindow.__init__
+
+## MainWindow._bind_plot_imu_lineedit_sync  L818-827  args=(self)
+  -> [connect/high@L825] 通用自动测试上位机V0.95::MainWindow._sync_plot_window_to_imu   # src_widget.textChanged.connect
+  <- [call/high@L751] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow._sync_plot_window_to_imu  L829-851  args=(self)  <qt_slot>
+  <- [call/high@L752] 通用自动测试上位机V0.95::MainWindow.init_after_show
+  <- [connect/high@L825] 通用自动测试上位机V0.95::MainWindow._bind_plot_imu_lineedit_sync
+
+## MainWindow.init_all_coef  L892-916  args=(self)
+  <- [call/high@L750] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.init_all_coef_end  L921-939  args=(self)
+  -> [call/high@L939] 通用自动测试上位机V0.95::MainWindow.change_sate_button
+  <- [call/high@L816] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.show_message_01s  L945-968  args=(self)  <timer_callback>
+  <- [call/high@L765] 通用自动测试上位机V0.95::MainWindow.init_after_show
+  <- [timer/high@L776] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.show_message_05s  L975-993  args=(self)  <timer_callback>
+  => (外部库) pandas.DataFrame x1
+  => (外部库) pandas.concat x1
+  => (外部库) time.time x1
+  <- [call/high@L766] 通用自动测试上位机V0.95::MainWindow.init_after_show
+  <- [timer/high@L780] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.show_message_1s  L997-1169  args=(self)  <timer_callback>
+  -> [call/high@L1061] 通用自动测试上位机V0.95::try_get_text
+  -> [call/high@L1062] 通用自动测试上位机V0.95::try_get_text
+  -> [call/high@L1063] 通用自动测试上位机V0.95::try_get_text
+  => (外部库) PyQt5.QtWidgets.QTableWidgetItem x1
+  => (外部库) datetime.datetime.now x3
+  => (外部库) time.time x1
+  <- [call/high@L767] 通用自动测试上位机V0.95::MainWindow.init_after_show
+  <- [timer/high@L784] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.show_message_2s  L1173-1351  args=(self)  <timer_callback>
+  -> [call/high@L1213] 通用自动测试上位机V0.95::try_get_text
+  -> [call/high@L1224] 通用自动测试上位机V0.95::try_get_text
+  -> [call/high@L1235] 通用自动测试上位机V0.95::try_get_text
+  -> [call/high@L1338] 通用自动测试上位机V0.95::MainWindow._update_inu_error_stats
+  -> [call/medium@L1344] ui.navs.nav_loc::MainWindowNavLoc.update_attitude_from_dataframe   # self.navs -> MainWindowNavLoc (module_chain 挂载)
+  => (外部库) numpy.arctan2 x1
+  => (外部库) numpy.cos x2
+  => (外部库) numpy.sin x2
+  => (外部库) numpy.sqrt x4
+  <- [timer/high@L792] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow._calc_inu_error_stats  L1353-1363  args=(self, data)
+  => (外部库) numpy.asarray x1
+  => (外部库) numpy.isfinite x1
+  => (外部库) numpy.max x1
+  => (外部库) numpy.mean x1
+  => (外部库) numpy.percentile x1
+  => (外部库) numpy.std x1
+  <- [call/high@L1374] 通用自动测试上位机V0.95::MainWindow._update_inu_error_stats
+  <- [call/high@L1375] 通用自动测试上位机V0.95::MainWindow._update_inu_error_stats
+
+## MainWindow._set_lineedit_text_if_exists  L1365-1368  args=(self, name, text)
+  <- [call/high@L1378] 通用自动测试上位机V0.95::MainWindow._update_inu_error_stats
+  <- [call/high@L1379] 通用自动测试上位机V0.95::MainWindow._update_inu_error_stats
+  <- [call/high@L1380] 通用自动测试上位机V0.95::MainWindow._update_inu_error_stats
+  <- [call/high@L1381] 通用自动测试上位机V0.95::MainWindow._update_inu_error_stats
+  <- [call/high@L1384] 通用自动测试上位机V0.95::MainWindow._update_inu_error_stats
+  <- [call/high@L1385] 通用自动测试上位机V0.95::MainWindow._update_inu_error_stats
+  <- [call/high@L1386] 通用自动测试上位机V0.95::MainWindow._update_inu_error_stats
+  <- [call/high@L1387] 通用自动测试上位机V0.95::MainWindow._update_inu_error_stats
+
+## MainWindow._update_inu_error_stats  L1370-1387  args=(self, loc_data, spd_data)
+  -> [call/high@L1374] 通用自动测试上位机V0.95::MainWindow._calc_inu_error_stats
+  -> [call/high@L1375] 通用自动测试上位机V0.95::MainWindow._calc_inu_error_stats
+  -> [call/high@L1378] 通用自动测试上位机V0.95::MainWindow._set_lineedit_text_if_exists
+  -> [call/high@L1379] 通用自动测试上位机V0.95::MainWindow._set_lineedit_text_if_exists
+  -> [call/high@L1380] 通用自动测试上位机V0.95::MainWindow._set_lineedit_text_if_exists
+  -> [call/high@L1381] 通用自动测试上位机V0.95::MainWindow._set_lineedit_text_if_exists
+  -> [call/high@L1384] 通用自动测试上位机V0.95::MainWindow._set_lineedit_text_if_exists
+  -> [call/high@L1385] 通用自动测试上位机V0.95::MainWindow._set_lineedit_text_if_exists
+  -> [call/high@L1386] 通用自动测试上位机V0.95::MainWindow._set_lineedit_text_if_exists
+  -> [call/high@L1387] 通用自动测试上位机V0.95::MainWindow._set_lineedit_text_if_exists
+  <- [call/high@L1338] 通用自动测试上位机V0.95::MainWindow.show_message_2s
+
+## MainWindow.show_message_5s  L1397-1425  args=(self)  <hardware_io,timer_callback>
+  -> [call/medium@L1425] ui.times::MainWindowTimes.timeEvent_update_combobox   # self.times -> MainWindowTimes (module_chain 挂载)
+  => (外部库) serial.tools.list_ports.comports x1
+  <- [call/high@L768] 通用自动测试上位机V0.95::MainWindow.init_after_show
+  <- [timer/high@L788] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.protocal_com_change  L1429-1435  args=(self)  <qt_slot>
+  <- [connect/high@L703] 通用自动测试上位机V0.95::MainWindow.init_after_show
+  <- [connect/high@L704] 通用自动测试上位机V0.95::MainWindow.init_after_show
+  <- [connect/high@L705] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.comboBox_com_change  L1436-1442  args=(self)  <qt_slot>
+  <- [connect/high@L706] 通用自动测试上位机V0.95::MainWindow.init_after_show
+  <- [connect/high@L707] 通用自动测试上位机V0.95::MainWindow.init_after_show
+  <- [connect/high@L708] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.filenames_change  L1444-1451  args=(self)  <qt_slot>
+  <- [connect/high@L719] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.binding_send  L1453-1471  args=(self, count)  <qt_slot>
+  <- [connect/high@L731] 通用自动测试上位机V0.95::MainWindow.init_after_show
+  <- [call/high@L3612] 通用自动测试上位机V0.95::MainWindow.plan_test_threading
+  <- [call/high@L3618] 通用自动测试上位机V0.95::MainWindow.plan_test_threading
+
+## MainWindow.event_update_bingding_60s  L1474-1521  args=(self)  <qt_slot>
+  -> [call/high@L1494] 通用自动测试上位机V0.95::hexcut2list
+  -> [call/high@L1495] 通用自动测试上位机V0.95::hexcut2list
+  -> [call/high@L1496] 通用自动测试上位机V0.95::hexcut2list
+  -> [call/high@L1497] 通用自动测试上位机V0.95::hexcut2list
+  -> [call/high@L1498] 通用自动测试上位机V0.95::hexcut2list
+  -> [call/high@L1499] 通用自动测试上位机V0.95::hexcut2list
+  -> [call/high@L1501] 通用自动测试上位机V0.95::hexcut2list
+  -> [call/high@L1503] 通用自动测试上位机V0.95::hexcut2list
+  -> [call/high@L1504] 通用自动测试上位机V0.95::hexcut2list
+  -> [call/high@L1505] 通用自动测试上位机V0.95::hexcut2list
+  -> [call/high@L1508] 通用自动测试上位机V0.95::calculate_xorsum
+  -> [call/high@L1514] 通用自动测试上位机V0.95::calculate_checksum
+  => (外部库) struct.pack x12
+  <- [connect/high@L595] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.event_send_bingding_60s  L1524-1534  args=(self)  <qt_slot>
+  <- [connect/high@L740] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.tools_bd3x_taskDone  L1535-1538  args=(self, msg)
+  => (外部库) datetime.datetime.datetime.now x1
+
+## MainWindow.change_sate_button  L1541-1542  args=(self)  <qt_slot>
+  <- [connect/high@L745] 通用自动测试上位机V0.95::MainWindow.init_after_show
+  <- [call/high@L939] 通用自动测试上位机V0.95::MainWindow.init_all_coef_end
+
+## MainWindow.sate_send1_change_time  L1545-1552  args=(self)  <qt_slot>
+  <- [connect/high@L624] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.sate_send2_change_time  L1553-1560  args=(self)  <qt_slot>
+  <- [connect/high@L625] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.sate_send3_change_time  L1561-1568  args=(self)  <qt_slot>
+  <- [connect/high@L626] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.td_command_time_change  L1570-1577  args=(self)  <qt_slot>
+  <- [connect/high@L663] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.fz_command_time_change  L1579-1586  args=(self)  <qt_slot>
+  <- [connect/high@L672] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.gnss_command_time_change  L1588-1595  args=(self)  <qt_slot>
+  <- [connect/high@L681] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.event_update_sate1  L1600-1652  args=(self)  <qt_slot>
+  -> [call/high@L1615] 通用自动测试上位机V0.95::lat_lon2str
+  -> [call/high@L1618] 通用自动测试上位机V0.95::lat_lon2str
+  <- [call/high@L633] 通用自动测试上位机V0.95::MainWindow.init_after_show
+  <- [connect/high@L628] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.event_update_sate2  L1655-1689  args=(self)  <qt_slot>
+  <- [call/high@L634] 通用自动测试上位机V0.95::MainWindow.init_after_show
+  <- [connect/high@L630] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.event_update_sate3  L1691-1773  args=(self)  <qt_slot>
+  -> [call/high@L1771] funs.fun_checks::calculate_crc32
+  <- [call/high@L635] 通用自动测试上位机V0.95::MainWindow.init_after_show
+  <- [connect/high@L632] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.event_send_sate1  L1776-1793  args=(self)  <qt_slot,timer_callback>
+  => (外部库) datetime.datetime.now x1
+  => (外部库) datetime.datetime.timedelta x1
+  => (外部库) datetime.timezone x1
+  <- [connect/high@L608] 通用自动测试上位机V0.95::MainWindow.init_after_show
+  <- [timer/high@L797] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.event_send_sate2  L1796-1809  args=(self)  <qt_slot,timer_callback>
+  <- [connect/high@L609] 通用自动测试上位机V0.95::MainWindow.init_after_show
+  <- [timer/high@L801] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.event_send_sate3  L1811-1824  args=(self)  <qt_slot>
+  <- [connect/high@L610] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.event_td_send1  L1828-1849  args=(self)  <qt_slot,timer_callback>
+  => (外部库) datetime.datetime.now x1
+  <- [connect/high@L664] 通用自动测试上位机V0.95::MainWindow.init_after_show
+  <- [timer/high@L806] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.td_command_change  L1851-1868  args=(self)  <qt_slot>
+  <- [connect/high@L646] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.td_gnss_change  L1870-1885  args=(self)  <qt_slot>
+  <- [connect/high@L652] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.td_atmos_change  L1887-1891  args=(self)  <qt_slot>
+  <- [connect/high@L654] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.td_softUpdate_change  L1893-1897  args=(self)  <qt_slot>
+  <- [connect/high@L655] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.td_softPara_change  L1899-1903  args=(self)  <qt_slot>
+  <- [connect/high@L656] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.td_command_send_update  L1905-1920  args=(self)  <qt_slot>
+  -> [call/high@L1913] funs.fun_chy2::calculate_td_hex
+  <- [connect/high@L662] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.event_fz_send1  L1923-1939  args=(self)  <qt_slot,timer_callback>
+  <- [connect/high@L673] 通用自动测试上位机V0.95::MainWindow.init_after_show
+  <- [timer/high@L809] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.fz_command_send_update  L1941-1955  args=(self)  <qt_slot>
+  -> [call/high@L1949] funs.fun_chy2::calculate_fz_hex
+  <- [connect/high@L671] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.event_gnss_send1  L1959-1977  args=(self)  <qt_slot,timer_callback>
+  => (外部库) datetime.datetime.now x1
+  <- [connect/high@L682] 通用自动测试上位机V0.95::MainWindow.init_after_show
+  <- [timer/high@L812] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.gnss_status_change  L1979-1994  args=(self)  <qt_slot>
+  <- [connect/high@L688] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.gnss_command_send_update  L1996-2011  args=(self)  <qt_slot>
+  -> [call/high@L2005] funs.fun_chy2::calculate_gnss_hex
+  <- [connect/high@L680] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.event_power_on  L2016-2083  args=(self, command)  <hardware_io,qt_slot,serial_io_heuristic>
+  -> [call/high@L2030] funs.fun_serial::tryOpenSerial
+  -> [call/high@L2043] funs.fun_serial::tryOpenSerial
+  -> [call/high@L2054] funs.fun_serial::tryOpenSerial
+  => (外部库) time.sleep x7
+  <- [connect/high@L742] 通用自动测试上位机V0.95::MainWindow.init_after_show
+  <- [call/high@L3603] 通用自动测试上位机V0.95::MainWindow.plan_test_threading
+
+## MainWindow.event_power_off  L2086-2145  args=(self, command)  <hardware_io,qt_slot,serial_io_heuristic>
+  -> [call/high@L2093] funs.fun_serial::tryOpenSerial
+  -> [call/high@L2116] funs.fun_serial::tryOpenSerial
+  => (外部库) serial.Serial x1
+  => (外部库) time.sleep x7
+  <- [connect/high@L743] 通用自动测试上位机V0.95::MainWindow.init_after_show
+  <- [call/high@L3605] 通用自动测试上位机V0.95::MainWindow.plan_test_threading
+
+## MainWindow.event_autoset_inu  L2148-2169  args=(self)  <qt_slot>
+  <- [connect/high@L735] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.event_reload_config  L2170-2171  args=(self)  <qt_slot>
+  -> [call/high@L2171] 通用自动测试上位机V0.95::MainWindow.read_default_para_config
+  <- [connect/high@L737] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.event_load_file  L2176-2242  args=(self)  <qt_slot>
+  -> [call/high@L2215] 通用自动测试上位机V0.95::MainWindow.read_rules
+  -> [thread/high@L2224] 通用自动测试上位机V0.95::MainWindow.threading_receive_data   # thread_target
+  -> [create/high@L2241] funs.fun_chy2::class_rule.__init__   # ctor
+  -> [call/medium@L2242] funs.fun_chy2::class_rule.read_rule_file   # 局部变量 decode_struct = class_rule(...)
+  => (外部库) PyQt5.QtWidgets.QFileDialog x1
+  => (外部库) os.path.dirname x1
+  => (外部库) pandas.read_csv x2
+  => (外部库) threading.Thread x1
+  <- [connect/high@L733] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.read_default_para_com  L2247-2279  args=(self)
+  => (外部库) os.path.exists x1
+  <- [call/high@L771] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.read_default_para_config  L2282-2417  args=(self)
+  => (外部库) os.path.exists x1
+  <- [call/high@L772] 通用自动测试上位机V0.95::MainWindow.init_after_show
+  <- [call/high@L2171] 通用自动测试上位机V0.95::MainWindow.event_reload_config
+
+## MainWindow.read_rules  L2422-2699  args=(self)  <qt_slot>
+  -> [call/high@L2507] 通用自动测试上位机V0.95::check2chinese
+  -> [call/high@L2508] 通用自动测试上位机V0.95::check2chinese
+  -> [call/high@L2514] 通用自动测试上位机V0.95::try_set_text
+  -> [call/high@L2614] 通用自动测试上位机V0.95::calculate_frame_length
+  => (外部库) PyQt5.QtWidgets.QTableWidgetItem x1
+  => (外部库) struct.calcsize x1
+  <- [connect/high@L721] 通用自动测试上位机V0.95::MainWindow.init_after_show
+  <- [call/high@L2215] 通用自动测试上位机V0.95::MainWindow.event_load_file
+  <- [call/high@L2867] 通用自动测试上位机V0.95::MainWindow.begin_test
+
+## MainWindow.binding_change  L2702-2730  args=(self)  <qt_slot>
+  -> [call/high@L2705] 通用自动测试上位机V0.95::try_get_text
+  -> [call/high@L2706] 通用自动测试上位机V0.95::try_get_text
+  -> [call/high@L2707] 通用自动测试上位机V0.95::try_get_text
+  -> [call/high@L2708] 通用自动测试上位机V0.95::try_get_text
+  -> [call/high@L2718] 通用自动测试上位机V0.95::hexcut2list
+  -> [call/high@L2719] 通用自动测试上位机V0.95::hexcut2list
+  -> [call/high@L2720] 通用自动测试上位机V0.95::hexcut2list
+  -> [call/high@L2721] 通用自动测试上位机V0.95::hexcut2list
+  -> [call/high@L2723] 通用自动测试上位机V0.95::calculate_checksum
+  => (外部库) struct.pack x5
+  <- [connect/high@L522] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.update_plot_axis  L2732-2746  args=(self)  <qt_slot>
+  <- [connect/high@L710] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.update_double_axis  L2748-2764  args=(self)  <qt_slot>
+  <- [connect/high@L711] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.update_stand_axis  L2766-2788  args=(self)  <qt_slot>
+  <- [connect/high@L713] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.update_target_loc  L2789-2811  args=(self)  <qt_slot>
+  <- [connect/high@L715] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.update_target_spd  L2812-2834  args=(self)  <qt_slot>
+  <- [connect/high@L717] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.stop_test  L2852-2862  args=(self)  <qt_slot>
+  <- [connect/high@L729] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.begin_test  L2864-2922  args=(self)  <qt_slot>
+  -> [call/high@L2867] 通用自动测试上位机V0.95::MainWindow.read_rules
+  -> [call/high@L2906] 通用自动测试上位机V0.95::testmode2chinese
+  -> [call/high@L2911] 通用自动测试上位机V0.95::MainWindow.only_test
+  -> [call/high@L2914] 通用自动测试上位机V0.95::MainWindow.bd3x_test
+  -> [call/high@L2917] 通用自动测试上位机V0.95::MainWindow.bd_test
+  -> [call/high@L2922] 通用自动测试上位机V0.95::MainWindow.plan_test
+  <- [connect/high@L728] 通用自动测试上位机V0.95::MainWindow.init_after_show
+
+## MainWindow.only_test  L2927-2961  args=(self)
+  -> [thread/high@L2945] 通用自动测试上位机V0.95::MainWindow.threading_receive_sate   # thread_target
+  -> [thread/high@L2957] 通用自动测试上位机V0.95::MainWindow.threading_receive_data   # thread_target
+  => (外部库) threading.Thread x2
+  => (外部库) time.sleep x3
+  => (外部库) time.time x1
+  <- [call/high@L2911] 通用自动测试上位机V0.95::MainWindow.begin_test
+  <- [call/high@L2967] 通用自动测试上位机V0.95::MainWindow.bd_test
+  <- [call/high@L2972] 通用自动测试上位机V0.95::MainWindow.bd_test
+  <- [call/high@L2974] 通用自动测试上位机V0.95::MainWindow.bd_test
+  <- [call/high@L2982] 通用自动测试上位机V0.95::MainWindow.bd3x_test
+  <- [call/high@L2989] 通用自动测试上位机V0.95::MainWindow.bd3x_test
+  <- [call/high@L2992] 通用自动测试上位机V0.95::MainWindow.bd3x_test
+  <- [call/high@L3628] 通用自动测试上位机V0.95::MainWindow.plan_test_threading
+
+## MainWindow.bd_test  L2964-2977  args=(self)
+  -> [call/high@L2967] 通用自动测试上位机V0.95::MainWindow.only_test
+  -> [thread/high@L2969] 通用自动测试上位机V0.95::MainWindow.begin_test_bd   # thread_target
+  -> [call/high@L2972] 通用自动测试上位机V0.95::MainWindow.only_test
+  -> [call/high@L2974] 通用自动测试上位机V0.95::MainWindow.only_test
+  -> [call/high@L2975] 通用自动测试上位机V0.95::MainWindow.begin_test_bd
+  => (外部库) threading.Thread x1
+  <- [call/high@L2917] 通用自动测试上位机V0.95::MainWindow.begin_test
+  <- [call/high@L3652] 通用自动测试上位机V0.95::MainWindow.plan_test_threading
+  <- [call/high@L3664] 通用自动测试上位机V0.95::MainWindow.plan_test_threading
+
+## MainWindow.bd3x_test  L2979-2995  args=(self)
+  -> [call/high@L2982] 通用自动测试上位机V0.95::MainWindow.only_test
+  -> [call/medium@L2984] ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_open   # self.events_devide -> MainWindowEventDevide (module_chain 挂载)
+  -> [thread/high@L2985] 通用自动测试上位机V0.95::MainWindow.begin_test_3xbd   # thread_target
+  -> [call/high@L2989] 通用自动测试上位机V0.95::MainWindow.only_test
+  -> [call/medium@L2991] ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_open   # self.events_devide -> MainWindowEventDevide (module_chain 挂载)
+  -> [call/high@L2992] 通用自动测试上位机V0.95::MainWindow.only_test
+  -> [call/high@L2993] 通用自动测试上位机V0.95::MainWindow.begin_test_3xbd
+  => (外部库) threading.Thread x1
+  <- [call/high@L2914] 通用自动测试上位机V0.95::MainWindow.begin_test
+  <- [call/high@L3680] 通用自动测试上位机V0.95::MainWindow.plan_test_threading
+
+## MainWindow.plan_test  L2998-3001  args=(self)
+  -> [thread/high@L2999] 通用自动测试上位机V0.95::MainWindow.plan_test_threading   # thread_target
+  => (外部库) threading.Thread x1
+  <- [call/high@L2922] 通用自动测试上位机V0.95::MainWindow.begin_test
+
+## MainWindow.threading_receive_data  L3006-3458  args=(self, thread_num, decode_hex)  <hardware_io,serial_io_heuristic,thread_entry>
+  -> [call/high@L3023] 通用自动测试上位机V0.95::check2serial
+  -> [call/high@L3024] 通用自动测试上位机V0.95::stop2chinese
+  -> [call/high@L3052] 通用自动测试上位机V0.95::int2str
+  -> [call/high@L3052] 通用自动测试上位机V0.95::int2str
+  -> [call/high@L3052] 通用自动测试上位机V0.95::int2str
+  -> [call/high@L3096] funs.fun_chy2::split_plus
+  -> [call/high@L3105] funs.fun_chy2::split_plus
+  -> [call/high@L3156] funs.fun_serial::tryOpenSerial
+  -> [call/high@L3277] 通用自动测试上位机V0.95::decode_hex_frame_list
+  => (外部库) datetime.datetime.now x1
+  => (外部库) os.makedirs x3
+  => (外部库) os.path.exists x4
+  => (外部库) pandas.DataFrame x1
+  => (外部库) time.sleep x1
+  => (外部库) time.time x10
+  <- [thread/high@L2224] 通用自动测试上位机V0.95::MainWindow.event_load_file
+  <- [thread/high@L2957] 通用自动测试上位机V0.95::MainWindow.only_test
+
+## MainWindow.threading_receive_sate  L3461-3539  args=(self)  <hardware_io,serial_io_heuristic,thread_entry>
+  -> [call/high@L3467] 通用自动测试上位机V0.95::check2serial
+  -> [call/high@L3468] 通用自动测试上位机V0.95::stop2chinese
+  -> [call/high@L3486] 通用自动测试上位机V0.95::int2str
+  -> [call/high@L3486] 通用自动测试上位机V0.95::int2str
+  -> [call/high@L3486] 通用自动测试上位机V0.95::int2str
+  => (外部库) datetime.datetime.now x1
+  => (外部库) os.makedirs x1
+  => (外部库) os.path.exists x1
+  => (外部库) serial.Serial x2
+  => (外部库) time.sleep x2
+  <- [thread/high@L2945] 通用自动测试上位机V0.95::MainWindow.only_test
+
+## MainWindow.plan_test_threading  L3542-3752  args=(self)  <hardware_io,serial_io_heuristic,thread_entry>
+  -> [call/high@L3603] 通用自动测试上位机V0.95::MainWindow.event_power_on
+  -> [call/high@L3603] 通用自动测试上位机V0.95::try_split_power_command
+  -> [call/high@L3605] 通用自动测试上位机V0.95::MainWindow.event_power_off
+  -> [call/high@L3605] 通用自动测试上位机V0.95::try_split_power_command
+  -> [call/high@L3612] 通用自动测试上位机V0.95::MainWindow.binding_send
+  -> [call/high@L3618] 通用自动测试上位机V0.95::MainWindow.binding_send
+  -> [call/high@L3628] 通用自动测试上位机V0.95::MainWindow.only_test
+  -> [call/high@L3652] 通用自动测试上位机V0.95::MainWindow.bd_test
+  -> [call/high@L3664] 通用自动测试上位机V0.95::MainWindow.bd_test
+  -> [call/high@L3680] 通用自动测试上位机V0.95::MainWindow.bd3x_test
+  => (外部库) datetime.datetime.now x1
+  => (外部库) datetime.datetime.strptime x1
+  => (外部库) pandas.read_csv x2
+  => (外部库) re.split x1
+  => (外部库) serial.Serial x1
+  => (外部库) time.sleep x11
+  => (外部库) time.time x15
+  <- [thread/high@L2999] 通用自动测试上位机V0.95::MainWindow.plan_test
+
+## MainWindow.begin_test_bd  L3757-3995  args=(self)  <hardware_io,serial_io_heuristic,thread_entry>
+  -> [call/high@L3807] 通用自动测试上位机V0.95::int2str
+  -> [call/high@L3807] 通用自动测试上位机V0.95::int2str
+  -> [call/high@L3807] 通用自动测试上位机V0.95::int2str
+  -> [create/high@L3812] 通用自动测试上位机V0.95::Turntable_class.__init__   # ctor
+  -> [call/high@L3841] 通用自动测试上位机V0.95::conver_turntable_status
+  -> [call/high@L3842] 通用自动测试上位机V0.95::conver_turntable_status
+  -> [call/medium@L3877] 通用自动测试上位机V0.95::Turntable_class.inside_location   # 局部变量 turntable = Turntable_class(...)
+  -> [call/medium@L3878] 通用自动测试上位机V0.95::Turntable_class.outside_location   # 局部变量 turntable = Turntable_class(...)
+  -> [call/medium@L3882] 通用自动测试上位机V0.95::Turntable_class.inside_speed   # 局部变量 turntable = Turntable_class(...)
+  -> [call/medium@L3883] 通用自动测试上位机V0.95::Turntable_class.outside_location   # 局部变量 turntable = Turntable_class(...)
+  -> [call/medium@L3886] 通用自动测试上位机V0.95::Turntable_class.inside_location   # 局部变量 turntable = Turntable_class(...)
+  -> [call/medium@L3887] 通用自动测试上位机V0.95::Turntable_class.outside_speed   # 局部变量 turntable = Turntable_class(...)
+  -> [call/medium@L3890] 通用自动测试上位机V0.95::Turntable_class.inside_speed   # 局部变量 turntable = Turntable_class(...)
+  -> [call/medium@L3891] 通用自动测试上位机V0.95::Turntable_class.outside_speed   # 局部变量 turntable = Turntable_class(...)
+  -> [call/medium@L3895] 通用自动测试上位机V0.95::Turntable_class.get_command   # 局部变量 turntable = Turntable_class(...)
+  => (外部库) datetime.datetime.now x1
+  => (外部库) os.makedirs x1
+  => (外部库) os.path.exists x1
+  => (外部库) pandas.read_csv x2
+  => (外部库) serial.Serial x1
+  => (外部库) struct.unpack x1
+  => (外部库) time.sleep x9
+  => (外部库) time.time x7
+  <- [call/high@L2975] 通用自动测试上位机V0.95::MainWindow.bd_test
+  <- [thread/high@L2969] 通用自动测试上位机V0.95::MainWindow.bd_test
+
+## MainWindow.begin_test_3xbd  L3998-4113  args=(self)  <thread_entry>
+  -> [call/high@L4014] 通用自动测试上位机V0.95::int2str
+  -> [call/high@L4014] 通用自动测试上位机V0.95::int2str
+  -> [call/high@L4014] 通用自动测试上位机V0.95::int2str
+  -> [call/medium@L4056] ui.events.events_devide::MainWindowEventDevide.turntable3x_set_input   # self.events_devide -> MainWindowEventDevide (module_chain 挂载)
+  -> [call/medium@L4057] ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_turn   # self.events_devide -> MainWindowEventDevide (module_chain 挂载)
+  -> [call/high@L4069] funs.fun_chy2::angular_distance
+  -> [call/high@L4075] funs.fun_chy2::angular_distance
+  -> [call/medium@L4098] ui.events.events_devide::MainWindowEventDevide.turntable3x_set_input   # self.events_devide -> MainWindowEventDevide (module_chain 挂载)
+  -> [call/medium@L4099] ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_turn   # self.events_devide -> MainWindowEventDevide (module_chain 挂载)
+  => (外部库) datetime.datetime.now x1
+  => (外部库) os.makedirs x1
+  => (外部库) os.path.exists x1
+  => (外部库) pandas.read_csv x2
+  => (外部库) time.sleep x2
+  => (外部库) time.time x8
+  <- [call/high@L2993] 通用自动测试上位机V0.95::MainWindow.bd3x_test
+  <- [thread/high@L2985] 通用自动测试上位机V0.95::MainWindow.bd3x_test
+
+## decode_hex_frame  L4121-4136  args=(frame, rules_format, rules_head, rules_saveck, rules_paras)
+  => (外部库) struct.calcsize x2
+  => (外部库) struct.unpack x2
+
+## conver_turntable_status  L4138-4172  args=(hex_data)
+  <- [call/high@L3841] 通用自动测试上位机V0.95::MainWindow.begin_test_bd
+  <- [call/high@L3842] 通用自动测试上位机V0.95::MainWindow.begin_test_bd
+
+## lat_lon2str  L4173-4177  args=(float_data)
+  <- [call/high@L1615] 通用自动测试上位机V0.95::MainWindow.event_update_sate1
+  <- [call/high@L1618] 通用自动测试上位机V0.95::MainWindow.event_update_sate1
+
+## sate2location  L4178-4185  args=(sate_data)
+  <- [call/high@L4351] 通用自动测试上位机V0.95::GPGGA2loc
+  <- [call/high@L4352] 通用自动测试上位机V0.95::GPGGA2loc
+
+## try_set_text  L4186-4188  args=(obj, types, default)
+  <- [call/high@L2514] 通用自动测试上位机V0.95::MainWindow.read_rules
+
+## try_get_text  L4189-4191  args=(obj, types, default)
+  <- [call/high@L1061] 通用自动测试上位机V0.95::MainWindow.show_message_1s
+  <- [call/high@L1062] 通用自动测试上位机V0.95::MainWindow.show_message_1s
+  <- [call/high@L1063] 通用自动测试上位机V0.95::MainWindow.show_message_1s
+  <- [call/high@L1213] 通用自动测试上位机V0.95::MainWindow.show_message_2s
+  <- [call/high@L1224] 通用自动测试上位机V0.95::MainWindow.show_message_2s
+  <- [call/high@L1235] 通用自动测试上位机V0.95::MainWindow.show_message_2s
+  <- [call/high@L2705] 通用自动测试上位机V0.95::MainWindow.binding_change
+  <- [call/high@L2706] 通用自动测试上位机V0.95::MainWindow.binding_change
+  <- [call/high@L2707] 通用自动测试上位机V0.95::MainWindow.binding_change
+  <- [call/high@L2708] 通用自动测试上位机V0.95::MainWindow.binding_change
+
+## int2str  L4192-4193  args=(string, rjust, strjust)
+  <- [call/high@L3052] 通用自动测试上位机V0.95::MainWindow.threading_receive_data
+  <- [call/high@L3052] 通用自动测试上位机V0.95::MainWindow.threading_receive_data
+  <- [call/high@L3052] 通用自动测试上位机V0.95::MainWindow.threading_receive_data
+  <- [call/high@L3486] 通用自动测试上位机V0.95::MainWindow.threading_receive_sate
+  <- [call/high@L3486] 通用自动测试上位机V0.95::MainWindow.threading_receive_sate
+  <- [call/high@L3486] 通用自动测试上位机V0.95::MainWindow.threading_receive_sate
+  <- [call/high@L3807] 通用自动测试上位机V0.95::MainWindow.begin_test_bd
+  <- [call/high@L3807] 通用自动测试上位机V0.95::MainWindow.begin_test_bd
+  <- [call/high@L3807] 通用自动测试上位机V0.95::MainWindow.begin_test_bd
+  <- [call/high@L4014] 通用自动测试上位机V0.95::MainWindow.begin_test_3xbd
+  <- [call/high@L4014] 通用自动测试上位机V0.95::MainWindow.begin_test_3xbd
+  <- [call/high@L4014] 通用自动测试上位机V0.95::MainWindow.begin_test_3xbd
+
+## hex2int  L4194-4195  args=(strings)
+
+## int2hex  L4196-4197  args=(string, rjust)  <in_cycle>
+  -> [call/high@L4197] 通用自动测试上位机V0.95::int2hex
+  <- [call/high@L4197] 通用自动测试上位机V0.95::int2hex
+  <- [call/high@L4420] 通用自动测试上位机V0.95::Turntable_class.get_command
+  <- [call/high@L4444] 通用自动测试上位机V0.95::Turntable_class.reset_inside
+  <- [call/high@L4445] 通用自动测试上位机V0.95::Turntable_class.reset_inside
+  <- [call/high@L4446] 通用自动测试上位机V0.95::Turntable_class.reset_inside
+  <- [call/high@L4451] 通用自动测试上位机V0.95::Turntable_class.reset_outside
+  <- [call/high@L4452] 通用自动测试上位机V0.95::Turntable_class.reset_outside
+  <- [call/high@L4453] 通用自动测试上位机V0.95::Turntable_class.reset_outside
+  <- [call/high@L4458] 通用自动测试上位机V0.95::Turntable_class.inside_location
+  <- [call/high@L4459] 通用自动测试上位机V0.95::Turntable_class.inside_location
+  <- [call/high@L4460] 通用自动测试上位机V0.95::Turntable_class.inside_location
+  <- [call/high@L4465] 通用自动测试上位机V0.95::Turntable_class.inside_speed
+  <- ... 另有 6 个调用者
+
+## reverse  L4198-4199  args=(string)
+  <- [call/high@L4444] 通用自动测试上位机V0.95::Turntable_class.reset_inside
+  <- [call/high@L4445] 通用自动测试上位机V0.95::Turntable_class.reset_inside
+  <- [call/high@L4446] 通用自动测试上位机V0.95::Turntable_class.reset_inside
+  <- [call/high@L4451] 通用自动测试上位机V0.95::Turntable_class.reset_outside
+  <- [call/high@L4452] 通用自动测试上位机V0.95::Turntable_class.reset_outside
+  <- [call/high@L4453] 通用自动测试上位机V0.95::Turntable_class.reset_outside
+  <- [call/high@L4458] 通用自动测试上位机V0.95::Turntable_class.inside_location
+  <- [call/high@L4459] 通用自动测试上位机V0.95::Turntable_class.inside_location
+  <- [call/high@L4460] 通用自动测试上位机V0.95::Turntable_class.inside_location
+  <- [call/high@L4465] 通用自动测试上位机V0.95::Turntable_class.inside_speed
+  <- [call/high@L4466] 通用自动测试上位机V0.95::Turntable_class.inside_speed
+  <- [call/high@L4473] 通用自动测试上位机V0.95::Turntable_class.outside_location
+  <- ... 另有 4 个调用者
+
+## hexcut2list  L4200-4201  args=(string)
+  <- [call/high@L1494] 通用自动测试上位机V0.95::MainWindow.event_update_bingding_60s
+  <- [call/high@L1495] 通用自动测试上位机V0.95::MainWindow.event_update_bingding_60s
+  <- [call/high@L1496] 通用自动测试上位机V0.95::MainWindow.event_update_bingding_60s
+  <- [call/high@L1497] 通用自动测试上位机V0.95::MainWindow.event_update_bingding_60s
+  <- [call/high@L1498] 通用自动测试上位机V0.95::MainWindow.event_update_bingding_60s
+  <- [call/high@L1499] 通用自动测试上位机V0.95::MainWindow.event_update_bingding_60s
+  <- [call/high@L1501] 通用自动测试上位机V0.95::MainWindow.event_update_bingding_60s
+  <- [call/high@L1503] 通用自动测试上位机V0.95::MainWindow.event_update_bingding_60s
+  <- [call/high@L1504] 通用自动测试上位机V0.95::MainWindow.event_update_bingding_60s
+  <- [call/high@L1505] 通用自动测试上位机V0.95::MainWindow.event_update_bingding_60s
+  <- [call/high@L2718] 通用自动测试上位机V0.95::MainWindow.binding_change
+  <- [call/high@L2719] 通用自动测试上位机V0.95::MainWindow.binding_change
+  <- ... 另有 2 个调用者
+
+## struct_unpack_int3  L4202-4203  args=(string)
+  => (外部库) struct.unpack x1
+
+## check2serial  L4205-4208  args=(data)
+  <- [call/high@L3023] 通用自动测试上位机V0.95::MainWindow.threading_receive_data
+  <- [call/high@L3467] 通用自动测试上位机V0.95::MainWindow.threading_receive_sate
+
+## stop2chinese  L4210-4213  args=(data)
+  <- [call/high@L3024] 通用自动测试上位机V0.95::MainWindow.threading_receive_data
+  <- [call/high@L3468] 通用自动测试上位机V0.95::MainWindow.threading_receive_sate
+
+## check2chinese  L4215-4217  args=(data)
+  <- [call/high@L2507] 通用自动测试上位机V0.95::MainWindow.read_rules
+  <- [call/high@L2508] 通用自动测试上位机V0.95::MainWindow.read_rules
+
+## chinese2check  L4218-4220  args=(data)
+
+## rulename2chinese  L4222-4224  args=(data)
+
+## testmode2chinese  L4226-4228  args=(data)
+  <- [call/high@L2906] 通用自动测试上位机V0.95::MainWindow.begin_test
+
+## calculate_frame_length  L4230-4238  args=(rules_format_list)
+  => (外部库) struct.calcsize x1
+  <- [call/high@L2614] 通用自动测试上位机V0.95::MainWindow.read_rules
+
+## calculate_checksum  L4239-4243  args=(data)
+  <- [call/high@L1514] 通用自动测试上位机V0.95::MainWindow.event_update_bingding_60s
+  <- [call/high@L2723] 通用自动测试上位机V0.95::MainWindow.binding_change
+
+## calculate_xorsum  L4244-4248  args=(data)
+  <- [call/high@L1508] 通用自动测试上位机V0.95::MainWindow.event_update_bingding_60s
+
+## decode_hex_frame_list  L4250-4330  args=(frame, decode_rule_list, decode_save_list, decode_para_list, decode_sort_list, decode_edia_list, config_sum_check_list, config_crc_check_list)
+  -> [call/high@L4278] funs.fun_checks::calculate_crc16
+  => (外部库) struct.calcsize x1
+  => (外部库) struct.unpack x1
+  <- [call/high@L3277] 通用自动测试上位机V0.95::MainWindow.threading_receive_data
+
+## try_split_power_command  L4331-4342  args=(strings)
+  <- [call/high@L3603] 通用自动测试上位机V0.95::MainWindow.plan_test_threading
+  <- [call/high@L3605] 通用自动测试上位机V0.95::MainWindow.plan_test_threading
+
+## GPGGA2loc  L4343-4362  args=(strings)
+  -> [call/high@L4351] 通用自动测试上位机V0.95::sate2location
+  -> [call/high@L4352] 通用自动测试上位机V0.95::sate2location
+
+## KSXT2spd  L4363-4381  args=(strings)
+
+## Turntable_class.__init__  L4385-4408  args=(self)  <constructor>
+  <- [create/high@L3812] 通用自动测试上位机V0.95::MainWindow.begin_test_bd
+
+## Turntable_class.get_command  L4410-4426  args=(self)
+  -> [call/high@L4420] 通用自动测试上位机V0.95::int2hex
+  <- [call/medium@L3895] 通用自动测试上位机V0.95::MainWindow.begin_test_bd
+  <- [call/high@L4433] 通用自动测试上位机V0.95::Turntable_class.reset_inside
+  <- [call/high@L4440] 通用自动测试上位机V0.95::Turntable_class.reset_outside
+  <- [call/high@L4447] 通用自动测试上位机V0.95::Turntable_class.reset_inside
+  <- [call/high@L4454] 通用自动测试上位机V0.95::Turntable_class.reset_outside
+  <- [call/high@L4461] 通用自动测试上位机V0.95::Turntable_class.inside_location
+  <- [call/high@L4468] 通用自动测试上位机V0.95::Turntable_class.inside_speed
+  <- [call/high@L4476] 通用自动测试上位机V0.95::Turntable_class.outside_location
+  <- [call/high@L4483] 通用自动测试上位机V0.95::Turntable_class.outside_speed
+
+## Turntable_class.reset_inside  L4428-4433  args=(self)
+  -> [call/high@L4433] 通用自动测试上位机V0.95::Turntable_class.get_command
+
+## Turntable_class.reset_outside  L4435-4440  args=(self)
+  -> [call/high@L4440] 通用自动测试上位机V0.95::Turntable_class.get_command
+
+## Turntable_class.reset_inside  L4442-4447  args=(self)
+  -> [call/high@L4444] 通用自动测试上位机V0.95::int2hex
+  -> [call/high@L4444] 通用自动测试上位机V0.95::reverse
+  -> [call/high@L4445] 通用自动测试上位机V0.95::int2hex
+  -> [call/high@L4445] 通用自动测试上位机V0.95::reverse
+  -> [call/high@L4446] 通用自动测试上位机V0.95::int2hex
+  -> [call/high@L4446] 通用自动测试上位机V0.95::reverse
+  -> [call/high@L4447] 通用自动测试上位机V0.95::Turntable_class.get_command
+
+## Turntable_class.reset_outside  L4449-4454  args=(self)
+  -> [call/high@L4451] 通用自动测试上位机V0.95::int2hex
+  -> [call/high@L4451] 通用自动测试上位机V0.95::reverse
+  -> [call/high@L4452] 通用自动测试上位机V0.95::int2hex
+  -> [call/high@L4452] 通用自动测试上位机V0.95::reverse
+  -> [call/high@L4453] 通用自动测试上位机V0.95::int2hex
+  -> [call/high@L4453] 通用自动测试上位机V0.95::reverse
+  -> [call/high@L4454] 通用自动测试上位机V0.95::Turntable_class.get_command
+
+## Turntable_class.inside_location  L4456-4461  args=(self, location, speed, acceleration)
+  -> [call/high@L4458] 通用自动测试上位机V0.95::int2hex
+  -> [call/high@L4458] 通用自动测试上位机V0.95::reverse
+  -> [call/high@L4459] 通用自动测试上位机V0.95::int2hex
+  -> [call/high@L4459] 通用自动测试上位机V0.95::reverse
+  -> [call/high@L4460] 通用自动测试上位机V0.95::int2hex
+  -> [call/high@L4460] 通用自动测试上位机V0.95::reverse
+  -> [call/high@L4461] 通用自动测试上位机V0.95::Turntable_class.get_command
+  <- [call/medium@L3877] 通用自动测试上位机V0.95::MainWindow.begin_test_bd
+  <- [call/medium@L3886] 通用自动测试上位机V0.95::MainWindow.begin_test_bd
+
+## Turntable_class.inside_speed  L4463-4468  args=(self, speed, acceleration)
+  -> [call/high@L4465] 通用自动测试上位机V0.95::int2hex
+  -> [call/high@L4465] 通用自动测试上位机V0.95::reverse
+  -> [call/high@L4466] 通用自动测试上位机V0.95::int2hex
+  -> [call/high@L4466] 通用自动测试上位机V0.95::reverse
+  -> [call/high@L4468] 通用自动测试上位机V0.95::Turntable_class.get_command
+  <- [call/medium@L3882] 通用自动测试上位机V0.95::MainWindow.begin_test_bd
+  <- [call/medium@L3890] 通用自动测试上位机V0.95::MainWindow.begin_test_bd
+
+## Turntable_class.outside_location  L4471-4476  args=(self, location, speed, acceleration)
+  -> [call/high@L4473] 通用自动测试上位机V0.95::int2hex
+  -> [call/high@L4473] 通用自动测试上位机V0.95::reverse
+  -> [call/high@L4474] 通用自动测试上位机V0.95::int2hex
+  -> [call/high@L4474] 通用自动测试上位机V0.95::reverse
+  -> [call/high@L4475] 通用自动测试上位机V0.95::int2hex
+  -> [call/high@L4475] 通用自动测试上位机V0.95::reverse
+  -> [call/high@L4476] 通用自动测试上位机V0.95::Turntable_class.get_command
+  <- [call/medium@L3878] 通用自动测试上位机V0.95::MainWindow.begin_test_bd
+  <- [call/medium@L3883] 通用自动测试上位机V0.95::MainWindow.begin_test_bd
+
+## Turntable_class.outside_speed  L4478-4483  args=(self, speed, acceleration)
+  -> [call/high@L4480] 通用自动测试上位机V0.95::int2hex
+  -> [call/high@L4480] 通用自动测试上位机V0.95::reverse
+  -> [call/high@L4481] 通用自动测试上位机V0.95::int2hex
+  -> [call/high@L4481] 通用自动测试上位机V0.95::reverse
+  -> [call/high@L4483] 通用自动测试上位机V0.95::Turntable_class.get_command
+  <- [call/medium@L3887] 通用自动测试上位机V0.95::MainWindow.begin_test_bd
+  <- [call/medium@L3891] 通用自动测试上位机V0.95::MainWindow.begin_test_bd

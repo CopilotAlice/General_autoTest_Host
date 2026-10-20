@@ -1,0 +1,14 @@
+%% 模块局部调用树: ui.inits.inits_funcTest (ui/inits/inits_funcTest.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["MainWindowInitFuncTest.__init__<br/><small>ui.inits.inits_funcTest:7</small>"]
+  f1["MainWindowInitFuncTest.get_uuid<br/><small>ui.inits.inits_funcTest:16</small>"]
+  f0 -->|"call/high"| f1
+  f2["MainWindowInitFuncTest.init_load_setting<br/><small>ui.inits.inits_funcTest:80</small>"]
+  f0 -->|"call/high"| f2
+  f3["MainWindowInitFuncTest.load_config<br/><small>ui.inits.inits_funcTest:19</small>"]
+  f0 -->|"call/high"| f3
+  f4["MainWindowInitFuncTest.clickLogic_bykey<br/><small>ui.inits.inits_funcTest:33</small>"]
+  f0 -->|"call/high"| f4
+  f5["MainWindowInitFuncTest.clickEvent_childHidden<br/><small>ui.inits.inits_funcTest:69</small>"]
+  f4 ==>|"connect/high"| f5
+  f2 -->|"call/high"| f1

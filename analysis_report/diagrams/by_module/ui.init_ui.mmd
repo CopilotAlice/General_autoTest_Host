@@ -1,0 +1,65 @@
+%% 模块局部调用树: ui.init_ui (ui/init_ui.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["MainWindowInit.__init__<br/><small>ui.init_ui:14</small>"]
+  f1["MainWindowInit.init_ui_setting<br/><small>ui.init_ui:49</small>"]
+  f0 -->|"call/high"| f1
+  f0 -->|"call/high"| f1
+  f2["MainWindowInit.init_ui_time<br/><small>ui.init_ui:57</small>"]
+  f0 -->|"call/high"| f2
+  f3["MainWindowInit.init_ui_toolTip<br/><small>ui.init_ui:97</small>"]
+  f0 -->|"call/high"| f3
+  f4["MainWindowInit.init_ui_paths<br/><small>ui.init_ui:102</small>"]
+  f0 -->|"call/high"| f4
+  f5["MainWindowInit.init_ui_graphview<br/><small>ui.init_ui:170</small>"]
+  f0 -->|"call/high"| f5
+  f6["MainWindowInit.init_ui_turntable3x<br/><small>ui.init_ui:253</small>"]
+  f0 -->|"call/high"| f6
+  f7["MainWindowInit.init_general_button<br/><small>ui.init_ui:157</small>"]
+  f0 -->|"call/high"| f7
+  f8["MainWindowInit.update_time<br/><small>ui.init_ui:81</small>"]
+  f2 -->|"call/high"| f8
+  f9["MainWindowInit.get_time_list<br/><small>ui.init_ui:88</small>"]
+  f9 -->|"call/high"| f8
+  f10["MainWindowInit.get_normal_time<br/><small>ui.init_ui:92</small>"]
+  f10 -->|"call/high"| f8
+  f11["MainWindowInit.init_ui_graphview.‹locals›.updateViewDPb1<br/><small>ui.init_ui:204</small>"]
+  f5 ==>|"connect/high"| f11
+  f12["MainWindowInit.init_ui_graphview.‹locals›.updateViewDPb2<br/><small>ui.init_ui:216</small>"]
+  f5 ==>|"connect/high"| f12
+  f13["MainWindowInit.init_ui_graphview.‹locals›.updateViewDPb3<br/><small>ui.init_ui:228</small>"]
+  f5 ==>|"connect/high"| f13
+  f14["MainWindowInit.init_ui_input<br/><small>ui.init_ui:240</small>"]
+  f15["struct_paraCal.__init__<br/><small>ui.init_ui:484</small>"]
+  f14 -->|"create/high"| f15
+  f16["del_empty_folder<br/><small>ui.init_ui:369</small>"]
+  f16 -->|"call/high"| f16
+  f17["struct_paraCal.init_list<br/><small>ui.init_ui:488</small>"]
+  f15 -->|"call/high"| f17
+  f18["struct_paraCal.init_conf<br/><small>ui.init_ui:512</small>"]
+  f15 -->|"call/high"| f18
+  f19["struct_paraCal.load_BD_file<br/><small>ui.init_ui:570</small>"]
+  f20["struct_paraCal.processing_BD_file<br/><small>ui.init_ui:619</small>"]
+  f19 -->|"call/high"| f20
+  f19 -->|"call/high"| f20
+  f21["struct_paraCal.processing_BD_SL<br/><small>ui.init_ui:586</small>"]
+  f19 -->|"call/high"| f21
+  f22["struct_paraCal.processing_BD_LW<br/><small>ui.init_ui:589</small>"]
+  f19 -->|"call/high"| f22
+  f23["struct_paraCal.processing_BD_ave<br/><small>ui.init_ui:580</small>"]
+  f23 -->|"call/high"| f20
+  f24["struct_paraCal.processing_BD_std<br/><small>ui.init_ui:583</small>"]
+  f24 -->|"call/high"| f20
+  f25["struct_paraCal.load_SL_file<br/><small>ui.init_ui:744</small>"]
+  f21 -->|"call/high"| f25
+  f26["struct_paraCal.load_LW_file<br/><small>ui.init_ui:820</small>"]
+  f22 -->|"call/high"| f26
+  f20 -->|"call/high"| f16
+  f27["struct_paraCal.get_all2List<br/><small>ui.init_ui:601</small>"]
+  f20 -->|"call/high"| f27
+  f20 -->|"call/high"| f27
+  f25 -->|"call/high"| f27
+  f28["fun_sl_average<br/><small>ui.init_ui:441</small>"]
+  f25 -->|"call/high"| f28
+  f26 -->|"call/high"| f27
+  f29["fun_lw_average<br/><small>ui.init_ui:389</small>"]
+  f26 -->|"call/high"| f29

@@ -1,0 +1,54 @@
+# 类 ui.structs::struct_tab_setting  (ui/structs.py:109)  bases=[]
+
+## struct_tab_setting.__init__  L110
+   ui.structs::struct_tab_setting.__init__  (ui/structs.py:110)
+       [call/high@L118(+6 处: 119,120,121,122,123)] ui.structs::struct_tab_setting.__init__.<locals>.get_widget  (ui/structs.py:112)
+
+## struct_tab_setting.set_com  L129
+   ui.structs::struct_tab_setting.set_com  (ui/structs.py:129)
+
+## struct_tab_setting.set_baund  L131
+   ui.structs::struct_tab_setting.set_baund  (ui/structs.py:131)
+
+## struct_tab_setting.set_check  L133
+   ui.structs::struct_tab_setting.set_check  (ui/structs.py:133)
+
+## struct_tab_setting.set_stop  L135
+   ui.structs::struct_tab_setting.set_stop  (ui/structs.py:135)
+
+## struct_tab_setting.set_open  L138
+   ui.structs::struct_tab_setting.set_open  (ui/structs.py:138)
+
+## struct_tab_setting.switch_open  L141
+   ui.structs::struct_tab_setting.switch_open  (ui/structs.py:141)
+       [call/high@L142] ui.structs::struct_tab_setting.get_open_flag  (ui/structs.py:158)
+
+## struct_tab_setting.set_name  L143
+   ui.structs::struct_tab_setting.set_name  (ui/structs.py:143)
+
+## struct_tab_setting.set_plan  L145
+   ui.structs::struct_tab_setting.set_plan  (ui/structs.py:145)
+
+## struct_tab_setting.get_com  L148
+   ui.structs::struct_tab_setting.get_com  (ui/structs.py:148)
+
+## struct_tab_setting.get_baund  L150
+   ui.structs::struct_tab_setting.get_baund  (ui/structs.py:150)
+
+## struct_tab_setting.get_check  L152
+   ui.structs::struct_tab_setting.get_check  (ui/structs.py:152)
+
+## struct_tab_setting.get_stop  L154
+   ui.structs::struct_tab_setting.get_stop  (ui/structs.py:154)
+
+## struct_tab_setting.get_open  L156
+   ui.structs::struct_tab_setting.get_open  (ui/structs.py:156)
+
+## struct_tab_setting.get_open_flag  L158
+   ui.structs::struct_tab_setting.get_open_flag  (ui/structs.py:158)
+
+## struct_tab_setting.get_name  L160
+   ui.structs::struct_tab_setting.get_name  (ui/structs.py:160)
+
+## struct_tab_setting.get_plan  L162
+   ui.structs::struct_tab_setting.get_plan  (ui/structs.py:162)

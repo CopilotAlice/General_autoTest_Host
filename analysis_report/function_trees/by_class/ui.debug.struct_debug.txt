@@ -1,0 +1,27 @@
+# 类 ui.debug::struct_debug  (ui/debug.py:39)  bases=[]
+
+## struct_debug.__init__  L40
+   ui.debug::struct_debug.__init__  (ui/debug.py:40)
+       [call/high@L61] ui.debug::struct_debug.update_ui_link  (ui/debug.py:64)
+           [call/high@L72] ui.debug::struct_debug.update_ui_list  (ui/debug.py:85)
+
+## struct_debug.update_ui_link  L64
+   ui.debug::struct_debug.update_ui_link  (ui/debug.py:64)
+       [call/high@L72] ui.debug::struct_debug.update_ui_list  (ui/debug.py:85)
+
+## struct_debug.update_ui_list  L85
+   ui.debug::struct_debug.update_ui_list  (ui/debug.py:85)
+
+## struct_debug.get_check_out  L96
+   ui.debug::struct_debug.get_check_out  (ui/debug.py:96)
+
+## struct_debug.get_check_last  L102
+   ui.debug::struct_debug.get_check_last  (ui/debug.py:102)
+
+## struct_debug.update_ui_msg  L109
+   ui.debug::struct_debug.update_ui_msg  (ui/debug.py:109)
+       [call/high@L112] ui.debug::struct_debug.get_check_out  (ui/debug.py:96)
+       [call/high@L113] ui.debug::struct_debug.get_check_last  (ui/debug.py:102)
+
+## struct_debug.append_ui_msg  L119
+   ui.debug::struct_debug.append_ui_msg  (ui/debug.py:119)

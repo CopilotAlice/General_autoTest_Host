@@ -1,0 +1,34 @@
+# 模块 ui.constants  (ui/constants.py)
+
+## <module>  L1-70  args=()  <module_body>
+
+## MainWindowConstants.__init__  L11-31  args=(self, mainWindow)  <constructor>
+  -> [call/high@L14] ui.constants::MainWindowConstants.init_load_path
+  -> [call/high@L18] ui.constants::MainWindowConstants.init_12tab_setting
+  -> [call/high@L22] ui.constants::MainWindowConstants.init_general_bind
+  -> [call/high@L25] ui.constants::MainWindowConstants.init_send_struct
+  -> [call/high@L31] ui.constants::MainWindowConstants.init_struct_turntable3x
+  <- [create/high@L94] 通用自动测试上位机V0.90::MainWindow.__init__
+  <- [dynamic/medium@L175] 通用自动测试上位机V0.95::MainWindow._init_modules_in_batches
+
+## MainWindowConstants.init_load_path  L34-35  args=(self)
+  => (外部库) os.getcwd x1
+  <- [call/high@L14] ui.constants::MainWindowConstants.__init__
+
+## MainWindowConstants.init_12tab_setting  L38-48  args=(self)
+  -> [create/high@L40] ui.structs::struct_tab_setting.__init__   # ctor
+  -> [create/high@L42] ui.structs::struct_tab_setting.__init__   # ctor
+  <- [call/high@L18] ui.constants::MainWindowConstants.__init__
+
+## MainWindowConstants.init_general_bind  L50-51  args=(self)
+  -> [create/high@L51] ui.structs::struct_general_bind.__init__   # ctor
+  <- [call/high@L22] ui.constants::MainWindowConstants.__init__
+
+## MainWindowConstants.init_send_struct  L54-66  args=(self)
+  -> [create/high@L65] ui.structs::struct_sate.__init__   # ctor
+  -> [call/medium@L66] ui.structs::struct_sate.init_sate_save   # self.struct_sate = struct_sate(...)
+  <- [call/high@L25] ui.constants::MainWindowConstants.__init__
+
+## MainWindowConstants.init_struct_turntable3x  L69-70  args=(self)
+  -> [create/high@L70] ui.structs::struct_turnTable3x.__init__   # ctor
+  <- [call/high@L31] ui.constants::MainWindowConstants.__init__

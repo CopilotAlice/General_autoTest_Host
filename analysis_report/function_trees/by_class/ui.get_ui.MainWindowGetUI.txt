@@ -1,0 +1,7 @@
+# 类 ui.get_ui::MainWindowGetUI  (ui/get_ui.py:4)  bases=[]
+
+## MainWindowGetUI.__init__  L5
+   ui.get_ui::MainWindowGetUI.__init__  (ui/get_ui.py:5)
+
+## MainWindowGetUI.get_name_pathCombox  L9
+   ui.get_ui::MainWindowGetUI.get_name_pathCombox  (ui/get_ui.py:9)

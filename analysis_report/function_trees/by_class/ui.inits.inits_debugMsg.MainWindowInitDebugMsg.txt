@@ -1,0 +1,8 @@
+# 类 ui.inits.inits_debugMsg::MainWindowInitDebugMsg  (ui/inits/inits_debugMsg.py:2)  bases=[]
+
+## MainWindowInitDebugMsg.__init__  L3
+   ui.inits.inits_debugMsg::MainWindowInitDebugMsg.__init__  (ui/inits/inits_debugMsg.py:3)
+       [call/high@L7] ui.inits.inits_debugMsg::MainWindowInitDebugMsg.init_debugMsg_list  (ui/inits/inits_debugMsg.py:9)
+
+## MainWindowInitDebugMsg.init_debugMsg_list  L9
+   ui.inits.inits_debugMsg::MainWindowInitDebugMsg.init_debugMsg_list  (ui/inits/inits_debugMsg.py:9)

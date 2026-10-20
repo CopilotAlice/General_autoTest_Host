@@ -1,0 +1,656 @@
+# 类 通用自动测试上位机V0.95::MainWindow  (通用自动测试上位机V0.95.py:126)  bases=['QtWidgets.QMainWindow', 'Ui_MainWindow']
+
+## MainWindow.__init__  L127
+   通用自动测试上位机V0.95::MainWindow.__init__  (通用自动测试上位机V0.95.py:127)
+       [call/high@L136] Automated_testingV19::Ui_MainWindow.setupUi  (Automated_testingV19.py:15)  <generated>
+       [timer/high@L152] 通用自动测试上位机V0.95::MainWindow.init_after_show  (通用自动测试上位机V0.95.py:197)  <timer_callback>
+           [call/high@L199] 通用自动测试上位机V0.95::MainWindow._init_modules_in_batches  (通用自动测试上位机V0.95.py:166)
+           [create/high@L377] funs.fun_chy2::class_rule.__init__  (funs/fun_chy2.py:188)
+           [connect/high@L522] 通用自动测试上位机V0.95::MainWindow.binding_change  (通用自动测试上位机V0.95.py:2702)  <qt_slot>
+           [connect/high@L595] 通用自动测试上位机V0.95::MainWindow.event_update_bingding_60s  (通用自动测试上位机V0.95.py:1474)  <qt_slot>
+           [connect/high@L608] 通用自动测试上位机V0.95::MainWindow.event_send_sate1  (通用自动测试上位机V0.95.py:1776)  <qt_slot,timer_callback>
+           [connect/high@L609] 通用自动测试上位机V0.95::MainWindow.event_send_sate2  (通用自动测试上位机V0.95.py:1796)  <qt_slot,timer_callback>
+           [connect/high@L610] 通用自动测试上位机V0.95::MainWindow.event_send_sate3  (通用自动测试上位机V0.95.py:1811)  <qt_slot>
+           [connect/high@L624] 通用自动测试上位机V0.95::MainWindow.sate_send1_change_time  (通用自动测试上位机V0.95.py:1545)  <qt_slot>
+           [connect/high@L625] 通用自动测试上位机V0.95::MainWindow.sate_send2_change_time  (通用自动测试上位机V0.95.py:1553)  <qt_slot>
+           [connect/high@L626] 通用自动测试上位机V0.95::MainWindow.sate_send3_change_time  (通用自动测试上位机V0.95.py:1561)  <qt_slot>
+           [connect/high@L628] 通用自动测试上位机V0.95::MainWindow.event_update_sate1  (通用自动测试上位机V0.95.py:1600)  <qt_slot>
+           [connect/high@L630] 通用自动测试上位机V0.95::MainWindow.event_update_sate2  (通用自动测试上位机V0.95.py:1655)  <qt_slot>
+           [connect/high@L632] 通用自动测试上位机V0.95::MainWindow.event_update_sate3  (通用自动测试上位机V0.95.py:1691)  <qt_slot>
+           [call/high@L633] 通用自动测试上位机V0.95::MainWindow.event_update_sate1  ↑ 已在上文展开  (通用自动测试上位机V0.95.py:1600)
+           [call/high@L634] 通用自动测试上位机V0.95::MainWindow.event_update_sate2  (通用自动测试上位机V0.95.py:1655)  <qt_slot>
+           [call/high@L635] 通用自动测试上位机V0.95::MainWindow.event_update_sate3  ↑ 已在上文展开  (通用自动测试上位机V0.95.py:1691)
+           [connect/high@L646] 通用自动测试上位机V0.95::MainWindow.td_command_change  (通用自动测试上位机V0.95.py:1851)  <qt_slot>
+           [connect/high@L652] 通用自动测试上位机V0.95::MainWindow.td_gnss_change  (通用自动测试上位机V0.95.py:1870)  <qt_slot>
+           [connect/high@L654] 通用自动测试上位机V0.95::MainWindow.td_atmos_change  (通用自动测试上位机V0.95.py:1887)  <qt_slot>
+           [connect/high@L655] 通用自动测试上位机V0.95::MainWindow.td_softUpdate_change  (通用自动测试上位机V0.95.py:1893)  <qt_slot>
+           [connect/high@L656] 通用自动测试上位机V0.95::MainWindow.td_softPara_change  (通用自动测试上位机V0.95.py:1899)  <qt_slot>
+           [connect/high@L662] 通用自动测试上位机V0.95::MainWindow.td_command_send_update  (通用自动测试上位机V0.95.py:1905)  <qt_slot>
+           [connect/high@L663] 通用自动测试上位机V0.95::MainWindow.td_command_time_change  (通用自动测试上位机V0.95.py:1570)  <qt_slot>
+           [connect/high@L664] 通用自动测试上位机V0.95::MainWindow.event_td_send1  (通用自动测试上位机V0.95.py:1828)  <qt_slot,timer_callback>
+           [connect/high@L671] 通用自动测试上位机V0.95::MainWindow.fz_command_send_update  (通用自动测试上位机V0.95.py:1941)  <qt_slot>
+           [connect/high@L672] 通用自动测试上位机V0.95::MainWindow.fz_command_time_change  (通用自动测试上位机V0.95.py:1579)  <qt_slot>
+           [connect/high@L673] 通用自动测试上位机V0.95::MainWindow.event_fz_send1  (通用自动测试上位机V0.95.py:1923)  <qt_slot,timer_callback>
+           [connect/high@L680] 通用自动测试上位机V0.95::MainWindow.gnss_command_send_update  (通用自动测试上位机V0.95.py:1996)  <qt_slot>
+           [connect/high@L681] 通用自动测试上位机V0.95::MainWindow.gnss_command_time_change  (通用自动测试上位机V0.95.py:1588)  <qt_slot>
+           [connect/high@L682] 通用自动测试上位机V0.95::MainWindow.event_gnss_send1  (通用自动测试上位机V0.95.py:1959)  <qt_slot,timer_callback>
+           [connect/high@L688] 通用自动测试上位机V0.95::MainWindow.gnss_status_change  (通用自动测试上位机V0.95.py:1979)  <qt_slot>
+           [connect/high@L703(+2 处: 704,705)] 通用自动测试上位机V0.95::MainWindow.protocal_com_change  (通用自动测试上位机V0.95.py:1429)  <qt_slot>
+           [connect/high@L706(+2 处: 707,708)] 通用自动测试上位机V0.95::MainWindow.comboBox_com_change  (通用自动测试上位机V0.95.py:1436)  <qt_slot>
+           [connect/high@L710] 通用自动测试上位机V0.95::MainWindow.update_plot_axis  (通用自动测试上位机V0.95.py:2732)  <qt_slot>
+           [connect/high@L711] 通用自动测试上位机V0.95::MainWindow.update_double_axis  (通用自动测试上位机V0.95.py:2748)  <qt_slot>
+           [connect/high@L713] 通用自动测试上位机V0.95::MainWindow.update_stand_axis  (通用自动测试上位机V0.95.py:2766)  <qt_slot>
+           [connect/high@L715] 通用自动测试上位机V0.95::MainWindow.update_target_loc  (通用自动测试上位机V0.95.py:2789)  <qt_slot>
+           [connect/high@L717] 通用自动测试上位机V0.95::MainWindow.update_target_spd  (通用自动测试上位机V0.95.py:2812)  <qt_slot>
+           [connect/high@L719] 通用自动测试上位机V0.95::MainWindow.filenames_change  (通用自动测试上位机V0.95.py:1444)  <qt_slot>
+           [connect/high@L721] 通用自动测试上位机V0.95::MainWindow.read_rules  (通用自动测试上位机V0.95.py:2422)  <qt_slot>
+           [connect/high@L728] 通用自动测试上位机V0.95::MainWindow.begin_test  (通用自动测试上位机V0.95.py:2864)  <qt_slot>
+           [connect/high@L729] 通用自动测试上位机V0.95::MainWindow.stop_test  (通用自动测试上位机V0.95.py:2852)  <qt_slot>
+           [connect/high@L731] 通用自动测试上位机V0.95::MainWindow.binding_send  (通用自动测试上位机V0.95.py:1453)  <qt_slot>
+           [connect/high@L733] 通用自动测试上位机V0.95::MainWindow.event_load_file  (通用自动测试上位机V0.95.py:2176)  <qt_slot>
+           [connect/high@L735] 通用自动测试上位机V0.95::MainWindow.event_autoset_inu  (通用自动测试上位机V0.95.py:2148)  <qt_slot>
+           [connect/high@L737] 通用自动测试上位机V0.95::MainWindow.event_reload_config  (通用自动测试上位机V0.95.py:2170)  <qt_slot>
+           [connect/high@L740] 通用自动测试上位机V0.95::MainWindow.event_send_bingding_60s  (通用自动测试上位机V0.95.py:1524)  <qt_slot>
+           [connect/high@L742] 通用自动测试上位机V0.95::MainWindow.event_power_on  (通用自动测试上位机V0.95.py:2016)  <hardware_io,qt_slot,serial_io_heuristic>
+           [connect/high@L743] 通用自动测试上位机V0.95::MainWindow.event_power_off  (通用自动测试上位机V0.95.py:2086)  <hardware_io,qt_slot,serial_io_heuristic>
+           [connect/high@L745] 通用自动测试上位机V0.95::MainWindow.change_sate_button  (通用自动测试上位机V0.95.py:1541)  <qt_slot>
+           [call/high@L750] 通用自动测试上位机V0.95::MainWindow.init_all_coef  (通用自动测试上位机V0.95.py:892)
+           [call/high@L751] 通用自动测试上位机V0.95::MainWindow._bind_plot_imu_lineedit_sync  (通用自动测试上位机V0.95.py:818)
+           [call/high@L752] 通用自动测试上位机V0.95::MainWindow._sync_plot_window_to_imu  (通用自动测试上位机V0.95.py:829)  <qt_slot>
+           [call/high@L765] 通用自动测试上位机V0.95::MainWindow.show_message_01s  (通用自动测试上位机V0.95.py:945)  <timer_callback>
+           [call/high@L766] 通用自动测试上位机V0.95::MainWindow.show_message_05s  (通用自动测试上位机V0.95.py:975)  <timer_callback>
+           [call/high@L767] 通用自动测试上位机V0.95::MainWindow.show_message_1s  (通用自动测试上位机V0.95.py:997)  <timer_callback>
+           [call/high@L768] 通用自动测试上位机V0.95::MainWindow.show_message_5s  (通用自动测试上位机V0.95.py:1397)  <hardware_io,timer_callback>
+           [call/high@L771] 通用自动测试上位机V0.95::MainWindow.read_default_para_com  (通用自动测试上位机V0.95.py:2247)
+           [call/high@L772] 通用自动测试上位机V0.95::MainWindow.read_default_para_config  (通用自动测试上位机V0.95.py:2282)
+           [timer/high@L776] 通用自动测试上位机V0.95::MainWindow.show_message_01s  (通用自动测试上位机V0.95.py:945)  <timer_callback>
+           [timer/high@L780] 通用自动测试上位机V0.95::MainWindow.show_message_05s  (通用自动测试上位机V0.95.py:975)  <timer_callback>
+           [timer/high@L784] 通用自动测试上位机V0.95::MainWindow.show_message_1s  ↑ 已在上文展开  (通用自动测试上位机V0.95.py:997)
+           [timer/high@L788] 通用自动测试上位机V0.95::MainWindow.show_message_5s  ↑ 已在上文展开  (通用自动测试上位机V0.95.py:1397)
+           [timer/high@L792] 通用自动测试上位机V0.95::MainWindow.show_message_2s  (通用自动测试上位机V0.95.py:1173)  <timer_callback>
+           [timer/high@L797] 通用自动测试上位机V0.95::MainWindow.event_send_sate1  (通用自动测试上位机V0.95.py:1776)  <qt_slot,timer_callback>
+           [timer/high@L801] 通用自动测试上位机V0.95::MainWindow.event_send_sate2  (通用自动测试上位机V0.95.py:1796)  <qt_slot,timer_callback>
+           [timer/high@L806] 通用自动测试上位机V0.95::MainWindow.event_td_send1  (通用自动测试上位机V0.95.py:1828)  <qt_slot,timer_callback>
+           [timer/high@L809] 通用自动测试上位机V0.95::MainWindow.event_fz_send1  (通用自动测试上位机V0.95.py:1923)  <qt_slot,timer_callback>
+           [timer/high@L812] 通用自动测试上位机V0.95::MainWindow.event_gnss_send1  (通用自动测试上位机V0.95.py:1959)  <qt_slot,timer_callback>
+           [call/high@L816] 通用自动测试上位机V0.95::MainWindow.init_all_coef_end  (通用自动测试上位机V0.95.py:921)
+
+## MainWindow._init_module  L159
+   通用自动测试上位机V0.95::MainWindow._init_module  (通用自动测试上位机V0.95.py:159)
+
+## MainWindow._init_modules_in_batches  L166
+   通用自动测试上位机V0.95::MainWindow._init_modules_in_batches  (通用自动测试上位机V0.95.py:166)
+       [dynamic/medium@L168] ui.inits.inits_debugMsg::MainWindowInitDebugMsg.__init__  (ui/inits/inits_debugMsg.py:3)
+           [call/high@L7] ui.inits.inits_debugMsg::MainWindowInitDebugMsg.init_debugMsg_list  (ui/inits/inits_debugMsg.py:9)
+       [dynamic/medium@L169] ui.inits.inits_showMsg::MainWindowInitShowMsg.__init__  (ui/inits/inits_showMsg.py:33)
+           [call/high@L36] ui.inits.inits_showMsg::MainWindowInitShowMsg.init_showMsg_process  (ui/inits/inits_showMsg.py:38)
+       [dynamic/medium@L170] ui.load_ini::MainWindowInitIni.__init__  (ui/load_ini.py:5)
+           [call/high@L8] ui.load_ini::MainWindowInitIni.load_ini_debug_mode  (ui/load_ini.py:13)
+           [call/high@L9] ui.load_ini::MainWindowInitIni.event_load_ini_debug_mode  (ui/load_ini.py:22)
+           [call/high@L10] ui.load_ini::MainWindowInitIni.load_ini_ui_config  (ui/load_ini.py:44)
+       [dynamic/medium@L171] ui.debug::MainWindowDebug.__init__  (ui/debug.py:5)
+           [call/high@L8] ui.debug::MainWindowDebug.debug_time_init  (ui/debug.py:12)
+           [call/high@L9] ui.debug::MainWindowDebug.debug_struct_init  (ui/debug.py:19)
+       [dynamic/medium@L172] ui.init_ui::MainWindowInit.__init__  (ui/init_ui.py:14)
+           [call/high@L18(+1 处: 19)] ui.init_ui::MainWindowInit.init_ui_setting  (ui/init_ui.py:49)
+           [call/high@L21] ui.init_ui::MainWindowInit.init_ui_time  (ui/init_ui.py:57)
+           [call/high@L22] ui.init_ui::MainWindowInit.init_ui_toolTip  (ui/init_ui.py:97)
+           [call/high@L23] ui.init_ui::MainWindowInit.init_ui_paths  (ui/init_ui.py:102)
+           [call/high@L25] ui.init_ui::MainWindowInit.init_ui_graphview  (ui/init_ui.py:170)
+           [call/high@L28] ui.init_ui::MainWindowInit.init_ui_turntable3x  (ui/init_ui.py:253)
+           [call/high@L45] ui.init_ui::MainWindowInit.init_general_button  (ui/init_ui.py:157)
+       [dynamic/medium@L173] ui.times::MainWindowTimes.__init__  (ui/times.py:9)
+           [call/high@L16] ui.times::MainWindowTimes.update_test_time  (ui/times.py:18)
+       [dynamic/medium@L174] ui.settings::MainWindowSetting.__init__  (ui/settings.py:5)
+           [call/high@L9] ui.settings::MainWindowSetting.init_default_config  (ui/settings.py:20)
+           [call/high@L11] ui.settings::MainWindowSetting.init_config_sate  (ui/settings.py:31)
+           [call/high@L15] ui.settings::MainWindowSetting.init_read_para  (ui/settings.py:48)
+           [call/high@L16] ui.settings::MainWindowSetting.init_read_root  (ui/settings.py:80)
+       [dynamic/medium@L175] ui.constants::MainWindowConstants.__init__  (ui/constants.py:11)
+           [call/high@L14] ui.constants::MainWindowConstants.init_load_path  (ui/constants.py:34)
+           [call/high@L18] ui.constants::MainWindowConstants.init_12tab_setting  (ui/constants.py:38)
+           [call/high@L22] ui.constants::MainWindowConstants.init_general_bind  (ui/constants.py:50)
+           [call/high@L25] ui.constants::MainWindowConstants.init_send_struct  (ui/constants.py:54)
+           [call/high@L31] ui.constants::MainWindowConstants.init_struct_turntable3x  (ui/constants.py:69)
+       [dynamic/medium@L176] ui.event::MainWindowEvent.__init__  (ui/event.py:14)
+       [dynamic/medium@L177] ui.threads::MainWindowThread.__init__  (ui/threads.py:7)
+       [dynamic/medium@L178] ui.logic::MainWindowLogic.__init__  (ui/logic.py:3)
+           [call/high@L9] ui.logic::MainWindowLogic.logic_general_bind  (ui/logic.py:40)
+           [call/high@L11] ui.logic::MainWindowLogic.logic_12tab_setting  (ui/logic.py:51)
+           [call/high@L13] ui.logic::MainWindowLogic.logic_protocal_rule_change  (ui/logic.py:66)
+           [call/high@L14] ui.logic::MainWindowLogic.logic_comboBoxPath_update  (ui/logic.py:89)
+           [call/high@L20] ui.logic::MainWindowLogic.logic_auxsate  (ui/logic.py:74)
+           [call/high@L22] ui.logic::MainWindowLogic.logic_cal_BD_data  (ui/logic.py:83)
+           [call/high@L25] ui.logic::MainWindowLogic.logic_readDecodeRule  (ui/logic.py:97)
+           [call/high@L26] ui.logic::MainWindowLogic.logic_readAutoTest  (ui/logic.py:103)
+           [call/high@L29] ui.logic::MainWindowLogic.logic_turntable3x  (ui/logic.py:106)
+       [dynamic/medium@L179] ui.get_ui::MainWindowGetUI.__init__  (ui/get_ui.py:5)
+       [dynamic/medium@L180] ui.events.events_devide::MainWindowEventDevide.__init__  (ui/events/events_devide.py:5)
+           [call/high@L7] ui.events.events_devide::MainWindowEventDevide.logic_tempBox  (ui/events/events_devide.py:18)
+           [call/high@L8] ui.events.events_devide::MainWindowEventDevide.logic_turntable3x  (ui/events/events_devide.py:51)
+       [dynamic/medium@L181] ui.events.events_hidden::MainWindowEventHidden.__init__  (ui/events/events_hidden.py:3)
+           [call/high@L5] ui.events.events_hidden::MainWindowEventHidden.logic_clickHidden  (ui/events/events_hidden.py:10)
+           [call/high@L6] ui.events.events_hidden::MainWindowEventHidden.logic_changeHidden  (ui/events/events_hidden.py:50)
+           [call/high@L7] ui.events.events_hidden::MainWindowEventHidden.init_hidden  (ui/events/events_hidden.py:29)
+       [dynamic/medium@L182] ui.tools.tools_bdcalib::MainWindowToolBdcalib.__init__  (ui/tools/tools_bdcalib.py:54)
+           [call/high@L68] ui.tools.tools_bdcalib::MainWindowToolBdcalib.init_list  (ui/tools/tools_bdcalib.py:87)
+           [call/high@L69] ui.tools.tools_bdcalib::MainWindowToolBdcalib.init_data  (ui/tools/tools_bdcalib.py:98)
+           [connect/high@L71] ui.tools.tools_bdcalib::MainWindowToolBdcalib.load_path  (ui/tools/tools_bdcalib.py:120)  <qt_slot>
+           [connect/high@L72] ui.tools.tools_bdcalib::MainWindowToolBdcalib.item_click_showMsg  (ui/tools/tools_bdcalib.py:196)  <qt_slot>
+           [connect/high@L73] ui.tools.tools_bdcalib::MainWindowToolBdcalib.item_click_changeFolder  (ui/tools/tools_bdcalib.py:187)  <qt_slot>
+           [connect/high@L75] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_uppath  (ui/tools/tools_bdcalib.py:179)  <qt_slot>
+           [connect/high@L76(+1 处: 84)] ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files  (ui/tools/tools_bdcalib.py:128)  <qt_slot>
+           [connect/high@L77] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_avePath  (ui/tools/tools_bdcalib.py:267)  <qt_slot>
+           [connect/high@L78] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_formatConversion  (ui/tools/tools_bdcalib.py:280)  <qt_slot>
+           [connect/high@L79] ui.tools.tools_bdcalib::MainWindowToolBdcalib.change_preset  (ui/tools/tools_bdcalib.py:325)  <qt_slot>
+           [connect/high@L80] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_createBin  (ui/tools/tools_bdcalib.py:327)  <qt_slot>
+           [connect/high@L81] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_autoRun  (ui/tools/tools_bdcalib.py:329)  <qt_slot>
+           [connect/high@L82] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_calPara  (ui/tools/tools_bdcalib.py:292)  <qt_slot>
+           [connect/high@L83] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_polyfit  (ui/tools/tools_bdcalib.py:305)  <qt_slot>
+       [dynamic/medium@L183] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.__init__  (ui/tools/tools_burn_ymodem.py:194)
+           [call/high@L198] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem._build_tab_if_needed  (ui/tools/tools_burn_ymodem.py:202)
+           [call/high@L199] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem._bind_events  (ui/tools/tools_burn_ymodem.py:267)
+           [call/high@L200] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.refresh_ports  (ui/tools/tools_burn_ymodem.py:279)  <hardware_io,qt_slot>
+       [dynamic/medium@L184] ui.navs.nav_loc::MainWindowNavLoc.__init__  (ui/navs/nav_loc.py:136)
+           [call/high@L145] ui.navs.nav_loc::MainWindowNavLoc._resolve_workspace_path  (ui/navs/nav_loc.py:170)
+           [call/high@L164] ui.navs.nav_loc::MainWindowNavLoc.init_inu_plot_items_lazy  (ui/navs/nav_loc.py:638)
+           [call/high@L165] ui.navs.nav_loc::MainWindowNavLoc.load_map_config  (ui/navs/nav_loc.py:262)
+           [call/high@L166] ui.navs.nav_loc::MainWindowNavLoc.load_offline_map  (ui/navs/nav_loc.py:531)
+           [call/high@L167] ui.navs.nav_loc::MainWindowNavLoc.init_radar  (ui/navs/nav_loc.py:1374)
+           [call/high@L168] ui.navs.nav_loc::MainWindowNavLoc.init_logic  (ui/navs/nav_loc.py:1348)
+       [call/high@L188] 通用自动测试上位机V0.95::MainWindow._init_module  (通用自动测试上位机V0.95.py:159)
+
+## MainWindow.init_after_show  L197
+   通用自动测试上位机V0.95::MainWindow.init_after_show  (通用自动测试上位机V0.95.py:197)  <timer_callback>
+       [call/high@L199] 通用自动测试上位机V0.95::MainWindow._init_modules_in_batches  (通用自动测试上位机V0.95.py:166)
+           [dynamic/medium@L168] ui.inits.inits_debugMsg::MainWindowInitDebugMsg.__init__  (ui/inits/inits_debugMsg.py:3)
+           [dynamic/medium@L169] ui.inits.inits_showMsg::MainWindowInitShowMsg.__init__  (ui/inits/inits_showMsg.py:33)
+           [dynamic/medium@L170] ui.load_ini::MainWindowInitIni.__init__  (ui/load_ini.py:5)
+           [dynamic/medium@L171] ui.debug::MainWindowDebug.__init__  (ui/debug.py:5)
+           [dynamic/medium@L172] ui.init_ui::MainWindowInit.__init__  (ui/init_ui.py:14)
+           [dynamic/medium@L173] ui.times::MainWindowTimes.__init__  (ui/times.py:9)
+           [dynamic/medium@L174] ui.settings::MainWindowSetting.__init__  (ui/settings.py:5)
+           [dynamic/medium@L175] ui.constants::MainWindowConstants.__init__  (ui/constants.py:11)
+           [dynamic/medium@L176] ui.event::MainWindowEvent.__init__  (ui/event.py:14)
+           [dynamic/medium@L177] ui.threads::MainWindowThread.__init__  (ui/threads.py:7)
+           [dynamic/medium@L178] ui.logic::MainWindowLogic.__init__  (ui/logic.py:3)
+           [dynamic/medium@L179] ui.get_ui::MainWindowGetUI.__init__  (ui/get_ui.py:5)
+           [dynamic/medium@L180] ui.events.events_devide::MainWindowEventDevide.__init__  (ui/events/events_devide.py:5)
+           [dynamic/medium@L181] ui.events.events_hidden::MainWindowEventHidden.__init__  (ui/events/events_hidden.py:3)
+           [dynamic/medium@L182] ui.tools.tools_bdcalib::MainWindowToolBdcalib.__init__  (ui/tools/tools_bdcalib.py:54)
+           [dynamic/medium@L183] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.__init__  (ui/tools/tools_burn_ymodem.py:194)
+           [dynamic/medium@L184] ui.navs.nav_loc::MainWindowNavLoc.__init__  (ui/navs/nav_loc.py:136)
+           [call/high@L188] 通用自动测试上位机V0.95::MainWindow._init_module  (通用自动测试上位机V0.95.py:159)
+       [create/high@L377] funs.fun_chy2::class_rule.__init__  (funs/fun_chy2.py:188)
+       [connect/high@L522] 通用自动测试上位机V0.95::MainWindow.binding_change  (通用自动测试上位机V0.95.py:2702)  <qt_slot>
+           [call/high@L2705(+3 处: 2706,2707,2708)] 通用自动测试上位机V0.95::try_get_text  (通用自动测试上位机V0.95.py:4189)
+           [call/high@L2718(+3 处: 2719,2720,2721)] 通用自动测试上位机V0.95::hexcut2list  (通用自动测试上位机V0.95.py:4200)
+           [call/high@L2723] 通用自动测试上位机V0.95::calculate_checksum  (通用自动测试上位机V0.95.py:4239)
+       [connect/high@L595] 通用自动测试上位机V0.95::MainWindow.event_update_bingding_60s  (通用自动测试上位机V0.95.py:1474)  <qt_slot>
+           [call/high@L1494(+9 处: 1495,1496,1497,1498,1499)] 通用自动测试上位机V0.95::hexcut2list  (通用自动测试上位机V0.95.py:4200)
+           [call/high@L1508] 通用自动测试上位机V0.95::calculate_xorsum  (通用自动测试上位机V0.95.py:4244)
+           [call/high@L1514] 通用自动测试上位机V0.95::calculate_checksum  (通用自动测试上位机V0.95.py:4239)
+       [connect/high@L608] 通用自动测试上位机V0.95::MainWindow.event_send_sate1  (通用自动测试上位机V0.95.py:1776)  <qt_slot,timer_callback>
+       [connect/high@L609] 通用自动测试上位机V0.95::MainWindow.event_send_sate2  (通用自动测试上位机V0.95.py:1796)  <qt_slot,timer_callback>
+       [connect/high@L610] 通用自动测试上位机V0.95::MainWindow.event_send_sate3  (通用自动测试上位机V0.95.py:1811)  <qt_slot>
+       [connect/high@L624] 通用自动测试上位机V0.95::MainWindow.sate_send1_change_time  (通用自动测试上位机V0.95.py:1545)  <qt_slot>
+       [connect/high@L625] 通用自动测试上位机V0.95::MainWindow.sate_send2_change_time  (通用自动测试上位机V0.95.py:1553)  <qt_slot>
+       [connect/high@L626] 通用自动测试上位机V0.95::MainWindow.sate_send3_change_time  (通用自动测试上位机V0.95.py:1561)  <qt_slot>
+       [connect/high@L628] 通用自动测试上位机V0.95::MainWindow.event_update_sate1  (通用自动测试上位机V0.95.py:1600)  <qt_slot>
+           [call/high@L1615(+1 处: 1618)] 通用自动测试上位机V0.95::lat_lon2str  (通用自动测试上位机V0.95.py:4173)
+       [connect/high@L630] 通用自动测试上位机V0.95::MainWindow.event_update_sate2  (通用自动测试上位机V0.95.py:1655)  <qt_slot>
+       [connect/high@L632] 通用自动测试上位机V0.95::MainWindow.event_update_sate3  (通用自动测试上位机V0.95.py:1691)  <qt_slot>
+           [call/high@L1771] funs.fun_checks::calculate_crc32  (funs/fun_checks.py:97)
+       [call/high@L633] 通用自动测试上位机V0.95::MainWindow.event_update_sate1  ↑ 已在上文展开  (通用自动测试上位机V0.95.py:1600)
+       [call/high@L634] 通用自动测试上位机V0.95::MainWindow.event_update_sate2  (通用自动测试上位机V0.95.py:1655)  <qt_slot>
+       [call/high@L635] 通用自动测试上位机V0.95::MainWindow.event_update_sate3  ↑ 已在上文展开  (通用自动测试上位机V0.95.py:1691)
+       [connect/high@L646] 通用自动测试上位机V0.95::MainWindow.td_command_change  (通用自动测试上位机V0.95.py:1851)  <qt_slot>
+       [connect/high@L652] 通用自动测试上位机V0.95::MainWindow.td_gnss_change  (通用自动测试上位机V0.95.py:1870)  <qt_slot>
+       [connect/high@L654] 通用自动测试上位机V0.95::MainWindow.td_atmos_change  (通用自动测试上位机V0.95.py:1887)  <qt_slot>
+       [connect/high@L655] 通用自动测试上位机V0.95::MainWindow.td_softUpdate_change  (通用自动测试上位机V0.95.py:1893)  <qt_slot>
+       [connect/high@L656] 通用自动测试上位机V0.95::MainWindow.td_softPara_change  (通用自动测试上位机V0.95.py:1899)  <qt_slot>
+       [connect/high@L662] 通用自动测试上位机V0.95::MainWindow.td_command_send_update  (通用自动测试上位机V0.95.py:1905)  <qt_slot>
+           [call/high@L1913] funs.fun_chy2::calculate_td_hex  (funs/fun_chy2.py:12)
+       [connect/high@L663] 通用自动测试上位机V0.95::MainWindow.td_command_time_change  (通用自动测试上位机V0.95.py:1570)  <qt_slot>
+       [connect/high@L664] 通用自动测试上位机V0.95::MainWindow.event_td_send1  (通用自动测试上位机V0.95.py:1828)  <qt_slot,timer_callback>
+       [connect/high@L671] 通用自动测试上位机V0.95::MainWindow.fz_command_send_update  (通用自动测试上位机V0.95.py:1941)  <qt_slot>
+           [call/high@L1949] funs.fun_chy2::calculate_fz_hex  (funs/fun_chy2.py:30)
+       [connect/high@L672] 通用自动测试上位机V0.95::MainWindow.fz_command_time_change  (通用自动测试上位机V0.95.py:1579)  <qt_slot>
+       [connect/high@L673] 通用自动测试上位机V0.95::MainWindow.event_fz_send1  (通用自动测试上位机V0.95.py:1923)  <qt_slot,timer_callback>
+       [connect/high@L680] 通用自动测试上位机V0.95::MainWindow.gnss_command_send_update  (通用自动测试上位机V0.95.py:1996)  <qt_slot>
+           [call/high@L2005] funs.fun_chy2::calculate_gnss_hex  (funs/fun_chy2.py:46)
+       [connect/high@L681] 通用自动测试上位机V0.95::MainWindow.gnss_command_time_change  (通用自动测试上位机V0.95.py:1588)  <qt_slot>
+       [connect/high@L682] 通用自动测试上位机V0.95::MainWindow.event_gnss_send1  (通用自动测试上位机V0.95.py:1959)  <qt_slot,timer_callback>
+       [connect/high@L688] 通用自动测试上位机V0.95::MainWindow.gnss_status_change  (通用自动测试上位机V0.95.py:1979)  <qt_slot>
+       [connect/high@L703(+2 处: 704,705)] 通用自动测试上位机V0.95::MainWindow.protocal_com_change  (通用自动测试上位机V0.95.py:1429)  <qt_slot>
+       [connect/high@L706(+2 处: 707,708)] 通用自动测试上位机V0.95::MainWindow.comboBox_com_change  (通用自动测试上位机V0.95.py:1436)  <qt_slot>
+       [connect/high@L710] 通用自动测试上位机V0.95::MainWindow.update_plot_axis  (通用自动测试上位机V0.95.py:2732)  <qt_slot>
+       [connect/high@L711] 通用自动测试上位机V0.95::MainWindow.update_double_axis  (通用自动测试上位机V0.95.py:2748)  <qt_slot>
+       [connect/high@L713] 通用自动测试上位机V0.95::MainWindow.update_stand_axis  (通用自动测试上位机V0.95.py:2766)  <qt_slot>
+       [connect/high@L715] 通用自动测试上位机V0.95::MainWindow.update_target_loc  (通用自动测试上位机V0.95.py:2789)  <qt_slot>
+       [connect/high@L717] 通用自动测试上位机V0.95::MainWindow.update_target_spd  (通用自动测试上位机V0.95.py:2812)  <qt_slot>
+       [connect/high@L719] 通用自动测试上位机V0.95::MainWindow.filenames_change  (通用自动测试上位机V0.95.py:1444)  <qt_slot>
+       [connect/high@L721] 通用自动测试上位机V0.95::MainWindow.read_rules  (通用自动测试上位机V0.95.py:2422)  <qt_slot>
+           [call/high@L2507(+1 处: 2508)] 通用自动测试上位机V0.95::check2chinese  (通用自动测试上位机V0.95.py:4215)
+           [call/high@L2514] 通用自动测试上位机V0.95::try_set_text  (通用自动测试上位机V0.95.py:4186)
+           [call/high@L2614] 通用自动测试上位机V0.95::calculate_frame_length  (通用自动测试上位机V0.95.py:4230)
+       [connect/high@L728] 通用自动测试上位机V0.95::MainWindow.begin_test  (通用自动测试上位机V0.95.py:2864)  <qt_slot>
+           [call/high@L2867] 通用自动测试上位机V0.95::MainWindow.read_rules  ↑ 已在上文展开  (通用自动测试上位机V0.95.py:2422)
+           [call/high@L2906] 通用自动测试上位机V0.95::testmode2chinese  (通用自动测试上位机V0.95.py:4226)
+           [call/high@L2911] 通用自动测试上位机V0.95::MainWindow.only_test  (通用自动测试上位机V0.95.py:2927)
+           [call/high@L2914] 通用自动测试上位机V0.95::MainWindow.bd3x_test  (通用自动测试上位机V0.95.py:2979)
+           [call/high@L2917] 通用自动测试上位机V0.95::MainWindow.bd_test  (通用自动测试上位机V0.95.py:2964)
+           [call/high@L2922] 通用自动测试上位机V0.95::MainWindow.plan_test  (通用自动测试上位机V0.95.py:2998)
+       [connect/high@L729] 通用自动测试上位机V0.95::MainWindow.stop_test  (通用自动测试上位机V0.95.py:2852)  <qt_slot>
+       [connect/high@L731] 通用自动测试上位机V0.95::MainWindow.binding_send  (通用自动测试上位机V0.95.py:1453)  <qt_slot>
+       [connect/high@L733] 通用自动测试上位机V0.95::MainWindow.event_load_file  (通用自动测试上位机V0.95.py:2176)  <qt_slot>
+           [call/high@L2215] 通用自动测试上位机V0.95::MainWindow.read_rules  ↑ 已在上文展开  (通用自动测试上位机V0.95.py:2422)
+           [thread/high@L2224] 通用自动测试上位机V0.95::MainWindow.threading_receive_data  (通用自动测试上位机V0.95.py:3006)  <hardware_io,serial_io_heuristic,thread_entry>
+           [create/high@L2241] funs.fun_chy2::class_rule.__init__  (funs/fun_chy2.py:188)
+           [call/medium@L2242] funs.fun_chy2::class_rule.read_rule_file  (funs/fun_chy2.py:246)
+       [connect/high@L735] 通用自动测试上位机V0.95::MainWindow.event_autoset_inu  (通用自动测试上位机V0.95.py:2148)  <qt_slot>
+       [connect/high@L737] 通用自动测试上位机V0.95::MainWindow.event_reload_config  (通用自动测试上位机V0.95.py:2170)  <qt_slot>
+           [call/high@L2171] 通用自动测试上位机V0.95::MainWindow.read_default_para_config  (通用自动测试上位机V0.95.py:2282)
+       [connect/high@L740] 通用自动测试上位机V0.95::MainWindow.event_send_bingding_60s  (通用自动测试上位机V0.95.py:1524)  <qt_slot>
+       [connect/high@L742] 通用自动测试上位机V0.95::MainWindow.event_power_on  (通用自动测试上位机V0.95.py:2016)  <hardware_io,qt_slot,serial_io_heuristic>
+           [call/high@L2030(+2 处: 2043,2054)] funs.fun_serial::tryOpenSerial  (funs/fun_serial.py:6)  <hardware_io>
+       [connect/high@L743] 通用自动测试上位机V0.95::MainWindow.event_power_off  (通用自动测试上位机V0.95.py:2086)  <hardware_io,qt_slot,serial_io_heuristic>
+           [call/high@L2093(+1 处: 2116)] funs.fun_serial::tryOpenSerial  (funs/fun_serial.py:6)  <hardware_io>
+       [connect/high@L745] 通用自动测试上位机V0.95::MainWindow.change_sate_button  (通用自动测试上位机V0.95.py:1541)  <qt_slot>
+       [call/high@L750] 通用自动测试上位机V0.95::MainWindow.init_all_coef  (通用自动测试上位机V0.95.py:892)
+       [call/high@L751] 通用自动测试上位机V0.95::MainWindow._bind_plot_imu_lineedit_sync  (通用自动测试上位机V0.95.py:818)
+           [connect/high@L825] 通用自动测试上位机V0.95::MainWindow._sync_plot_window_to_imu  (通用自动测试上位机V0.95.py:829)  <qt_slot>
+       [call/high@L752] 通用自动测试上位机V0.95::MainWindow._sync_plot_window_to_imu  (通用自动测试上位机V0.95.py:829)  <qt_slot>
+       [call/high@L765] 通用自动测试上位机V0.95::MainWindow.show_message_01s  (通用自动测试上位机V0.95.py:945)  <timer_callback>
+       [call/high@L766] 通用自动测试上位机V0.95::MainWindow.show_message_05s  (通用自动测试上位机V0.95.py:975)  <timer_callback>
+       [call/high@L767] 通用自动测试上位机V0.95::MainWindow.show_message_1s  (通用自动测试上位机V0.95.py:997)  <timer_callback>
+           [call/high@L1061(+2 处: 1062,1063)] 通用自动测试上位机V0.95::try_get_text  (通用自动测试上位机V0.95.py:4189)
+       [call/high@L768] 通用自动测试上位机V0.95::MainWindow.show_message_5s  (通用自动测试上位机V0.95.py:1397)  <hardware_io,timer_callback>
+           [call/medium@L1425] ui.times::MainWindowTimes.timeEvent_update_combobox  (ui/times.py:33)  <qt_slot>
+       [call/high@L771] 通用自动测试上位机V0.95::MainWindow.read_default_para_com  (通用自动测试上位机V0.95.py:2247)
+       [call/high@L772] 通用自动测试上位机V0.95::MainWindow.read_default_para_config  (通用自动测试上位机V0.95.py:2282)
+       [timer/high@L776] 通用自动测试上位机V0.95::MainWindow.show_message_01s  (通用自动测试上位机V0.95.py:945)  <timer_callback>
+       [timer/high@L780] 通用自动测试上位机V0.95::MainWindow.show_message_05s  (通用自动测试上位机V0.95.py:975)  <timer_callback>
+       [timer/high@L784] 通用自动测试上位机V0.95::MainWindow.show_message_1s  ↑ 已在上文展开  (通用自动测试上位机V0.95.py:997)
+       [timer/high@L788] 通用自动测试上位机V0.95::MainWindow.show_message_5s  ↑ 已在上文展开  (通用自动测试上位机V0.95.py:1397)
+       [timer/high@L792] 通用自动测试上位机V0.95::MainWindow.show_message_2s  (通用自动测试上位机V0.95.py:1173)  <timer_callback>
+           [call/high@L1213(+2 处: 1224,1235)] 通用自动测试上位机V0.95::try_get_text  (通用自动测试上位机V0.95.py:4189)
+           [call/high@L1338] 通用自动测试上位机V0.95::MainWindow._update_inu_error_stats  (通用自动测试上位机V0.95.py:1370)
+           [call/medium@L1344] ui.navs.nav_loc::MainWindowNavLoc.update_attitude_from_dataframe  (ui/navs/nav_loc.py:1328)
+       [timer/high@L797] 通用自动测试上位机V0.95::MainWindow.event_send_sate1  (通用自动测试上位机V0.95.py:1776)  <qt_slot,timer_callback>
+       [timer/high@L801] 通用自动测试上位机V0.95::MainWindow.event_send_sate2  (通用自动测试上位机V0.95.py:1796)  <qt_slot,timer_callback>
+       [timer/high@L806] 通用自动测试上位机V0.95::MainWindow.event_td_send1  (通用自动测试上位机V0.95.py:1828)  <qt_slot,timer_callback>
+       [timer/high@L809] 通用自动测试上位机V0.95::MainWindow.event_fz_send1  (通用自动测试上位机V0.95.py:1923)  <qt_slot,timer_callback>
+       [timer/high@L812] 通用自动测试上位机V0.95::MainWindow.event_gnss_send1  (通用自动测试上位机V0.95.py:1959)  <qt_slot,timer_callback>
+       [call/high@L816] 通用自动测试上位机V0.95::MainWindow.init_all_coef_end  (通用自动测试上位机V0.95.py:921)
+           [call/high@L939] 通用自动测试上位机V0.95::MainWindow.change_sate_button  (通用自动测试上位机V0.95.py:1541)  <qt_slot>
+
+## MainWindow._bind_plot_imu_lineedit_sync  L818
+   通用自动测试上位机V0.95::MainWindow._bind_plot_imu_lineedit_sync  (通用自动测试上位机V0.95.py:818)
+       [connect/high@L825] 通用自动测试上位机V0.95::MainWindow._sync_plot_window_to_imu  (通用自动测试上位机V0.95.py:829)  <qt_slot>
+
+## MainWindow._sync_plot_window_to_imu  L829
+   通用自动测试上位机V0.95::MainWindow._sync_plot_window_to_imu  (通用自动测试上位机V0.95.py:829)  <qt_slot>
+
+## MainWindow.init_all_coef  L892
+   通用自动测试上位机V0.95::MainWindow.init_all_coef  (通用自动测试上位机V0.95.py:892)
+
+## MainWindow.init_all_coef_end  L921
+   通用自动测试上位机V0.95::MainWindow.init_all_coef_end  (通用自动测试上位机V0.95.py:921)
+       [call/high@L939] 通用自动测试上位机V0.95::MainWindow.change_sate_button  (通用自动测试上位机V0.95.py:1541)  <qt_slot>
+
+## MainWindow.show_message_01s  L945
+   通用自动测试上位机V0.95::MainWindow.show_message_01s  (通用自动测试上位机V0.95.py:945)  <timer_callback>
+
+## MainWindow.show_message_05s  L975
+   通用自动测试上位机V0.95::MainWindow.show_message_05s  (通用自动测试上位机V0.95.py:975)  <timer_callback>
+
+## MainWindow.show_message_1s  L997
+   通用自动测试上位机V0.95::MainWindow.show_message_1s  (通用自动测试上位机V0.95.py:997)  <timer_callback>
+       [call/high@L1061(+2 处: 1062,1063)] 通用自动测试上位机V0.95::try_get_text  (通用自动测试上位机V0.95.py:4189)
+
+## MainWindow.show_message_2s  L1173
+   通用自动测试上位机V0.95::MainWindow.show_message_2s  (通用自动测试上位机V0.95.py:1173)  <timer_callback>
+       [call/high@L1213(+2 处: 1224,1235)] 通用自动测试上位机V0.95::try_get_text  (通用自动测试上位机V0.95.py:4189)
+       [call/high@L1338] 通用自动测试上位机V0.95::MainWindow._update_inu_error_stats  (通用自动测试上位机V0.95.py:1370)
+           [call/high@L1374(+1 处: 1375)] 通用自动测试上位机V0.95::MainWindow._calc_inu_error_stats  (通用自动测试上位机V0.95.py:1353)
+           [call/high@L1378(+7 处: 1379,1380,1381,1384,1385)] 通用自动测试上位机V0.95::MainWindow._set_lineedit_text_if_exists  (通用自动测试上位机V0.95.py:1365)
+       [call/medium@L1344] ui.navs.nav_loc::MainWindowNavLoc.update_attitude_from_dataframe  (ui/navs/nav_loc.py:1328)
+           [call/high@L1334(+2 处: 1335,1336)] ui.navs.nav_loc::MainWindowNavLoc._series_from_axis  (ui/navs/nav_loc.py:1313)
+           [call/high@L1339] ui.navs.nav_loc::MainWindowNavLoc.update_attitude_plot  (ui/navs/nav_loc.py:1107)
+
+## MainWindow._calc_inu_error_stats  L1353
+   通用自动测试上位机V0.95::MainWindow._calc_inu_error_stats  (通用自动测试上位机V0.95.py:1353)
+
+## MainWindow._set_lineedit_text_if_exists  L1365
+   通用自动测试上位机V0.95::MainWindow._set_lineedit_text_if_exists  (通用自动测试上位机V0.95.py:1365)
+
+## MainWindow._update_inu_error_stats  L1370
+   通用自动测试上位机V0.95::MainWindow._update_inu_error_stats  (通用自动测试上位机V0.95.py:1370)
+       [call/high@L1374(+1 处: 1375)] 通用自动测试上位机V0.95::MainWindow._calc_inu_error_stats  (通用自动测试上位机V0.95.py:1353)
+       [call/high@L1378(+7 处: 1379,1380,1381,1384,1385)] 通用自动测试上位机V0.95::MainWindow._set_lineedit_text_if_exists  (通用自动测试上位机V0.95.py:1365)
+
+## MainWindow.show_message_5s  L1397
+   通用自动测试上位机V0.95::MainWindow.show_message_5s  (通用自动测试上位机V0.95.py:1397)  <hardware_io,timer_callback>
+       [call/medium@L1425] ui.times::MainWindowTimes.timeEvent_update_combobox  (ui/times.py:33)  <qt_slot>
+
+## MainWindow.protocal_com_change  L1429
+   通用自动测试上位机V0.95::MainWindow.protocal_com_change  (通用自动测试上位机V0.95.py:1429)  <qt_slot>
+
+## MainWindow.comboBox_com_change  L1436
+   通用自动测试上位机V0.95::MainWindow.comboBox_com_change  (通用自动测试上位机V0.95.py:1436)  <qt_slot>
+
+## MainWindow.filenames_change  L1444
+   通用自动测试上位机V0.95::MainWindow.filenames_change  (通用自动测试上位机V0.95.py:1444)  <qt_slot>
+
+## MainWindow.binding_send  L1453
+   通用自动测试上位机V0.95::MainWindow.binding_send  (通用自动测试上位机V0.95.py:1453)  <qt_slot>
+
+## MainWindow.event_update_bingding_60s  L1474
+   通用自动测试上位机V0.95::MainWindow.event_update_bingding_60s  (通用自动测试上位机V0.95.py:1474)  <qt_slot>
+       [call/high@L1494(+9 处: 1495,1496,1497,1498,1499)] 通用自动测试上位机V0.95::hexcut2list  (通用自动测试上位机V0.95.py:4200)
+       [call/high@L1508] 通用自动测试上位机V0.95::calculate_xorsum  (通用自动测试上位机V0.95.py:4244)
+       [call/high@L1514] 通用自动测试上位机V0.95::calculate_checksum  (通用自动测试上位机V0.95.py:4239)
+
+## MainWindow.event_send_bingding_60s  L1524
+   通用自动测试上位机V0.95::MainWindow.event_send_bingding_60s  (通用自动测试上位机V0.95.py:1524)  <qt_slot>
+
+## MainWindow.tools_bd3x_taskDone  L1535
+   通用自动测试上位机V0.95::MainWindow.tools_bd3x_taskDone  (通用自动测试上位机V0.95.py:1535)
+
+## MainWindow.change_sate_button  L1541
+   通用自动测试上位机V0.95::MainWindow.change_sate_button  (通用自动测试上位机V0.95.py:1541)  <qt_slot>
+
+## MainWindow.sate_send1_change_time  L1545
+   通用自动测试上位机V0.95::MainWindow.sate_send1_change_time  (通用自动测试上位机V0.95.py:1545)  <qt_slot>
+
+## MainWindow.sate_send2_change_time  L1553
+   通用自动测试上位机V0.95::MainWindow.sate_send2_change_time  (通用自动测试上位机V0.95.py:1553)  <qt_slot>
+
+## MainWindow.sate_send3_change_time  L1561
+   通用自动测试上位机V0.95::MainWindow.sate_send3_change_time  (通用自动测试上位机V0.95.py:1561)  <qt_slot>
+
+## MainWindow.td_command_time_change  L1570
+   通用自动测试上位机V0.95::MainWindow.td_command_time_change  (通用自动测试上位机V0.95.py:1570)  <qt_slot>
+
+## MainWindow.fz_command_time_change  L1579
+   通用自动测试上位机V0.95::MainWindow.fz_command_time_change  (通用自动测试上位机V0.95.py:1579)  <qt_slot>
+
+## MainWindow.gnss_command_time_change  L1588
+   通用自动测试上位机V0.95::MainWindow.gnss_command_time_change  (通用自动测试上位机V0.95.py:1588)  <qt_slot>
+
+## MainWindow.event_update_sate1  L1600
+   通用自动测试上位机V0.95::MainWindow.event_update_sate1  (通用自动测试上位机V0.95.py:1600)  <qt_slot>
+       [call/high@L1615(+1 处: 1618)] 通用自动测试上位机V0.95::lat_lon2str  (通用自动测试上位机V0.95.py:4173)
+
+## MainWindow.event_update_sate2  L1655
+   通用自动测试上位机V0.95::MainWindow.event_update_sate2  (通用自动测试上位机V0.95.py:1655)  <qt_slot>
+
+## MainWindow.event_update_sate3  L1691
+   通用自动测试上位机V0.95::MainWindow.event_update_sate3  (通用自动测试上位机V0.95.py:1691)  <qt_slot>
+       [call/high@L1771] funs.fun_checks::calculate_crc32  (funs/fun_checks.py:97)
+
+## MainWindow.event_send_sate1  L1776
+   通用自动测试上位机V0.95::MainWindow.event_send_sate1  (通用自动测试上位机V0.95.py:1776)  <qt_slot,timer_callback>
+
+## MainWindow.event_send_sate2  L1796
+   通用自动测试上位机V0.95::MainWindow.event_send_sate2  (通用自动测试上位机V0.95.py:1796)  <qt_slot,timer_callback>
+
+## MainWindow.event_send_sate3  L1811
+   通用自动测试上位机V0.95::MainWindow.event_send_sate3  (通用自动测试上位机V0.95.py:1811)  <qt_slot>
+
+## MainWindow.event_td_send1  L1828
+   通用自动测试上位机V0.95::MainWindow.event_td_send1  (通用自动测试上位机V0.95.py:1828)  <qt_slot,timer_callback>
+
+## MainWindow.td_command_change  L1851
+   通用自动测试上位机V0.95::MainWindow.td_command_change  (通用自动测试上位机V0.95.py:1851)  <qt_slot>
+
+## MainWindow.td_gnss_change  L1870
+   通用自动测试上位机V0.95::MainWindow.td_gnss_change  (通用自动测试上位机V0.95.py:1870)  <qt_slot>
+
+## MainWindow.td_atmos_change  L1887
+   通用自动测试上位机V0.95::MainWindow.td_atmos_change  (通用自动测试上位机V0.95.py:1887)  <qt_slot>
+
+## MainWindow.td_softUpdate_change  L1893
+   通用自动测试上位机V0.95::MainWindow.td_softUpdate_change  (通用自动测试上位机V0.95.py:1893)  <qt_slot>
+
+## MainWindow.td_softPara_change  L1899
+   通用自动测试上位机V0.95::MainWindow.td_softPara_change  (通用自动测试上位机V0.95.py:1899)  <qt_slot>
+
+## MainWindow.td_command_send_update  L1905
+   通用自动测试上位机V0.95::MainWindow.td_command_send_update  (通用自动测试上位机V0.95.py:1905)  <qt_slot>
+       [call/high@L1913] funs.fun_chy2::calculate_td_hex  (funs/fun_chy2.py:12)
+
+## MainWindow.event_fz_send1  L1923
+   通用自动测试上位机V0.95::MainWindow.event_fz_send1  (通用自动测试上位机V0.95.py:1923)  <qt_slot,timer_callback>
+
+## MainWindow.fz_command_send_update  L1941
+   通用自动测试上位机V0.95::MainWindow.fz_command_send_update  (通用自动测试上位机V0.95.py:1941)  <qt_slot>
+       [call/high@L1949] funs.fun_chy2::calculate_fz_hex  (funs/fun_chy2.py:30)
+
+## MainWindow.event_gnss_send1  L1959
+   通用自动测试上位机V0.95::MainWindow.event_gnss_send1  (通用自动测试上位机V0.95.py:1959)  <qt_slot,timer_callback>
+
+## MainWindow.gnss_status_change  L1979
+   通用自动测试上位机V0.95::MainWindow.gnss_status_change  (通用自动测试上位机V0.95.py:1979)  <qt_slot>
+
+## MainWindow.gnss_command_send_update  L1996
+   通用自动测试上位机V0.95::MainWindow.gnss_command_send_update  (通用自动测试上位机V0.95.py:1996)  <qt_slot>
+       [call/high@L2005] funs.fun_chy2::calculate_gnss_hex  (funs/fun_chy2.py:46)
+
+## MainWindow.event_power_on  L2016
+   通用自动测试上位机V0.95::MainWindow.event_power_on  (通用自动测试上位机V0.95.py:2016)  <hardware_io,qt_slot,serial_io_heuristic>
+       [call/high@L2030(+2 处: 2043,2054)] funs.fun_serial::tryOpenSerial  (funs/fun_serial.py:6)  <hardware_io>
+
+## MainWindow.event_power_off  L2086
+   通用自动测试上位机V0.95::MainWindow.event_power_off  (通用自动测试上位机V0.95.py:2086)  <hardware_io,qt_slot,serial_io_heuristic>
+       [call/high@L2093(+1 处: 2116)] funs.fun_serial::tryOpenSerial  (funs/fun_serial.py:6)  <hardware_io>
+
+## MainWindow.event_autoset_inu  L2148
+   通用自动测试上位机V0.95::MainWindow.event_autoset_inu  (通用自动测试上位机V0.95.py:2148)  <qt_slot>
+
+## MainWindow.event_reload_config  L2170
+   通用自动测试上位机V0.95::MainWindow.event_reload_config  (通用自动测试上位机V0.95.py:2170)  <qt_slot>
+       [call/high@L2171] 通用自动测试上位机V0.95::MainWindow.read_default_para_config  (通用自动测试上位机V0.95.py:2282)
+
+## MainWindow.event_load_file  L2176
+   通用自动测试上位机V0.95::MainWindow.event_load_file  (通用自动测试上位机V0.95.py:2176)  <qt_slot>
+       [call/high@L2215] 通用自动测试上位机V0.95::MainWindow.read_rules  (通用自动测试上位机V0.95.py:2422)  <qt_slot>
+           [call/high@L2507(+1 处: 2508)] 通用自动测试上位机V0.95::check2chinese  (通用自动测试上位机V0.95.py:4215)
+           [call/high@L2514] 通用自动测试上位机V0.95::try_set_text  (通用自动测试上位机V0.95.py:4186)
+           [call/high@L2614] 通用自动测试上位机V0.95::calculate_frame_length  (通用自动测试上位机V0.95.py:4230)
+       [thread/high@L2224] 通用自动测试上位机V0.95::MainWindow.threading_receive_data  (通用自动测试上位机V0.95.py:3006)  <hardware_io,serial_io_heuristic,thread_entry>
+           [call/high@L3023] 通用自动测试上位机V0.95::check2serial  (通用自动测试上位机V0.95.py:4205)
+           [call/high@L3024] 通用自动测试上位机V0.95::stop2chinese  (通用自动测试上位机V0.95.py:4210)
+           [call/high@L3052(+2 处: 3052,3052)] 通用自动测试上位机V0.95::int2str  (通用自动测试上位机V0.95.py:4192)
+           [call/high@L3096(+1 处: 3105)] funs.fun_chy2::split_plus  (funs/fun_chy2.py:73)
+           [call/high@L3156] funs.fun_serial::tryOpenSerial  (funs/fun_serial.py:6)  <hardware_io>
+           [call/high@L3277] 通用自动测试上位机V0.95::decode_hex_frame_list  (通用自动测试上位机V0.95.py:4250)
+       [create/high@L2241] funs.fun_chy2::class_rule.__init__  (funs/fun_chy2.py:188)
+       [call/medium@L2242] funs.fun_chy2::class_rule.read_rule_file  (funs/fun_chy2.py:246)
+           [call/high@L282] funs.fun_chy2::try_int_data  (funs/fun_chy2.py:171)
+           [call/high@L287] funs.fun_chy2::try_hex_data  (funs/fun_chy2.py:181)
+           [call/high@L311] funs.fun_chy2::class_rule.update_decode_rules  (funs/fun_chy2.py:316)
+           [call/high@L312] funs.fun_chy2::class_rule.update_rule_length  (funs/fun_chy2.py:318)
+           [call/high@L313] funs.fun_chy2::class_rule.float_para_list  (funs/fun_chy2.py:320)
+
+## MainWindow.read_default_para_com  L2247
+   通用自动测试上位机V0.95::MainWindow.read_default_para_com  (通用自动测试上位机V0.95.py:2247)
+
+## MainWindow.read_default_para_config  L2282
+   通用自动测试上位机V0.95::MainWindow.read_default_para_config  (通用自动测试上位机V0.95.py:2282)
+
+## MainWindow.read_rules  L2422
+   通用自动测试上位机V0.95::MainWindow.read_rules  (通用自动测试上位机V0.95.py:2422)  <qt_slot>
+       [call/high@L2507(+1 处: 2508)] 通用自动测试上位机V0.95::check2chinese  (通用自动测试上位机V0.95.py:4215)
+       [call/high@L2514] 通用自动测试上位机V0.95::try_set_text  (通用自动测试上位机V0.95.py:4186)
+       [call/high@L2614] 通用自动测试上位机V0.95::calculate_frame_length  (通用自动测试上位机V0.95.py:4230)
+
+## MainWindow.binding_change  L2702
+   通用自动测试上位机V0.95::MainWindow.binding_change  (通用自动测试上位机V0.95.py:2702)  <qt_slot>
+       [call/high@L2705(+3 处: 2706,2707,2708)] 通用自动测试上位机V0.95::try_get_text  (通用自动测试上位机V0.95.py:4189)
+       [call/high@L2718(+3 处: 2719,2720,2721)] 通用自动测试上位机V0.95::hexcut2list  (通用自动测试上位机V0.95.py:4200)
+       [call/high@L2723] 通用自动测试上位机V0.95::calculate_checksum  (通用自动测试上位机V0.95.py:4239)
+
+## MainWindow.update_plot_axis  L2732
+   通用自动测试上位机V0.95::MainWindow.update_plot_axis  (通用自动测试上位机V0.95.py:2732)  <qt_slot>
+
+## MainWindow.update_double_axis  L2748
+   通用自动测试上位机V0.95::MainWindow.update_double_axis  (通用自动测试上位机V0.95.py:2748)  <qt_slot>
+
+## MainWindow.update_stand_axis  L2766
+   通用自动测试上位机V0.95::MainWindow.update_stand_axis  (通用自动测试上位机V0.95.py:2766)  <qt_slot>
+
+## MainWindow.update_target_loc  L2789
+   通用自动测试上位机V0.95::MainWindow.update_target_loc  (通用自动测试上位机V0.95.py:2789)  <qt_slot>
+
+## MainWindow.update_target_spd  L2812
+   通用自动测试上位机V0.95::MainWindow.update_target_spd  (通用自动测试上位机V0.95.py:2812)  <qt_slot>
+
+## MainWindow.stop_test  L2852
+   通用自动测试上位机V0.95::MainWindow.stop_test  (通用自动测试上位机V0.95.py:2852)  <qt_slot>
+
+## MainWindow.begin_test  L2864
+   通用自动测试上位机V0.95::MainWindow.begin_test  (通用自动测试上位机V0.95.py:2864)  <qt_slot>
+       [call/high@L2867] 通用自动测试上位机V0.95::MainWindow.read_rules  (通用自动测试上位机V0.95.py:2422)  <qt_slot>
+           [call/high@L2507(+1 处: 2508)] 通用自动测试上位机V0.95::check2chinese  (通用自动测试上位机V0.95.py:4215)
+           [call/high@L2514] 通用自动测试上位机V0.95::try_set_text  (通用自动测试上位机V0.95.py:4186)
+           [call/high@L2614] 通用自动测试上位机V0.95::calculate_frame_length  (通用自动测试上位机V0.95.py:4230)
+       [call/high@L2906] 通用自动测试上位机V0.95::testmode2chinese  (通用自动测试上位机V0.95.py:4226)
+       [call/high@L2911] 通用自动测试上位机V0.95::MainWindow.only_test  (通用自动测试上位机V0.95.py:2927)
+           [thread/high@L2945] 通用自动测试上位机V0.95::MainWindow.threading_receive_sate  (通用自动测试上位机V0.95.py:3461)  <hardware_io,serial_io_heuristic,thread_entry>
+           [thread/high@L2957] 通用自动测试上位机V0.95::MainWindow.threading_receive_data  (通用自动测试上位机V0.95.py:3006)  <hardware_io,serial_io_heuristic,thread_entry>
+       [call/high@L2914] 通用自动测试上位机V0.95::MainWindow.bd3x_test  (通用自动测试上位机V0.95.py:2979)
+           [call/high@L2982(+2 处: 2989,2992)] 通用自动测试上位机V0.95::MainWindow.only_test  ↑ 已在上文展开  (通用自动测试上位机V0.95.py:2927)
+           [call/medium@L2984(+1 处: 2991)] ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_open  (ui/events/events_devide.py:59)  <qt_slot>
+           [thread/high@L2985] 通用自动测试上位机V0.95::MainWindow.begin_test_3xbd  (通用自动测试上位机V0.95.py:3998)  <thread_entry>
+           [call/high@L2993] 通用自动测试上位机V0.95::MainWindow.begin_test_3xbd  ↑ 已在上文展开  (通用自动测试上位机V0.95.py:3998)
+       [call/high@L2917] 通用自动测试上位机V0.95::MainWindow.bd_test  (通用自动测试上位机V0.95.py:2964)
+           [call/high@L2967(+2 处: 2972,2974)] 通用自动测试上位机V0.95::MainWindow.only_test  ↑ 已在上文展开  (通用自动测试上位机V0.95.py:2927)
+           [thread/high@L2969] 通用自动测试上位机V0.95::MainWindow.begin_test_bd  (通用自动测试上位机V0.95.py:3757)  <hardware_io,serial_io_heuristic,thread_entry>
+           [call/high@L2975] 通用自动测试上位机V0.95::MainWindow.begin_test_bd  ↑ 已在上文展开  (通用自动测试上位机V0.95.py:3757)
+       [call/high@L2922] 通用自动测试上位机V0.95::MainWindow.plan_test  (通用自动测试上位机V0.95.py:2998)
+           [thread/high@L2999] 通用自动测试上位机V0.95::MainWindow.plan_test_threading  (通用自动测试上位机V0.95.py:3542)  <hardware_io,serial_io_heuristic,thread_entry>
+
+## MainWindow.only_test  L2927
+   通用自动测试上位机V0.95::MainWindow.only_test  (通用自动测试上位机V0.95.py:2927)
+       [thread/high@L2945] 通用自动测试上位机V0.95::MainWindow.threading_receive_sate  (通用自动测试上位机V0.95.py:3461)  <hardware_io,serial_io_heuristic,thread_entry>
+           [call/high@L3467] 通用自动测试上位机V0.95::check2serial  (通用自动测试上位机V0.95.py:4205)
+           [call/high@L3468] 通用自动测试上位机V0.95::stop2chinese  (通用自动测试上位机V0.95.py:4210)
+           [call/high@L3486(+2 处: 3486,3486)] 通用自动测试上位机V0.95::int2str  (通用自动测试上位机V0.95.py:4192)
+       [thread/high@L2957] 通用自动测试上位机V0.95::MainWindow.threading_receive_data  (通用自动测试上位机V0.95.py:3006)  <hardware_io,serial_io_heuristic,thread_entry>
+           [call/high@L3023] 通用自动测试上位机V0.95::check2serial  (通用自动测试上位机V0.95.py:4205)
+           [call/high@L3024] 通用自动测试上位机V0.95::stop2chinese  (通用自动测试上位机V0.95.py:4210)
+           [call/high@L3052(+2 处: 3052,3052)] 通用自动测试上位机V0.95::int2str  (通用自动测试上位机V0.95.py:4192)
+           [call/high@L3096(+1 处: 3105)] funs.fun_chy2::split_plus  (funs/fun_chy2.py:73)
+           [call/high@L3156] funs.fun_serial::tryOpenSerial  (funs/fun_serial.py:6)  <hardware_io>
+           [call/high@L3277] 通用自动测试上位机V0.95::decode_hex_frame_list  (通用自动测试上位机V0.95.py:4250)
+
+## MainWindow.bd_test  L2964
+   通用自动测试上位机V0.95::MainWindow.bd_test  (通用自动测试上位机V0.95.py:2964)
+       [call/high@L2967(+2 处: 2972,2974)] 通用自动测试上位机V0.95::MainWindow.only_test  (通用自动测试上位机V0.95.py:2927)
+           [thread/high@L2945] 通用自动测试上位机V0.95::MainWindow.threading_receive_sate  (通用自动测试上位机V0.95.py:3461)  <hardware_io,serial_io_heuristic,thread_entry>
+           [thread/high@L2957] 通用自动测试上位机V0.95::MainWindow.threading_receive_data  (通用自动测试上位机V0.95.py:3006)  <hardware_io,serial_io_heuristic,thread_entry>
+       [thread/high@L2969] 通用自动测试上位机V0.95::MainWindow.begin_test_bd  (通用自动测试上位机V0.95.py:3757)  <hardware_io,serial_io_heuristic,thread_entry>
+           [call/high@L3807(+2 处: 3807,3807)] 通用自动测试上位机V0.95::int2str  (通用自动测试上位机V0.95.py:4192)
+           [create/high@L3812] 通用自动测试上位机V0.95::Turntable_class.__init__  (通用自动测试上位机V0.95.py:4385)
+           [call/high@L3841(+1 处: 3842)] 通用自动测试上位机V0.95::conver_turntable_status  (通用自动测试上位机V0.95.py:4138)
+           [call/medium@L3877(+1 处: 3886)] 通用自动测试上位机V0.95::Turntable_class.inside_location  (通用自动测试上位机V0.95.py:4456)
+           [call/medium@L3878(+1 处: 3883)] 通用自动测试上位机V0.95::Turntable_class.outside_location  (通用自动测试上位机V0.95.py:4471)
+           [call/medium@L3882(+1 处: 3890)] 通用自动测试上位机V0.95::Turntable_class.inside_speed  (通用自动测试上位机V0.95.py:4463)
+           [call/medium@L3887(+1 处: 3891)] 通用自动测试上位机V0.95::Turntable_class.outside_speed  (通用自动测试上位机V0.95.py:4478)
+           [call/medium@L3895] 通用自动测试上位机V0.95::Turntable_class.get_command  (通用自动测试上位机V0.95.py:4410)
+       [call/high@L2975] 通用自动测试上位机V0.95::MainWindow.begin_test_bd  ↑ 已在上文展开  (通用自动测试上位机V0.95.py:3757)
+
+## MainWindow.bd3x_test  L2979
+   通用自动测试上位机V0.95::MainWindow.bd3x_test  (通用自动测试上位机V0.95.py:2979)
+       [call/high@L2982(+2 处: 2989,2992)] 通用自动测试上位机V0.95::MainWindow.only_test  (通用自动测试上位机V0.95.py:2927)
+           [thread/high@L2945] 通用自动测试上位机V0.95::MainWindow.threading_receive_sate  (通用自动测试上位机V0.95.py:3461)  <hardware_io,serial_io_heuristic,thread_entry>
+           [thread/high@L2957] 通用自动测试上位机V0.95::MainWindow.threading_receive_data  (通用自动测试上位机V0.95.py:3006)  <hardware_io,serial_io_heuristic,thread_entry>
+       [call/medium@L2984(+1 处: 2991)] ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_open  (ui/events/events_devide.py:59)  <qt_slot>
+           [timer/high@L70] ui.events.events_devide::MainWindowEventDevide.turntable3x_update_status  (ui/events/events_devide.py:175)  <timer_callback>
+       [thread/high@L2985] 通用自动测试上位机V0.95::MainWindow.begin_test_3xbd  (通用自动测试上位机V0.95.py:3998)  <thread_entry>
+           [call/high@L4014(+2 处: 4014,4014)] 通用自动测试上位机V0.95::int2str  (通用自动测试上位机V0.95.py:4192)
+           [call/medium@L4056(+1 处: 4098)] ui.events.events_devide::MainWindowEventDevide.turntable3x_set_input  (ui/events/events_devide.py:161)
+           [call/medium@L4057(+1 处: 4099)] ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_turn  (ui/events/events_devide.py:125)  <qt_slot>
+           [call/high@L4069(+1 处: 4075)] funs.fun_chy2::angular_distance  (funs/fun_chy2.py:5)
+       [call/high@L2993] 通用自动测试上位机V0.95::MainWindow.begin_test_3xbd  ↑ 已在上文展开  (通用自动测试上位机V0.95.py:3998)
+
+## MainWindow.plan_test  L2998
+   通用自动测试上位机V0.95::MainWindow.plan_test  (通用自动测试上位机V0.95.py:2998)
+       [thread/high@L2999] 通用自动测试上位机V0.95::MainWindow.plan_test_threading  (通用自动测试上位机V0.95.py:3542)  <hardware_io,serial_io_heuristic,thread_entry>
+           [call/high@L3603] 通用自动测试上位机V0.95::MainWindow.event_power_on  (通用自动测试上位机V0.95.py:2016)  <hardware_io,qt_slot,serial_io_heuristic>
+           [call/high@L3603(+1 处: 3605)] 通用自动测试上位机V0.95::try_split_power_command  (通用自动测试上位机V0.95.py:4331)
+           [call/high@L3605] 通用自动测试上位机V0.95::MainWindow.event_power_off  (通用自动测试上位机V0.95.py:2086)  <hardware_io,qt_slot,serial_io_heuristic>
+           [call/high@L3612(+1 处: 3618)] 通用自动测试上位机V0.95::MainWindow.binding_send  (通用自动测试上位机V0.95.py:1453)  <qt_slot>
+           [call/high@L3628] 通用自动测试上位机V0.95::MainWindow.only_test  (通用自动测试上位机V0.95.py:2927)
+           [call/high@L3652(+1 处: 3664)] 通用自动测试上位机V0.95::MainWindow.bd_test  (通用自动测试上位机V0.95.py:2964)
+           [call/high@L3680] 通用自动测试上位机V0.95::MainWindow.bd3x_test  (通用自动测试上位机V0.95.py:2979)
+
+## MainWindow.threading_receive_data  L3006
+   通用自动测试上位机V0.95::MainWindow.threading_receive_data  (通用自动测试上位机V0.95.py:3006)  <hardware_io,serial_io_heuristic,thread_entry>
+       [call/high@L3023] 通用自动测试上位机V0.95::check2serial  (通用自动测试上位机V0.95.py:4205)
+       [call/high@L3024] 通用自动测试上位机V0.95::stop2chinese  (通用自动测试上位机V0.95.py:4210)
+       [call/high@L3052(+2 处: 3052,3052)] 通用自动测试上位机V0.95::int2str  (通用自动测试上位机V0.95.py:4192)
+       [call/high@L3096(+1 处: 3105)] funs.fun_chy2::split_plus  (funs/fun_chy2.py:73)
+       [call/high@L3156] funs.fun_serial::tryOpenSerial  (funs/fun_serial.py:6)  <hardware_io>
+       [call/high@L3277] 通用自动测试上位机V0.95::decode_hex_frame_list  (通用自动测试上位机V0.95.py:4250)
+           [call/high@L4278] funs.fun_checks::calculate_crc16  (funs/fun_checks.py:84)
+
+## MainWindow.threading_receive_sate  L3461
+   通用自动测试上位机V0.95::MainWindow.threading_receive_sate  (通用自动测试上位机V0.95.py:3461)  <hardware_io,serial_io_heuristic,thread_entry>
+       [call/high@L3467] 通用自动测试上位机V0.95::check2serial  (通用自动测试上位机V0.95.py:4205)
+       [call/high@L3468] 通用自动测试上位机V0.95::stop2chinese  (通用自动测试上位机V0.95.py:4210)
+       [call/high@L3486(+2 处: 3486,3486)] 通用自动测试上位机V0.95::int2str  (通用自动测试上位机V0.95.py:4192)
+
+## MainWindow.plan_test_threading  L3542
+   通用自动测试上位机V0.95::MainWindow.plan_test_threading  (通用自动测试上位机V0.95.py:3542)  <hardware_io,serial_io_heuristic,thread_entry>
+       [call/high@L3603] 通用自动测试上位机V0.95::MainWindow.event_power_on  (通用自动测试上位机V0.95.py:2016)  <hardware_io,qt_slot,serial_io_heuristic>
+           [call/high@L2030(+2 处: 2043,2054)] funs.fun_serial::tryOpenSerial  (funs/fun_serial.py:6)  <hardware_io>
+       [call/high@L3603(+1 处: 3605)] 通用自动测试上位机V0.95::try_split_power_command  (通用自动测试上位机V0.95.py:4331)
+       [call/high@L3605] 通用自动测试上位机V0.95::MainWindow.event_power_off  (通用自动测试上位机V0.95.py:2086)  <hardware_io,qt_slot,serial_io_heuristic>
+           [call/high@L2093(+1 处: 2116)] funs.fun_serial::tryOpenSerial  (funs/fun_serial.py:6)  <hardware_io>
+       [call/high@L3612(+1 处: 3618)] 通用自动测试上位机V0.95::MainWindow.binding_send  (通用自动测试上位机V0.95.py:1453)  <qt_slot>
+       [call/high@L3628] 通用自动测试上位机V0.95::MainWindow.only_test  (通用自动测试上位机V0.95.py:2927)
+           [thread/high@L2945] 通用自动测试上位机V0.95::MainWindow.threading_receive_sate  (通用自动测试上位机V0.95.py:3461)  <hardware_io,serial_io_heuristic,thread_entry>
+           [thread/high@L2957] 通用自动测试上位机V0.95::MainWindow.threading_receive_data  (通用自动测试上位机V0.95.py:3006)  <hardware_io,serial_io_heuristic,thread_entry>
+       [call/high@L3652(+1 处: 3664)] 通用自动测试上位机V0.95::MainWindow.bd_test  (通用自动测试上位机V0.95.py:2964)
+           [call/high@L2967(+2 处: 2972,2974)] 通用自动测试上位机V0.95::MainWindow.only_test  ↑ 已在上文展开  (通用自动测试上位机V0.95.py:2927)
+           [thread/high@L2969] 通用自动测试上位机V0.95::MainWindow.begin_test_bd  (通用自动测试上位机V0.95.py:3757)  <hardware_io,serial_io_heuristic,thread_entry>
+           [call/high@L2975] 通用自动测试上位机V0.95::MainWindow.begin_test_bd  ↑ 已在上文展开  (通用自动测试上位机V0.95.py:3757)
+       [call/high@L3680] 通用自动测试上位机V0.95::MainWindow.bd3x_test  (通用自动测试上位机V0.95.py:2979)
+           [call/high@L2982(+2 处: 2989,2992)] 通用自动测试上位机V0.95::MainWindow.only_test  ↑ 已在上文展开  (通用自动测试上位机V0.95.py:2927)
+           [call/medium@L2984(+1 处: 2991)] ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_open  (ui/events/events_devide.py:59)  <qt_slot>
+           [thread/high@L2985] 通用自动测试上位机V0.95::MainWindow.begin_test_3xbd  (通用自动测试上位机V0.95.py:3998)  <thread_entry>
+           [call/high@L2993] 通用自动测试上位机V0.95::MainWindow.begin_test_3xbd  ↑ 已在上文展开  (通用自动测试上位机V0.95.py:3998)
+
+## MainWindow.begin_test_bd  L3757
+   通用自动测试上位机V0.95::MainWindow.begin_test_bd  (通用自动测试上位机V0.95.py:3757)  <hardware_io,serial_io_heuristic,thread_entry>
+       [call/high@L3807(+2 处: 3807,3807)] 通用自动测试上位机V0.95::int2str  (通用自动测试上位机V0.95.py:4192)
+       [create/high@L3812] 通用自动测试上位机V0.95::Turntable_class.__init__  (通用自动测试上位机V0.95.py:4385)
+       [call/high@L3841(+1 处: 3842)] 通用自动测试上位机V0.95::conver_turntable_status  (通用自动测试上位机V0.95.py:4138)
+       [call/medium@L3877(+1 处: 3886)] 通用自动测试上位机V0.95::Turntable_class.inside_location  (通用自动测试上位机V0.95.py:4456)
+           [call/high@L4458(+2 处: 4459,4460)] 通用自动测试上位机V0.95::int2hex  (通用自动测试上位机V0.95.py:4196)  <in_cycle>
+           [call/high@L4458(+2 处: 4459,4460)] 通用自动测试上位机V0.95::reverse  (通用自动测试上位机V0.95.py:4198)
+           [call/high@L4461] 通用自动测试上位机V0.95::Turntable_class.get_command  (通用自动测试上位机V0.95.py:4410)
+       [call/medium@L3878(+1 处: 3883)] 通用自动测试上位机V0.95::Turntable_class.outside_location  (通用自动测试上位机V0.95.py:4471)
+           [call/high@L4473(+2 处: 4474,4475)] 通用自动测试上位机V0.95::int2hex  ↑ 已在上文展开  (通用自动测试上位机V0.95.py:4196)
+           [call/high@L4473(+2 处: 4474,4475)] 通用自动测试上位机V0.95::reverse  (通用自动测试上位机V0.95.py:4198)
+           [call/high@L4476] 通用自动测试上位机V0.95::Turntable_class.get_command  ↑ 已在上文展开  (通用自动测试上位机V0.95.py:4410)
+       [call/medium@L3882(+1 处: 3890)] 通用自动测试上位机V0.95::Turntable_class.inside_speed  (通用自动测试上位机V0.95.py:4463)
+           [call/high@L4465(+1 处: 4466)] 通用自动测试上位机V0.95::int2hex  ↑ 已在上文展开  (通用自动测试上位机V0.95.py:4196)
+           [call/high@L4465(+1 处: 4466)] 通用自动测试上位机V0.95::reverse  (通用自动测试上位机V0.95.py:4198)
+           [call/high@L4468] 通用自动测试上位机V0.95::Turntable_class.get_command  ↑ 已在上文展开  (通用自动测试上位机V0.95.py:4410)
+       [call/medium@L3887(+1 处: 3891)] 通用自动测试上位机V0.95::Turntable_class.outside_speed  (通用自动测试上位机V0.95.py:4478)
+           [call/high@L4480(+1 处: 4481)] 通用自动测试上位机V0.95::int2hex  ↑ 已在上文展开  (通用自动测试上位机V0.95.py:4196)
+           [call/high@L4480(+1 处: 4481)] 通用自动测试上位机V0.95::reverse  (通用自动测试上位机V0.95.py:4198)
+           [call/high@L4483] 通用自动测试上位机V0.95::Turntable_class.get_command  ↑ 已在上文展开  (通用自动测试上位机V0.95.py:4410)
+       [call/medium@L3895] 通用自动测试上位机V0.95::Turntable_class.get_command  ↑ 已在上文展开  (通用自动测试上位机V0.95.py:4410)
+
+## MainWindow.begin_test_3xbd  L3998
+   通用自动测试上位机V0.95::MainWindow.begin_test_3xbd  (通用自动测试上位机V0.95.py:3998)  <thread_entry>
+       [call/high@L4014(+2 处: 4014,4014)] 通用自动测试上位机V0.95::int2str  (通用自动测试上位机V0.95.py:4192)
+       [call/medium@L4056(+1 处: 4098)] ui.events.events_devide::MainWindowEventDevide.turntable3x_set_input  (ui/events/events_devide.py:161)
+       [call/medium@L4057(+1 处: 4099)] ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_turn  (ui/events/events_devide.py:125)  <qt_slot>
+           [call/high@L126] ui.events.events_devide::MainWindowEventDevide.turntable3x_get_input  (ui/events/events_devide.py:148)
+       [call/high@L4069(+1 处: 4075)] funs.fun_chy2::angular_distance  (funs/fun_chy2.py:5)

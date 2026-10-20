@@ -1,0 +1,117 @@
+%% 模块局部调用树: ui.tools.tools_bdcalib (ui/tools/tools_bdcalib.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["MainWindowToolBdcalib.__init__<br/><small>ui.tools.tools_bdcalib:54</small>"]
+  f1["MainWindowToolBdcalib.init_list<br/><small>ui.tools.tools_bdcalib:87</small>"]
+  f0 -->|"call/high"| f1
+  f2["MainWindowToolBdcalib.init_data<br/><small>ui.tools.tools_bdcalib:98</small>"]
+  f0 -->|"call/high"| f2
+  f3["MainWindowToolBdcalib.load_path<br/><small>ui.tools.tools_bdcalib:120</small>"]
+  f0 ==>|"connect/high"| f3
+  f4["MainWindowToolBdcalib.item_click_showMsg<br/><small>ui.tools.tools_bdcalib:196</small>"]
+  f0 ==>|"connect/high"| f4
+  f5["MainWindowToolBdcalib.item_click_changeFolder<br/><small>ui.tools.tools_bdcalib:187</small>"]
+  f0 ==>|"connect/high"| f5
+  f6["MainWindowToolBdcalib.click_uppath<br/><small>ui.tools.tools_bdcalib:179</small>"]
+  f0 ==>|"connect/high"| f6
+  f7["MainWindowToolBdcalib.show_all_files<br/><small>ui.tools.tools_bdcalib:128</small>"]
+  f0 ==>|"connect/high"| f7
+  f8["MainWindowToolBdcalib.click_avePath<br/><small>ui.tools.tools_bdcalib:267</small>"]
+  f0 ==>|"connect/high"| f8
+  f9["MainWindowToolBdcalib.click_formatConversion<br/><small>ui.tools.tools_bdcalib:280</small>"]
+  f0 ==>|"connect/high"| f9
+  f10["MainWindowToolBdcalib.change_preset<br/><small>ui.tools.tools_bdcalib:325</small>"]
+  f0 ==>|"connect/high"| f10
+  f11["MainWindowToolBdcalib.click_createBin<br/><small>ui.tools.tools_bdcalib:327</small>"]
+  f0 ==>|"connect/high"| f11
+  f12["MainWindowToolBdcalib.click_autoRun<br/><small>ui.tools.tools_bdcalib:329</small>"]
+  f0 ==>|"connect/high"| f12
+  f13["MainWindowToolBdcalib.click_calPara<br/><small>ui.tools.tools_bdcalib:292</small>"]
+  f0 ==>|"connect/high"| f13
+  f14["MainWindowToolBdcalib.click_polyfit<br/><small>ui.tools.tools_bdcalib:305</small>"]
+  f0 ==>|"connect/high"| f14
+  f0 ==>|"connect/high"| f7
+  f3 -->|"call/high"| f7
+  f7 -->|"call/high"| f2
+  f6 -->|"call/high"| f7
+  f15["MainWindowToolBdcalib.append_degugMsg<br/><small>ui.tools.tools_bdcalib:155</small>"]
+  f6 -->|"call/high"| f15
+  f5 -->|"call/high"| f7
+  f5 -->|"call/high"| f15
+  f16["MainWindowToolBdcalib.preview_file<br/><small>ui.tools.tools_bdcalib:161</small>"]
+  f4 -->|"call/high"| f16
+  f4 -->|"call/high"| f16
+  f4 -->|"call/high"| f15
+  f17["MainWindowToolBdcalib.update_imgShow_pixmap<br/><small>ui.tools.tools_bdcalib:250</small>"]
+  f4 -->|"call/high"| f17
+  f4 -->|"call/high"| f16
+  f4 -->|"call/high"| f15
+  f4 -->|"call/high"| f16
+  f4 -->|"call/high"| f15
+  f4 -->|"call/high"| f16
+  f4 -->|"call/high"| f15
+  f4 -->|"call/high"| f16
+  f4 -->|"call/high"| f15
+  f18["MainWindowToolBdcalib.label_resizeEvent<br/><small>ui.tools.tools_bdcalib:263</small>"]
+  f18 -->|"call/high"| f17
+  f8 -->|"call/high"| f2
+  f8 -->|"call/high"| f7
+  f8 -->|"call/high"| f15
+  f19["class_Worker.__init__<br/><small>ui.tools.tools_bdcalib:354</small>"]
+  f8 -->|"create/high"| f19
+  f20["MainWindowToolBdcalib.task_done<br/><small>ui.tools.tools_bdcalib:319</small>"]
+  f8 ==>|"connect/high"| f20
+  f9 -->|"call/high"| f2
+  f9 -->|"call/high"| f7
+  f9 -->|"call/high"| f15
+  f9 -->|"create/high"| f19
+  f9 ==>|"connect/high"| f20
+  f13 -->|"call/high"| f2
+  f13 -->|"call/high"| f7
+  f13 -->|"call/high"| f15
+  f13 -->|"create/high"| f19
+  f13 ==>|"connect/high"| f20
+  f14 -->|"call/high"| f2
+  f14 -->|"call/high"| f7
+  f14 -->|"call/high"| f15
+  f14 -->|"create/high"| f19
+  f14 ==>|"connect/high"| f20
+  f20 -->|"call/high"| f15
+  f20 -->|"call/high"| f15
+  f20 -->|"call/high"| f7
+  f10 -->|"call/high"| f15
+  f11 -->|"call/high"| f15
+  f12 -->|"call/high"| f15
+  f21["class_Worker.run<br/><small>ui.tools.tools_bdcalib:368</small>"]
+  f22["class_Worker.ave_all_data<br/><small>ui.tools.tools_bdcalib:402</small>"]
+  f21 -->|"call/high"| f22
+  f23["class_Worker.format_all_data<br/><small>ui.tools.tools_bdcalib:543</small>"]
+  f21 -->|"call/high"| f23
+  f24["class_Worker.cal_all_para_chy<br/><small>ui.tools.tools_bdcalib:874</small>"]
+  f21 -->|"call/high"| f24
+  f25["class_Worker.cal_all_para<br/><small>ui.tools.tools_bdcalib:601</small>"]
+  f21 -->|"call/high"| f25
+  f26["class_Worker.cal_all_polyfit_chy<br/><small>ui.tools.tools_bdcalib:1083</small>"]
+  f21 -->|"call/high"| f26
+  f27["class_Worker.cal_all_polyfit<br/><small>ui.tools.tools_bdcalib:724</small>"]
+  f21 -->|"call/high"| f27
+  f28["class_Worker.init_save_aveFile<br/><small>ui.tools.tools_bdcalib:530</small>"]
+  f22 -->|"call/high"| f28
+  f22 -->|"call/high"| f28
+  f29["class_Worker.cal_paraSave<br/><small>ui.tools.tools_bdcalib:647</small>"]
+  f25 -->|"call/high"| f29
+  f30["init_sdf<br/><small>ui.tools.tools_bdcalib:25</small>"]
+  f29 -->|"call/high"| f30
+  f31["class_Worker.cal_para_polyFit<br/><small>ui.tools.tools_bdcalib:741</small>"]
+  f27 -->|"call/high"| f31
+  f32["sort_key<br/><small>ui.tools.tools_bdcalib:20</small>"]
+  f31 -->|"call/high"| f32
+  f33["class_Worker.cal_paraSave_chy_LW<br/><small>ui.tools.tools_bdcalib:934</small>"]
+  f24 -->|"call/high"| f33
+  f34["class_Worker.cal_paraSave_chy_SL<br/><small>ui.tools.tools_bdcalib:988</small>"]
+  f24 -->|"call/high"| f34
+  f35["class_Worker.cal_paraSave_chy_JT<br/><small>ui.tools.tools_bdcalib:1081</small>"]
+  f24 -->|"call/high"| f35
+  f36["decode_zfG<br/><small>ui.tools.tools_bdcalib:36</small>"]
+  f33 -->|"call/high"| f36
+  f33 -->|"call/high"| f30
+  f34 -->|"call/high"| f30

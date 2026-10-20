@@ -1,0 +1,131 @@
+%% 模块局部调用树: ui.navs.nav_loc (ui/navs/nav_loc.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["IMUColumnConfigDialog.__init__<br/><small>ui.navs.nav_loc:19</small>"]
+  f1["IMUColumnConfigDialog._build_ui<br/><small>ui.navs.nav_loc:25</small>"]
+  f0 -->|"call/high"| f1
+  f2["IMUColumnConfigDialog._apply_defaults<br/><small>ui.navs.nav_loc:46</small>"]
+  f1 -->|"call/high"| f2
+  f3["IMUColumnConfigDialog._refresh_preview<br/><small>ui.navs.nav_loc:91</small>"]
+  f1 -->|"call/high"| f3
+  f1 ==>|"connect/high"| f3
+  f4["IMUColumnConfigDialog._parse_axis<br/><small>ui.navs.nav_loc:73</small>"]
+  f3 -->|"call/high"| f4
+  f5["IMUColumnConfigDialog._title_of_axis<br/><small>ui.navs.nav_loc:84</small>"]
+  f3 -->|"call/high"| f5
+  f6["MainWindowNavLoc.__init__<br/><small>ui.navs.nav_loc:136</small>"]
+  f7["MainWindowNavLoc._resolve_workspace_path<br/><small>ui.navs.nav_loc:170</small>"]
+  f6 -->|"call/high"| f7
+  f8["MainWindowNavLoc.init_inu_plot_items_lazy<br/><small>ui.navs.nav_loc:638</small>"]
+  f6 -->|"call/high"| f8
+  f9["MainWindowNavLoc.load_map_config<br/><small>ui.navs.nav_loc:262</small>"]
+  f6 -->|"call/high"| f9
+  f10["MainWindowNavLoc.load_offline_map<br/><small>ui.navs.nav_loc:531</small>"]
+  f6 -->|"call/high"| f10
+  f11["MainWindowNavLoc.init_radar<br/><small>ui.navs.nav_loc:1374</small>"]
+  f6 -->|"call/high"| f11
+  f12["MainWindowNavLoc.init_logic<br/><small>ui.navs.nav_loc:1348</small>"]
+  f6 -->|"call/high"| f12
+  f13["MainWindowNavLoc._read_map_config<br/><small>ui.navs.nav_loc:211</small>"]
+  f14["MainWindowNavLoc._get_map_default_config<br/><small>ui.navs.nav_loc:180</small>"]
+  f13 -->|"call/high"| f14
+  f15["MainWindowNavLoc._append_nav_message<br/><small>ui.navs.nav_loc:176</small>"]
+  f13 -->|"call/high"| f15
+  f13 -->|"call/high"| f15
+  f13 -->|"call/high"| f15
+  f9 -->|"call/high"| f13
+  f16["MainWindowNavLoc._infer_xyz_tile_layout<br/><small>ui.navs.nav_loc:343</small>"]
+  f16 -->|"call/high"| f16
+  f17["MainWindowNavLoc._load_xyz_tile_mosaic<br/><small>ui.navs.nav_loc:407</small>"]
+  f17 -->|"call/high"| f7
+  f17 -->|"call/high"| f15
+  f17 -->|"call/high"| f16
+  f17 -->|"call/high"| f15
+  f17 -->|"call/high"| f15
+  f18["MainWindowNavLoc._find_existing_tile_path<br/><small>ui.navs.nav_loc:328</small>"]
+  f17 -->|"call/high"| f18
+  f17 -->|"call/high"| f15
+  f17 -->|"call/high"| f18
+  f19["MainWindowNavLoc._tile_xyz_to_lon_lat<br/><small>ui.navs.nav_loc:274</small>"]
+  f17 -->|"call/high"| f19
+  f17 -->|"call/high"| f19
+  f20["MainWindowNavLoc._offset_bounds_by_meters<br/><small>ui.navs.nav_loc:281</small>"]
+  f17 -->|"call/high"| f20
+  f21["MainWindowNavLoc._clear_map_item<br/><small>ui.navs.nav_loc:299</small>"]
+  f10 -->|"call/high"| f21
+  f10 -->|"call/high"| f9
+  f10 -->|"call/high"| f15
+  f10 -->|"call/high"| f17
+  f10 -->|"call/high"| f7
+  f10 -->|"call/high"| f15
+  f22["MainWindowNavLoc._render_svg_image<br/><small>ui.navs.nav_loc:504</small>"]
+  f10 -->|"call/high"| f22
+  f10 -->|"call/high"| f15
+  f10 -->|"call/high"| f15
+  f10 -->|"call/high"| f15
+  f23["MainWindowNavLoc._qimage_to_rgba_array<br/><small>ui.navs.nav_loc:308</small>"]
+  f10 -->|"call/high"| f23
+  f10 -->|"call/high"| f23
+  f10 -->|"call/high"| f15
+  f24["MainWindowNavLoc.fit_navigation_view<br/><small>ui.navs.nav_loc:605</small>"]
+  f10 -->|"call/high"| f24
+  f25["MainWindowNavLoc.reload_navigation_view<br/><small>ui.navs.nav_loc:632</small>"]
+  f25 -->|"call/high"| f9
+  f25 -->|"call/high"| f10
+  f25 -->|"call/high"| f11
+  f26["MainWindowNavLoc._hex_to_rgb<br/><small>ui.navs.nav_loc:703</small>"]
+  f8 -->|"call/high"| f26
+  f8 -->|"call/high"| f26
+  f8 -->|"call/high"| f26
+  f27["MainWindowNavLoc._init_attitude_view<br/><small>ui.navs.nav_loc:732</small>"]
+  f8 -->|"call/high"| f27
+  f28["MainWindowNavLoc._init_attitude_mesh<br/><small>ui.navs.nav_loc:1014</small>"]
+  f8 -->|"call/high"| f28
+  f29["MainWindowNavLoc.update_attitude_plot<br/><small>ui.navs.nav_loc:1107</small>"]
+  f8 -->|"call/high"| f29
+  f27 -->|"call/high"| f15
+  f30["MainWindowNavLoc._hex_to_qcolor<br/><small>ui.navs.nav_loc:721</small>"]
+  f27 -->|"call/high"| f30
+  f31["MainWindowNavLoc._init_black_gl_grid<br/><small>ui.navs.nav_loc:799</small>"]
+  f27 -->|"call/high"| f31
+  f32["MainWindowNavLoc._init_attitude_axis_overlay<br/><small>ui.navs.nav_loc:849</small>"]
+  f27 -->|"call/high"| f32
+  f27 -->|"call/high"| f15
+  f27 -->|"call/high"| f15
+  f33["MainWindowNavLoc._init_black_2d_grid<br/><small>ui.navs.nav_loc:829</small>"]
+  f27 -->|"call/high"| f33
+  f32 -->|"call/high"| f15
+  f34["MainWindowNavLoc._stl_paths<br/><small>ui.navs.nav_loc:889</small>"]
+  f34 -->|"call/high"| f7
+  f34 -->|"call/high"| f7
+  f35["MainWindowNavLoc._set_attitude_status<br/><small>ui.navs.nav_loc:895</small>"]
+  f35 -->|"call/high"| f15
+  f36["MainWindowNavLoc._load_stl_vertices_faces<br/><small>ui.navs.nav_loc:947</small>"]
+  f37["MainWindowNavLoc._decode_binary_stl<br/><small>ui.navs.nav_loc:927</small>"]
+  f36 -->|"call/high"| f37
+  f38["MainWindowNavLoc._decode_ascii_stl<br/><small>ui.navs.nav_loc:902</small>"]
+  f36 -->|"call/high"| f38
+  f28 -->|"call/high"| f34
+  f28 -->|"call/high"| f36
+  f39["MainWindowNavLoc._dedup_vertices_and_faces<br/><small>ui.navs.nav_loc:982</small>"]
+  f28 -->|"call/high"| f39
+  f40["MainWindowNavLoc._normalize_vertices<br/><small>ui.navs.nav_loc:1007</small>"]
+  f28 -->|"call/high"| f40
+  f41["MainWindowNavLoc._dedup_vertices_and_edges<br/><small>ui.navs.nav_loc:955</small>"]
+  f28 -->|"call/high"| f41
+  f28 -->|"call/high"| f35
+  f28 -->|"call/high"| f15
+  f28 -->|"call/high"| f35
+  f42["MainWindowNavLoc._ensure_gl_mesh_item<br/><small>ui.navs.nav_loc:1052</small>"]
+  f29 -->|"call/high"| f42
+  f43["MainWindowNavLoc._project_attitude_wireframe<br/><small>ui.navs.nav_loc:1072</small>"]
+  f29 -->|"call/high"| f43
+  f44["MainWindowNavLoc._axis_display_text<br/><small>ui.navs.nav_loc:1145</small>"]
+  f45["MainWindowNavLoc._axis_title<br/><small>ui.navs.nav_loc:1138</small>"]
+  f44 -->|"call/high"| f45
+  f46["MainWindowNavLoc._collect_imu_config_defaults<br/><small>ui.navs.nav_loc:1195</small>"]
+  f47["MainWindowNavLoc._read_optional_combobox_tab_text<br/><small>ui.navs.nav_loc:1171</small>"]
+  f46 -->|"call/high"| f47
+  f46 -->|"call/high"| f47
+  f48["MainWindowNavLoc._read_optional_lineedit_text<br/><small>ui.navs.nav_loc:1149</small>"]
+  f46 -->|"call/high"| f48
+  f46 -->|"call/high"| f48

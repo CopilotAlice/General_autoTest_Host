@@ -1,0 +1,32 @@
+# 模块 ui.inits.inits_funcTest  (ui/inits/inits_funcTest.py)
+
+## <module>  L1-120  args=()  <module_body>
+
+## MainWindowInitFuncTest.__init__  L7-14  args=(self, mainWindow)  <constructor>
+  -> [call/high@L11] ui.inits.inits_funcTest::MainWindowInitFuncTest.get_uuid
+  -> [call/high@L12] ui.inits.inits_funcTest::MainWindowInitFuncTest.init_load_setting
+  -> [call/high@L13] ui.inits.inits_funcTest::MainWindowInitFuncTest.load_config
+  -> [call/high@L14] ui.inits.inits_funcTest::MainWindowInitFuncTest.clickLogic_bykey
+
+## MainWindowInitFuncTest.get_uuid  L16-18  args=(self)
+  => (外部库) uuid.getnode x1
+  <- [call/high@L11] ui.inits.inits_funcTest::MainWindowInitFuncTest.__init__
+  <- [call/high@L81] ui.inits.inits_funcTest::MainWindowInitFuncTest.init_load_setting
+
+## MainWindowInitFuncTest.load_config  L19-32  args=(self)
+  => (外部库) configparser.ConfigParser x1
+  <- [call/high@L13] ui.inits.inits_funcTest::MainWindowInitFuncTest.__init__
+
+## MainWindowInitFuncTest.clickLogic_bykey  L33-66  args=(self)
+  -> [connect/high@L47] ui.inits.inits_funcTest::MainWindowInitFuncTest.clickEvent_childHidden   # groupbox.toggled.connect
+  <- [call/high@L14] ui.inits.inits_funcTest::MainWindowInitFuncTest.__init__
+
+## MainWindowInitFuncTest.clickEvent_childHidden  L69-73  args=(self, checked)  <qt_slot>
+  <- [connect/high@L47] ui.inits.inits_funcTest::MainWindowInitFuncTest.clickLogic_bykey
+
+## MainWindowInitFuncTest.groupbox_child_hidden  L74-77  args=(self, groupbox, checked)
+
+## MainWindowInitFuncTest.init_load_setting  L80-111  args=(self)
+  -> [call/high@L81] ui.inits.inits_funcTest::MainWindowInitFuncTest.get_uuid
+  => (外部库) pathlib.Path x1
+  <- [call/high@L12] ui.inits.inits_funcTest::MainWindowInitFuncTest.__init__

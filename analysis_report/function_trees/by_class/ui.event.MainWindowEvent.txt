@@ -1,0 +1,113 @@
+# 类 ui.event::MainWindowEvent  (ui/event.py:13)  bases=[]
+
+## MainWindowEvent.__init__  L14
+   ui.event::MainWindowEvent.__init__  (ui/event.py:14)
+
+## MainWindowEvent.changeEvent_general_rule  L35
+   ui.event::MainWindowEvent.changeEvent_general_rule  (ui/event.py:35)  <qt_slot>
+       [call/high@L50] ui.event::MainWindowEvent.funcEvent_general_changeButton  (ui/event.py:64)
+       [call/high@L51] ui.event::MainWindowEvent.funcEvent_general_changeTable  (ui/event.py:71)
+       [call/high@L52] ui.event::MainWindowEvent.changeEvent_general_bind_table  (ui/event.py:121)  <qt_slot>
+           [call/high@L146(+1 处: 148)] funs.fun_chy2::try_return_bdx  (funs/fun_chy2.py:134)
+           [call/high@L151(+4 处: 174,184,195,205)] funs.fun_chy2::try_return_check  (funs/fun_chy2.py:143)
+           [call/high@L183] funs.fun_checks::calculate_crc16  (funs/fun_checks.py:84)
+           [call/high@L194] funs.fun_checks::calculate_crc16_mcrf4xx  (funs/fun_checks.py:121)
+           [call/high@L204] funs.fun_checks::calculate_crc16_0x00  (funs/fun_checks.py:90)
+
+## MainWindowEvent.funcEvent_general_clearButton  L59
+   ui.event::MainWindowEvent.funcEvent_general_clearButton  (ui/event.py:59)
+
+## MainWindowEvent.funcEvent_general_changeButton  L64
+   ui.event::MainWindowEvent.funcEvent_general_changeButton  (ui/event.py:64)
+
+## MainWindowEvent.funcEvent_general_changeTable  L71
+   ui.event::MainWindowEvent.funcEvent_general_changeTable  (ui/event.py:71)
+
+## MainWindowEvent.changeEvent_general_bind_table  L121
+   ui.event::MainWindowEvent.changeEvent_general_bind_table  (ui/event.py:121)  <qt_slot>
+       [call/high@L146(+1 处: 148)] funs.fun_chy2::try_return_bdx  (funs/fun_chy2.py:134)
+           [call/high@L142] funs.fun_chy2::try_return_num  (funs/fun_chy2.py:117)
+       [call/high@L151(+4 处: 174,184,195,205)] funs.fun_chy2::try_return_check  (funs/fun_chy2.py:143)
+       [call/high@L183] funs.fun_checks::calculate_crc16  (funs/fun_checks.py:84)
+       [call/high@L194] funs.fun_checks::calculate_crc16_mcrf4xx  (funs/fun_checks.py:121)
+       [call/high@L204] funs.fun_checks::calculate_crc16_0x00  (funs/fun_checks.py:90)
+
+## MainWindowEvent.setEvent_lonlat_to_table  L223
+   ui.event::MainWindowEvent.setEvent_lonlat_to_table  (ui/event.py:223)
+
+## MainWindowEvent.clickEvent_general_send  L238
+   ui.event::MainWindowEvent.clickEvent_general_send  (ui/event.py:238)  <qt_slot,timer_callback>
+
+## MainWindowEvent.clickEvent_general_bind  L258
+   ui.event::MainWindowEvent.clickEvent_general_bind  (ui/event.py:258)  <qt_slot>
+       [call/high@L274] ui.event::MainWindowEvent.clickEvent_general_send  (ui/event.py:238)  <qt_slot,timer_callback>
+
+## MainWindowEvent.changeEvent_general_autoSend  L285
+   ui.event::MainWindowEvent.changeEvent_general_autoSend  (ui/event.py:285)  <qt_slot>
+       [timer/high@L291] ui.event::MainWindowEvent.clickEvent_general_send  (ui/event.py:238)  <qt_slot,timer_callback>
+
+## MainWindowEvent.changeEvent_com_update_all  L300
+   ui.event::MainWindowEvent.changeEvent_com_update_all  (ui/event.py:300)  <qt_slot>
+
+## MainWindowEvent.changeEvent_baund_update_all  L305
+   ui.event::MainWindowEvent.changeEvent_baund_update_all  (ui/event.py:305)  <qt_slot>
+
+## MainWindowEvent.changeEvent_check_update_all  L309
+   ui.event::MainWindowEvent.changeEvent_check_update_all  (ui/event.py:309)  <qt_slot>
+
+## MainWindowEvent.changeEvent_stop_update_all  L313
+   ui.event::MainWindowEvent.changeEvent_stop_update_all  (ui/event.py:313)  <qt_slot>
+
+## MainWindowEvent.changeEvent_open_update_all  L317
+   ui.event::MainWindowEvent.changeEvent_open_update_all  (ui/event.py:317)  <qt_slot>
+
+## MainWindowEvent.changeEvent_plan_update_all  L321
+   ui.event::MainWindowEvent.changeEvent_plan_update_all  (ui/event.py:321)  <qt_slot>
+
+## MainWindowEvent.changeEvent_open_switch  L325
+   ui.event::MainWindowEvent.changeEvent_open_switch  (ui/event.py:325)
+
+## MainWindowEvent.changeEvent_baund_update_main  L328
+   ui.event::MainWindowEvent.changeEvent_baund_update_main  (ui/event.py:328)  <qt_slot>
+
+## MainWindowEvent.changeEvent_check_update_main  L330
+   ui.event::MainWindowEvent.changeEvent_check_update_main  (ui/event.py:330)  <qt_slot>
+
+## MainWindowEvent.changeEvent_auxsate_com  L338
+   ui.event::MainWindowEvent.changeEvent_auxsate_com  (ui/event.py:338)  <qt_slot>
+
+## MainWindowEvent.changeEvent_auxsate_baund  L340
+   ui.event::MainWindowEvent.changeEvent_auxsate_baund  (ui/event.py:340)  <qt_slot>
+
+## MainWindowEvent.changeEvent_auxsate_check  L342
+   ui.event::MainWindowEvent.changeEvent_auxsate_check  (ui/event.py:342)  <qt_slot>
+
+## MainWindowEvent.clickEvent_auxsate_send  L345
+   ui.event::MainWindowEvent.clickEvent_auxsate_send  (ui/event.py:345)  <qt_slot>
+
+## MainWindowEvent.clickEvent_para_loadPath  L351
+   ui.event::MainWindowEvent.clickEvent_para_loadPath  (ui/event.py:351)  <qt_slot>
+       [call/high@L377] funs.fun_chy2::move_dir_para_old  (funs/fun_chy2.py:78)
+           [call/high@L92] funs.fun_chy2::move_dir  (funs/fun_chy2.py:64)
+       [call/high@L400] funs.fun_chy2::del_empty_folder  (funs/fun_chy2.py:99)  <in_cycle>
+           [call/high@L103] funs.fun_chy2::del_empty_folder  ↻ 递归/循环调用(不再展开)  (funs/fun_chy2.py:99)
+
+## MainWindowEvent.changeEvent_deocdeRuleToTableWidget  L500
+   ui.event::MainWindowEvent.changeEvent_deocdeRuleToTableWidget  (ui/event.py:500)  <qt_slot>
+       [call/high@L565] funs.fun_chy2::split_plus  (funs/fun_chy2.py:73)
+
+## MainWindowEvent.clickEvent_decodeShow_tryReceive  L598
+   ui.event::MainWindowEvent.clickEvent_decodeShow_tryReceive  (ui/event.py:598)  <hardware_io,qt_slot,serial_io_heuristic>
+       [call/high@L630] funs.fun_chy2::check2serial  (funs/fun_chy2.py:167)
+
+## MainWindowEvent.changeEvent_readAtuoTestRule  L687
+   ui.event::MainWindowEvent.changeEvent_readAtuoTestRule  (ui/event.py:687)  <qt_slot>
+
+## MainWindowEvent.clickEvent_para_createPara  L697
+   ui.event::MainWindowEvent.clickEvent_para_createPara  (ui/event.py:697)  <qt_slot>
+
+## MainWindowEvent.clickEvent_para_savePara  L700
+   ui.event::MainWindowEvent.clickEvent_para_savePara  (ui/event.py:700)  <qt_slot>
+
+## MainWindowEvent.changeEvent_protocal_path  L705
+   ui.event::MainWindowEvent.changeEvent_protocal_path  (ui/event.py:705)

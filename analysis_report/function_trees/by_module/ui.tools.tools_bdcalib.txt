@@ -1,0 +1,334 @@
+# 模块 ui.tools.tools_bdcalib  (ui/tools/tools_bdcalib.py)
+
+## <module>  L1-1085  args=()  <module_body>
+  => (外部库) PyQt5.QtCore.pyqtSignal x1
+
+## extract_number  L17-19  args=(filename)
+  => (外部库) re.search x1
+
+## sort_key  L20-24  args=(fname, split_rule)
+  <- [call/high@L766] ui.tools.tools_bdcalib::class_Worker.cal_para_polyFit
+
+## init_sdf  L25-35  args=()
+  => (外部库) pandas.DataFrame x1
+  <- [call/high@L679] ui.tools.tools_bdcalib::class_Worker.cal_paraSave
+  <- [call/high@L955] ui.tools.tools_bdcalib::class_Worker.cal_paraSave_chy_LW
+  <- [call/high@L1039] ui.tools.tools_bdcalib::class_Worker.cal_paraSave_chy_SL
+
+## decode_zfG  L36-51  args=(zfG_str, A_length)
+  <- [call/high@L954] ui.tools.tools_bdcalib::class_Worker.cal_paraSave_chy_LW
+
+## MainWindowToolBdcalib.__init__  L54-84  args=(self, mainWindow)  <constructor>
+  -> [call/high@L68] ui.tools.tools_bdcalib::MainWindowToolBdcalib.init_list
+  -> [call/high@L69] ui.tools.tools_bdcalib::MainWindowToolBdcalib.init_data
+  -> [connect/high@L71] ui.tools.tools_bdcalib::MainWindowToolBdcalib.load_path   # self.mw.pushButton_tools_bd3x_loadPath.clicked.connect
+  -> [connect/high@L72] ui.tools.tools_bdcalib::MainWindowToolBdcalib.item_click_showMsg   # self.mw.listWidget_tools_bd3x_pathShow.itemClicked.connect
+  -> [connect/high@L73] ui.tools.tools_bdcalib::MainWindowToolBdcalib.item_click_changeFolder   # self.mw.listWidget_tools_bd3x_pathShow.itemDoubleClicked.connect
+  -> [connect/high@L75] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_uppath   # self.mw.pushButton_tools_bd3x_uppath.clicked.connect
+  -> [connect/high@L76] ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files   # self.mw.checkBox_tools_bd3x_regexFolder.clicked.connect
+  -> [connect/high@L77] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_avePath   # self.mw.pushButton_tools_bd3x_avePath.clicked.connect
+  -> [connect/high@L78] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_formatConversion   # self.mw.pushButton_tools_bd3x_modTransform.clicked.connect
+  -> [connect/high@L79] ui.tools.tools_bdcalib::MainWindowToolBdcalib.change_preset   # self.mw.comboBox_tools_bd3x_preset.currentTextChanged.connect
+  -> [connect/high@L80] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_createBin   # self.mw.pushButton_tools_bd3x_createBin.clicked.connect
+  -> [connect/high@L81] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_autoRun   # self.mw.pushButton_tools_bd3x_autoRun.clicked.connect
+  -> [connect/high@L82] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_calPara   # self.mw.pushButton_tools_bd3x_calPara.clicked.connect
+  -> [connect/high@L83] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_polyfit   # self.mw.pushButton_tools_bd3x_polyFit.clicked.connect
+  -> [connect/high@L84] ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files   # self.mw.pushButton_tools_bd3x_flush.clicked.connect
+  <- [create/high@L110] 通用自动测试上位机V0.90::MainWindow.__init__
+  <- [dynamic/medium@L182] 通用自动测试上位机V0.95::MainWindow._init_modules_in_batches
+
+## MainWindowToolBdcalib.init_list  L87-94  args=(self)
+  <- [call/high@L68] ui.tools.tools_bdcalib::MainWindowToolBdcalib.__init__
+
+## MainWindowToolBdcalib.init_data  L98-116  args=(self)
+  => (外部库) re.split x2
+  <- [call/high@L69] ui.tools.tools_bdcalib::MainWindowToolBdcalib.__init__
+  <- [call/high@L136] ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files
+  <- [call/high@L273] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_avePath
+  <- [call/high@L285] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_formatConversion
+  <- [call/high@L297] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_calPara
+  <- [call/high@L310] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_polyfit
+
+## MainWindowToolBdcalib.load_path  L120-125  args=(self)  <qt_slot>
+  -> [call/high@L125] ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files
+  => (外部库) PyQt5.QtWidgets.QFileDialog.getExistingDirectory x1
+  <- [connect/high@L71] ui.tools.tools_bdcalib::MainWindowToolBdcalib.__init__
+
+## MainWindowToolBdcalib.show_all_files  L128-153  args=(self, folder)  <qt_slot>
+  -> [call/high@L136] ui.tools.tools_bdcalib::MainWindowToolBdcalib.init_data
+  => (外部库) os.listdir x1
+  => (外部库) os.path.isdir x1
+  => (外部库) os.path.join x1
+  => (外部库) re.search x2
+  <- [connect/high@L76] ui.tools.tools_bdcalib::MainWindowToolBdcalib.__init__
+  <- [connect/high@L84] ui.tools.tools_bdcalib::MainWindowToolBdcalib.__init__
+  <- [call/high@L125] ui.tools.tools_bdcalib::MainWindowToolBdcalib.load_path
+  <- [call/high@L184] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_uppath
+  <- [call/high@L193] ui.tools.tools_bdcalib::MainWindowToolBdcalib.item_click_changeFolder
+  <- [call/high@L274] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_avePath
+  <- [call/high@L286] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_formatConversion
+  <- [call/high@L298] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_calPara
+  <- [call/high@L311] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_polyfit
+  <- [call/high@L324] ui.tools.tools_bdcalib::MainWindowToolBdcalib.task_done
+
+## MainWindowToolBdcalib.append_degugMsg  L155-158  args=(self, msg)
+  => (外部库) datetime.datetime.now x1
+  <- [call/high@L185] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_uppath
+  <- [call/high@L194] ui.tools.tools_bdcalib::MainWindowToolBdcalib.item_click_changeFolder
+  <- [call/high@L204] ui.tools.tools_bdcalib::MainWindowToolBdcalib.item_click_showMsg
+  <- [call/high@L232] ui.tools.tools_bdcalib::MainWindowToolBdcalib.item_click_showMsg
+  <- [call/high@L242] ui.tools.tools_bdcalib::MainWindowToolBdcalib.item_click_showMsg
+  <- [call/high@L245] ui.tools.tools_bdcalib::MainWindowToolBdcalib.item_click_showMsg
+  <- [call/high@L248] ui.tools.tools_bdcalib::MainWindowToolBdcalib.item_click_showMsg
+  <- [call/high@L275] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_avePath
+  <- [call/high@L287] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_formatConversion
+  <- [call/high@L299] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_calPara
+  <- [call/high@L312] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_polyfit
+  <- [call/high@L322] ui.tools.tools_bdcalib::MainWindowToolBdcalib.task_done
+  <- ... 另有 4 个调用者
+
+## MainWindowToolBdcalib.preview_file  L161-177  args=(self, mode)
+  <- [call/high@L201] ui.tools.tools_bdcalib::MainWindowToolBdcalib.item_click_showMsg
+  <- [call/high@L203] ui.tools.tools_bdcalib::MainWindowToolBdcalib.item_click_showMsg
+  <- [call/high@L222] ui.tools.tools_bdcalib::MainWindowToolBdcalib.item_click_showMsg
+  <- [call/high@L239] ui.tools.tools_bdcalib::MainWindowToolBdcalib.item_click_showMsg
+  <- [call/high@L244] ui.tools.tools_bdcalib::MainWindowToolBdcalib.item_click_showMsg
+  <- [call/high@L247] ui.tools.tools_bdcalib::MainWindowToolBdcalib.item_click_showMsg
+
+## MainWindowToolBdcalib.click_uppath  L179-185  args=(self)  <qt_slot>
+  -> [call/high@L184] ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files
+  -> [call/high@L185] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg
+  => (外部库) os.path.dirname x1
+  => (外部库) os.path.isdir x1
+  <- [connect/high@L75] ui.tools.tools_bdcalib::MainWindowToolBdcalib.__init__
+
+## MainWindowToolBdcalib.item_click_changeFolder  L187-194  args=(self, item)  <qt_slot>
+  -> [call/high@L193] ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files
+  -> [call/high@L194] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg
+  => (外部库) os.path.isdir x1
+  => (外部库) os.path.join x1
+  <- [connect/high@L73] ui.tools.tools_bdcalib::MainWindowToolBdcalib.__init__
+
+## MainWindowToolBdcalib.item_click_showMsg  L196-248  args=(self, item)  <qt_slot>
+  -> [call/high@L201] ui.tools.tools_bdcalib::MainWindowToolBdcalib.preview_file
+  -> [call/high@L203] ui.tools.tools_bdcalib::MainWindowToolBdcalib.preview_file
+  -> [call/high@L204] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg
+  -> [call/high@L207] ui.tools.tools_bdcalib::MainWindowToolBdcalib.update_imgShow_pixmap
+  -> [call/high@L222] ui.tools.tools_bdcalib::MainWindowToolBdcalib.preview_file
+  -> [call/high@L232] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg
+  -> [call/high@L239] ui.tools.tools_bdcalib::MainWindowToolBdcalib.preview_file
+  -> [call/high@L242] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg
+  -> [call/high@L244] ui.tools.tools_bdcalib::MainWindowToolBdcalib.preview_file
+  -> [call/high@L245] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg
+  -> [call/high@L247] ui.tools.tools_bdcalib::MainWindowToolBdcalib.preview_file
+  -> [call/high@L248] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg
+  => (外部库) PyQt5.QtGui.QPixmap x1
+  => (外部库) PyQt5.QtWidgets.QTableWidgetItem x1
+  => (外部库) os.path.join x3
+  => (外部库) pandas.read_csv x1
+  <- [connect/high@L72] ui.tools.tools_bdcalib::MainWindowToolBdcalib.__init__
+
+## MainWindowToolBdcalib.update_imgShow_pixmap  L250-262  args=(self)
+  => (外部库) PyQt5.QtCore.QSize x1
+  <- [call/high@L207] ui.tools.tools_bdcalib::MainWindowToolBdcalib.item_click_showMsg
+  <- [call/high@L264] ui.tools.tools_bdcalib::MainWindowToolBdcalib.label_resizeEvent
+
+## MainWindowToolBdcalib.label_resizeEvent  L263-265  args=(self, event)
+  -> [call/high@L264] ui.tools.tools_bdcalib::MainWindowToolBdcalib.update_imgShow_pixmap
+  => (外部库) PyQt5.QtWidgets.QWidget.resizeEvent x1
+
+## MainWindowToolBdcalib.click_avePath  L267-279  args=(self)  <qt_slot>
+  -> [call/high@L273] ui.tools.tools_bdcalib::MainWindowToolBdcalib.init_data
+  -> [call/high@L274] ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files
+  -> [call/high@L275] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg
+  -> [create/high@L276] ui.tools.tools_bdcalib::class_Worker.__init__   # ctor
+  -> [connect/high@L277] ui.tools.tools_bdcalib::MainWindowToolBdcalib.task_done   # self.work_processData.finished.connect
+  => (外部库) PyQt5.QtWidgets.QFileDialog.getExistingDirectory x1
+  <- [connect/high@L77] ui.tools.tools_bdcalib::MainWindowToolBdcalib.__init__
+
+## MainWindowToolBdcalib.click_formatConversion  L280-291  args=(self)  <qt_slot>
+  -> [call/high@L285] ui.tools.tools_bdcalib::MainWindowToolBdcalib.init_data
+  -> [call/high@L286] ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files
+  -> [call/high@L287] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg
+  -> [create/high@L288] ui.tools.tools_bdcalib::class_Worker.__init__   # ctor
+  -> [connect/high@L289] ui.tools.tools_bdcalib::MainWindowToolBdcalib.task_done   # self.work_processData.finished.connect
+  => (外部库) PyQt5.QtWidgets.QFileDialog.getExistingDirectory x1
+  <- [connect/high@L78] ui.tools.tools_bdcalib::MainWindowToolBdcalib.__init__
+
+## MainWindowToolBdcalib.click_calPara  L292-304  args=(self)  <qt_slot>
+  -> [call/high@L297] ui.tools.tools_bdcalib::MainWindowToolBdcalib.init_data
+  -> [call/high@L298] ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files
+  -> [call/high@L299] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg
+  -> [create/high@L300] ui.tools.tools_bdcalib::class_Worker.__init__   # ctor
+  -> [connect/high@L302] ui.tools.tools_bdcalib::MainWindowToolBdcalib.task_done   # self.work_processData.finished.connect
+  => (外部库) PyQt5.QtWidgets.QFileDialog.getExistingDirectory x1
+  <- [connect/high@L82] ui.tools.tools_bdcalib::MainWindowToolBdcalib.__init__
+
+## MainWindowToolBdcalib.click_polyfit  L305-317  args=(self)  <qt_slot>
+  -> [call/high@L310] ui.tools.tools_bdcalib::MainWindowToolBdcalib.init_data
+  -> [call/high@L311] ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files
+  -> [call/high@L312] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg
+  -> [create/high@L313] ui.tools.tools_bdcalib::class_Worker.__init__   # ctor
+  -> [connect/high@L315] ui.tools.tools_bdcalib::MainWindowToolBdcalib.task_done   # self.work_processData.finished.connect
+  => (外部库) PyQt5.QtWidgets.QFileDialog.getExistingDirectory x1
+  <- [connect/high@L83] ui.tools.tools_bdcalib::MainWindowToolBdcalib.__init__
+
+## MainWindowToolBdcalib.task_done  L319-324  args=(self)  <qt_slot>
+  -> [call/high@L322] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg
+  -> [call/high@L323] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg
+  -> [call/high@L324] ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files
+  <- [connect/high@L277] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_avePath
+  <- [connect/high@L289] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_formatConversion
+  <- [connect/high@L302] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_calPara
+  <- [connect/high@L315] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_polyfit
+
+## MainWindowToolBdcalib.change_preset  L325-326  args=(self)  <qt_slot>
+  -> [call/high@L326] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg
+  <- [connect/high@L79] ui.tools.tools_bdcalib::MainWindowToolBdcalib.__init__
+
+## MainWindowToolBdcalib.click_createBin  L327-328  args=(self)  <qt_slot>
+  -> [call/high@L328] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg
+  <- [connect/high@L80] ui.tools.tools_bdcalib::MainWindowToolBdcalib.__init__
+
+## MainWindowToolBdcalib.click_autoRun  L329-330  args=(self)  <qt_slot>
+  -> [call/high@L330] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg
+  <- [connect/high@L81] ui.tools.tools_bdcalib::MainWindowToolBdcalib.__init__
+
+## class_Worker.__init__  L354-365  args=(self, folder_path, list_input_data, list_pathrule_and, list_pathrule_nor, root_mode)  <constructor>
+  <- [create/high@L276] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_avePath
+  <- [create/high@L288] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_formatConversion
+  <- [create/high@L300] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_calPara
+  <- [create/high@L313] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_polyfit
+
+## class_Worker.run  L368-398  args=(self)  <thread_entry>
+  -> [call/high@L379] ui.tools.tools_bdcalib::class_Worker.ave_all_data
+  -> [call/high@L382] ui.tools.tools_bdcalib::class_Worker.format_all_data
+  -> [call/high@L386] ui.tools.tools_bdcalib::class_Worker.cal_all_para_chy
+  -> [call/high@L388] ui.tools.tools_bdcalib::class_Worker.cal_all_para
+  -> [call/high@L392] ui.tools.tools_bdcalib::class_Worker.cal_all_polyfit_chy
+  -> [call/high@L394] ui.tools.tools_bdcalib::class_Worker.cal_all_polyfit
+  => (外部库) debugpy.debug_this_thread x1
+
+## class_Worker.ave_all_data  L402-528  args=(self)
+  -> [call/high@L501] ui.tools.tools_bdcalib::class_Worker.init_save_aveFile
+  -> [call/high@L512] ui.tools.tools_bdcalib::class_Worker.init_save_aveFile
+  => (外部库) os.listdir x2
+  => (外部库) os.makedirs x2
+  => (外部库) os.path.exists x4
+  => (外部库) os.path.isdir x1
+  => (外部库) os.path.join x7
+  => (外部库) pandas.read_csv x1
+  => (外部库) re.search x5
+  => (外部库) re.split x3
+  => (外部库) shutil.rmtree x2
+  <- [call/high@L379] ui.tools.tools_bdcalib::class_Worker.run
+
+## class_Worker.init_save_aveFile  L530-540  args=(self, save_file_path)
+  <- [call/high@L501] ui.tools.tools_bdcalib::class_Worker.ave_all_data
+  <- [call/high@L512] ui.tools.tools_bdcalib::class_Worker.ave_all_data
+
+## class_Worker.format_all_data  L543-598  args=(self)
+  => (外部库) os.listdir x1
+  => (外部库) os.makedirs x1
+  => (外部库) os.path.basename x1
+  => (外部库) os.path.dirname x1
+  => (外部库) os.path.exists x1
+  => (外部库) os.path.isdir x1
+  => (外部库) os.path.join x5
+  => (外部库) pandas.DataFrame x2
+  => (外部库) pandas.concat x1
+  => (外部库) pandas.read_csv x1
+  => (外部库) shutil.rmtree x1
+  <- [call/high@L382] ui.tools.tools_bdcalib::class_Worker.run
+
+## class_Worker.cal_all_para  L601-642  args=(self)
+  -> [call/high@L639] ui.tools.tools_bdcalib::class_Worker.cal_paraSave
+  => (外部库) os.listdir x1
+  => (外部库) os.makedirs x2
+  => (外部库) os.path.basename x1
+  => (外部库) os.path.dirname x1
+  => (外部库) os.path.exists x2
+  => (外部库) os.path.isdir x1
+  => (外部库) os.path.join x6
+  => (外部库) pandas.read_csv x1
+  => (外部库) shutil.rmtree x2
+  <- [call/high@L388] ui.tools.tools_bdcalib::class_Worker.run
+
+## class_Worker.cal_paraSave  L647-722  args=(self, df, save_name)
+  -> [call/high@L679] ui.tools.tools_bdcalib::init_sdf
+  => (外部库) numpy.abs x1
+  => (外部库) numpy.arcsin x2
+  => (外部库) numpy.array x2
+  => (外部库) numpy.max x1
+  => (外部库) numpy.mean x11
+  => (外部库) numpy.min x1
+  => (外部库) numpy.polyfit x1
+  => (外部库) numpy.polyval x1
+  <- [call/high@L639] ui.tools.tools_bdcalib::class_Worker.cal_all_para
+
+## class_Worker.cal_all_polyfit  L724-739  args=(self)
+  -> [call/high@L739] ui.tools.tools_bdcalib::class_Worker.cal_para_polyFit
+  => (外部库) os.makedirs x1
+  => (外部库) os.path.basename x1
+  => (外部库) os.path.dirname x1
+  => (外部库) os.path.exists x1
+  => (外部库) os.path.isdir x1
+  => (外部库) os.path.join x3
+  => (外部库) shutil.rmtree x1
+  <- [call/high@L394] ui.tools.tools_bdcalib::class_Worker.run
+
+## class_Worker.cal_para_polyFit  L741-871  args=(self, para_path, polyfit_path)
+  -> [call/high@L766] ui.tools.tools_bdcalib::sort_key
+  => (外部库) numpy.linspace x2
+  => (外部库) numpy.polyfit x2
+  => (外部库) numpy.polyval x4
+  => (外部库) os.listdir x1
+  => (外部库) os.path.join x5
+  => (外部库) pandas.DataFrame x1
+  => (外部库) pandas.concat x1
+  => (外部库) pandas.read_csv x1
+  => (外部库) re.sub x1
+  <- [call/high@L739] ui.tools.tools_bdcalib::class_Worker.cal_all_polyfit
+
+## class_Worker.cal_all_para_chy  L874-932  args=(self)
+  -> [call/high@L923] ui.tools.tools_bdcalib::class_Worker.cal_paraSave_chy_LW
+  -> [call/high@L926] ui.tools.tools_bdcalib::class_Worker.cal_paraSave_chy_SL
+  -> [call/high@L929] ui.tools.tools_bdcalib::class_Worker.cal_paraSave_chy_JT
+  => (外部库) os.listdir x1
+  => (外部库) os.makedirs x1
+  => (外部库) os.path.basename x1
+  => (外部库) os.path.dirname x1
+  => (外部库) os.path.exists x1
+  => (外部库) os.path.isdir x1
+  => (外部库) os.path.join x7
+  => (外部库) pandas.read_csv x1
+  => (外部库) re.search x4
+  => (外部库) re.split x1
+  => (外部库) shutil.rmtree x1
+  <- [call/high@L386] ui.tools.tools_bdcalib::class_Worker.run
+
+## class_Worker.cal_paraSave_chy_LW  L934-986  args=(self, df, save_name)
+  -> [call/high@L954] ui.tools.tools_bdcalib::decode_zfG
+  -> [call/high@L955] ui.tools.tools_bdcalib::init_sdf
+  => (外部库) numpy.arcsin x1
+  => (外部库) numpy.mean x4
+  => (外部库) re.split x3
+  <- [call/high@L923] ui.tools.tools_bdcalib::class_Worker.cal_all_para_chy
+
+## class_Worker.cal_paraSave_chy_SL  L988-1078  args=(self, df, save_name)
+  -> [call/high@L1039] ui.tools.tools_bdcalib::init_sdf
+  => (外部库) numpy.arcsin x1
+  => (外部库) numpy.linspace x1
+  => (外部库) numpy.polyfit x1
+  => (外部库) numpy.polyval x2
+  => (外部库) pandas.Series x1
+  => (外部库) re.split x3
+  <- [call/high@L926] ui.tools.tools_bdcalib::class_Worker.cal_all_para_chy
+
+## class_Worker.cal_paraSave_chy_SL.<locals>.get_max_abs_with_sign  L1027-1037  args=(s)
+
+## class_Worker.cal_paraSave_chy_JT  L1081-1082  args=(self, df, save_name)
+  <- [call/high@L929] ui.tools.tools_bdcalib::class_Worker.cal_all_para_chy
+
+## class_Worker.cal_all_polyfit_chy  L1083-1085  args=(self)
+  <- [call/high@L392] ui.tools.tools_bdcalib::class_Worker.run

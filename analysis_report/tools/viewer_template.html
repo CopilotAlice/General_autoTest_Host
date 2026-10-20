@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<title>项目架构 / 调用关系 交互式报告</title>
+<style>
+*{box-sizing:border-box} body{margin:0;font:13px/1.45 "Microsoft YaHei",Segoe UI,sans-serif;display:flex;flex-direction:column;height:100vh;color:#222}
+header{background:#24344d;color:#fff;padding:6px 12px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+header h1{font-size:15px;margin:0} header a{color:#9cf}
+#main{flex:1;display:flex;min-height:0}
+#left{width:300px;border-right:1px solid #ccc;display:flex;flex-direction:column;min-height:0}
+#center{flex:1;display:flex;flex-direction:column;min-width:0}
+#right{width:370px;border-left:1px solid #ccc;overflow:auto;padding:8px}
+#tree,#results{overflow:auto;padding:4px 6px;font-size:12px} #tree{flex:1}
+#results{max-height:200px;border-bottom:1px solid #ddd;background:#fafafa}
+.it{cursor:pointer;padding:1px 3px;border-radius:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis} .it:hover{background:#e6f0ff}
+.sel{background:#cfe3ff!important}
+.dir>.nm{cursor:pointer;font-weight:600} .dir>.ch{margin-left:14px;display:none} .dir.open>.ch{display:block}
+.dir>.nm:before{content:"▸ "} .dir.open>.nm:before{content:"▾ "}
+.tag{font-size:10px;padding:0 4px;border-radius:6px;background:#eee;color:#555;margin-left:4px}
+.tag.leg{background:#f9d;} .tag.gen{background:#cdf} .tag.ent{background:#9e9}
+#bar{padding:5px 8px;border-bottom:1px solid #ddd;display:flex;gap:10px;flex-wrap:wrap;align-items:center;background:#f5f7fa}
+#bar label{white-space:nowrap} .tabs button{padding:3px 10px;border:1px solid #99a;background:#fff;cursor:pointer} .tabs button.on{background:#24344d;color:#fff}
+#stage{flex:1;position:relative;min-height:0;background:#fcfcfc} svg{width:100%;height:100%;display:block;cursor:grab}
+#treeView{position:absolute;inset:0;overflow:auto;padding:8px;display:none;font-family:Consolas,monospace;font-size:12px;background:#fff}
+#legend{position:absolute;right:8px;bottom:8px;background:rgba(255,255,255,.93);border:1px solid #bbb;padding:6px 8px;font-size:11px;max-width:330px}
+#legend i{display:inline-block;width:30px;border-top:2px solid;vertical-align:middle;margin-right:4px}
+.node rect{stroke:#456;rx:4;ry:4} .node text{font-size:11px;pointer-events:none} .node{cursor:pointer} .node.sel rect{stroke:#e00;stroke-width:2.5}
+.edge{fill:none;stroke-width:1.2} h3{margin:8px 0 3px;font-size:13px} .kv{color:#555} code{background:#f0f0f0;padding:0 3px}
+.tn{white-space:nowrap} .tn .tg{cursor:pointer;display:inline-block;width:14px} .tn .nm{cursor:pointer} .tn .nm:hover{text-decoration:underline}
+.warn{color:#b60}
+</style></head><body>
+<header><h1>项目架构 / 模块依赖 / 函数调用树</h1>
+<span id="stats"></span>
+<label>源码根目录 <input id="rootPath" size="38" title="用于生成 vscode://file/ 链接, 可改为本机路径"></label>
+<a href="diagrams/index.html">Mermaid 图集</a> <a href="README.md">README</a></header>
+<div id="main">
+ <div id="left"><div style="padding:6px"><input id="q" placeholder="搜索 函数名/类名/模块名…" style="width:100%"></div><div id="results" hidden></div><div id="tree"></div></div>
+ <div id="center">
+  <div id="bar">
+   <span class="tabs"><button data-v="mod" class="on">模块依赖图</button><button data-v="fn">函数调用图</button><button data-v="tree">调用树</button></span>
+   <span id="kinds"></span>
+   <label>可信度 <span id="confs"></span></label>
+   <label>模块 <select id="modFilter"><option value="">全部</option></select></label>
+   <label>展开深度 <select id="depth"><option>1</option><option selected>2</option><option>3</option><option>4</option></select></label>
+   <label><input type="checkbox" id="showLegacy">含旧版/生成文件</label>
+   <label><input type="checkbox" id="hideGenerated" checked>隐藏 pyuic 生成</label>
+  </div>
+  <div id="stage"><svg id="svg"><defs>
+   <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="#667"/></marker></defs><g id="vp"></g></svg>
+   <div id="treeView"></div>
+   <div id="legend"></div></div>
+ </div>
+ <div id="right"><div id="detail">点击左侧文件、图中节点或搜索结果查看详情。<br><br>
+ 操作: 滚轮缩放, 拖动平移, 单击节点查看详情, 双击节点以其为中心展开调用图。</div></div>
+</div>
+<script>
+const D=/*__DATA__*/;
+const K={import:['#2f6fb5','模块 import'],call:['#333','直接调用'],create:['#2a8a2a','对象创建'],connect:['#a020a0','信号槽连接(间接)'],timer:['#c08000','定时器回调(间接)'],thread:['#008080','线程入口(间接)'],dynamic:['#e67e00','动态分发(间接)'],rt:['#999','运行期跨模块调用耦合']};
+const CONF={high:['实线','已确认'],medium:['长虚线','静态推断'],low:['点线','推测'],manual:['点划线','待人工确认']};
+const DASH={high:'',medium:'7,3',low:'2,3',manual:'8,3,2,3'};
+const LAYCOL={};D.layers.forEach((l,i)=>LAYCOL[l]=i);
+const LAYCLR=['#ffd9a8','#cfe8ff','#e1d4ff','#d5f5d5','#fff2b3','#ffd0d0','#e0e0e0','#f0f0f0'];
+const $=s=>document.querySelector(s);
+let view='mod',sel=null; // sel:{t:'m'|'f',i}
+const st={kinds:new Set(['import','call','create','connect','timer','thread','dynamic','rt']),confs:new Set(['high','medium','low','manual'])};
+// indexes
+const fOut=D.funcs.map(()=>[]),fIn=D.funcs.map(()=>[]);
+D.edges.forEach((e,i)=>{fOut[e[0]].push(i);fIn[e[1]].push(i)});
+const fByMod=D.mods.map(()=>[]);D.funcs.forEach((f,i)=>fByMod[f[1]].push(i));
+const modIdx={};D.mods.forEach((m,i)=>modIdx[m.id]=i);
+$('#stats').textContent=`${D.mods.length} 模块 · ${D.funcs.length} 函数/方法 · ${D.edges.length} 调用关系`;
+const LS={get:k=>{try{return localStorage.getItem(k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}}};
+$('#rootPath').value=LS.get('rootPath')||D.root;$('#rootPath').onchange=e=>{LS.set('rootPath',e.target.value);if(sel)showDetail()};window.D=D;
+// filters UI
+$('#kinds').innerHTML=Object.keys(K).map(k=>`<label><input type=checkbox data-k=${k} checked><span style="color:${K[k][0]}">${K[k][1]}</span></label>`).join(' ');
+$('#confs').innerHTML=Object.keys(CONF).map(k=>`<label><input type=checkbox data-c=${k} checked>${CONF[k][1]}</label>`).join(' ');
+D.mods.forEach((m,i)=>{const o=document.createElement('option');o.value=i;o.textContent=m.id;$('#modFilter').appendChild(o)});
+document.querySelectorAll('[data-k]').forEach(c=>c.onchange=()=>{c.checked?st.kinds.add(c.dataset.k):st.kinds.delete(c.dataset.k);render()});
+document.querySelectorAll('[data-c]').forEach(c=>c.onchange=()=>{c.checked?st.confs.add(c.dataset.c):st.confs.delete(c.dataset.c);render()});
+['modFilter','depth','showLegacy','hideGenerated'].forEach(i=>$('#'+i).onchange=render);
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{view=b.dataset.v;document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));render()});
+// legend
+$('#legend').innerHTML='<b>图例</b><br>'+Object.keys(K).map(k=>`<i style="border-color:${K[k][0]}"></i>${K[k][1]}`).join('<br>')+'<br>线型: '+Object.keys(CONF).map(k=>`<svg width=34 height=8><line x1=0 y1=4 x2=34 y2=4 stroke="#333" stroke-width=2 stroke-dasharray="${DASH[k]}"/></svg>${CONF[k][0]}=${CONF[k][1]}`).join(' ')+'<br><span style="background:#fcd;padding:0 3px">旧版</span> <span style="background:#cdf;padding:0 3px">生成</span> 红框=选中';
+// ---------- file tree
+function buildTree(){const root={ch:{}};D.files.forEach(f=>{let n=root;const p=f.p.split('/');p.forEach((s,i)=>{n.ch[s]=n.ch[s]||{ch:{},name:s};n=n.ch[s];if(i==p.length-1)n.f=f})});
+ const draw=(n,host)=>{Object.values(n.ch).sort((a,b)=>(!!a.f&&!a.f.collapsed)-(!!b.f&&!b.f.collapsed)||a.name.localeCompare(b.name)).forEach(c=>{
+  if(c.f&&!c.f.collapsed){const d=document.createElement('div');d.className='it';d.textContent=c.name;const m=c.f.m;
+   if(m!=null){const mm=D.mods[m];if(mm.legacy)d.innerHTML+='<span class="tag leg">旧版</span>';if(mm.generated)d.innerHTML+='<span class="tag gen">生成</span>';if(mm.entry)d.innerHTML+='<span class="tag ent">入口</span>';d.onclick=()=>pick('m',m)}
+   else d.onclick=()=>$('#detail').innerHTML=`<h3>${c.f.p}</h3><div class=kv>${c.f.note||'非 Python 文件'}</div>`;host.appendChild(d)}
+  else{const d=document.createElement('div');d.className='dir';const nm=document.createElement('div');nm.className='nm';nm.textContent=c.name+'/'+(c.f&&c.f.collapsed?`  (${c.f.n} 个文件, 已折叠)`:'');nm.onclick=()=>d.classList.toggle('open');d.appendChild(nm);const ch=document.createElement('div');ch.className='ch';d.appendChild(ch);if(!(c.f&&c.f.collapsed))draw(c,ch);host.appendChild(d);if(!c.f)d.classList.add('open')}})};
+ draw(root,$('#tree'))}
+buildTree();
+// ---------- search
+$('#q').oninput=e=>{const q=e.target.value.trim().toLowerCase(),R=$('#results');if(!q){R.hidden=true;return}
+ const out=[];D.mods.forEach((m,i)=>{if(m.id.toLowerCase().includes(q))out.push(['m',i,'模块 '+m.id])});
+ D.classes.forEach(c=>{if(c.name.toLowerCase().includes(q))out.push(['c',c.i,'类 '+c.name+'  ('+c.mod+')'])});
+ D.funcs.forEach((f,i)=>{if(f[4].toLowerCase().includes(q))out.push(['f',i,'函数 '+f[4]+'  ('+D.mods[f[1]].id+')'])});
+ R.hidden=false;R.innerHTML=out.slice(0,60).map((o,k)=>`<div class=it data-k=${k}>${o[2]}</div>`).join('')+(out.length>60?`<div class=kv>…共 ${out.length} 条</div>`:'')||'无结果';
+ R.querySelectorAll('.it').forEach(d=>d.onclick=()=>{const o=out[d.dataset.k];if(o[0]=='c'){const c=D.classes[o[1]];pick('m',modIdx[c.mod],c)}else pick(o[0],o[1])})};
+// ---------- selection / detail
+function loc(file,line){const r=$('#rootPath').value.replace(/[\\\/]+$/,'');return 'vscode://file/'+encodeURI(r.replace(/\\/g,'/')+'/'+file)+':'+(line||1)}
+function pick(t,i,cls){sel={t,i,cls};if(t=='f'&&view=='mod')setView('fn');if(t=='m'&&view=='tree')setView('mod');showDetail();render()}
+function setView(v){view=v;document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x.dataset.v==v))}
+const fl=i=>`<a href="#" onclick="pick('f',${i});return false">${D.funcs[i][4]}</a><span class=tag>${D.mods[D.funcs[i][1]].id}</span>`;
+function showDetail(){const H=$('#detail');if(!sel)return;
+ if(sel.t=='m'){const m=D.mods[sel.i];const fs=fByMod[sel.i].filter(i=>D.funcs[i][3]!='<module>');
+  H.innerHTML=`<h3>模块 ${m.id}</h3><div class=kv>层: <b>${m.layer}</b> · ${m.lines} 行${m.legacy?' · <span class=warn>旧版/遗留</span>':''}${m.generated?' · pyuic 生成':''}</div>
+  <div>文件: <a href="${loc(m.file,1)}"><code>${m.file}</code></a></div><p>${m.role||''}</p>
+  <h3>类</h3>${m.classes.map(c=>`<div class=it onclick="pickCls('${c}','${m.id}')">${c}</div>`).join('')||'-'}
+  <h3>导入(内部) ${m.imp_out.length}</h3>${m.imp_out.map(x=>`<div class=it onclick="pick('m',${x})">${D.mods[x].id}</div>`).join('')||'-'}
+  <h3>被导入 ${m.imp_in.length}</h3>${m.imp_in.map(x=>`<div class=it onclick="pick('m',${x})">${D.mods[x].id}</div>`).join('')||'-'}
+  <h3>外部依赖</h3>${m.ext.join(', ')||'-'}
+  <h3>函数/方法 (${fs.length})</h3>${fs.slice(0,200).map(i=>`<div class=it onclick="pick('f',${i})">${D.funcs[i][4]} <span class=kv>L${D.funcs[i][5]}</span></div>`).join('')}`}
+ else{const f=D.funcs[sel.i],m=D.mods[f[1]];
+  const outs=fOut[sel.i].map(i=>D.edges[i]),ins=fIn[sel.i].map(i=>D.edges[i]);
+  const eline=e=>`<div>[${e[2]}/${e[3]}@L${e[4]}] `;
+  H.innerHTML=`<h3>${f[4]}</h3><div class=kv>模块 <a href="#" onclick="pick('m',${f[1]});return false">${m.id}</a>${f[2]?' · 类 '+f[2]:''}</div>
+  <div>定义: <a href="${loc(m.file,f[5])}"><code>${m.file}:${f[5]}-${f[6]}</code></a></div>
+  <div>参数: <code>${f[8].join(', ')||'-'}</code></div><div>标志: ${f[7].map(x=>`<span class=tag>${x}</span>`).join('')||'-'}</div>
+  <p><button onclick="setView('fn');render()">调用图</button> <button onclick="setView('tree');render()">从此函数展开调用树</button></p>
+  <h3>直接调用 (${outs.length})</h3>${outs.map(e=>eline(e)+fl(e[1])+(e[5]?`<br><span class=kv>${e[5]}</span>`:'')+'</div>').join('')||'-'}
+  <h3>被调用 (${ins.length})</h3>${ins.map(e=>eline(e)+fl(e[0])+'</div>').join('')||'<span class=warn>无静态调用者(可能被动态/信号槽/外部触发)</span>'}
+  <h3>外部库调用</h3>${Object.entries(f[9]).map(([k,v])=>`<div><code>${k}</code> ×${v}</div>`).join('')||'-'}
+  <h3>动态/待人工确认</h3>${f[10].map(d=>`<div class=warn>L${d.line} [${d.kind}] ${d.expr}</div>`).join('')||'-'}`}}
+window.pick=pick;window.setView=setView;window.render=render;
+window.pickCls=(c,mid)=>{const cc=D.classes.find(x=>x.name==c&&x.mod==mid);if(!cc)return;const m=D.mods[modIdx[mid]];
+ $('#detail').innerHTML=`<h3>类 ${c}</h3><div>基类: ${cc.bases.join(', ')||'-'}</div><div>定义: <a href="${loc(m.file,cc.line)}"><code>${m.file}:${cc.line}</code></a></div><div>挂载: ${cc.mounted.join(', ')||'-'}</div><h3>方法</h3>`+cc.methods.map(i=>`<div class=it onclick="pick('f',${i})">${D.funcs[i][3]}</div>`).join('')};
+// ---------- SVG
+const svg=$('#svg'),vp=$('#vp');let tf={x:20,y:20,k:1};
+function applyTf(){vp.setAttribute('transform',`translate(${tf.x},${tf.y}) scale(${tf.k})`)}
+svg.onwheel=e=>{e.preventDefault();const r=svg.getBoundingClientRect(),mx=e.clientX-r.left,my=e.clientY-r.top,k=Math.max(.1,Math.min(4,tf.k*(e.deltaY<0?1.15:.87)));tf.x=mx-(mx-tf.x)*k/tf.k;tf.y=my-(my-tf.y)*k/tf.k;tf.k=k;applyTf()};
+let drag=null;svg.onmousedown=e=>{if(e.target.closest('.node'))return;drag={x:e.clientX-tf.x,y:e.clientY-tf.y};svg.style.cursor='grabbing'};
+window.onmouseup=()=>{drag=null;svg.style.cursor='grab'};window.onmousemove=e=>{if(drag){tf.x=e.clientX-drag.x;tf.y=e.clientY-drag.y;applyTf()}};
+function ns(t,a,c){const e=document.createElementNS('http://www.w3.org/2000/svg',t);for(const k in a)e.setAttribute(k,a[k]);if(c)e.textContent=c;return e}
+const NW=210,NH=30,GX=290,GY=44;
+function draw(nodes,edges,note){vp.innerHTML='';const pos={};nodes.forEach(n=>pos[n.id]=n);
+ const g=ns('g',{});vp.appendChild(g);
+ edges.forEach(e=>{const a=pos[e.a],b=pos[e.b];if(!a||!b)return;const x1=a.x+NW,y1=a.y+NH/2,x2=b.x,y2=b.y+NH/2;let d;
+  if(a===b){d=`M${a.x+NW/2},${a.y} c 40,-40 90,-10 40,10`}else if(b.x>a.x){const mx=(x1+x2)/2;d=`M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}`}
+  else{d=`M${a.x},${y1} C${a.x-60},${y1} ${b.x+NW+60},${y2} ${b.x+NW},${y2}`}
+  const p=ns('path',{d,class:'edge',stroke:(K[e.kind]||K.call)[0],'stroke-dasharray':DASH[e.conf||'high'],'marker-end':'url(#ar)'});p.appendChild(ns('title',{},`${e.kind}/${e.conf||''} ${e.tip||''}`));g.appendChild(p);
+  if(e.label){const t=ns('text',{x:(x1+x2)/2,y:(y1+y2)/2-2,'font-size':9,fill:'#666','text-anchor':'middle'},e.label);g.appendChild(t)}});
+ nodes.forEach(n=>{const gn=ns('g',{class:'node'+(n.sel?' sel':''),transform:`translate(${n.x},${n.y})`});
+  gn.appendChild(ns('rect',{width:NW,height:NH,fill:n.fill||'#fff'}));gn.appendChild(ns('text',{x:6,y:13},n.label.slice(0,34)));gn.appendChild(ns('text',{x:6,y:25,fill:'#666','font-size':9},(n.sub||'').slice(0,40)));
+  gn.appendChild(ns('title',{},n.tip||n.label));gn.onclick=ev=>{ev.stopPropagation();pick(n.t,n.i)};gn.ondblclick=ev=>{ev.stopPropagation();pick(n.t,n.i);if(n.t=='m'){setView('fn')}render()};g.appendChild(gn)});
+ if(note)vp.appendChild(ns('text',{x:0,y:-8,'font-size':12,fill:'#b60'},note));applyTf()}
+function visMod(i){const m=D.mods[i];if(!$('#showLegacy').checked&&(m.legacy||m.dead))return false;if(m.generated&&$('#hideGenerated').checked&&!$('#showLegacy').checked)return false;if(m.empty&&!$('#showLegacy').checked)return false;return true}
+function renderMod(){const vis=D.mods.map((m,i)=>i).filter(visMod),idx=new Set(vis);const rows={};const nodes=vis.map(i=>{const m=D.mods[i],c=LAYCOL[m.layer]||0;rows[c]=(rows[c]||0);const r=rows[c]++;
+  return {id:i,t:'m',i,label:m.id,sub:`${m.layer} · ${m.lines}行`+(m.cyc?' · 循环':''),x:c*GX,y:r*GY,fill:m.legacy?'#fcd':m.generated?'#cdf':LAYCLR[c],sel:sel&&sel.t=='m'&&sel.i==i,tip:m.role}});
+ const edges=[];if(st.kinds.has('import'))D.imports.forEach(e=>{if(idx.has(e[0])&&idx.has(e[1]))edges.push({a:e[0],b:e[1],kind:'import',conf:'high',tip:'import L'+e[3].join(',')})});
+ if(st.kinds.has('rt'))D.coupling.forEach(e=>{if(idx.has(e[0])&&idx.has(e[1])&&e[2]>=1)edges.push({a:e[0],b:e[1],kind:'rt',conf:'medium',label:'×'+e[2],tip:'运行期跨模块调用 '+e[2]+' 次'})});
+ draw(nodes,edges,'列(自左至右): '+D.layers.join(' → '));$('#legend').style.display='block'}
+function edgeOk(e){return st.kinds.has(e[2])&&st.confs.has(e[3])}
+function renderFn(){let roots=[];if(!sel){draw([],[],'请先选择模块或函数');return}
+ const depth=+$('#depth').value;let nodes=new Map(),edges=[],lvl=new Map();
+ const mf=$('#modFilter').value;
+ if(sel.t=='f'){lvl.set(sel.i,0);let fr=[sel.i];for(let d=1;d<=depth;d++){const nx=[];fr.forEach(x=>{fOut[x].forEach(ei=>{const e=D.edges[ei];if(!edgeOk(e))return;if(mf&&D.funcs[e[1]][1]!=mf)return;edges.push(ei);if(!lvl.has(e[1])){lvl.set(e[1],d);nx.push(e[1])}})});fr=nx}
+  fr=[sel.i];for(let d=1;d<=depth;d++){const nx=[];fr.forEach(x=>{fIn[x].forEach(ei=>{const e=D.edges[ei];if(!edgeOk(e))return;if(mf&&D.funcs[e[0]][1]!=mf)return;edges.push(ei);if(!lvl.has(e[0])){lvl.set(e[0],-d);nx.push(e[0])}})});fr=nx}}
+ else{const fs=fByMod[sel.i].filter(i=>D.funcs[i][3]!='<module>'||true);const S=new Set(fs);fs.forEach(i=>{fOut[i].forEach(ei=>{const e=D.edges[ei];if(!edgeOk(e)||!S.has(e[1]))return;edges.push(ei);lvl.set(i,lvl.get(i)||0);lvl.set(e[1],lvl.get(e[1])||0)})});
+  for(let it=0;it<14;it++)edges.forEach(ei=>{const e=D.edges[ei];if(e[0]!=e[1]&&lvl.get(e[1])<=lvl.get(e[0])&&lvl.get(e[0])<14)lvl.set(e[1],lvl.get(e[0])+1)})}
+ const uniq=[...new Set(edges)];let ids=[...lvl.keys()];let note='';if(ids.length>160){ids=ids.slice(0,160);note='节点过多, 仅显示前 160 个; 请缩小深度或使用模块过滤'}
+ const idset=new Set(ids),cols={};ids.forEach(i=>{const c=lvl.get(i);cols[c]=(cols[c]||0)+1});const cnt={};
+ const ns_=ids.sort((a,b)=>lvl.get(a)-lvl.get(b)||a-b).map(i=>{const c=lvl.get(i);cnt[c]=(cnt[c]||0);const r=cnt[c]++;const f=D.funcs[i],m=D.mods[f[1]];
+  return {id:i,t:'f',i,label:f[4],sub:m.id+':'+f[5],x:(c+depth+1)*GX,y:r*GY,fill:m.legacy?'#fcd':f[7].includes('qt_slot')?'#f3d9ff':f[7].includes('hardware_io')?'#ffd0d0':f[7].includes('entry')?'#c9f0c9':'#fff',sel:sel.t=='f'&&sel.i==i,tip:f[4]+' '+f[7].join(',')}});
+ const es=uniq.map(ei=>D.edges[ei]).filter(e=>idset.has(e[0])&&idset.has(e[1])).map(e=>({a:e[0],b:e[1],kind:e[2],conf:e[3],label:'L'+e[4],tip:e[5]}));
+ draw(ns_,es,note||(sel.t=='f'?'左: 调用者 · 中: 选中函数 · 右: 被调用函数':'模块内函数调用关系 (按调用层级自左向右)'))}
+function renderTree(){const V=$('#treeView');let start=sel&&sel.t=='f'?sel.i:D.entry;V.innerHTML='<div class=kv>从 <b>'+D.funcs[start][4]+'</b> 逐层展开(点击 ▸ 展开; ↻ 表示递归/循环, 不再展开)。边: [类型/可信度@行]</div>';
+ const mk=(fi,e,path)=>{const d=document.createElement('div');d.className='tn';const f=D.funcs[fi];const rec=path.includes(fi);const outs=fOut[fi].filter(ei=>edgeOk(D.edges[ei]));
+  const tg=document.createElement('span');tg.className='tg';tg.textContent=outs.length&&!rec?'▸':'·';d.appendChild(tg);
+  const nm=document.createElement('span');nm.className='nm';const col=e?(K[e[2]]||K.call)[0]:'#000';nm.innerHTML=(e?`<span style="color:${col}">[${e[2]}/${e[3]}@L${e[4]}]</span> `:'')+f[4]+` <span class=kv>${D.mods[f[1]].id}:${f[5]}</span>`+(rec?' <b class=warn>↻递归/循环</b>':'')+f[7].filter(x=>x!='constructor').map(x=>`<span class=tag>${x}</span>`).join('');
+  nm.onclick=()=>pick('f',fi);d.appendChild(nm);const box=document.createElement('div');box.style.marginLeft='18px';box.hidden=true;d.appendChild(box);
+  let done=false;tg.onclick=()=>{if(rec||!outs.length)return;if(!done){done=true;const seen=new Set();outs.forEach(ei=>{const k=D.edges[ei][1]+D.edges[ei][2];if(seen.has(k))return;seen.add(k);box.appendChild(mk(D.edges[ei][1],D.edges[ei],path.concat(fi)))})}box.hidden=!box.hidden;tg.textContent=box.hidden?'▸':'▾'};return d};
+ const r=mk(start,null,[]);V.appendChild(r);r.querySelector('.tg').click()}
+function render(){$('#treeView').style.display=view=='tree'?'block':'none';svg.style.display=view=='tree'?'none':'block';$('#legend').style.display=view=='tree'?'none':'block';
+ if(view=='mod')renderMod();else if(view=='fn')renderFn();else renderTree()}
+render();
+</script></body></html>

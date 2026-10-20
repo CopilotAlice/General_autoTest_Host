@@ -1,0 +1,21 @@
+%% 模块局部调用树: ui.debug (ui/debug.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["MainWindowDebug.__init__<br/><small>ui.debug:5</small>"]
+  f1["MainWindowDebug.debug_time_init<br/><small>ui.debug:12</small>"]
+  f0 -->|"call/high"| f1
+  f2["MainWindowDebug.debug_struct_init<br/><small>ui.debug:19</small>"]
+  f0 -->|"call/high"| f2
+  f3["MainWindowDebug.debug_message_1s<br/><small>ui.debug:26</small>"]
+  f1 ==>|"timer/high"| f3
+  f4["struct_debug.__init__<br/><small>ui.debug:40</small>"]
+  f2 -->|"create/high"| f4
+  f5["struct_debug.update_ui_msg<br/><small>ui.debug:109</small>"]
+  f3 -->|"call/high"| f5
+  f6["struct_debug.update_ui_link<br/><small>ui.debug:64</small>"]
+  f4 -->|"call/high"| f6
+  f7["struct_debug.update_ui_list<br/><small>ui.debug:85</small>"]
+  f6 -->|"call/high"| f7
+  f8["struct_debug.get_check_out<br/><small>ui.debug:96</small>"]
+  f5 -->|"call/high"| f8
+  f9["struct_debug.get_check_last<br/><small>ui.debug:102</small>"]
+  f5 -->|"call/high"| f9

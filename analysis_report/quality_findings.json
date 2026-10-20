@@ -1,0 +1,1409 @@
+{
+ "attribute_shadows_method": [],
+ "no_static_caller": [
+  {
+   "id": "通用自动测试上位机V0.90::MainWindow.tools_bd3x_taskDone",
+   "file": "通用自动测试上位机V0.90.py",
+   "line": 1264,
+   "legacy": true
+  },
+  {
+   "id": "通用自动测试上位机V0.90::decode_hex_frame",
+   "file": "通用自动测试上位机V0.90.py",
+   "line": 3795,
+   "legacy": true
+  },
+  {
+   "id": "通用自动测试上位机V0.90::hex2int",
+   "file": "通用自动测试上位机V0.90.py",
+   "line": 3868,
+   "legacy": true
+  },
+  {
+   "id": "通用自动测试上位机V0.90::struct_unpack_int3",
+   "file": "通用自动测试上位机V0.90.py",
+   "line": 3876,
+   "legacy": true
+  },
+  {
+   "id": "通用自动测试上位机V0.90::chinese2check",
+   "file": "通用自动测试上位机V0.90.py",
+   "line": 3892,
+   "legacy": true
+  },
+  {
+   "id": "通用自动测试上位机V0.90::rulename2chinese",
+   "file": "通用自动测试上位机V0.90.py",
+   "line": 3896,
+   "legacy": true
+  },
+  {
+   "id": "通用自动测试上位机V0.90::GPGGA2loc",
+   "file": "通用自动测试上位机V0.90.py",
+   "line": 4000,
+   "legacy": true
+  },
+  {
+   "id": "通用自动测试上位机V0.90::KSXT2spd",
+   "file": "通用自动测试上位机V0.90.py",
+   "line": 4020,
+   "legacy": true
+  },
+  {
+   "id": "通用自动测试上位机V0.90::Turntable_class.reset_inside",
+   "file": "通用自动测试上位机V0.90.py",
+   "line": 4085,
+   "legacy": true
+  },
+  {
+   "id": "通用自动测试上位机V0.90::Turntable_class.reset_outside",
+   "file": "通用自动测试上位机V0.90.py",
+   "line": 4092,
+   "legacy": true
+  },
+  {
+   "id": "通用自动测试上位机V0.90::Turntable_class.reset_inside#L4099",
+   "file": "通用自动测试上位机V0.90.py",
+   "line": 4099,
+   "legacy": true
+  },
+  {
+   "id": "通用自动测试上位机V0.90::Turntable_class.reset_outside#L4106",
+   "file": "通用自动测试上位机V0.90.py",
+   "line": 4106,
+   "legacy": true
+  },
+  {
+   "id": "通用自动测试上位机V0.95::MainWindow.tools_bd3x_taskDone",
+   "file": "通用自动测试上位机V0.95.py",
+   "line": 1535,
+   "legacy": false
+  },
+  {
+   "id": "通用自动测试上位机V0.95::decode_hex_frame",
+   "file": "通用自动测试上位机V0.95.py",
+   "line": 4121,
+   "legacy": false
+  },
+  {
+   "id": "通用自动测试上位机V0.95::hex2int",
+   "file": "通用自动测试上位机V0.95.py",
+   "line": 4194,
+   "legacy": false
+  },
+  {
+   "id": "通用自动测试上位机V0.95::struct_unpack_int3",
+   "file": "通用自动测试上位机V0.95.py",
+   "line": 4202,
+   "legacy": false
+  },
+  {
+   "id": "通用自动测试上位机V0.95::chinese2check",
+   "file": "通用自动测试上位机V0.95.py",
+   "line": 4218,
+   "legacy": false
+  },
+  {
+   "id": "通用自动测试上位机V0.95::rulename2chinese",
+   "file": "通用自动测试上位机V0.95.py",
+   "line": 4222,
+   "legacy": false
+  },
+  {
+   "id": "通用自动测试上位机V0.95::GPGGA2loc",
+   "file": "通用自动测试上位机V0.95.py",
+   "line": 4343,
+   "legacy": false
+  },
+  {
+   "id": "通用自动测试上位机V0.95::KSXT2spd",
+   "file": "通用自动测试上位机V0.95.py",
+   "line": 4363,
+   "legacy": false
+  },
+  {
+   "id": "通用自动测试上位机V0.95::Turntable_class.reset_inside",
+   "file": "通用自动测试上位机V0.95.py",
+   "line": 4428,
+   "legacy": false
+  },
+  {
+   "id": "通用自动测试上位机V0.95::Turntable_class.reset_outside",
+   "file": "通用自动测试上位机V0.95.py",
+   "line": 4435,
+   "legacy": false
+  },
+  {
+   "id": "通用自动测试上位机V0.95::Turntable_class.reset_inside#L4442",
+   "file": "通用自动测试上位机V0.95.py",
+   "line": 4442,
+   "legacy": false
+  },
+  {
+   "id": "通用自动测试上位机V0.95::Turntable_class.reset_outside#L4449",
+   "file": "通用自动测试上位机V0.95.py",
+   "line": 4449,
+   "legacy": false
+  },
+  {
+   "id": "funs.checks::general_crc16Table",
+   "file": "funs/checks.py",
+   "line": 72,
+   "legacy": false
+  },
+  {
+   "id": "funs.checks::calculate_crc16",
+   "file": "funs/checks.py",
+   "line": 84,
+   "legacy": false
+  },
+  {
+   "id": "funs.checks::calculate_crc32",
+   "file": "funs/checks.py",
+   "line": 92,
+   "legacy": false
+  },
+  {
+   "id": "funs.checks::crc_1188a",
+   "file": "funs/checks.py",
+   "line": 103,
+   "legacy": false
+  },
+  {
+   "id": "funs.checks::calculate_crc16_mcrf4xx",
+   "file": "funs/checks.py",
+   "line": 116,
+   "legacy": false
+  },
+  {
+   "id": "funs.checks_remove::general_crc16Table",
+   "file": "funs/checks_remove.py",
+   "line": 72,
+   "legacy": false
+  },
+  {
+   "id": "funs.checks_remove::calculate_crc16",
+   "file": "funs/checks_remove.py",
+   "line": 84,
+   "legacy": false
+  },
+  {
+   "id": "funs.checks_remove::calculate_crc32",
+   "file": "funs/checks_remove.py",
+   "line": 92,
+   "legacy": false
+  },
+  {
+   "id": "funs.checks_remove::crc_1188a",
+   "file": "funs/checks_remove.py",
+   "line": 103,
+   "legacy": false
+  },
+  {
+   "id": "funs.checks_remove::calculate_crc16_mcrf4xx",
+   "file": "funs/checks_remove.py",
+   "line": 116,
+   "legacy": false
+  },
+  {
+   "id": "funs.fun_checks::general_crc16Table",
+   "file": "funs/fun_checks.py",
+   "line": 72,
+   "legacy": false
+  },
+  {
+   "id": "funs.fun_checks::crc_1188a",
+   "file": "funs/fun_checks.py",
+   "line": 108,
+   "legacy": false
+  },
+  {
+   "id": "funs.fun_chy2::get_machine_code",
+   "file": "funs/fun_chy2.py",
+   "line": 7,
+   "legacy": false
+  },
+  {
+   "id": "funs.fun_chy2::split_pro",
+   "file": "funs/fun_chy2.py",
+   "line": 68,
+   "legacy": false
+  },
+  {
+   "id": "funs.fun_chy2::try_float_data",
+   "file": "funs/fun_chy2.py",
+   "line": 176,
+   "legacy": false
+  },
+  {
+   "id": "funs.fun_chy2::class_rule.reset_debug",
+   "file": "funs/fun_chy2.py",
+   "line": 240,
+   "legacy": false
+  },
+  {
+   "id": "funs.fun_chy2::class_rule.decode_hex_data",
+   "file": "funs/fun_chy2.py",
+   "line": 335,
+   "legacy": false
+  },
+  {
+   "id": "funs.fun_serial::trySendSerial",
+   "file": "funs/fun_serial.py",
+   "line": 19,
+   "legacy": false
+  },
+  {
+   "id": "ui.debug::MainWindowDebug.debug_test",
+   "file": "ui/debug.py",
+   "line": 30,
+   "legacy": false
+  },
+  {
+   "id": "ui.debug::struct_debug.append_ui_msg",
+   "file": "ui/debug.py",
+   "line": 119,
+   "legacy": false
+  },
+  {
+   "id": "ui.event::MainWindowEvent.funcEvent_general_clearButton",
+   "file": "ui/event.py",
+   "line": 59,
+   "legacy": false
+  },
+  {
+   "id": "ui.event::MainWindowEvent.setEvent_lonlat_to_table",
+   "file": "ui/event.py",
+   "line": 223,
+   "legacy": false
+  },
+  {
+   "id": "ui.event::MainWindowEvent.changeEvent_open_switch",
+   "file": "ui/event.py",
+   "line": 325,
+   "legacy": false
+  },
+  {
+   "id": "ui.event::MainWindowEvent.changeEvent_protocal_path",
+   "file": "ui/event.py",
+   "line": 705,
+   "legacy": false
+  },
+  {
+   "id": "ui.get_ui::MainWindowGetUI.get_name_pathCombox",
+   "file": "ui/get_ui.py",
+   "line": 9,
+   "legacy": false
+  },
+  {
+   "id": "ui.init_ui::MainWindowInit.get_time_list",
+   "file": "ui/init_ui.py",
+   "line": 88,
+   "legacy": false
+  },
+  {
+   "id": "ui.init_ui::MainWindowInit.get_normal_time",
+   "file": "ui/init_ui.py",
+   "line": 92,
+   "legacy": false
+  },
+  {
+   "id": "ui.init_ui::MainWindowInit.init_ui_input",
+   "file": "ui/init_ui.py",
+   "line": 240,
+   "legacy": false
+  },
+  {
+   "id": "ui.init_ui::extract_number",
+   "file": "ui/init_ui.py",
+   "line": 380,
+   "legacy": false
+  },
+  {
+   "id": "ui.init_ui::sort_bd_files",
+   "file": "ui/init_ui.py",
+   "line": 383,
+   "legacy": false
+  },
+  {
+   "id": "ui.init_ui::struct_paraCal.load_BD_file",
+   "file": "ui/init_ui.py",
+   "line": 570,
+   "legacy": false
+  },
+  {
+   "id": "ui.init_ui::struct_paraCal.processing_BD_ave",
+   "file": "ui/init_ui.py",
+   "line": 580,
+   "legacy": false
+  },
+  {
+   "id": "ui.init_ui::struct_paraCal.processing_BD_std",
+   "file": "ui/init_ui.py",
+   "line": 583,
+   "legacy": false
+  },
+  {
+   "id": "ui.init_ui::struct_paraCal.show_dict",
+   "file": "ui/init_ui.py",
+   "line": 595,
+   "legacy": false
+  },
+  {
+   "id": "ui.init_ui::struct_paraCal.load_JT_file",
+   "file": "ui/init_ui.py",
+   "line": 914,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_general_bind.read_struct_file",
+   "file": "ui/structs.py",
+   "line": 40,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_tab_setting.set_com",
+   "file": "ui/structs.py",
+   "line": 129,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_tab_setting.set_baund",
+   "file": "ui/structs.py",
+   "line": 131,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_tab_setting.set_check",
+   "file": "ui/structs.py",
+   "line": 133,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_tab_setting.set_stop",
+   "file": "ui/structs.py",
+   "line": 135,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_tab_setting.set_open",
+   "file": "ui/structs.py",
+   "line": 138,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_tab_setting.switch_open",
+   "file": "ui/structs.py",
+   "line": 141,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_tab_setting.set_name",
+   "file": "ui/structs.py",
+   "line": 143,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_tab_setting.set_plan",
+   "file": "ui/structs.py",
+   "line": 145,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_tab_setting.get_com",
+   "file": "ui/structs.py",
+   "line": 148,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_tab_setting.get_baund",
+   "file": "ui/structs.py",
+   "line": 150,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_tab_setting.get_check",
+   "file": "ui/structs.py",
+   "line": 152,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_tab_setting.get_stop",
+   "file": "ui/structs.py",
+   "line": 154,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_tab_setting.get_open",
+   "file": "ui/structs.py",
+   "line": 156,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_tab_setting.get_name",
+   "file": "ui/structs.py",
+   "line": 160,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_tab_setting.get_plan",
+   "file": "ui/structs.py",
+   "line": 162,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_sate.append_sare_send",
+   "file": "ui/structs.py",
+   "line": 269,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_sate.append_sate_receive",
+   "file": "ui/structs.py",
+   "line": 272,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_sate.clear_sate_list",
+   "file": "ui/structs.py",
+   "line": 297,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::clickEventThread_decodeShow.run",
+   "file": "ui/structs.py",
+   "line": 302,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_turnTable3x.append_msgClear",
+   "file": "ui/structs.py",
+   "line": 343,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_turnTable3x.serial_open",
+   "file": "ui/structs.py",
+   "line": 346,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_turnTable3x.sendMsg_chk",
+   "file": "ui/structs.py",
+   "line": 444,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_turnTable3x.sendMsg_rem",
+   "file": "ui/structs.py",
+   "line": 447,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_turnTable3x.sendMsg_loc",
+   "file": "ui/structs.py",
+   "line": 450,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_turnTable3x.sendMsg_enb",
+   "file": "ui/structs.py",
+   "line": 453,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_turnTable3x.sendMsg_dis",
+   "file": "ui/structs.py",
+   "line": 456,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_turnTable3x.sendMsg_hmz",
+   "file": "ui/structs.py",
+   "line": 459,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_turnTable3x.sendMsg_mod",
+   "file": "ui/structs.py",
+   "line": 462,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_turnTable3x.sendMsg_pos",
+   "file": "ui/structs.py",
+   "line": 477,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_turnTable3x.sendMsg_vel",
+   "file": "ui/structs.py",
+   "line": 493,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_turnTable3x.sendMsg_acc",
+   "file": "ui/structs.py",
+   "line": 510,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_turnTable3x.sendMsg_run",
+   "file": "ui/structs.py",
+   "line": 525,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_turnTable3x.sendMsg_stp",
+   "file": "ui/structs.py",
+   "line": 528,
+   "legacy": false
+  },
+  {
+   "id": "ui.structs::struct_turnTable3x.sendMsg_sts",
+   "file": "ui/structs.py",
+   "line": 531,
+   "legacy": false
+  },
+  {
+   "id": "ui.inits.inits_funcTest::MainWindowInitFuncTest.groupbox_child_hidden",
+   "file": "ui/inits/inits_funcTest.py",
+   "line": 74,
+   "legacy": false
+  },
+  {
+   "id": "ui.navs.nav_loc::MainWindowNavLoc._axis_display_text",
+   "file": "ui/navs/nav_loc.py",
+   "line": 1145,
+   "legacy": false
+  },
+  {
+   "id": "ui.tools.tools_bdcalib::extract_number",
+   "file": "ui/tools/tools_bdcalib.py",
+   "line": 17,
+   "legacy": false
+  },
+  {
+   "id": "ui.tools.tools_bdcalib::MainWindowToolBdcalib.label_resizeEvent",
+   "file": "ui/tools/tools_bdcalib.py",
+   "line": 263,
+   "legacy": false
+  },
+  {
+   "id": "ui.tools.tools_bdcalib::class_Worker.run",
+   "file": "ui/tools/tools_bdcalib.py",
+   "line": 368,
+   "legacy": false
+  },
+  {
+   "id": "ui.tools.tools_burn_ymodem::YModemBurnWorker.run",
+   "file": "ui/tools/tools_burn_ymodem.py",
+   "line": 49,
+   "legacy": false
+  }
+ ],
+ "duplicate_bodies": [
+  [
+   "通用自动测试上位机V0.90::MainWindow.show_message_01s",
+   "通用自动测试上位机V0.95::MainWindow.show_message_01s"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.show_message_05s",
+   "通用自动测试上位机V0.95::MainWindow.show_message_05s"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.show_message_5s",
+   "通用自动测试上位机V0.95::MainWindow.show_message_5s"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.protocal_com_change",
+   "通用自动测试上位机V0.95::MainWindow.protocal_com_change"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.comboBox_com_change",
+   "通用自动测试上位机V0.95::MainWindow.comboBox_com_change"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.filenames_change",
+   "通用自动测试上位机V0.95::MainWindow.filenames_change"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.binding_send",
+   "通用自动测试上位机V0.95::MainWindow.binding_send"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.event_update_bingding_60s",
+   "通用自动测试上位机V0.95::MainWindow.event_update_bingding_60s"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.event_send_bingding_60s",
+   "通用自动测试上位机V0.95::MainWindow.event_send_bingding_60s"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.tools_bd3x_taskDone",
+   "通用自动测试上位机V0.95::MainWindow.tools_bd3x_taskDone"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.sate_send1_change_time",
+   "通用自动测试上位机V0.95::MainWindow.sate_send1_change_time"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.sate_send2_change_time",
+   "通用自动测试上位机V0.95::MainWindow.sate_send2_change_time"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.sate_send3_change_time",
+   "通用自动测试上位机V0.95::MainWindow.sate_send3_change_time"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.td_command_time_change",
+   "通用自动测试上位机V0.95::MainWindow.td_command_time_change"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.fz_command_time_change",
+   "通用自动测试上位机V0.95::MainWindow.fz_command_time_change"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.gnss_command_time_change",
+   "通用自动测试上位机V0.95::MainWindow.gnss_command_time_change"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.event_update_sate1",
+   "通用自动测试上位机V0.95::MainWindow.event_update_sate1"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.event_update_sate2",
+   "通用自动测试上位机V0.95::MainWindow.event_update_sate2"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.event_update_sate3",
+   "通用自动测试上位机V0.95::MainWindow.event_update_sate3"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.event_send_sate1",
+   "通用自动测试上位机V0.95::MainWindow.event_send_sate1"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.event_send_sate2",
+   "通用自动测试上位机V0.95::MainWindow.event_send_sate2"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.event_send_sate3",
+   "通用自动测试上位机V0.95::MainWindow.event_send_sate3"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.event_td_send1",
+   "通用自动测试上位机V0.95::MainWindow.event_td_send1"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.td_command_change",
+   "通用自动测试上位机V0.95::MainWindow.td_command_change"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.td_gnss_change",
+   "通用自动测试上位机V0.95::MainWindow.td_gnss_change"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.td_atmos_change",
+   "通用自动测试上位机V0.95::MainWindow.td_atmos_change"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.td_softUpdate_change",
+   "通用自动测试上位机V0.95::MainWindow.td_softUpdate_change"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.td_softPara_change",
+   "通用自动测试上位机V0.95::MainWindow.td_softPara_change"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.td_command_send_update",
+   "通用自动测试上位机V0.95::MainWindow.td_command_send_update"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.event_fz_send1",
+   "通用自动测试上位机V0.95::MainWindow.event_fz_send1"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.fz_command_send_update",
+   "通用自动测试上位机V0.95::MainWindow.fz_command_send_update"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.event_gnss_send1",
+   "通用自动测试上位机V0.95::MainWindow.event_gnss_send1"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.gnss_status_change",
+   "通用自动测试上位机V0.95::MainWindow.gnss_status_change"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.gnss_command_send_update",
+   "通用自动测试上位机V0.95::MainWindow.gnss_command_send_update"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.event_power_on",
+   "通用自动测试上位机V0.95::MainWindow.event_power_on"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.read_default_para_com",
+   "通用自动测试上位机V0.95::MainWindow.read_default_para_com"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.read_default_para_config",
+   "通用自动测试上位机V0.95::MainWindow.read_default_para_config"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.binding_change",
+   "通用自动测试上位机V0.95::MainWindow.binding_change"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.update_plot_axis",
+   "通用自动测试上位机V0.95::MainWindow.update_plot_axis"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.update_double_axis",
+   "通用自动测试上位机V0.95::MainWindow.update_double_axis"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.stop_test",
+   "通用自动测试上位机V0.95::MainWindow.stop_test"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.begin_test",
+   "通用自动测试上位机V0.95::MainWindow.begin_test"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.only_test",
+   "通用自动测试上位机V0.95::MainWindow.only_test"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.bd_test",
+   "通用自动测试上位机V0.95::MainWindow.bd_test"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.bd3x_test",
+   "通用自动测试上位机V0.95::MainWindow.bd3x_test"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.plan_test",
+   "通用自动测试上位机V0.95::MainWindow.plan_test"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.threading_receive_sate",
+   "通用自动测试上位机V0.95::MainWindow.threading_receive_sate"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.begin_test_bd",
+   "通用自动测试上位机V0.95::MainWindow.begin_test_bd"
+  ],
+  [
+   "通用自动测试上位机V0.90::MainWindow.begin_test_3xbd",
+   "通用自动测试上位机V0.95::MainWindow.begin_test_3xbd"
+  ],
+  [
+   "通用自动测试上位机V0.90::decode_hex_frame",
+   "通用自动测试上位机V0.95::decode_hex_frame"
+  ],
+  [
+   "通用自动测试上位机V0.90::conver_turntable_status",
+   "通用自动测试上位机V0.95::conver_turntable_status"
+  ],
+  [
+   "通用自动测试上位机V0.90::lat_lon2str",
+   "通用自动测试上位机V0.95::lat_lon2str"
+  ],
+  [
+   "通用自动测试上位机V0.90::sate2location",
+   "通用自动测试上位机V0.95::sate2location",
+   "funs.fun_sate::sate2location"
+  ],
+  [
+   "通用自动测试上位机V0.90::hex2int",
+   "通用自动测试上位机V0.95::hex2int"
+  ],
+  [
+   "通用自动测试上位机V0.90::int2hex",
+   "通用自动测试上位机V0.95::int2hex"
+  ],
+  [
+   "通用自动测试上位机V0.90::reverse",
+   "通用自动测试上位机V0.95::reverse"
+  ],
+  [
+   "通用自动测试上位机V0.90::hexcut2list",
+   "通用自动测试上位机V0.95::hexcut2list"
+  ],
+  [
+   "通用自动测试上位机V0.90::check2serial",
+   "通用自动测试上位机V0.95::check2serial",
+   "funs.fun_chy2::check2serial"
+  ],
+  [
+   "通用自动测试上位机V0.90::stop2chinese",
+   "通用自动测试上位机V0.95::stop2chinese"
+  ],
+  [
+   "通用自动测试上位机V0.90::check2chinese",
+   "通用自动测试上位机V0.95::check2chinese"
+  ],
+  [
+   "通用自动测试上位机V0.90::chinese2check",
+   "通用自动测试上位机V0.95::chinese2check"
+  ],
+  [
+   "通用自动测试上位机V0.90::rulename2chinese",
+   "通用自动测试上位机V0.95::rulename2chinese"
+  ],
+  [
+   "通用自动测试上位机V0.90::testmode2chinese",
+   "通用自动测试上位机V0.95::testmode2chinese"
+  ],
+  [
+   "通用自动测试上位机V0.90::calculate_frame_length",
+   "通用自动测试上位机V0.95::calculate_frame_length"
+  ],
+  [
+   "通用自动测试上位机V0.90::try_split_power_command",
+   "通用自动测试上位机V0.95::try_split_power_command"
+  ],
+  [
+   "通用自动测试上位机V0.90::GPGGA2loc",
+   "通用自动测试上位机V0.95::GPGGA2loc"
+  ],
+  [
+   "通用自动测试上位机V0.90::KSXT2spd",
+   "通用自动测试上位机V0.95::KSXT2spd"
+  ],
+  [
+   "通用自动测试上位机V0.90::Turntable_class.__init__",
+   "通用自动测试上位机V0.95::Turntable_class.__init__"
+  ],
+  [
+   "通用自动测试上位机V0.90::Turntable_class.get_command",
+   "通用自动测试上位机V0.95::Turntable_class.get_command"
+  ],
+  [
+   "通用自动测试上位机V0.90::Turntable_class.reset_inside",
+   "通用自动测试上位机V0.95::Turntable_class.reset_inside"
+  ],
+  [
+   "通用自动测试上位机V0.90::Turntable_class.reset_outside",
+   "通用自动测试上位机V0.95::Turntable_class.reset_outside"
+  ],
+  [
+   "通用自动测试上位机V0.90::Turntable_class.reset_inside#L4099",
+   "通用自动测试上位机V0.95::Turntable_class.reset_inside#L4442"
+  ],
+  [
+   "通用自动测试上位机V0.90::Turntable_class.reset_outside#L4106",
+   "通用自动测试上位机V0.95::Turntable_class.reset_outside#L4449"
+  ],
+  [
+   "通用自动测试上位机V0.90::Turntable_class.inside_location",
+   "通用自动测试上位机V0.95::Turntable_class.inside_location"
+  ],
+  [
+   "通用自动测试上位机V0.90::Turntable_class.inside_speed",
+   "通用自动测试上位机V0.95::Turntable_class.inside_speed"
+  ],
+  [
+   "通用自动测试上位机V0.90::Turntable_class.outside_location",
+   "通用自动测试上位机V0.95::Turntable_class.outside_location"
+  ],
+  [
+   "通用自动测试上位机V0.90::Turntable_class.outside_speed",
+   "通用自动测试上位机V0.95::Turntable_class.outside_speed"
+  ],
+  [
+   "funs.checks::general_crc16Table",
+   "funs.checks_remove::general_crc16Table",
+   "funs.fun_checks::general_crc16Table"
+  ],
+  [
+   "funs.checks::calculate_crc16",
+   "funs.checks_remove::calculate_crc16",
+   "funs.fun_checks::calculate_crc16"
+  ],
+  [
+   "funs.checks::calculate_crc32",
+   "funs.checks_remove::calculate_crc32",
+   "funs.fun_checks::calculate_crc32"
+  ],
+  [
+   "funs.checks::crc_1188a",
+   "funs.checks_remove::crc_1188a",
+   "funs.fun_checks::crc_1188a"
+  ],
+  [
+   "funs.checks::calculate_crc16_mcrf4xx",
+   "funs.checks_remove::calculate_crc16_mcrf4xx"
+  ],
+  [
+   "ui.init_ui::extract_number",
+   "ui.tools.tools_bdcalib::extract_number"
+  ],
+  [
+   "ui.events.events_hidden::MainWindowEventHidden.clickEvent_childHidden",
+   "ui.inits.inits_funcTest::MainWindowInitFuncTest.clickEvent_childHidden"
+  ]
+ ],
+ "same_name_across_files": {
+  "init_all_coef_end": [
+   "通用自动测试上位机V0.90::MainWindow.init_all_coef_end",
+   "通用自动测试上位机V0.95::MainWindow.init_all_coef_end"
+  ],
+  "init_all_coef": [
+   "通用自动测试上位机V0.90::MainWindow.init_all_coef",
+   "通用自动测试上位机V0.95::MainWindow.init_all_coef"
+  ],
+  "show_message_01s": [
+   "通用自动测试上位机V0.90::MainWindow.show_message_01s",
+   "通用自动测试上位机V0.95::MainWindow.show_message_01s"
+  ],
+  "show_message_05s": [
+   "通用自动测试上位机V0.90::MainWindow.show_message_05s",
+   "通用自动测试上位机V0.95::MainWindow.show_message_05s"
+  ],
+  "show_message_1s": [
+   "通用自动测试上位机V0.90::MainWindow.show_message_1s",
+   "通用自动测试上位机V0.95::MainWindow.show_message_1s"
+  ],
+  "show_message_2s": [
+   "通用自动测试上位机V0.90::MainWindow.show_message_2s",
+   "通用自动测试上位机V0.95::MainWindow.show_message_2s"
+  ],
+  "show_message_5s": [
+   "通用自动测试上位机V0.90::MainWindow.show_message_5s",
+   "通用自动测试上位机V0.95::MainWindow.show_message_5s"
+  ],
+  "protocal_com_change": [
+   "通用自动测试上位机V0.90::MainWindow.protocal_com_change",
+   "通用自动测试上位机V0.95::MainWindow.protocal_com_change"
+  ],
+  "comboBox_com_change": [
+   "通用自动测试上位机V0.90::MainWindow.comboBox_com_change",
+   "通用自动测试上位机V0.95::MainWindow.comboBox_com_change"
+  ],
+  "filenames_change": [
+   "通用自动测试上位机V0.90::MainWindow.filenames_change",
+   "通用自动测试上位机V0.95::MainWindow.filenames_change"
+  ],
+  "binding_send": [
+   "通用自动测试上位机V0.90::MainWindow.binding_send",
+   "通用自动测试上位机V0.95::MainWindow.binding_send"
+  ],
+  "event_update_bingding_60s": [
+   "通用自动测试上位机V0.90::MainWindow.event_update_bingding_60s",
+   "通用自动测试上位机V0.95::MainWindow.event_update_bingding_60s"
+  ],
+  "event_send_bingding_60s": [
+   "通用自动测试上位机V0.90::MainWindow.event_send_bingding_60s",
+   "通用自动测试上位机V0.95::MainWindow.event_send_bingding_60s"
+  ],
+  "tools_bd3x_taskDone": [
+   "通用自动测试上位机V0.90::MainWindow.tools_bd3x_taskDone",
+   "通用自动测试上位机V0.95::MainWindow.tools_bd3x_taskDone"
+  ],
+  "change_sate_button": [
+   "通用自动测试上位机V0.90::MainWindow.change_sate_button",
+   "通用自动测试上位机V0.95::MainWindow.change_sate_button"
+  ],
+  "sate_send1_change_time": [
+   "通用自动测试上位机V0.90::MainWindow.sate_send1_change_time",
+   "通用自动测试上位机V0.95::MainWindow.sate_send1_change_time"
+  ],
+  "sate_send2_change_time": [
+   "通用自动测试上位机V0.90::MainWindow.sate_send2_change_time",
+   "通用自动测试上位机V0.95::MainWindow.sate_send2_change_time"
+  ],
+  "sate_send3_change_time": [
+   "通用自动测试上位机V0.90::MainWindow.sate_send3_change_time",
+   "通用自动测试上位机V0.95::MainWindow.sate_send3_change_time"
+  ],
+  "td_command_time_change": [
+   "通用自动测试上位机V0.90::MainWindow.td_command_time_change",
+   "通用自动测试上位机V0.95::MainWindow.td_command_time_change"
+  ],
+  "fz_command_time_change": [
+   "通用自动测试上位机V0.90::MainWindow.fz_command_time_change",
+   "通用自动测试上位机V0.95::MainWindow.fz_command_time_change"
+  ],
+  "gnss_command_time_change": [
+   "通用自动测试上位机V0.90::MainWindow.gnss_command_time_change",
+   "通用自动测试上位机V0.95::MainWindow.gnss_command_time_change"
+  ],
+  "event_update_sate1": [
+   "通用自动测试上位机V0.90::MainWindow.event_update_sate1",
+   "通用自动测试上位机V0.95::MainWindow.event_update_sate1"
+  ],
+  "event_update_sate2": [
+   "通用自动测试上位机V0.90::MainWindow.event_update_sate2",
+   "通用自动测试上位机V0.95::MainWindow.event_update_sate2"
+  ],
+  "event_update_sate3": [
+   "通用自动测试上位机V0.90::MainWindow.event_update_sate3",
+   "通用自动测试上位机V0.95::MainWindow.event_update_sate3"
+  ],
+  "event_send_sate1": [
+   "通用自动测试上位机V0.90::MainWindow.event_send_sate1",
+   "通用自动测试上位机V0.95::MainWindow.event_send_sate1"
+  ],
+  "event_send_sate2": [
+   "通用自动测试上位机V0.90::MainWindow.event_send_sate2",
+   "通用自动测试上位机V0.95::MainWindow.event_send_sate2"
+  ],
+  "event_send_sate3": [
+   "通用自动测试上位机V0.90::MainWindow.event_send_sate3",
+   "通用自动测试上位机V0.95::MainWindow.event_send_sate3"
+  ],
+  "event_td_send1": [
+   "通用自动测试上位机V0.90::MainWindow.event_td_send1",
+   "通用自动测试上位机V0.95::MainWindow.event_td_send1"
+  ],
+  "td_command_change": [
+   "通用自动测试上位机V0.90::MainWindow.td_command_change",
+   "通用自动测试上位机V0.95::MainWindow.td_command_change"
+  ],
+  "td_gnss_change": [
+   "通用自动测试上位机V0.90::MainWindow.td_gnss_change",
+   "通用自动测试上位机V0.95::MainWindow.td_gnss_change"
+  ],
+  "td_atmos_change": [
+   "通用自动测试上位机V0.90::MainWindow.td_atmos_change",
+   "通用自动测试上位机V0.95::MainWindow.td_atmos_change"
+  ],
+  "td_softUpdate_change": [
+   "通用自动测试上位机V0.90::MainWindow.td_softUpdate_change",
+   "通用自动测试上位机V0.95::MainWindow.td_softUpdate_change"
+  ],
+  "td_softPara_change": [
+   "通用自动测试上位机V0.90::MainWindow.td_softPara_change",
+   "通用自动测试上位机V0.95::MainWindow.td_softPara_change"
+  ],
+  "td_command_send_update": [
+   "通用自动测试上位机V0.90::MainWindow.td_command_send_update",
+   "通用自动测试上位机V0.95::MainWindow.td_command_send_update"
+  ],
+  "event_fz_send1": [
+   "通用自动测试上位机V0.90::MainWindow.event_fz_send1",
+   "通用自动测试上位机V0.95::MainWindow.event_fz_send1"
+  ],
+  "fz_command_send_update": [
+   "通用自动测试上位机V0.90::MainWindow.fz_command_send_update",
+   "通用自动测试上位机V0.95::MainWindow.fz_command_send_update"
+  ],
+  "event_gnss_send1": [
+   "通用自动测试上位机V0.90::MainWindow.event_gnss_send1",
+   "通用自动测试上位机V0.95::MainWindow.event_gnss_send1"
+  ],
+  "gnss_status_change": [
+   "通用自动测试上位机V0.90::MainWindow.gnss_status_change",
+   "通用自动测试上位机V0.95::MainWindow.gnss_status_change"
+  ],
+  "gnss_command_send_update": [
+   "通用自动测试上位机V0.90::MainWindow.gnss_command_send_update",
+   "通用自动测试上位机V0.95::MainWindow.gnss_command_send_update"
+  ],
+  "event_power_on": [
+   "通用自动测试上位机V0.90::MainWindow.event_power_on",
+   "通用自动测试上位机V0.95::MainWindow.event_power_on"
+  ],
+  "event_power_off": [
+   "通用自动测试上位机V0.90::MainWindow.event_power_off",
+   "通用自动测试上位机V0.95::MainWindow.event_power_off"
+  ],
+  "event_autoset_inu": [
+   "通用自动测试上位机V0.90::MainWindow.event_autoset_inu",
+   "通用自动测试上位机V0.95::MainWindow.event_autoset_inu"
+  ],
+  "event_reload_config": [
+   "通用自动测试上位机V0.90::MainWindow.event_reload_config",
+   "通用自动测试上位机V0.95::MainWindow.event_reload_config"
+  ],
+  "event_load_file": [
+   "通用自动测试上位机V0.90::MainWindow.event_load_file",
+   "通用自动测试上位机V0.95::MainWindow.event_load_file"
+  ],
+  "read_default_para_com": [
+   "通用自动测试上位机V0.90::MainWindow.read_default_para_com",
+   "通用自动测试上位机V0.95::MainWindow.read_default_para_com"
+  ],
+  "read_default_para_config": [
+   "通用自动测试上位机V0.90::MainWindow.read_default_para_config",
+   "通用自动测试上位机V0.95::MainWindow.read_default_para_config"
+  ],
+  "read_rules": [
+   "通用自动测试上位机V0.90::MainWindow.read_rules",
+   "通用自动测试上位机V0.95::MainWindow.read_rules"
+  ],
+  "binding_change": [
+   "通用自动测试上位机V0.90::MainWindow.binding_change",
+   "通用自动测试上位机V0.95::MainWindow.binding_change"
+  ],
+  "update_plot_axis": [
+   "通用自动测试上位机V0.90::MainWindow.update_plot_axis",
+   "通用自动测试上位机V0.95::MainWindow.update_plot_axis"
+  ],
+  "update_double_axis": [
+   "通用自动测试上位机V0.90::MainWindow.update_double_axis",
+   "通用自动测试上位机V0.95::MainWindow.update_double_axis"
+  ],
+  "update_stand_axis": [
+   "通用自动测试上位机V0.90::MainWindow.update_stand_axis",
+   "通用自动测试上位机V0.95::MainWindow.update_stand_axis"
+  ],
+  "update_target_loc": [
+   "通用自动测试上位机V0.90::MainWindow.update_target_loc",
+   "通用自动测试上位机V0.95::MainWindow.update_target_loc"
+  ],
+  "update_target_spd": [
+   "通用自动测试上位机V0.90::MainWindow.update_target_spd",
+   "通用自动测试上位机V0.95::MainWindow.update_target_spd"
+  ],
+  "stop_test": [
+   "通用自动测试上位机V0.90::MainWindow.stop_test",
+   "通用自动测试上位机V0.95::MainWindow.stop_test"
+  ],
+  "begin_test": [
+   "通用自动测试上位机V0.90::MainWindow.begin_test",
+   "通用自动测试上位机V0.95::MainWindow.begin_test"
+  ],
+  "only_test": [
+   "通用自动测试上位机V0.90::MainWindow.only_test",
+   "通用自动测试上位机V0.95::MainWindow.only_test"
+  ],
+  "bd_test": [
+   "通用自动测试上位机V0.90::MainWindow.bd_test",
+   "通用自动测试上位机V0.95::MainWindow.bd_test"
+  ],
+  "bd3x_test": [
+   "通用自动测试上位机V0.90::MainWindow.bd3x_test",
+   "通用自动测试上位机V0.95::MainWindow.bd3x_test"
+  ],
+  "plan_test": [
+   "通用自动测试上位机V0.90::MainWindow.plan_test",
+   "通用自动测试上位机V0.95::MainWindow.plan_test"
+  ],
+  "threading_receive_data": [
+   "通用自动测试上位机V0.90::MainWindow.threading_receive_data",
+   "通用自动测试上位机V0.95::MainWindow.threading_receive_data"
+  ],
+  "threading_receive_sate": [
+   "通用自动测试上位机V0.90::MainWindow.threading_receive_sate",
+   "通用自动测试上位机V0.95::MainWindow.threading_receive_sate"
+  ],
+  "plan_test_threading": [
+   "通用自动测试上位机V0.90::MainWindow.plan_test_threading",
+   "通用自动测试上位机V0.95::MainWindow.plan_test_threading"
+  ],
+  "begin_test_bd": [
+   "通用自动测试上位机V0.90::MainWindow.begin_test_bd",
+   "通用自动测试上位机V0.95::MainWindow.begin_test_bd"
+  ],
+  "begin_test_3xbd": [
+   "通用自动测试上位机V0.90::MainWindow.begin_test_3xbd",
+   "通用自动测试上位机V0.95::MainWindow.begin_test_3xbd"
+  ],
+  "decode_hex_frame": [
+   "通用自动测试上位机V0.90::decode_hex_frame",
+   "通用自动测试上位机V0.95::decode_hex_frame"
+  ],
+  "conver_turntable_status": [
+   "通用自动测试上位机V0.90::conver_turntable_status",
+   "通用自动测试上位机V0.95::conver_turntable_status"
+  ],
+  "lat_lon2str": [
+   "通用自动测试上位机V0.90::lat_lon2str",
+   "通用自动测试上位机V0.95::lat_lon2str"
+  ],
+  "sate2location": [
+   "通用自动测试上位机V0.90::sate2location",
+   "通用自动测试上位机V0.95::sate2location",
+   "funs.fun_sate::sate2location"
+  ],
+  "try_set_text": [
+   "通用自动测试上位机V0.90::try_set_text",
+   "通用自动测试上位机V0.95::try_set_text"
+  ],
+  "try_get_text": [
+   "通用自动测试上位机V0.90::try_get_text",
+   "通用自动测试上位机V0.95::try_get_text"
+  ],
+  "int2str": [
+   "通用自动测试上位机V0.90::int2str",
+   "通用自动测试上位机V0.95::int2str"
+  ],
+  "hex2int": [
+   "通用自动测试上位机V0.90::hex2int",
+   "通用自动测试上位机V0.95::hex2int"
+  ],
+  "int2hex": [
+   "通用自动测试上位机V0.90::int2hex",
+   "通用自动测试上位机V0.95::int2hex"
+  ],
+  "reverse": [
+   "通用自动测试上位机V0.90::reverse",
+   "通用自动测试上位机V0.95::reverse"
+  ],
+  "hexcut2list": [
+   "通用自动测试上位机V0.90::hexcut2list",
+   "通用自动测试上位机V0.95::hexcut2list"
+  ],
+  "struct_unpack_int3": [
+   "通用自动测试上位机V0.90::struct_unpack_int3",
+   "通用自动测试上位机V0.95::struct_unpack_int3"
+  ],
+  "check2serial": [
+   "通用自动测试上位机V0.90::check2serial",
+   "通用自动测试上位机V0.95::check2serial",
+   "funs.fun_chy2::check2serial"
+  ],
+  "stop2chinese": [
+   "通用自动测试上位机V0.90::stop2chinese",
+   "通用自动测试上位机V0.95::stop2chinese"
+  ],
+  "check2chinese": [
+   "通用自动测试上位机V0.90::check2chinese",
+   "通用自动测试上位机V0.95::check2chinese"
+  ],
+  "chinese2check": [
+   "通用自动测试上位机V0.90::chinese2check",
+   "通用自动测试上位机V0.95::chinese2check"
+  ],
+  "rulename2chinese": [
+   "通用自动测试上位机V0.90::rulename2chinese",
+   "通用自动测试上位机V0.95::rulename2chinese"
+  ],
+  "testmode2chinese": [
+   "通用自动测试上位机V0.90::testmode2chinese",
+   "通用自动测试上位机V0.95::testmode2chinese"
+  ],
+  "calculate_frame_length": [
+   "通用自动测试上位机V0.90::calculate_frame_length",
+   "通用自动测试上位机V0.95::calculate_frame_length"
+  ],
+  "calculate_checksum": [
+   "通用自动测试上位机V0.90::calculate_checksum",
+   "通用自动测试上位机V0.95::calculate_checksum"
+  ],
+  "calculate_xorsum": [
+   "通用自动测试上位机V0.90::calculate_xorsum",
+   "通用自动测试上位机V0.95::calculate_xorsum"
+  ],
+  "decode_hex_frame_list": [
+   "通用自动测试上位机V0.90::decode_hex_frame_list",
+   "通用自动测试上位机V0.95::decode_hex_frame_list"
+  ],
+  "try_split_power_command": [
+   "通用自动测试上位机V0.90::try_split_power_command",
+   "通用自动测试上位机V0.95::try_split_power_command"
+  ],
+  "GPGGA2loc": [
+   "通用自动测试上位机V0.90::GPGGA2loc",
+   "通用自动测试上位机V0.95::GPGGA2loc",
+   "funs.fun_sate::GPGGA2loc"
+  ],
+  "KSXT2spd": [
+   "通用自动测试上位机V0.90::KSXT2spd",
+   "通用自动测试上位机V0.95::KSXT2spd"
+  ],
+  "get_command": [
+   "通用自动测试上位机V0.90::Turntable_class.get_command",
+   "通用自动测试上位机V0.95::Turntable_class.get_command"
+  ],
+  "reset_inside": [
+   "通用自动测试上位机V0.90::Turntable_class.reset_inside",
+   "通用自动测试上位机V0.90::Turntable_class.reset_inside#L4099",
+   "通用自动测试上位机V0.95::Turntable_class.reset_inside",
+   "通用自动测试上位机V0.95::Turntable_class.reset_inside#L4442"
+  ],
+  "reset_outside": [
+   "通用自动测试上位机V0.90::Turntable_class.reset_outside",
+   "通用自动测试上位机V0.90::Turntable_class.reset_outside#L4106",
+   "通用自动测试上位机V0.95::Turntable_class.reset_outside",
+   "通用自动测试上位机V0.95::Turntable_class.reset_outside#L4449"
+  ],
+  "inside_location": [
+   "通用自动测试上位机V0.90::Turntable_class.inside_location",
+   "通用自动测试上位机V0.95::Turntable_class.inside_location"
+  ],
+  "inside_speed": [
+   "通用自动测试上位机V0.90::Turntable_class.inside_speed",
+   "通用自动测试上位机V0.95::Turntable_class.inside_speed"
+  ],
+  "outside_location": [
+   "通用自动测试上位机V0.90::Turntable_class.outside_location",
+   "通用自动测试上位机V0.95::Turntable_class.outside_location"
+  ],
+  "outside_speed": [
+   "通用自动测试上位机V0.90::Turntable_class.outside_speed",
+   "通用自动测试上位机V0.95::Turntable_class.outside_speed"
+  ],
+  "general_crc16Table": [
+   "funs.checks::general_crc16Table",
+   "funs.checks_remove::general_crc16Table",
+   "funs.fun_checks::general_crc16Table"
+  ],
+  "calculate_crc16": [
+   "funs.checks::calculate_crc16",
+   "funs.checks_remove::calculate_crc16",
+   "funs.fun_checks::calculate_crc16"
+  ],
+  "calculate_crc32": [
+   "funs.checks::calculate_crc32",
+   "funs.checks_remove::calculate_crc32",
+   "funs.fun_checks::calculate_crc32"
+  ],
+  "crc_1188a": [
+   "funs.checks::crc_1188a",
+   "funs.checks_remove::crc_1188a",
+   "funs.fun_checks::crc_1188a"
+  ],
+  "calculate_crc16_mcrf4xx": [
+   "funs.checks::calculate_crc16_mcrf4xx",
+   "funs.checks_remove::calculate_crc16_mcrf4xx",
+   "funs.fun_checks::calculate_crc16_mcrf4xx"
+  ],
+  "del_empty_folder": [
+   "funs.fun_chy2::del_empty_folder",
+   "ui.init_ui::del_empty_folder"
+  ],
+  "extract_number": [
+   "ui.init_ui::extract_number",
+   "ui.tools.tools_bdcalib::extract_number"
+  ],
+  "init_list": [
+   "ui.init_ui::struct_paraCal.init_list",
+   "ui.tools.tools_bdcalib::MainWindowToolBdcalib.init_list"
+  ],
+  "logic_turntable3x": [
+   "ui.logic::MainWindowLogic.logic_turntable3x",
+   "ui.events.events_devide::MainWindowEventDevide.logic_turntable3x"
+  ],
+  "run": [
+   "ui.structs::clickEventThread_decodeShow.run",
+   "ui.tools.tools_bdcalib::class_Worker.run",
+   "ui.tools.tools_burn_ymodem::YModemBurnWorker.run"
+  ],
+  "clickEvent_childHidden": [
+   "ui.events.events_hidden::MainWindowEventHidden.clickEvent_childHidden",
+   "ui.inits.inits_funcTest::MainWindowInitFuncTest.clickEvent_childHidden"
+  ]
+ },
+ "in_cycle": [
+  [
+   "通用自动测试上位机V0.90::int2hex"
+  ],
+  [
+   "funs.fun_chy2::del_empty_folder"
+  ],
+  [
+   "通用自动测试上位机V0.95::int2hex"
+  ],
+  [
+   "ui.navs.nav_loc::MainWindowNavLoc._infer_xyz_tile_layout"
+  ],
+  [
+   "ui.init_ui::del_empty_folder"
+  ]
+ ]
+}

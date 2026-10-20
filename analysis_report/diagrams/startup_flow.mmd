@@ -1,0 +1,50 @@
+%% 图5 程序启动流程图 (节点均可在 function_trees/01_entry_tree.txt 中追溯; 括号为源码位置)
+flowchart TD
+  s0["__main__: QApplication(sys.argv)<br/><small>通用自动测试上位机V0.95.py:1</small>"]
+  s1["导入期: RUNTIME_ROOT=_prepare_runtime_workdir() (切换工作目录)<br/><small>通用自动测试上位机V0.95.py:84</small>"]
+  s2["_find_runtime_root<br/><small>通用自动测试上位机V0.95.py:50</small>"]
+  s0 -.->|"模块导入时已执行"| s1 --> s2
+  s3["MainWindow.__init__: 读取 debug_mode.ini, setupUi, show<br/><small>通用自动测试上位机V0.95.py:127</small>"]
+  s0 -->|"create L4490"| s3
+  s4["MainWindow.init_after_show<br/><small>通用自动测试上位机V0.95.py:197</small>"]
+  s3 -->|"QTimer.singleShot(50) timer"| s4
+  s5["_init_modules_in_batches: 按 module_chain 顺序实例化<br/><small>通用自动测试上位机V0.95.py:166</small>"]
+  s4 -->|call| s5
+  s6["MainWindowInitDebugMsg.__init__<br/>(调试信息, mw.inits_debugMsg)<br/><small>ui/inits/inits_debugMsg.py:3</small>"]
+  s5 -->|"dynamic L168"| s6
+  s7["MainWindowInitShowMsg.__init__<br/>(显示信息, mw.inits_showMsg)<br/><small>ui/inits/inits_showMsg.py:33</small>"]
+  s6 -->|"dynamic L169"| s7
+  s8["MainWindowInitIni.__init__<br/>(配置文件, mw.init_ini)<br/><small>ui/load_ini.py:5</small>"]
+  s7 -->|"dynamic L170"| s8
+  s9["MainWindowDebug.__init__<br/>(调试模式, mw.debug)<br/><small>ui/debug.py:5</small>"]
+  s8 -->|"dynamic L171"| s9
+  s10["MainWindowInit.__init__<br/>(界面结构, mw.init_ui)<br/><small>ui/init_ui.py:14</small>"]
+  s9 -->|"dynamic L172"| s10
+  s11["MainWindowTimes.__init__<br/>(定时事件, mw.times)<br/><small>ui/times.py:9</small>"]
+  s10 -->|"dynamic L173"| s11
+  s12["MainWindowSetting.__init__<br/>(全局变量, mw.settings)<br/><small>ui/settings.py:5</small>"]
+  s11 -->|"dynamic L174"| s12
+  s13["MainWindowConstants.__init__<br/>(结构体, mw.constants)<br/><small>ui/constants.py:11</small>"]
+  s12 -->|"dynamic L175"| s13
+  s14["MainWindowEvent.__init__<br/>(事件处理, mw.events)<br/><small>ui/event.py:14</small>"]
+  s13 -->|"dynamic L176"| s14
+  s15["MainWindowThread.__init__<br/>(线程处理, mw.threads)<br/><small>ui/threads.py:7</small>"]
+  s14 -->|"dynamic L177"| s15
+  s16["MainWindowLogic.__init__<br/>(逻辑处理, mw.uilogic)<br/><small>ui/logic.py:3</small>"]
+  s15 -->|"dynamic L178"| s16
+  s17["MainWindowGetUI.__init__<br/>(获取界面, mw.getui)<br/><small>ui/get_ui.py:5</small>"]
+  s16 -->|"dynamic L179"| s17
+  s18["MainWindowEventDevide.__init__<br/>(多设备集, mw.events_devide)<br/><small>ui/events/events_devide.py:5</small>"]
+  s17 -->|"dynamic L180"| s18
+  s19["MainWindowEventHidden.__init__<br/>(显示模块, mw.events_hidden)<br/><small>ui/events/events_hidden.py:3</small>"]
+  s18 -->|"dynamic L181"| s19
+  s20["MainWindowToolBdcalib.__init__<br/>(标定工具, mw.tools_bdcalib)<br/><small>ui/tools/tools_bdcalib.py:54</small>"]
+  s19 -->|"dynamic L182"| s20
+  s21["MainWindowToolBurnYmodem.__init__<br/>(Ymodem烧录, mw.tools_burn_ymodem)<br/><small>ui/tools/tools_burn_ymodem.py:194</small>"]
+  s20 -->|"dynamic L183"| s21
+  s22["MainWindowNavLoc.__init__<br/>(导航模块, mw.navs)<br/><small>ui/navs/nav_loc.py:136</small>"]
+  s21 -->|"dynamic L184"| s22
+  EL(["app.exec_() 事件循环 -> 信号槽/QTimer/线程 驱动"])
+  s0 --> EL
+  CFG["配置加载: ui.load_ini / ui.settings / ui.inits.inits_funcTest(读 functest_config.ini)"]
+  s8 -.-> CFG

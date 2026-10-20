@@ -1,0 +1,21 @@
+# 模块 funs.fun_checks  (funs/fun_checks.py)
+
+## <module>  L1-131  args=()  <module_body>
+
+## general_crc16Table  L72-83  args=()
+
+## calculate_crc16  L84-89  args=(data)
+  <- [call/high@L4278] 通用自动测试上位机V0.95::decode_hex_frame_list
+  <- [call/high@L183] ui.event::MainWindowEvent.changeEvent_general_bind_table
+
+## calculate_crc16_0x00  L90-95  args=(data)
+  <- [call/high@L204] ui.event::MainWindowEvent.changeEvent_general_bind_table
+
+## calculate_crc32  L97-106  args=(buffer)
+  <- [call/high@L1500] 通用自动测试上位机V0.90::MainWindow.event_update_sate3
+  <- [call/high@L1771] 通用自动测试上位机V0.95::MainWindow.event_update_sate3
+
+## crc_1188a  L108-118  args=(data_add)
+
+## calculate_crc16_mcrf4xx  L121-131  args=(data)
+  <- [call/high@L194] ui.event::MainWindowEvent.changeEvent_general_bind_table

@@ -1,0 +1,27 @@
+# 模块 ui.settings  (ui/settings.py)
+
+## <module>  L1-113  args=()  <module_body>
+
+## MainWindowSetting.__init__  L5-16  args=(self, mainWindow)  <constructor>
+  -> [call/high@L9] ui.settings::MainWindowSetting.init_default_config
+  -> [call/high@L11] ui.settings::MainWindowSetting.init_config_sate
+  -> [call/high@L15] ui.settings::MainWindowSetting.init_read_para
+  -> [call/high@L16] ui.settings::MainWindowSetting.init_read_root
+  <- [create/high@L92] 通用自动测试上位机V0.90::MainWindow.__init__
+  <- [dynamic/medium@L174] 通用自动测试上位机V0.95::MainWindow._init_modules_in_batches
+
+## MainWindowSetting.init_default_config  L20-28  args=(self)
+  <- [call/high@L9] ui.settings::MainWindowSetting.__init__
+
+## MainWindowSetting.init_config_sate  L31-41  args=(self)
+  <- [call/high@L11] ui.settings::MainWindowSetting.__init__
+
+## MainWindowSetting.init_read_para  L48-78  args=(self)
+  -> [call/high@L70] funs.fun_chy2::try_int
+  => (外部库) os.path.exists x1
+  <- [call/high@L15] ui.settings::MainWindowSetting.__init__
+
+## MainWindowSetting.init_read_root  L80-109  args=(self)
+  -> [call/high@L101] funs.fun_chy2::try_int
+  => (外部库) os.path.exists x1
+  <- [call/high@L16] ui.settings::MainWindowSetting.__init__

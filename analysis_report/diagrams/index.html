@@ -1,0 +1,1813 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><title>Mermaid 图集</title><style>body{font:14px "Microsoft YaHei",sans-serif;margin:16px 24px}section{border-top:2px solid #24344d;margin-top:22px}pre.mermaid{background:#fff;overflow:auto}details{margin:4px 0}</style></head><body><h1>Mermaid 图集 (本地渲染, 无需联网)</h1><p><a href="../index.html">← 交互式报告</a> · 若图未显示请确认 ../vendor/mermaid.min.js 存在; 也可将 .mmd 粘贴到任意 Mermaid 编辑器。</p><section><h2>图1 项目总体架构图</h2><p><b>图例:</b> 实线箭头=层间 import 聚合(数字为 import 条数); 虚线=MainWindow 经 module_chain 动态挂载 manager; 灰色椭圆=外部依赖</p><p><b>说明:</b> 分层依据 ROLES 表(读代码得出); 设备通信并非单一层: 串口读写还分布在 ui.structs/ui.event/主窗口中</p><p><a href="architecture.mmd">源文件 architecture.mmd</a></p><pre class="mermaid">%% 图1 项目总体架构图 (层 -> 模块), 层间箭头 = 层内模块 import 的聚合 (数字=import 条数)
+flowchart TB
+  subgraph a0["入口"]
+    direction LR
+    a1["95"]
+  end
+  subgraph a2["UI层"]
+    direction LR
+    a3["Automated_testingV19"]
+    a4["get_ui"]
+    a5["init_ui"]
+    a6["inits_debugMsg"]
+    a7["inits_showMsg"]
+  end
+  subgraph a8["事件层"]
+    direction LR
+    a9["event"]
+    a10["logic"]
+    a11["events_devide"]
+    a12["events_hidden"]
+  end
+  subgraph a13["业务逻辑层"]
+    direction LR
+    a14["debug"]
+    a15["threads"]
+    a16["times"]
+    a17["nav_loc"]
+    a18["tools_bdcalib"]
+  end
+  subgraph a19["数据处理层"]
+    direction LR
+    a20["fun_chy2"]
+    a21["fun_sate"]
+    a22["structs"]
+  end
+  subgraph a23["设备通信层"]
+    direction LR
+    a24["fun_serial"]
+    a25["tools_burn_ymodem"]
+  end
+  subgraph a26["配置层"]
+    direction LR
+    a27["fun_locals"]
+    a28["constants"]
+    a29["load_ini"]
+    a30["settings"]
+    a31["inits_funcTest"]
+  end
+  subgraph a32["公共工具层"]
+    direction LR
+    a33["checks"]
+    a34["checks_remove"]
+    a35["fun_checks"]
+  end
+  a0 -->|"import x3"| a2
+  a0 -->|"import x2"| a8
+  a0 -->|"import x3"| a13
+  a0 -->|"import x1"| a19
+  a0 -->|"import x1"| a23
+  a0 -->|"import x4"| a26
+  a0 -->|"import x1"| a32
+  a2 -->|"import x2"| a26
+  a8 -->|"import x1"| a19
+  a8 -->|"import x1"| a23
+  a8 -->|"import x1"| a32
+  a13 -->|"import x1"| a26
+  a26 -->|"import x2"| a19
+  a1 -.->|"module_chain 动态挂载"| a28
+  a1 -.->|"module_chain 动态挂载"| a14
+  a1 -.->|"module_chain 动态挂载"| a9
+  a1 -.->|"module_chain 动态挂载"| a11
+  a1 -.->|"module_chain 动态挂载"| a12
+  a1 -.->|"module_chain 动态挂载"| a4
+  a1 -.->|"module_chain 动态挂载"| a5
+  a1 -.->|"module_chain 动态挂载"| a6
+  a1 -.->|"module_chain 动态挂载"| a7
+  a1 -.->|"module_chain 动态挂载"| a29
+  a1 -.->|"module_chain 动态挂载"| a10
+  a1 -.->|"module_chain 动态挂载"| a17
+  a1 -.->|"module_chain 动态挂载"| a30
+  a1 -.->|"module_chain 动态挂载"| a15
+  a1 -.->|"module_chain 动态挂载"| a16
+  a1 -.->|"module_chain 动态挂载"| a18
+  a1 -.->|"module_chain 动态挂载"| a25
+  PyQt5(["PyQt5 / pyqtgraph"]):::ext
+  SER(["pyserial 串口设备"]):::ext
+  DATA(["规则/配置文本文件"]):::ext
+  a23 --> SER
+  a26 --> DATA
+  a2 --> PyQt5
+  classDef ext fill:#eee,stroke:#999,stroke-dasharray: 4 2
+</pre></section><section><h2>图2 模块依赖关系图</h2><p><b>图例:</b> 实线=import; 虚线=运行期跨模块调用耦合(self.mw 桥接等, 非 import); 橙色=高耦合(fan_in+fan_out 前5)</p><p><b>说明:</b> import 图无循环依赖; 但 manager <-> MainWindow 通过 self.mw 形成运行期双向耦合(未在 import 中体现)</p><p><a href="module_dependencies.mmd">源文件 module_dependencies.mmd</a></p><pre class="mermaid">%% 图2 模块依赖关系图 (import / 运行期调用耦合)
+%% 实线=import 依赖; 虚线=运行期跨模块函数调用耦合(self.mw 桥接/对象调用, 非 import)
+%% 红色=循环依赖(无), 橙色=高耦合(fan_in+fan_out 靠前)
+flowchart LR
+  subgraph m0["入口"]
+    m1["通用自动测试上位机V0.95&lt;br/>&lt;small>通用自动测试上位机V0.95.py&lt;/small>"]
+  end
+  subgraph m2["UI层"]
+    m3["Automated_testingV19&lt;br/>&lt;small>Automated_testingV19.py&lt;/small>"]
+    m4["ui.get_ui&lt;br/>&lt;small>ui/get_ui.py&lt;/small>"]
+    m5["ui.init_ui&lt;br/>&lt;small>ui/init_ui.py&lt;/small>"]
+    m6["ui.inits&lt;br/>&lt;small>ui/inits/__init__.py&lt;/small>"]
+    m7["ui.inits.inits_debugMsg&lt;br/>&lt;small>ui/inits/inits_debugMsg.py&lt;/small>"]
+    m8["ui.inits.inits_showMsg&lt;br/>&lt;small>ui/inits/inits_showMsg.py&lt;/small>"]
+  end
+  subgraph m9["事件层"]
+    m10["ui.event&lt;br/>&lt;small>ui/event.py&lt;/small>"]
+    m11["ui.logic&lt;br/>&lt;small>ui/logic.py&lt;/small>"]
+    m12["ui.events&lt;br/>&lt;small>ui/events/__init__.py&lt;/small>"]
+    m13["ui.events.events_devide&lt;br/>&lt;small>ui/events/events_devide.py&lt;/small>"]
+    m14["ui.events.events_hidden&lt;br/>&lt;small>ui/events/events_hidden.py&lt;/small>"]
+  end
+  subgraph m15["业务逻辑层"]
+    m16["ui.debug&lt;br/>&lt;small>ui/debug.py&lt;/small>"]
+    m17["ui.threads&lt;br/>&lt;small>ui/threads.py&lt;/small>"]
+    m18["ui.times&lt;br/>&lt;small>ui/times.py&lt;/small>"]
+    m19["ui.navs&lt;br/>&lt;small>ui/navs/__init__.py&lt;/small>"]
+    m20["ui.navs.nav_loc&lt;br/>&lt;small>ui/navs/nav_loc.py&lt;/small>"]
+    m21["ui.tools&lt;br/>&lt;small>ui/tools/__init__.py&lt;/small>"]
+    m22["ui.tools.tools_bdcalib&lt;br/>&lt;small>ui/tools/tools_bdcalib.py&lt;/small>"]
+  end
+  subgraph m23["数据处理层"]
+    m24["funs.fun_chy2&lt;br/>&lt;small>funs/fun_chy2.py&lt;/small>"]
+    m25["funs.fun_sate&lt;br/>&lt;small>funs/fun_sate.py&lt;/small>"]
+    m26["ui.structs&lt;br/>&lt;small>ui/structs.py&lt;/small>"]
+  end
+  subgraph m27["设备通信层"]
+    m28["funs.fun_serial&lt;br/>&lt;small>funs/fun_serial.py&lt;/small>"]
+    m29["ui.tools.tools_burn_ymodem&lt;br/>&lt;small>ui/tools/tools_burn_ymodem.py&lt;/small>"]
+  end
+  subgraph m30["配置层"]
+    m31["funs.fun_locals&lt;br/>&lt;small>funs/fun_locals.py&lt;/small>"]
+    m32["ui.constants&lt;br/>&lt;small>ui/constants.py&lt;/small>"]
+    m33["ui.load_ini&lt;br/>&lt;small>ui/load_ini.py&lt;/small>"]
+    m34["ui.settings&lt;br/>&lt;small>ui/settings.py&lt;/small>"]
+    m35["ui.inits.inits_funcTest&lt;br/>&lt;small>ui/inits/inits_funcTest.py&lt;/small>"]
+  end
+  subgraph m36["公共工具层"]
+    m37["funs.checks&lt;br/>&lt;small>funs/checks.py&lt;/small>"]
+    m38["funs.checks_remove&lt;br/>&lt;small>funs/checks_remove.py&lt;/small>"]
+    m39["funs.fun_checks&lt;br/>&lt;small>funs/fun_checks.py&lt;/small>"]
+    m40["ui&lt;br/>&lt;small>ui/__init__.py&lt;/small>"]
+  end
+  m32 -->|"import L7"| m31
+  m32 -->|"import L6"| m26
+  m10 -->|"import L11"| m39
+  m10 -->|"import L10"| m24
+  m12 -->|"import L1"| m13
+  m12 -->|"import L2"| m14
+  m13 -->|"import L2"| m28
+  m4 -->|"import L2"| m31
+  m5 -->|"import L3"| m31
+  m6 -->|"import L1"| m7
+  m6 -->|"import L3"| m35
+  m6 -->|"import L2"| m8
+  m19 -->|"import L2"| m20
+  m34 -->|"import L2"| m24
+  m26 -->|"import L6"| m24
+  m26 -->|"import L7"| m25
+  m18 -->|"import L3"| m31
+  m21 -->|"import L1"| m22
+  m21 -->|"import L2"| m29
+  m1 -->|"import L9"| m3
+  m1 -->|"import L10"| m39
+  m1 -->|"import L11"| m24
+  m1 -->|"import L13"| m31
+  m1 -->|"import L12"| m28
+  m1 -->|"import L29"| m32
+  m1 -->|"import L22"| m16
+  m1 -->|"import L20"| m10
+  m1 -->|"import L15"| m12
+  m1 -->|"import L24"| m4
+  m1 -->|"import L25"| m5
+  m1 -->|"import L16"| m6
+  m1 -->|"import L27"| m33
+  m1 -->|"import L21"| m11
+  m1 -->|"import L18"| m19
+  m1 -->|"import L28"| m34
+  m1 -->|"import L26"| m17
+  m1 -->|"import L23"| m18
+  m1 -->|"import L17"| m21
+  m11 -.->|"call x26"| m10
+  m10 -.->|"call x11"| m24
+  m1 -.->|"call x10"| m24
+  m26 -.->|"call x10"| m24
+  m1 -.->|"call x7"| m13
+  m1 -.->|"call x6"| m28
+  m32 -.->|"call x6"| m26
+  m26 -.->|"call x4"| m25
+  m10 -.->|"call x3"| m39
+  m1 -.->|"call x2"| m20
+  m1 -.->|"call x2"| m18
+  m1 -.->|"call x2"| m39
+  m34 -.->|"call x2"| m24
+  style m1 fill:#ffe0b3,stroke:#e67e00,stroke-width:2px
+  style m24 fill:#ffe0b3,stroke:#e67e00,stroke-width:2px
+  style m31 fill:#ffe0b3,stroke:#e67e00,stroke-width:2px
+  style m6 fill:#ffe0b3,stroke:#e67e00,stroke-width:2px
+</pre></section><section><h2>图3 函数调用树(入口局部, depth=3)</h2><p><b>图例:</b> 实线=直接调用/创建; 粗线=信号槽/定时器/线程(间接); 点线=动态分发</p><p><b>说明:</b> 完整调用树见 function_trees/01_entry_tree.txt; 按模块局部树见 diagrams/by_module/</p><p><a href="call_tree_entry.mmd">源文件 call_tree_entry.mmd</a></p><pre class="mermaid">%% 图3 函数调用树(局部): 自 &lt;module> 起 depth=3; 边: -->call/create, ==>信号槽/定时器/线程(间接), -.->动态
+flowchart LR
+  f0["‹module›&lt;br/>&lt;small>通用自动测试上位机V0.95:1&lt;/small>"]
+  f0 -->|"call/high L93"| f1
+  f0 -->|"create/high L4490"| f2
+  f1["_prepare_runtime_workdir&lt;br/>&lt;small>通用自动测试上位机V0.95:84&lt;/small>"]
+  f1 -->|"call/high L85"| f3
+  f2["MainWindow.__init__&lt;br/>&lt;small>通用自动测试上位机V0.95:127&lt;/small>"]
+  f2 -->|"call/high L136"| f4
+  f2 ==>|"timer/high L152"| f5
+  f3["_find_runtime_root&lt;br/>&lt;small>通用自动测试上位机V0.95:50&lt;/small>"]
+  f4["Ui_MainWindow.setupUi&lt;br/>&lt;small>Automated_testingV19:15&lt;/small>"]
+  f5["MainWindow.init_after_show&lt;br/>&lt;small>通用自动测试上位机V0.95:197&lt;/small>"]
+  f5 -->|"call/high L199"| f6
+  f5 -->|"create/high L377"| f7
+  f5 ==>|"connect/high L522"| f8
+  f5 ==>|"connect/high L595"| f9
+  f5 ==>|"connect/high L608"| f10
+  f5 ==>|"connect/high L609"| f11
+  f5 ==>|"connect/high L610"| f12
+  f5 ==>|"connect/high L624"| f13
+  f5 ==>|"connect/high L625"| f14
+  f5 ==>|"connect/high L626"| f15
+  f5 ==>|"connect/high L628"| f16
+  f5 ==>|"connect/high L630"| f17
+  f5 ==>|"connect/high L632"| f18
+  f5 -->|"call/high L633"| f16
+  f5 -->|"call/high L634"| f17
+  f5 -->|"call/high L635"| f18
+  f5 ==>|"connect/high L646"| f19
+  f5 ==>|"connect/high L652"| f20
+  f5 ==>|"connect/high L654"| f21
+  f5 ==>|"connect/high L655"| f22
+  f5 ==>|"connect/high L656"| f23
+  f5 ==>|"connect/high L662"| f24
+  f5 ==>|"connect/high L663"| f25
+  f5 ==>|"connect/high L664"| f26
+  f5 ==>|"connect/high L671"| f27
+  f5 ==>|"connect/high L672"| f28
+  f5 ==>|"connect/high L673"| f29
+  f5 ==>|"connect/high L680"| f30
+  f5 ==>|"connect/high L681"| f31
+  f5 ==>|"connect/high L682"| f32
+  f5 ==>|"connect/high L688"| f33
+  f5 ==>|"connect/high L703"| f34
+  f5 ==>|"connect/high L704"| f34
+  f5 ==>|"connect/high L705"| f34
+  f5 ==>|"connect/high L706"| f35
+  f5 ==>|"connect/high L707"| f35
+  f5 ==>|"connect/high L708"| f35
+  f5 ==>|"connect/high L710"| f36
+  f5 ==>|"connect/high L711"| f37
+  f5 ==>|"connect/high L713"| f38
+  f5 ==>|"connect/high L715"| f39
+  f5 ==>|"connect/high L717"| f40
+  f5 ==>|"connect/high L719"| f41
+  f5 ==>|"connect/high L721"| f42
+  f5 ==>|"connect/high L728"| f43
+  f5 ==>|"connect/high L729"| f44
+  f5 ==>|"connect/high L731"| f45
+  f5 ==>|"connect/high L733"| f46
+  f5 ==>|"connect/high L735"| f47
+  f5 ==>|"connect/high L737"| f48
+  f5 ==>|"connect/high L740"| f49
+  f5 ==>|"connect/high L742"| f50
+  f5 ==>|"connect/high L743"| f51
+  f5 ==>|"connect/high L745"| f52
+  f5 -->|"call/high L750"| f53
+  f5 -->|"call/high L751"| f54
+  f5 -->|"call/high L752"| f55
+  f5 -->|"call/high L765"| f56
+  f5 -->|"call/high L766"| f57
+  f5 -->|"call/high L767"| f58
+  f5 -->|"call/high L768"| f59
+  f5 -->|"call/high L771"| f60
+  f5 -->|"call/high L772"| f61
+  f5 ==>|"timer/high L776"| f56
+  f5 ==>|"timer/high L780"| f57
+  f5 ==>|"timer/high L784"| f58
+  f5 ==>|"timer/high L788"| f59
+  f5 ==>|"timer/high L792"| f62
+  f5 ==>|"timer/high L797"| f10
+  f5 ==>|"timer/high L801"| f11
+  f5 ==>|"timer/high L806"| f26
+  f5 ==>|"timer/high L809"| f29
+  f5 ==>|"timer/high L812"| f32
+  f5 -->|"call/high L816"| f63
+  f6["MainWindow._init_modules_in_batches&lt;br/>&lt;small>通用自动测试上位机V0.95:166&lt;/small>"]
+  f7["class_rule.__init__&lt;br/>&lt;small>funs.fun_chy2:188&lt;/small>"]
+  f8["MainWindow.binding_change&lt;br/>&lt;small>通用自动测试上位机V0.95:2702&lt;/small>"]
+  f9["MainWindow.event_update_bingding_60s&lt;br/>&lt;small>通用自动测试上位机V0.95:1474&lt;/small>"]
+  f10["MainWindow.event_send_sate1&lt;br/>&lt;small>通用自动测试上位机V0.95:1776&lt;/small>"]
+  f11["MainWindow.event_send_sate2&lt;br/>&lt;small>通用自动测试上位机V0.95:1796&lt;/small>"]
+  f12["MainWindow.event_send_sate3&lt;br/>&lt;small>通用自动测试上位机V0.95:1811&lt;/small>"]
+  f13["MainWindow.sate_send1_change_time&lt;br/>&lt;small>通用自动测试上位机V0.95:1545&lt;/small>"]
+  f14["MainWindow.sate_send2_change_time&lt;br/>&lt;small>通用自动测试上位机V0.95:1553&lt;/small>"]
+  f15["MainWindow.sate_send3_change_time&lt;br/>&lt;small>通用自动测试上位机V0.95:1561&lt;/small>"]
+  f16["MainWindow.event_update_sate1&lt;br/>&lt;small>通用自动测试上位机V0.95:1600&lt;/small>"]
+  f17["MainWindow.event_update_sate2&lt;br/>&lt;small>通用自动测试上位机V0.95:1655&lt;/small>"]
+  f18["MainWindow.event_update_sate3&lt;br/>&lt;small>通用自动测试上位机V0.95:1691&lt;/small>"]
+  f19["MainWindow.td_command_change&lt;br/>&lt;small>通用自动测试上位机V0.95:1851&lt;/small>"]
+  f20["MainWindow.td_gnss_change&lt;br/>&lt;small>通用自动测试上位机V0.95:1870&lt;/small>"]
+  f21["MainWindow.td_atmos_change&lt;br/>&lt;small>通用自动测试上位机V0.95:1887&lt;/small>"]
+  f22["MainWindow.td_softUpdate_change&lt;br/>&lt;small>通用自动测试上位机V0.95:1893&lt;/small>"]
+  f23["MainWindow.td_softPara_change&lt;br/>&lt;small>通用自动测试上位机V0.95:1899&lt;/small>"]
+  f24["MainWindow.td_command_send_update&lt;br/>&lt;small>通用自动测试上位机V0.95:1905&lt;/small>"]
+  f25["MainWindow.td_command_time_change&lt;br/>&lt;small>通用自动测试上位机V0.95:1570&lt;/small>"]
+  f26["MainWindow.event_td_send1&lt;br/>&lt;small>通用自动测试上位机V0.95:1828&lt;/small>"]
+  f27["MainWindow.fz_command_send_update&lt;br/>&lt;small>通用自动测试上位机V0.95:1941&lt;/small>"]
+  f28["MainWindow.fz_command_time_change&lt;br/>&lt;small>通用自动测试上位机V0.95:1579&lt;/small>"]
+  f29["MainWindow.event_fz_send1&lt;br/>&lt;small>通用自动测试上位机V0.95:1923&lt;/small>"]
+  f30["MainWindow.gnss_command_send_update&lt;br/>&lt;small>通用自动测试上位机V0.95:1996&lt;/small>"]
+  f31["MainWindow.gnss_command_time_change&lt;br/>&lt;small>通用自动测试上位机V0.95:1588&lt;/small>"]
+  f32["MainWindow.event_gnss_send1&lt;br/>&lt;small>通用自动测试上位机V0.95:1959&lt;/small>"]
+  f33["MainWindow.gnss_status_change&lt;br/>&lt;small>通用自动测试上位机V0.95:1979&lt;/small>"]
+  f34["MainWindow.protocal_com_change&lt;br/>&lt;small>通用自动测试上位机V0.95:1429&lt;/small>"]
+  f35["MainWindow.comboBox_com_change&lt;br/>&lt;small>通用自动测试上位机V0.95:1436&lt;/small>"]
+  f36["MainWindow.update_plot_axis&lt;br/>&lt;small>通用自动测试上位机V0.95:2732&lt;/small>"]
+  f37["MainWindow.update_double_axis&lt;br/>&lt;small>通用自动测试上位机V0.95:2748&lt;/small>"]
+  f38["MainWindow.update_stand_axis&lt;br/>&lt;small>通用自动测试上位机V0.95:2766&lt;/small>"]
+  f39["MainWindow.update_target_loc&lt;br/>&lt;small>通用自动测试上位机V0.95:2789&lt;/small>"]
+  f40["MainWindow.update_target_spd&lt;br/>&lt;small>通用自动测试上位机V0.95:2812&lt;/small>"]
+  f41["MainWindow.filenames_change&lt;br/>&lt;small>通用自动测试上位机V0.95:1444&lt;/small>"]
+  f42["MainWindow.read_rules&lt;br/>&lt;small>通用自动测试上位机V0.95:2422&lt;/small>"]
+  f43["MainWindow.begin_test&lt;br/>&lt;small>通用自动测试上位机V0.95:2864&lt;/small>"]
+  f44["MainWindow.stop_test&lt;br/>&lt;small>通用自动测试上位机V0.95:2852&lt;/small>"]
+  f45["MainWindow.binding_send&lt;br/>&lt;small>通用自动测试上位机V0.95:1453&lt;/small>"]
+  f46["MainWindow.event_load_file&lt;br/>&lt;small>通用自动测试上位机V0.95:2176&lt;/small>"]
+  f47["MainWindow.event_autoset_inu&lt;br/>&lt;small>通用自动测试上位机V0.95:2148&lt;/small>"]
+  f48["MainWindow.event_reload_config&lt;br/>&lt;small>通用自动测试上位机V0.95:2170&lt;/small>"]
+  f49["MainWindow.event_send_bingding_60s&lt;br/>&lt;small>通用自动测试上位机V0.95:1524&lt;/small>"]
+  f50["MainWindow.event_power_on&lt;br/>&lt;small>通用自动测试上位机V0.95:2016&lt;/small>"]
+  f51["MainWindow.event_power_off&lt;br/>&lt;small>通用自动测试上位机V0.95:2086&lt;/small>"]
+  f52["MainWindow.change_sate_button&lt;br/>&lt;small>通用自动测试上位机V0.95:1541&lt;/small>"]
+  f53["MainWindow.init_all_coef&lt;br/>&lt;small>通用自动测试上位机V0.95:892&lt;/small>"]
+  f54["MainWindow._bind_plot_imu_lineedit_sync&lt;br/>&lt;small>通用自动测试上位机V0.95:818&lt;/small>"]
+  f55["MainWindow._sync_plot_window_to_imu&lt;br/>&lt;small>通用自动测试上位机V0.95:829&lt;/small>"]
+  f56["MainWindow.show_message_01s&lt;br/>&lt;small>通用自动测试上位机V0.95:945&lt;/small>"]
+  f57["MainWindow.show_message_05s&lt;br/>&lt;small>通用自动测试上位机V0.95:975&lt;/small>"]
+  f58["MainWindow.show_message_1s&lt;br/>&lt;small>通用自动测试上位机V0.95:997&lt;/small>"]
+  f59["MainWindow.show_message_5s&lt;br/>&lt;small>通用自动测试上位机V0.95:1397&lt;/small>"]
+  f60["MainWindow.read_default_para_com&lt;br/>&lt;small>通用自动测试上位机V0.95:2247&lt;/small>"]
+  f61["MainWindow.read_default_para_config&lt;br/>&lt;small>通用自动测试上位机V0.95:2282&lt;/small>"]
+  f62["MainWindow.show_message_2s&lt;br/>&lt;small>通用自动测试上位机V0.95:1173&lt;/small>"]
+  f63["MainWindow.init_all_coef_end&lt;br/>&lt;small>通用自动测试上位机V0.95:921&lt;/small>"]
+</pre></section><section><h2>图4 类关系图</h2><p><b>图例:</b> <|--继承; *--组合(self.x=Cls()); ..>对象创建; -->运行期挂载</p><p><b>说明:</b> 仅含非旧版类; 外部基类(QMainWindow/QThread 等)以空类表示</p><p><a href="class_relationships.mmd">源文件 class_relationships.mmd</a></p><pre class="mermaid">%% 图4 类关系图: 继承(&lt;|--) / 组合(*--, self.x=Cls()) / 对象创建(..>) / 运行期挂载(--> mw.attr)
+classDiagram
+  class Ui_MainWindow_Automated_testingV17 {
+    +setupUi()
+    +retranslateUi()
+  }
+  class Ui_MainWindow_Automated_testingV19 {
+    +setupUi()
+    +retranslateUi()
+  }
+  class MainWindow {
+    +__init__()
+    +_init_module()
+    +_init_modules_in_batches()
+    +init_after_show()
+    +_bind_plot_imu_lineedit_sync()
+    +_sync_plot_window_to_imu()
+    +...(67 more)
+  }
+  class Turntable_class {
+    +__init__()
+    +get_command()
+    +reset_inside()
+    +reset_outside()
+    +inside_location()
+    +inside_speed()
+    +...(2 more)
+  }
+  class class_rule {
+    +__init__()
+    +reset_debug()
+    +read_rule_file()
+    +update_decode_rules()
+    +update_rule_length()
+    +float_para_list()
+    +...(1 more)
+  }
+  class MainWindowConstants {
+    +__init__()
+    +init_load_path()
+    +init_12tab_setting()
+    +init_general_bind()
+    +init_send_struct()
+    +init_struct_turntable3x()
+  }
+  class MainWindowDebug {
+    +__init__()
+    +debug_time_init()
+    +debug_struct_init()
+    +debug_message_1s()
+    +debug_test()
+  }
+  class struct_debug {
+    +__init__()
+    +update_ui_link()
+    +update_ui_list()
+    +get_check_out()
+    +get_check_last()
+    +update_ui_msg()
+    +...(1 more)
+  }
+  class MainWindowEvent {
+    +__init__()
+    +changeEvent_general_rule()
+    +funcEvent_general_clearButton()
+    +funcEvent_general_changeButton()
+    +funcEvent_general_changeTable()
+    +changeEvent_general_bind_table()
+    +...(24 more)
+  }
+  class MainWindowGetUI {
+    +__init__()
+    +get_name_pathCombox()
+  }
+  class MainWindowInit {
+    +__init__()
+    +init_ui_setting()
+    +init_ui_time()
+    +update_time()
+    +get_time_list()
+    +get_normal_time()
+    +...(6 more)
+  }
+  class struct_paraCal {
+    +__init__()
+    +init_list()
+    +init_conf()
+    +load_BD_file()
+    +processing_BD_ave()
+    +processing_BD_std()
+    +...(8 more)
+  }
+  class MainWindowInitIni {
+    +__init__()
+    +load_ini_debug_mode()
+    +event_load_ini_debug_mode()
+    +load_ini_ui_config()
+  }
+  class MainWindowLogic {
+    +__init__()
+    +logic_general_bind()
+    +logic_12tab_setting()
+    +logic_protocal_rule_change()
+    +logic_auxsate()
+    +logic_cal_BD_data()
+    +...(4 more)
+  }
+  class MainWindowSetting {
+    +__init__()
+    +init_default_config()
+    +init_config_sate()
+    +init_read_para()
+    +init_read_root()
+  }
+  class struct_general_bind {
+    +__init__()
+    +read_struct_file()
+    +init_structList()
+    +get_struct_len()
+  }
+  class struct_tab_setting {
+    +__init__()
+    +set_com()
+    +set_baund()
+    +set_check()
+    +set_stop()
+    +set_open()
+    +...(11 more)
+  }
+  class struct_sate {
+    +__init__()
+    +init_sate_name()
+    +init_sate_save()
+    +init_sate_titl()
+    +init_sate_leng()
+    +init_sate_zero()
+    +...(5 more)
+  }
+  class clickEventThread_decodeShow {
+    &lt;&lt;QThread>>
+    +run()
+  }
+  class struct_turnTable3x {
+    +__init__()
+    +append_debugMsg()
+    +append_showMsg()
+    +append_msgClear()
+    +serial_open()
+    +serial_close()
+    +...(17 more)
+  }
+  class MainWindowThread {
+    +__init__()
+  }
+  class MainWindowTimes {
+    +__init__()
+    +update_test_time()
+    +timeEvent_test()
+    +timeEvent_update_combobox()
+  }
+  class MainWindowEventDevide {
+    +__init__()
+    +logic_tempBox()
+    +clickEvent_tempbox_set()
+    +logic_turntable3x()
+    +clickEvent_turntable3x_open()
+    +clickEvent_turntable3x_close()
+    +...(5 more)
+  }
+  class MainWindowEventHidden {
+    +__init__()
+    +logic_clickHidden()
+    +init_hidden()
+    +clickEvent_childHidden()
+    +logic_changeHidden()
+    +changeEvent_buttonHidden()
+  }
+  class MainWindowInitDebugMsg {
+    +__init__()
+    +init_debugMsg_list()
+  }
+  class MainWindowInitFuncTest {
+    +__init__()
+    +get_uuid()
+    +load_config()
+    +clickLogic_bykey()
+    +clickEvent_childHidden()
+    +groupbox_child_hidden()
+    +...(1 more)
+  }
+  class MainWindowInitShowMsg {
+    +__init__()
+    +init_showMsg_process()
+  }
+  class IMUColumnConfigDialog {
+    +__init__()
+    +_build_ui()
+    +_apply_defaults()
+    +_parse_axis()
+    +_title_of_axis()
+    +_refresh_preview()
+    +...(1 more)
+  }
+  class MainWindowNavLoc {
+    +__init__()
+    +_resolve_workspace_path()
+    +_append_nav_message()
+    +_get_map_default_config()
+    +_read_map_config()
+    +load_map_config()
+    +...(47 more)
+  }
+  class MainWindowToolBdcalib {
+    +__init__()
+    +init_list()
+    +init_data()
+    +load_path()
+    +show_all_files()
+    +append_degugMsg()
+    +...(14 more)
+  }
+  class class_Worker {
+    &lt;&lt;QThread>>
+    +__init__()
+    +run()
+    +ave_all_data()
+    +init_save_aveFile()
+    +format_all_data()
+    +cal_all_para()
+    +...(8 more)
+  }
+  class YModemBurnWorker {
+    &lt;&lt;QThread>>
+    +__init__()
+    +stop()
+    +run()
+    +_send_ymodem()
+    +_send_packet_with_retry()
+    +_send_eot()
+    +...(2 more)
+  }
+  class MainWindowToolBurnYmodem {
+    +__init__()
+    +_build_tab_if_needed()
+    +_bind_events()
+    +append_log()
+    +refresh_ports()
+    +pick_firmware_file()
+    +...(3 more)
+  }
+  class object
+  object &lt;|-- Ui_MainWindow_Automated_testingV17 : 继承(外部)
+  object &lt;|-- Ui_MainWindow_Automated_testingV19 : 继承(外部)
+  Ui_MainWindow_Automated_testingV19 &lt;|-- MainWindow : 继承 通用自动测试上位机V0.95.py@L126
+  class QtWidgets_QMainWindow
+  QtWidgets_QMainWindow &lt;|-- MainWindow : 继承(外部)
+  MainWindow *-- class_rule : self.decode_class
+  MainWindowConstants *-- struct_sate : self.struct_sate
+  class QtCore_QThread
+  QtCore_QThread &lt;|-- clickEventThread_decodeShow : 继承(外部)
+  class QtWidgets_QDialog
+  QtWidgets_QDialog &lt;|-- IMUColumnConfigDialog : 继承(外部)
+  MainWindowToolBdcalib *-- class_Worker : self.work_processData
+  class QThread
+  QThread &lt;|-- class_Worker : 继承(外部)
+  QtCore_QThread &lt;|-- YModemBurnWorker : 继承(外部)
+  MainWindowToolBurnYmodem *-- YModemBurnWorker : self.worker
+  MainWindow --> MainWindowInitDebugMsg : 挂载 inits_debugMsg (module_chain L168)
+  MainWindow --> MainWindowInitShowMsg : 挂载 inits_showMsg (module_chain L169)
+  MainWindow --> MainWindowInitIni : 挂载 init_ini (module_chain L170)
+  MainWindow --> MainWindowDebug : 挂载 debug (module_chain L171)
+  MainWindow --> MainWindowInit : 挂载 init_ui (module_chain L172)
+  MainWindow --> MainWindowTimes : 挂载 times (module_chain L173)
+  MainWindow --> MainWindowSetting : 挂载 settings (module_chain L174)
+  MainWindow --> MainWindowConstants : 挂载 constants (module_chain L175)
+  MainWindow --> MainWindowEvent : 挂载 events (module_chain L176)
+  MainWindow --> MainWindowThread : 挂载 threads (module_chain L177)
+  MainWindow --> MainWindowLogic : 挂载 uilogic (module_chain L178)
+  MainWindow --> MainWindowGetUI : 挂载 getui (module_chain L179)
+  MainWindow --> MainWindowEventDevide : 挂载 events_devide (module_chain L180)
+  MainWindow --> MainWindowEventHidden : 挂载 events_hidden (module_chain L181)
+  MainWindow --> MainWindowToolBdcalib : 挂载 tools_bdcalib (module_chain L182)
+  MainWindow --> MainWindowToolBurnYmodem : 挂载 tools_burn_ymodem (module_chain L183)
+  MainWindow --> MainWindowNavLoc : 挂载 navs (module_chain L184)
+  MainWindow ..> class_rule : 创建 L377
+  MainWindow ..> Turntable_class : 创建 L3812
+  MainWindowConstants ..> struct_tab_setting : 创建 L40
+  MainWindowConstants ..> struct_general_bind : 创建 L51
+  MainWindowConstants ..> struct_sate : 创建 L65
+  MainWindowConstants ..> struct_turnTable3x : 创建 L70
+  MainWindowDebug ..> struct_debug : 创建 L23
+  MainWindowInit ..> struct_paraCal : 创建 L241
+  MainWindowNavLoc ..> IMUColumnConfigDialog : 创建 L1299
+  MainWindowToolBdcalib ..> class_Worker : 创建 L276
+  MainWindowToolBurnYmodem ..> YModemBurnWorker : 创建 L324
+</pre></section><section><h2>图5 程序启动流程图</h2><p><b>图例:</b> 实线=调用/创建, 虚线=导入期或动态实例化</p><p><b>说明:</b> 每个节点标注源码位置, 可在 function_trees/01_entry_tree.txt 中追溯</p><p><a href="startup_flow.mmd">源文件 startup_flow.mmd</a></p><pre class="mermaid">%% 图5 程序启动流程图 (节点均可在 function_trees/01_entry_tree.txt 中追溯; 括号为源码位置)
+flowchart TD
+  s0["__main__: QApplication(sys.argv)&lt;br/>&lt;small>通用自动测试上位机V0.95.py:1&lt;/small>"]
+  s1["导入期: RUNTIME_ROOT=_prepare_runtime_workdir() (切换工作目录)&lt;br/>&lt;small>通用自动测试上位机V0.95.py:84&lt;/small>"]
+  s2["_find_runtime_root&lt;br/>&lt;small>通用自动测试上位机V0.95.py:50&lt;/small>"]
+  s0 -.->|"模块导入时已执行"| s1 --> s2
+  s3["MainWindow.__init__: 读取 debug_mode.ini, setupUi, show&lt;br/>&lt;small>通用自动测试上位机V0.95.py:127&lt;/small>"]
+  s0 -->|"create L4490"| s3
+  s4["MainWindow.init_after_show&lt;br/>&lt;small>通用自动测试上位机V0.95.py:197&lt;/small>"]
+  s3 -->|"QTimer.singleShot(50) timer"| s4
+  s5["_init_modules_in_batches: 按 module_chain 顺序实例化&lt;br/>&lt;small>通用自动测试上位机V0.95.py:166&lt;/small>"]
+  s4 -->|call| s5
+  s6["MainWindowInitDebugMsg.__init__&lt;br/>(调试信息, mw.inits_debugMsg)&lt;br/>&lt;small>ui/inits/inits_debugMsg.py:3&lt;/small>"]
+  s5 -->|"dynamic L168"| s6
+  s7["MainWindowInitShowMsg.__init__&lt;br/>(显示信息, mw.inits_showMsg)&lt;br/>&lt;small>ui/inits/inits_showMsg.py:33&lt;/small>"]
+  s6 -->|"dynamic L169"| s7
+  s8["MainWindowInitIni.__init__&lt;br/>(配置文件, mw.init_ini)&lt;br/>&lt;small>ui/load_ini.py:5&lt;/small>"]
+  s7 -->|"dynamic L170"| s8
+  s9["MainWindowDebug.__init__&lt;br/>(调试模式, mw.debug)&lt;br/>&lt;small>ui/debug.py:5&lt;/small>"]
+  s8 -->|"dynamic L171"| s9
+  s10["MainWindowInit.__init__&lt;br/>(界面结构, mw.init_ui)&lt;br/>&lt;small>ui/init_ui.py:14&lt;/small>"]
+  s9 -->|"dynamic L172"| s10
+  s11["MainWindowTimes.__init__&lt;br/>(定时事件, mw.times)&lt;br/>&lt;small>ui/times.py:9&lt;/small>"]
+  s10 -->|"dynamic L173"| s11
+  s12["MainWindowSetting.__init__&lt;br/>(全局变量, mw.settings)&lt;br/>&lt;small>ui/settings.py:5&lt;/small>"]
+  s11 -->|"dynamic L174"| s12
+  s13["MainWindowConstants.__init__&lt;br/>(结构体, mw.constants)&lt;br/>&lt;small>ui/constants.py:11&lt;/small>"]
+  s12 -->|"dynamic L175"| s13
+  s14["MainWindowEvent.__init__&lt;br/>(事件处理, mw.events)&lt;br/>&lt;small>ui/event.py:14&lt;/small>"]
+  s13 -->|"dynamic L176"| s14
+  s15["MainWindowThread.__init__&lt;br/>(线程处理, mw.threads)&lt;br/>&lt;small>ui/threads.py:7&lt;/small>"]
+  s14 -->|"dynamic L177"| s15
+  s16["MainWindowLogic.__init__&lt;br/>(逻辑处理, mw.uilogic)&lt;br/>&lt;small>ui/logic.py:3&lt;/small>"]
+  s15 -->|"dynamic L178"| s16
+  s17["MainWindowGetUI.__init__&lt;br/>(获取界面, mw.getui)&lt;br/>&lt;small>ui/get_ui.py:5&lt;/small>"]
+  s16 -->|"dynamic L179"| s17
+  s18["MainWindowEventDevide.__init__&lt;br/>(多设备集, mw.events_devide)&lt;br/>&lt;small>ui/events/events_devide.py:5&lt;/small>"]
+  s17 -->|"dynamic L180"| s18
+  s19["MainWindowEventHidden.__init__&lt;br/>(显示模块, mw.events_hidden)&lt;br/>&lt;small>ui/events/events_hidden.py:3&lt;/small>"]
+  s18 -->|"dynamic L181"| s19
+  s20["MainWindowToolBdcalib.__init__&lt;br/>(标定工具, mw.tools_bdcalib)&lt;br/>&lt;small>ui/tools/tools_bdcalib.py:54&lt;/small>"]
+  s19 -->|"dynamic L182"| s20
+  s21["MainWindowToolBurnYmodem.__init__&lt;br/>(Ymodem烧录, mw.tools_burn_ymodem)&lt;br/>&lt;small>ui/tools/tools_burn_ymodem.py:194&lt;/small>"]
+  s20 -->|"dynamic L183"| s21
+  s22["MainWindowNavLoc.__init__&lt;br/>(导航模块, mw.navs)&lt;br/>&lt;small>ui/navs/nav_loc.py:136&lt;/small>"]
+  s21 -->|"dynamic L184"| s22
+  EL(["app.exec_() 事件循环 -> 信号槽/QTimer/线程 驱动"])
+  s0 --> EL
+  CFG["配置加载: ui.load_ini / ui.settings / ui.inits.inits_funcTest(读 functest_config.ini)"]
+  s8 -.-> CFG
+</pre></section><section><h2>图6 关键业务时序图 (sequence_flow1_begin_test.mmd)</h2><p><b>图例:</b> 实线箭头=同步调用; 开口箭头=信号槽/线程/定时器(异步间接调用)</p><p><b>说明:</b> 由调用图最短路径自动生成; 串口 I/O 点为启发式识别(serial 外部调用或 *serial*.write/read)</p><p><a href="sequence_flow1_begin_test.mmd">源文件 sequence_flow1_begin_test.mmd</a></p><pre class="mermaid">%% 图6 关键业务时序图: UI 事件/定时器/线程 -> 业务函数 -> 串口设备 (由 call graph 最短路径自动生成)
+sequenceDiagram
+  autonumber
+  actor U as 操作员/Qt事件循环
+  participant HW as 串口设备(pyserial)
+  participant W as Qt控件/QTimer/线程
+  participant P0 as MainWindow
+  U->>W: 用户操作 / 定时触发 (self.pushButton_begin_test.clicked.connect)
+  W-)P0: begin_test() 槽 [connect 连接于 通用自动测试上位机V0.95.py:728]
+  P0->>P0: plan_test() [call L2922]
+  P0-)P0: plan_test_threading() [thread L2999]
+  P0->>P0: event_power_off() [call L3605]
+  P0->>HW: power_serials.write L2095
+  HW-->>P0: 数据/应答
+</pre></section><section><h2>图6 关键业务时序图 (sequence_flow2_begin_test.mmd)</h2><p><b>图例:</b> 实线箭头=同步调用; 开口箭头=信号槽/线程/定时器(异步间接调用)</p><p><b>说明:</b> 由调用图最短路径自动生成; 串口 I/O 点为启发式识别(serial 外部调用或 *serial*.write/read)</p><p><a href="sequence_flow2_begin_test.mmd">源文件 sequence_flow2_begin_test.mmd</a></p><pre class="mermaid">%% 图6 关键业务时序图: UI 事件/定时器/线程 -> 业务函数 -> 串口设备 (由 call graph 最短路径自动生成)
+sequenceDiagram
+  autonumber
+  actor U as 操作员/Qt事件循环
+  participant HW as 串口设备(pyserial)
+  participant W as Qt控件/QTimer/线程
+  participant P0 as MainWindow
+  U->>W: 用户操作 / 定时触发 (self.pushButton_begin_test.clicked.connect)
+  W-)P0: begin_test() 槽 [connect 连接于 通用自动测试上位机V0.95.py:728]
+  P0->>P0: plan_test() [call L2922]
+  P0-)P0: plan_test_threading() [thread L2999]
+  P0->>P0: event_power_on() [call L3603]
+  P0->>HW: power_serials.write L2032
+  HW-->>P0: 数据/应答
+</pre></section><section><h2>图6 关键业务时序图 (sequence_flow3_begin_test.mmd)</h2><p><b>图例:</b> 实线箭头=同步调用; 开口箭头=信号槽/线程/定时器(异步间接调用)</p><p><b>说明:</b> 由调用图最短路径自动生成; 串口 I/O 点为启发式识别(serial 外部调用或 *serial*.write/read)</p><p><a href="sequence_flow3_begin_test.mmd">源文件 sequence_flow3_begin_test.mmd</a></p><pre class="mermaid">%% 图6 关键业务时序图: UI 事件/定时器/线程 -> 业务函数 -> 串口设备 (由 call graph 最短路径自动生成)
+sequenceDiagram
+  autonumber
+  actor U as 操作员/Qt事件循环
+  participant HW as 串口设备(pyserial)
+  participant W as Qt控件/QTimer/线程
+  participant P0 as MainWindow
+  U->>W: 用户操作 / 定时触发 (self.pushButton_begin_test.clicked.connect)
+  W-)P0: begin_test() 槽 [connect 连接于 通用自动测试上位机V0.95.py:728]
+  P0->>P0: bd_test() [call L2917]
+  P0->>P0: begin_test_bd() [call L2975]
+  P0->>HW: turntable_serial.read L3818
+  HW-->>P0: 数据/应答
+</pre></section><section><h2>图6 关键业务时序图 (sequence_flow4_other.mmd)</h2><p><b>图例:</b> 实线箭头=同步调用; 开口箭头=信号槽/线程/定时器(异步间接调用)</p><p><b>说明:</b> 由调用图最短路径自动生成; 串口 I/O 点为启发式识别(serial 外部调用或 *serial*.write/read)</p><p><a href="sequence_flow4_other.mmd">源文件 sequence_flow4_other.mmd</a></p><pre class="mermaid">%% 图6 关键业务时序图: UI 事件/定时器/线程 -> 业务函数 -> 串口设备 (由 call graph 最短路径自动生成)
+sequenceDiagram
+  autonumber
+  actor U as 操作员/Qt事件循环
+  participant HW as 串口设备(pyserial)
+  participant W as Qt控件/QTimer/线程
+  participant P0 as MainWindow
+  participant P1 as fun_serial
+  U->>W: 用户操作 / 定时触发 (self.pushButton_power_open.clicked.connect)
+  W-)P0: event_power_on() 槽 [connect 连接于 通用自动测试上位机V0.95.py:742]
+  P0->>P1: tryOpenSerial() [call L2030]
+  P1->>HW: serial.Serial
+  HW-->>P1: 数据/应答
+</pre></section><section><h2>按模块的局部函数调用树</h2><p>点击展开渲染(边数上限 80)。</p><details data-f="by_module/funs.fun_chy2.mmd"><summary>funs.fun_chy2</summary><pre class="mermaid-lazy" hidden>%% 模块局部调用树: funs.fun_chy2 (funs/fun_chy2.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["move_dir_para_old&lt;br/>&lt;small>funs.fun_chy2:78&lt;/small>"]
+  f1["move_dir&lt;br/>&lt;small>funs.fun_chy2:64&lt;/small>"]
+  f0 -->|"call/high"| f1
+  f2["del_empty_folder&lt;br/>&lt;small>funs.fun_chy2:99&lt;/small>"]
+  f2 -->|"call/high"| f2
+  f3["try_return_bdx&lt;br/>&lt;small>funs.fun_chy2:134&lt;/small>"]
+  f4["try_return_num&lt;br/>&lt;small>funs.fun_chy2:117&lt;/small>"]
+  f3 -->|"call/high"| f4
+  f5["class_rule.read_rule_file&lt;br/>&lt;small>funs.fun_chy2:246&lt;/small>"]
+  f6["try_int_data&lt;br/>&lt;small>funs.fun_chy2:171&lt;/small>"]
+  f5 -->|"call/high"| f6
+  f7["try_hex_data&lt;br/>&lt;small>funs.fun_chy2:181&lt;/small>"]
+  f5 -->|"call/high"| f7
+  f8["class_rule.update_decode_rules&lt;br/>&lt;small>funs.fun_chy2:316&lt;/small>"]
+  f5 -->|"call/high"| f8
+  f9["class_rule.update_rule_length&lt;br/>&lt;small>funs.fun_chy2:318&lt;/small>"]
+  f5 -->|"call/high"| f9
+  f10["class_rule.float_para_list&lt;br/>&lt;small>funs.fun_chy2:320&lt;/small>"]
+  f5 -->|"call/high"| f10
+</pre></details><details data-f="by_module/funs.fun_sate.mmd"><summary>funs.fun_sate</summary><pre class="mermaid-lazy" hidden>%% 模块局部调用树: funs.fun_sate (funs/fun_sate.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["GPGGA2loc&lt;br/>&lt;small>funs.fun_sate:1&lt;/small>"]
+  f1["sate2location&lt;br/>&lt;small>funs.fun_sate:46&lt;/small>"]
+  f0 -->|"call/high"| f1
+  f0 -->|"call/high"| f1
+</pre></details><details data-f="by_module/ui.constants.mmd"><summary>ui.constants</summary><pre class="mermaid-lazy" hidden>%% 模块局部调用树: ui.constants (ui/constants.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["MainWindowConstants.__init__&lt;br/>&lt;small>ui.constants:11&lt;/small>"]
+  f1["MainWindowConstants.init_load_path&lt;br/>&lt;small>ui.constants:34&lt;/small>"]
+  f0 -->|"call/high"| f1
+  f2["MainWindowConstants.init_12tab_setting&lt;br/>&lt;small>ui.constants:38&lt;/small>"]
+  f0 -->|"call/high"| f2
+  f3["MainWindowConstants.init_general_bind&lt;br/>&lt;small>ui.constants:50&lt;/small>"]
+  f0 -->|"call/high"| f3
+  f4["MainWindowConstants.init_send_struct&lt;br/>&lt;small>ui.constants:54&lt;/small>"]
+  f0 -->|"call/high"| f4
+  f5["MainWindowConstants.init_struct_turntable3x&lt;br/>&lt;small>ui.constants:69&lt;/small>"]
+  f0 -->|"call/high"| f5
+  f6["struct_tab_setting.__init__&lt;br/>&lt;small>ui.structs:110&lt;/small>"]
+  f2 -->|"create/high"| f6
+  f2 -->|"create/high"| f6
+  f7["struct_general_bind.__init__&lt;br/>&lt;small>ui.structs:21&lt;/small>"]
+  f3 -->|"create/high"| f7
+  f8["struct_sate.__init__&lt;br/>&lt;small>ui.structs:166&lt;/small>"]
+  f4 -->|"create/high"| f8
+  f9["struct_sate.init_sate_save&lt;br/>&lt;small>ui.structs:218&lt;/small>"]
+  f4 -->|"call/medium"| f9
+  f10["struct_turnTable3x.__init__&lt;br/>&lt;small>ui.structs:309&lt;/small>"]
+  f5 -->|"create/high"| f10
+</pre></details><details data-f="by_module/ui.debug.mmd"><summary>ui.debug</summary><pre class="mermaid-lazy" hidden>%% 模块局部调用树: ui.debug (ui/debug.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["MainWindowDebug.__init__&lt;br/>&lt;small>ui.debug:5&lt;/small>"]
+  f1["MainWindowDebug.debug_time_init&lt;br/>&lt;small>ui.debug:12&lt;/small>"]
+  f0 -->|"call/high"| f1
+  f2["MainWindowDebug.debug_struct_init&lt;br/>&lt;small>ui.debug:19&lt;/small>"]
+  f0 -->|"call/high"| f2
+  f3["MainWindowDebug.debug_message_1s&lt;br/>&lt;small>ui.debug:26&lt;/small>"]
+  f1 ==>|"timer/high"| f3
+  f4["struct_debug.__init__&lt;br/>&lt;small>ui.debug:40&lt;/small>"]
+  f2 -->|"create/high"| f4
+  f5["struct_debug.update_ui_msg&lt;br/>&lt;small>ui.debug:109&lt;/small>"]
+  f3 -->|"call/high"| f5
+  f6["struct_debug.update_ui_link&lt;br/>&lt;small>ui.debug:64&lt;/small>"]
+  f4 -->|"call/high"| f6
+  f7["struct_debug.update_ui_list&lt;br/>&lt;small>ui.debug:85&lt;/small>"]
+  f6 -->|"call/high"| f7
+  f8["struct_debug.get_check_out&lt;br/>&lt;small>ui.debug:96&lt;/small>"]
+  f5 -->|"call/high"| f8
+  f9["struct_debug.get_check_last&lt;br/>&lt;small>ui.debug:102&lt;/small>"]
+  f5 -->|"call/high"| f9
+</pre></details><details data-f="by_module/ui.event.mmd"><summary>ui.event</summary><pre class="mermaid-lazy" hidden>%% 模块局部调用树: ui.event (ui/event.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["MainWindowEvent.changeEvent_general_rule&lt;br/>&lt;small>ui.event:35&lt;/small>"]
+  f1["MainWindowEvent.funcEvent_general_changeButton&lt;br/>&lt;small>ui.event:64&lt;/small>"]
+  f0 -->|"call/high"| f1
+  f2["MainWindowEvent.funcEvent_general_changeTable&lt;br/>&lt;small>ui.event:71&lt;/small>"]
+  f0 -->|"call/high"| f2
+  f3["MainWindowEvent.changeEvent_general_bind_table&lt;br/>&lt;small>ui.event:121&lt;/small>"]
+  f0 -->|"call/high"| f3
+  f4["try_return_bdx&lt;br/>&lt;small>funs.fun_chy2:134&lt;/small>"]
+  f3 -->|"call/high"| f4
+  f3 -->|"call/high"| f4
+  f5["try_return_check&lt;br/>&lt;small>funs.fun_chy2:143&lt;/small>"]
+  f3 -->|"call/high"| f5
+  f3 -->|"call/high"| f5
+  f6["calculate_crc16&lt;br/>&lt;small>funs.fun_checks:84&lt;/small>"]
+  f3 -->|"call/high"| f6
+  f3 -->|"call/high"| f5
+  f7["calculate_crc16_mcrf4xx&lt;br/>&lt;small>funs.fun_checks:121&lt;/small>"]
+  f3 -->|"call/high"| f7
+  f3 -->|"call/high"| f5
+  f8["calculate_crc16_0x00&lt;br/>&lt;small>funs.fun_checks:90&lt;/small>"]
+  f3 -->|"call/high"| f8
+  f3 -->|"call/high"| f5
+  f9["MainWindowEvent.clickEvent_general_bind&lt;br/>&lt;small>ui.event:258&lt;/small>"]
+  f10["MainWindowEvent.clickEvent_general_send&lt;br/>&lt;small>ui.event:238&lt;/small>"]
+  f9 -->|"call/high"| f10
+  f11["MainWindowEvent.changeEvent_general_autoSend&lt;br/>&lt;small>ui.event:285&lt;/small>"]
+  f11 ==>|"timer/high"| f10
+  f12["MainWindowEvent.clickEvent_para_loadPath&lt;br/>&lt;small>ui.event:351&lt;/small>"]
+  f13["move_dir_para_old&lt;br/>&lt;small>funs.fun_chy2:78&lt;/small>"]
+  f12 -->|"call/high"| f13
+  f14["del_empty_folder&lt;br/>&lt;small>funs.fun_chy2:99&lt;/small>"]
+  f12 -->|"call/high"| f14
+  f15["MainWindowEvent.changeEvent_deocdeRuleToTableWidget&lt;br/>&lt;small>ui.event:500&lt;/small>"]
+  f16["split_plus&lt;br/>&lt;small>funs.fun_chy2:73&lt;/small>"]
+  f15 -->|"call/high"| f16
+  f17["MainWindowEvent.clickEvent_decodeShow_tryReceive&lt;br/>&lt;small>ui.event:598&lt;/small>"]
+  f18["check2serial&lt;br/>&lt;small>funs.fun_chy2:167&lt;/small>"]
+  f17 -->|"call/high"| f18
+</pre></details><details data-f="by_module/ui.events.events_devide.mmd"><summary>ui.events.events_devide</summary><pre class="mermaid-lazy" hidden>%% 模块局部调用树: ui.events.events_devide (ui/events/events_devide.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["MainWindowEventDevide.__init__&lt;br/>&lt;small>ui.events.events_devide:5&lt;/small>"]
+  f1["MainWindowEventDevide.logic_tempBox&lt;br/>&lt;small>ui.events.events_devide:18&lt;/small>"]
+  f0 -->|"call/high"| f1
+  f2["MainWindowEventDevide.logic_turntable3x&lt;br/>&lt;small>ui.events.events_devide:51&lt;/small>"]
+  f0 -->|"call/high"| f2
+  f3["MainWindowEventDevide.clickEvent_tempbox_set&lt;br/>&lt;small>ui.events.events_devide:21&lt;/small>"]
+  f1 ==>|"connect/high"| f3
+  f4["tryOpenAndSend&lt;br/>&lt;small>funs.fun_serial:23&lt;/small>"]
+  f3 -->|"call/high"| f4
+  f5["MainWindowEventDevide.turntable3x_update_status&lt;br/>&lt;small>ui.events.events_devide:175&lt;/small>"]
+  f2 ==>|"timer/high"| f5
+  f6["MainWindowEventDevide.clickEvent_turntable3x_open&lt;br/>&lt;small>ui.events.events_devide:59&lt;/small>"]
+  f2 ==>|"connect/high"| f6
+  f7["MainWindowEventDevide.clickEvent_turntable3x_close&lt;br/>&lt;small>ui.events.events_devide:73&lt;/small>"]
+  f2 ==>|"connect/high"| f7
+  f8["MainWindowEventDevide.clickEvent_turntable3x_command&lt;br/>&lt;small>ui.events.events_devide:80&lt;/small>"]
+  f2 ==>|"connect/high"| f8
+  f9["MainWindowEventDevide.clickEvent_turntable3x_turn&lt;br/>&lt;small>ui.events.events_devide:125&lt;/small>"]
+  f2 ==>|"connect/high"| f9
+  f6 ==>|"timer/high"| f5
+  f8 -->|"call/high"| f6
+  f10["MainWindowEventDevide.turntable3x_get_input&lt;br/>&lt;small>ui.events.events_devide:148&lt;/small>"]
+  f8 -->|"call/high"| f10
+  f8 -->|"call/high"| f10
+  f8 -->|"call/high"| f10
+  f9 -->|"call/high"| f10
+</pre></details><details data-f="by_module/ui.events.events_hidden.mmd"><summary>ui.events.events_hidden</summary><pre class="mermaid-lazy" hidden>%% 模块局部调用树: ui.events.events_hidden (ui/events/events_hidden.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["MainWindowEventHidden.__init__&lt;br/>&lt;small>ui.events.events_hidden:3&lt;/small>"]
+  f1["MainWindowEventHidden.logic_clickHidden&lt;br/>&lt;small>ui.events.events_hidden:10&lt;/small>"]
+  f0 -->|"call/high"| f1
+  f2["MainWindowEventHidden.logic_changeHidden&lt;br/>&lt;small>ui.events.events_hidden:50&lt;/small>"]
+  f0 -->|"call/high"| f2
+  f3["MainWindowEventHidden.init_hidden&lt;br/>&lt;small>ui.events.events_hidden:29&lt;/small>"]
+  f0 -->|"call/high"| f3
+  f4["MainWindowEventHidden.clickEvent_childHidden&lt;br/>&lt;small>ui.events.events_hidden:44&lt;/small>"]
+  f1 ==>|"connect/high"| f4
+  f5["MainWindowEventHidden.changeEvent_buttonHidden&lt;br/>&lt;small>ui.events.events_hidden:52&lt;/small>"]
+  f2 ==>|"connect/high"| f5
+</pre></details><details data-f="by_module/ui.init_ui.mmd"><summary>ui.init_ui</summary><pre class="mermaid-lazy" hidden>%% 模块局部调用树: ui.init_ui (ui/init_ui.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["MainWindowInit.__init__&lt;br/>&lt;small>ui.init_ui:14&lt;/small>"]
+  f1["MainWindowInit.init_ui_setting&lt;br/>&lt;small>ui.init_ui:49&lt;/small>"]
+  f0 -->|"call/high"| f1
+  f0 -->|"call/high"| f1
+  f2["MainWindowInit.init_ui_time&lt;br/>&lt;small>ui.init_ui:57&lt;/small>"]
+  f0 -->|"call/high"| f2
+  f3["MainWindowInit.init_ui_toolTip&lt;br/>&lt;small>ui.init_ui:97&lt;/small>"]
+  f0 -->|"call/high"| f3
+  f4["MainWindowInit.init_ui_paths&lt;br/>&lt;small>ui.init_ui:102&lt;/small>"]
+  f0 -->|"call/high"| f4
+  f5["MainWindowInit.init_ui_graphview&lt;br/>&lt;small>ui.init_ui:170&lt;/small>"]
+  f0 -->|"call/high"| f5
+  f6["MainWindowInit.init_ui_turntable3x&lt;br/>&lt;small>ui.init_ui:253&lt;/small>"]
+  f0 -->|"call/high"| f6
+  f7["MainWindowInit.init_general_button&lt;br/>&lt;small>ui.init_ui:157&lt;/small>"]
+  f0 -->|"call/high"| f7
+  f8["MainWindowInit.update_time&lt;br/>&lt;small>ui.init_ui:81&lt;/small>"]
+  f2 -->|"call/high"| f8
+  f9["MainWindowInit.get_time_list&lt;br/>&lt;small>ui.init_ui:88&lt;/small>"]
+  f9 -->|"call/high"| f8
+  f10["MainWindowInit.get_normal_time&lt;br/>&lt;small>ui.init_ui:92&lt;/small>"]
+  f10 -->|"call/high"| f8
+  f11["MainWindowInit.init_ui_graphview.‹locals›.updateViewDPb1&lt;br/>&lt;small>ui.init_ui:204&lt;/small>"]
+  f5 ==>|"connect/high"| f11
+  f12["MainWindowInit.init_ui_graphview.‹locals›.updateViewDPb2&lt;br/>&lt;small>ui.init_ui:216&lt;/small>"]
+  f5 ==>|"connect/high"| f12
+  f13["MainWindowInit.init_ui_graphview.‹locals›.updateViewDPb3&lt;br/>&lt;small>ui.init_ui:228&lt;/small>"]
+  f5 ==>|"connect/high"| f13
+  f14["MainWindowInit.init_ui_input&lt;br/>&lt;small>ui.init_ui:240&lt;/small>"]
+  f15["struct_paraCal.__init__&lt;br/>&lt;small>ui.init_ui:484&lt;/small>"]
+  f14 -->|"create/high"| f15
+  f16["del_empty_folder&lt;br/>&lt;small>ui.init_ui:369&lt;/small>"]
+  f16 -->|"call/high"| f16
+  f17["struct_paraCal.init_list&lt;br/>&lt;small>ui.init_ui:488&lt;/small>"]
+  f15 -->|"call/high"| f17
+  f18["struct_paraCal.init_conf&lt;br/>&lt;small>ui.init_ui:512&lt;/small>"]
+  f15 -->|"call/high"| f18
+  f19["struct_paraCal.load_BD_file&lt;br/>&lt;small>ui.init_ui:570&lt;/small>"]
+  f20["struct_paraCal.processing_BD_file&lt;br/>&lt;small>ui.init_ui:619&lt;/small>"]
+  f19 -->|"call/high"| f20
+  f19 -->|"call/high"| f20
+  f21["struct_paraCal.processing_BD_SL&lt;br/>&lt;small>ui.init_ui:586&lt;/small>"]
+  f19 -->|"call/high"| f21
+  f22["struct_paraCal.processing_BD_LW&lt;br/>&lt;small>ui.init_ui:589&lt;/small>"]
+  f19 -->|"call/high"| f22
+  f23["struct_paraCal.processing_BD_ave&lt;br/>&lt;small>ui.init_ui:580&lt;/small>"]
+  f23 -->|"call/high"| f20
+  f24["struct_paraCal.processing_BD_std&lt;br/>&lt;small>ui.init_ui:583&lt;/small>"]
+  f24 -->|"call/high"| f20
+  f25["struct_paraCal.load_SL_file&lt;br/>&lt;small>ui.init_ui:744&lt;/small>"]
+  f21 -->|"call/high"| f25
+  f26["struct_paraCal.load_LW_file&lt;br/>&lt;small>ui.init_ui:820&lt;/small>"]
+  f22 -->|"call/high"| f26
+  f20 -->|"call/high"| f16
+  f27["struct_paraCal.get_all2List&lt;br/>&lt;small>ui.init_ui:601&lt;/small>"]
+  f20 -->|"call/high"| f27
+  f20 -->|"call/high"| f27
+  f25 -->|"call/high"| f27
+  f28["fun_sl_average&lt;br/>&lt;small>ui.init_ui:441&lt;/small>"]
+  f25 -->|"call/high"| f28
+  f26 -->|"call/high"| f27
+  f29["fun_lw_average&lt;br/>&lt;small>ui.init_ui:389&lt;/small>"]
+  f26 -->|"call/high"| f29
+</pre></details><details data-f="by_module/ui.inits.inits_debugMsg.mmd"><summary>ui.inits.inits_debugMsg</summary><pre class="mermaid-lazy" hidden>%% 模块局部调用树: ui.inits.inits_debugMsg (ui/inits/inits_debugMsg.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["MainWindowInitDebugMsg.__init__&lt;br/>&lt;small>ui.inits.inits_debugMsg:3&lt;/small>"]
+  f1["MainWindowInitDebugMsg.init_debugMsg_list&lt;br/>&lt;small>ui.inits.inits_debugMsg:9&lt;/small>"]
+  f0 -->|"call/high"| f1
+</pre></details><details data-f="by_module/ui.inits.inits_funcTest.mmd"><summary>ui.inits.inits_funcTest</summary><pre class="mermaid-lazy" hidden>%% 模块局部调用树: ui.inits.inits_funcTest (ui/inits/inits_funcTest.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["MainWindowInitFuncTest.__init__&lt;br/>&lt;small>ui.inits.inits_funcTest:7&lt;/small>"]
+  f1["MainWindowInitFuncTest.get_uuid&lt;br/>&lt;small>ui.inits.inits_funcTest:16&lt;/small>"]
+  f0 -->|"call/high"| f1
+  f2["MainWindowInitFuncTest.init_load_setting&lt;br/>&lt;small>ui.inits.inits_funcTest:80&lt;/small>"]
+  f0 -->|"call/high"| f2
+  f3["MainWindowInitFuncTest.load_config&lt;br/>&lt;small>ui.inits.inits_funcTest:19&lt;/small>"]
+  f0 -->|"call/high"| f3
+  f4["MainWindowInitFuncTest.clickLogic_bykey&lt;br/>&lt;small>ui.inits.inits_funcTest:33&lt;/small>"]
+  f0 -->|"call/high"| f4
+  f5["MainWindowInitFuncTest.clickEvent_childHidden&lt;br/>&lt;small>ui.inits.inits_funcTest:69&lt;/small>"]
+  f4 ==>|"connect/high"| f5
+  f2 -->|"call/high"| f1
+</pre></details><details data-f="by_module/ui.inits.inits_showMsg.mmd"><summary>ui.inits.inits_showMsg</summary><pre class="mermaid-lazy" hidden>%% 模块局部调用树: ui.inits.inits_showMsg (ui/inits/inits_showMsg.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["MainWindowInitShowMsg.__init__&lt;br/>&lt;small>ui.inits.inits_showMsg:33&lt;/small>"]
+  f1["MainWindowInitShowMsg.init_showMsg_process&lt;br/>&lt;small>ui.inits.inits_showMsg:38&lt;/small>"]
+  f0 -->|"call/high"| f1
+</pre></details><details data-f="by_module/ui.load_ini.mmd"><summary>ui.load_ini</summary><pre class="mermaid-lazy" hidden>%% 模块局部调用树: ui.load_ini (ui/load_ini.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["MainWindowInitIni.__init__&lt;br/>&lt;small>ui.load_ini:5&lt;/small>"]
+  f1["MainWindowInitIni.load_ini_debug_mode&lt;br/>&lt;small>ui.load_ini:13&lt;/small>"]
+  f0 -->|"call/high"| f1
+  f2["MainWindowInitIni.event_load_ini_debug_mode&lt;br/>&lt;small>ui.load_ini:22&lt;/small>"]
+  f0 -->|"call/high"| f2
+  f3["MainWindowInitIni.load_ini_ui_config&lt;br/>&lt;small>ui.load_ini:44&lt;/small>"]
+  f0 -->|"call/high"| f3
+</pre></details><details data-f="by_module/ui.logic.mmd"><summary>ui.logic</summary><pre class="mermaid-lazy" hidden>%% 模块局部调用树: ui.logic (ui/logic.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["MainWindowLogic.__init__&lt;br/>&lt;small>ui.logic:3&lt;/small>"]
+  f1["MainWindowLogic.logic_general_bind&lt;br/>&lt;small>ui.logic:40&lt;/small>"]
+  f0 -->|"call/high"| f1
+  f2["MainWindowLogic.logic_12tab_setting&lt;br/>&lt;small>ui.logic:51&lt;/small>"]
+  f0 -->|"call/high"| f2
+  f3["MainWindowLogic.logic_protocal_rule_change&lt;br/>&lt;small>ui.logic:66&lt;/small>"]
+  f0 -->|"call/high"| f3
+  f4["MainWindowLogic.logic_comboBoxPath_update&lt;br/>&lt;small>ui.logic:89&lt;/small>"]
+  f0 -->|"call/high"| f4
+  f5["MainWindowLogic.logic_auxsate&lt;br/>&lt;small>ui.logic:74&lt;/small>"]
+  f0 -->|"call/high"| f5
+  f6["MainWindowLogic.logic_cal_BD_data&lt;br/>&lt;small>ui.logic:83&lt;/small>"]
+  f0 -->|"call/high"| f6
+  f7["MainWindowLogic.logic_readDecodeRule&lt;br/>&lt;small>ui.logic:97&lt;/small>"]
+  f0 -->|"call/high"| f7
+  f8["MainWindowLogic.logic_readAutoTest&lt;br/>&lt;small>ui.logic:103&lt;/small>"]
+  f0 -->|"call/high"| f8
+  f9["MainWindowLogic.logic_turntable3x&lt;br/>&lt;small>ui.logic:106&lt;/small>"]
+  f0 -->|"call/high"| f9
+  f10["MainWindowEvent.changeEvent_general_rule&lt;br/>&lt;small>ui.event:35&lt;/small>"]
+  f1 ==>|"connect/medium"| f10
+  f11["MainWindowEvent.clickEvent_general_bind&lt;br/>&lt;small>ui.event:258&lt;/small>"]
+  f1 ==>|"connect/medium"| f11
+  f1 ==>|"connect/medium"| f11
+  f12["MainWindowEvent.changeEvent_general_bind_table&lt;br/>&lt;small>ui.event:121&lt;/small>"]
+  f1 ==>|"connect/medium"| f12
+  f13["MainWindowEvent.clickEvent_general_send&lt;br/>&lt;small>ui.event:238&lt;/small>"]
+  f1 ==>|"connect/medium"| f13
+  f14["MainWindowEvent.changeEvent_general_autoSend&lt;br/>&lt;small>ui.event:285&lt;/small>"]
+  f1 ==>|"connect/medium"| f14
+  f15["MainWindowEvent.changeEvent_com_update_all&lt;br/>&lt;small>ui.event:300&lt;/small>"]
+  f2 ==>|"connect/medium"| f15
+  f16["MainWindowEvent.changeEvent_baund_update_all&lt;br/>&lt;small>ui.event:305&lt;/small>"]
+  f2 ==>|"connect/medium"| f16
+  f17["MainWindowEvent.changeEvent_check_update_all&lt;br/>&lt;small>ui.event:309&lt;/small>"]
+  f2 ==>|"connect/medium"| f17
+  f18["MainWindowEvent.changeEvent_stop_update_all&lt;br/>&lt;small>ui.event:313&lt;/small>"]
+  f2 ==>|"connect/medium"| f18
+  f19["MainWindowEvent.changeEvent_open_update_all&lt;br/>&lt;small>ui.event:317&lt;/small>"]
+  f2 ==>|"connect/medium"| f19
+  f20["MainWindowEvent.changeEvent_plan_update_all&lt;br/>&lt;small>ui.event:321&lt;/small>"]
+  f2 ==>|"connect/medium"| f20
+  f21["MainWindowEvent.changeEvent_baund_update_main&lt;br/>&lt;small>ui.event:328&lt;/small>"]
+  f2 ==>|"connect/medium"| f21
+  f22["MainWindowEvent.changeEvent_check_update_main&lt;br/>&lt;small>ui.event:330&lt;/small>"]
+  f2 ==>|"connect/medium"| f22
+  f23["MainWindowEvent.changeEvent_auxsate_com&lt;br/>&lt;small>ui.event:338&lt;/small>"]
+  f5 ==>|"connect/medium"| f23
+  f24["MainWindowEvent.changeEvent_auxsate_baund&lt;br/>&lt;small>ui.event:340&lt;/small>"]
+  f5 ==>|"connect/medium"| f24
+  f25["MainWindowEvent.changeEvent_auxsate_check&lt;br/>&lt;small>ui.event:342&lt;/small>"]
+  f5 ==>|"connect/medium"| f25
+  f26["MainWindowEvent.clickEvent_auxsate_send&lt;br/>&lt;small>ui.event:345&lt;/small>"]
+  f5 ==>|"connect/medium"| f26
+  f27["MainWindowEvent.clickEvent_para_loadPath&lt;br/>&lt;small>ui.event:351&lt;/small>"]
+  f6 ==>|"connect/medium"| f27
+  f6 ==>|"connect/medium"| f27
+  f28["MainWindowEvent.clickEvent_para_createPara&lt;br/>&lt;small>ui.event:697&lt;/small>"]
+  f6 ==>|"connect/medium"| f28
+  f29["MainWindowEvent.clickEvent_para_savePara&lt;br/>&lt;small>ui.event:700&lt;/small>"]
+  f6 ==>|"connect/medium"| f29
+  f30["MainWindowTimes.timeEvent_update_combobox&lt;br/>&lt;small>ui.times:33&lt;/small>"]
+  f4 ==>|"connect/medium"| f30
+  f31["MainWindowEvent.changeEvent_deocdeRuleToTableWidget&lt;br/>&lt;small>ui.event:500&lt;/small>"]
+  f7 ==>|"connect/medium"| f31
+  f7 ==>|"connect/medium"| f31
+  f32["MainWindowEvent.clickEvent_decodeShow_tryReceive&lt;br/>&lt;small>ui.event:598&lt;/small>"]
+  f7 ==>|"connect/medium"| f32
+  f33["MainWindowEvent.changeEvent_readAtuoTestRule&lt;br/>&lt;small>ui.event:687&lt;/small>"]
+  f8 ==>|"connect/medium"| f33
+</pre></details><details data-f="by_module/ui.navs.nav_loc.mmd"><summary>ui.navs.nav_loc</summary><pre class="mermaid-lazy" hidden>%% 模块局部调用树: ui.navs.nav_loc (ui/navs/nav_loc.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["IMUColumnConfigDialog.__init__&lt;br/>&lt;small>ui.navs.nav_loc:19&lt;/small>"]
+  f1["IMUColumnConfigDialog._build_ui&lt;br/>&lt;small>ui.navs.nav_loc:25&lt;/small>"]
+  f0 -->|"call/high"| f1
+  f2["IMUColumnConfigDialog._apply_defaults&lt;br/>&lt;small>ui.navs.nav_loc:46&lt;/small>"]
+  f1 -->|"call/high"| f2
+  f3["IMUColumnConfigDialog._refresh_preview&lt;br/>&lt;small>ui.navs.nav_loc:91&lt;/small>"]
+  f1 -->|"call/high"| f3
+  f1 ==>|"connect/high"| f3
+  f4["IMUColumnConfigDialog._parse_axis&lt;br/>&lt;small>ui.navs.nav_loc:73&lt;/small>"]
+  f3 -->|"call/high"| f4
+  f5["IMUColumnConfigDialog._title_of_axis&lt;br/>&lt;small>ui.navs.nav_loc:84&lt;/small>"]
+  f3 -->|"call/high"| f5
+  f6["MainWindowNavLoc.__init__&lt;br/>&lt;small>ui.navs.nav_loc:136&lt;/small>"]
+  f7["MainWindowNavLoc._resolve_workspace_path&lt;br/>&lt;small>ui.navs.nav_loc:170&lt;/small>"]
+  f6 -->|"call/high"| f7
+  f8["MainWindowNavLoc.init_inu_plot_items_lazy&lt;br/>&lt;small>ui.navs.nav_loc:638&lt;/small>"]
+  f6 -->|"call/high"| f8
+  f9["MainWindowNavLoc.load_map_config&lt;br/>&lt;small>ui.navs.nav_loc:262&lt;/small>"]
+  f6 -->|"call/high"| f9
+  f10["MainWindowNavLoc.load_offline_map&lt;br/>&lt;small>ui.navs.nav_loc:531&lt;/small>"]
+  f6 -->|"call/high"| f10
+  f11["MainWindowNavLoc.init_radar&lt;br/>&lt;small>ui.navs.nav_loc:1374&lt;/small>"]
+  f6 -->|"call/high"| f11
+  f12["MainWindowNavLoc.init_logic&lt;br/>&lt;small>ui.navs.nav_loc:1348&lt;/small>"]
+  f6 -->|"call/high"| f12
+  f13["MainWindowNavLoc._read_map_config&lt;br/>&lt;small>ui.navs.nav_loc:211&lt;/small>"]
+  f14["MainWindowNavLoc._get_map_default_config&lt;br/>&lt;small>ui.navs.nav_loc:180&lt;/small>"]
+  f13 -->|"call/high"| f14
+  f15["MainWindowNavLoc._append_nav_message&lt;br/>&lt;small>ui.navs.nav_loc:176&lt;/small>"]
+  f13 -->|"call/high"| f15
+  f13 -->|"call/high"| f15
+  f13 -->|"call/high"| f15
+  f9 -->|"call/high"| f13
+  f16["MainWindowNavLoc._infer_xyz_tile_layout&lt;br/>&lt;small>ui.navs.nav_loc:343&lt;/small>"]
+  f16 -->|"call/high"| f16
+  f17["MainWindowNavLoc._load_xyz_tile_mosaic&lt;br/>&lt;small>ui.navs.nav_loc:407&lt;/small>"]
+  f17 -->|"call/high"| f7
+  f17 -->|"call/high"| f15
+  f17 -->|"call/high"| f16
+  f17 -->|"call/high"| f15
+  f17 -->|"call/high"| f15
+  f18["MainWindowNavLoc._find_existing_tile_path&lt;br/>&lt;small>ui.navs.nav_loc:328&lt;/small>"]
+  f17 -->|"call/high"| f18
+  f17 -->|"call/high"| f15
+  f17 -->|"call/high"| f18
+  f19["MainWindowNavLoc._tile_xyz_to_lon_lat&lt;br/>&lt;small>ui.navs.nav_loc:274&lt;/small>"]
+  f17 -->|"call/high"| f19
+  f17 -->|"call/high"| f19
+  f20["MainWindowNavLoc._offset_bounds_by_meters&lt;br/>&lt;small>ui.navs.nav_loc:281&lt;/small>"]
+  f17 -->|"call/high"| f20
+  f21["MainWindowNavLoc._clear_map_item&lt;br/>&lt;small>ui.navs.nav_loc:299&lt;/small>"]
+  f10 -->|"call/high"| f21
+  f10 -->|"call/high"| f9
+  f10 -->|"call/high"| f15
+  f10 -->|"call/high"| f17
+  f10 -->|"call/high"| f7
+  f10 -->|"call/high"| f15
+  f22["MainWindowNavLoc._render_svg_image&lt;br/>&lt;small>ui.navs.nav_loc:504&lt;/small>"]
+  f10 -->|"call/high"| f22
+  f10 -->|"call/high"| f15
+  f10 -->|"call/high"| f15
+  f10 -->|"call/high"| f15
+  f23["MainWindowNavLoc._qimage_to_rgba_array&lt;br/>&lt;small>ui.navs.nav_loc:308&lt;/small>"]
+  f10 -->|"call/high"| f23
+  f10 -->|"call/high"| f23
+  f10 -->|"call/high"| f15
+  f24["MainWindowNavLoc.fit_navigation_view&lt;br/>&lt;small>ui.navs.nav_loc:605&lt;/small>"]
+  f10 -->|"call/high"| f24
+  f25["MainWindowNavLoc.reload_navigation_view&lt;br/>&lt;small>ui.navs.nav_loc:632&lt;/small>"]
+  f25 -->|"call/high"| f9
+  f25 -->|"call/high"| f10
+  f25 -->|"call/high"| f11
+  f26["MainWindowNavLoc._hex_to_rgb&lt;br/>&lt;small>ui.navs.nav_loc:703&lt;/small>"]
+  f8 -->|"call/high"| f26
+  f8 -->|"call/high"| f26
+  f8 -->|"call/high"| f26
+  f27["MainWindowNavLoc._init_attitude_view&lt;br/>&lt;small>ui.navs.nav_loc:732&lt;/small>"]
+  f8 -->|"call/high"| f27
+  f28["MainWindowNavLoc._init_attitude_mesh&lt;br/>&lt;small>ui.navs.nav_loc:1014&lt;/small>"]
+  f8 -->|"call/high"| f28
+  f29["MainWindowNavLoc.update_attitude_plot&lt;br/>&lt;small>ui.navs.nav_loc:1107&lt;/small>"]
+  f8 -->|"call/high"| f29
+  f27 -->|"call/high"| f15
+  f30["MainWindowNavLoc._hex_to_qcolor&lt;br/>&lt;small>ui.navs.nav_loc:721&lt;/small>"]
+  f27 -->|"call/high"| f30
+  f31["MainWindowNavLoc._init_black_gl_grid&lt;br/>&lt;small>ui.navs.nav_loc:799&lt;/small>"]
+  f27 -->|"call/high"| f31
+  f32["MainWindowNavLoc._init_attitude_axis_overlay&lt;br/>&lt;small>ui.navs.nav_loc:849&lt;/small>"]
+  f27 -->|"call/high"| f32
+  f27 -->|"call/high"| f15
+  f27 -->|"call/high"| f15
+  f33["MainWindowNavLoc._init_black_2d_grid&lt;br/>&lt;small>ui.navs.nav_loc:829&lt;/small>"]
+  f27 -->|"call/high"| f33
+  f32 -->|"call/high"| f15
+  f34["MainWindowNavLoc._stl_paths&lt;br/>&lt;small>ui.navs.nav_loc:889&lt;/small>"]
+  f34 -->|"call/high"| f7
+  f34 -->|"call/high"| f7
+  f35["MainWindowNavLoc._set_attitude_status&lt;br/>&lt;small>ui.navs.nav_loc:895&lt;/small>"]
+  f35 -->|"call/high"| f15
+  f36["MainWindowNavLoc._load_stl_vertices_faces&lt;br/>&lt;small>ui.navs.nav_loc:947&lt;/small>"]
+  f37["MainWindowNavLoc._decode_binary_stl&lt;br/>&lt;small>ui.navs.nav_loc:927&lt;/small>"]
+  f36 -->|"call/high"| f37
+  f38["MainWindowNavLoc._decode_ascii_stl&lt;br/>&lt;small>ui.navs.nav_loc:902&lt;/small>"]
+  f36 -->|"call/high"| f38
+  f28 -->|"call/high"| f34
+  f28 -->|"call/high"| f36
+  f39["MainWindowNavLoc._dedup_vertices_and_faces&lt;br/>&lt;small>ui.navs.nav_loc:982&lt;/small>"]
+  f28 -->|"call/high"| f39
+  f40["MainWindowNavLoc._normalize_vertices&lt;br/>&lt;small>ui.navs.nav_loc:1007&lt;/small>"]
+  f28 -->|"call/high"| f40
+  f41["MainWindowNavLoc._dedup_vertices_and_edges&lt;br/>&lt;small>ui.navs.nav_loc:955&lt;/small>"]
+  f28 -->|"call/high"| f41
+  f28 -->|"call/high"| f35
+  f28 -->|"call/high"| f15
+  f28 -->|"call/high"| f35
+  f42["MainWindowNavLoc._ensure_gl_mesh_item&lt;br/>&lt;small>ui.navs.nav_loc:1052&lt;/small>"]
+  f29 -->|"call/high"| f42
+  f43["MainWindowNavLoc._project_attitude_wireframe&lt;br/>&lt;small>ui.navs.nav_loc:1072&lt;/small>"]
+  f29 -->|"call/high"| f43
+  f44["MainWindowNavLoc._axis_display_text&lt;br/>&lt;small>ui.navs.nav_loc:1145&lt;/small>"]
+  f45["MainWindowNavLoc._axis_title&lt;br/>&lt;small>ui.navs.nav_loc:1138&lt;/small>"]
+  f44 -->|"call/high"| f45
+  f46["MainWindowNavLoc._collect_imu_config_defaults&lt;br/>&lt;small>ui.navs.nav_loc:1195&lt;/small>"]
+  f47["MainWindowNavLoc._read_optional_combobox_tab_text&lt;br/>&lt;small>ui.navs.nav_loc:1171&lt;/small>"]
+  f46 -->|"call/high"| f47
+  f46 -->|"call/high"| f47
+  f48["MainWindowNavLoc._read_optional_lineedit_text&lt;br/>&lt;small>ui.navs.nav_loc:1149&lt;/small>"]
+  f46 -->|"call/high"| f48
+  f46 -->|"call/high"| f48
+</pre></details><details data-f="by_module/ui.settings.mmd"><summary>ui.settings</summary><pre class="mermaid-lazy" hidden>%% 模块局部调用树: ui.settings (ui/settings.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["MainWindowSetting.__init__&lt;br/>&lt;small>ui.settings:5&lt;/small>"]
+  f1["MainWindowSetting.init_default_config&lt;br/>&lt;small>ui.settings:20&lt;/small>"]
+  f0 -->|"call/high"| f1
+  f2["MainWindowSetting.init_config_sate&lt;br/>&lt;small>ui.settings:31&lt;/small>"]
+  f0 -->|"call/high"| f2
+  f3["MainWindowSetting.init_read_para&lt;br/>&lt;small>ui.settings:48&lt;/small>"]
+  f0 -->|"call/high"| f3
+  f4["MainWindowSetting.init_read_root&lt;br/>&lt;small>ui.settings:80&lt;/small>"]
+  f0 -->|"call/high"| f4
+  f5["try_int&lt;br/>&lt;small>funs.fun_chy2:163&lt;/small>"]
+  f3 -->|"call/high"| f5
+  f4 -->|"call/high"| f5
+</pre></details><details data-f="by_module/ui.structs.mmd"><summary>ui.structs</summary><pre class="mermaid-lazy" hidden>%% 模块局部调用树: ui.structs (ui/structs.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["struct_general_bind.read_struct_file&lt;br/>&lt;small>ui.structs:40&lt;/small>"]
+  f1["struct_general_bind.init_structList&lt;br/>&lt;small>ui.structs:92&lt;/small>"]
+  f0 -->|"call/high"| f1
+  f2["try_return_format&lt;br/>&lt;small>funs.fun_chy2:108&lt;/small>"]
+  f0 -->|"call/high"| f2
+  f3["try_return_int&lt;br/>&lt;small>funs.fun_chy2:114&lt;/small>"]
+  f0 -->|"call/high"| f3
+  f4["try_return_checkRule&lt;br/>&lt;small>funs.fun_chy2:123&lt;/small>"]
+  f0 -->|"call/high"| f4
+  f0 -->|"call/high"| f4
+  f0 -->|"call/high"| f4
+  f0 -->|"call/high"| f4
+  f0 -->|"call/high"| f4
+  f0 -->|"call/high"| f4
+  f0 -->|"call/high"| f4
+  f5["try_return_num&lt;br/>&lt;small>funs.fun_chy2:117&lt;/small>"]
+  f0 -->|"call/high"| f5
+  f6["struct_general_bind.get_struct_len&lt;br/>&lt;small>ui.structs:101&lt;/small>"]
+  f0 -->|"call/high"| f6
+  f7["struct_tab_setting.__init__&lt;br/>&lt;small>ui.structs:110&lt;/small>"]
+  f8["struct_tab_setting.__init__.‹locals›.get_widget&lt;br/>&lt;small>ui.structs:112&lt;/small>"]
+  f7 -->|"call/high"| f8
+  f7 -->|"call/high"| f8
+  f7 -->|"call/high"| f8
+  f7 -->|"call/high"| f8
+  f7 -->|"call/high"| f8
+  f7 -->|"call/high"| f8
+  f7 -->|"call/high"| f8
+  f9["struct_tab_setting.switch_open&lt;br/>&lt;small>ui.structs:141&lt;/small>"]
+  f10["struct_tab_setting.get_open_flag&lt;br/>&lt;small>ui.structs:158&lt;/small>"]
+  f9 -->|"call/high"| f10
+  f11["struct_sate.__init__&lt;br/>&lt;small>ui.structs:166&lt;/small>"]
+  f12["struct_sate.init_sate_name&lt;br/>&lt;small>ui.structs:208&lt;/small>"]
+  f11 -->|"call/high"| f12
+  f13["struct_sate.init_sate_titl&lt;br/>&lt;small>ui.structs:221&lt;/small>"]
+  f11 -->|"call/high"| f13
+  f14["struct_sate.init_sate_leng&lt;br/>&lt;small>ui.structs:253&lt;/small>"]
+  f11 -->|"call/high"| f14
+  f15["struct_sate.init_sate_zero&lt;br/>&lt;small>ui.structs:256&lt;/small>"]
+  f11 -->|"call/high"| f15
+  f16["struct_sate.init_sate_shap&lt;br/>&lt;small>ui.structs:259&lt;/small>"]
+  f11 -->|"call/high"| f16
+  f17["struct_sate.append_sate_receive&lt;br/>&lt;small>ui.structs:272&lt;/small>"]
+  f18["struct_sate.replace_sate_receive&lt;br/>&lt;small>ui.structs:276&lt;/small>"]
+  f17 -->|"call/high"| f18
+  f19["GPGGA2loc&lt;br/>&lt;small>funs.fun_sate:1&lt;/small>"]
+  f18 -->|"call/high"| f19
+  f20["GNVTG2loc&lt;br/>&lt;small>funs.fun_sate:21&lt;/small>"]
+  f18 -->|"call/high"| f20
+  f21["HEADINGA2loc&lt;br/>&lt;small>funs.fun_sate:24&lt;/small>"]
+  f18 -->|"call/high"| f21
+  f22["KSXT2loc&lt;br/>&lt;small>funs.fun_sate:26&lt;/small>"]
+  f18 -->|"call/high"| f22
+  f23["struct_turnTable3x.serial_open&lt;br/>&lt;small>ui.structs:346&lt;/small>"]
+  f24["struct_turnTable3x.serial_close&lt;br/>&lt;small>ui.structs:359&lt;/small>"]
+  f23 -->|"call/high"| f24
+  f25["struct_turnTable3x.append_debugMsg&lt;br/>&lt;small>ui.structs:329&lt;/small>"]
+  f23 -->|"call/high"| f25
+  f24 -->|"call/high"| f25
+  f26["struct_turnTable3x.serial_tryRec&lt;br/>&lt;small>ui.structs:371&lt;/small>"]
+  f26 -->|"call/high"| f25
+  f27["struct_turnTable3x.serial_try_clear&lt;br/>&lt;small>ui.structs:384&lt;/small>"]
+  f27 -->|"call/high"| f25
+  f28["struct_turnTable3x.sendAndRec&lt;br/>&lt;small>ui.structs:397&lt;/small>"]
+  f28 -->|"call/high"| f27
+  f28 -->|"call/high"| f25
+  f28 -->|"call/high"| f26
+  f29["struct_turnTable3x.append_showMsg&lt;br/>&lt;small>ui.structs:336&lt;/small>"]
+  f28 -->|"call/high"| f29
+  f28 -->|"call/high"| f29
+  f28 -->|"call/high"| f29
+  f28 -->|"call/high"| f29
+  f28 -->|"call/high"| f25
+  f28 -->|"call/high"| f25
+  f28 -->|"call/high"| f29
+  f28 -->|"call/high"| f25
+  f30["struct_turnTable3x.sendMsg_chk&lt;br/>&lt;small>ui.structs:444&lt;/small>"]
+  f30 -->|"call/high"| f28
+  f31["struct_turnTable3x.sendMsg_rem&lt;br/>&lt;small>ui.structs:447&lt;/small>"]
+  f31 -->|"call/high"| f28
+  f32["struct_turnTable3x.sendMsg_loc&lt;br/>&lt;small>ui.structs:450&lt;/small>"]
+  f32 -->|"call/high"| f28
+  f33["struct_turnTable3x.sendMsg_enb&lt;br/>&lt;small>ui.structs:453&lt;/small>"]
+  f33 -->|"call/high"| f28
+  f34["struct_turnTable3x.sendMsg_dis&lt;br/>&lt;small>ui.structs:456&lt;/small>"]
+  f34 -->|"call/high"| f28
+  f35["struct_turnTable3x.sendMsg_hmz&lt;br/>&lt;small>ui.structs:459&lt;/small>"]
+  f35 -->|"call/high"| f28
+  f36["struct_turnTable3x.sendMsg_mod&lt;br/>&lt;small>ui.structs:462&lt;/small>"]
+  f36 -->|"call/high"| f29
+  f36 -->|"call/high"| f25
+  f36 -->|"call/high"| f28
+  f37["struct_turnTable3x.sumCheckAscii&lt;br/>&lt;small>ui.structs:440&lt;/small>"]
+  f36 -->|"call/high"| f37
+  f38["struct_turnTable3x.sendMsg_pos&lt;br/>&lt;small>ui.structs:477&lt;/small>"]
+  f38 -->|"call/high"| f29
+  f38 -->|"call/high"| f25
+  f38 -->|"call/high"| f28
+  f38 -->|"call/high"| f37
+  f39["struct_turnTable3x.sendMsg_vel&lt;br/>&lt;small>ui.structs:493&lt;/small>"]
+  f39 -->|"call/high"| f29
+  f39 -->|"call/high"| f25
+  f39 -->|"call/high"| f28
+  f39 -->|"call/high"| f37
+  f40["struct_turnTable3x.sendMsg_acc&lt;br/>&lt;small>ui.structs:510&lt;/small>"]
+  f40 -->|"call/high"| f29
+  f40 -->|"call/high"| f28
+  f40 -->|"call/high"| f37
+  f41["struct_turnTable3x.sendMsg_run&lt;br/>&lt;small>ui.structs:525&lt;/small>"]
+  f41 -->|"call/high"| f28
+  f42["struct_turnTable3x.sendMsg_stp&lt;br/>&lt;small>ui.structs:528&lt;/small>"]
+  f42 -->|"call/high"| f28
+  f43["struct_turnTable3x.sendMsg_sts&lt;br/>&lt;small>ui.structs:531&lt;/small>"]
+  f43 -->|"call/high"| f28
+</pre></details><details data-f="by_module/ui.times.mmd"><summary>ui.times</summary><pre class="mermaid-lazy" hidden>%% 模块局部调用树: ui.times (ui/times.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["MainWindowTimes.__init__&lt;br/>&lt;small>ui.times:9&lt;/small>"]
+  f1["MainWindowTimes.update_test_time&lt;br/>&lt;small>ui.times:18&lt;/small>"]
+  f0 -->|"call/high"| f1
+  f2["MainWindowTimes.timeEvent_test&lt;br/>&lt;small>ui.times:27&lt;/small>"]
+  f1 ==>|"timer/high"| f2
+</pre></details><details data-f="by_module/ui.tools.tools_bdcalib.mmd"><summary>ui.tools.tools_bdcalib</summary><pre class="mermaid-lazy" hidden>%% 模块局部调用树: ui.tools.tools_bdcalib (ui/tools/tools_bdcalib.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["MainWindowToolBdcalib.__init__&lt;br/>&lt;small>ui.tools.tools_bdcalib:54&lt;/small>"]
+  f1["MainWindowToolBdcalib.init_list&lt;br/>&lt;small>ui.tools.tools_bdcalib:87&lt;/small>"]
+  f0 -->|"call/high"| f1
+  f2["MainWindowToolBdcalib.init_data&lt;br/>&lt;small>ui.tools.tools_bdcalib:98&lt;/small>"]
+  f0 -->|"call/high"| f2
+  f3["MainWindowToolBdcalib.load_path&lt;br/>&lt;small>ui.tools.tools_bdcalib:120&lt;/small>"]
+  f0 ==>|"connect/high"| f3
+  f4["MainWindowToolBdcalib.item_click_showMsg&lt;br/>&lt;small>ui.tools.tools_bdcalib:196&lt;/small>"]
+  f0 ==>|"connect/high"| f4
+  f5["MainWindowToolBdcalib.item_click_changeFolder&lt;br/>&lt;small>ui.tools.tools_bdcalib:187&lt;/small>"]
+  f0 ==>|"connect/high"| f5
+  f6["MainWindowToolBdcalib.click_uppath&lt;br/>&lt;small>ui.tools.tools_bdcalib:179&lt;/small>"]
+  f0 ==>|"connect/high"| f6
+  f7["MainWindowToolBdcalib.show_all_files&lt;br/>&lt;small>ui.tools.tools_bdcalib:128&lt;/small>"]
+  f0 ==>|"connect/high"| f7
+  f8["MainWindowToolBdcalib.click_avePath&lt;br/>&lt;small>ui.tools.tools_bdcalib:267&lt;/small>"]
+  f0 ==>|"connect/high"| f8
+  f9["MainWindowToolBdcalib.click_formatConversion&lt;br/>&lt;small>ui.tools.tools_bdcalib:280&lt;/small>"]
+  f0 ==>|"connect/high"| f9
+  f10["MainWindowToolBdcalib.change_preset&lt;br/>&lt;small>ui.tools.tools_bdcalib:325&lt;/small>"]
+  f0 ==>|"connect/high"| f10
+  f11["MainWindowToolBdcalib.click_createBin&lt;br/>&lt;small>ui.tools.tools_bdcalib:327&lt;/small>"]
+  f0 ==>|"connect/high"| f11
+  f12["MainWindowToolBdcalib.click_autoRun&lt;br/>&lt;small>ui.tools.tools_bdcalib:329&lt;/small>"]
+  f0 ==>|"connect/high"| f12
+  f13["MainWindowToolBdcalib.click_calPara&lt;br/>&lt;small>ui.tools.tools_bdcalib:292&lt;/small>"]
+  f0 ==>|"connect/high"| f13
+  f14["MainWindowToolBdcalib.click_polyfit&lt;br/>&lt;small>ui.tools.tools_bdcalib:305&lt;/small>"]
+  f0 ==>|"connect/high"| f14
+  f0 ==>|"connect/high"| f7
+  f3 -->|"call/high"| f7
+  f7 -->|"call/high"| f2
+  f6 -->|"call/high"| f7
+  f15["MainWindowToolBdcalib.append_degugMsg&lt;br/>&lt;small>ui.tools.tools_bdcalib:155&lt;/small>"]
+  f6 -->|"call/high"| f15
+  f5 -->|"call/high"| f7
+  f5 -->|"call/high"| f15
+  f16["MainWindowToolBdcalib.preview_file&lt;br/>&lt;small>ui.tools.tools_bdcalib:161&lt;/small>"]
+  f4 -->|"call/high"| f16
+  f4 -->|"call/high"| f16
+  f4 -->|"call/high"| f15
+  f17["MainWindowToolBdcalib.update_imgShow_pixmap&lt;br/>&lt;small>ui.tools.tools_bdcalib:250&lt;/small>"]
+  f4 -->|"call/high"| f17
+  f4 -->|"call/high"| f16
+  f4 -->|"call/high"| f15
+  f4 -->|"call/high"| f16
+  f4 -->|"call/high"| f15
+  f4 -->|"call/high"| f16
+  f4 -->|"call/high"| f15
+  f4 -->|"call/high"| f16
+  f4 -->|"call/high"| f15
+  f18["MainWindowToolBdcalib.label_resizeEvent&lt;br/>&lt;small>ui.tools.tools_bdcalib:263&lt;/small>"]
+  f18 -->|"call/high"| f17
+  f8 -->|"call/high"| f2
+  f8 -->|"call/high"| f7
+  f8 -->|"call/high"| f15
+  f19["class_Worker.__init__&lt;br/>&lt;small>ui.tools.tools_bdcalib:354&lt;/small>"]
+  f8 -->|"create/high"| f19
+  f20["MainWindowToolBdcalib.task_done&lt;br/>&lt;small>ui.tools.tools_bdcalib:319&lt;/small>"]
+  f8 ==>|"connect/high"| f20
+  f9 -->|"call/high"| f2
+  f9 -->|"call/high"| f7
+  f9 -->|"call/high"| f15
+  f9 -->|"create/high"| f19
+  f9 ==>|"connect/high"| f20
+  f13 -->|"call/high"| f2
+  f13 -->|"call/high"| f7
+  f13 -->|"call/high"| f15
+  f13 -->|"create/high"| f19
+  f13 ==>|"connect/high"| f20
+  f14 -->|"call/high"| f2
+  f14 -->|"call/high"| f7
+  f14 -->|"call/high"| f15
+  f14 -->|"create/high"| f19
+  f14 ==>|"connect/high"| f20
+  f20 -->|"call/high"| f15
+  f20 -->|"call/high"| f15
+  f20 -->|"call/high"| f7
+  f10 -->|"call/high"| f15
+  f11 -->|"call/high"| f15
+  f12 -->|"call/high"| f15
+  f21["class_Worker.run&lt;br/>&lt;small>ui.tools.tools_bdcalib:368&lt;/small>"]
+  f22["class_Worker.ave_all_data&lt;br/>&lt;small>ui.tools.tools_bdcalib:402&lt;/small>"]
+  f21 -->|"call/high"| f22
+  f23["class_Worker.format_all_data&lt;br/>&lt;small>ui.tools.tools_bdcalib:543&lt;/small>"]
+  f21 -->|"call/high"| f23
+  f24["class_Worker.cal_all_para_chy&lt;br/>&lt;small>ui.tools.tools_bdcalib:874&lt;/small>"]
+  f21 -->|"call/high"| f24
+  f25["class_Worker.cal_all_para&lt;br/>&lt;small>ui.tools.tools_bdcalib:601&lt;/small>"]
+  f21 -->|"call/high"| f25
+  f26["class_Worker.cal_all_polyfit_chy&lt;br/>&lt;small>ui.tools.tools_bdcalib:1083&lt;/small>"]
+  f21 -->|"call/high"| f26
+  f27["class_Worker.cal_all_polyfit&lt;br/>&lt;small>ui.tools.tools_bdcalib:724&lt;/small>"]
+  f21 -->|"call/high"| f27
+  f28["class_Worker.init_save_aveFile&lt;br/>&lt;small>ui.tools.tools_bdcalib:530&lt;/small>"]
+  f22 -->|"call/high"| f28
+  f22 -->|"call/high"| f28
+  f29["class_Worker.cal_paraSave&lt;br/>&lt;small>ui.tools.tools_bdcalib:647&lt;/small>"]
+  f25 -->|"call/high"| f29
+  f30["init_sdf&lt;br/>&lt;small>ui.tools.tools_bdcalib:25&lt;/small>"]
+  f29 -->|"call/high"| f30
+  f31["class_Worker.cal_para_polyFit&lt;br/>&lt;small>ui.tools.tools_bdcalib:741&lt;/small>"]
+  f27 -->|"call/high"| f31
+  f32["sort_key&lt;br/>&lt;small>ui.tools.tools_bdcalib:20&lt;/small>"]
+  f31 -->|"call/high"| f32
+  f33["class_Worker.cal_paraSave_chy_LW&lt;br/>&lt;small>ui.tools.tools_bdcalib:934&lt;/small>"]
+  f24 -->|"call/high"| f33
+  f34["class_Worker.cal_paraSave_chy_SL&lt;br/>&lt;small>ui.tools.tools_bdcalib:988&lt;/small>"]
+  f24 -->|"call/high"| f34
+  f35["class_Worker.cal_paraSave_chy_JT&lt;br/>&lt;small>ui.tools.tools_bdcalib:1081&lt;/small>"]
+  f24 -->|"call/high"| f35
+  f36["decode_zfG&lt;br/>&lt;small>ui.tools.tools_bdcalib:36&lt;/small>"]
+  f33 -->|"call/high"| f36
+  f33 -->|"call/high"| f30
+  f34 -->|"call/high"| f30
+</pre></details><details data-f="by_module/ui.tools.tools_burn_ymodem.mmd"><summary>ui.tools.tools_burn_ymodem</summary><pre class="mermaid-lazy" hidden>%% 模块局部调用树: ui.tools.tools_burn_ymodem (ui/tools/tools_burn_ymodem.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["YModemBurnWorker.run&lt;br/>&lt;small>ui.tools.tools_burn_ymodem:49&lt;/small>"]
+  f1["YModemBurnWorker._send_ymodem&lt;br/>&lt;small>ui.tools.tools_burn_ymodem:90&lt;/small>"]
+  f0 -->|"call/high"| f1
+  f2["YModemBurnWorker._wait_for_byte&lt;br/>&lt;small>ui.tools.tools_burn_ymodem:169&lt;/small>"]
+  f1 -->|"call/high"| f2
+  f3["YModemBurnWorker._send_packet_with_retry&lt;br/>&lt;small>ui.tools.tools_burn_ymodem:122&lt;/small>"]
+  f1 -->|"call/high"| f3
+  f1 -->|"call/high"| f3
+  f4["YModemBurnWorker._send_eot&lt;br/>&lt;small>ui.tools.tools_burn_ymodem:150&lt;/small>"]
+  f1 -->|"call/high"| f4
+  f1 -->|"call/high"| f2
+  f1 -->|"call/high"| f3
+  f5["crc16_ccitt&lt;br/>&lt;small>ui.tools.tools_burn_ymodem:21&lt;/small>"]
+  f3 -->|"call/high"| f5
+  f6["YModemBurnWorker._read_one&lt;br/>&lt;small>ui.tools.tools_burn_ymodem:184&lt;/small>"]
+  f3 -->|"call/high"| f6
+  f4 -->|"call/high"| f6
+  f4 -->|"call/high"| f6
+  f2 -->|"call/high"| f6
+  f7["MainWindowToolBurnYmodem.__init__&lt;br/>&lt;small>ui.tools.tools_burn_ymodem:194&lt;/small>"]
+  f8["MainWindowToolBurnYmodem._build_tab_if_needed&lt;br/>&lt;small>ui.tools.tools_burn_ymodem:202&lt;/small>"]
+  f7 -->|"call/high"| f8
+  f9["MainWindowToolBurnYmodem._bind_events&lt;br/>&lt;small>ui.tools.tools_burn_ymodem:267&lt;/small>"]
+  f7 -->|"call/high"| f9
+  f10["MainWindowToolBurnYmodem.refresh_ports&lt;br/>&lt;small>ui.tools.tools_burn_ymodem:279&lt;/small>"]
+  f7 -->|"call/high"| f10
+  f9 ==>|"connect/high"| f10
+  f11["MainWindowToolBurnYmodem.pick_firmware_file&lt;br/>&lt;small>ui.tools.tools_burn_ymodem:291&lt;/small>"]
+  f9 ==>|"connect/high"| f11
+  f12["MainWindowToolBurnYmodem.start_burn&lt;br/>&lt;small>ui.tools.tools_burn_ymodem:302&lt;/small>"]
+  f9 ==>|"connect/high"| f12
+  f13["MainWindowToolBurnYmodem.stop_burn&lt;br/>&lt;small>ui.tools.tools_burn_ymodem:335&lt;/small>"]
+  f9 ==>|"connect/high"| f13
+  f14["MainWindowToolBurnYmodem.append_log&lt;br/>&lt;small>ui.tools.tools_burn_ymodem:275&lt;/small>"]
+  f10 -->|"call/high"| f14
+  f11 -->|"call/high"| f14
+  f12 -->|"call/high"| f14
+  f12 -->|"call/high"| f14
+  f12 -->|"call/high"| f14
+  f12 -->|"call/high"| f14
+  f15["YModemBurnWorker.__init__&lt;br/>&lt;small>ui.tools.tools_burn_ymodem:39&lt;/small>"]
+  f12 -->|"create/high"| f15
+  f12 ==>|"connect/high"| f14
+  f16["MainWindowToolBurnYmodem._on_burn_result&lt;br/>&lt;small>ui.tools.tools_burn_ymodem:340&lt;/small>"]
+  f12 ==>|"connect/high"| f16
+  f12 -->|"call/high"| f14
+  f17["YModemBurnWorker.stop&lt;br/>&lt;small>ui.tools.tools_burn_ymodem:46&lt;/small>"]
+  f13 -->|"call/medium"| f17
+  f13 -->|"call/high"| f14
+  f16 -->|"call/high"| f14
+</pre></details><details data-f="by_module/通用自动测试上位机V0.90.mmd"><summary>通用自动测试上位机V0.90</summary><pre class="mermaid-lazy" hidden>%% 模块局部调用树: 通用自动测试上位机V0.90 (通用自动测试上位机V0.90.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["MainWindow.__init__&lt;br/>&lt;small>通用自动测试上位机V0.90:76&lt;/small>"]
+  f1["Ui_MainWindow.setupUi&lt;br/>&lt;small>Automated_testingV17:15&lt;/small>"]
+  f0 -->|"call/high"| f1
+  f2["MainWindowInitDebugMsg.__init__&lt;br/>&lt;small>ui.inits.inits_debugMsg:3&lt;/small>"]
+  f0 -->|"create/high"| f2
+  f3["MainWindowInitShowMsg.__init__&lt;br/>&lt;small>ui.inits.inits_showMsg:33&lt;/small>"]
+  f0 -->|"create/high"| f3
+  f4["MainWindowDebug.__init__&lt;br/>&lt;small>ui.debug:5&lt;/small>"]
+  f0 -->|"create/high"| f4
+  f5["MainWindowInit.__init__&lt;br/>&lt;small>ui.init_ui:14&lt;/small>"]
+  f0 -->|"create/high"| f5
+  f6["MainWindowTimes.__init__&lt;br/>&lt;small>ui.times:9&lt;/small>"]
+  f0 -->|"create/high"| f6
+  f7["MainWindowSetting.__init__&lt;br/>&lt;small>ui.settings:5&lt;/small>"]
+  f0 -->|"create/high"| f7
+  f8["MainWindowConstants.__init__&lt;br/>&lt;small>ui.constants:11&lt;/small>"]
+  f0 -->|"create/high"| f8
+  f9["MainWindowEvent.__init__&lt;br/>&lt;small>ui.event:14&lt;/small>"]
+  f0 -->|"create/high"| f9
+  f10["MainWindowThread.__init__&lt;br/>&lt;small>ui.threads:7&lt;/small>"]
+  f0 -->|"create/high"| f10
+  f11["MainWindowLogic.__init__&lt;br/>&lt;small>ui.logic:3&lt;/small>"]
+  f0 -->|"create/high"| f11
+  f12["MainWindowGetUI.__init__&lt;br/>&lt;small>ui.get_ui:5&lt;/small>"]
+  f0 -->|"create/high"| f12
+  f13["MainWindowEventDevide.__init__&lt;br/>&lt;small>ui.events.events_devide:5&lt;/small>"]
+  f0 -->|"create/high"| f13
+  f14["MainWindowEventHidden.__init__&lt;br/>&lt;small>ui.events.events_hidden:3&lt;/small>"]
+  f0 -->|"create/high"| f14
+  f15["MainWindowToolBdcalib.__init__&lt;br/>&lt;small>ui.tools.tools_bdcalib:54&lt;/small>"]
+  f0 -->|"create/high"| f15
+  f16["class_rule.__init__&lt;br/>&lt;small>funs.fun_chy2:188&lt;/small>"]
+  f0 -->|"create/high"| f16
+  f17["MainWindow.binding_change&lt;br/>&lt;small>通用自动测试上位机V0.90:2419&lt;/small>"]
+  f0 ==>|"connect/high"| f17
+  f18["MainWindow.event_update_bingding_60s&lt;br/>&lt;small>通用自动测试上位机V0.90:1203&lt;/small>"]
+  f0 ==>|"connect/high"| f18
+  f19["MainWindow.event_send_sate1&lt;br/>&lt;small>通用自动测试上位机V0.90:1505&lt;/small>"]
+  f0 ==>|"connect/high"| f19
+  f20["MainWindow.event_send_sate2&lt;br/>&lt;small>通用自动测试上位机V0.90:1525&lt;/small>"]
+  f0 ==>|"connect/high"| f20
+  f21["MainWindow.event_send_sate3&lt;br/>&lt;small>通用自动测试上位机V0.90:1540&lt;/small>"]
+  f0 ==>|"connect/high"| f21
+  f22["MainWindow.sate_send1_change_time&lt;br/>&lt;small>通用自动测试上位机V0.90:1274&lt;/small>"]
+  f0 ==>|"connect/high"| f22
+  f23["MainWindow.sate_send2_change_time&lt;br/>&lt;small>通用自动测试上位机V0.90:1282&lt;/small>"]
+  f0 ==>|"connect/high"| f23
+  f24["MainWindow.sate_send3_change_time&lt;br/>&lt;small>通用自动测试上位机V0.90:1290&lt;/small>"]
+  f0 ==>|"connect/high"| f24
+  f25["MainWindow.event_update_sate1&lt;br/>&lt;small>通用自动测试上位机V0.90:1329&lt;/small>"]
+  f0 ==>|"connect/high"| f25
+  f26["MainWindow.event_update_sate2&lt;br/>&lt;small>通用自动测试上位机V0.90:1384&lt;/small>"]
+  f0 ==>|"connect/high"| f26
+  f27["MainWindow.event_update_sate3&lt;br/>&lt;small>通用自动测试上位机V0.90:1420&lt;/small>"]
+  f0 ==>|"connect/high"| f27
+  f0 -->|"call/high"| f25
+  f0 -->|"call/high"| f26
+  f0 -->|"call/high"| f27
+  f28["MainWindow.td_command_change&lt;br/>&lt;small>通用自动测试上位机V0.90:1580&lt;/small>"]
+  f0 ==>|"connect/high"| f28
+  f29["MainWindow.td_gnss_change&lt;br/>&lt;small>通用自动测试上位机V0.90:1599&lt;/small>"]
+  f0 ==>|"connect/high"| f29
+  f30["MainWindow.td_atmos_change&lt;br/>&lt;small>通用自动测试上位机V0.90:1616&lt;/small>"]
+  f0 ==>|"connect/high"| f30
+  f31["MainWindow.td_softUpdate_change&lt;br/>&lt;small>通用自动测试上位机V0.90:1622&lt;/small>"]
+  f0 ==>|"connect/high"| f31
+  f32["MainWindow.td_softPara_change&lt;br/>&lt;small>通用自动测试上位机V0.90:1628&lt;/small>"]
+  f0 ==>|"connect/high"| f32
+  f33["MainWindow.td_command_send_update&lt;br/>&lt;small>通用自动测试上位机V0.90:1634&lt;/small>"]
+  f0 ==>|"connect/high"| f33
+  f34["MainWindow.td_command_time_change&lt;br/>&lt;small>通用自动测试上位机V0.90:1299&lt;/small>"]
+  f0 ==>|"connect/high"| f34
+  f35["MainWindow.event_td_send1&lt;br/>&lt;small>通用自动测试上位机V0.90:1557&lt;/small>"]
+  f0 ==>|"connect/high"| f35
+  f36["MainWindow.fz_command_send_update&lt;br/>&lt;small>通用自动测试上位机V0.90:1670&lt;/small>"]
+  f0 ==>|"connect/high"| f36
+  f37["MainWindow.fz_command_time_change&lt;br/>&lt;small>通用自动测试上位机V0.90:1308&lt;/small>"]
+  f0 ==>|"connect/high"| f37
+  f38["MainWindow.event_fz_send1&lt;br/>&lt;small>通用自动测试上位机V0.90:1652&lt;/small>"]
+  f0 ==>|"connect/high"| f38
+  f39["MainWindow.gnss_command_send_update&lt;br/>&lt;small>通用自动测试上位机V0.90:1725&lt;/small>"]
+  f0 ==>|"connect/high"| f39
+  f40["MainWindow.gnss_command_time_change&lt;br/>&lt;small>通用自动测试上位机V0.90:1317&lt;/small>"]
+  f0 ==>|"connect/high"| f40
+  f41["MainWindow.event_gnss_send1&lt;br/>&lt;small>通用自动测试上位机V0.90:1688&lt;/small>"]
+  f0 ==>|"connect/high"| f41
+  f42["MainWindow.gnss_status_change&lt;br/>&lt;small>通用自动测试上位机V0.90:1708&lt;/small>"]
+  f0 ==>|"connect/high"| f42
+  f43["MainWindow.protocal_com_change&lt;br/>&lt;small>通用自动测试上位机V0.90:1158&lt;/small>"]
+  f0 ==>|"connect/high"| f43
+  f0 ==>|"connect/high"| f43
+  f0 ==>|"connect/high"| f43
+  f44["MainWindow.comboBox_com_change&lt;br/>&lt;small>通用自动测试上位机V0.90:1165&lt;/small>"]
+  f0 ==>|"connect/high"| f44
+  f0 ==>|"connect/high"| f44
+  f0 ==>|"connect/high"| f44
+  f45["MainWindow.update_plot_axis&lt;br/>&lt;small>通用自动测试上位机V0.90:2449&lt;/small>"]
+  f0 ==>|"connect/high"| f45
+  f46["MainWindow.update_double_axis&lt;br/>&lt;small>通用自动测试上位机V0.90:2465&lt;/small>"]
+  f0 ==>|"connect/high"| f46
+  f47["MainWindow.update_stand_axis&lt;br/>&lt;small>通用自动测试上位机V0.90:2483&lt;/small>"]
+  f0 ==>|"connect/high"| f47
+  f48["MainWindow.update_target_loc&lt;br/>&lt;small>通用自动测试上位机V0.90:2504&lt;/small>"]
+  f0 ==>|"connect/high"| f48
+  f49["MainWindow.update_target_spd&lt;br/>&lt;small>通用自动测试上位机V0.90:2525&lt;/small>"]
+  f0 ==>|"connect/high"| f49
+  f50["MainWindow.filenames_change&lt;br/>&lt;small>通用自动测试上位机V0.90:1173&lt;/small>"]
+  f0 ==>|"connect/high"| f50
+  f51["MainWindow.read_rules&lt;br/>&lt;small>通用自动测试上位机V0.90:2144&lt;/small>"]
+  f0 ==>|"connect/high"| f51
+  f52["MainWindow.begin_test&lt;br/>&lt;small>通用自动测试上位机V0.90:2575&lt;/small>"]
+  f0 ==>|"connect/high"| f52
+  f53["MainWindow.stop_test&lt;br/>&lt;small>通用自动测试上位机V0.90:2563&lt;/small>"]
+  f0 ==>|"connect/high"| f53
+  f54["MainWindow.binding_send&lt;br/>&lt;small>通用自动测试上位机V0.90:1182&lt;/small>"]
+  f0 ==>|"connect/high"| f54
+  f55["MainWindow.event_load_file&lt;br/>&lt;small>通用自动测试上位机V0.90:1897&lt;/small>"]
+  f0 ==>|"connect/high"| f55
+  f56["MainWindow.event_autoset_inu&lt;br/>&lt;small>通用自动测试上位机V0.90:1877&lt;/small>"]
+  f0 ==>|"connect/high"| f56
+  f57["MainWindow.event_reload_config&lt;br/>&lt;small>通用自动测试上位机V0.90:1891&lt;/small>"]
+  f0 ==>|"connect/high"| f57
+  f58["MainWindow.event_send_bingding_60s&lt;br/>&lt;small>通用自动测试上位机V0.90:1253&lt;/small>"]
+  f0 ==>|"connect/high"| f58
+  f59["MainWindow.event_power_on&lt;br/>&lt;small>通用自动测试上位机V0.90:1745&lt;/small>"]
+  f0 ==>|"connect/high"| f59
+  f60["MainWindow.event_power_off&lt;br/>&lt;small>通用自动测试上位机V0.90:1815&lt;/small>"]
+  f0 ==>|"connect/high"| f60
+  f61["MainWindow.change_sate_button&lt;br/>&lt;small>通用自动测试上位机V0.90:1270&lt;/small>"]
+  f0 ==>|"connect/high"| f61
+  f62["MainWindow.init_all_coef&lt;br/>&lt;small>通用自动测试上位机V0.90:747&lt;/small>"]
+  f0 -->|"call/high"| f62
+  f63["MainWindow.show_message_01s&lt;br/>&lt;small>通用自动测试上位机V0.90:773&lt;/small>"]
+  f0 -->|"call/high"| f63
+  f64["MainWindow.show_message_05s&lt;br/>&lt;small>通用自动测试上位机V0.90:803&lt;/small>"]
+  f0 -->|"call/high"| f64
+  f65["MainWindow.show_message_1s&lt;br/>&lt;small>通用自动测试上位机V0.90:825&lt;/small>"]
+  f0 -->|"call/high"| f65
+  f66["MainWindow.show_message_5s&lt;br/>&lt;small>通用自动测试上位机V0.90:1126&lt;/small>"]
+  f0 -->|"call/high"| f66
+  f67["MainWindow.read_default_para_com&lt;br/>&lt;small>通用自动测试上位机V0.90:1969&lt;/small>"]
+  f0 -->|"call/high"| f67
+  f68["MainWindow.read_default_para_config&lt;br/>&lt;small>通用自动测试上位机V0.90:2004&lt;/small>"]
+  f0 -->|"call/high"| f68
+  f0 ==>|"timer/high"| f63
+  f0 ==>|"timer/high"| f64
+  f0 ==>|"timer/high"| f65
+  f0 ==>|"timer/high"| f66
+  f69["MainWindow.show_message_2s&lt;br/>&lt;small>通用自动测试上位机V0.90:997&lt;/small>"]
+  f0 ==>|"timer/high"| f69
+</pre></details><details data-f="by_module/通用自动测试上位机V0.95.mmd"><summary>通用自动测试上位机V0.95</summary><pre class="mermaid-lazy" hidden>%% 模块局部调用树: 通用自动测试上位机V0.95 (通用自动测试上位机V0.95.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["_prepare_runtime_workdir&lt;br/>&lt;small>通用自动测试上位机V0.95:84&lt;/small>"]
+  f1["_find_runtime_root&lt;br/>&lt;small>通用自动测试上位机V0.95:50&lt;/small>"]
+  f0 -->|"call/high"| f1
+  f2["MainWindow.__init__&lt;br/>&lt;small>通用自动测试上位机V0.95:127&lt;/small>"]
+  f3["Ui_MainWindow.setupUi&lt;br/>&lt;small>Automated_testingV19:15&lt;/small>"]
+  f2 -->|"call/high"| f3
+  f4["MainWindow.init_after_show&lt;br/>&lt;small>通用自动测试上位机V0.95:197&lt;/small>"]
+  f2 ==>|"timer/high"| f4
+  f5["MainWindow._init_modules_in_batches&lt;br/>&lt;small>通用自动测试上位机V0.95:166&lt;/small>"]
+  f6["MainWindowInitDebugMsg.__init__&lt;br/>&lt;small>ui.inits.inits_debugMsg:3&lt;/small>"]
+  f5 -.->|"dynamic/medium"| f6
+  f7["MainWindowInitShowMsg.__init__&lt;br/>&lt;small>ui.inits.inits_showMsg:33&lt;/small>"]
+  f5 -.->|"dynamic/medium"| f7
+  f8["MainWindowInitIni.__init__&lt;br/>&lt;small>ui.load_ini:5&lt;/small>"]
+  f5 -.->|"dynamic/medium"| f8
+  f9["MainWindowDebug.__init__&lt;br/>&lt;small>ui.debug:5&lt;/small>"]
+  f5 -.->|"dynamic/medium"| f9
+  f10["MainWindowInit.__init__&lt;br/>&lt;small>ui.init_ui:14&lt;/small>"]
+  f5 -.->|"dynamic/medium"| f10
+  f11["MainWindowTimes.__init__&lt;br/>&lt;small>ui.times:9&lt;/small>"]
+  f5 -.->|"dynamic/medium"| f11
+  f12["MainWindowSetting.__init__&lt;br/>&lt;small>ui.settings:5&lt;/small>"]
+  f5 -.->|"dynamic/medium"| f12
+  f13["MainWindowConstants.__init__&lt;br/>&lt;small>ui.constants:11&lt;/small>"]
+  f5 -.->|"dynamic/medium"| f13
+  f14["MainWindowEvent.__init__&lt;br/>&lt;small>ui.event:14&lt;/small>"]
+  f5 -.->|"dynamic/medium"| f14
+  f15["MainWindowThread.__init__&lt;br/>&lt;small>ui.threads:7&lt;/small>"]
+  f5 -.->|"dynamic/medium"| f15
+  f16["MainWindowLogic.__init__&lt;br/>&lt;small>ui.logic:3&lt;/small>"]
+  f5 -.->|"dynamic/medium"| f16
+  f17["MainWindowGetUI.__init__&lt;br/>&lt;small>ui.get_ui:5&lt;/small>"]
+  f5 -.->|"dynamic/medium"| f17
+  f18["MainWindowEventDevide.__init__&lt;br/>&lt;small>ui.events.events_devide:5&lt;/small>"]
+  f5 -.->|"dynamic/medium"| f18
+  f19["MainWindowEventHidden.__init__&lt;br/>&lt;small>ui.events.events_hidden:3&lt;/small>"]
+  f5 -.->|"dynamic/medium"| f19
+  f20["MainWindowToolBdcalib.__init__&lt;br/>&lt;small>ui.tools.tools_bdcalib:54&lt;/small>"]
+  f5 -.->|"dynamic/medium"| f20
+  f21["MainWindowToolBurnYmodem.__init__&lt;br/>&lt;small>ui.tools.tools_burn_ymodem:194&lt;/small>"]
+  f5 -.->|"dynamic/medium"| f21
+  f22["MainWindowNavLoc.__init__&lt;br/>&lt;small>ui.navs.nav_loc:136&lt;/small>"]
+  f5 -.->|"dynamic/medium"| f22
+  f23["MainWindow._init_module&lt;br/>&lt;small>通用自动测试上位机V0.95:159&lt;/small>"]
+  f5 -->|"call/high"| f23
+  f4 -->|"call/high"| f5
+  f24["class_rule.__init__&lt;br/>&lt;small>funs.fun_chy2:188&lt;/small>"]
+  f4 -->|"create/high"| f24
+  f25["MainWindow.binding_change&lt;br/>&lt;small>通用自动测试上位机V0.95:2702&lt;/small>"]
+  f4 ==>|"connect/high"| f25
+  f26["MainWindow.event_update_bingding_60s&lt;br/>&lt;small>通用自动测试上位机V0.95:1474&lt;/small>"]
+  f4 ==>|"connect/high"| f26
+  f27["MainWindow.event_send_sate1&lt;br/>&lt;small>通用自动测试上位机V0.95:1776&lt;/small>"]
+  f4 ==>|"connect/high"| f27
+  f28["MainWindow.event_send_sate2&lt;br/>&lt;small>通用自动测试上位机V0.95:1796&lt;/small>"]
+  f4 ==>|"connect/high"| f28
+  f29["MainWindow.event_send_sate3&lt;br/>&lt;small>通用自动测试上位机V0.95:1811&lt;/small>"]
+  f4 ==>|"connect/high"| f29
+  f30["MainWindow.sate_send1_change_time&lt;br/>&lt;small>通用自动测试上位机V0.95:1545&lt;/small>"]
+  f4 ==>|"connect/high"| f30
+  f31["MainWindow.sate_send2_change_time&lt;br/>&lt;small>通用自动测试上位机V0.95:1553&lt;/small>"]
+  f4 ==>|"connect/high"| f31
+  f32["MainWindow.sate_send3_change_time&lt;br/>&lt;small>通用自动测试上位机V0.95:1561&lt;/small>"]
+  f4 ==>|"connect/high"| f32
+  f33["MainWindow.event_update_sate1&lt;br/>&lt;small>通用自动测试上位机V0.95:1600&lt;/small>"]
+  f4 ==>|"connect/high"| f33
+  f34["MainWindow.event_update_sate2&lt;br/>&lt;small>通用自动测试上位机V0.95:1655&lt;/small>"]
+  f4 ==>|"connect/high"| f34
+  f35["MainWindow.event_update_sate3&lt;br/>&lt;small>通用自动测试上位机V0.95:1691&lt;/small>"]
+  f4 ==>|"connect/high"| f35
+  f4 -->|"call/high"| f33
+  f4 -->|"call/high"| f34
+  f4 -->|"call/high"| f35
+  f36["MainWindow.td_command_change&lt;br/>&lt;small>通用自动测试上位机V0.95:1851&lt;/small>"]
+  f4 ==>|"connect/high"| f36
+  f37["MainWindow.td_gnss_change&lt;br/>&lt;small>通用自动测试上位机V0.95:1870&lt;/small>"]
+  f4 ==>|"connect/high"| f37
+  f38["MainWindow.td_atmos_change&lt;br/>&lt;small>通用自动测试上位机V0.95:1887&lt;/small>"]
+  f4 ==>|"connect/high"| f38
+  f39["MainWindow.td_softUpdate_change&lt;br/>&lt;small>通用自动测试上位机V0.95:1893&lt;/small>"]
+  f4 ==>|"connect/high"| f39
+  f40["MainWindow.td_softPara_change&lt;br/>&lt;small>通用自动测试上位机V0.95:1899&lt;/small>"]
+  f4 ==>|"connect/high"| f40
+  f41["MainWindow.td_command_send_update&lt;br/>&lt;small>通用自动测试上位机V0.95:1905&lt;/small>"]
+  f4 ==>|"connect/high"| f41
+  f42["MainWindow.td_command_time_change&lt;br/>&lt;small>通用自动测试上位机V0.95:1570&lt;/small>"]
+  f4 ==>|"connect/high"| f42
+  f43["MainWindow.event_td_send1&lt;br/>&lt;small>通用自动测试上位机V0.95:1828&lt;/small>"]
+  f4 ==>|"connect/high"| f43
+  f44["MainWindow.fz_command_send_update&lt;br/>&lt;small>通用自动测试上位机V0.95:1941&lt;/small>"]
+  f4 ==>|"connect/high"| f44
+  f45["MainWindow.fz_command_time_change&lt;br/>&lt;small>通用自动测试上位机V0.95:1579&lt;/small>"]
+  f4 ==>|"connect/high"| f45
+  f46["MainWindow.event_fz_send1&lt;br/>&lt;small>通用自动测试上位机V0.95:1923&lt;/small>"]
+  f4 ==>|"connect/high"| f46
+  f47["MainWindow.gnss_command_send_update&lt;br/>&lt;small>通用自动测试上位机V0.95:1996&lt;/small>"]
+  f4 ==>|"connect/high"| f47
+  f48["MainWindow.gnss_command_time_change&lt;br/>&lt;small>通用自动测试上位机V0.95:1588&lt;/small>"]
+  f4 ==>|"connect/high"| f48
+  f49["MainWindow.event_gnss_send1&lt;br/>&lt;small>通用自动测试上位机V0.95:1959&lt;/small>"]
+  f4 ==>|"connect/high"| f49
+  f50["MainWindow.gnss_status_change&lt;br/>&lt;small>通用自动测试上位机V0.95:1979&lt;/small>"]
+  f4 ==>|"connect/high"| f50
+  f51["MainWindow.protocal_com_change&lt;br/>&lt;small>通用自动测试上位机V0.95:1429&lt;/small>"]
+  f4 ==>|"connect/high"| f51
+  f4 ==>|"connect/high"| f51
+  f4 ==>|"connect/high"| f51
+  f52["MainWindow.comboBox_com_change&lt;br/>&lt;small>通用自动测试上位机V0.95:1436&lt;/small>"]
+  f4 ==>|"connect/high"| f52
+  f4 ==>|"connect/high"| f52
+  f4 ==>|"connect/high"| f52
+  f53["MainWindow.update_plot_axis&lt;br/>&lt;small>通用自动测试上位机V0.95:2732&lt;/small>"]
+  f4 ==>|"connect/high"| f53
+  f54["MainWindow.update_double_axis&lt;br/>&lt;small>通用自动测试上位机V0.95:2748&lt;/small>"]
+  f4 ==>|"connect/high"| f54
+  f55["MainWindow.update_stand_axis&lt;br/>&lt;small>通用自动测试上位机V0.95:2766&lt;/small>"]
+  f4 ==>|"connect/high"| f55
+  f56["MainWindow.update_target_loc&lt;br/>&lt;small>通用自动测试上位机V0.95:2789&lt;/small>"]
+  f4 ==>|"connect/high"| f56
+  f57["MainWindow.update_target_spd&lt;br/>&lt;small>通用自动测试上位机V0.95:2812&lt;/small>"]
+  f4 ==>|"connect/high"| f57
+  f58["MainWindow.filenames_change&lt;br/>&lt;small>通用自动测试上位机V0.95:1444&lt;/small>"]
+  f4 ==>|"connect/high"| f58
+  f59["MainWindow.read_rules&lt;br/>&lt;small>通用自动测试上位机V0.95:2422&lt;/small>"]
+  f4 ==>|"connect/high"| f59
+  f60["MainWindow.begin_test&lt;br/>&lt;small>通用自动测试上位机V0.95:2864&lt;/small>"]
+  f4 ==>|"connect/high"| f60
+  f61["MainWindow.stop_test&lt;br/>&lt;small>通用自动测试上位机V0.95:2852&lt;/small>"]
+  f4 ==>|"connect/high"| f61
+  f62["MainWindow.binding_send&lt;br/>&lt;small>通用自动测试上位机V0.95:1453&lt;/small>"]
+  f4 ==>|"connect/high"| f62
+  f63["MainWindow.event_load_file&lt;br/>&lt;small>通用自动测试上位机V0.95:2176&lt;/small>"]
+  f4 ==>|"connect/high"| f63
+  f64["MainWindow.event_autoset_inu&lt;br/>&lt;small>通用自动测试上位机V0.95:2148&lt;/small>"]
+  f4 ==>|"connect/high"| f64
+  f65["MainWindow.event_reload_config&lt;br/>&lt;small>通用自动测试上位机V0.95:2170&lt;/small>"]
+  f4 ==>|"connect/high"| f65
+  f66["MainWindow.event_send_bingding_60s&lt;br/>&lt;small>通用自动测试上位机V0.95:1524&lt;/small>"]
+  f4 ==>|"connect/high"| f66
+  f67["MainWindow.event_power_on&lt;br/>&lt;small>通用自动测试上位机V0.95:2016&lt;/small>"]
+  f4 ==>|"connect/high"| f67
+  f68["MainWindow.event_power_off&lt;br/>&lt;small>通用自动测试上位机V0.95:2086&lt;/small>"]
+  f4 ==>|"connect/high"| f68
+  f69["MainWindow.change_sate_button&lt;br/>&lt;small>通用自动测试上位机V0.95:1541&lt;/small>"]
+  f4 ==>|"connect/high"| f69
+  f70["MainWindow.init_all_coef&lt;br/>&lt;small>通用自动测试上位机V0.95:892&lt;/small>"]
+  f4 -->|"call/high"| f70
+  f71["MainWindow._bind_plot_imu_lineedit_sync&lt;br/>&lt;small>通用自动测试上位机V0.95:818&lt;/small>"]
+  f4 -->|"call/high"| f71
+  f72["MainWindow._sync_plot_window_to_imu&lt;br/>&lt;small>通用自动测试上位机V0.95:829&lt;/small>"]
+  f4 -->|"call/high"| f72
+  f73["MainWindow.show_message_01s&lt;br/>&lt;small>通用自动测试上位机V0.95:945&lt;/small>"]
+  f4 -->|"call/high"| f73
+  f74["MainWindow.show_message_05s&lt;br/>&lt;small>通用自动测试上位机V0.95:975&lt;/small>"]
+  f4 -->|"call/high"| f74
+</pre></details></section><script src="../vendor/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad:true,maxTextSize:2000000,maxEdges:5000,securityLevel:"loose",flowchart:{useMaxWidth:false}});document.querySelectorAll("details").forEach(d=>d.addEventListener("toggle",async()=>{if(!d.open||d.dataset.done)return;d.dataset.done=1;const p=d.querySelector("pre");const {svg}=await mermaid.render("m"+Math.random().toString(36).slice(2),p.textContent);const div=document.createElement("div");div.innerHTML=svg;d.appendChild(div)}));</script></body></html>

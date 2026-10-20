@@ -1,0 +1,14 @@
+%% 模块局部调用树: ui.settings (ui/settings.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["MainWindowSetting.__init__<br/><small>ui.settings:5</small>"]
+  f1["MainWindowSetting.init_default_config<br/><small>ui.settings:20</small>"]
+  f0 -->|"call/high"| f1
+  f2["MainWindowSetting.init_config_sate<br/><small>ui.settings:31</small>"]
+  f0 -->|"call/high"| f2
+  f3["MainWindowSetting.init_read_para<br/><small>ui.settings:48</small>"]
+  f0 -->|"call/high"| f3
+  f4["MainWindowSetting.init_read_root<br/><small>ui.settings:80</small>"]
+  f0 -->|"call/high"| f4
+  f5["try_int<br/><small>funs.fun_chy2:163</small>"]
+  f3 -->|"call/high"| f5
+  f4 -->|"call/high"| f5

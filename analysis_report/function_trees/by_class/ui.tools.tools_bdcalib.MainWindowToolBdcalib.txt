@@ -1,0 +1,157 @@
+# 类 ui.tools.tools_bdcalib::MainWindowToolBdcalib  (ui/tools/tools_bdcalib.py:53)  bases=[]
+
+## MainWindowToolBdcalib.__init__  L54
+   ui.tools.tools_bdcalib::MainWindowToolBdcalib.__init__  (ui/tools/tools_bdcalib.py:54)
+       [call/high@L68] ui.tools.tools_bdcalib::MainWindowToolBdcalib.init_list  (ui/tools/tools_bdcalib.py:87)
+       [call/high@L69] ui.tools.tools_bdcalib::MainWindowToolBdcalib.init_data  (ui/tools/tools_bdcalib.py:98)
+       [connect/high@L71] ui.tools.tools_bdcalib::MainWindowToolBdcalib.load_path  (ui/tools/tools_bdcalib.py:120)  <qt_slot>
+           [call/high@L125] ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files  (ui/tools/tools_bdcalib.py:128)  <qt_slot>
+       [connect/high@L72] ui.tools.tools_bdcalib::MainWindowToolBdcalib.item_click_showMsg  (ui/tools/tools_bdcalib.py:196)  <qt_slot>
+           [call/high@L201(+5 处: 203,222,239,244,247)] ui.tools.tools_bdcalib::MainWindowToolBdcalib.preview_file  (ui/tools/tools_bdcalib.py:161)
+           [call/high@L204(+4 处: 232,242,245,248)] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg  (ui/tools/tools_bdcalib.py:155)
+           [call/high@L207] ui.tools.tools_bdcalib::MainWindowToolBdcalib.update_imgShow_pixmap  (ui/tools/tools_bdcalib.py:250)
+       [connect/high@L73] ui.tools.tools_bdcalib::MainWindowToolBdcalib.item_click_changeFolder  (ui/tools/tools_bdcalib.py:187)  <qt_slot>
+           [call/high@L193] ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files  ↑ 已在上文展开  (ui/tools/tools_bdcalib.py:128)
+           [call/high@L194] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg  (ui/tools/tools_bdcalib.py:155)
+       [connect/high@L75] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_uppath  (ui/tools/tools_bdcalib.py:179)  <qt_slot>
+           [call/high@L184] ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files  ↑ 已在上文展开  (ui/tools/tools_bdcalib.py:128)
+           [call/high@L185] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg  (ui/tools/tools_bdcalib.py:155)
+       [connect/high@L76(+1 处: 84)] ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files  ↑ 已在上文展开  (ui/tools/tools_bdcalib.py:128)
+       [connect/high@L77] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_avePath  (ui/tools/tools_bdcalib.py:267)  <qt_slot>
+           [call/high@L273] ui.tools.tools_bdcalib::MainWindowToolBdcalib.init_data  (ui/tools/tools_bdcalib.py:98)
+           [call/high@L274] ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files  ↑ 已在上文展开  (ui/tools/tools_bdcalib.py:128)
+           [call/high@L275] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg  (ui/tools/tools_bdcalib.py:155)
+           [create/high@L276] ui.tools.tools_bdcalib::class_Worker.__init__  (ui/tools/tools_bdcalib.py:354)
+           [connect/high@L277] ui.tools.tools_bdcalib::MainWindowToolBdcalib.task_done  (ui/tools/tools_bdcalib.py:319)  <qt_slot>
+       [connect/high@L78] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_formatConversion  (ui/tools/tools_bdcalib.py:280)  <qt_slot>
+           [call/high@L285] ui.tools.tools_bdcalib::MainWindowToolBdcalib.init_data  (ui/tools/tools_bdcalib.py:98)
+           [call/high@L286] ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files  ↑ 已在上文展开  (ui/tools/tools_bdcalib.py:128)
+           [call/high@L287] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg  (ui/tools/tools_bdcalib.py:155)
+           [create/high@L288] ui.tools.tools_bdcalib::class_Worker.__init__  (ui/tools/tools_bdcalib.py:354)
+           [connect/high@L289] ui.tools.tools_bdcalib::MainWindowToolBdcalib.task_done  ↑ 已在上文展开  (ui/tools/tools_bdcalib.py:319)
+       [connect/high@L79] ui.tools.tools_bdcalib::MainWindowToolBdcalib.change_preset  (ui/tools/tools_bdcalib.py:325)  <qt_slot>
+           [call/high@L326] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg  (ui/tools/tools_bdcalib.py:155)
+       [connect/high@L80] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_createBin  (ui/tools/tools_bdcalib.py:327)  <qt_slot>
+           [call/high@L328] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg  (ui/tools/tools_bdcalib.py:155)
+       [connect/high@L81] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_autoRun  (ui/tools/tools_bdcalib.py:329)  <qt_slot>
+           [call/high@L330] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg  (ui/tools/tools_bdcalib.py:155)
+       [connect/high@L82] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_calPara  (ui/tools/tools_bdcalib.py:292)  <qt_slot>
+           [call/high@L297] ui.tools.tools_bdcalib::MainWindowToolBdcalib.init_data  (ui/tools/tools_bdcalib.py:98)
+           [call/high@L298] ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files  ↑ 已在上文展开  (ui/tools/tools_bdcalib.py:128)
+           [call/high@L299] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg  (ui/tools/tools_bdcalib.py:155)
+           [create/high@L300] ui.tools.tools_bdcalib::class_Worker.__init__  (ui/tools/tools_bdcalib.py:354)
+           [connect/high@L302] ui.tools.tools_bdcalib::MainWindowToolBdcalib.task_done  ↑ 已在上文展开  (ui/tools/tools_bdcalib.py:319)
+       [connect/high@L83] ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_polyfit  (ui/tools/tools_bdcalib.py:305)  <qt_slot>
+           [call/high@L310] ui.tools.tools_bdcalib::MainWindowToolBdcalib.init_data  (ui/tools/tools_bdcalib.py:98)
+           [call/high@L311] ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files  ↑ 已在上文展开  (ui/tools/tools_bdcalib.py:128)
+           [call/high@L312] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg  (ui/tools/tools_bdcalib.py:155)
+           [create/high@L313] ui.tools.tools_bdcalib::class_Worker.__init__  (ui/tools/tools_bdcalib.py:354)
+           [connect/high@L315] ui.tools.tools_bdcalib::MainWindowToolBdcalib.task_done  ↑ 已在上文展开  (ui/tools/tools_bdcalib.py:319)
+
+## MainWindowToolBdcalib.init_list  L87
+   ui.tools.tools_bdcalib::MainWindowToolBdcalib.init_list  (ui/tools/tools_bdcalib.py:87)
+
+## MainWindowToolBdcalib.init_data  L98
+   ui.tools.tools_bdcalib::MainWindowToolBdcalib.init_data  (ui/tools/tools_bdcalib.py:98)
+
+## MainWindowToolBdcalib.load_path  L120
+   ui.tools.tools_bdcalib::MainWindowToolBdcalib.load_path  (ui/tools/tools_bdcalib.py:120)  <qt_slot>
+       [call/high@L125] ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files  (ui/tools/tools_bdcalib.py:128)  <qt_slot>
+           [call/high@L136] ui.tools.tools_bdcalib::MainWindowToolBdcalib.init_data  (ui/tools/tools_bdcalib.py:98)
+
+## MainWindowToolBdcalib.show_all_files  L128
+   ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files  (ui/tools/tools_bdcalib.py:128)  <qt_slot>
+       [call/high@L136] ui.tools.tools_bdcalib::MainWindowToolBdcalib.init_data  (ui/tools/tools_bdcalib.py:98)
+
+## MainWindowToolBdcalib.append_degugMsg  L155
+   ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg  (ui/tools/tools_bdcalib.py:155)
+
+## MainWindowToolBdcalib.preview_file  L161
+   ui.tools.tools_bdcalib::MainWindowToolBdcalib.preview_file  (ui/tools/tools_bdcalib.py:161)
+
+## MainWindowToolBdcalib.click_uppath  L179
+   ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_uppath  (ui/tools/tools_bdcalib.py:179)  <qt_slot>
+       [call/high@L184] ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files  (ui/tools/tools_bdcalib.py:128)  <qt_slot>
+           [call/high@L136] ui.tools.tools_bdcalib::MainWindowToolBdcalib.init_data  (ui/tools/tools_bdcalib.py:98)
+       [call/high@L185] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg  (ui/tools/tools_bdcalib.py:155)
+
+## MainWindowToolBdcalib.item_click_changeFolder  L187
+   ui.tools.tools_bdcalib::MainWindowToolBdcalib.item_click_changeFolder  (ui/tools/tools_bdcalib.py:187)  <qt_slot>
+       [call/high@L193] ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files  (ui/tools/tools_bdcalib.py:128)  <qt_slot>
+           [call/high@L136] ui.tools.tools_bdcalib::MainWindowToolBdcalib.init_data  (ui/tools/tools_bdcalib.py:98)
+       [call/high@L194] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg  (ui/tools/tools_bdcalib.py:155)
+
+## MainWindowToolBdcalib.item_click_showMsg  L196
+   ui.tools.tools_bdcalib::MainWindowToolBdcalib.item_click_showMsg  (ui/tools/tools_bdcalib.py:196)  <qt_slot>
+       [call/high@L201(+5 处: 203,222,239,244,247)] ui.tools.tools_bdcalib::MainWindowToolBdcalib.preview_file  (ui/tools/tools_bdcalib.py:161)
+       [call/high@L204(+4 处: 232,242,245,248)] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg  (ui/tools/tools_bdcalib.py:155)
+       [call/high@L207] ui.tools.tools_bdcalib::MainWindowToolBdcalib.update_imgShow_pixmap  (ui/tools/tools_bdcalib.py:250)
+
+## MainWindowToolBdcalib.update_imgShow_pixmap  L250
+   ui.tools.tools_bdcalib::MainWindowToolBdcalib.update_imgShow_pixmap  (ui/tools/tools_bdcalib.py:250)
+
+## MainWindowToolBdcalib.label_resizeEvent  L263
+   ui.tools.tools_bdcalib::MainWindowToolBdcalib.label_resizeEvent  (ui/tools/tools_bdcalib.py:263)
+       [call/high@L264] ui.tools.tools_bdcalib::MainWindowToolBdcalib.update_imgShow_pixmap  (ui/tools/tools_bdcalib.py:250)
+
+## MainWindowToolBdcalib.click_avePath  L267
+   ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_avePath  (ui/tools/tools_bdcalib.py:267)  <qt_slot>
+       [call/high@L273] ui.tools.tools_bdcalib::MainWindowToolBdcalib.init_data  (ui/tools/tools_bdcalib.py:98)
+       [call/high@L274] ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files  (ui/tools/tools_bdcalib.py:128)  <qt_slot>
+           [call/high@L136] ui.tools.tools_bdcalib::MainWindowToolBdcalib.init_data  (ui/tools/tools_bdcalib.py:98)
+       [call/high@L275] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg  (ui/tools/tools_bdcalib.py:155)
+       [create/high@L276] ui.tools.tools_bdcalib::class_Worker.__init__  (ui/tools/tools_bdcalib.py:354)
+       [connect/high@L277] ui.tools.tools_bdcalib::MainWindowToolBdcalib.task_done  (ui/tools/tools_bdcalib.py:319)  <qt_slot>
+           [call/high@L322(+1 处: 323)] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg  (ui/tools/tools_bdcalib.py:155)
+           [call/high@L324] ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files  ↑ 已在上文展开  (ui/tools/tools_bdcalib.py:128)
+
+## MainWindowToolBdcalib.click_formatConversion  L280
+   ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_formatConversion  (ui/tools/tools_bdcalib.py:280)  <qt_slot>
+       [call/high@L285] ui.tools.tools_bdcalib::MainWindowToolBdcalib.init_data  (ui/tools/tools_bdcalib.py:98)
+       [call/high@L286] ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files  (ui/tools/tools_bdcalib.py:128)  <qt_slot>
+           [call/high@L136] ui.tools.tools_bdcalib::MainWindowToolBdcalib.init_data  (ui/tools/tools_bdcalib.py:98)
+       [call/high@L287] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg  (ui/tools/tools_bdcalib.py:155)
+       [create/high@L288] ui.tools.tools_bdcalib::class_Worker.__init__  (ui/tools/tools_bdcalib.py:354)
+       [connect/high@L289] ui.tools.tools_bdcalib::MainWindowToolBdcalib.task_done  (ui/tools/tools_bdcalib.py:319)  <qt_slot>
+           [call/high@L322(+1 处: 323)] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg  (ui/tools/tools_bdcalib.py:155)
+           [call/high@L324] ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files  ↑ 已在上文展开  (ui/tools/tools_bdcalib.py:128)
+
+## MainWindowToolBdcalib.click_calPara  L292
+   ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_calPara  (ui/tools/tools_bdcalib.py:292)  <qt_slot>
+       [call/high@L297] ui.tools.tools_bdcalib::MainWindowToolBdcalib.init_data  (ui/tools/tools_bdcalib.py:98)
+       [call/high@L298] ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files  (ui/tools/tools_bdcalib.py:128)  <qt_slot>
+           [call/high@L136] ui.tools.tools_bdcalib::MainWindowToolBdcalib.init_data  (ui/tools/tools_bdcalib.py:98)
+       [call/high@L299] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg  (ui/tools/tools_bdcalib.py:155)
+       [create/high@L300] ui.tools.tools_bdcalib::class_Worker.__init__  (ui/tools/tools_bdcalib.py:354)
+       [connect/high@L302] ui.tools.tools_bdcalib::MainWindowToolBdcalib.task_done  (ui/tools/tools_bdcalib.py:319)  <qt_slot>
+           [call/high@L322(+1 处: 323)] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg  (ui/tools/tools_bdcalib.py:155)
+           [call/high@L324] ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files  ↑ 已在上文展开  (ui/tools/tools_bdcalib.py:128)
+
+## MainWindowToolBdcalib.click_polyfit  L305
+   ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_polyfit  (ui/tools/tools_bdcalib.py:305)  <qt_slot>
+       [call/high@L310] ui.tools.tools_bdcalib::MainWindowToolBdcalib.init_data  (ui/tools/tools_bdcalib.py:98)
+       [call/high@L311] ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files  (ui/tools/tools_bdcalib.py:128)  <qt_slot>
+           [call/high@L136] ui.tools.tools_bdcalib::MainWindowToolBdcalib.init_data  (ui/tools/tools_bdcalib.py:98)
+       [call/high@L312] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg  (ui/tools/tools_bdcalib.py:155)
+       [create/high@L313] ui.tools.tools_bdcalib::class_Worker.__init__  (ui/tools/tools_bdcalib.py:354)
+       [connect/high@L315] ui.tools.tools_bdcalib::MainWindowToolBdcalib.task_done  (ui/tools/tools_bdcalib.py:319)  <qt_slot>
+           [call/high@L322(+1 处: 323)] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg  (ui/tools/tools_bdcalib.py:155)
+           [call/high@L324] ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files  ↑ 已在上文展开  (ui/tools/tools_bdcalib.py:128)
+
+## MainWindowToolBdcalib.task_done  L319
+   ui.tools.tools_bdcalib::MainWindowToolBdcalib.task_done  (ui/tools/tools_bdcalib.py:319)  <qt_slot>
+       [call/high@L322(+1 处: 323)] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg  (ui/tools/tools_bdcalib.py:155)
+       [call/high@L324] ui.tools.tools_bdcalib::MainWindowToolBdcalib.show_all_files  (ui/tools/tools_bdcalib.py:128)  <qt_slot>
+           [call/high@L136] ui.tools.tools_bdcalib::MainWindowToolBdcalib.init_data  (ui/tools/tools_bdcalib.py:98)
+
+## MainWindowToolBdcalib.change_preset  L325
+   ui.tools.tools_bdcalib::MainWindowToolBdcalib.change_preset  (ui/tools/tools_bdcalib.py:325)  <qt_slot>
+       [call/high@L326] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg  (ui/tools/tools_bdcalib.py:155)
+
+## MainWindowToolBdcalib.click_createBin  L327
+   ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_createBin  (ui/tools/tools_bdcalib.py:327)  <qt_slot>
+       [call/high@L328] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg  (ui/tools/tools_bdcalib.py:155)
+
+## MainWindowToolBdcalib.click_autoRun  L329
+   ui.tools.tools_bdcalib::MainWindowToolBdcalib.click_autoRun  (ui/tools/tools_bdcalib.py:329)  <qt_slot>
+       [call/high@L330] ui.tools.tools_bdcalib::MainWindowToolBdcalib.append_degugMsg  (ui/tools/tools_bdcalib.py:155)

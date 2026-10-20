@@ -1,0 +1,27 @@
+# 模块 ui.events.events_hidden  (ui/events/events_hidden.py)
+
+## <module>  L1-60  args=()  <module_body>
+
+## MainWindowEventHidden.__init__  L3-7  args=(self, mainWindow)  <constructor>
+  -> [call/high@L5] ui.events.events_hidden::MainWindowEventHidden.logic_clickHidden
+  -> [call/high@L6] ui.events.events_hidden::MainWindowEventHidden.logic_changeHidden
+  -> [call/high@L7] ui.events.events_hidden::MainWindowEventHidden.init_hidden
+  <- [create/high@L108] 通用自动测试上位机V0.90::MainWindow.__init__
+  <- [dynamic/medium@L181] 通用自动测试上位机V0.95::MainWindow._init_modules_in_batches
+
+## MainWindowEventHidden.logic_clickHidden  L10-25  args=(self)
+  -> [connect/high@L25] ui.events.events_hidden::MainWindowEventHidden.clickEvent_childHidden   # groupbox.toggled.connect
+  <- [call/high@L5] ui.events.events_hidden::MainWindowEventHidden.__init__
+
+## MainWindowEventHidden.init_hidden  L29-41  args=(self)
+  <- [call/high@L7] ui.events.events_hidden::MainWindowEventHidden.__init__
+
+## MainWindowEventHidden.clickEvent_childHidden  L44-48  args=(self, checked)  <qt_slot>
+  <- [connect/high@L25] ui.events.events_hidden::MainWindowEventHidden.logic_clickHidden
+
+## MainWindowEventHidden.logic_changeHidden  L50-51  args=(self)
+  -> [connect/high@L51] ui.events.events_hidden::MainWindowEventHidden.changeEvent_buttonHidden   # self.mw.comboBox_general_rule.currentTextChanged.connect
+  <- [call/high@L6] ui.events.events_hidden::MainWindowEventHidden.__init__
+
+## MainWindowEventHidden.changeEvent_buttonHidden  L52-59  args=(self)  <qt_slot>
+  <- [connect/high@L51] ui.events.events_hidden::MainWindowEventHidden.logic_changeHidden

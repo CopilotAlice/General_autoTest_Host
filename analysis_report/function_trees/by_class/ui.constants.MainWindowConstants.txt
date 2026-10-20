@@ -1,0 +1,40 @@
+# 类 ui.constants::MainWindowConstants  (ui/constants.py:10)  bases=[]
+
+## MainWindowConstants.__init__  L11
+   ui.constants::MainWindowConstants.__init__  (ui/constants.py:11)
+       [call/high@L14] ui.constants::MainWindowConstants.init_load_path  (ui/constants.py:34)
+       [call/high@L18] ui.constants::MainWindowConstants.init_12tab_setting  (ui/constants.py:38)
+           [create/high@L40(+1 处: 42)] ui.structs::struct_tab_setting.__init__  (ui/structs.py:110)
+       [call/high@L22] ui.constants::MainWindowConstants.init_general_bind  (ui/constants.py:50)
+           [create/high@L51] ui.structs::struct_general_bind.__init__  (ui/structs.py:21)
+       [call/high@L25] ui.constants::MainWindowConstants.init_send_struct  (ui/constants.py:54)
+           [create/high@L65] ui.structs::struct_sate.__init__  (ui/structs.py:166)
+           [call/medium@L66] ui.structs::struct_sate.init_sate_save  (ui/structs.py:218)
+       [call/high@L31] ui.constants::MainWindowConstants.init_struct_turntable3x  (ui/constants.py:69)
+           [create/high@L70] ui.structs::struct_turnTable3x.__init__  (ui/structs.py:309)
+
+## MainWindowConstants.init_load_path  L34
+   ui.constants::MainWindowConstants.init_load_path  (ui/constants.py:34)
+
+## MainWindowConstants.init_12tab_setting  L38
+   ui.constants::MainWindowConstants.init_12tab_setting  (ui/constants.py:38)
+       [create/high@L40(+1 处: 42)] ui.structs::struct_tab_setting.__init__  (ui/structs.py:110)
+           [call/high@L118(+6 处: 119,120,121,122,123)] ui.structs::struct_tab_setting.__init__.<locals>.get_widget  (ui/structs.py:112)
+
+## MainWindowConstants.init_general_bind  L50
+   ui.constants::MainWindowConstants.init_general_bind  (ui/constants.py:50)
+       [create/high@L51] ui.structs::struct_general_bind.__init__  (ui/structs.py:21)
+
+## MainWindowConstants.init_send_struct  L54
+   ui.constants::MainWindowConstants.init_send_struct  (ui/constants.py:54)
+       [create/high@L65] ui.structs::struct_sate.__init__  (ui/structs.py:166)
+           [call/high@L201] ui.structs::struct_sate.init_sate_name  (ui/structs.py:208)
+           [call/high@L202] ui.structs::struct_sate.init_sate_titl  (ui/structs.py:221)
+           [call/high@L203] ui.structs::struct_sate.init_sate_leng  (ui/structs.py:253)
+           [call/high@L204] ui.structs::struct_sate.init_sate_zero  (ui/structs.py:256)
+           [call/high@L205] ui.structs::struct_sate.init_sate_shap  (ui/structs.py:259)
+       [call/medium@L66] ui.structs::struct_sate.init_sate_save  (ui/structs.py:218)
+
+## MainWindowConstants.init_struct_turntable3x  L69
+   ui.constants::MainWindowConstants.init_struct_turntable3x  (ui/constants.py:69)
+       [create/high@L70] ui.structs::struct_turnTable3x.__init__  (ui/structs.py:309)

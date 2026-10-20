@@ -1,0 +1,70 @@
+# 模块 ui.logic  (ui/logic.py)
+
+## <module>  L1-107  args=()  <module_body>
+
+## MainWindowLogic.__init__  L3-29  args=(self, mainWindow)  <constructor>
+  -> [call/high@L9] ui.logic::MainWindowLogic.logic_general_bind
+  -> [call/high@L11] ui.logic::MainWindowLogic.logic_12tab_setting
+  -> [call/high@L13] ui.logic::MainWindowLogic.logic_protocal_rule_change
+  -> [call/high@L14] ui.logic::MainWindowLogic.logic_comboBoxPath_update
+  -> [call/high@L20] ui.logic::MainWindowLogic.logic_auxsate
+  -> [call/high@L22] ui.logic::MainWindowLogic.logic_cal_BD_data
+  -> [call/high@L25] ui.logic::MainWindowLogic.logic_readDecodeRule
+  -> [call/high@L26] ui.logic::MainWindowLogic.logic_readAutoTest
+  -> [call/high@L29] ui.logic::MainWindowLogic.logic_turntable3x
+  <- [create/high@L100] 通用自动测试上位机V0.90::MainWindow.__init__
+  <- [dynamic/medium@L178] 通用自动测试上位机V0.95::MainWindow._init_modules_in_batches
+
+## MainWindowLogic.logic_general_bind  L40-47  args=(self)
+  -> [connect/medium@L41] ui.event::MainWindowEvent.changeEvent_general_rule   # self.mw.comboBox_general_rule.currentTextChanged.connect | self.mw.events -> MainWindowEvent (module_chain 挂载)
+  -> [connect/medium@L43] ui.event::MainWindowEvent.clickEvent_general_bind   # ?.connect | self.mw.events -> MainWindowEvent (module_chain 挂载)
+  -> [connect/medium@L44] ui.event::MainWindowEvent.clickEvent_general_bind   # ?.connect | self.mw.events -> MainWindowEvent (module_chain 挂载)
+  -> [connect/medium@L45] ui.event::MainWindowEvent.changeEvent_general_bind_table   # self.mw.tableWidget_general_show.itemChanged.connect | self.mw.events -> MainWindowEvent (module_chain 挂载)
+  -> [connect/medium@L46] ui.event::MainWindowEvent.clickEvent_general_send   # self.mw.pushButton_general_send.clicked.connect | self.mw.events -> MainWindowEvent (module_chain 挂载)
+  -> [connect/medium@L47] ui.event::MainWindowEvent.changeEvent_general_autoSend   # self.mw.checkBox_general_autoSend.clicked.connect | self.mw.events -> MainWindowEvent (module_chain 挂载)
+  <- [call/high@L9] ui.logic::MainWindowLogic.__init__
+
+## MainWindowLogic.logic_12tab_setting  L51-62  args=(self)
+  -> [connect/medium@L54] ui.event::MainWindowEvent.changeEvent_com_update_all   # ?.connect | self.mw.events -> MainWindowEvent (module_chain 挂载)
+  -> [connect/medium@L55] ui.event::MainWindowEvent.changeEvent_baund_update_all   # ?.connect | self.mw.events -> MainWindowEvent (module_chain 挂载)
+  -> [connect/medium@L56] ui.event::MainWindowEvent.changeEvent_check_update_all   # ?.connect | self.mw.events -> MainWindowEvent (module_chain 挂载)
+  -> [connect/medium@L57] ui.event::MainWindowEvent.changeEvent_stop_update_all   # ?.connect | self.mw.events -> MainWindowEvent (module_chain 挂载)
+  -> [connect/medium@L58] ui.event::MainWindowEvent.changeEvent_open_update_all   # ?.connect | self.mw.events -> MainWindowEvent (module_chain 挂载)
+  -> [connect/medium@L59] ui.event::MainWindowEvent.changeEvent_plan_update_all   # ?.connect | self.mw.events -> MainWindowEvent (module_chain 挂载)
+  -> [connect/medium@L61] ui.event::MainWindowEvent.changeEvent_baund_update_main   # self.mw.comboBox_protocal_baund.currentTextChanged.connect | self.mw.events -> MainWindowEvent (module_chain 挂载)
+  -> [connect/medium@L62] ui.event::MainWindowEvent.changeEvent_check_update_main   # self.mw.comboBox_protocal_check.currentTextChanged.connect | self.mw.events -> MainWindowEvent (module_chain 挂载)
+  <- [call/high@L11] ui.logic::MainWindowLogic.__init__
+
+## MainWindowLogic.logic_protocal_rule_change  L66-67  args=(self)
+  <- [call/high@L13] ui.logic::MainWindowLogic.__init__
+
+## MainWindowLogic.logic_auxsate  L74-81  args=(self)
+  -> [connect/medium@L77] ui.event::MainWindowEvent.changeEvent_auxsate_com   # self.mw.comboBox_ascii_com.currentTextChanged.connect | self.mw.events -> MainWindowEvent (module_chain 挂载)
+  -> [connect/medium@L78] ui.event::MainWindowEvent.changeEvent_auxsate_baund   # self.mw.comboBox_ascii_baund.currentTextChanged.connect | self.mw.events -> MainWindowEvent (module_chain 挂载)
+  -> [connect/medium@L79] ui.event::MainWindowEvent.changeEvent_auxsate_check   # self.mw.comboBox_ascii_check.currentTextChanged.connect | self.mw.events -> MainWindowEvent (module_chain 挂载)
+  -> [connect/medium@L81] ui.event::MainWindowEvent.clickEvent_auxsate_send   # self.mw.pushButton_sate_send.clicked.connect | self.mw.events -> MainWindowEvent (module_chain 挂载)
+  <- [call/high@L20] ui.logic::MainWindowLogic.__init__
+
+## MainWindowLogic.logic_cal_BD_data  L83-87  args=(self)
+  -> [connect/medium@L84] ui.event::MainWindowEvent.clickEvent_para_loadPath   # self.mw.pushButton_para_loadOld.clicked.connect | self.mw.events -> MainWindowEvent (module_chain 挂载)
+  -> [connect/medium@L85] ui.event::MainWindowEvent.clickEvent_para_loadPath   # self.mw.pushButton_para_loadNew.clicked.connect | self.mw.events -> MainWindowEvent (module_chain 挂载)
+  -> [connect/medium@L86] ui.event::MainWindowEvent.clickEvent_para_createPara   # self.mw.pushButton_para_createPara.clicked.connect | self.mw.events -> MainWindowEvent (module_chain 挂载)
+  -> [connect/medium@L87] ui.event::MainWindowEvent.clickEvent_para_savePara   # self.mw.pushButton_para_savePara.clicked.connect | self.mw.events -> MainWindowEvent (module_chain 挂载)
+  <- [call/high@L22] ui.logic::MainWindowLogic.__init__
+
+## MainWindowLogic.logic_comboBoxPath_update  L89-94  args=(self)
+  -> [connect/medium@L92] ui.times::MainWindowTimes.timeEvent_update_combobox   # paths.currentTextChanged.connect | self.mw.times -> MainWindowTimes (module_chain 挂载)
+  <- [call/high@L14] ui.logic::MainWindowLogic.__init__
+
+## MainWindowLogic.logic_readDecodeRule  L97-101  args=(self)
+  -> [connect/medium@L98] ui.event::MainWindowEvent.changeEvent_deocdeRuleToTableWidget   # self.mw.comboBox_protocal_rule.currentTextChanged.connect | self.mw.events -> MainWindowEvent (module_chain 挂载)
+  -> [connect/medium@L99] ui.event::MainWindowEvent.changeEvent_deocdeRuleToTableWidget   # self.mw.pushButton_decodeShow_reload.clicked.connect | self.mw.events -> MainWindowEvent (module_chain 挂载)
+  -> [connect/medium@L101] ui.event::MainWindowEvent.clickEvent_decodeShow_tryReceive   # self.mw.pushButton_decodeShow_tryReceive.clicked.connect | self.mw.events -> MainWindowEvent (module_chain 挂载)
+  <- [call/high@L25] ui.logic::MainWindowLogic.__init__
+
+## MainWindowLogic.logic_readAutoTest  L103-104  args=(self)
+  -> [connect/medium@L104] ui.event::MainWindowEvent.changeEvent_readAtuoTestRule   # self.mw.comboBox_automatic_rule.currentTextChanged.connect | self.mw.events -> MainWindowEvent (module_chain 挂载)
+  <- [call/high@L26] ui.logic::MainWindowLogic.__init__
+
+## MainWindowLogic.logic_turntable3x  L106-107  args=(self)
+  <- [call/high@L29] ui.logic::MainWindowLogic.__init__

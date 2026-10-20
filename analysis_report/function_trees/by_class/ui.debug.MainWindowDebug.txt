@@ -1,0 +1,27 @@
+# 类 ui.debug::MainWindowDebug  (ui/debug.py:4)  bases=[]
+
+## MainWindowDebug.__init__  L5
+   ui.debug::MainWindowDebug.__init__  (ui/debug.py:5)
+       [call/high@L8] ui.debug::MainWindowDebug.debug_time_init  (ui/debug.py:12)
+           [timer/high@L16] ui.debug::MainWindowDebug.debug_message_1s  (ui/debug.py:26)  <timer_callback>
+       [call/high@L9] ui.debug::MainWindowDebug.debug_struct_init  (ui/debug.py:19)
+           [create/high@L23] ui.debug::struct_debug.__init__  (ui/debug.py:40)
+
+## MainWindowDebug.debug_time_init  L12
+   ui.debug::MainWindowDebug.debug_time_init  (ui/debug.py:12)
+       [timer/high@L16] ui.debug::MainWindowDebug.debug_message_1s  (ui/debug.py:26)  <timer_callback>
+           [call/high@L28] ui.debug::struct_debug.update_ui_msg  (ui/debug.py:109)
+
+## MainWindowDebug.debug_struct_init  L19
+   ui.debug::MainWindowDebug.debug_struct_init  (ui/debug.py:19)
+       [create/high@L23] ui.debug::struct_debug.__init__  (ui/debug.py:40)
+           [call/high@L61] ui.debug::struct_debug.update_ui_link  (ui/debug.py:64)
+
+## MainWindowDebug.debug_message_1s  L26
+   ui.debug::MainWindowDebug.debug_message_1s  (ui/debug.py:26)  <timer_callback>
+       [call/high@L28] ui.debug::struct_debug.update_ui_msg  (ui/debug.py:109)
+           [call/high@L112] ui.debug::struct_debug.get_check_out  (ui/debug.py:96)
+           [call/high@L113] ui.debug::struct_debug.get_check_last  (ui/debug.py:102)
+
+## MainWindowDebug.debug_test  L30
+   ui.debug::MainWindowDebug.debug_test  (ui/debug.py:30)

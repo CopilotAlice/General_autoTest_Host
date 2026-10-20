@@ -1,0 +1,91 @@
+%% 图1 项目总体架构图 (层 -> 模块), 层间箭头 = 层内模块 import 的聚合 (数字=import 条数)
+flowchart TB
+  subgraph a0["入口"]
+    direction LR
+    a1["95"]
+  end
+  subgraph a2["UI层"]
+    direction LR
+    a3["Automated_testingV19"]
+    a4["get_ui"]
+    a5["init_ui"]
+    a6["inits_debugMsg"]
+    a7["inits_showMsg"]
+  end
+  subgraph a8["事件层"]
+    direction LR
+    a9["event"]
+    a10["logic"]
+    a11["events_devide"]
+    a12["events_hidden"]
+  end
+  subgraph a13["业务逻辑层"]
+    direction LR
+    a14["debug"]
+    a15["threads"]
+    a16["times"]
+    a17["nav_loc"]
+    a18["tools_bdcalib"]
+  end
+  subgraph a19["数据处理层"]
+    direction LR
+    a20["fun_chy2"]
+    a21["fun_sate"]
+    a22["structs"]
+  end
+  subgraph a23["设备通信层"]
+    direction LR
+    a24["fun_serial"]
+    a25["tools_burn_ymodem"]
+  end
+  subgraph a26["配置层"]
+    direction LR
+    a27["fun_locals"]
+    a28["constants"]
+    a29["load_ini"]
+    a30["settings"]
+    a31["inits_funcTest"]
+  end
+  subgraph a32["公共工具层"]
+    direction LR
+    a33["checks"]
+    a34["checks_remove"]
+    a35["fun_checks"]
+  end
+  a0 -->|"import x3"| a2
+  a0 -->|"import x2"| a8
+  a0 -->|"import x3"| a13
+  a0 -->|"import x1"| a19
+  a0 -->|"import x1"| a23
+  a0 -->|"import x4"| a26
+  a0 -->|"import x1"| a32
+  a2 -->|"import x2"| a26
+  a8 -->|"import x1"| a19
+  a8 -->|"import x1"| a23
+  a8 -->|"import x1"| a32
+  a13 -->|"import x1"| a26
+  a26 -->|"import x2"| a19
+  a1 -.->|"module_chain 动态挂载"| a28
+  a1 -.->|"module_chain 动态挂载"| a14
+  a1 -.->|"module_chain 动态挂载"| a9
+  a1 -.->|"module_chain 动态挂载"| a11
+  a1 -.->|"module_chain 动态挂载"| a12
+  a1 -.->|"module_chain 动态挂载"| a4
+  a1 -.->|"module_chain 动态挂载"| a5
+  a1 -.->|"module_chain 动态挂载"| a6
+  a1 -.->|"module_chain 动态挂载"| a7
+  a1 -.->|"module_chain 动态挂载"| a29
+  a1 -.->|"module_chain 动态挂载"| a10
+  a1 -.->|"module_chain 动态挂载"| a17
+  a1 -.->|"module_chain 动态挂载"| a30
+  a1 -.->|"module_chain 动态挂载"| a15
+  a1 -.->|"module_chain 动态挂载"| a16
+  a1 -.->|"module_chain 动态挂载"| a18
+  a1 -.->|"module_chain 动态挂载"| a25
+  PyQt5(["PyQt5 / pyqtgraph"]):::ext
+  SER(["pyserial 串口设备"]):::ext
+  DATA(["规则/配置文本文件"]):::ext
+  a23 --> SER
+  a26 --> DATA
+  a2 --> PyQt5
+  classDef ext fill:#eee,stroke:#999,stroke-dasharray: 4 2

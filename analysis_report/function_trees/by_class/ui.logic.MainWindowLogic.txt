@@ -1,0 +1,97 @@
+# 类 ui.logic::MainWindowLogic  (ui/logic.py:2)  bases=[]
+
+## MainWindowLogic.__init__  L3
+   ui.logic::MainWindowLogic.__init__  (ui/logic.py:3)
+       [call/high@L9] ui.logic::MainWindowLogic.logic_general_bind  (ui/logic.py:40)
+           [connect/medium@L41] ui.event::MainWindowEvent.changeEvent_general_rule  (ui/event.py:35)  <qt_slot>
+           [connect/medium@L43(+1 处: 44)] ui.event::MainWindowEvent.clickEvent_general_bind  (ui/event.py:258)  <qt_slot>
+           [connect/medium@L45] ui.event::MainWindowEvent.changeEvent_general_bind_table  (ui/event.py:121)  <qt_slot>
+           [connect/medium@L46] ui.event::MainWindowEvent.clickEvent_general_send  (ui/event.py:238)  <qt_slot,timer_callback>
+           [connect/medium@L47] ui.event::MainWindowEvent.changeEvent_general_autoSend  (ui/event.py:285)  <qt_slot>
+       [call/high@L11] ui.logic::MainWindowLogic.logic_12tab_setting  (ui/logic.py:51)
+           [connect/medium@L54] ui.event::MainWindowEvent.changeEvent_com_update_all  (ui/event.py:300)  <qt_slot>
+           [connect/medium@L55] ui.event::MainWindowEvent.changeEvent_baund_update_all  (ui/event.py:305)  <qt_slot>
+           [connect/medium@L56] ui.event::MainWindowEvent.changeEvent_check_update_all  (ui/event.py:309)  <qt_slot>
+           [connect/medium@L57] ui.event::MainWindowEvent.changeEvent_stop_update_all  (ui/event.py:313)  <qt_slot>
+           [connect/medium@L58] ui.event::MainWindowEvent.changeEvent_open_update_all  (ui/event.py:317)  <qt_slot>
+           [connect/medium@L59] ui.event::MainWindowEvent.changeEvent_plan_update_all  (ui/event.py:321)  <qt_slot>
+           [connect/medium@L61] ui.event::MainWindowEvent.changeEvent_baund_update_main  (ui/event.py:328)  <qt_slot>
+           [connect/medium@L62] ui.event::MainWindowEvent.changeEvent_check_update_main  (ui/event.py:330)  <qt_slot>
+       [call/high@L13] ui.logic::MainWindowLogic.logic_protocal_rule_change  (ui/logic.py:66)
+       [call/high@L14] ui.logic::MainWindowLogic.logic_comboBoxPath_update  (ui/logic.py:89)
+           [connect/medium@L92] ui.times::MainWindowTimes.timeEvent_update_combobox  (ui/times.py:33)  <qt_slot>
+       [call/high@L20] ui.logic::MainWindowLogic.logic_auxsate  (ui/logic.py:74)
+           [connect/medium@L77] ui.event::MainWindowEvent.changeEvent_auxsate_com  (ui/event.py:338)  <qt_slot>
+           [connect/medium@L78] ui.event::MainWindowEvent.changeEvent_auxsate_baund  (ui/event.py:340)  <qt_slot>
+           [connect/medium@L79] ui.event::MainWindowEvent.changeEvent_auxsate_check  (ui/event.py:342)  <qt_slot>
+           [connect/medium@L81] ui.event::MainWindowEvent.clickEvent_auxsate_send  (ui/event.py:345)  <qt_slot>
+       [call/high@L22] ui.logic::MainWindowLogic.logic_cal_BD_data  (ui/logic.py:83)
+           [connect/medium@L84(+1 处: 85)] ui.event::MainWindowEvent.clickEvent_para_loadPath  (ui/event.py:351)  <qt_slot>
+           [connect/medium@L86] ui.event::MainWindowEvent.clickEvent_para_createPara  (ui/event.py:697)  <qt_slot>
+           [connect/medium@L87] ui.event::MainWindowEvent.clickEvent_para_savePara  (ui/event.py:700)  <qt_slot>
+       [call/high@L25] ui.logic::MainWindowLogic.logic_readDecodeRule  (ui/logic.py:97)
+           [connect/medium@L98(+1 处: 99)] ui.event::MainWindowEvent.changeEvent_deocdeRuleToTableWidget  (ui/event.py:500)  <qt_slot>
+           [connect/medium@L101] ui.event::MainWindowEvent.clickEvent_decodeShow_tryReceive  (ui/event.py:598)  <hardware_io,qt_slot,serial_io_heuristic>
+       [call/high@L26] ui.logic::MainWindowLogic.logic_readAutoTest  (ui/logic.py:103)
+           [connect/medium@L104] ui.event::MainWindowEvent.changeEvent_readAtuoTestRule  (ui/event.py:687)  <qt_slot>
+       [call/high@L29] ui.logic::MainWindowLogic.logic_turntable3x  (ui/logic.py:106)
+
+## MainWindowLogic.logic_general_bind  L40
+   ui.logic::MainWindowLogic.logic_general_bind  (ui/logic.py:40)
+       [connect/medium@L41] ui.event::MainWindowEvent.changeEvent_general_rule  (ui/event.py:35)  <qt_slot>
+           [call/high@L50] ui.event::MainWindowEvent.funcEvent_general_changeButton  (ui/event.py:64)
+           [call/high@L51] ui.event::MainWindowEvent.funcEvent_general_changeTable  (ui/event.py:71)
+           [call/high@L52] ui.event::MainWindowEvent.changeEvent_general_bind_table  (ui/event.py:121)  <qt_slot>
+       [connect/medium@L43(+1 处: 44)] ui.event::MainWindowEvent.clickEvent_general_bind  (ui/event.py:258)  <qt_slot>
+           [call/high@L274] ui.event::MainWindowEvent.clickEvent_general_send  (ui/event.py:238)  <qt_slot,timer_callback>
+       [connect/medium@L45] ui.event::MainWindowEvent.changeEvent_general_bind_table  ↑ 已在上文展开  (ui/event.py:121)
+       [connect/medium@L46] ui.event::MainWindowEvent.clickEvent_general_send  (ui/event.py:238)  <qt_slot,timer_callback>
+       [connect/medium@L47] ui.event::MainWindowEvent.changeEvent_general_autoSend  (ui/event.py:285)  <qt_slot>
+           [timer/high@L291] ui.event::MainWindowEvent.clickEvent_general_send  (ui/event.py:238)  <qt_slot,timer_callback>
+
+## MainWindowLogic.logic_12tab_setting  L51
+   ui.logic::MainWindowLogic.logic_12tab_setting  (ui/logic.py:51)
+       [connect/medium@L54] ui.event::MainWindowEvent.changeEvent_com_update_all  (ui/event.py:300)  <qt_slot>
+       [connect/medium@L55] ui.event::MainWindowEvent.changeEvent_baund_update_all  (ui/event.py:305)  <qt_slot>
+       [connect/medium@L56] ui.event::MainWindowEvent.changeEvent_check_update_all  (ui/event.py:309)  <qt_slot>
+       [connect/medium@L57] ui.event::MainWindowEvent.changeEvent_stop_update_all  (ui/event.py:313)  <qt_slot>
+       [connect/medium@L58] ui.event::MainWindowEvent.changeEvent_open_update_all  (ui/event.py:317)  <qt_slot>
+       [connect/medium@L59] ui.event::MainWindowEvent.changeEvent_plan_update_all  (ui/event.py:321)  <qt_slot>
+       [connect/medium@L61] ui.event::MainWindowEvent.changeEvent_baund_update_main  (ui/event.py:328)  <qt_slot>
+       [connect/medium@L62] ui.event::MainWindowEvent.changeEvent_check_update_main  (ui/event.py:330)  <qt_slot>
+
+## MainWindowLogic.logic_protocal_rule_change  L66
+   ui.logic::MainWindowLogic.logic_protocal_rule_change  (ui/logic.py:66)
+
+## MainWindowLogic.logic_auxsate  L74
+   ui.logic::MainWindowLogic.logic_auxsate  (ui/logic.py:74)
+       [connect/medium@L77] ui.event::MainWindowEvent.changeEvent_auxsate_com  (ui/event.py:338)  <qt_slot>
+       [connect/medium@L78] ui.event::MainWindowEvent.changeEvent_auxsate_baund  (ui/event.py:340)  <qt_slot>
+       [connect/medium@L79] ui.event::MainWindowEvent.changeEvent_auxsate_check  (ui/event.py:342)  <qt_slot>
+       [connect/medium@L81] ui.event::MainWindowEvent.clickEvent_auxsate_send  (ui/event.py:345)  <qt_slot>
+
+## MainWindowLogic.logic_cal_BD_data  L83
+   ui.logic::MainWindowLogic.logic_cal_BD_data  (ui/logic.py:83)
+       [connect/medium@L84(+1 处: 85)] ui.event::MainWindowEvent.clickEvent_para_loadPath  (ui/event.py:351)  <qt_slot>
+           [call/high@L377] funs.fun_chy2::move_dir_para_old  (funs/fun_chy2.py:78)
+           [call/high@L400] funs.fun_chy2::del_empty_folder  (funs/fun_chy2.py:99)  <in_cycle>
+       [connect/medium@L86] ui.event::MainWindowEvent.clickEvent_para_createPara  (ui/event.py:697)  <qt_slot>
+       [connect/medium@L87] ui.event::MainWindowEvent.clickEvent_para_savePara  (ui/event.py:700)  <qt_slot>
+
+## MainWindowLogic.logic_comboBoxPath_update  L89
+   ui.logic::MainWindowLogic.logic_comboBoxPath_update  (ui/logic.py:89)
+       [connect/medium@L92] ui.times::MainWindowTimes.timeEvent_update_combobox  (ui/times.py:33)  <qt_slot>
+
+## MainWindowLogic.logic_readDecodeRule  L97
+   ui.logic::MainWindowLogic.logic_readDecodeRule  (ui/logic.py:97)
+       [connect/medium@L98(+1 处: 99)] ui.event::MainWindowEvent.changeEvent_deocdeRuleToTableWidget  (ui/event.py:500)  <qt_slot>
+           [call/high@L565] funs.fun_chy2::split_plus  (funs/fun_chy2.py:73)
+       [connect/medium@L101] ui.event::MainWindowEvent.clickEvent_decodeShow_tryReceive  (ui/event.py:598)  <hardware_io,qt_slot,serial_io_heuristic>
+           [call/high@L630] funs.fun_chy2::check2serial  (funs/fun_chy2.py:167)
+
+## MainWindowLogic.logic_readAutoTest  L103
+   ui.logic::MainWindowLogic.logic_readAutoTest  (ui/logic.py:103)
+       [connect/medium@L104] ui.event::MainWindowEvent.changeEvent_readAtuoTestRule  (ui/event.py:687)  <qt_slot>
+
+## MainWindowLogic.logic_turntable3x  L106
+   ui.logic::MainWindowLogic.logic_turntable3x  (ui/logic.py:106)

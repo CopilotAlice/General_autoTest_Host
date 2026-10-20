@@ -1,0 +1,435 @@
+# 模块 ui.navs.nav_loc  (ui/navs/nav_loc.py)
+
+## <module>  L1-1446  args=()  <module_body>
+
+## IMUColumnConfigDialog.__init__  L19-23  args=(self, parent, defaults, title_list)  <constructor>
+  -> [call/high@L23] ui.navs.nav_loc::IMUColumnConfigDialog._build_ui
+  <- [create/high@L1299] ui.navs.nav_loc::MainWindowNavLoc.open_imu_config_dialog
+
+## IMUColumnConfigDialog._build_ui  L25-44  args=(self)
+  -> [call/high@L28] ui.navs.nav_loc::IMUColumnConfigDialog._apply_defaults
+  -> [call/high@L29] ui.navs.nav_loc::IMUColumnConfigDialog._refresh_preview
+  -> [connect/high@L44] ui.navs.nav_loc::IMUColumnConfigDialog._refresh_preview   # editor.textChanged.connect
+  => (外部库) PyQt5.uic.loadUi x1
+  => (外部库) os.path.dirname x1
+  => (外部库) os.path.join x1
+  <- [call/high@L23] ui.navs.nav_loc::IMUColumnConfigDialog.__init__
+
+## IMUColumnConfigDialog._apply_defaults  L46-71  args=(self)
+  <- [call/high@L28] ui.navs.nav_loc::IMUColumnConfigDialog._build_ui
+
+## IMUColumnConfigDialog._parse_axis  L73-82  args=(self, text_value)
+  <- [call/high@L107] ui.navs.nav_loc::IMUColumnConfigDialog._refresh_preview
+
+## IMUColumnConfigDialog._title_of_axis  L84-89  args=(self, axis)
+  <- [call/high@L108] ui.navs.nav_loc::IMUColumnConfigDialog._refresh_preview
+
+## IMUColumnConfigDialog._refresh_preview  L91-109  args=(self)  <qt_slot>
+  -> [call/high@L107] ui.navs.nav_loc::IMUColumnConfigDialog._parse_axis
+  -> [call/high@L108] ui.navs.nav_loc::IMUColumnConfigDialog._title_of_axis
+  <- [call/high@L29] ui.navs.nav_loc::IMUColumnConfigDialog._build_ui
+  <- [connect/high@L44] ui.navs.nav_loc::IMUColumnConfigDialog._build_ui
+
+## IMUColumnConfigDialog.get_config  L111-132  args=(self)
+  <- [call/medium@L1306] ui.navs.nav_loc::MainWindowNavLoc.open_imu_config_dialog
+
+## MainWindowNavLoc.__init__  L136-168  args=(self, mainWindow)  <constructor>
+  -> [call/high@L145] ui.navs.nav_loc::MainWindowNavLoc._resolve_workspace_path
+  -> [call/high@L164] ui.navs.nav_loc::MainWindowNavLoc.init_inu_plot_items_lazy
+  -> [call/high@L165] ui.navs.nav_loc::MainWindowNavLoc.load_map_config
+  -> [call/high@L166] ui.navs.nav_loc::MainWindowNavLoc.load_offline_map
+  -> [call/high@L167] ui.navs.nav_loc::MainWindowNavLoc.init_radar
+  -> [call/high@L168] ui.navs.nav_loc::MainWindowNavLoc.init_logic
+  <- [dynamic/medium@L184] 通用自动测试上位机V0.95::MainWindow._init_modules_in_batches
+
+## MainWindowNavLoc._resolve_workspace_path  L170-174  args=(self, path_text)
+  => (外部库) os.getcwd x1
+  => (外部库) os.path.isabs x1
+  => (外部库) os.path.join x1
+  => (外部库) os.path.normpath x2
+  <- [call/high@L145] ui.navs.nav_loc::MainWindowNavLoc.__init__
+  <- [call/high@L408] ui.navs.nav_loc::MainWindowNavLoc._load_xyz_tile_mosaic
+  <- [call/high@L546] ui.navs.nav_loc::MainWindowNavLoc.load_offline_map
+  <- [call/high@L891] ui.navs.nav_loc::MainWindowNavLoc._stl_paths
+  <- [call/high@L892] ui.navs.nav_loc::MainWindowNavLoc._stl_paths
+
+## MainWindowNavLoc._append_nav_message  L176-178  args=(self, message_text)
+  <- [call/high@L214] ui.navs.nav_loc::MainWindowNavLoc._read_map_config
+  <- [call/high@L229] ui.navs.nav_loc::MainWindowNavLoc._read_map_config
+  <- [call/high@L233] ui.navs.nav_loc::MainWindowNavLoc._read_map_config
+  <- [call/high@L410] ui.navs.nav_loc::MainWindowNavLoc._load_xyz_tile_mosaic
+  <- [call/high@L420] ui.navs.nav_loc::MainWindowNavLoc._load_xyz_tile_mosaic
+  <- [call/high@L430] ui.navs.nav_loc::MainWindowNavLoc._load_xyz_tile_mosaic
+  <- [call/high@L454] ui.navs.nav_loc::MainWindowNavLoc._load_xyz_tile_mosaic
+  <- [call/high@L536] ui.navs.nav_loc::MainWindowNavLoc.load_offline_map
+  <- [call/high@L548] ui.navs.nav_loc::MainWindowNavLoc.load_offline_map
+  <- [call/high@L562] ui.navs.nav_loc::MainWindowNavLoc.load_offline_map
+  <- [call/high@L564] ui.navs.nav_loc::MainWindowNavLoc.load_offline_map
+  <- [call/high@L566] ui.navs.nav_loc::MainWindowNavLoc.load_offline_map
+  <- ... 另有 8 个调用者
+
+## MainWindowNavLoc._get_map_default_config  L180-209  args=(self)
+  <- [call/high@L212] ui.navs.nav_loc::MainWindowNavLoc._read_map_config
+
+## MainWindowNavLoc._read_map_config  L211-260  args=(self)
+  -> [call/high@L212] ui.navs.nav_loc::MainWindowNavLoc._get_map_default_config
+  -> [call/high@L214] ui.navs.nav_loc::MainWindowNavLoc._append_nav_message
+  -> [call/high@L229] ui.navs.nav_loc::MainWindowNavLoc._append_nav_message
+  -> [call/high@L233] ui.navs.nav_loc::MainWindowNavLoc._append_nav_message
+  => (外部库) configparser.ConfigParser x2
+  => (外部库) os.path.exists x1
+  <- [call/high@L263] ui.navs.nav_loc::MainWindowNavLoc.load_map_config
+
+## MainWindowNavLoc.load_map_config  L262-272  args=(self)
+  -> [call/high@L263] ui.navs.nav_loc::MainWindowNavLoc._read_map_config
+  <- [call/high@L165] ui.navs.nav_loc::MainWindowNavLoc.__init__
+  <- [call/high@L534] ui.navs.nav_loc::MainWindowNavLoc.load_offline_map
+  <- [call/high@L633] ui.navs.nav_loc::MainWindowNavLoc.reload_navigation_view
+
+## MainWindowNavLoc._tile_xyz_to_lon_lat  L274-279  args=(self, tile_x, tile_y, zoom_level)
+  => (外部库) numpy.arctan x1
+  => (外部库) numpy.degrees x1
+  => (外部库) numpy.sinh x1
+  <- [call/high@L481] ui.navs.nav_loc::MainWindowNavLoc._load_xyz_tile_mosaic
+  <- [call/high@L482] ui.navs.nav_loc::MainWindowNavLoc._load_xyz_tile_mosaic
+
+## MainWindowNavLoc._offset_bounds_by_meters  L281-297  args=(self, bounds, east_m, north_m)
+  => (外部库) numpy.cos x1
+  => (外部库) numpy.deg2rad x1
+  <- [call/high@L489] ui.navs.nav_loc::MainWindowNavLoc._load_xyz_tile_mosaic
+
+## MainWindowNavLoc._clear_map_item  L299-306  args=(self)
+  <- [call/high@L532] ui.navs.nav_loc::MainWindowNavLoc.load_offline_map
+
+## MainWindowNavLoc._qimage_to_rgba_array  L308-326  args=(self, image, flip_vertical, flip_horizontal, rotation_degrees)
+  => (外部库) numpy.fliplr x1
+  => (外部库) numpy.flipud x1
+  => (外部库) numpy.frombuffer x1
+  => (外部库) numpy.rot90 x3
+  <- [call/high@L570] ui.navs.nav_loc::MainWindowNavLoc.load_offline_map
+  <- [call/high@L577] ui.navs.nav_loc::MainWindowNavLoc.load_offline_map
+
+## MainWindowNavLoc._find_existing_tile_path  L328-341  args=(self, tile_dir, zoom_level, tile_x, tile_y, configured_ext)
+  => (外部库) os.path.exists x1
+  => (外部库) os.path.join x1
+  <- [call/high@L441] ui.navs.nav_loc::MainWindowNavLoc._load_xyz_tile_mosaic
+  <- [call/high@L469] ui.navs.nav_loc::MainWindowNavLoc._load_xyz_tile_mosaic
+
+## MainWindowNavLoc._infer_xyz_tile_layout  L343-405  args=(self, tile_dir, configured_zoom, configured_ext)  <in_cycle>
+  -> [call/high@L395] ui.navs.nav_loc::MainWindowNavLoc._infer_xyz_tile_layout
+  => (外部库) os.listdir x3
+  => (外部库) os.path.isdir x3
+  => (外部库) os.path.isfile x1
+  => (外部库) os.path.join x4
+  => (外部库) os.path.splitext x1
+  <- [call/high@L395] ui.navs.nav_loc::MainWindowNavLoc._infer_xyz_tile_layout
+  <- [call/high@L414] ui.navs.nav_loc::MainWindowNavLoc._load_xyz_tile_mosaic
+
+## MainWindowNavLoc._load_xyz_tile_mosaic  L407-502  args=(self)
+  -> [call/high@L408] ui.navs.nav_loc::MainWindowNavLoc._resolve_workspace_path
+  -> [call/high@L410] ui.navs.nav_loc::MainWindowNavLoc._append_nav_message
+  -> [call/high@L414] ui.navs.nav_loc::MainWindowNavLoc._infer_xyz_tile_layout
+  -> [call/high@L420] ui.navs.nav_loc::MainWindowNavLoc._append_nav_message
+  -> [call/high@L430] ui.navs.nav_loc::MainWindowNavLoc._append_nav_message
+  -> [call/high@L441] ui.navs.nav_loc::MainWindowNavLoc._find_existing_tile_path
+  -> [call/high@L454] ui.navs.nav_loc::MainWindowNavLoc._append_nav_message
+  -> [call/high@L469] ui.navs.nav_loc::MainWindowNavLoc._find_existing_tile_path
+  -> [call/high@L481] ui.navs.nav_loc::MainWindowNavLoc._tile_xyz_to_lon_lat
+  -> [call/high@L482] ui.navs.nav_loc::MainWindowNavLoc._tile_xyz_to_lon_lat
+  -> [call/high@L489] ui.navs.nav_loc::MainWindowNavLoc._offset_bounds_by_meters
+  => (外部库) PyQt5.QtGui.QImage x7
+  => (外部库) PyQt5.QtGui.QPainter x1
+  => (外部库) os.path.isdir x1
+  <- [call/high@L544] ui.navs.nav_loc::MainWindowNavLoc.load_offline_map
+
+## MainWindowNavLoc._render_svg_image  L504-529  args=(self, image_path)
+  => (外部库) PyQt5.QtCore.QRectF x1
+  => (外部库) PyQt5.QtCore.QSize x1
+  => (外部库) PyQt5.QtGui.QImage x2
+  => (外部库) PyQt5.QtGui.QPainter x1
+  => (外部库) PyQt5.QtSvg.QSvgRenderer x1
+  <- [call/high@L552] ui.navs.nav_loc::MainWindowNavLoc.load_offline_map
+
+## MainWindowNavLoc.load_offline_map  L531-603  args=(self)
+  -> [call/high@L532] ui.navs.nav_loc::MainWindowNavLoc._clear_map_item
+  -> [call/high@L534] ui.navs.nav_loc::MainWindowNavLoc.load_map_config
+  -> [call/high@L536] ui.navs.nav_loc::MainWindowNavLoc._append_nav_message
+  -> [call/high@L544] ui.navs.nav_loc::MainWindowNavLoc._load_xyz_tile_mosaic
+  -> [call/high@L546] ui.navs.nav_loc::MainWindowNavLoc._resolve_workspace_path
+  -> [call/high@L548] ui.navs.nav_loc::MainWindowNavLoc._append_nav_message
+  -> [call/high@L552] ui.navs.nav_loc::MainWindowNavLoc._render_svg_image
+  -> [call/high@L562] ui.navs.nav_loc::MainWindowNavLoc._append_nav_message
+  -> [call/high@L564] ui.navs.nav_loc::MainWindowNavLoc._append_nav_message
+  -> [call/high@L566] ui.navs.nav_loc::MainWindowNavLoc._append_nav_message
+  -> [call/high@L570] ui.navs.nav_loc::MainWindowNavLoc._qimage_to_rgba_array
+  -> [call/high@L577] ui.navs.nav_loc::MainWindowNavLoc._qimage_to_rgba_array
+  -> [call/high@L592] ui.navs.nav_loc::MainWindowNavLoc._append_nav_message
+  -> [call/high@L602] ui.navs.nav_loc::MainWindowNavLoc.fit_navigation_view
+  => (外部库) PyQt5.QtCore.QRectF x1
+  => (外部库) PyQt5.QtGui.QImageReader x1
+  => (外部库) os.path.basename x2
+  => (外部库) os.path.exists x1
+  => (外部库) os.path.splitext x2
+  => (外部库) pyqtgraph.ImageItem x1
+  <- [call/high@L166] ui.navs.nav_loc::MainWindowNavLoc.__init__
+  <- [call/high@L634] ui.navs.nav_loc::MainWindowNavLoc.reload_navigation_view
+
+## MainWindowNavLoc.fit_navigation_view  L605-630  args=(self, prefer_map)
+  => (外部库) numpy.asarray x2
+  => (外部库) numpy.concatenate x2
+  => (外部库) numpy.nanmax x2
+  => (外部库) numpy.nanmin x2
+  <- [call/high@L602] ui.navs.nav_loc::MainWindowNavLoc.load_offline_map
+
+## MainWindowNavLoc.reload_navigation_view  L632-635  args=(self)  <qt_slot>
+  -> [call/high@L633] ui.navs.nav_loc::MainWindowNavLoc.load_map_config
+  -> [call/high@L634] ui.navs.nav_loc::MainWindowNavLoc.load_offline_map
+  -> [call/high@L635] ui.navs.nav_loc::MainWindowNavLoc.init_radar
+  <- [connect/high@L1351] ui.navs.nav_loc::MainWindowNavLoc.init_logic
+
+## MainWindowNavLoc.init_inu_plot_items_lazy  L638-701  args=(self)
+  -> [call/high@L664] ui.navs.nav_loc::MainWindowNavLoc._hex_to_rgb
+  -> [call/high@L665] ui.navs.nav_loc::MainWindowNavLoc._hex_to_rgb
+  -> [call/high@L666] ui.navs.nav_loc::MainWindowNavLoc._hex_to_rgb
+  -> [call/high@L694] ui.navs.nav_loc::MainWindowNavLoc._init_attitude_view
+  -> [call/high@L698] ui.navs.nav_loc::MainWindowNavLoc._init_attitude_mesh
+  -> [call/high@L700] ui.navs.nav_loc::MainWindowNavLoc.update_attitude_plot
+  => (外部库) pyqtgraph.ScatterPlotItem x3
+  => (外部库) pyqtgraph.mkBrush x1
+  => (外部库) pyqtgraph.mkPen x2
+  <- [call/high@L164] ui.navs.nav_loc::MainWindowNavLoc.__init__
+
+## MainWindowNavLoc._hex_to_rgb  L703-719  args=(self, color_value)
+  <- [call/high@L664] ui.navs.nav_loc::MainWindowNavLoc.init_inu_plot_items_lazy
+  <- [call/high@L665] ui.navs.nav_loc::MainWindowNavLoc.init_inu_plot_items_lazy
+  <- [call/high@L666] ui.navs.nav_loc::MainWindowNavLoc.init_inu_plot_items_lazy
+
+## MainWindowNavLoc._hex_to_qcolor  L721-730  args=(self, color_value)
+  => (外部库) PyQt5.QtGui.QColor x3
+  <- [call/high@L745] ui.navs.nav_loc::MainWindowNavLoc._init_attitude_view
+
+## MainWindowNavLoc._init_attitude_view  L732-797  args=(self, background_color, line_width)
+  -> [call/high@L735] ui.navs.nav_loc::MainWindowNavLoc._append_nav_message
+  -> [call/high@L745] ui.navs.nav_loc::MainWindowNavLoc._hex_to_qcolor
+  -> [call/high@L759] ui.navs.nav_loc::MainWindowNavLoc._init_black_gl_grid
+  -> [call/high@L766] ui.navs.nav_loc::MainWindowNavLoc._init_attitude_axis_overlay
+  -> [call/high@L777] ui.navs.nav_loc::MainWindowNavLoc._append_nav_message
+  -> [call/high@L780] ui.navs.nav_loc::MainWindowNavLoc._append_nav_message
+  -> [call/high@L789] ui.navs.nav_loc::MainWindowNavLoc._init_black_2d_grid
+  => (外部库) pyqtgraph.TextItem x1
+  => (外部库) pyqtgraph.mkPen x1
+  => (外部库) pyqtgraph.opengl.GLAxisItem x1
+  => (外部库) pyqtgraph.opengl.GLViewWidget x1
+  <- [call/high@L694] ui.navs.nav_loc::MainWindowNavLoc.init_inu_plot_items_lazy
+
+## MainWindowNavLoc._init_black_gl_grid  L799-827  args=(self, grid_size, grid_spacing, z_shift)
+  => (外部库) numpy.arange x2
+  => (外部库) numpy.array x2
+  => (外部库) pyqtgraph.opengl.GLLinePlotItem x2
+  <- [call/high@L759] ui.navs.nav_loc::MainWindowNavLoc._init_attitude_view
+
+## MainWindowNavLoc._init_black_2d_grid  L829-847  args=(self)
+  => (外部库) numpy.arange x1
+  => (外部库) pyqtgraph.mkPen x1
+  <- [call/high@L789] ui.navs.nav_loc::MainWindowNavLoc._init_attitude_view
+
+## MainWindowNavLoc._init_attitude_axis_overlay  L849-887  args=(self, axis_width)
+  -> [call/high@L887] ui.navs.nav_loc::MainWindowNavLoc._append_nav_message
+  => (外部库) PyQt5.QtGui.QColor x1
+  => (外部库) numpy.array x3
+  => (外部库) pyqtgraph.opengl.GLLinePlotItem x1
+  => (外部库) pyqtgraph.opengl.GLTextItem x1
+  <- [call/high@L766] ui.navs.nav_loc::MainWindowNavLoc._init_attitude_view
+
+## MainWindowNavLoc._stl_paths  L889-893  args=(self)
+  -> [call/high@L891] ui.navs.nav_loc::MainWindowNavLoc._resolve_workspace_path
+  -> [call/high@L892] ui.navs.nav_loc::MainWindowNavLoc._resolve_workspace_path
+  <- [call/high@L1015] ui.navs.nav_loc::MainWindowNavLoc._init_attitude_mesh
+
+## MainWindowNavLoc._set_attitude_status  L895-900  args=(self, status_text)
+  -> [call/high@L900] ui.navs.nav_loc::MainWindowNavLoc._append_nav_message
+  <- [call/high@L1028] ui.navs.nav_loc::MainWindowNavLoc._init_attitude_mesh
+  <- [call/high@L1050] ui.navs.nav_loc::MainWindowNavLoc._init_attitude_mesh
+
+## MainWindowNavLoc._decode_ascii_stl  L902-925  args=(self, content_bytes)
+  => (外部库) numpy.asarray x2
+  <- [call/high@L953] ui.navs.nav_loc::MainWindowNavLoc._load_stl_vertices_faces
+
+## MainWindowNavLoc._decode_binary_stl  L927-945  args=(self, content_bytes)
+  => (外部库) numpy.empty x2
+  => (外部库) struct.unpack x2
+  <- [call/high@L950] ui.navs.nav_loc::MainWindowNavLoc._load_stl_vertices_faces
+
+## MainWindowNavLoc._load_stl_vertices_faces  L947-953  args=(self, stl_path)
+  -> [call/high@L950] ui.navs.nav_loc::MainWindowNavLoc._decode_binary_stl
+  -> [call/high@L953] ui.navs.nav_loc::MainWindowNavLoc._decode_ascii_stl
+  <- [call/high@L1019] ui.navs.nav_loc::MainWindowNavLoc._init_attitude_mesh
+
+## MainWindowNavLoc._dedup_vertices_and_edges  L955-980  args=(self, vertices, faces)
+  => (外部库) numpy.asarray x2
+  => (外部库) numpy.empty x1
+  => (外部库) numpy.round x1
+  <- [call/high@L1025] ui.navs.nav_loc::MainWindowNavLoc._init_attitude_mesh
+
+## MainWindowNavLoc._dedup_vertices_and_faces  L982-1005  args=(self, vertices, faces)
+  => (外部库) numpy.asarray x2
+  => (外部库) numpy.empty x1
+  => (外部库) numpy.round x1
+  <- [call/high@L1020] ui.navs.nav_loc::MainWindowNavLoc._init_attitude_mesh
+
+## MainWindowNavLoc._normalize_vertices  L1007-1012  args=(self, vertices)
+  => (外部库) numpy.linalg.norm x1
+  => (外部库) numpy.nanmax x1
+  => (外部库) numpy.nanmean x1
+  <- [call/high@L1023] ui.navs.nav_loc::MainWindowNavLoc._init_attitude_mesh
+
+## MainWindowNavLoc._init_attitude_mesh  L1014-1050  args=(self)
+  -> [call/high@L1015] ui.navs.nav_loc::MainWindowNavLoc._stl_paths
+  -> [call/high@L1019] ui.navs.nav_loc::MainWindowNavLoc._load_stl_vertices_faces
+  -> [call/high@L1020] ui.navs.nav_loc::MainWindowNavLoc._dedup_vertices_and_faces
+  -> [call/high@L1023] ui.navs.nav_loc::MainWindowNavLoc._normalize_vertices
+  -> [call/high@L1025] ui.navs.nav_loc::MainWindowNavLoc._dedup_vertices_and_edges
+  -> [call/high@L1028] ui.navs.nav_loc::MainWindowNavLoc._set_attitude_status
+  -> [call/high@L1031] ui.navs.nav_loc::MainWindowNavLoc._append_nav_message
+  -> [call/high@L1050] ui.navs.nav_loc::MainWindowNavLoc._set_attitude_status
+  => (外部库) numpy.asarray x3
+  => (外部库) os.path.basename x1
+  => (外部库) os.path.exists x1
+  <- [call/high@L698] ui.navs.nav_loc::MainWindowNavLoc.init_inu_plot_items_lazy
+
+## MainWindowNavLoc._ensure_gl_mesh_item  L1052-1070  args=(self)
+  => (外部库) pyqtgraph.opengl.GLMeshItem x1
+  => (外部库) pyqtgraph.opengl.MeshData x1
+  <- [call/high@L1112] ui.navs.nav_loc::MainWindowNavLoc.update_attitude_plot
+
+## MainWindowNavLoc._project_attitude_wireframe  L1072-1105  args=(self, pitch_deg, roll_deg, yaw_deg)
+  => (外部库) numpy.asarray x7
+  => (外部库) numpy.cos x6
+  => (外部库) numpy.deg2rad x3
+  => (外部库) numpy.sin x6
+  <- [call/high@L1123] ui.navs.nav_loc::MainWindowNavLoc.update_attitude_plot
+
+## MainWindowNavLoc.update_attitude_plot  L1107-1130  args=(self, pitch_deg, roll_deg, yaw_deg)
+  -> [call/high@L1112] ui.navs.nav_loc::MainWindowNavLoc._ensure_gl_mesh_item
+  -> [call/high@L1123] ui.navs.nav_loc::MainWindowNavLoc._project_attitude_wireframe
+  <- [call/high@L700] ui.navs.nav_loc::MainWindowNavLoc.init_inu_plot_items_lazy
+  <- [call/high@L1339] ui.navs.nav_loc::MainWindowNavLoc.update_attitude_from_dataframe
+
+## MainWindowNavLoc._parse_axis_value  L1132-1136  args=(self, axis_text, default_value)
+  <- [call/high@L1229] ui.navs.nav_loc::MainWindowNavLoc._validate_config
+  <- [call/high@L1236] ui.navs.nav_loc::MainWindowNavLoc._validate_config
+  <- [call/high@L1242] ui.navs.nav_loc::MainWindowNavLoc.apply_imu_config
+  <- [call/high@L1243] ui.navs.nav_loc::MainWindowNavLoc.apply_imu_config
+  <- [call/high@L1244] ui.navs.nav_loc::MainWindowNavLoc.apply_imu_config
+  <- [call/high@L1245] ui.navs.nav_loc::MainWindowNavLoc.apply_imu_config
+  <- [call/high@L1246] ui.navs.nav_loc::MainWindowNavLoc.apply_imu_config
+  <- [call/high@L1247] ui.navs.nav_loc::MainWindowNavLoc.apply_imu_config
+  <- [call/high@L1248] ui.navs.nav_loc::MainWindowNavLoc.apply_imu_config
+  <- [call/high@L1249] ui.navs.nav_loc::MainWindowNavLoc.apply_imu_config
+  <- [call/high@L1250] ui.navs.nav_loc::MainWindowNavLoc.apply_imu_config
+  <- [call/high@L1251] ui.navs.nav_loc::MainWindowNavLoc.apply_imu_config
+
+## MainWindowNavLoc._axis_title  L1138-1143  args=(self, axis_index)
+  <- [call/high@L1146] ui.navs.nav_loc::MainWindowNavLoc._axis_display_text
+
+## MainWindowNavLoc._axis_display_text  L1145-1147  args=(self, axis_index)
+  -> [call/high@L1146] ui.navs.nav_loc::MainWindowNavLoc._axis_title
+
+## MainWindowNavLoc._read_optional_lineedit_text  L1149-1160  args=(self, object_name, fallback_value)
+  <- [call/high@L1213] ui.navs.nav_loc::MainWindowNavLoc._collect_imu_config_defaults
+  <- [call/high@L1214] ui.navs.nav_loc::MainWindowNavLoc._collect_imu_config_defaults
+  <- [call/high@L1215] ui.navs.nav_loc::MainWindowNavLoc._collect_imu_config_defaults
+
+## MainWindowNavLoc._write_optional_lineedit_text  L1162-1169  args=(self, object_name, text_value)
+  <- [call/high@L1271] ui.navs.nav_loc::MainWindowNavLoc.apply_imu_config
+  <- [call/high@L1272] ui.navs.nav_loc::MainWindowNavLoc.apply_imu_config
+  <- [call/high@L1273] ui.navs.nav_loc::MainWindowNavLoc.apply_imu_config
+
+## MainWindowNavLoc._read_optional_combobox_tab_text  L1171-1184  args=(self, object_name, fallback_value)
+  <- [call/high@L1197] ui.navs.nav_loc::MainWindowNavLoc._collect_imu_config_defaults
+  <- [call/high@L1198] ui.navs.nav_loc::MainWindowNavLoc._collect_imu_config_defaults
+
+## MainWindowNavLoc._write_optional_combobox_tab_text  L1186-1193  args=(self, object_name, text_value)
+  <- [call/high@L1269] ui.navs.nav_loc::MainWindowNavLoc.apply_imu_config
+  <- [call/high@L1270] ui.navs.nav_loc::MainWindowNavLoc.apply_imu_config
+
+## MainWindowNavLoc._collect_imu_config_defaults  L1195-1216  args=(self)
+  -> [call/high@L1197] ui.navs.nav_loc::MainWindowNavLoc._read_optional_combobox_tab_text
+  -> [call/high@L1198] ui.navs.nav_loc::MainWindowNavLoc._read_optional_combobox_tab_text
+  -> [call/high@L1213] ui.navs.nav_loc::MainWindowNavLoc._read_optional_lineedit_text
+  -> [call/high@L1214] ui.navs.nav_loc::MainWindowNavLoc._read_optional_lineedit_text
+  -> [call/high@L1215] ui.navs.nav_loc::MainWindowNavLoc._read_optional_lineedit_text
+  <- [call/high@L1301] ui.navs.nav_loc::MainWindowNavLoc.open_imu_config_dialog
+
+## MainWindowNavLoc._is_valid_axis  L1218-1221  args=(self, axis_index)
+  <- [call/high@L1230] ui.navs.nav_loc::MainWindowNavLoc._validate_config
+  <- [call/high@L1237] ui.navs.nav_loc::MainWindowNavLoc._validate_config
+
+## MainWindowNavLoc._validate_config  L1223-1239  args=(self, config_dict)
+  -> [call/high@L1229] ui.navs.nav_loc::MainWindowNavLoc._parse_axis_value
+  -> [call/high@L1230] ui.navs.nav_loc::MainWindowNavLoc._is_valid_axis
+  -> [call/high@L1236] ui.navs.nav_loc::MainWindowNavLoc._parse_axis_value
+  -> [call/high@L1237] ui.navs.nav_loc::MainWindowNavLoc._is_valid_axis
+  <- [call/high@L1307] ui.navs.nav_loc::MainWindowNavLoc.open_imu_config_dialog
+
+## MainWindowNavLoc.apply_imu_config  L1241-1295  args=(self, config_dict)
+  -> [call/high@L1242] ui.navs.nav_loc::MainWindowNavLoc._parse_axis_value
+  -> [call/high@L1243] ui.navs.nav_loc::MainWindowNavLoc._parse_axis_value
+  -> [call/high@L1244] ui.navs.nav_loc::MainWindowNavLoc._parse_axis_value
+  -> [call/high@L1245] ui.navs.nav_loc::MainWindowNavLoc._parse_axis_value
+  -> [call/high@L1246] ui.navs.nav_loc::MainWindowNavLoc._parse_axis_value
+  -> [call/high@L1247] ui.navs.nav_loc::MainWindowNavLoc._parse_axis_value
+  -> [call/high@L1248] ui.navs.nav_loc::MainWindowNavLoc._parse_axis_value
+  -> [call/high@L1249] ui.navs.nav_loc::MainWindowNavLoc._parse_axis_value
+  -> [call/high@L1250] ui.navs.nav_loc::MainWindowNavLoc._parse_axis_value
+  -> [call/high@L1251] ui.navs.nav_loc::MainWindowNavLoc._parse_axis_value
+  -> [call/high@L1269] ui.navs.nav_loc::MainWindowNavLoc._write_optional_combobox_tab_text
+  -> [call/high@L1270] ui.navs.nav_loc::MainWindowNavLoc._write_optional_combobox_tab_text
+  -> [call/high@L1271] ui.navs.nav_loc::MainWindowNavLoc._write_optional_lineedit_text
+  -> [call/high@L1272] ui.navs.nav_loc::MainWindowNavLoc._write_optional_lineedit_text
+  -> [call/high@L1273] ui.navs.nav_loc::MainWindowNavLoc._write_optional_lineedit_text
+  -> [call/high@L1275] ui.navs.nav_loc::MainWindowNavLoc.init_radar
+  -> [call/high@L1282] ui.navs.nav_loc::MainWindowNavLoc._append_nav_message
+  <- [call/high@L1311] ui.navs.nav_loc::MainWindowNavLoc.open_imu_config_dialog
+
+## MainWindowNavLoc.open_imu_config_dialog  L1297-1311  args=(self)  <qt_slot>
+  -> [create/high@L1299] ui.navs.nav_loc::IMUColumnConfigDialog.__init__   # ctor
+  -> [call/high@L1301] ui.navs.nav_loc::MainWindowNavLoc._collect_imu_config_defaults
+  -> [call/medium@L1306] ui.navs.nav_loc::IMUColumnConfigDialog.get_config   # 局部变量 dialog = IMUColumnConfigDialog(...)
+  -> [call/high@L1307] ui.navs.nav_loc::MainWindowNavLoc._validate_config
+  -> [call/high@L1311] ui.navs.nav_loc::MainWindowNavLoc.apply_imu_config
+  => (外部库) PyQt5.QtWidgets.QMessageBox.warning x1
+  <- [connect/high@L1355] ui.navs.nav_loc::MainWindowNavLoc.init_logic
+
+## MainWindowNavLoc._series_from_axis  L1313-1326  args=(self, data_frame, axis_index, skip_count, end_count, rolling)
+  <- [call/high@L1334] ui.navs.nav_loc::MainWindowNavLoc.update_attitude_from_dataframe
+  <- [call/high@L1335] ui.navs.nav_loc::MainWindowNavLoc.update_attitude_from_dataframe
+  <- [call/high@L1336] ui.navs.nav_loc::MainWindowNavLoc.update_attitude_from_dataframe
+
+## MainWindowNavLoc.update_attitude_from_dataframe  L1328-1346  args=(self, data_frame, skip_count, end_count, rolling)
+  -> [call/high@L1334] ui.navs.nav_loc::MainWindowNavLoc._series_from_axis
+  -> [call/high@L1335] ui.navs.nav_loc::MainWindowNavLoc._series_from_axis
+  -> [call/high@L1336] ui.navs.nav_loc::MainWindowNavLoc._series_from_axis
+  -> [call/high@L1339] ui.navs.nav_loc::MainWindowNavLoc.update_attitude_plot
+  <- [call/medium@L1344] 通用自动测试上位机V0.95::MainWindow.show_message_2s
+
+## MainWindowNavLoc.init_logic  L1348-1358  args=(self)
+  -> [connect/high@L1351] ui.navs.nav_loc::MainWindowNavLoc.reload_navigation_view   # self.mw.pushButton_standRe.clicked.connect
+  -> [connect/high@L1355] ui.navs.nav_loc::MainWindowNavLoc.open_imu_config_dialog   # self.mw.pushButton_IMU_config.clicked.connect
+  <- [call/high@L168] ui.navs.nav_loc::MainWindowNavLoc.__init__
+
+## MainWindowNavLoc.get_nav_msg  L1360-1371  args=(self)
+  => (外部库) re.split x1
+  <- [call/high@L1375] ui.navs.nav_loc::MainWindowNavLoc.init_radar
+
+## MainWindowNavLoc.init_radar  L1374-1443  args=(self, fit_view)
+  -> [call/high@L1375] ui.navs.nav_loc::MainWindowNavLoc.get_nav_msg
+  => (外部库) numpy.cos x2
+  => (外部库) numpy.deg2rad x1
+  => (外部库) numpy.linspace x1
+  => (外部库) numpy.sin x1
+  => (外部库) pyqtgraph.ScatterPlotItem x1
+  => (外部库) pyqtgraph.mkPen x1
+  <- [call/high@L167] ui.navs.nav_loc::MainWindowNavLoc.__init__
+  <- [call/high@L635] ui.navs.nav_loc::MainWindowNavLoc.reload_navigation_view
+  <- [call/high@L1275] ui.navs.nav_loc::MainWindowNavLoc.apply_imu_config

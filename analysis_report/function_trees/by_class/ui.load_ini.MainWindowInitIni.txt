@@ -1,0 +1,16 @@
+# 类 ui.load_ini::MainWindowInitIni  (ui/load_ini.py:4)  bases=[]
+
+## MainWindowInitIni.__init__  L5
+   ui.load_ini::MainWindowInitIni.__init__  (ui/load_ini.py:5)
+       [call/high@L8] ui.load_ini::MainWindowInitIni.load_ini_debug_mode  (ui/load_ini.py:13)
+       [call/high@L9] ui.load_ini::MainWindowInitIni.event_load_ini_debug_mode  (ui/load_ini.py:22)
+       [call/high@L10] ui.load_ini::MainWindowInitIni.load_ini_ui_config  (ui/load_ini.py:44)
+
+## MainWindowInitIni.load_ini_debug_mode  L13
+   ui.load_ini::MainWindowInitIni.load_ini_debug_mode  (ui/load_ini.py:13)
+
+## MainWindowInitIni.event_load_ini_debug_mode  L22
+   ui.load_ini::MainWindowInitIni.event_load_ini_debug_mode  (ui/load_ini.py:22)
+
+## MainWindowInitIni.load_ini_ui_config  L44
+   ui.load_ini::MainWindowInitIni.load_ini_ui_config  (ui/load_ini.py:44)

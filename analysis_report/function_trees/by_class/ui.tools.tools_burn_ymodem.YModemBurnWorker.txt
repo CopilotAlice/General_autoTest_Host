@@ -1,0 +1,40 @@
+# 类 ui.tools.tools_burn_ymodem::YModemBurnWorker  (ui/tools/tools_burn_ymodem.py:34)  bases=['QtCore.QThread']
+
+## YModemBurnWorker.__init__  L39
+   ui.tools.tools_burn_ymodem::YModemBurnWorker.__init__  (ui/tools/tools_burn_ymodem.py:39)
+
+## YModemBurnWorker.stop  L46
+   ui.tools.tools_burn_ymodem::YModemBurnWorker.stop  (ui/tools/tools_burn_ymodem.py:46)
+
+## YModemBurnWorker.run  L49
+   ui.tools.tools_burn_ymodem::YModemBurnWorker.run  (ui/tools/tools_burn_ymodem.py:49)  <hardware_io,serial_io_heuristic,thread_entry>
+       [call/high@L74] ui.tools.tools_burn_ymodem::YModemBurnWorker._send_ymodem  (ui/tools/tools_burn_ymodem.py:90)
+           [call/high@L91(+1 处: 117)] ui.tools.tools_burn_ymodem::YModemBurnWorker._wait_for_byte  (ui/tools/tools_burn_ymodem.py:169)
+           [call/high@L95(+2 处: 105,120)] ui.tools.tools_burn_ymodem::YModemBurnWorker._send_packet_with_retry  (ui/tools/tools_burn_ymodem.py:122)  <hardware_io,serial_io_heuristic>
+           [call/high@L116] ui.tools.tools_burn_ymodem::YModemBurnWorker._send_eot  (ui/tools/tools_burn_ymodem.py:150)  <hardware_io,serial_io_heuristic>
+
+## YModemBurnWorker._send_ymodem  L90
+   ui.tools.tools_burn_ymodem::YModemBurnWorker._send_ymodem  (ui/tools/tools_burn_ymodem.py:90)
+       [call/high@L91(+1 处: 117)] ui.tools.tools_burn_ymodem::YModemBurnWorker._wait_for_byte  (ui/tools/tools_burn_ymodem.py:169)
+           [call/high@L174] ui.tools.tools_burn_ymodem::YModemBurnWorker._read_one  (ui/tools/tools_burn_ymodem.py:184)  <hardware_io,serial_io_heuristic>
+       [call/high@L95(+2 处: 105,120)] ui.tools.tools_burn_ymodem::YModemBurnWorker._send_packet_with_retry  (ui/tools/tools_burn_ymodem.py:122)  <hardware_io,serial_io_heuristic>
+           [call/high@L134] ui.tools.tools_burn_ymodem::crc16_ccitt  (ui/tools/tools_burn_ymodem.py:21)
+           [call/high@L143] ui.tools.tools_burn_ymodem::YModemBurnWorker._read_one  (ui/tools/tools_burn_ymodem.py:184)  <hardware_io,serial_io_heuristic>
+       [call/high@L116] ui.tools.tools_burn_ymodem::YModemBurnWorker._send_eot  (ui/tools/tools_burn_ymodem.py:150)  <hardware_io,serial_io_heuristic>
+           [call/high@L156(+1 处: 160)] ui.tools.tools_burn_ymodem::YModemBurnWorker._read_one  (ui/tools/tools_burn_ymodem.py:184)  <hardware_io,serial_io_heuristic>
+
+## YModemBurnWorker._send_packet_with_retry  L122
+   ui.tools.tools_burn_ymodem::YModemBurnWorker._send_packet_with_retry  (ui/tools/tools_burn_ymodem.py:122)  <hardware_io,serial_io_heuristic>
+       [call/high@L134] ui.tools.tools_burn_ymodem::crc16_ccitt  (ui/tools/tools_burn_ymodem.py:21)
+       [call/high@L143] ui.tools.tools_burn_ymodem::YModemBurnWorker._read_one  (ui/tools/tools_burn_ymodem.py:184)  <hardware_io,serial_io_heuristic>
+
+## YModemBurnWorker._send_eot  L150
+   ui.tools.tools_burn_ymodem::YModemBurnWorker._send_eot  (ui/tools/tools_burn_ymodem.py:150)  <hardware_io,serial_io_heuristic>
+       [call/high@L156(+1 处: 160)] ui.tools.tools_burn_ymodem::YModemBurnWorker._read_one  (ui/tools/tools_burn_ymodem.py:184)  <hardware_io,serial_io_heuristic>
+
+## YModemBurnWorker._wait_for_byte  L169
+   ui.tools.tools_burn_ymodem::YModemBurnWorker._wait_for_byte  (ui/tools/tools_burn_ymodem.py:169)
+       [call/high@L174] ui.tools.tools_burn_ymodem::YModemBurnWorker._read_one  (ui/tools/tools_burn_ymodem.py:184)  <hardware_io,serial_io_heuristic>
+
+## YModemBurnWorker._read_one  L184
+   ui.tools.tools_burn_ymodem::YModemBurnWorker._read_one  (ui/tools/tools_burn_ymodem.py:184)  <hardware_io,serial_io_heuristic>

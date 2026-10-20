@@ -1,0 +1,12 @@
+{
+ "py_files_expected": 38,
+ "py_files_analyzed": 38,
+ "missing": [],
+ "syntax_errors": [],
+ "def_line_mismatch": [],
+ "edge_line_outside_src": 0,
+ "edge_line_samples": [],
+ "edges_dangling": 0,
+ "modified_outside_analysis_report": [],
+ "executed_business_code": false
+}

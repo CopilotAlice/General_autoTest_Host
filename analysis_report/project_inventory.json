@@ -1,0 +1,1730 @@
+{
+ "generated_at": "2026-10-20",
+ "language": "Python 3 (PyQt5 桌面应用)",
+ "analysis_scope": {
+  "analyzed": "所有 .py (排除 .git/__pycache__/旧文件/test_fun/analysis_report)",
+  "excluded_legacy_archive": "旧文件/ (归档的历史版本, 约 30 个 .py, 仅清点未分析)"
+ },
+ "entry_points": [
+  {
+   "module": "通用自动测试上位机V0.90",
+   "file": "通用自动测试上位机V0.90.py",
+   "line": 4144,
+   "id": "通用自动测试上位机V0.90::<module>",
+   "legacy": true
+  },
+  {
+   "module": "通用自动测试上位机V0.95",
+   "file": "通用自动测试上位机V0.95.py",
+   "line": 4487,
+   "id": "通用自动测试上位机V0.95::<module>",
+   "legacy": false
+  }
+ ],
+ "startup": {
+  "main_window_class": "通用自动测试上位机V0.95::MainWindow",
+  "manager_mounts": [
+   {
+    "attr": "inits_debugMsg",
+    "cls": "ui.inits.inits_debugMsg::MainWindowInitDebugMsg",
+    "line": 168,
+    "file": "通用自动测试上位机V0.95.py",
+    "label": "调试信息"
+   },
+   {
+    "attr": "inits_showMsg",
+    "cls": "ui.inits.inits_showMsg::MainWindowInitShowMsg",
+    "line": 169,
+    "file": "通用自动测试上位机V0.95.py",
+    "label": "显示信息"
+   },
+   {
+    "attr": "init_ini",
+    "cls": "ui.load_ini::MainWindowInitIni",
+    "line": 170,
+    "file": "通用自动测试上位机V0.95.py",
+    "label": "配置文件"
+   },
+   {
+    "attr": "debug",
+    "cls": "ui.debug::MainWindowDebug",
+    "line": 171,
+    "file": "通用自动测试上位机V0.95.py",
+    "label": "调试模式"
+   },
+   {
+    "attr": "init_ui",
+    "cls": "ui.init_ui::MainWindowInit",
+    "line": 172,
+    "file": "通用自动测试上位机V0.95.py",
+    "label": "界面结构"
+   },
+   {
+    "attr": "times",
+    "cls": "ui.times::MainWindowTimes",
+    "line": 173,
+    "file": "通用自动测试上位机V0.95.py",
+    "label": "定时事件"
+   },
+   {
+    "attr": "settings",
+    "cls": "ui.settings::MainWindowSetting",
+    "line": 174,
+    "file": "通用自动测试上位机V0.95.py",
+    "label": "全局变量"
+   },
+   {
+    "attr": "constants",
+    "cls": "ui.constants::MainWindowConstants",
+    "line": 175,
+    "file": "通用自动测试上位机V0.95.py",
+    "label": "结构体"
+   },
+   {
+    "attr": "events",
+    "cls": "ui.event::MainWindowEvent",
+    "line": 176,
+    "file": "通用自动测试上位机V0.95.py",
+    "label": "事件处理"
+   },
+   {
+    "attr": "threads",
+    "cls": "ui.threads::MainWindowThread",
+    "line": 177,
+    "file": "通用自动测试上位机V0.95.py",
+    "label": "线程处理"
+   },
+   {
+    "attr": "uilogic",
+    "cls": "ui.logic::MainWindowLogic",
+    "line": 178,
+    "file": "通用自动测试上位机V0.95.py",
+    "label": "逻辑处理"
+   },
+   {
+    "attr": "getui",
+    "cls": "ui.get_ui::MainWindowGetUI",
+    "line": 179,
+    "file": "通用自动测试上位机V0.95.py",
+    "label": "获取界面"
+   },
+   {
+    "attr": "events_devide",
+    "cls": "ui.events.events_devide::MainWindowEventDevide",
+    "line": 180,
+    "file": "通用自动测试上位机V0.95.py",
+    "label": "多设备集"
+   },
+   {
+    "attr": "events_hidden",
+    "cls": "ui.events.events_hidden::MainWindowEventHidden",
+    "line": 181,
+    "file": "通用自动测试上位机V0.95.py",
+    "label": "显示模块"
+   },
+   {
+    "attr": "tools_bdcalib",
+    "cls": "ui.tools.tools_bdcalib::MainWindowToolBdcalib",
+    "line": 182,
+    "file": "通用自动测试上位机V0.95.py",
+    "label": "标定工具"
+   },
+   {
+    "attr": "tools_burn_ymodem",
+    "cls": "ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem",
+    "line": 183,
+    "file": "通用自动测试上位机V0.95.py",
+    "label": "Ymodem烧录"
+   },
+   {
+    "attr": "navs",
+    "cls": "ui.navs.nav_loc::MainWindowNavLoc",
+    "line": 184,
+    "file": "通用自动测试上位机V0.95.py",
+    "label": "导航模块"
+   }
+  ]
+ },
+ "file_categories": {
+  "binary_archive": {
+   "count": 3,
+   "files": [
+    "tongyong_chy.7z",
+    "通用自动测试上位机V0.88_普通版.exe",
+    "General_autoTest_Host.zip"
+   ]
+  },
+  "config(配置文件/)": {
+   "count": 4,
+   "files": [
+    "配置文件/root_config.txt",
+    "配置文件/para_com.txt",
+    "配置文件/functest_config.ini",
+    "配置文件/para_config.txt"
+   ]
+  },
+  "legacy_archive(旧文件/, 未纳入分析)": {
+   "count": 262,
+   "files": [
+    "旧文件/Automated_testingV1.4.ui",
+    "旧文件/Automated_testing.ui",
+    "旧文件/Automated_testingV14.py",
+    "旧文件/通用自动测试上位机V0.81.py",
+    "旧文件/sample_testingV13.py",
+    "旧文件/tongyong_chy_nei4.7z",
+    "旧文件/fun_chy.py",
+    "旧文件/V0.82.7z",
+    "旧文件/Automated_testingV13.py",
+    "旧文件/sample_testingV132.py",
+    "旧文件/V0.75/V0.77源代码.7z",
+    "旧文件/V0.75/通用自动测试上位机V0.75.py",
+    "旧文件/V0.75/通用自动测试上位机V0.75.exe",
+    "旧文件/V0.75/标定规则/02_D501速率测试.txt",
+    "旧文件/V0.75/标定规则/03_D501陀螺静态测试.txt",
+    "... 共 262 个"
+   ]
+  },
+  "notebook": {
+   "count": 2,
+   "files": [
+    "装订指令构造.ipynb",
+    "通用自动测试.ipynb"
+   ]
+  },
+  "other": {
+   "count": 1,
+   "files": [
+    ".gitignore"
+   ]
+  },
+  "other_text": {
+   "count": 3,
+   "files": [
+    "data.txt",
+    ".vscode/settings.json",
+    ".vscode/launch.json"
+   ]
+  },
+  "python_source": {
+   "count": 38,
+   "files": [
+    "Automated_testing.py",
+    "Automated_testingV20.py",
+    "Automated_testingV17.py",
+    "sample_testingV13.py",
+    "通用自动测试上位机V0.90.py",
+    "Automated_testingV19.py",
+    "通用自动测试上位机V0.95.py",
+    "ui/init_ui.py",
+    "ui/logic.py",
+    "ui/get_ui.py",
+    "ui/structs.py",
+    "ui/threads.py",
+    "ui/debug.py",
+    "ui/constants.py",
+    "ui/load_ini.py",
+    "ui/__init__.py",
+    "ui/settings.py",
+    "ui/event.py",
+    "ui/times.py",
+    "ui/events/__init__.py",
+    "ui/events/events_hidden.py",
+    "ui/events/events_devide.py",
+    "ui/tools/tools_bdcalib.py",
+    "ui/tools/tools_burn_ymodem.py",
+    "ui/tools/__init__.py",
+    "ui/inits/inits_debugMsg.py",
+    "ui/inits/inits_funcTest.py",
+    "ui/inits/inits_showMsg.py",
+    "ui/inits/__init__.py",
+    "ui/navs/nav_loc.py",
+    "ui/navs/__init__.py",
+    "funs/fun_locals.py",
+    "funs/fun_serial.py",
+    "funs/checks_remove.py",
+    "funs/fun_chy2.py",
+    "funs/fun_sate.py",
+    "funs/checks.py",
+    "funs/fun_checks.py"
+   ]
+  },
+  "qt_ui_designer": {
+   "count": 4,
+   "files": [
+    "Automated_testingV2.0.ui",
+    "Automated_testingV1.7.ui",
+    "Automated_testingV1.9.ui",
+    "ui/navs/IMUColumnConfigDialog.ui"
+   ]
+  },
+  "rule_files(处理规则, 运行期由 class_rule/MainWindowLogic 读取)": {
+   "count": 28,
+   "files": [
+    "处理规则/03_离散标定原始脉冲.txt",
+    "处理规则/01_十九位置原始脉冲.txt",
+    "处理规则/04_离散标定误差补偿.txt",
+    "处理规则/02_十九位置误差补偿.txt",
+    "处理规则/D501#01/LW_70_s_average.txt",
+    "处理规则/D501#01/JT_70_s_average.txt",
+    "处理规则/D501#01/SL_50_s_average.txt",
+    "处理规则/D501#01/SL_26_s_average.txt",
+    "处理规则/D501#01/SL_-30_s_average.txt",
+    "处理规则/D501#01/LW_-10_s_average.txt",
+    "处理规则/D501#01/LW_-55_s_average.txt",
+    "处理规则/D501#01/LW_-30_s_average.txt",
+    "处理规则/D501#01/JT_26_s_average.txt",
+    "处理规则/D501#01/LW_50_s_average.txt",
+    "处理规则/D501#01/LW_26_s_average.txt",
+    "处理规则/D501#01/SL_-10_s_average.txt",
+    "处理规则/D501#01/JT_-55_s_average.txt",
+    "处理规则/D501#01/SL_-55_s_average.txt",
+    "处理规则/D501#01/SL_70_s_average.txt",
+    "处理规则/D501#01/JT_-30_s_average.txt",
+    "处理规则/D501#01/JT_50_s_average.txt",
+    "处理规则/D501#01/JT_-10_s_average.txt",
+    "处理规则/D501#01/JT_-30/autosave3_BD1#loc[0.0_0.0_0.0_0.0]#222349_s.txt",
+    "处理规则/D501#01/JT_-55/autosave3_BD1#loc[0.0_0.0_0.0_0.0]#172126_s.txt",
+    "处理规则/D501#01/JT_26/autosave3_BD1#loc[0.0_0.0_0.0_0.0]#82832_s.txt",
+    "处理规则/D501#01/JT_-10/autosave3_BD1#loc[0.0_0.0_0.0_0.0]#32610_s.txt",
+    "处理规则/D501#01/JT_70/autosave3_BD1#loc[0.0_0.0_0.0_0.0]#183317_s.txt",
+    "处理规则/D501#01/JT_50/autosave3_BD1#loc[0.0_0.0_0.0_0.0]#133054_s.txt"
+   ]
+  },
+  "rule_files(标定规则, 运行期由 class_rule/MainWindowLogic 读取)": {
+   "count": 16,
+   "files": [
+    "标定规则/10_转台内框180位.txt",
+    "标定规则/02_D501速率测试.txt",
+    "标定规则/03_D501陀螺静态测试.txt",
+    "标定规则/05_19位置标定_激光惯导 copy.txt",
+    "标定规则/09_速率测试_中速.txt",
+    "标定规则/05_19位置标定_9s测试.txt",
+    "标定规则/01_19位置标定_激光惯导.txt",
+    "标定规则/13_转台内框90位.txt",
+    "标定规则/11_转台内框180-0位.txt",
+    "标定规则/12_转台内框180-270位.txt",
+    "标定规则/07_转台测试.txt",
+    "标定规则/14_转台内框90-270位.txt",
+    "标定规则/04_D501加表测试.txt",
+    "标定规则/08_石老师转位.txt",
+    "标定规则/06_惯导误差补偿掉头仿真.txt",
+    "标定规则/15_转台内框90-180位.txt"
+   ]
+  },
+  "rule_files(网口规则, 运行期由 class_rule/MainWindowLogic 读取)": {
+   "count": 2,
+   "files": [
+    "网口规则/01_705转发感知.txt",
+    "网口规则/02_705转发雷达.txt"
+   ]
+  },
+  "rule_files(自动规则, 运行期由 class_rule/MainWindowLogic 读取)": {
+   "count": 35,
+   "files": [
+    "自动规则/08_补做.txt",
+    "自动规则/17_19位置二次测试.txt",
+    "自动规则/23_高低温对准掉头导航测试.txt",
+    "自动规则/25_70B高低温冷启导航.txt",
+    "自动规则/05_400A标定.txt",
+    "自动规则/04_常温_高温交付验收测试.txt",
+    "自动规则/04_简易测试.txt",
+    "自动规则/19_不停转位测试.txt",
+    "自动规则/20_400A冷启测试.txt",
+    "自动规则/21_全温冷启测试.txt",
+    "自动规则/15_216十九位置标定.txt",
+    "自动规则/16_126十九位置标定-55_75.txt",
+    "自动规则/27_掉头导航测试2.txt",
+    "自动规则/26_掉头导航测试.txt",
+    "自动规则/24_70B标定.txt",
+    "自动规则/01_自动测试.txt",
+    "自动规则/06_98标定.txt",
+    "自动规则/09_煤机标定_10_25_40.txt",
+    "自动规则/22_三温度冷启.txt",
+    "自动规则/14_三逻辑全温标定.txt",
+    "自动规则/12_xxwrj标定.txt",
+    "自动规则/11_加表测试.txt",
+    "自动规则/02_D501自动测试.txt",
+    "自动规则/06_19位置标定_-45_60.txt",
+    "自动规则/10_09无人机_全温掉头.txt",
+    "自动规则/03_D501陀螺测试.txt",
+    "自动规则/13_xxxwrj_二次补偿.txt",
+    "自动规则/07_煤机标定.txt",
+    "自动规则/18_126十九位置标定bu.txt",
+    "自动规则/高低温掉头导航/02_两方向掉头导航.txt",
+    "自动规则/高低温掉头导航/01_低常高温两向冷热启测试.txt",
+    "自动规则/测试规则/04_测试继电器2.txt",
+    "自动规则/测试规则/02_烘干.txt",
+    "自动规则/测试规则/01_测试规则.txt",
+    "自动规则/测试规则/03_测试继电器.txt"
+   ]
+  },
+  "rule_files(装订规则, 运行期由 class_rule/MainWindowLogic 读取)": {
+   "count": 12,
+   "files": [
+    "装订规则/01_惯导通用_发送装订.txt",
+    "装订规则/02_130#70A惯导_发送装订.txt",
+    "装订规则/05_主惯导装订.txt",
+    "装订规则/04_卫导装订.txt",
+    "装订规则/06_UUVV.txt",
+    "装订规则/01_LG98惯导_发送装订.txt",
+    "装订规则/03_惯导通用_三自装订.txt",
+    "装订规则/07_60所S1.txt",
+    "装订规则/UUV4000/02_UUV4000锁紧.txt",
+    "装订规则/UUV4000/01_UUV4000对准.txt",
+    "装订规则/UUV4000/01_UUV4000GPS.txt",
+    "装订规则/测试/05_XX主控_传递对准.txt"
+   ]
+  },
+  "rule_files(解算规则, 运行期由 class_rule/MainWindowLogic 读取)": {
+   "count": 80,
+   "files": [
+    "解算规则/01_惯导通用协议.txt",
+    "解算规则/27_60所惯导通用协议卫导改.txt",
+    "解算规则/31_LG98测试协议320字节.txt",
+    "解算规则/30_126惯导_惯导到飞控_imu信息.txt",
+    "解算规则/25_126惯导原始脉冲协议.txt",
+    "解算规则/16_惯导标定协议 copy.txt",
+    "解算规则/03_惯导通用_煤机.txt",
+    "解算规则/02_惯导标定协议.txt",
+    "解算规则/11_XX计算机惯导协议.txt",
+    "解算规则/21_惯导320字节改脉冲加补偿.txt",
+    "解算规则/29_126惯导_光纤到飞控_导航信息.txt",
+    "解算规则/28_s300角振动.txt",
+    "解算规则/10_XX主控计算机惯导协议.txt",
+    "解算规则/26_60所激光惯导飞控接收协议.txt",
+    "解算规则/23_惯导192字节卫导.txt",
+    "... 共 80 个"
+   ]
+  },
+  "test_data(test_fun/ 样例数据)": {
+   "count": 1457,
+   "files": [
+    "test_fun/生成标定文件.ipynb",
+    "test_fun/统计标定数据V1.2.ipynb",
+    "test_fun/统计标定数据V1.1.ipynb",
+    "test_fun/129#01BD/SL_26_2/129#01BD_BD16#spd[0.0_0.0_0.0_-90.0]#20250501055632_hz.txt",
+    "test_fun/129#01BD/SL_26_2/129#01BD_BD2#spd[0.0_0.0_-10.0_0.0]#20250501055632_s.txt",
+    "test_fun/129#01BD/SL_26_2/129#01BD_BD15#spd[0.0_0.0_0.0_90.0]#20250501055632_hz.txt",
+    "test_fun/129#01BD/SL_26_2/129#01BD_BD4#spd[0.0_0.0_-50.0_0.0]#20250501055632_s.txt",
+    "test_fun/129#01BD/SL_26_2/129#01BD_BD21#spd[90.0_0.0_0.0_10.0]#20250501055632_hz.txt",
+    "test_fun/129#01BD/SL_26_2/129#01BD_BD13#spd[0.0_0.0_0.0_50.0]#20250501055632_hz.txt",
+    "test_fun/129#01BD/SL_26_2/129#01BD_BD3#spd[0.0_0.0_50.0_0.0]#20250501055632_hz.txt",
+    "test_fun/129#01BD/SL_26_2/129#01BD_BD22#spd[90.0_0.0_0.0_-10.0]#20250501055632_s.txt",
+    "test_fun/129#01BD/SL_26_2/129#01BD_BD12#spd[0.0_0.0_0.0_-10.0]#20250501055632_s.txt",
+    "test_fun/129#01BD/SL_26_2/129#01BD_BD4#spd[0.0_0.0_-50.0_0.0]#20250501055632_hz.txt",
+    "test_fun/129#01BD/SL_26_2/129#01BD_BD25#spd[90.0_0.0_0.0_90.0]#20250501055632_s.txt",
+    "test_fun/129#01BD/SL_26_2/129#01BD_BD16#spd[0.0_0.0_0.0_-90.0]#20250501055632_s.txt",
+    "... 共 1457 个"
+   ]
+  }
+ },
+ "modules": [
+  {
+   "name": "Automated_testing",
+   "file": "Automated_testing.py",
+   "lines": 10,
+   "is_package": false,
+   "generated": true,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [],
+   "n_functions": 0,
+   "top_level_functions": [],
+   "imports_internal": [],
+   "imported_by": [],
+   "imports_external": [],
+   "has_main_guard": false,
+   "layer": "UI层",
+   "role": "pyuic5 空壳(仅注释), 无定义"
+  },
+  {
+   "name": "Automated_testingV17",
+   "file": "Automated_testingV17.py",
+   "lines": 9779,
+   "is_package": false,
+   "generated": true,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [
+    "Ui_MainWindow"
+   ],
+   "n_functions": 2,
+   "top_level_functions": [],
+   "imports_internal": [],
+   "imported_by": [
+    "通用自动测试上位机V0.90"
+   ],
+   "imports_external": [
+    "PyQt5",
+    "pyqtgraph"
+   ],
+   "has_main_guard": false,
+   "layer": "UI层",
+   "role": "pyuic5 生成的 Ui_MainWindow V1.7 (仅旧版 V0.90 使用)"
+  },
+  {
+   "name": "Automated_testingV19",
+   "file": "Automated_testingV19.py",
+   "lines": 9518,
+   "is_package": false,
+   "generated": true,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [
+    "Ui_MainWindow"
+   ],
+   "n_functions": 2,
+   "top_level_functions": [],
+   "imports_internal": [],
+   "imported_by": [
+    "通用自动测试上位机V0.95"
+   ],
+   "imports_external": [
+    "PyQt5",
+    "pyqtgraph"
+   ],
+   "has_main_guard": false,
+   "layer": "UI层",
+   "role": "pyuic5 生成的 Ui_MainWindow (V0.95 使用), 仅 setupUi/retranslateUi"
+  },
+  {
+   "name": "Automated_testingV20",
+   "file": "Automated_testingV20.py",
+   "lines": 9745,
+   "is_package": false,
+   "generated": true,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [
+    "Ui_MainWindow"
+   ],
+   "n_functions": 2,
+   "top_level_functions": [],
+   "imports_internal": [],
+   "imported_by": [],
+   "imports_external": [
+    "PyQt5",
+    "pyqtgraph"
+   ],
+   "has_main_guard": false,
+   "layer": "UI层",
+   "role": "pyuic5 生成的 Ui_MainWindow V2.0, 未被任何模块导入(疑似未启用的新界面)"
+  },
+  {
+   "name": "funs.checks",
+   "file": "funs/checks.py",
+   "lines": 128,
+   "is_package": false,
+   "generated": false,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [],
+   "n_functions": 5,
+   "top_level_functions": [
+    "general_crc16Table",
+    "calculate_crc16",
+    "calculate_crc32",
+    "crc_1188a",
+    "calculate_crc16_mcrf4xx"
+   ],
+   "imports_internal": [],
+   "imported_by": [],
+   "imports_external": [],
+   "has_main_guard": false,
+   "layer": "公共工具层",
+   "role": "fun_checks 的重复副本(疑似废弃)"
+  },
+  {
+   "name": "funs.checks_remove",
+   "file": "funs/checks_remove.py",
+   "lines": 128,
+   "is_package": false,
+   "generated": false,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [],
+   "n_functions": 5,
+   "top_level_functions": [
+    "general_crc16Table",
+    "calculate_crc16",
+    "calculate_crc32",
+    "crc_1188a",
+    "calculate_crc16_mcrf4xx"
+   ],
+   "imports_internal": [],
+   "imported_by": [],
+   "imports_external": [],
+   "has_main_guard": false,
+   "layer": "公共工具层",
+   "role": "fun_checks 的重复副本(文件名带 remove, 疑似废弃)"
+  },
+  {
+   "name": "funs.fun_checks",
+   "file": "funs/fun_checks.py",
+   "lines": 131,
+   "is_package": false,
+   "generated": false,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [],
+   "n_functions": 6,
+   "top_level_functions": [
+    "general_crc16Table",
+    "calculate_crc16",
+    "calculate_crc16_0x00",
+    "calculate_crc32",
+    "crc_1188a",
+    "calculate_crc16_mcrf4xx"
+   ],
+   "imports_internal": [],
+   "imported_by": [
+    "ui.event",
+    "通用自动测试上位机V0.90",
+    "通用自动测试上位机V0.95"
+   ],
+   "imports_external": [],
+   "has_main_guard": false,
+   "layer": "公共工具层",
+   "role": "CRC16/CRC32 等校验函数"
+  },
+  {
+   "name": "funs.fun_chy2",
+   "file": "funs/fun_chy2.py",
+   "lines": 462,
+   "is_package": false,
+   "generated": false,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [
+    "class_rule"
+   ],
+   "n_functions": 28,
+   "top_level_functions": [
+    "angular_distance",
+    "get_machine_code",
+    "calculate_td_hex",
+    "calculate_fz_hex",
+    "calculate_gnss_hex",
+    "move_dir",
+    "split_pro",
+    "split_plus",
+    "move_dir_para_old",
+    "del_empty_folder",
+    "try_return_format",
+    "try_return_int",
+    "try_return_num",
+    "try_return_checkRule",
+    "try_return_bdx",
+    "try_return_check",
+    "try_int",
+    "check2serial",
+    "try_int_data",
+    "try_float_data",
+    "try_hex_data"
+   ],
+   "imports_internal": [],
+   "imported_by": [
+    "ui.event",
+    "ui.settings",
+    "ui.structs",
+    "通用自动测试上位机V0.90",
+    "通用自动测试上位机V0.95"
+   ],
+   "imports_external": [
+    "hashlib",
+    "os",
+    "pathlib",
+    "serial",
+    "shutil",
+    "struct",
+    "uuid"
+   ],
+   "has_main_guard": false,
+   "layer": "数据处理层",
+   "role": "规则解析与通用函数: class_rule(解算规则文件解析/十六进制解码)、try_* 类型转换、转台/天线/GNSS 指令构造、机器码"
+  },
+  {
+   "name": "funs.fun_locals",
+   "file": "funs/fun_locals.py",
+   "lines": 8,
+   "is_package": false,
+   "generated": false,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [],
+   "n_functions": 0,
+   "top_level_functions": [],
+   "imports_internal": [],
+   "imported_by": [
+    "ui.constants",
+    "ui.get_ui",
+    "ui.init_ui",
+    "ui.times",
+    "通用自动测试上位机V0.90",
+    "通用自动测试上位机V0.95"
+   ],
+   "imports_external": [],
+   "has_main_guard": false,
+   "layer": "配置层",
+   "role": "规则类型/目录名映射常量 locals_model_list"
+  },
+  {
+   "name": "funs.fun_sate",
+   "file": "funs/fun_sate.py",
+   "lines": 53,
+   "is_package": false,
+   "generated": false,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [],
+   "n_functions": 5,
+   "top_level_functions": [
+    "GPGGA2loc",
+    "GNVTG2loc",
+    "HEADINGA2loc",
+    "KSXT2loc",
+    "sate2location"
+   ],
+   "imports_internal": [],
+   "imported_by": [
+    "ui.structs"
+   ],
+   "imports_external": [],
+   "has_main_guard": false,
+   "layer": "数据处理层",
+   "role": "卫导 NMEA/KSXT/HEADINGA 报文 -> 位置/速度解析"
+  },
+  {
+   "name": "funs.fun_serial",
+   "file": "funs/fun_serial.py",
+   "lines": 76,
+   "is_package": false,
+   "generated": false,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [],
+   "n_functions": 3,
+   "top_level_functions": [
+    "tryOpenSerial",
+    "trySendSerial",
+    "tryOpenAndSend"
+   ],
+   "imports_internal": [],
+   "imported_by": [
+    "ui.events.events_devide",
+    "通用自动测试上位机V0.90",
+    "通用自动测试上位机V0.95"
+   ],
+   "imports_external": [
+    "serial",
+    "time"
+   ],
+   "has_main_guard": false,
+   "layer": "设备通信层",
+   "role": "pyserial 封装: tryOpenSerial / tryOpenAndSend (含重试)"
+  },
+  {
+   "name": "sample_testingV13",
+   "file": "sample_testingV13.py",
+   "lines": 10,
+   "is_package": false,
+   "generated": true,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [],
+   "n_functions": 0,
+   "top_level_functions": [],
+   "imports_internal": [],
+   "imported_by": [],
+   "imports_external": [],
+   "has_main_guard": false,
+   "layer": "UI层",
+   "role": "pyuic5 空壳(仅注释), 无定义"
+  },
+  {
+   "name": "ui",
+   "file": "ui/__init__.py",
+   "lines": 2,
+   "is_package": true,
+   "generated": false,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [],
+   "n_functions": 0,
+   "top_level_functions": [],
+   "imports_internal": [],
+   "imported_by": [],
+   "imports_external": [],
+   "has_main_guard": false,
+   "layer": "公共工具层",
+   "role": "包标记 ui/__init__.py (仅文档字符串)"
+  },
+  {
+   "name": "ui.constants",
+   "file": "ui/constants.py",
+   "lines": 70,
+   "is_package": false,
+   "generated": false,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [
+    "MainWindowConstants"
+   ],
+   "n_functions": 6,
+   "top_level_functions": [],
+   "imports_internal": [
+    "funs.fun_locals",
+    "ui.structs"
+   ],
+   "imported_by": [
+    "通用自动测试上位机V0.90",
+    "通用自动测试上位机V0.95"
+   ],
+   "imports_external": [
+    "os",
+    "serial",
+    "time"
+   ],
+   "has_main_guard": false,
+   "layer": "配置层",
+   "role": "MainWindowConstants: 初始化路径、12 路设置、装订结构、发送结构、三轴结构(持有 ui.structs 对象)"
+  },
+  {
+   "name": "ui.debug",
+   "file": "ui/debug.py",
+   "lines": 131,
+   "is_package": false,
+   "generated": false,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [
+    "MainWindowDebug",
+    "struct_debug"
+   ],
+   "n_functions": 12,
+   "top_level_functions": [],
+   "imports_internal": [],
+   "imported_by": [
+    "通用自动测试上位机V0.90",
+    "通用自动测试上位机V0.95"
+   ],
+   "imports_external": [
+    "PyQt5"
+   ],
+   "has_main_guard": false,
+   "layer": "业务逻辑层",
+   "role": "MainWindowDebug/struct_debug: 调试信息定时显示"
+  },
+  {
+   "name": "ui.event",
+   "file": "ui/event.py",
+   "lines": 707,
+   "is_package": false,
+   "generated": false,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [
+    "MainWindowEvent"
+   ],
+   "n_functions": 30,
+   "top_level_functions": [],
+   "imports_internal": [
+    "funs.fun_checks",
+    "funs.fun_chy2"
+   ],
+   "imported_by": [
+    "通用自动测试上位机V0.90",
+    "通用自动测试上位机V0.95"
+   ],
+   "imports_external": [
+    "PyQt5",
+    "os",
+    "pandas",
+    "serial",
+    "struct",
+    "time"
+   ],
+   "has_main_guard": false,
+   "layer": "事件层",
+   "role": "MainWindowEvent: 点击/变更事件处理(装订、解算显示、自动发送、规则切换等)"
+  },
+  {
+   "name": "ui.events",
+   "file": "ui/events/__init__.py",
+   "lines": 2,
+   "is_package": true,
+   "generated": false,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [],
+   "n_functions": 0,
+   "top_level_functions": [],
+   "imports_internal": [
+    "ui.events.events_devide",
+    "ui.events.events_hidden"
+   ],
+   "imported_by": [
+    "通用自动测试上位机V0.90",
+    "通用自动测试上位机V0.95"
+   ],
+   "imports_external": [],
+   "has_main_guard": false,
+   "layer": "事件层",
+   "role": "包: 导出 MainWindowEventDevide/Hidden"
+  },
+  {
+   "name": "ui.events.events_devide",
+   "file": "ui/events/events_devide.py",
+   "lines": 215,
+   "is_package": false,
+   "generated": false,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [
+    "MainWindowEventDevide"
+   ],
+   "n_functions": 11,
+   "top_level_functions": [],
+   "imports_internal": [
+    "funs.fun_serial"
+   ],
+   "imported_by": [
+    "ui.events"
+   ],
+   "imports_external": [
+    "PyQt5"
+   ],
+   "has_main_guard": false,
+   "layer": "事件层",
+   "role": "MainWindowEventDevide: 温箱与三轴转台控制事件(串口开关/指令/转动)"
+  },
+  {
+   "name": "ui.events.events_hidden",
+   "file": "ui/events/events_hidden.py",
+   "lines": 60,
+   "is_package": false,
+   "generated": false,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [
+    "MainWindowEventHidden"
+   ],
+   "n_functions": 6,
+   "top_level_functions": [],
+   "imports_internal": [],
+   "imported_by": [
+    "ui.events"
+   ],
+   "imports_external": [
+    "PyQt5"
+   ],
+   "has_main_guard": false,
+   "layer": "事件层",
+   "role": "MainWindowEventHidden: 隐藏控件显示切换事件"
+  },
+  {
+   "name": "ui.get_ui",
+   "file": "ui/get_ui.py",
+   "lines": 35,
+   "is_package": false,
+   "generated": false,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [
+    "MainWindowGetUI"
+   ],
+   "n_functions": 2,
+   "top_level_functions": [],
+   "imports_internal": [
+    "funs.fun_locals"
+   ],
+   "imported_by": [
+    "通用自动测试上位机V0.90",
+    "通用自动测试上位机V0.95"
+   ],
+   "imports_external": [
+    "os"
+   ],
+   "has_main_guard": false,
+   "layer": "UI层",
+   "role": "MainWindowGetUI: 获取路径下拉框名称等界面取值辅助"
+  },
+  {
+   "name": "ui.init_ui",
+   "file": "ui/init_ui.py",
+   "lines": 917,
+   "is_package": false,
+   "generated": false,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [
+    "MainWindowInit",
+    "struct_paraCal"
+   ],
+   "n_functions": 34,
+   "top_level_functions": [
+    "del_empty_folder",
+    "extract_number",
+    "sort_bd_files",
+    "fun_lw_average",
+    "fun_sl_average"
+   ],
+   "imports_internal": [
+    "funs.fun_locals"
+   ],
+   "imported_by": [
+    "通用自动测试上位机V0.90",
+    "通用自动测试上位机V0.95"
+   ],
+   "imports_external": [
+    "PyQt5",
+    "datetime",
+    "numpy",
+    "os",
+    "pandas",
+    "pathlib",
+    "pyqtgraph",
+    "re",
+    "shutil",
+    "struct"
+   ],
+   "has_main_guard": false,
+   "layer": "UI层",
+   "role": "MainWindowInit: 控件初始化/绘图控件/时间/提示/路径; 另含 struct_paraCal 标定参数处理类与均值函数"
+  },
+  {
+   "name": "ui.inits",
+   "file": "ui/inits/__init__.py",
+   "lines": 3,
+   "is_package": true,
+   "generated": false,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [],
+   "n_functions": 0,
+   "top_level_functions": [],
+   "imports_internal": [
+    "ui.inits.inits_debugMsg",
+    "ui.inits.inits_funcTest",
+    "ui.inits.inits_showMsg"
+   ],
+   "imported_by": [
+    "通用自动测试上位机V0.90",
+    "通用自动测试上位机V0.95"
+   ],
+   "imports_external": [],
+   "has_main_guard": false,
+   "layer": "UI层",
+   "role": "包: 导出 MainWindowInitDebugMsg/ShowMsg/FuncTest"
+  },
+  {
+   "name": "ui.inits.inits_debugMsg",
+   "file": "ui/inits/inits_debugMsg.py",
+   "lines": 10,
+   "is_package": false,
+   "generated": false,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [
+    "MainWindowInitDebugMsg"
+   ],
+   "n_functions": 2,
+   "top_level_functions": [],
+   "imports_internal": [],
+   "imported_by": [
+    "ui.inits"
+   ],
+   "imports_external": [],
+   "has_main_guard": false,
+   "layer": "UI层",
+   "role": "MainWindowInitDebugMsg: 调试信息占位初始化"
+  },
+  {
+   "name": "ui.inits.inits_funcTest",
+   "file": "ui/inits/inits_funcTest.py",
+   "lines": 120,
+   "is_package": false,
+   "generated": false,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [
+    "MainWindowInitFuncTest"
+   ],
+   "n_functions": 7,
+   "top_level_functions": [],
+   "imports_internal": [],
+   "imported_by": [
+    "ui.inits"
+   ],
+   "imports_external": [
+    "PyQt5",
+    "configparser",
+    "hashlib",
+    "pathlib",
+    "uuid"
+   ],
+   "has_main_guard": false,
+   "layer": "配置层",
+   "role": "MainWindowInitFuncTest: 读取 functest_config.ini, 机器码校验(uuid/hashlib), 按配置隐藏功能分组"
+  },
+  {
+   "name": "ui.inits.inits_showMsg",
+   "file": "ui/inits/inits_showMsg.py",
+   "lines": 51,
+   "is_package": false,
+   "generated": false,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [
+    "MainWindowInitShowMsg"
+   ],
+   "n_functions": 2,
+   "top_level_functions": [],
+   "imports_internal": [],
+   "imported_by": [
+    "ui.inits"
+   ],
+   "imports_external": [],
+   "has_main_guard": false,
+   "layer": "UI层",
+   "role": "MainWindowInitShowMsg: 显示信息处理初始化 (init_showMsg_process)"
+  },
+  {
+   "name": "ui.load_ini",
+   "file": "ui/load_ini.py",
+   "lines": 100,
+   "is_package": false,
+   "generated": false,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [
+    "MainWindowInitIni"
+   ],
+   "n_functions": 4,
+   "top_level_functions": [],
+   "imports_internal": [],
+   "imported_by": [
+    "通用自动测试上位机V0.95"
+   ],
+   "imports_external": [
+    "configparser",
+    "pathlib"
+   ],
+   "has_main_guard": false,
+   "layer": "配置层",
+   "role": "MainWindowInitIni: 读取 debug_mode / ui 配置 ini"
+  },
+  {
+   "name": "ui.logic",
+   "file": "ui/logic.py",
+   "lines": 107,
+   "is_package": false,
+   "generated": false,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [
+    "MainWindowLogic"
+   ],
+   "n_functions": 10,
+   "top_level_functions": [],
+   "imports_internal": [],
+   "imported_by": [
+    "通用自动测试上位机V0.90",
+    "通用自动测试上位机V0.95"
+   ],
+   "imports_external": [],
+   "has_main_guard": false,
+   "layer": "事件层",
+   "role": "MainWindowLogic: 集中完成控件信号 -> ui.event/ui.events 槽函数的 connect 连接"
+  },
+  {
+   "name": "ui.navs",
+   "file": "ui/navs/__init__.py",
+   "lines": 2,
+   "is_package": true,
+   "generated": false,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [],
+   "n_functions": 0,
+   "top_level_functions": [],
+   "imports_internal": [
+    "ui.navs.nav_loc"
+   ],
+   "imported_by": [
+    "通用自动测试上位机V0.95"
+   ],
+   "imports_external": [],
+   "has_main_guard": false,
+   "layer": "业务逻辑层",
+   "role": "包: 导出 MainWindowNavLoc"
+  },
+  {
+   "name": "ui.navs.nav_loc",
+   "file": "ui/navs/nav_loc.py",
+   "lines": 1446,
+   "is_package": false,
+   "generated": false,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [
+    "IMUColumnConfigDialog",
+    "MainWindowNavLoc"
+   ],
+   "n_functions": 60,
+   "top_level_functions": [],
+   "imports_internal": [],
+   "imported_by": [
+    "ui.navs"
+   ],
+   "imports_external": [
+    "PyQt5",
+    "configparser",
+    "numpy",
+    "os",
+    "pyqtgraph",
+    "re",
+    "struct"
+   ],
+   "has_main_guard": false,
+   "layer": "业务逻辑层",
+   "role": "MainWindowNavLoc/IMUColumnConfigDialog: 惯导轨迹/离线地图(瓦片/SVG)加载与绘制"
+  },
+  {
+   "name": "ui.settings",
+   "file": "ui/settings.py",
+   "lines": 113,
+   "is_package": false,
+   "generated": false,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [
+    "MainWindowSetting"
+   ],
+   "n_functions": 5,
+   "top_level_functions": [],
+   "imports_internal": [
+    "funs.fun_chy2"
+   ],
+   "imported_by": [
+    "通用自动测试上位机V0.90",
+    "通用自动测试上位机V0.95"
+   ],
+   "imports_external": [
+    "hashlib",
+    "os",
+    "uuid"
+   ],
+   "has_main_guard": false,
+   "layer": "配置层",
+   "role": "MainWindowSetting: 默认配置、para_com/para_config/root_config 读取"
+  },
+  {
+   "name": "ui.structs",
+   "file": "ui/structs.py",
+   "lines": 532,
+   "is_package": false,
+   "generated": false,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [
+    "struct_general_bind",
+    "struct_tab_setting",
+    "struct_sate",
+    "clickEventThread_decodeShow",
+    "struct_turnTable3x"
+   ],
+   "n_functions": 57,
+   "top_level_functions": [],
+   "imports_internal": [
+    "funs.fun_chy2",
+    "funs.fun_sate"
+   ],
+   "imported_by": [
+    "ui.constants"
+   ],
+   "imports_external": [
+    "PyQt5",
+    "ctypes",
+    "numpy",
+    "pandas",
+    "serial",
+    "struct",
+    "time"
+   ],
+   "has_main_guard": false,
+   "layer": "数据处理层",
+   "role": "数据/设备状态结构: struct_general_bind, struct_tab_setting(串口配置控件封装), struct_sate(卫导), struct_turnTable3x(三轴转台串口), clickEventThread_decodeShow(QThread)"
+  },
+  {
+   "name": "ui.threads",
+   "file": "ui/threads.py",
+   "lines": 8,
+   "is_package": false,
+   "generated": false,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [
+    "MainWindowThread"
+   ],
+   "n_functions": 1,
+   "top_level_functions": [],
+   "imports_internal": [],
+   "imported_by": [
+    "通用自动测试上位机V0.90",
+    "通用自动测试上位机V0.95"
+   ],
+   "imports_external": [
+    "os",
+    "struct",
+    "time"
+   ],
+   "has_main_guard": false,
+   "layer": "业务逻辑层",
+   "role": "MainWindowThread: 仅保存 mainWindow 引用的占位类"
+  },
+  {
+   "name": "ui.times",
+   "file": "ui/times.py",
+   "lines": 110,
+   "is_package": false,
+   "generated": false,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [
+    "MainWindowTimes"
+   ],
+   "n_functions": 4,
+   "top_level_functions": [],
+   "imports_internal": [
+    "funs.fun_locals"
+   ],
+   "imported_by": [
+    "通用自动测试上位机V0.90",
+    "通用自动测试上位机V0.95"
+   ],
+   "imports_external": [
+    "PyQt5",
+    "os"
+   ],
+   "has_main_guard": false,
+   "layer": "业务逻辑层",
+   "role": "MainWindowTimes: 测试计时/下拉框刷新等 QTimer 事件"
+  },
+  {
+   "name": "ui.tools",
+   "file": "ui/tools/__init__.py",
+   "lines": 2,
+   "is_package": true,
+   "generated": false,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [],
+   "n_functions": 0,
+   "top_level_functions": [],
+   "imports_internal": [
+    "ui.tools.tools_bdcalib",
+    "ui.tools.tools_burn_ymodem"
+   ],
+   "imported_by": [
+    "通用自动测试上位机V0.90",
+    "通用自动测试上位机V0.95"
+   ],
+   "imports_external": [],
+   "has_main_guard": false,
+   "layer": "业务逻辑层",
+   "role": "包: 导出 MainWindowToolBdcalib/BurnYmodem"
+  },
+  {
+   "name": "ui.tools.tools_bdcalib",
+   "file": "ui/tools/tools_bdcalib.py",
+   "lines": 1085,
+   "is_package": false,
+   "generated": false,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [
+    "MainWindowToolBdcalib",
+    "class_Worker"
+   ],
+   "n_functions": 39,
+   "top_level_functions": [
+    "extract_number",
+    "sort_key",
+    "init_sdf",
+    "decode_zfG"
+   ],
+   "imports_internal": [],
+   "imported_by": [
+    "ui.tools"
+   ],
+   "imports_external": [
+    "PyQt5",
+    "datetime",
+    "debugpy",
+    "numpy",
+    "os",
+    "pandas",
+    "re",
+    "shutil",
+    "threading"
+   ],
+   "has_main_guard": false,
+   "layer": "业务逻辑层",
+   "role": "MainWindowToolBdcalib + class_Worker(QThread): 标定数据预览/平均/参数计算/多项式拟合/生成 bin"
+  },
+  {
+   "name": "ui.tools.tools_burn_ymodem",
+   "file": "ui/tools/tools_burn_ymodem.py",
+   "lines": 345,
+   "is_package": false,
+   "generated": false,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [
+    "YModemBurnWorker",
+    "MainWindowToolBurnYmodem"
+   ],
+   "n_functions": 18,
+   "top_level_functions": [
+    "crc16_ccitt"
+   ],
+   "imports_internal": [],
+   "imported_by": [
+    "ui.tools"
+   ],
+   "imports_external": [
+    "PyQt5",
+    "os",
+    "serial",
+    "threading",
+    "time"
+   ],
+   "has_main_guard": false,
+   "layer": "设备通信层",
+   "role": "YModemBurnWorker(QThread) + MainWindowToolBurnYmodem: 通过 pyserial 以 YModem 协议烧录固件"
+  },
+  {
+   "name": "通用自动测试上位机V0.90",
+   "file": "通用自动测试上位机V0.90.py",
+   "lines": 4150,
+   "is_package": false,
+   "generated": false,
+   "legacy": true,
+   "syntax_error": null,
+   "classes": [
+    "MainWindow",
+    "Turntable_class"
+   ],
+   "n_functions": 100,
+   "top_level_functions": [
+    "decode_hex_frame",
+    "conver_turntable_status",
+    "lat_lon2str",
+    "sate2location",
+    "try_set_text",
+    "try_get_text",
+    "int2str",
+    "hex2int",
+    "int2hex",
+    "reverse",
+    "hexcut2list",
+    "struct_unpack_int3",
+    "check2serial",
+    "stop2chinese",
+    "check2chinese",
+    "chinese2check",
+    "rulename2chinese",
+    "testmode2chinese",
+    "calculate_frame_length",
+    "calculate_checksum",
+    "calculate_xorsum",
+    "decode_hex_frame_list",
+    "try_split_power_command",
+    "GPGGA2loc",
+    "KSXT2spd"
+   ],
+   "imports_internal": [
+    "Automated_testingV17",
+    "funs.fun_checks",
+    "funs.fun_chy2",
+    "funs.fun_locals",
+    "funs.fun_serial",
+    "ui.constants",
+    "ui.debug",
+    "ui.event",
+    "ui.events",
+    "ui.get_ui",
+    "ui.init_ui",
+    "ui.inits",
+    "ui.logic",
+    "ui.settings",
+    "ui.threads",
+    "ui.times",
+    "ui.tools"
+   ],
+   "imported_by": [],
+   "imports_external": [
+    "PyQt5",
+    "binascii",
+    "datetime",
+    "numpy",
+    "os",
+    "pandas",
+    "pyqtgraph",
+    "serial",
+    "struct",
+    "sys",
+    "threading",
+    "time"
+   ],
+   "has_main_guard": true,
+   "layer": "入口",
+   "role": "[旧版/遗留] 被 V0.95 取代的主程序, 引用 Automated_testingV17; 与 V0.95 存在大量逐字重复函数"
+  },
+  {
+   "name": "通用自动测试上位机V0.95",
+   "file": "通用自动测试上位机V0.95.py",
+   "lines": 4492,
+   "is_package": false,
+   "generated": false,
+   "legacy": false,
+   "syntax_error": null,
+   "classes": [
+    "MainWindow",
+    "Turntable_class"
+   ],
+   "n_functions": 110,
+   "top_level_functions": [
+    "_find_runtime_root",
+    "_prepare_runtime_workdir",
+    "decode_hex_frame",
+    "conver_turntable_status",
+    "lat_lon2str",
+    "sate2location",
+    "try_set_text",
+    "try_get_text",
+    "int2str",
+    "hex2int",
+    "int2hex",
+    "reverse",
+    "hexcut2list",
+    "struct_unpack_int3",
+    "check2serial",
+    "stop2chinese",
+    "check2chinese",
+    "chinese2check",
+    "rulename2chinese",
+    "testmode2chinese",
+    "calculate_frame_length",
+    "calculate_checksum",
+    "calculate_xorsum",
+    "decode_hex_frame_list",
+    "try_split_power_command",
+    "GPGGA2loc",
+    "KSXT2spd"
+   ],
+   "imports_internal": [
+    "Automated_testingV19",
+    "funs.fun_checks",
+    "funs.fun_chy2",
+    "funs.fun_locals",
+    "funs.fun_serial",
+    "ui.constants",
+    "ui.debug",
+    "ui.event",
+    "ui.events",
+    "ui.get_ui",
+    "ui.init_ui",
+    "ui.inits",
+    "ui.load_ini",
+    "ui.logic",
+    "ui.navs",
+    "ui.settings",
+    "ui.threads",
+    "ui.times",
+    "ui.tools"
+   ],
+   "imported_by": [],
+   "imports_external": [
+    "PyQt5",
+    "binascii",
+    "datetime",
+    "numpy",
+    "os",
+    "pandas",
+    "pyqtgraph",
+    "re",
+    "serial",
+    "struct",
+    "sys",
+    "threading",
+    "time"
+   ],
+   "has_main_guard": true,
+   "layer": "入口",
+   "role": "当前主程序: MainWindow(QMainWindow+Ui_MainWindow); 启动、manager 动态挂载(module_chain)、定时器/串口收发线程、测试流程(begin/bd/plan_test)、绘图、转台指令类 Turntable_class"
+  }
+ ],
+ "layers": [
+  "入口",
+  "UI层",
+  "事件层",
+  "业务逻辑层",
+  "数据处理层",
+  "设备通信层",
+  "配置层",
+  "公共工具层"
+ ],
+ "third_party": {
+  "PyQt5": 16,
+  "debugpy": 1,
+  "numpy": 6,
+  "pandas": 6,
+  "pyqtgraph": 7,
+  "serial": 8
+ },
+ "stdlib": {
+  "binascii": 2,
+  "configparser": 3,
+  "ctypes": 1,
+  "datetime": 4,
+  "hashlib": 3,
+  "os": 13,
+  "pathlib": 4,
+  "re": 4,
+  "shutil": 3,
+  "struct": 8,
+  "sys": 2,
+  "threading": 4,
+  "time": 8,
+  "uuid": 3
+ },
+ "tests": "未发现 test_*.py/pytest/unittest; test_fun/ 为样例数据而非测试代码",
+ "notebooks": [
+  "装订指令构造.ipynb",
+  "通用自动测试.ipynb"
+ ],
+ "threads_timers": {
+  "qthread_classes": [
+   "clickEventThread_decodeShow",
+   "class_Worker",
+   "YModemBurnWorker"
+  ],
+  "thread_edges": [
+   {
+    "src": "MainWindow.event_load_file",
+    "dst": "MainWindow.threading_receive_data",
+    "line": 2224
+   },
+   {
+    "src": "MainWindow.only_test",
+    "dst": "MainWindow.threading_receive_sate",
+    "line": 2945
+   },
+   {
+    "src": "MainWindow.only_test",
+    "dst": "MainWindow.threading_receive_data",
+    "line": 2957
+   },
+   {
+    "src": "MainWindow.bd_test",
+    "dst": "MainWindow.begin_test_bd",
+    "line": 2969
+   },
+   {
+    "src": "MainWindow.bd3x_test",
+    "dst": "MainWindow.begin_test_3xbd",
+    "line": 2985
+   },
+   {
+    "src": "MainWindow.plan_test",
+    "dst": "MainWindow.plan_test_threading",
+    "line": 2999
+   }
+  ],
+  "timer_edges": [
+   {
+    "src": "MainWindow.__init__",
+    "dst": "MainWindow.init_after_show",
+    "line": 152
+   },
+   {
+    "src": "MainWindow.init_after_show",
+    "dst": "MainWindow.show_message_01s",
+    "line": 776
+   },
+   {
+    "src": "MainWindow.init_after_show",
+    "dst": "MainWindow.show_message_05s",
+    "line": 780
+   },
+   {
+    "src": "MainWindow.init_after_show",
+    "dst": "MainWindow.show_message_1s",
+    "line": 784
+   },
+   {
+    "src": "MainWindow.init_after_show",
+    "dst": "MainWindow.show_message_5s",
+    "line": 788
+   },
+   {
+    "src": "MainWindow.init_after_show",
+    "dst": "MainWindow.show_message_2s",
+    "line": 792
+   },
+   {
+    "src": "MainWindow.init_after_show",
+    "dst": "MainWindow.event_send_sate1",
+    "line": 797
+   },
+   {
+    "src": "MainWindow.init_after_show",
+    "dst": "MainWindow.event_send_sate2",
+    "line": 801
+   },
+   {
+    "src": "MainWindow.init_after_show",
+    "dst": "MainWindow.event_td_send1",
+    "line": 806
+   },
+   {
+    "src": "MainWindow.init_after_show",
+    "dst": "MainWindow.event_fz_send1",
+    "line": 809
+   },
+   {
+    "src": "MainWindow.init_after_show",
+    "dst": "MainWindow.event_gnss_send1",
+    "line": 812
+   },
+   {
+    "src": "MainWindowDebug.debug_time_init",
+    "dst": "MainWindowDebug.debug_message_1s",
+    "line": 16
+   },
+   {
+    "src": "MainWindowEvent.changeEvent_general_autoSend",
+    "dst": "MainWindowEvent.clickEvent_general_send",
+    "line": 291
+   },
+   {
+    "src": "MainWindowTimes.update_test_time",
+    "dst": "MainWindowTimes.timeEvent_test",
+    "line": 20
+   },
+   {
+    "src": "MainWindowEventDevide.logic_turntable3x",
+    "dst": "MainWindowEventDevide.turntable3x_update_status",
+    "line": 53
+   },
+   {
+    "src": "MainWindowEventDevide.clickEvent_turntable3x_open",
+    "dst": "MainWindowEventDevide.turntable3x_update_status",
+    "line": 70
+   }
+  ],
+  "signal_slot_connections": 114
+ }
+}

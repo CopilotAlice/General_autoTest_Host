@@ -1,0 +1,13 @@
+# 模块 funs.checks  (funs/checks.py)
+
+## <module>  L1-128  args=()  <module_body>
+
+## general_crc16Table  L72-83  args=()
+
+## calculate_crc16  L84-89  args=(data)
+
+## calculate_crc32  L92-101  args=(buffer)
+
+## crc_1188a  L103-113  args=(data_add)
+
+## calculate_crc16_mcrf4xx  L116-128  args=(data)

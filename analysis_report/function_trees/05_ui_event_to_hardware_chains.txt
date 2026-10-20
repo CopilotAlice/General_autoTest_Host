@@ -1,0 +1,176 @@
+# PyQt5 事件 -> 业务处理 -> 硬件(串口)/数据处理 调用链 (BFS 最短路径, 静态)
+
+# 注意: 串口对象多保存在 ui.constants/ui.structs 的结构体属性中, 通过 obj.write()/read() 访问, 静态分析只能用启发式(serial_io_heuristic)识别 I/O 点
+
+## 链 1: 通用自动测试上位机V0.90::MainWindow.event_power_on  [hardware_io,qt_slot,serial_io_heuristic]
+   通用自动测试上位机V0.90::MainWindow.event_power_on  (通用自动测试上位机V0.90.py:1745)  ★硬件I/O
+     └▶ funs.fun_serial::tryOpenSerial  (funs/fun_serial.py:6)  ★硬件I/O
+       └▶ (外部库) serial.Serial
+       └▶ (外部库) serial.tools.list_ports.comports
+
+## 链 2: 通用自动测试上位机V0.90::MainWindow.event_power_off  [hardware_io,qt_slot,serial_io_heuristic]
+   通用自动测试上位机V0.90::MainWindow.event_power_off  (通用自动测试上位机V0.90.py:1815)  ★硬件I/O
+     └▶ funs.fun_serial::tryOpenSerial  (funs/fun_serial.py:6)  ★硬件I/O
+       └▶ (外部库) serial.Serial
+       └▶ (外部库) serial.tools.list_ports.comports
+
+## 链 3: 通用自动测试上位机V0.90::MainWindow.threading_receive_data  [hardware_io,serial_io_heuristic,thread_entry]
+   通用自动测试上位机V0.90::MainWindow.threading_receive_data  (通用自动测试上位机V0.90.py:2717)  ★硬件I/O
+     └▶ funs.fun_serial::tryOpenSerial  (funs/fun_serial.py:6)  ★硬件I/O
+       └▶ (外部库) serial.Serial
+       └▶ (外部库) serial.tools.list_ports.comports
+
+## 链 4: 通用自动测试上位机V0.95::MainWindow.event_power_on  [hardware_io,qt_slot,serial_io_heuristic]
+   通用自动测试上位机V0.95::MainWindow.event_power_on  (通用自动测试上位机V0.95.py:2016)  ★硬件I/O
+     └▶ funs.fun_serial::tryOpenSerial  (funs/fun_serial.py:6)  ★硬件I/O
+       └▶ (外部库) serial.Serial
+       └▶ (外部库) serial.tools.list_ports.comports
+
+## 链 5: 通用自动测试上位机V0.95::MainWindow.event_power_off  [hardware_io,qt_slot,serial_io_heuristic]
+   通用自动测试上位机V0.95::MainWindow.event_power_off  (通用自动测试上位机V0.95.py:2086)  ★硬件I/O
+     └▶ funs.fun_serial::tryOpenSerial  (funs/fun_serial.py:6)  ★硬件I/O
+       └▶ (外部库) serial.Serial
+       └▶ (外部库) serial.tools.list_ports.comports
+
+## 链 6: 通用自动测试上位机V0.95::MainWindow.threading_receive_data  [hardware_io,serial_io_heuristic,thread_entry]
+   通用自动测试上位机V0.95::MainWindow.threading_receive_data  (通用自动测试上位机V0.95.py:3006)  ★硬件I/O
+     └▶ funs.fun_serial::tryOpenSerial  (funs/fun_serial.py:6)  ★硬件I/O
+       └▶ (外部库) serial.Serial
+       └▶ (外部库) serial.tools.list_ports.comports
+
+## 链 7: ui.events.events_devide::MainWindowEventDevide.clickEvent_tempbox_set  [qt_slot]
+   ui.events.events_devide::MainWindowEventDevide.clickEvent_tempbox_set  (ui/events/events_devide.py:21)
+     └▶ funs.fun_serial::tryOpenAndSend  (funs/fun_serial.py:23)  ★硬件I/O
+       └▶ [47] serials.read  (串口读写, 启发式)
+       └▶ [59] serials.write  (串口读写, 启发式)
+       └▶ [61] serials.write  (串口读写, 启发式)
+       └▶ (外部库) serial.Serial
+
+## 链 8: 通用自动测试上位机V0.95::MainWindow.init_after_show  [timer_callback]
+   通用自动测试上位机V0.95::MainWindow.init_after_show  (通用自动测试上位机V0.95.py:197)
+     └▶ 通用自动测试上位机V0.95::MainWindow.show_message_5s  (通用自动测试上位机V0.95.py:1397)  ★硬件I/O
+       └▶ (外部库) serial.tools.list_ports.comports
+
+## 链 9: 通用自动测试上位机V0.95::MainWindow.init_after_show  [timer_callback]
+   通用自动测试上位机V0.95::MainWindow.init_after_show  (通用自动测试上位机V0.95.py:197)
+     └▶ 通用自动测试上位机V0.95::MainWindow.event_power_on  (通用自动测试上位机V0.95.py:2016)  ★硬件I/O
+       └▶ [2032] power_serials.write  (串口读写, 启发式)
+       └▶ [2034] power_serials.write  (串口读写, 启发式)
+       └▶ [2046] power_serials.write  (串口读写, 启发式)
+
+## 链 10: 通用自动测试上位机V0.95::MainWindow.plan_test_threading  [hardware_io,serial_io_heuristic,thread_entry]
+   通用自动测试上位机V0.95::MainWindow.plan_test_threading  (通用自动测试上位机V0.95.py:3542)  ★硬件I/O
+     └▶ 通用自动测试上位机V0.95::MainWindow.event_power_on  (通用自动测试上位机V0.95.py:2016)  ★硬件I/O
+       └▶ [2032] power_serials.write  (串口读写, 启发式)
+       └▶ [2034] power_serials.write  (串口读写, 启发式)
+       └▶ [2046] power_serials.write  (串口读写, 启发式)
+
+## 链 11: 通用自动测试上位机V0.95::MainWindow.init_after_show  [timer_callback]
+   通用自动测试上位机V0.95::MainWindow.init_after_show  (通用自动测试上位机V0.95.py:197)
+     └▶ 通用自动测试上位机V0.95::MainWindow.event_power_off  (通用自动测试上位机V0.95.py:2086)  ★硬件I/O
+       └▶ [2095] power_serials.write  (串口读写, 启发式)
+       └▶ [2097] power_serials.write  (串口读写, 启发式)
+       └▶ [2107] power_serials.write  (串口读写, 启发式)
+       └▶ (外部库) serial.Serial
+
+## 链 12: 通用自动测试上位机V0.95::MainWindow.plan_test_threading  [hardware_io,serial_io_heuristic,thread_entry]
+   通用自动测试上位机V0.95::MainWindow.plan_test_threading  (通用自动测试上位机V0.95.py:3542)  ★硬件I/O
+     └▶ 通用自动测试上位机V0.95::MainWindow.event_power_off  (通用自动测试上位机V0.95.py:2086)  ★硬件I/O
+       └▶ [2095] power_serials.write  (串口读写, 启发式)
+       └▶ [2097] power_serials.write  (串口读写, 启发式)
+       └▶ [2107] power_serials.write  (串口读写, 启发式)
+       └▶ (外部库) serial.Serial
+
+## 链 13: 通用自动测试上位机V0.95::MainWindow.event_load_file  [qt_slot]
+   通用自动测试上位机V0.95::MainWindow.event_load_file  (通用自动测试上位机V0.95.py:2176)
+     └▶ 通用自动测试上位机V0.95::MainWindow.threading_receive_data  (通用自动测试上位机V0.95.py:3006)  ★硬件I/O
+       └▶ [3180] serials.write  (串口读写, 启发式)
+       └▶ [3196] serials.write  (串口读写, 启发式)
+       └▶ [3200] serials.write  (串口读写, 启发式)
+
+## 链 14: 通用自动测试上位机V0.95::MainWindow.begin_test  [qt_slot]
+   通用自动测试上位机V0.95::MainWindow.begin_test  (通用自动测试上位机V0.95.py:2864)
+     └▶ 通用自动测试上位机V0.95::MainWindow.only_test  (通用自动测试上位机V0.95.py:2927)
+       └▶ 通用自动测试上位机V0.95::MainWindow.threading_receive_data  (通用自动测试上位机V0.95.py:3006)  ★硬件I/O
+         └▶ [3180] serials.write  (串口读写, 启发式)
+         └▶ [3196] serials.write  (串口读写, 启发式)
+         └▶ [3200] serials.write  (串口读写, 启发式)
+
+## 链 15: 通用自动测试上位机V0.95::MainWindow.plan_test_threading  [hardware_io,serial_io_heuristic,thread_entry]
+   通用自动测试上位机V0.95::MainWindow.plan_test_threading  (通用自动测试上位机V0.95.py:3542)  ★硬件I/O
+     └▶ 通用自动测试上位机V0.95::MainWindow.only_test  (通用自动测试上位机V0.95.py:2927)
+       └▶ 通用自动测试上位机V0.95::MainWindow.threading_receive_data  (通用自动测试上位机V0.95.py:3006)  ★硬件I/O
+         └▶ [3180] serials.write  (串口读写, 启发式)
+         └▶ [3196] serials.write  (串口读写, 启发式)
+         └▶ [3200] serials.write  (串口读写, 启发式)
+
+## 链 16: 通用自动测试上位机V0.95::MainWindow.begin_test  [qt_slot]
+   通用自动测试上位机V0.95::MainWindow.begin_test  (通用自动测试上位机V0.95.py:2864)
+     └▶ 通用自动测试上位机V0.95::MainWindow.only_test  (通用自动测试上位机V0.95.py:2927)
+       └▶ 通用自动测试上位机V0.95::MainWindow.threading_receive_sate  (通用自动测试上位机V0.95.py:3461)  ★硬件I/O
+         └▶ [3499] self.constants.struct_sate.serials.write  (串口读写, 启发式)
+         └▶ [3503] serials.readline  (串口读写, 启发式)
+         └▶ (外部库) serial.Serial
+
+## 链 17: 通用自动测试上位机V0.95::MainWindow.plan_test_threading  [hardware_io,serial_io_heuristic,thread_entry]
+   通用自动测试上位机V0.95::MainWindow.plan_test_threading  (通用自动测试上位机V0.95.py:3542)  ★硬件I/O
+     └▶ 通用自动测试上位机V0.95::MainWindow.only_test  (通用自动测试上位机V0.95.py:2927)
+       └▶ 通用自动测试上位机V0.95::MainWindow.threading_receive_sate  (通用自动测试上位机V0.95.py:3461)  ★硬件I/O
+         └▶ [3499] self.constants.struct_sate.serials.write  (串口读写, 启发式)
+         └▶ [3503] serials.readline  (串口读写, 启发式)
+         └▶ (外部库) serial.Serial
+
+## 链 18: 通用自动测试上位机V0.95::MainWindow.begin_test  [qt_slot]
+   通用自动测试上位机V0.95::MainWindow.begin_test  (通用自动测试上位机V0.95.py:2864)
+     └▶ 通用自动测试上位机V0.95::MainWindow.plan_test  (通用自动测试上位机V0.95.py:2998)
+       └▶ 通用自动测试上位机V0.95::MainWindow.plan_test_threading  (通用自动测试上位机V0.95.py:3542)  ★硬件I/O
+         └▶ [3736] temp_serial.write  (串口读写, 启发式)
+         └▶ [3740] temp_serial.read  (串口读写, 启发式)
+         └▶ (外部库) serial.Serial
+
+## 链 19: 通用自动测试上位机V0.95::MainWindow.begin_test  [qt_slot]
+   通用自动测试上位机V0.95::MainWindow.begin_test  (通用自动测试上位机V0.95.py:2864)
+     └▶ 通用自动测试上位机V0.95::MainWindow.bd_test  (通用自动测试上位机V0.95.py:2964)
+       └▶ 通用自动测试上位机V0.95::MainWindow.begin_test_bd  (通用自动测试上位机V0.95.py:3757)  ★硬件I/O
+         └▶ [3818] turntable_serial.read  (串口读写, 启发式)
+         └▶ [3896] turntable_serial.write  (串口读写, 启发式)
+         └▶ [3918] turntable_serial.write  (串口读写, 启发式)
+         └▶ (外部库) serial.Serial
+
+## 链 20: 通用自动测试上位机V0.95::MainWindow.plan_test_threading  [hardware_io,serial_io_heuristic,thread_entry]
+   通用自动测试上位机V0.95::MainWindow.plan_test_threading  (通用自动测试上位机V0.95.py:3542)  ★硬件I/O
+     └▶ 通用自动测试上位机V0.95::MainWindow.bd_test  (通用自动测试上位机V0.95.py:2964)
+       └▶ 通用自动测试上位机V0.95::MainWindow.begin_test_bd  (通用自动测试上位机V0.95.py:3757)  ★硬件I/O
+         └▶ [3818] turntable_serial.read  (串口读写, 启发式)
+         └▶ [3896] turntable_serial.write  (串口读写, 启发式)
+         └▶ [3918] turntable_serial.write  (串口读写, 启发式)
+         └▶ (外部库) serial.Serial
+
+## 链 21: ui.tools.tools_burn_ymodem::YModemBurnWorker.run  [hardware_io,serial_io_heuristic,thread_entry]
+   ui.tools.tools_burn_ymodem::YModemBurnWorker.run  (ui/tools/tools_burn_ymodem.py:49)  ★硬件I/O
+     └▶ ui.tools.tools_burn_ymodem::YModemBurnWorker._send_ymodem  (ui/tools/tools_burn_ymodem.py:90)
+       └▶ ui.tools.tools_burn_ymodem::YModemBurnWorker._send_packet_with_retry  (ui/tools/tools_burn_ymodem.py:122)  ★硬件I/O
+         └▶ [141] ser.write  (串口读写, 启发式)
+
+## 链 22: ui.tools.tools_burn_ymodem::YModemBurnWorker.run  [hardware_io,serial_io_heuristic,thread_entry]
+   ui.tools.tools_burn_ymodem::YModemBurnWorker.run  (ui/tools/tools_burn_ymodem.py:49)  ★硬件I/O
+     └▶ ui.tools.tools_burn_ymodem::YModemBurnWorker._send_ymodem  (ui/tools/tools_burn_ymodem.py:90)
+       └▶ ui.tools.tools_burn_ymodem::YModemBurnWorker._send_eot  (ui/tools/tools_burn_ymodem.py:150)  ★硬件I/O
+         └▶ [154] ser.write  (串口读写, 启发式)
+         └▶ [158] ser.write  (串口读写, 启发式)
+
+## 链 23: ui.tools.tools_burn_ymodem::YModemBurnWorker.run  [hardware_io,serial_io_heuristic,thread_entry]
+   ui.tools.tools_burn_ymodem::YModemBurnWorker.run  (ui/tools/tools_burn_ymodem.py:49)  ★硬件I/O
+     └▶ ui.tools.tools_burn_ymodem::YModemBurnWorker._send_ymodem  (ui/tools/tools_burn_ymodem.py:90)
+       └▶ ui.tools.tools_burn_ymodem::YModemBurnWorker._send_packet_with_retry  (ui/tools/tools_burn_ymodem.py:122)  ★硬件I/O
+         └▶ ui.tools.tools_burn_ymodem::YModemBurnWorker._read_one  (ui/tools/tools_burn_ymodem.py:184)  ★硬件I/O
+           └▶ [187] ser.read  (串口读写, 启发式)
+
+## 未找到静态 UI 事件入口的硬件 I/O 函数 (多由 threading.Thread/反射/运行期属性触发, 需人工确认)
+  - ui.event::MainWindowEvent.clickEvent_decodeShow_tryReceive  (ui/event.py:598)  被调用者: ['ui.logic::MainWindowLogic.logic_readDecodeRule']
+  - ui.structs::struct_turnTable3x.serial_open  (ui/structs.py:346)  被调用者: []
+  - ui.structs::struct_turnTable3x.serial_tryRec  (ui/structs.py:371)  被调用者: ['ui.structs::struct_turnTable3x.sendAndRec']
+  - ui.structs::struct_turnTable3x.serial_try_clear  (ui/structs.py:384)  被调用者: ['ui.structs::struct_turnTable3x.sendAndRec']
+  - ui.structs::struct_turnTable3x.sendAndRec  (ui/structs.py:397)  被调用者: ['ui.structs::struct_turnTable3x.sendMsg_chk', 'ui.structs::struct_turnTable3x.sendMsg_rem', 'ui.structs::struct_turnTable3x.sendMsg_loc', 'ui.structs::struct_turnTable3x.sendMsg_enb']
+  - ui.tools.tools_burn_ymodem::YModemBurnWorker.run  (ui/tools/tools_burn_ymodem.py:49)  被调用者: []
+  - ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.refresh_ports  (ui/tools/tools_burn_ymodem.py:279)  被调用者: ['ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.__init__', 'ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem._bind_events']

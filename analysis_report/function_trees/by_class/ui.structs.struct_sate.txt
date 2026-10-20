@@ -1,0 +1,49 @@
+# 类 ui.structs::struct_sate  (ui/structs.py:165)  bases=[]
+
+## struct_sate.__init__  L166
+   ui.structs::struct_sate.__init__  (ui/structs.py:166)
+       [call/high@L201] ui.structs::struct_sate.init_sate_name  (ui/structs.py:208)
+       [call/high@L202] ui.structs::struct_sate.init_sate_titl  (ui/structs.py:221)
+       [call/high@L203] ui.structs::struct_sate.init_sate_leng  (ui/structs.py:253)
+       [call/high@L204] ui.structs::struct_sate.init_sate_zero  (ui/structs.py:256)
+       [call/high@L205] ui.structs::struct_sate.init_sate_shap  (ui/structs.py:259)
+
+## struct_sate.init_sate_name  L208
+   ui.structs::struct_sate.init_sate_name  (ui/structs.py:208)
+
+## struct_sate.init_sate_save  L218
+   ui.structs::struct_sate.init_sate_save  (ui/structs.py:218)
+
+## struct_sate.init_sate_titl  L221
+   ui.structs::struct_sate.init_sate_titl  (ui/structs.py:221)
+
+## struct_sate.init_sate_leng  L253
+   ui.structs::struct_sate.init_sate_leng  (ui/structs.py:253)
+
+## struct_sate.init_sate_zero  L256
+   ui.structs::struct_sate.init_sate_zero  (ui/structs.py:256)
+
+## struct_sate.init_sate_shap  L259
+   ui.structs::struct_sate.init_sate_shap  (ui/structs.py:259)
+
+## struct_sate.append_sare_send  L269
+   ui.structs::struct_sate.append_sare_send  (ui/structs.py:269)
+
+## struct_sate.append_sate_receive  L272
+   ui.structs::struct_sate.append_sate_receive  (ui/structs.py:272)
+       [call/high@L274] ui.structs::struct_sate.replace_sate_receive  (ui/structs.py:276)
+           [call/high@L286] funs.fun_sate::GPGGA2loc  (funs/fun_sate.py:1)
+           [call/high@L289] funs.fun_sate::GNVTG2loc  (funs/fun_sate.py:21)
+           [call/high@L291] funs.fun_sate::HEADINGA2loc  (funs/fun_sate.py:24)
+           [call/high@L293] funs.fun_sate::KSXT2loc  (funs/fun_sate.py:26)
+
+## struct_sate.replace_sate_receive  L276
+   ui.structs::struct_sate.replace_sate_receive  (ui/structs.py:276)
+       [call/high@L286] funs.fun_sate::GPGGA2loc  (funs/fun_sate.py:1)
+           [call/high@L9(+1 处: 10)] funs.fun_sate::sate2location  (funs/fun_sate.py:46)
+       [call/high@L289] funs.fun_sate::GNVTG2loc  (funs/fun_sate.py:21)
+       [call/high@L291] funs.fun_sate::HEADINGA2loc  (funs/fun_sate.py:24)
+       [call/high@L293] funs.fun_sate::KSXT2loc  (funs/fun_sate.py:26)
+
+## struct_sate.clear_sate_list  L297
+   ui.structs::struct_sate.clear_sate_list  (ui/structs.py:297)

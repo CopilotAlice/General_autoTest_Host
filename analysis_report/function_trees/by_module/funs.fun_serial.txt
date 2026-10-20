@@ -1,0 +1,27 @@
+# 模块 funs.fun_serial  (funs/fun_serial.py)
+
+## <module>  L1-76  args=()  <module_body>
+
+## tryOpenSerial  L6-16  args=(com, baund, parity, stopbits, maxReryCount, delay)  <hardware_io>
+  => (外部库) serial.Serial x1
+  => (外部库) serial.tools.list_ports.comports x1
+  => (外部库) time.sleep x1
+  <- [call/high@L1759] 通用自动测试上位机V0.90::MainWindow.event_power_on
+  <- [call/high@L1772] 通用自动测试上位机V0.90::MainWindow.event_power_on
+  <- [call/high@L1783] 通用自动测试上位机V0.90::MainWindow.event_power_on
+  <- [call/high@L1822] 通用自动测试上位机V0.90::MainWindow.event_power_off
+  <- [call/high@L1845] 通用自动测试上位机V0.90::MainWindow.event_power_off
+  <- [call/high@L2857] 通用自动测试上位机V0.90::MainWindow.threading_receive_data
+  <- [call/high@L2030] 通用自动测试上位机V0.95::MainWindow.event_power_on
+  <- [call/high@L2043] 通用自动测试上位机V0.95::MainWindow.event_power_on
+  <- [call/high@L2054] 通用自动测试上位机V0.95::MainWindow.event_power_on
+  <- [call/high@L2093] 通用自动测试上位机V0.95::MainWindow.event_power_off
+  <- [call/high@L2116] 通用自动测试上位机V0.95::MainWindow.event_power_off
+  <- [call/high@L3156] 通用自动测试上位机V0.95::MainWindow.threading_receive_data
+
+## trySendSerial  L19-21  args=(serials, delay, msgList, msgType)
+
+## tryOpenAndSend  L23-75  args=(com, baund, parity, stopbits, maxReryCount, delay, msgList, msgType)  <hardware_io,serial_io_heuristic>
+  => (外部库) serial.Serial x1
+  => (外部库) time.sleep x2
+  <- [call/high@L33] ui.events.events_devide::MainWindowEventDevide.clickEvent_tempbox_set

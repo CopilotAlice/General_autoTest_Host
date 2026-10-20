@@ -1,0 +1,30 @@
+# 类 ui.inits.inits_funcTest::MainWindowInitFuncTest  (ui/inits/inits_funcTest.py:6)  bases=[]
+
+## MainWindowInitFuncTest.__init__  L7
+   ui.inits.inits_funcTest::MainWindowInitFuncTest.__init__  (ui/inits/inits_funcTest.py:7)
+       [call/high@L11] ui.inits.inits_funcTest::MainWindowInitFuncTest.get_uuid  (ui/inits/inits_funcTest.py:16)
+       [call/high@L12] ui.inits.inits_funcTest::MainWindowInitFuncTest.init_load_setting  (ui/inits/inits_funcTest.py:80)
+           [call/high@L81] ui.inits.inits_funcTest::MainWindowInitFuncTest.get_uuid  (ui/inits/inits_funcTest.py:16)
+       [call/high@L13] ui.inits.inits_funcTest::MainWindowInitFuncTest.load_config  (ui/inits/inits_funcTest.py:19)
+       [call/high@L14] ui.inits.inits_funcTest::MainWindowInitFuncTest.clickLogic_bykey  (ui/inits/inits_funcTest.py:33)
+           [connect/high@L47] ui.inits.inits_funcTest::MainWindowInitFuncTest.clickEvent_childHidden  (ui/inits/inits_funcTest.py:69)  <qt_slot>
+
+## MainWindowInitFuncTest.get_uuid  L16
+   ui.inits.inits_funcTest::MainWindowInitFuncTest.get_uuid  (ui/inits/inits_funcTest.py:16)
+
+## MainWindowInitFuncTest.load_config  L19
+   ui.inits.inits_funcTest::MainWindowInitFuncTest.load_config  (ui/inits/inits_funcTest.py:19)
+
+## MainWindowInitFuncTest.clickLogic_bykey  L33
+   ui.inits.inits_funcTest::MainWindowInitFuncTest.clickLogic_bykey  (ui/inits/inits_funcTest.py:33)
+       [connect/high@L47] ui.inits.inits_funcTest::MainWindowInitFuncTest.clickEvent_childHidden  (ui/inits/inits_funcTest.py:69)  <qt_slot>
+
+## MainWindowInitFuncTest.clickEvent_childHidden  L69
+   ui.inits.inits_funcTest::MainWindowInitFuncTest.clickEvent_childHidden  (ui/inits/inits_funcTest.py:69)  <qt_slot>
+
+## MainWindowInitFuncTest.groupbox_child_hidden  L74
+   ui.inits.inits_funcTest::MainWindowInitFuncTest.groupbox_child_hidden  (ui/inits/inits_funcTest.py:74)
+
+## MainWindowInitFuncTest.init_load_setting  L80
+   ui.inits.inits_funcTest::MainWindowInitFuncTest.init_load_setting  (ui/inits/inits_funcTest.py:80)
+       [call/high@L81] ui.inits.inits_funcTest::MainWindowInitFuncTest.get_uuid  (ui/inits/inits_funcTest.py:16)
