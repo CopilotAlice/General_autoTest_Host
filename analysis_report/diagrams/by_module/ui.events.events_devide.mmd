@@ -1,0 +1,28 @@
+%% 模块局部调用树: ui.events.events_devide (ui/events/events_devide.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["MainWindowEventDevide.__init__<br/><small>ui.events.events_devide:5</small>"]
+  f1["MainWindowEventDevide.logic_tempBox<br/><small>ui.events.events_devide:18</small>"]
+  f0 -->|"call/high"| f1
+  f2["MainWindowEventDevide.logic_turntable3x<br/><small>ui.events.events_devide:51</small>"]
+  f0 -->|"call/high"| f2
+  f3["MainWindowEventDevide.clickEvent_tempbox_set<br/><small>ui.events.events_devide:21</small>"]
+  f1 ==>|"connect/high"| f3
+  f4["tryOpenAndSend<br/><small>funs.fun_serial:23</small>"]
+  f3 -->|"call/high"| f4
+  f5["MainWindowEventDevide.turntable3x_update_status<br/><small>ui.events.events_devide:175</small>"]
+  f2 ==>|"timer/high"| f5
+  f6["MainWindowEventDevide.clickEvent_turntable3x_open<br/><small>ui.events.events_devide:59</small>"]
+  f2 ==>|"connect/high"| f6
+  f7["MainWindowEventDevide.clickEvent_turntable3x_close<br/><small>ui.events.events_devide:73</small>"]
+  f2 ==>|"connect/high"| f7
+  f8["MainWindowEventDevide.clickEvent_turntable3x_command<br/><small>ui.events.events_devide:80</small>"]
+  f2 ==>|"connect/high"| f8
+  f9["MainWindowEventDevide.clickEvent_turntable3x_turn<br/><small>ui.events.events_devide:125</small>"]
+  f2 ==>|"connect/high"| f9
+  f6 ==>|"timer/high"| f5
+  f8 -->|"call/high"| f6
+  f10["MainWindowEventDevide.turntable3x_get_input<br/><small>ui.events.events_devide:148</small>"]
+  f8 -->|"call/high"| f10
+  f8 -->|"call/high"| f10
+  f8 -->|"call/high"| f10
+  f9 -->|"call/high"| f10

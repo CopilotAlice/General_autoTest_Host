@@ -1,0 +1,845 @@
+[
+ {
+  "func": "通用自动测试上位机V0.90::MainWindow.__init__",
+  "file": "通用自动测试上位机V0.90.py",
+  "kind": "reflection",
+  "name": "hasattr",
+  "line": 248,
+  "expr": "hasattr(self, 'root_mode')"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::_find_runtime_root",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 54,
+  "expr": "getattr(sys, 'frozen', False)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow._init_modules_in_batches",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "setattr",
+  "line": 188,
+  "expr": "setattr(self, attr_name, self._init_module(display_name, module_cls))"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.init_after_show",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 503,
+  "expr": "getattr(self, 'comboBox_plot_choiceTab', None)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.init_after_show",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 504,
+  "expr": "getattr(self, 'comboBox_INU_choiceTab_stand', None)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.init_after_show",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 505,
+  "expr": "getattr(self, 'comboBox_INU_choiceTab_target', None)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.init_after_show",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "hasattr",
+  "line": 712,
+  "expr": "hasattr(self, 'comboBox_INU_beginAxis_stand')"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.init_after_show",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "hasattr",
+  "line": 714,
+  "expr": "hasattr(self, 'comboBox_INU_beginAxis_loc')"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.init_after_show",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "hasattr",
+  "line": 716,
+  "expr": "hasattr(self, 'comboBox_INU_beginAxis_spd')"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow._bind_plot_imu_lineedit_sync",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 821,
+  "expr": "getattr(self, src_name, None)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow._sync_plot_window_to_imu",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 836,
+  "expr": "getattr(self, src_name, None)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow._sync_plot_window_to_imu",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 843,
+  "expr": "getattr(self, dst_name, None)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow._sync_plot_window_to_imu",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "setattr",
+  "line": 851,
+  "expr": "setattr(self, attr_name, src_text)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.show_message_2s",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1179,
+  "expr": "getattr(self, 'inu_lon_axis', 1)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.show_message_2s",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1181,
+  "expr": "getattr(self, 'inu_lat_axis', 1)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.show_message_2s",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1184,
+  "expr": "getattr(self, 'comboBox_INU_choiceTab_target', None)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.show_message_2s",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1188,
+  "expr": "getattr(self, 'inu_target_tab', 1)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.show_message_2s",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1189,
+  "expr": "getattr(self, 'inu_target_tab', 1)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.show_message_2s",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1191,
+  "expr": "getattr(self, 'comboBox_INU_choiceTab_stand', None)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.show_message_2s",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1195,
+  "expr": "getattr(self, 'inu_stand_tab', 1)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.show_message_2s",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1196,
+  "expr": "getattr(self, 'inu_stand_tab', 1)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.show_message_2s",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1197,
+  "expr": "getattr(self, 'inu_northspd_axis', 1)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.show_message_2s",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1199,
+  "expr": "getattr(self, 'inu_eastspd_axis', 1)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.show_message_2s",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1201,
+  "expr": "getattr(self, 'inu_stand_north_text', '')"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.show_message_2s",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1202,
+  "expr": "getattr(self, 'inu_stand_east_text', '')"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.show_message_2s",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1209,
+  "expr": "getattr(self, 'lineEdit_IMU_skip', None)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.show_message_2s",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1211,
+  "expr": "getattr(self, 'lineEdit_INU_skipcount', None)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.show_message_2s",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1215,
+  "expr": "getattr(self, 'inu_skip_count_text', '1')"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.show_message_2s",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1217,
+  "expr": "getattr(self, 'inu_skip_count_text', '1')"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.show_message_2s",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1220,
+  "expr": "getattr(self, 'lineEdit_IMU_end', None)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.show_message_2s",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1222,
+  "expr": "getattr(self, 'lineEdit_INU_endcount', None)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.show_message_2s",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1226,
+  "expr": "getattr(self, 'inu_end_count_text', '0')"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.show_message_2s",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1228,
+  "expr": "getattr(self, 'inu_end_count_text', '0')"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.show_message_2s",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1231,
+  "expr": "getattr(self, 'lineEdit_IMU_rolls', None)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.show_message_2s",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1233,
+  "expr": "getattr(self, 'lineEdit_INU_rolling', None)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.show_message_2s",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1237,
+  "expr": "getattr(self, 'inu_rolling_text', '1')"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.show_message_2s",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1239,
+  "expr": "getattr(self, 'inu_rolling_text', '1')"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.show_message_2s",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1264,
+  "expr": "getattr(self, 'inu_stand_lon_text', self.default_longitude)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.show_message_2s",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1278,
+  "expr": "getattr(self, 'inu_stand_lat_text', self.default_latitude)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.show_message_2s",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "hasattr",
+  "line": 1343,
+  "expr": "hasattr(self, 'navs')"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow._set_lineedit_text_if_exists",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1366,
+  "expr": "getattr(self, name, None)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow._update_inu_error_stats",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1371,
+  "expr": "getattr(self, 'default_plot_decimal', 3)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.read_rules",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 2661,
+  "expr": "getattr(self, inu_combobox_name, None)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.update_stand_axis",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "hasattr",
+  "line": 2767,
+  "expr": "hasattr(self, 'comboBox_INU_beginAxis_stand')"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.update_target_loc",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "hasattr",
+  "line": 2790,
+  "expr": "hasattr(self, 'comboBox_INU_beginAxis_loc')"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::MainWindow.update_target_spd",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "reflection",
+  "name": "hasattr",
+  "line": 2813,
+  "expr": "hasattr(self, 'comboBox_INU_beginAxis_spd')"
+ },
+ {
+  "func": "ui.logic::MainWindowLogic.logic_12tab_setting",
+  "file": "ui/logic.py",
+  "kind": "connect_slot_unresolved",
+  "name": "self.mw.constants.structList_12tab[i].open.clicked.connect(self.mw.constants.structList_12tab[i].switch_open)",
+  "line": 53,
+  "expr": "self.mw.constants.structList_12tab[i].open.clicked.connect(self.mw.constants.structList_12tab[i].switch_open)",
+  "why": "slot 表达式: self.mw.constants.structList_12tab[i].switch_open"
+ },
+ {
+  "func": "ui.structs::struct_tab_setting.__init__.<locals>.get_widget",
+  "file": "ui/structs.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 113,
+  "expr": "getattr(mw, object_name, None)"
+ },
+ {
+  "func": "ui.navs.nav_loc::IMUColumnConfigDialog._apply_defaults",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 69,
+  "expr": "getattr(self, object_name, None)"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc._append_nav_message",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "hasattr",
+  "line": 177,
+  "expr": "hasattr(self.mw, 'list_init_msg')"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc.load_offline_map",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 533,
+  "expr": "getattr(self, '_map_config', None)"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc._init_attitude_view",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "hasattr",
+  "line": 769,
+  "expr": "hasattr(self.mw, 'groupBox_21')"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc._init_attitude_view",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "hasattr",
+  "line": 772,
+  "expr": "hasattr(self.mw, 'verticalLayout_14')"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc._init_attitude_axis_overlay",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "hasattr",
+  "line": 873,
+  "expr": "hasattr(gl, 'GLTextItem')"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc._axis_title",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "hasattr",
+  "line": 1139,
+  "expr": "hasattr(self.mw, 'sorted_titl_list')"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc._read_optional_lineedit_text",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1150,
+  "expr": "getattr(self.mw, object_name, None)"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc._write_optional_lineedit_text",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1163,
+  "expr": "getattr(self.mw, object_name, None)"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc._read_optional_combobox_tab_text",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1172,
+  "expr": "getattr(self.mw, object_name, None)"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc._write_optional_combobox_tab_text",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1187,
+  "expr": "getattr(self.mw, object_name, None)"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc._collect_imu_config_defaults",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1197,
+  "expr": "getattr(self.mw, 'inu_target_tab', 1)"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc._collect_imu_config_defaults",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1198,
+  "expr": "getattr(self.mw, 'inu_stand_tab', 1)"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc._collect_imu_config_defaults",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1199,
+  "expr": "getattr(self.mw, 'inu_lon_axis', 1)"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc._collect_imu_config_defaults",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1200,
+  "expr": "getattr(self.mw, 'inu_lat_axis', 1)"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc._collect_imu_config_defaults",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1201,
+  "expr": "getattr(self.mw, 'inu_eastspd_axis', 1)"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc._collect_imu_config_defaults",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1202,
+  "expr": "getattr(self.mw, 'inu_northspd_axis', 1)"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc._collect_imu_config_defaults",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1203,
+  "expr": "getattr(self.mw, 'inu_upspd_axis', 1)"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc._collect_imu_config_defaults",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1204,
+  "expr": "getattr(self.mw, 'inu_stand_lon_text', '116.50271')"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc._collect_imu_config_defaults",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1205,
+  "expr": "getattr(self.mw, 'inu_stand_lat_text', '39.73155')"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc._collect_imu_config_defaults",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1206,
+  "expr": "getattr(self.mw, 'inu_radar_distance_text', '500 1000 1500')"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc._collect_imu_config_defaults",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1207,
+  "expr": "getattr(self.mw, 'inu_stand_east_text', '')"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc._collect_imu_config_defaults",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1208,
+  "expr": "getattr(self.mw, 'inu_stand_north_text', '')"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc._collect_imu_config_defaults",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1209,
+  "expr": "getattr(self.mw, 'inu_stand_up_text', '')"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc._collect_imu_config_defaults",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1210,
+  "expr": "getattr(self.mw, 'inu_pitch_axis', 1)"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc._collect_imu_config_defaults",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1211,
+  "expr": "getattr(self.mw, 'inu_roll_axis', 1)"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc._collect_imu_config_defaults",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1212,
+  "expr": "getattr(self.mw, 'inu_yaw_axis', 1)"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc._collect_imu_config_defaults",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1213,
+  "expr": "getattr(self.mw, 'inu_skip_count_text', '1')"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc._collect_imu_config_defaults",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1214,
+  "expr": "getattr(self.mw, 'inu_end_count_text', '0')"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc._collect_imu_config_defaults",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1215,
+  "expr": "getattr(self.mw, 'inu_rolling_text', '1')"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc._is_valid_axis",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "hasattr",
+  "line": 1219,
+  "expr": "hasattr(self.mw, 'sorted_titl_list')"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc.open_imu_config_dialog",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1298,
+  "expr": "getattr(self.mw, 'sorted_titl_list', [])"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc.update_attitude_from_dataframe",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1329,
+  "expr": "getattr(self.mw, 'inu_pitch_axis', 1)"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc.update_attitude_from_dataframe",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1330,
+  "expr": "getattr(self.mw, 'inu_roll_axis', 1)"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc.update_attitude_from_dataframe",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1331,
+  "expr": "getattr(self.mw, 'inu_yaw_axis', 1)"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc.update_attitude_from_dataframe",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "hasattr",
+  "line": 1345,
+  "expr": "hasattr(self.mw, 'debug_list_3')"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc.init_logic",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "hasattr",
+  "line": 1353,
+  "expr": "hasattr(self.mw, 'pushButton_IMU_config')"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc.init_logic",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "hasattr",
+  "line": 1356,
+  "expr": "hasattr(self.mw, 'checkBox_lock')"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc.init_logic",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "connect_slot_unresolved",
+  "name": "self.mw.checkBox_lock.toggled.connect(self.graphicsView_INU_loc_adp.setAspectLocked)",
+  "line": 1358,
+  "expr": "self.mw.checkBox_lock.toggled.connect(self.graphicsView_INU_loc_adp.setAspectLocked)",
+  "why": "槽为运行期对象属性(控件/结构体成员), 静态无法定位定义"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc.get_nav_msg",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1361,
+  "expr": "getattr(self.mw, 'inu_stand_lat_text', '39.73155')"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc.get_nav_msg",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1362,
+  "expr": "getattr(self.mw, 'inu_stand_lon_text', '116.31345')"
+ },
+ {
+  "func": "ui.navs.nav_loc::MainWindowNavLoc.get_nav_msg",
+  "file": "ui/navs/nav_loc.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 1363,
+  "expr": "getattr(self.mw, 'inu_radar_distance_text', '500 1000 1500')"
+ },
+ {
+  "func": "ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem._build_tab_if_needed",
+  "file": "ui/tools/tools_burn_ymodem.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 203,
+  "expr": "getattr(self.mw, 'tabWidget_3', None)"
+ },
+ {
+  "func": "ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem._build_tab_if_needed",
+  "file": "ui/tools/tools_burn_ymodem.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 207,
+  "expr": "getattr(self.mw, 'tab_tools_burn', None)"
+ },
+ {
+  "func": "ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem._bind_events",
+  "file": "ui/tools/tools_burn_ymodem.py",
+  "kind": "reflection",
+  "name": "hasattr",
+  "line": 268,
+  "expr": "hasattr(self.mw, 'pushButton_tools_burn_scan')"
+ },
+ {
+  "func": "ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.refresh_ports",
+  "file": "ui/tools/tools_burn_ymodem.py",
+  "kind": "reflection",
+  "name": "getattr",
+  "line": 280,
+  "expr": "getattr(self.mw, 'comboBox_tools_burn_com', None)"
+ },
+ {
+  "func": "ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.start_burn",
+  "file": "ui/tools/tools_burn_ymodem.py",
+  "kind": "connect_slot_unresolved",
+  "name": "self.worker.progress_signal.connect(self.mw.progressBar_tools_burn.setValue)",
+  "line": 326,
+  "expr": "self.worker.progress_signal.connect(self.mw.progressBar_tools_burn.setValue)",
+  "why": "槽为运行期对象属性(控件/结构体成员), 静态无法定位定义"
+ },
+ {
+  "func": "通用自动测试上位机V0.90::try_set_text",
+  "file": "通用自动测试上位机V0.90.py",
+  "kind": "unresolved_name",
+  "line": 3861,
+  "expr": "types(...)",
+  "name": "无法解析名称 'types' (参数/动态绑定的可调用对象)"
+ },
+ {
+  "func": "通用自动测试上位机V0.90::try_set_text",
+  "file": "通用自动测试上位机V0.90.py",
+  "kind": "unresolved_name",
+  "line": 3862,
+  "expr": "types(...)",
+  "name": "无法解析名称 'types' (参数/动态绑定的可调用对象)"
+ },
+ {
+  "func": "通用自动测试上位机V0.90::try_get_text",
+  "file": "通用自动测试上位机V0.90.py",
+  "kind": "unresolved_name",
+  "line": 3864,
+  "expr": "types(...)",
+  "name": "无法解析名称 'types' (参数/动态绑定的可调用对象)"
+ },
+ {
+  "func": "通用自动测试上位机V0.90::try_get_text",
+  "file": "通用自动测试上位机V0.90.py",
+  "kind": "unresolved_name",
+  "line": 3865,
+  "expr": "types(...)",
+  "name": "无法解析名称 'types' (参数/动态绑定的可调用对象)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::try_set_text",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "unresolved_name",
+  "line": 4187,
+  "expr": "types(...)",
+  "name": "无法解析名称 'types' (参数/动态绑定的可调用对象)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::try_set_text",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "unresolved_name",
+  "line": 4188,
+  "expr": "types(...)",
+  "name": "无法解析名称 'types' (参数/动态绑定的可调用对象)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::try_get_text",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "unresolved_name",
+  "line": 4190,
+  "expr": "types(...)",
+  "name": "无法解析名称 'types' (参数/动态绑定的可调用对象)"
+ },
+ {
+  "func": "通用自动测试上位机V0.95::try_get_text",
+  "file": "通用自动测试上位机V0.95.py",
+  "kind": "unresolved_name",
+  "line": 4191,
+  "expr": "types(...)",
+  "name": "无法解析名称 'types' (参数/动态绑定的可调用对象)"
+ },
+ {
+  "func": "ui.tools.tools_bdcalib::class_Worker.cal_paraSave_chy_SL",
+  "file": "ui/tools/tools_bdcalib.py",
+  "kind": "unresolved_name",
+  "line": 1064,
+  "expr": "ScalarFormatter(...)",
+  "name": "无法解析名称 'ScalarFormatter' (参数/动态绑定的可调用对象)"
+ },
+ {
+  "func": "ui.tools.tools_bdcalib::class_Worker.cal_paraSave_chy_SL",
+  "file": "ui/tools/tools_bdcalib.py",
+  "kind": "unresolved_name",
+  "line": 1066,
+  "expr": "FuncFormatter(...)",
+  "name": "无法解析名称 'FuncFormatter' (参数/动态绑定的可调用对象)"
+ }
+]

@@ -1,0 +1,71 @@
+# 类 ui.tools.tools_bdcalib::class_Worker  (ui/tools/tools_bdcalib.py:351)  bases=['QThread']
+
+## class_Worker.__init__  L354
+   ui.tools.tools_bdcalib::class_Worker.__init__  (ui/tools/tools_bdcalib.py:354)
+
+## class_Worker.run  L368
+   ui.tools.tools_bdcalib::class_Worker.run  (ui/tools/tools_bdcalib.py:368)  <thread_entry>
+       [call/high@L379] ui.tools.tools_bdcalib::class_Worker.ave_all_data  (ui/tools/tools_bdcalib.py:402)
+           [call/high@L501(+1 处: 512)] ui.tools.tools_bdcalib::class_Worker.init_save_aveFile  (ui/tools/tools_bdcalib.py:530)
+       [call/high@L382] ui.tools.tools_bdcalib::class_Worker.format_all_data  (ui/tools/tools_bdcalib.py:543)
+       [call/high@L386] ui.tools.tools_bdcalib::class_Worker.cal_all_para_chy  (ui/tools/tools_bdcalib.py:874)
+           [call/high@L923] ui.tools.tools_bdcalib::class_Worker.cal_paraSave_chy_LW  (ui/tools/tools_bdcalib.py:934)
+           [call/high@L926] ui.tools.tools_bdcalib::class_Worker.cal_paraSave_chy_SL  (ui/tools/tools_bdcalib.py:988)
+           [call/high@L929] ui.tools.tools_bdcalib::class_Worker.cal_paraSave_chy_JT  (ui/tools/tools_bdcalib.py:1081)
+       [call/high@L388] ui.tools.tools_bdcalib::class_Worker.cal_all_para  (ui/tools/tools_bdcalib.py:601)
+           [call/high@L639] ui.tools.tools_bdcalib::class_Worker.cal_paraSave  (ui/tools/tools_bdcalib.py:647)
+       [call/high@L392] ui.tools.tools_bdcalib::class_Worker.cal_all_polyfit_chy  (ui/tools/tools_bdcalib.py:1083)
+       [call/high@L394] ui.tools.tools_bdcalib::class_Worker.cal_all_polyfit  (ui/tools/tools_bdcalib.py:724)
+           [call/high@L739] ui.tools.tools_bdcalib::class_Worker.cal_para_polyFit  (ui/tools/tools_bdcalib.py:741)
+
+## class_Worker.ave_all_data  L402
+   ui.tools.tools_bdcalib::class_Worker.ave_all_data  (ui/tools/tools_bdcalib.py:402)
+       [call/high@L501(+1 处: 512)] ui.tools.tools_bdcalib::class_Worker.init_save_aveFile  (ui/tools/tools_bdcalib.py:530)
+
+## class_Worker.init_save_aveFile  L530
+   ui.tools.tools_bdcalib::class_Worker.init_save_aveFile  (ui/tools/tools_bdcalib.py:530)
+
+## class_Worker.format_all_data  L543
+   ui.tools.tools_bdcalib::class_Worker.format_all_data  (ui/tools/tools_bdcalib.py:543)
+
+## class_Worker.cal_all_para  L601
+   ui.tools.tools_bdcalib::class_Worker.cal_all_para  (ui/tools/tools_bdcalib.py:601)
+       [call/high@L639] ui.tools.tools_bdcalib::class_Worker.cal_paraSave  (ui/tools/tools_bdcalib.py:647)
+           [call/high@L679] ui.tools.tools_bdcalib::init_sdf  (ui/tools/tools_bdcalib.py:25)
+
+## class_Worker.cal_paraSave  L647
+   ui.tools.tools_bdcalib::class_Worker.cal_paraSave  (ui/tools/tools_bdcalib.py:647)
+       [call/high@L679] ui.tools.tools_bdcalib::init_sdf  (ui/tools/tools_bdcalib.py:25)
+
+## class_Worker.cal_all_polyfit  L724
+   ui.tools.tools_bdcalib::class_Worker.cal_all_polyfit  (ui/tools/tools_bdcalib.py:724)
+       [call/high@L739] ui.tools.tools_bdcalib::class_Worker.cal_para_polyFit  (ui/tools/tools_bdcalib.py:741)
+           [call/high@L766] ui.tools.tools_bdcalib::sort_key  (ui/tools/tools_bdcalib.py:20)
+
+## class_Worker.cal_para_polyFit  L741
+   ui.tools.tools_bdcalib::class_Worker.cal_para_polyFit  (ui/tools/tools_bdcalib.py:741)
+       [call/high@L766] ui.tools.tools_bdcalib::sort_key  (ui/tools/tools_bdcalib.py:20)
+
+## class_Worker.cal_all_para_chy  L874
+   ui.tools.tools_bdcalib::class_Worker.cal_all_para_chy  (ui/tools/tools_bdcalib.py:874)
+       [call/high@L923] ui.tools.tools_bdcalib::class_Worker.cal_paraSave_chy_LW  (ui/tools/tools_bdcalib.py:934)
+           [call/high@L954] ui.tools.tools_bdcalib::decode_zfG  (ui/tools/tools_bdcalib.py:36)
+           [call/high@L955] ui.tools.tools_bdcalib::init_sdf  (ui/tools/tools_bdcalib.py:25)
+       [call/high@L926] ui.tools.tools_bdcalib::class_Worker.cal_paraSave_chy_SL  (ui/tools/tools_bdcalib.py:988)
+           [call/high@L1039] ui.tools.tools_bdcalib::init_sdf  (ui/tools/tools_bdcalib.py:25)
+       [call/high@L929] ui.tools.tools_bdcalib::class_Worker.cal_paraSave_chy_JT  (ui/tools/tools_bdcalib.py:1081)
+
+## class_Worker.cal_paraSave_chy_LW  L934
+   ui.tools.tools_bdcalib::class_Worker.cal_paraSave_chy_LW  (ui/tools/tools_bdcalib.py:934)
+       [call/high@L954] ui.tools.tools_bdcalib::decode_zfG  (ui/tools/tools_bdcalib.py:36)
+       [call/high@L955] ui.tools.tools_bdcalib::init_sdf  (ui/tools/tools_bdcalib.py:25)
+
+## class_Worker.cal_paraSave_chy_SL  L988
+   ui.tools.tools_bdcalib::class_Worker.cal_paraSave_chy_SL  (ui/tools/tools_bdcalib.py:988)
+       [call/high@L1039] ui.tools.tools_bdcalib::init_sdf  (ui/tools/tools_bdcalib.py:25)
+
+## class_Worker.cal_paraSave_chy_JT  L1081
+   ui.tools.tools_bdcalib::class_Worker.cal_paraSave_chy_JT  (ui/tools/tools_bdcalib.py:1081)
+
+## class_Worker.cal_all_polyfit_chy  L1083
+   ui.tools.tools_bdcalib::class_Worker.cal_all_polyfit_chy  (ui/tools/tools_bdcalib.py:1083)

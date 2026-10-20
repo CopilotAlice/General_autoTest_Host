@@ -1,0 +1,33 @@
+# 类 ui.navs.nav_loc::IMUColumnConfigDialog  (ui/navs/nav_loc.py:18)  bases=['QtWidgets.QDialog']
+
+## IMUColumnConfigDialog.__init__  L19
+   ui.navs.nav_loc::IMUColumnConfigDialog.__init__  (ui/navs/nav_loc.py:19)
+       [call/high@L23] ui.navs.nav_loc::IMUColumnConfigDialog._build_ui  (ui/navs/nav_loc.py:25)
+           [call/high@L28] ui.navs.nav_loc::IMUColumnConfigDialog._apply_defaults  (ui/navs/nav_loc.py:46)
+           [call/high@L29] ui.navs.nav_loc::IMUColumnConfigDialog._refresh_preview  (ui/navs/nav_loc.py:91)  <qt_slot>
+           [connect/high@L44] ui.navs.nav_loc::IMUColumnConfigDialog._refresh_preview  ↑ 已在上文展开  (ui/navs/nav_loc.py:91)
+
+## IMUColumnConfigDialog._build_ui  L25
+   ui.navs.nav_loc::IMUColumnConfigDialog._build_ui  (ui/navs/nav_loc.py:25)
+       [call/high@L28] ui.navs.nav_loc::IMUColumnConfigDialog._apply_defaults  (ui/navs/nav_loc.py:46)
+       [call/high@L29] ui.navs.nav_loc::IMUColumnConfigDialog._refresh_preview  (ui/navs/nav_loc.py:91)  <qt_slot>
+           [call/high@L107] ui.navs.nav_loc::IMUColumnConfigDialog._parse_axis  (ui/navs/nav_loc.py:73)
+           [call/high@L108] ui.navs.nav_loc::IMUColumnConfigDialog._title_of_axis  (ui/navs/nav_loc.py:84)
+       [connect/high@L44] ui.navs.nav_loc::IMUColumnConfigDialog._refresh_preview  ↑ 已在上文展开  (ui/navs/nav_loc.py:91)
+
+## IMUColumnConfigDialog._apply_defaults  L46
+   ui.navs.nav_loc::IMUColumnConfigDialog._apply_defaults  (ui/navs/nav_loc.py:46)
+
+## IMUColumnConfigDialog._parse_axis  L73
+   ui.navs.nav_loc::IMUColumnConfigDialog._parse_axis  (ui/navs/nav_loc.py:73)
+
+## IMUColumnConfigDialog._title_of_axis  L84
+   ui.navs.nav_loc::IMUColumnConfigDialog._title_of_axis  (ui/navs/nav_loc.py:84)
+
+## IMUColumnConfigDialog._refresh_preview  L91
+   ui.navs.nav_loc::IMUColumnConfigDialog._refresh_preview  (ui/navs/nav_loc.py:91)  <qt_slot>
+       [call/high@L107] ui.navs.nav_loc::IMUColumnConfigDialog._parse_axis  (ui/navs/nav_loc.py:73)
+       [call/high@L108] ui.navs.nav_loc::IMUColumnConfigDialog._title_of_axis  (ui/navs/nav_loc.py:84)
+
+## IMUColumnConfigDialog.get_config  L111
+   ui.navs.nav_loc::IMUColumnConfigDialog.get_config  (ui/navs/nav_loc.py:111)

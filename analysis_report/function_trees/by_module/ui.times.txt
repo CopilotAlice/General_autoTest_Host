@@ -1,0 +1,26 @@
+# 模块 ui.times  (ui/times.py)
+
+## <module>  L1-110  args=()  <module_body>
+
+## MainWindowTimes.__init__  L9-16  args=(self, mainWindow)  <constructor>
+  -> [call/high@L16] ui.times::MainWindowTimes.update_test_time
+  => (外部库) PyQt5.QtCore.QTimer x1
+  <- [create/high@L90] 通用自动测试上位机V0.90::MainWindow.__init__
+  <- [dynamic/medium@L173] 通用自动测试上位机V0.95::MainWindow._init_modules_in_batches
+
+## MainWindowTimes.update_test_time  L18-20  args=(self)
+  -> [timer/high@L20] ui.times::MainWindowTimes.timeEvent_test   # self.test_time.timeout.connect
+  => (外部库) PyQt5.QtCore.QTimer x1
+  <- [call/high@L16] ui.times::MainWindowTimes.__init__
+
+## MainWindowTimes.timeEvent_test  L27-30  args=(self)  <timer_callback>
+  <- [timer/high@L20] ui.times::MainWindowTimes.update_test_time
+
+## MainWindowTimes.timeEvent_update_combobox  L33-108  args=(self)  <qt_slot>
+  => (外部库) os.listdir x2
+  => (外部库) os.makedirs x1
+  => (外部库) os.path.exists x2
+  => (外部库) os.path.isdir x2
+  <- [call/medium@L1154] 通用自动测试上位机V0.90::MainWindow.show_message_5s
+  <- [call/medium@L1425] 通用自动测试上位机V0.95::MainWindow.show_message_5s
+  <- [connect/medium@L92] ui.logic::MainWindowLogic.logic_comboBoxPath_update

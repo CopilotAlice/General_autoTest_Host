@@ -1,0 +1,10 @@
+# 模块 ui.get_ui  (ui/get_ui.py)
+
+## <module>  L1-35  args=()  <module_body>
+
+## MainWindowGetUI.__init__  L5-6  args=(self, mainWindow)  <constructor>
+  <- [create/high@L102] 通用自动测试上位机V0.90::MainWindow.__init__
+  <- [dynamic/medium@L179] 通用自动测试上位机V0.95::MainWindow._init_modules_in_batches
+
+## MainWindowGetUI.get_name_pathCombox  L9-35  args=(self, mode)
+  => (外部库) os.path.exists x1

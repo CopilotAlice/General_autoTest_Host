@@ -1,0 +1,108 @@
+%% 图2 模块依赖关系图 (import / 运行期调用耦合)
+%% 实线=import 依赖; 虚线=运行期跨模块函数调用耦合(self.mw 桥接/对象调用, 非 import)
+%% 红色=循环依赖(无), 橙色=高耦合(fan_in+fan_out 靠前)
+flowchart LR
+  subgraph m0["入口"]
+    m1["通用自动测试上位机V0.95<br/><small>通用自动测试上位机V0.95.py</small>"]
+  end
+  subgraph m2["UI层"]
+    m3["Automated_testingV19<br/><small>Automated_testingV19.py</small>"]
+    m4["ui.get_ui<br/><small>ui/get_ui.py</small>"]
+    m5["ui.init_ui<br/><small>ui/init_ui.py</small>"]
+    m6["ui.inits<br/><small>ui/inits/__init__.py</small>"]
+    m7["ui.inits.inits_debugMsg<br/><small>ui/inits/inits_debugMsg.py</small>"]
+    m8["ui.inits.inits_showMsg<br/><small>ui/inits/inits_showMsg.py</small>"]
+  end
+  subgraph m9["事件层"]
+    m10["ui.event<br/><small>ui/event.py</small>"]
+    m11["ui.logic<br/><small>ui/logic.py</small>"]
+    m12["ui.events<br/><small>ui/events/__init__.py</small>"]
+    m13["ui.events.events_devide<br/><small>ui/events/events_devide.py</small>"]
+    m14["ui.events.events_hidden<br/><small>ui/events/events_hidden.py</small>"]
+  end
+  subgraph m15["业务逻辑层"]
+    m16["ui.debug<br/><small>ui/debug.py</small>"]
+    m17["ui.threads<br/><small>ui/threads.py</small>"]
+    m18["ui.times<br/><small>ui/times.py</small>"]
+    m19["ui.navs<br/><small>ui/navs/__init__.py</small>"]
+    m20["ui.navs.nav_loc<br/><small>ui/navs/nav_loc.py</small>"]
+    m21["ui.tools<br/><small>ui/tools/__init__.py</small>"]
+    m22["ui.tools.tools_bdcalib<br/><small>ui/tools/tools_bdcalib.py</small>"]
+  end
+  subgraph m23["数据处理层"]
+    m24["funs.fun_chy2<br/><small>funs/fun_chy2.py</small>"]
+    m25["funs.fun_sate<br/><small>funs/fun_sate.py</small>"]
+    m26["ui.structs<br/><small>ui/structs.py</small>"]
+  end
+  subgraph m27["设备通信层"]
+    m28["funs.fun_serial<br/><small>funs/fun_serial.py</small>"]
+    m29["ui.tools.tools_burn_ymodem<br/><small>ui/tools/tools_burn_ymodem.py</small>"]
+  end
+  subgraph m30["配置层"]
+    m31["funs.fun_locals<br/><small>funs/fun_locals.py</small>"]
+    m32["ui.constants<br/><small>ui/constants.py</small>"]
+    m33["ui.load_ini<br/><small>ui/load_ini.py</small>"]
+    m34["ui.settings<br/><small>ui/settings.py</small>"]
+    m35["ui.inits.inits_funcTest<br/><small>ui/inits/inits_funcTest.py</small>"]
+  end
+  subgraph m36["公共工具层"]
+    m37["funs.checks<br/><small>funs/checks.py</small>"]
+    m38["funs.checks_remove<br/><small>funs/checks_remove.py</small>"]
+    m39["funs.fun_checks<br/><small>funs/fun_checks.py</small>"]
+    m40["ui<br/><small>ui/__init__.py</small>"]
+  end
+  m32 -->|"import L7"| m31
+  m32 -->|"import L6"| m26
+  m10 -->|"import L11"| m39
+  m10 -->|"import L10"| m24
+  m12 -->|"import L1"| m13
+  m12 -->|"import L2"| m14
+  m13 -->|"import L2"| m28
+  m4 -->|"import L2"| m31
+  m5 -->|"import L3"| m31
+  m6 -->|"import L1"| m7
+  m6 -->|"import L3"| m35
+  m6 -->|"import L2"| m8
+  m19 -->|"import L2"| m20
+  m34 -->|"import L2"| m24
+  m26 -->|"import L6"| m24
+  m26 -->|"import L7"| m25
+  m18 -->|"import L3"| m31
+  m21 -->|"import L1"| m22
+  m21 -->|"import L2"| m29
+  m1 -->|"import L9"| m3
+  m1 -->|"import L10"| m39
+  m1 -->|"import L11"| m24
+  m1 -->|"import L13"| m31
+  m1 -->|"import L12"| m28
+  m1 -->|"import L29"| m32
+  m1 -->|"import L22"| m16
+  m1 -->|"import L20"| m10
+  m1 -->|"import L15"| m12
+  m1 -->|"import L24"| m4
+  m1 -->|"import L25"| m5
+  m1 -->|"import L16"| m6
+  m1 -->|"import L27"| m33
+  m1 -->|"import L21"| m11
+  m1 -->|"import L18"| m19
+  m1 -->|"import L28"| m34
+  m1 -->|"import L26"| m17
+  m1 -->|"import L23"| m18
+  m1 -->|"import L17"| m21
+  m11 -.->|"call x26"| m10
+  m10 -.->|"call x11"| m24
+  m1 -.->|"call x10"| m24
+  m26 -.->|"call x10"| m24
+  m1 -.->|"call x7"| m13
+  m1 -.->|"call x6"| m28
+  m32 -.->|"call x6"| m26
+  m26 -.->|"call x4"| m25
+  m10 -.->|"call x3"| m39
+  m1 -.->|"call x2"| m20
+  m1 -.->|"call x2"| m18
+  m1 -.->|"call x2"| m39
+  m34 -.->|"call x2"| m24
+  style m1 fill:#ffe0b3,stroke:#e67e00,stroke-width:2px
+  style m24 fill:#ffe0b3,stroke:#e67e00,stroke-width:2px
+  style m31 fill:#ffe0b3,stroke:#e67e00,stroke-width:2px
+  style m6 fill:#ffe0b3,stroke:#e67e00,stroke-width:2px

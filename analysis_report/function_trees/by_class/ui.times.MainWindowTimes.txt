@@ -1,0 +1,16 @@
+# 类 ui.times::MainWindowTimes  (ui/times.py:8)  bases=[]
+
+## MainWindowTimes.__init__  L9
+   ui.times::MainWindowTimes.__init__  (ui/times.py:9)
+       [call/high@L16] ui.times::MainWindowTimes.update_test_time  (ui/times.py:18)
+           [timer/high@L20] ui.times::MainWindowTimes.timeEvent_test  (ui/times.py:27)  <timer_callback>
+
+## MainWindowTimes.update_test_time  L18
+   ui.times::MainWindowTimes.update_test_time  (ui/times.py:18)
+       [timer/high@L20] ui.times::MainWindowTimes.timeEvent_test  (ui/times.py:27)  <timer_callback>
+
+## MainWindowTimes.timeEvent_test  L27
+   ui.times::MainWindowTimes.timeEvent_test  (ui/times.py:27)  <timer_callback>
+
+## MainWindowTimes.timeEvent_update_combobox  L33
+   ui.times::MainWindowTimes.timeEvent_update_combobox  (ui/times.py:33)  <qt_slot>

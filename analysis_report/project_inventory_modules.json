@@ -1,0 +1,1072 @@
+[
+ {
+  "name": "Automated_testing",
+  "file": "Automated_testing.py",
+  "lines": 10,
+  "is_package": false,
+  "generated": true,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [],
+  "n_functions": 0,
+  "top_level_functions": [],
+  "imports_internal": [],
+  "imported_by": [],
+  "imports_external": [],
+  "has_main_guard": false
+ },
+ {
+  "name": "Automated_testingV17",
+  "file": "Automated_testingV17.py",
+  "lines": 9779,
+  "is_package": false,
+  "generated": true,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [
+   "Ui_MainWindow"
+  ],
+  "n_functions": 2,
+  "top_level_functions": [],
+  "imports_internal": [],
+  "imported_by": [
+   "通用自动测试上位机V0.90"
+  ],
+  "imports_external": [
+   "PyQt5",
+   "pyqtgraph"
+  ],
+  "has_main_guard": false
+ },
+ {
+  "name": "Automated_testingV19",
+  "file": "Automated_testingV19.py",
+  "lines": 9518,
+  "is_package": false,
+  "generated": true,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [
+   "Ui_MainWindow"
+  ],
+  "n_functions": 2,
+  "top_level_functions": [],
+  "imports_internal": [],
+  "imported_by": [
+   "通用自动测试上位机V0.95"
+  ],
+  "imports_external": [
+   "PyQt5",
+   "pyqtgraph"
+  ],
+  "has_main_guard": false
+ },
+ {
+  "name": "Automated_testingV20",
+  "file": "Automated_testingV20.py",
+  "lines": 9745,
+  "is_package": false,
+  "generated": true,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [
+   "Ui_MainWindow"
+  ],
+  "n_functions": 2,
+  "top_level_functions": [],
+  "imports_internal": [],
+  "imported_by": [],
+  "imports_external": [
+   "PyQt5",
+   "pyqtgraph"
+  ],
+  "has_main_guard": false
+ },
+ {
+  "name": "funs.checks",
+  "file": "funs/checks.py",
+  "lines": 128,
+  "is_package": false,
+  "generated": false,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [],
+  "n_functions": 5,
+  "top_level_functions": [
+   "general_crc16Table",
+   "calculate_crc16",
+   "calculate_crc32",
+   "crc_1188a",
+   "calculate_crc16_mcrf4xx"
+  ],
+  "imports_internal": [],
+  "imported_by": [],
+  "imports_external": [],
+  "has_main_guard": false
+ },
+ {
+  "name": "funs.checks_remove",
+  "file": "funs/checks_remove.py",
+  "lines": 128,
+  "is_package": false,
+  "generated": false,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [],
+  "n_functions": 5,
+  "top_level_functions": [
+   "general_crc16Table",
+   "calculate_crc16",
+   "calculate_crc32",
+   "crc_1188a",
+   "calculate_crc16_mcrf4xx"
+  ],
+  "imports_internal": [],
+  "imported_by": [],
+  "imports_external": [],
+  "has_main_guard": false
+ },
+ {
+  "name": "funs.fun_checks",
+  "file": "funs/fun_checks.py",
+  "lines": 131,
+  "is_package": false,
+  "generated": false,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [],
+  "n_functions": 6,
+  "top_level_functions": [
+   "general_crc16Table",
+   "calculate_crc16",
+   "calculate_crc16_0x00",
+   "calculate_crc32",
+   "crc_1188a",
+   "calculate_crc16_mcrf4xx"
+  ],
+  "imports_internal": [],
+  "imported_by": [
+   "ui.event",
+   "通用自动测试上位机V0.90",
+   "通用自动测试上位机V0.95"
+  ],
+  "imports_external": [],
+  "has_main_guard": false
+ },
+ {
+  "name": "funs.fun_chy2",
+  "file": "funs/fun_chy2.py",
+  "lines": 462,
+  "is_package": false,
+  "generated": false,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [
+   "class_rule"
+  ],
+  "n_functions": 28,
+  "top_level_functions": [
+   "angular_distance",
+   "get_machine_code",
+   "calculate_td_hex",
+   "calculate_fz_hex",
+   "calculate_gnss_hex",
+   "move_dir",
+   "split_pro",
+   "split_plus",
+   "move_dir_para_old",
+   "del_empty_folder",
+   "try_return_format",
+   "try_return_int",
+   "try_return_num",
+   "try_return_checkRule",
+   "try_return_bdx",
+   "try_return_check",
+   "try_int",
+   "check2serial",
+   "try_int_data",
+   "try_float_data",
+   "try_hex_data"
+  ],
+  "imports_internal": [],
+  "imported_by": [
+   "ui.event",
+   "ui.settings",
+   "ui.structs",
+   "通用自动测试上位机V0.90",
+   "通用自动测试上位机V0.95"
+  ],
+  "imports_external": [
+   "hashlib",
+   "os",
+   "pathlib",
+   "serial",
+   "shutil",
+   "struct",
+   "uuid"
+  ],
+  "has_main_guard": false
+ },
+ {
+  "name": "funs.fun_locals",
+  "file": "funs/fun_locals.py",
+  "lines": 8,
+  "is_package": false,
+  "generated": false,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [],
+  "n_functions": 0,
+  "top_level_functions": [],
+  "imports_internal": [],
+  "imported_by": [
+   "ui.constants",
+   "ui.get_ui",
+   "ui.init_ui",
+   "ui.times",
+   "通用自动测试上位机V0.90",
+   "通用自动测试上位机V0.95"
+  ],
+  "imports_external": [],
+  "has_main_guard": false
+ },
+ {
+  "name": "funs.fun_sate",
+  "file": "funs/fun_sate.py",
+  "lines": 53,
+  "is_package": false,
+  "generated": false,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [],
+  "n_functions": 5,
+  "top_level_functions": [
+   "GPGGA2loc",
+   "GNVTG2loc",
+   "HEADINGA2loc",
+   "KSXT2loc",
+   "sate2location"
+  ],
+  "imports_internal": [],
+  "imported_by": [
+   "ui.structs"
+  ],
+  "imports_external": [],
+  "has_main_guard": false
+ },
+ {
+  "name": "funs.fun_serial",
+  "file": "funs/fun_serial.py",
+  "lines": 76,
+  "is_package": false,
+  "generated": false,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [],
+  "n_functions": 3,
+  "top_level_functions": [
+   "tryOpenSerial",
+   "trySendSerial",
+   "tryOpenAndSend"
+  ],
+  "imports_internal": [],
+  "imported_by": [
+   "ui.events.events_devide",
+   "通用自动测试上位机V0.90",
+   "通用自动测试上位机V0.95"
+  ],
+  "imports_external": [
+   "serial",
+   "time"
+  ],
+  "has_main_guard": false
+ },
+ {
+  "name": "sample_testingV13",
+  "file": "sample_testingV13.py",
+  "lines": 10,
+  "is_package": false,
+  "generated": true,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [],
+  "n_functions": 0,
+  "top_level_functions": [],
+  "imports_internal": [],
+  "imported_by": [],
+  "imports_external": [],
+  "has_main_guard": false
+ },
+ {
+  "name": "ui",
+  "file": "ui/__init__.py",
+  "lines": 2,
+  "is_package": true,
+  "generated": false,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [],
+  "n_functions": 0,
+  "top_level_functions": [],
+  "imports_internal": [],
+  "imported_by": [],
+  "imports_external": [],
+  "has_main_guard": false
+ },
+ {
+  "name": "ui.constants",
+  "file": "ui/constants.py",
+  "lines": 70,
+  "is_package": false,
+  "generated": false,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [
+   "MainWindowConstants"
+  ],
+  "n_functions": 6,
+  "top_level_functions": [],
+  "imports_internal": [
+   "funs.fun_locals",
+   "ui.structs"
+  ],
+  "imported_by": [
+   "通用自动测试上位机V0.90",
+   "通用自动测试上位机V0.95"
+  ],
+  "imports_external": [
+   "os",
+   "serial",
+   "time"
+  ],
+  "has_main_guard": false
+ },
+ {
+  "name": "ui.debug",
+  "file": "ui/debug.py",
+  "lines": 131,
+  "is_package": false,
+  "generated": false,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [
+   "MainWindowDebug",
+   "struct_debug"
+  ],
+  "n_functions": 12,
+  "top_level_functions": [],
+  "imports_internal": [],
+  "imported_by": [
+   "通用自动测试上位机V0.90",
+   "通用自动测试上位机V0.95"
+  ],
+  "imports_external": [
+   "PyQt5"
+  ],
+  "has_main_guard": false
+ },
+ {
+  "name": "ui.event",
+  "file": "ui/event.py",
+  "lines": 707,
+  "is_package": false,
+  "generated": false,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [
+   "MainWindowEvent"
+  ],
+  "n_functions": 30,
+  "top_level_functions": [],
+  "imports_internal": [
+   "funs.fun_checks",
+   "funs.fun_chy2"
+  ],
+  "imported_by": [
+   "通用自动测试上位机V0.90",
+   "通用自动测试上位机V0.95"
+  ],
+  "imports_external": [
+   "PyQt5",
+   "os",
+   "pandas",
+   "serial",
+   "struct",
+   "time"
+  ],
+  "has_main_guard": false
+ },
+ {
+  "name": "ui.events",
+  "file": "ui/events/__init__.py",
+  "lines": 2,
+  "is_package": true,
+  "generated": false,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [],
+  "n_functions": 0,
+  "top_level_functions": [],
+  "imports_internal": [
+   "ui.events.events_devide",
+   "ui.events.events_hidden"
+  ],
+  "imported_by": [
+   "通用自动测试上位机V0.90",
+   "通用自动测试上位机V0.95"
+  ],
+  "imports_external": [],
+  "has_main_guard": false
+ },
+ {
+  "name": "ui.events.events_devide",
+  "file": "ui/events/events_devide.py",
+  "lines": 215,
+  "is_package": false,
+  "generated": false,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [
+   "MainWindowEventDevide"
+  ],
+  "n_functions": 11,
+  "top_level_functions": [],
+  "imports_internal": [
+   "funs.fun_serial"
+  ],
+  "imported_by": [
+   "ui.events"
+  ],
+  "imports_external": [
+   "PyQt5"
+  ],
+  "has_main_guard": false
+ },
+ {
+  "name": "ui.events.events_hidden",
+  "file": "ui/events/events_hidden.py",
+  "lines": 60,
+  "is_package": false,
+  "generated": false,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [
+   "MainWindowEventHidden"
+  ],
+  "n_functions": 6,
+  "top_level_functions": [],
+  "imports_internal": [],
+  "imported_by": [
+   "ui.events"
+  ],
+  "imports_external": [
+   "PyQt5"
+  ],
+  "has_main_guard": false
+ },
+ {
+  "name": "ui.get_ui",
+  "file": "ui/get_ui.py",
+  "lines": 35,
+  "is_package": false,
+  "generated": false,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [
+   "MainWindowGetUI"
+  ],
+  "n_functions": 2,
+  "top_level_functions": [],
+  "imports_internal": [
+   "funs.fun_locals"
+  ],
+  "imported_by": [
+   "通用自动测试上位机V0.90",
+   "通用自动测试上位机V0.95"
+  ],
+  "imports_external": [
+   "os"
+  ],
+  "has_main_guard": false
+ },
+ {
+  "name": "ui.init_ui",
+  "file": "ui/init_ui.py",
+  "lines": 917,
+  "is_package": false,
+  "generated": false,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [
+   "MainWindowInit",
+   "struct_paraCal"
+  ],
+  "n_functions": 34,
+  "top_level_functions": [
+   "del_empty_folder",
+   "extract_number",
+   "sort_bd_files",
+   "fun_lw_average",
+   "fun_sl_average"
+  ],
+  "imports_internal": [
+   "funs.fun_locals"
+  ],
+  "imported_by": [
+   "通用自动测试上位机V0.90",
+   "通用自动测试上位机V0.95"
+  ],
+  "imports_external": [
+   "PyQt5",
+   "datetime",
+   "numpy",
+   "os",
+   "pandas",
+   "pathlib",
+   "pyqtgraph",
+   "re",
+   "shutil",
+   "struct"
+  ],
+  "has_main_guard": false
+ },
+ {
+  "name": "ui.inits",
+  "file": "ui/inits/__init__.py",
+  "lines": 3,
+  "is_package": true,
+  "generated": false,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [],
+  "n_functions": 0,
+  "top_level_functions": [],
+  "imports_internal": [
+   "ui.inits.inits_debugMsg",
+   "ui.inits.inits_funcTest",
+   "ui.inits.inits_showMsg"
+  ],
+  "imported_by": [
+   "通用自动测试上位机V0.90",
+   "通用自动测试上位机V0.95"
+  ],
+  "imports_external": [],
+  "has_main_guard": false
+ },
+ {
+  "name": "ui.inits.inits_debugMsg",
+  "file": "ui/inits/inits_debugMsg.py",
+  "lines": 10,
+  "is_package": false,
+  "generated": false,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [
+   "MainWindowInitDebugMsg"
+  ],
+  "n_functions": 2,
+  "top_level_functions": [],
+  "imports_internal": [],
+  "imported_by": [
+   "ui.inits"
+  ],
+  "imports_external": [],
+  "has_main_guard": false
+ },
+ {
+  "name": "ui.inits.inits_funcTest",
+  "file": "ui/inits/inits_funcTest.py",
+  "lines": 120,
+  "is_package": false,
+  "generated": false,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [
+   "MainWindowInitFuncTest"
+  ],
+  "n_functions": 7,
+  "top_level_functions": [],
+  "imports_internal": [],
+  "imported_by": [
+   "ui.inits"
+  ],
+  "imports_external": [
+   "PyQt5",
+   "configparser",
+   "hashlib",
+   "pathlib",
+   "uuid"
+  ],
+  "has_main_guard": false
+ },
+ {
+  "name": "ui.inits.inits_showMsg",
+  "file": "ui/inits/inits_showMsg.py",
+  "lines": 51,
+  "is_package": false,
+  "generated": false,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [
+   "MainWindowInitShowMsg"
+  ],
+  "n_functions": 2,
+  "top_level_functions": [],
+  "imports_internal": [],
+  "imported_by": [
+   "ui.inits"
+  ],
+  "imports_external": [],
+  "has_main_guard": false
+ },
+ {
+  "name": "ui.load_ini",
+  "file": "ui/load_ini.py",
+  "lines": 100,
+  "is_package": false,
+  "generated": false,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [
+   "MainWindowInitIni"
+  ],
+  "n_functions": 4,
+  "top_level_functions": [],
+  "imports_internal": [],
+  "imported_by": [
+   "通用自动测试上位机V0.95"
+  ],
+  "imports_external": [
+   "configparser",
+   "pathlib"
+  ],
+  "has_main_guard": false
+ },
+ {
+  "name": "ui.logic",
+  "file": "ui/logic.py",
+  "lines": 107,
+  "is_package": false,
+  "generated": false,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [
+   "MainWindowLogic"
+  ],
+  "n_functions": 10,
+  "top_level_functions": [],
+  "imports_internal": [],
+  "imported_by": [
+   "通用自动测试上位机V0.90",
+   "通用自动测试上位机V0.95"
+  ],
+  "imports_external": [],
+  "has_main_guard": false
+ },
+ {
+  "name": "ui.navs",
+  "file": "ui/navs/__init__.py",
+  "lines": 2,
+  "is_package": true,
+  "generated": false,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [],
+  "n_functions": 0,
+  "top_level_functions": [],
+  "imports_internal": [
+   "ui.navs.nav_loc"
+  ],
+  "imported_by": [
+   "通用自动测试上位机V0.95"
+  ],
+  "imports_external": [],
+  "has_main_guard": false
+ },
+ {
+  "name": "ui.navs.nav_loc",
+  "file": "ui/navs/nav_loc.py",
+  "lines": 1446,
+  "is_package": false,
+  "generated": false,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [
+   "IMUColumnConfigDialog",
+   "MainWindowNavLoc"
+  ],
+  "n_functions": 60,
+  "top_level_functions": [],
+  "imports_internal": [],
+  "imported_by": [
+   "ui.navs"
+  ],
+  "imports_external": [
+   "PyQt5",
+   "configparser",
+   "numpy",
+   "os",
+   "pyqtgraph",
+   "re",
+   "struct"
+  ],
+  "has_main_guard": false
+ },
+ {
+  "name": "ui.settings",
+  "file": "ui/settings.py",
+  "lines": 113,
+  "is_package": false,
+  "generated": false,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [
+   "MainWindowSetting"
+  ],
+  "n_functions": 5,
+  "top_level_functions": [],
+  "imports_internal": [
+   "funs.fun_chy2"
+  ],
+  "imported_by": [
+   "通用自动测试上位机V0.90",
+   "通用自动测试上位机V0.95"
+  ],
+  "imports_external": [
+   "hashlib",
+   "os",
+   "uuid"
+  ],
+  "has_main_guard": false
+ },
+ {
+  "name": "ui.structs",
+  "file": "ui/structs.py",
+  "lines": 532,
+  "is_package": false,
+  "generated": false,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [
+   "struct_general_bind",
+   "struct_tab_setting",
+   "struct_sate",
+   "clickEventThread_decodeShow",
+   "struct_turnTable3x"
+  ],
+  "n_functions": 57,
+  "top_level_functions": [],
+  "imports_internal": [
+   "funs.fun_chy2",
+   "funs.fun_sate"
+  ],
+  "imported_by": [
+   "ui.constants"
+  ],
+  "imports_external": [
+   "PyQt5",
+   "ctypes",
+   "numpy",
+   "pandas",
+   "serial",
+   "struct",
+   "time"
+  ],
+  "has_main_guard": false
+ },
+ {
+  "name": "ui.threads",
+  "file": "ui/threads.py",
+  "lines": 8,
+  "is_package": false,
+  "generated": false,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [
+   "MainWindowThread"
+  ],
+  "n_functions": 1,
+  "top_level_functions": [],
+  "imports_internal": [],
+  "imported_by": [
+   "通用自动测试上位机V0.90",
+   "通用自动测试上位机V0.95"
+  ],
+  "imports_external": [
+   "os",
+   "struct",
+   "time"
+  ],
+  "has_main_guard": false
+ },
+ {
+  "name": "ui.times",
+  "file": "ui/times.py",
+  "lines": 110,
+  "is_package": false,
+  "generated": false,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [
+   "MainWindowTimes"
+  ],
+  "n_functions": 4,
+  "top_level_functions": [],
+  "imports_internal": [
+   "funs.fun_locals"
+  ],
+  "imported_by": [
+   "通用自动测试上位机V0.90",
+   "通用自动测试上位机V0.95"
+  ],
+  "imports_external": [
+   "PyQt5",
+   "os"
+  ],
+  "has_main_guard": false
+ },
+ {
+  "name": "ui.tools",
+  "file": "ui/tools/__init__.py",
+  "lines": 2,
+  "is_package": true,
+  "generated": false,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [],
+  "n_functions": 0,
+  "top_level_functions": [],
+  "imports_internal": [
+   "ui.tools.tools_bdcalib",
+   "ui.tools.tools_burn_ymodem"
+  ],
+  "imported_by": [
+   "通用自动测试上位机V0.90",
+   "通用自动测试上位机V0.95"
+  ],
+  "imports_external": [],
+  "has_main_guard": false
+ },
+ {
+  "name": "ui.tools.tools_bdcalib",
+  "file": "ui/tools/tools_bdcalib.py",
+  "lines": 1085,
+  "is_package": false,
+  "generated": false,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [
+   "MainWindowToolBdcalib",
+   "class_Worker"
+  ],
+  "n_functions": 39,
+  "top_level_functions": [
+   "extract_number",
+   "sort_key",
+   "init_sdf",
+   "decode_zfG"
+  ],
+  "imports_internal": [],
+  "imported_by": [
+   "ui.tools"
+  ],
+  "imports_external": [
+   "PyQt5",
+   "datetime",
+   "debugpy",
+   "numpy",
+   "os",
+   "pandas",
+   "re",
+   "shutil",
+   "threading"
+  ],
+  "has_main_guard": false
+ },
+ {
+  "name": "ui.tools.tools_burn_ymodem",
+  "file": "ui/tools/tools_burn_ymodem.py",
+  "lines": 345,
+  "is_package": false,
+  "generated": false,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [
+   "YModemBurnWorker",
+   "MainWindowToolBurnYmodem"
+  ],
+  "n_functions": 18,
+  "top_level_functions": [
+   "crc16_ccitt"
+  ],
+  "imports_internal": [],
+  "imported_by": [
+   "ui.tools"
+  ],
+  "imports_external": [
+   "PyQt5",
+   "os",
+   "serial",
+   "threading",
+   "time"
+  ],
+  "has_main_guard": false
+ },
+ {
+  "name": "通用自动测试上位机V0.90",
+  "file": "通用自动测试上位机V0.90.py",
+  "lines": 4150,
+  "is_package": false,
+  "generated": false,
+  "legacy": true,
+  "syntax_error": null,
+  "classes": [
+   "MainWindow",
+   "Turntable_class"
+  ],
+  "n_functions": 100,
+  "top_level_functions": [
+   "decode_hex_frame",
+   "conver_turntable_status",
+   "lat_lon2str",
+   "sate2location",
+   "try_set_text",
+   "try_get_text",
+   "int2str",
+   "hex2int",
+   "int2hex",
+   "reverse",
+   "hexcut2list",
+   "struct_unpack_int3",
+   "check2serial",
+   "stop2chinese",
+   "check2chinese",
+   "chinese2check",
+   "rulename2chinese",
+   "testmode2chinese",
+   "calculate_frame_length",
+   "calculate_checksum",
+   "calculate_xorsum",
+   "decode_hex_frame_list",
+   "try_split_power_command",
+   "GPGGA2loc",
+   "KSXT2spd"
+  ],
+  "imports_internal": [
+   "Automated_testingV17",
+   "funs.fun_checks",
+   "funs.fun_chy2",
+   "funs.fun_locals",
+   "funs.fun_serial",
+   "ui.constants",
+   "ui.debug",
+   "ui.event",
+   "ui.events",
+   "ui.get_ui",
+   "ui.init_ui",
+   "ui.inits",
+   "ui.logic",
+   "ui.settings",
+   "ui.threads",
+   "ui.times",
+   "ui.tools"
+  ],
+  "imported_by": [],
+  "imports_external": [
+   "PyQt5",
+   "binascii",
+   "datetime",
+   "numpy",
+   "os",
+   "pandas",
+   "pyqtgraph",
+   "serial",
+   "struct",
+   "sys",
+   "threading",
+   "time"
+  ],
+  "has_main_guard": true
+ },
+ {
+  "name": "通用自动测试上位机V0.95",
+  "file": "通用自动测试上位机V0.95.py",
+  "lines": 4492,
+  "is_package": false,
+  "generated": false,
+  "legacy": false,
+  "syntax_error": null,
+  "classes": [
+   "MainWindow",
+   "Turntable_class"
+  ],
+  "n_functions": 110,
+  "top_level_functions": [
+   "_find_runtime_root",
+   "_prepare_runtime_workdir",
+   "decode_hex_frame",
+   "conver_turntable_status",
+   "lat_lon2str",
+   "sate2location",
+   "try_set_text",
+   "try_get_text",
+   "int2str",
+   "hex2int",
+   "int2hex",
+   "reverse",
+   "hexcut2list",
+   "struct_unpack_int3",
+   "check2serial",
+   "stop2chinese",
+   "check2chinese",
+   "chinese2check",
+   "rulename2chinese",
+   "testmode2chinese",
+   "calculate_frame_length",
+   "calculate_checksum",
+   "calculate_xorsum",
+   "decode_hex_frame_list",
+   "try_split_power_command",
+   "GPGGA2loc",
+   "KSXT2spd"
+  ],
+  "imports_internal": [
+   "Automated_testingV19",
+   "funs.fun_checks",
+   "funs.fun_chy2",
+   "funs.fun_locals",
+   "funs.fun_serial",
+   "ui.constants",
+   "ui.debug",
+   "ui.event",
+   "ui.events",
+   "ui.get_ui",
+   "ui.init_ui",
+   "ui.inits",
+   "ui.load_ini",
+   "ui.logic",
+   "ui.navs",
+   "ui.settings",
+   "ui.threads",
+   "ui.times",
+   "ui.tools"
+  ],
+  "imported_by": [],
+  "imports_external": [
+   "PyQt5",
+   "binascii",
+   "datetime",
+   "numpy",
+   "os",
+   "pandas",
+   "pyqtgraph",
+   "re",
+   "serial",
+   "struct",
+   "sys",
+   "threading",
+   "time"
+  ],
+  "has_main_guard": true
+ }
+]

@@ -1,0 +1,70 @@
+# 模块 ui.events.events_devide  (ui/events/events_devide.py)
+
+## <module>  L1-215  args=()  <module_body>
+
+## MainWindowEventDevide.__init__  L5-8  args=(self, mainWindow)  <constructor>
+  -> [call/high@L7] ui.events.events_devide::MainWindowEventDevide.logic_tempBox
+  -> [call/high@L8] ui.events.events_devide::MainWindowEventDevide.logic_turntable3x
+  <- [create/high@L106] 通用自动测试上位机V0.90::MainWindow.__init__
+  <- [dynamic/medium@L180] 通用自动测试上位机V0.95::MainWindow._init_modules_in_batches
+
+## MainWindowEventDevide.logic_tempBox  L18-19  args=(self)
+  -> [connect/high@L19] ui.events.events_devide::MainWindowEventDevide.clickEvent_tempbox_set   # self.mw.pushButton_tempbox_set.clicked.connect
+  <- [call/high@L7] ui.events.events_devide::MainWindowEventDevide.__init__
+
+## MainWindowEventDevide.clickEvent_tempbox_set  L21-40  args=(self)  <qt_slot>
+  -> [call/high@L33] funs.fun_serial::tryOpenAndSend
+  <- [connect/high@L19] ui.events.events_devide::MainWindowEventDevide.logic_tempBox
+
+## MainWindowEventDevide.logic_turntable3x  L51-57  args=(self)
+  -> [timer/high@L53] ui.events.events_devide::MainWindowEventDevide.turntable3x_update_status   # self.qtimer_turntable3xUpdate.timeout.connect
+  -> [connect/high@L54] ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_open   # self.mw.pushButton_turntable3x_open.clicked.connect
+  -> [connect/high@L55] ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_close   # self.mw.pushButton_turntable3x_close.clicked.connect
+  -> [connect/high@L56] ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_command   # self.mw.pushButton_turntable3x_command.clicked.connect
+  -> [connect/high@L57] ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_turn   # self.mw.pushButton_turntable3x_turn.clicked.connect
+  => (外部库) PyQt5.QtCore.QTimer x1
+  <- [call/high@L8] ui.events.events_devide::MainWindowEventDevide.__init__
+
+## MainWindowEventDevide.clickEvent_turntable3x_open  L59-71  args=(self)  <qt_slot>
+  -> [timer/high@L70] ui.events.events_devide::MainWindowEventDevide.turntable3x_update_status   # self.qtimer_turntable3xUpdate.timeout.connect
+  <- [call/medium@L2695] 通用自动测试上位机V0.90::MainWindow.bd3x_test
+  <- [call/medium@L2702] 通用自动测试上位机V0.90::MainWindow.bd3x_test
+  <- [call/medium@L2984] 通用自动测试上位机V0.95::MainWindow.bd3x_test
+  <- [call/medium@L2991] 通用自动测试上位机V0.95::MainWindow.bd3x_test
+  <- [connect/high@L54] ui.events.events_devide::MainWindowEventDevide.logic_turntable3x
+  <- [call/high@L82] ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_command
+
+## MainWindowEventDevide.clickEvent_turntable3x_close  L73-78  args=(self)  <qt_slot>
+  <- [connect/high@L55] ui.events.events_devide::MainWindowEventDevide.logic_turntable3x
+
+## MainWindowEventDevide.clickEvent_turntable3x_command  L80-122  args=(self)  <qt_slot>
+  -> [call/high@L82] ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_open
+  -> [call/high@L100] ui.events.events_devide::MainWindowEventDevide.turntable3x_get_input
+  -> [call/high@L103] ui.events.events_devide::MainWindowEventDevide.turntable3x_get_input
+  -> [call/high@L106] ui.events.events_devide::MainWindowEventDevide.turntable3x_get_input
+  <- [connect/high@L56] ui.events.events_devide::MainWindowEventDevide.logic_turntable3x
+
+## MainWindowEventDevide.clickEvent_turntable3x_turn  L125-145  args=(self)  <qt_slot>
+  -> [call/high@L126] ui.events.events_devide::MainWindowEventDevide.turntable3x_get_input
+  => (外部库) time.sleep x3
+  <- [call/medium@L3731] 通用自动测试上位机V0.90::MainWindow.begin_test_3xbd
+  <- [call/medium@L3773] 通用自动测试上位机V0.90::MainWindow.begin_test_3xbd
+  <- [call/medium@L4057] 通用自动测试上位机V0.95::MainWindow.begin_test_3xbd
+  <- [call/medium@L4099] 通用自动测试上位机V0.95::MainWindow.begin_test_3xbd
+  <- [connect/high@L57] ui.events.events_devide::MainWindowEventDevide.logic_turntable3x
+
+## MainWindowEventDevide.turntable3x_get_input  L148-159  args=(self)
+  <- [call/high@L100] ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_command
+  <- [call/high@L103] ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_command
+  <- [call/high@L106] ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_command
+  <- [call/high@L126] ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_turn
+
+## MainWindowEventDevide.turntable3x_set_input  L161-174  args=(self, list_input)
+  <- [call/medium@L3730] 通用自动测试上位机V0.90::MainWindow.begin_test_3xbd
+  <- [call/medium@L3772] 通用自动测试上位机V0.90::MainWindow.begin_test_3xbd
+  <- [call/medium@L4056] 通用自动测试上位机V0.95::MainWindow.begin_test_3xbd
+  <- [call/medium@L4098] 通用自动测试上位机V0.95::MainWindow.begin_test_3xbd
+
+## MainWindowEventDevide.turntable3x_update_status  L175-208  args=(self)  <timer_callback>
+  <- [timer/high@L53] ui.events.events_devide::MainWindowEventDevide.logic_turntable3x
+  <- [timer/high@L70] ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_open

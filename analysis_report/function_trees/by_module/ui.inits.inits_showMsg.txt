@@ -1,0 +1,11 @@
+# 模块 ui.inits.inits_showMsg  (ui/inits/inits_showMsg.py)
+
+## <module>  L1-51  args=()  <module_body>
+
+## MainWindowInitShowMsg.__init__  L33-36  args=(self, mw)  <constructor>
+  -> [call/high@L36] ui.inits.inits_showMsg::MainWindowInitShowMsg.init_showMsg_process
+  <- [create/high@L82] 通用自动测试上位机V0.90::MainWindow.__init__
+  <- [dynamic/medium@L169] 通用自动测试上位机V0.95::MainWindow._init_modules_in_batches
+
+## MainWindowInitShowMsg.init_showMsg_process  L38-49  args=(self)
+  <- [call/high@L36] ui.inits.inits_showMsg::MainWindowInitShowMsg.__init__

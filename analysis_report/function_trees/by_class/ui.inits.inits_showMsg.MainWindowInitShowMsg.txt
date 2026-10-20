@@ -1,0 +1,8 @@
+# 类 ui.inits.inits_showMsg::MainWindowInitShowMsg  (ui/inits/inits_showMsg.py:32)  bases=[]
+
+## MainWindowInitShowMsg.__init__  L33
+   ui.inits.inits_showMsg::MainWindowInitShowMsg.__init__  (ui/inits/inits_showMsg.py:33)
+       [call/high@L36] ui.inits.inits_showMsg::MainWindowInitShowMsg.init_showMsg_process  (ui/inits/inits_showMsg.py:38)
+
+## MainWindowInitShowMsg.init_showMsg_process  L38
+   ui.inits.inits_showMsg::MainWindowInitShowMsg.init_showMsg_process  (ui/inits/inits_showMsg.py:38)

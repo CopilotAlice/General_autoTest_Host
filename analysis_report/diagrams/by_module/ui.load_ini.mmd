@@ -1,0 +1,9 @@
+%% 模块局部调用树: ui.load_ini (ui/load_ini.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["MainWindowInitIni.__init__<br/><small>ui.load_ini:5</small>"]
+  f1["MainWindowInitIni.load_ini_debug_mode<br/><small>ui.load_ini:13</small>"]
+  f0 -->|"call/high"| f1
+  f2["MainWindowInitIni.event_load_ini_debug_mode<br/><small>ui.load_ini:22</small>"]
+  f0 -->|"call/high"| f2
+  f3["MainWindowInitIni.load_ini_ui_config<br/><small>ui.load_ini:44</small>"]
+  f0 -->|"call/high"| f3

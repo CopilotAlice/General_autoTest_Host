@@ -1,0 +1,21 @@
+%% 模块局部调用树: funs.fun_chy2 (funs/fun_chy2.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["move_dir_para_old<br/><small>funs.fun_chy2:78</small>"]
+  f1["move_dir<br/><small>funs.fun_chy2:64</small>"]
+  f0 -->|"call/high"| f1
+  f2["del_empty_folder<br/><small>funs.fun_chy2:99</small>"]
+  f2 -->|"call/high"| f2
+  f3["try_return_bdx<br/><small>funs.fun_chy2:134</small>"]
+  f4["try_return_num<br/><small>funs.fun_chy2:117</small>"]
+  f3 -->|"call/high"| f4
+  f5["class_rule.read_rule_file<br/><small>funs.fun_chy2:246</small>"]
+  f6["try_int_data<br/><small>funs.fun_chy2:171</small>"]
+  f5 -->|"call/high"| f6
+  f7["try_hex_data<br/><small>funs.fun_chy2:181</small>"]
+  f5 -->|"call/high"| f7
+  f8["class_rule.update_decode_rules<br/><small>funs.fun_chy2:316</small>"]
+  f5 -->|"call/high"| f8
+  f9["class_rule.update_rule_length<br/><small>funs.fun_chy2:318</small>"]
+  f5 -->|"call/high"| f9
+  f10["class_rule.float_para_list<br/><small>funs.fun_chy2:320</small>"]
+  f5 -->|"call/high"| f10

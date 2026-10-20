@@ -1,0 +1,178 @@
+# 模块 ui.init_ui  (ui/init_ui.py)
+
+## <module>  L1-917  args=()  <module_body>
+
+## MainWindowInit.__init__  L14-45  args=(self, mainWindow)  <constructor>
+  -> [call/high@L18] ui.init_ui::MainWindowInit.init_ui_setting
+  -> [call/high@L19] ui.init_ui::MainWindowInit.init_ui_setting
+  -> [call/high@L21] ui.init_ui::MainWindowInit.init_ui_time
+  -> [call/high@L22] ui.init_ui::MainWindowInit.init_ui_toolTip
+  -> [call/high@L23] ui.init_ui::MainWindowInit.init_ui_paths
+  -> [call/high@L25] ui.init_ui::MainWindowInit.init_ui_graphview
+  -> [call/high@L28] ui.init_ui::MainWindowInit.init_ui_turntable3x
+  -> [call/high@L45] ui.init_ui::MainWindowInit.init_general_button
+  <- [create/high@L88] 通用自动测试上位机V0.90::MainWindow.__init__
+  <- [dynamic/medium@L172] 通用自动测试上位机V0.95::MainWindow._init_modules_in_batches
+
+## MainWindowInit.init_ui_setting  L49-52  args=(self)
+  <- [call/high@L18] ui.init_ui::MainWindowInit.__init__
+  <- [call/high@L19] ui.init_ui::MainWindowInit.__init__
+
+## MainWindowInit.init_ui_time  L57-79  args=(self)
+  -> [call/high@L79] ui.init_ui::MainWindowInit.update_time
+  => (外部库) datetime.datetime.now x1
+  <- [call/high@L21] ui.init_ui::MainWindowInit.__init__
+
+## MainWindowInit.update_time  L81-86  args=(self)
+  => (外部库) datetime.datetime.now x1
+  <- [call/high@L79] ui.init_ui::MainWindowInit.init_ui_time
+  <- [call/high@L89] ui.init_ui::MainWindowInit.get_time_list
+  <- [call/high@L93] ui.init_ui::MainWindowInit.get_normal_time
+
+## MainWindowInit.get_time_list  L88-90  args=(self)
+  -> [call/high@L89] ui.init_ui::MainWindowInit.update_time
+
+## MainWindowInit.get_normal_time  L92-94  args=(self)
+  -> [call/high@L93] ui.init_ui::MainWindowInit.update_time
+
+## MainWindowInit.init_ui_toolTip  L97-99  args=(self)
+  <- [call/high@L22] ui.init_ui::MainWindowInit.__init__
+
+## MainWindowInit.init_ui_paths  L102-115  args=(self)
+  <- [call/high@L23] ui.init_ui::MainWindowInit.__init__
+
+## MainWindowInit.init_general_button  L157-167  args=(self)
+  <- [call/high@L45] ui.init_ui::MainWindowInit.__init__
+
+## MainWindowInit.init_ui_graphview  L170-239  args=(self)
+  -> [connect/high@L207] ui.init_ui::MainWindowInit.init_ui_graphview.<locals>.updateViewDPb1   # ?.connect | nested
+  -> [connect/high@L219] ui.init_ui::MainWindowInit.init_ui_graphview.<locals>.updateViewDPb2   # ?.connect | nested
+  -> [connect/high@L231] ui.init_ui::MainWindowInit.init_ui_graphview.<locals>.updateViewDPb3   # ?.connect | nested
+  => (外部库) pyqtgraph.PlotDataItem x3
+  => (外部库) pyqtgraph.ViewBox x3
+  => (外部库) pyqtgraph.mkPen x4
+  <- [call/high@L25] ui.init_ui::MainWindowInit.__init__
+
+## MainWindowInit.init_ui_graphview.<locals>.updateViewDPb1  L204-206  args=()  <qt_slot>
+  <- [connect/high@L207] ui.init_ui::MainWindowInit.init_ui_graphview
+
+## MainWindowInit.init_ui_graphview.<locals>.updateViewDPb2  L216-218  args=()  <qt_slot>
+  <- [connect/high@L219] ui.init_ui::MainWindowInit.init_ui_graphview
+
+## MainWindowInit.init_ui_graphview.<locals>.updateViewDPb3  L228-230  args=()  <qt_slot>
+  <- [connect/high@L231] ui.init_ui::MainWindowInit.init_ui_graphview
+
+## MainWindowInit.init_ui_input  L240-250  args=(self)
+  -> [create/high@L241] ui.init_ui::struct_paraCal.__init__   # ctor
+
+## MainWindowInit.init_ui_turntable3x  L253-269  args=(self)
+  <- [call/high@L28] ui.init_ui::MainWindowInit.__init__
+
+## del_empty_folder  L369-378  args=(path)  <in_cycle>
+  -> [call/high@L374] ui.init_ui::del_empty_folder
+  => (外部库) os.listdir x2
+  => (外部库) os.path.isdir x1
+  => (外部库) os.path.join x1
+  => (外部库) os.rmdir x1
+  <- [call/high@L374] ui.init_ui::del_empty_folder
+  <- [call/high@L629] ui.init_ui::struct_paraCal.processing_BD_file
+
+## extract_number  L380-382  args=(filename)
+  => (外部库) re.search x1
+
+## sort_bd_files  L383-387  args=(folder_path)
+  => (外部库) os.listdir x1
+  => (外部库) re.search x1
+
+## fun_lw_average  L389-439  args=(df, lw_skip, lw_list_sort, bd_skip, bd_list_sort, per, ga_shift)
+  => (外部库) numpy.arcsin x1
+  => (外部库) numpy.sqrt x2
+  <- [call/high@L880] ui.init_ui::struct_paraCal.load_LW_file
+
+## fun_sl_average  L441-482  args=(df, gsl_list_sort, sl_list, zf_list)
+  => (外部库) numpy.arcsin x1
+  => (外部库) numpy.polyfit x1
+  => (外部库) pandas.DataFrame x1
+  <- [call/high@L800] ui.init_ui::struct_paraCal.load_SL_file
+
+## struct_paraCal.__init__  L484-486  args=(self)  <constructor>
+  -> [call/high@L485] ui.init_ui::struct_paraCal.init_list
+  -> [call/high@L486] ui.init_ui::struct_paraCal.init_conf
+  <- [create/high@L241] ui.init_ui::MainWindowInit.init_ui_input
+
+## struct_paraCal.init_list  L488-510  args=(self)
+  <- [call/high@L485] ui.init_ui::struct_paraCal.__init__
+
+## struct_paraCal.init_conf  L512-568  args=(self)
+  <- [call/high@L486] ui.init_ui::struct_paraCal.__init__
+
+## struct_paraCal.load_BD_file  L570-578  args=(self, paths)
+  -> [call/high@L571] ui.init_ui::struct_paraCal.processing_BD_file
+  -> [call/high@L573] ui.init_ui::struct_paraCal.processing_BD_file
+  -> [call/high@L575] ui.init_ui::struct_paraCal.processing_BD_SL
+  -> [call/high@L577] ui.init_ui::struct_paraCal.processing_BD_LW
+
+## struct_paraCal.processing_BD_ave  L580-582  args=(self, paths)
+  -> [call/high@L581] ui.init_ui::struct_paraCal.processing_BD_file
+
+## struct_paraCal.processing_BD_std  L583-585  args=(self, paths)
+  -> [call/high@L584] ui.init_ui::struct_paraCal.processing_BD_file
+
+## struct_paraCal.processing_BD_SL  L586-588  args=(self, paths)
+  -> [call/high@L587] ui.init_ui::struct_paraCal.load_SL_file
+  <- [call/high@L575] ui.init_ui::struct_paraCal.load_BD_file
+
+## struct_paraCal.processing_BD_LW  L589-591  args=(self, paths)
+  -> [call/high@L590] ui.init_ui::struct_paraCal.load_LW_file
+  <- [call/high@L577] ui.init_ui::struct_paraCal.load_BD_file
+
+## struct_paraCal.show_dict  L595-599  args=(self)
+
+## struct_paraCal.get_all2List  L601-616  args=(self, lists)
+  <- [call/high@L691] ui.init_ui::struct_paraCal.processing_BD_file
+  <- [call/high@L698] ui.init_ui::struct_paraCal.processing_BD_file
+  <- [call/high@L766] ui.init_ui::struct_paraCal.load_SL_file
+  <- [call/high@L842] ui.init_ui::struct_paraCal.load_LW_file
+
+## struct_paraCal.processing_BD_file  L619-739  args=(self, paths, mode)
+  -> [call/high@L629] ui.init_ui::del_empty_folder
+  -> [call/high@L691] ui.init_ui::struct_paraCal.get_all2List
+  -> [call/high@L698] ui.init_ui::struct_paraCal.get_all2List
+  => (外部库) os.listdir x3
+  => (外部库) os.makedirs x1
+  => (外部库) os.path.exists x3
+  => (外部库) os.path.isdir x1
+  => (外部库) pandas.DataFrame x1
+  => (外部库) pandas.concat x1
+  => (外部库) pandas.read_csv x1
+  => (外部库) pathlib.Path x1
+  => (外部库) re.search x1
+  => (外部库) shutil.rmtree x1
+  <- [call/high@L571] ui.init_ui::struct_paraCal.load_BD_file
+  <- [call/high@L573] ui.init_ui::struct_paraCal.load_BD_file
+  <- [call/high@L581] ui.init_ui::struct_paraCal.processing_BD_ave
+  <- [call/high@L584] ui.init_ui::struct_paraCal.processing_BD_std
+
+## struct_paraCal.load_SL_file  L744-817  args=(self, paths)
+  -> [call/high@L766] ui.init_ui::struct_paraCal.get_all2List
+  -> [call/high@L800] ui.init_ui::fun_sl_average
+  => (外部库) os.listdir x1
+  => (外部库) os.makedirs x1
+  => (外部库) os.path.exists x4
+  => (外部库) os.remove x1
+  => (外部库) pandas.read_csv x1
+  => (外部库) re.search x1
+  <- [call/high@L587] ui.init_ui::struct_paraCal.processing_BD_SL
+
+## struct_paraCal.load_LW_file  L820-910  args=(self, paths)
+  -> [call/high@L842] ui.init_ui::struct_paraCal.get_all2List
+  -> [call/high@L880] ui.init_ui::fun_lw_average
+  => (外部库) os.listdir x1
+  => (外部库) os.makedirs x1
+  => (外部库) os.path.exists x4
+  => (外部库) os.remove x1
+  => (外部库) pandas.read_csv x1
+  => (外部库) re.search x1
+  <- [call/high@L590] ui.init_ui::struct_paraCal.processing_BD_LW
+
+## struct_paraCal.load_JT_file  L914-916  args=(self, paths)

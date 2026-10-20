@@ -1,0 +1,88 @@
+General_autoTest_Host/
+├── .vscode/
+│   ├── launch.json
+│   └── settings.json
+├── funs/
+│   ├── checks.py
+│   ├── checks_remove.py
+│   ├── fun_checks.py
+│   ├── fun_chy2.py
+│   ├── fun_locals.py
+│   ├── fun_sate.py
+│   └── fun_serial.py
+├── test_fun/   [1457 个文件, 其中 0 个 .py, 已折叠]
+├── ui/
+│   ├── events/
+│   │   ├── __init__.py
+│   │   ├── events_devide.py
+│   │   └── events_hidden.py
+│   ├── inits/
+│   │   ├── __init__.py
+│   │   ├── inits_debugMsg.py
+│   │   ├── inits_funcTest.py
+│   │   └── inits_showMsg.py
+│   ├── navs/
+│   │   ├── IMUColumnConfigDialog.ui
+│   │   ├── __init__.py
+│   │   └── nav_loc.py
+│   ├── tools/
+│   │   ├── __init__.py
+│   │   ├── tools_bdcalib.py
+│   │   └── tools_burn_ymodem.py
+│   ├── __init__.py
+│   ├── constants.py
+│   ├── debug.py
+│   ├── event.py
+│   ├── get_ui.py
+│   ├── init_ui.py
+│   ├── load_ini.py
+│   ├── logic.py
+│   ├── settings.py
+│   ├── structs.py
+│   ├── threads.py
+│   └── times.py
+├── 处理规则/   [28 个文件, 其中 0 个 .py, 已折叠]
+├── 旧文件/   [283 个文件, 其中 47 个 .py, 已折叠]
+├── 标定规则/   [16 个文件, 其中 0 个 .py, 已折叠]
+├── 网口规则/
+│   ├── 01_705转发感知.txt
+│   └── 02_705转发雷达.txt
+├── 自动规则/   [35 个文件, 其中 0 个 .py, 已折叠]
+├── 装订规则/
+│   ├── UUV4000/
+│   │   ├── 01_UUV4000GPS.txt
+│   │   ├── 01_UUV4000对准.txt
+│   │   └── 02_UUV4000锁紧.txt
+│   ├── 测试/
+│   │   └── 05_XX主控_传递对准.txt
+│   ├── 01_LG98惯导_发送装订.txt
+│   ├── 01_惯导通用_发送装订.txt
+│   ├── 02_130#70A惯导_发送装订.txt
+│   ├── 03_惯导通用_三自装订.txt
+│   ├── 04_卫导装订.txt
+│   ├── 05_主惯导装订.txt
+│   ├── 06_UUVV.txt
+│   └── 07_60所S1.txt
+├── 解算规则/   [80 个文件, 其中 0 个 .py, 已折叠]
+├── 配置文件/
+│   ├── functest_config.ini
+│   ├── para_com.txt
+│   ├── para_config.txt
+│   └── root_config.txt
+├── .gitignore
+├── Automated_testing.py
+├── Automated_testingV1.7.ui
+├── Automated_testingV1.9.ui
+├── Automated_testingV17.py
+├── Automated_testingV19.py
+├── Automated_testingV2.0.ui
+├── Automated_testingV20.py
+├── General_autoTest_Host.zip
+├── data.txt
+├── sample_testingV13.py
+├── tongyong_chy.7z
+├── 装订指令构造.ipynb
+├── 通用自动测试.ipynb
+├── 通用自动测试上位机V0.88_普通版.exe
+├── 通用自动测试上位机V0.90.py
+└── 通用自动测试上位机V0.95.py

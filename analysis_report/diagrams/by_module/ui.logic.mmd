@@ -1,0 +1,72 @@
+%% 模块局部调用树: ui.logic (ui/logic.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["MainWindowLogic.__init__<br/><small>ui.logic:3</small>"]
+  f1["MainWindowLogic.logic_general_bind<br/><small>ui.logic:40</small>"]
+  f0 -->|"call/high"| f1
+  f2["MainWindowLogic.logic_12tab_setting<br/><small>ui.logic:51</small>"]
+  f0 -->|"call/high"| f2
+  f3["MainWindowLogic.logic_protocal_rule_change<br/><small>ui.logic:66</small>"]
+  f0 -->|"call/high"| f3
+  f4["MainWindowLogic.logic_comboBoxPath_update<br/><small>ui.logic:89</small>"]
+  f0 -->|"call/high"| f4
+  f5["MainWindowLogic.logic_auxsate<br/><small>ui.logic:74</small>"]
+  f0 -->|"call/high"| f5
+  f6["MainWindowLogic.logic_cal_BD_data<br/><small>ui.logic:83</small>"]
+  f0 -->|"call/high"| f6
+  f7["MainWindowLogic.logic_readDecodeRule<br/><small>ui.logic:97</small>"]
+  f0 -->|"call/high"| f7
+  f8["MainWindowLogic.logic_readAutoTest<br/><small>ui.logic:103</small>"]
+  f0 -->|"call/high"| f8
+  f9["MainWindowLogic.logic_turntable3x<br/><small>ui.logic:106</small>"]
+  f0 -->|"call/high"| f9
+  f10["MainWindowEvent.changeEvent_general_rule<br/><small>ui.event:35</small>"]
+  f1 ==>|"connect/medium"| f10
+  f11["MainWindowEvent.clickEvent_general_bind<br/><small>ui.event:258</small>"]
+  f1 ==>|"connect/medium"| f11
+  f1 ==>|"connect/medium"| f11
+  f12["MainWindowEvent.changeEvent_general_bind_table<br/><small>ui.event:121</small>"]
+  f1 ==>|"connect/medium"| f12
+  f13["MainWindowEvent.clickEvent_general_send<br/><small>ui.event:238</small>"]
+  f1 ==>|"connect/medium"| f13
+  f14["MainWindowEvent.changeEvent_general_autoSend<br/><small>ui.event:285</small>"]
+  f1 ==>|"connect/medium"| f14
+  f15["MainWindowEvent.changeEvent_com_update_all<br/><small>ui.event:300</small>"]
+  f2 ==>|"connect/medium"| f15
+  f16["MainWindowEvent.changeEvent_baund_update_all<br/><small>ui.event:305</small>"]
+  f2 ==>|"connect/medium"| f16
+  f17["MainWindowEvent.changeEvent_check_update_all<br/><small>ui.event:309</small>"]
+  f2 ==>|"connect/medium"| f17
+  f18["MainWindowEvent.changeEvent_stop_update_all<br/><small>ui.event:313</small>"]
+  f2 ==>|"connect/medium"| f18
+  f19["MainWindowEvent.changeEvent_open_update_all<br/><small>ui.event:317</small>"]
+  f2 ==>|"connect/medium"| f19
+  f20["MainWindowEvent.changeEvent_plan_update_all<br/><small>ui.event:321</small>"]
+  f2 ==>|"connect/medium"| f20
+  f21["MainWindowEvent.changeEvent_baund_update_main<br/><small>ui.event:328</small>"]
+  f2 ==>|"connect/medium"| f21
+  f22["MainWindowEvent.changeEvent_check_update_main<br/><small>ui.event:330</small>"]
+  f2 ==>|"connect/medium"| f22
+  f23["MainWindowEvent.changeEvent_auxsate_com<br/><small>ui.event:338</small>"]
+  f5 ==>|"connect/medium"| f23
+  f24["MainWindowEvent.changeEvent_auxsate_baund<br/><small>ui.event:340</small>"]
+  f5 ==>|"connect/medium"| f24
+  f25["MainWindowEvent.changeEvent_auxsate_check<br/><small>ui.event:342</small>"]
+  f5 ==>|"connect/medium"| f25
+  f26["MainWindowEvent.clickEvent_auxsate_send<br/><small>ui.event:345</small>"]
+  f5 ==>|"connect/medium"| f26
+  f27["MainWindowEvent.clickEvent_para_loadPath<br/><small>ui.event:351</small>"]
+  f6 ==>|"connect/medium"| f27
+  f6 ==>|"connect/medium"| f27
+  f28["MainWindowEvent.clickEvent_para_createPara<br/><small>ui.event:697</small>"]
+  f6 ==>|"connect/medium"| f28
+  f29["MainWindowEvent.clickEvent_para_savePara<br/><small>ui.event:700</small>"]
+  f6 ==>|"connect/medium"| f29
+  f30["MainWindowTimes.timeEvent_update_combobox<br/><small>ui.times:33</small>"]
+  f4 ==>|"connect/medium"| f30
+  f31["MainWindowEvent.changeEvent_deocdeRuleToTableWidget<br/><small>ui.event:500</small>"]
+  f7 ==>|"connect/medium"| f31
+  f7 ==>|"connect/medium"| f31
+  f32["MainWindowEvent.clickEvent_decodeShow_tryReceive<br/><small>ui.event:598</small>"]
+  f7 ==>|"connect/medium"| f32
+  f33["MainWindowEvent.changeEvent_readAtuoTestRule<br/><small>ui.event:687</small>"]
+  f8 ==>|"connect/medium"| f33

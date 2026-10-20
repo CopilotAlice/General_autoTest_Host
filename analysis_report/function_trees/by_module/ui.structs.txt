@@ -1,0 +1,254 @@
+# 模块 ui.structs  (ui/structs.py)
+
+## <module>  L1-532  args=()  <module_body>
+  => (外部库) PyQt5.QtCore.pyqtSignal x1
+
+## struct_general_bind.__init__  L21-38  args=(self)  <constructor>
+  <- [create/high@L51] ui.constants::MainWindowConstants.init_general_bind
+
+## struct_general_bind.read_struct_file  L40-91  args=(self, struct_file)
+  -> [call/high@L41] ui.structs::struct_general_bind.init_structList
+  -> [call/high@L54] funs.fun_chy2::try_return_format
+  -> [call/high@L56] funs.fun_chy2::try_return_int
+  -> [call/high@L59] funs.fun_chy2::try_return_checkRule
+  -> [call/high@L62] funs.fun_chy2::try_return_checkRule
+  -> [call/high@L65] funs.fun_chy2::try_return_checkRule
+  -> [call/high@L68] funs.fun_chy2::try_return_checkRule
+  -> [call/high@L71] funs.fun_chy2::try_return_checkRule
+  -> [call/high@L74] funs.fun_chy2::try_return_checkRule
+  -> [call/high@L77] funs.fun_chy2::try_return_checkRule
+  -> [call/high@L85] funs.fun_chy2::try_return_num
+  -> [call/high@L91] ui.structs::struct_general_bind.get_struct_len
+
+## struct_general_bind.init_structList  L92-100  args=(self)
+  <- [call/high@L41] ui.structs::struct_general_bind.read_struct_file
+
+## struct_general_bind.get_struct_len  L101-105  args=(self)
+  => (外部库) struct.calcsize x1
+  <- [call/high@L91] ui.structs::struct_general_bind.read_struct_file
+
+## struct_tab_setting.__init__  L110-127  args=(self, mw, tab)  <constructor>
+  -> [call/high@L118] ui.structs::struct_tab_setting.__init__.<locals>.get_widget   # nested
+  -> [call/high@L119] ui.structs::struct_tab_setting.__init__.<locals>.get_widget   # nested
+  -> [call/high@L120] ui.structs::struct_tab_setting.__init__.<locals>.get_widget   # nested
+  -> [call/high@L121] ui.structs::struct_tab_setting.__init__.<locals>.get_widget   # nested
+  -> [call/high@L122] ui.structs::struct_tab_setting.__init__.<locals>.get_widget   # nested
+  -> [call/high@L123] ui.structs::struct_tab_setting.__init__.<locals>.get_widget   # nested
+  -> [call/high@L124] ui.structs::struct_tab_setting.__init__.<locals>.get_widget   # nested
+  <- [create/high@L40] ui.constants::MainWindowConstants.init_12tab_setting
+  <- [create/high@L42] ui.constants::MainWindowConstants.init_12tab_setting
+
+## struct_tab_setting.__init__.<locals>.get_widget  L112-116  args=(widget_type, object_name)
+  <- [call/high@L118] ui.structs::struct_tab_setting.__init__
+  <- [call/high@L119] ui.structs::struct_tab_setting.__init__
+  <- [call/high@L120] ui.structs::struct_tab_setting.__init__
+  <- [call/high@L121] ui.structs::struct_tab_setting.__init__
+  <- [call/high@L122] ui.structs::struct_tab_setting.__init__
+  <- [call/high@L123] ui.structs::struct_tab_setting.__init__
+  <- [call/high@L124] ui.structs::struct_tab_setting.__init__
+
+## struct_tab_setting.set_com  L129-130  args=(self, com)
+
+## struct_tab_setting.set_baund  L131-132  args=(self, baund)
+
+## struct_tab_setting.set_check  L133-134  args=(self, check)
+
+## struct_tab_setting.set_stop  L135-137  args=(self, stop)
+
+## struct_tab_setting.set_open  L138-140  args=(self, open)
+
+## struct_tab_setting.switch_open  L141-142  args=(self)
+  -> [call/high@L142] ui.structs::struct_tab_setting.get_open_flag
+
+## struct_tab_setting.set_name  L143-144  args=(self, name)
+
+## struct_tab_setting.set_plan  L145-146  args=(self, plan)
+
+## struct_tab_setting.get_com  L148-149  args=(self)
+
+## struct_tab_setting.get_baund  L150-151  args=(self)
+
+## struct_tab_setting.get_check  L152-153  args=(self)
+
+## struct_tab_setting.get_stop  L154-155  args=(self)
+
+## struct_tab_setting.get_open  L156-157  args=(self)
+
+## struct_tab_setting.get_open_flag  L158-159  args=(self)
+  <- [call/high@L142] ui.structs::struct_tab_setting.switch_open
+
+## struct_tab_setting.get_name  L160-161  args=(self)
+
+## struct_tab_setting.get_plan  L162-163  args=(self)
+
+## struct_sate.__init__  L166-205  args=(self)  <constructor>
+  -> [call/high@L201] ui.structs::struct_sate.init_sate_name
+  -> [call/high@L202] ui.structs::struct_sate.init_sate_titl
+  -> [call/high@L203] ui.structs::struct_sate.init_sate_leng
+  -> [call/high@L204] ui.structs::struct_sate.init_sate_zero
+  -> [call/high@L205] ui.structs::struct_sate.init_sate_shap
+  <- [create/high@L65] ui.constants::MainWindowConstants.init_send_struct
+
+## struct_sate.init_sate_name  L208-216  args=(self)
+  <- [call/high@L201] ui.structs::struct_sate.__init__
+
+## struct_sate.init_sate_save  L218-220  args=(self, lists)
+  <- [call/medium@L66] ui.constants::MainWindowConstants.init_send_struct
+
+## struct_sate.init_sate_titl  L221-252  args=(self)
+  <- [call/high@L202] ui.structs::struct_sate.__init__
+
+## struct_sate.init_sate_leng  L253-255  args=(self)
+  <- [call/high@L203] ui.structs::struct_sate.__init__
+
+## struct_sate.init_sate_zero  L256-258  args=(self)
+  <- [call/high@L204] ui.structs::struct_sate.__init__
+
+## struct_sate.init_sate_shap  L259-264  args=(self)
+  <- [call/high@L205] ui.structs::struct_sate.__init__
+
+## struct_sate.append_sare_send  L269-270  args=(self, send_data)
+
+## struct_sate.append_sate_receive  L272-274  args=(self, receive_data)
+  -> [call/high@L274] ui.structs::struct_sate.replace_sate_receive
+
+## struct_sate.replace_sate_receive  L276-296  args=(self)
+  -> [call/high@L286] funs.fun_sate::GPGGA2loc
+  -> [call/high@L289] funs.fun_sate::GNVTG2loc
+  -> [call/high@L291] funs.fun_sate::HEADINGA2loc
+  -> [call/high@L293] funs.fun_sate::KSXT2loc
+  <- [call/high@L274] ui.structs::struct_sate.append_sate_receive
+
+## struct_sate.clear_sate_list  L297-298  args=(self, num)
+
+## clickEventThread_decodeShow.run  L302-305  args=(self)  <thread_entry>
+  => (外部库) time.sleep x1
+
+## struct_turnTable3x.__init__  L309-326  args=(self)  <constructor>
+  <- [create/high@L70] ui.constants::MainWindowConstants.init_struct_turntable3x
+
+## struct_turnTable3x.append_debugMsg  L329-334  args=(self, msg)
+  <- [call/high@L355] ui.structs::struct_turnTable3x.serial_open
+  <- [call/high@L368] ui.structs::struct_turnTable3x.serial_close
+  <- [call/high@L381] ui.structs::struct_turnTable3x.serial_tryRec
+  <- [call/high@L389] ui.structs::struct_turnTable3x.serial_try_clear
+  <- [call/high@L406] ui.structs::struct_turnTable3x.sendAndRec
+  <- [call/high@L424] ui.structs::struct_turnTable3x.sendAndRec
+  <- [call/high@L431] ui.structs::struct_turnTable3x.sendAndRec
+  <- [call/high@L434] ui.structs::struct_turnTable3x.sendAndRec
+  <- [call/high@L467] ui.structs::struct_turnTable3x.sendMsg_mod
+  <- [call/high@L483] ui.structs::struct_turnTable3x.sendMsg_pos
+  <- [call/high@L500] ui.structs::struct_turnTable3x.sendMsg_vel
+
+## struct_turnTable3x.append_showMsg  L336-341  args=(self, msg)
+  <- [call/high@L411] ui.structs::struct_turnTable3x.sendAndRec
+  <- [call/high@L416] ui.structs::struct_turnTable3x.sendAndRec
+  <- [call/high@L420] ui.structs::struct_turnTable3x.sendAndRec
+  <- [call/high@L423] ui.structs::struct_turnTable3x.sendAndRec
+  <- [call/high@L433] ui.structs::struct_turnTable3x.sendAndRec
+  <- [call/high@L466] ui.structs::struct_turnTable3x.sendMsg_mod
+  <- [call/high@L482] ui.structs::struct_turnTable3x.sendMsg_pos
+  <- [call/high@L499] ui.structs::struct_turnTable3x.sendMsg_vel
+  <- [call/high@L515] ui.structs::struct_turnTable3x.sendMsg_acc
+
+## struct_turnTable3x.append_msgClear  L343-345  args=(self)
+
+## struct_turnTable3x.serial_open  L346-357  args=(self)  <hardware_io>
+  -> [call/high@L348] ui.structs::struct_turnTable3x.serial_close
+  -> [call/high@L355] ui.structs::struct_turnTable3x.append_debugMsg
+  => (外部库) serial.Serial x1
+
+## struct_turnTable3x.serial_close  L359-369  args=(self)
+  -> [call/high@L368] ui.structs::struct_turnTable3x.append_debugMsg
+  <- [call/high@L348] ui.structs::struct_turnTable3x.serial_open
+
+## struct_turnTable3x.serial_tryRec  L371-383  args=(self, tryCount, waitTime)  <hardware_io,serial_io_heuristic>
+  -> [call/high@L381] ui.structs::struct_turnTable3x.append_debugMsg
+  => (外部库) time.sleep x1
+  <- [call/high@L409] ui.structs::struct_turnTable3x.sendAndRec
+
+## struct_turnTable3x.serial_try_clear  L384-394  args=(self)  <hardware_io,serial_io_heuristic>
+  -> [call/high@L389] ui.structs::struct_turnTable3x.append_debugMsg
+  <- [call/high@L398] ui.structs::struct_turnTable3x.sendAndRec
+
+## struct_turnTable3x.sendAndRec  L397-437  args=(self, sendMsg, recMsg)  <hardware_io,serial_io_heuristic>
+  -> [call/high@L398] ui.structs::struct_turnTable3x.serial_try_clear
+  -> [call/high@L406] ui.structs::struct_turnTable3x.append_debugMsg
+  -> [call/high@L409] ui.structs::struct_turnTable3x.serial_tryRec
+  -> [call/high@L411] ui.structs::struct_turnTable3x.append_showMsg
+  -> [call/high@L416] ui.structs::struct_turnTable3x.append_showMsg
+  -> [call/high@L420] ui.structs::struct_turnTable3x.append_showMsg
+  -> [call/high@L423] ui.structs::struct_turnTable3x.append_showMsg
+  -> [call/high@L424] ui.structs::struct_turnTable3x.append_debugMsg
+  -> [call/high@L431] ui.structs::struct_turnTable3x.append_debugMsg
+  -> [call/high@L433] ui.structs::struct_turnTable3x.append_showMsg
+  -> [call/high@L434] ui.structs::struct_turnTable3x.append_debugMsg
+  <- [call/high@L445] ui.structs::struct_turnTable3x.sendMsg_chk
+  <- [call/high@L448] ui.structs::struct_turnTable3x.sendMsg_rem
+  <- [call/high@L451] ui.structs::struct_turnTable3x.sendMsg_loc
+  <- [call/high@L454] ui.structs::struct_turnTable3x.sendMsg_enb
+  <- [call/high@L457] ui.structs::struct_turnTable3x.sendMsg_dis
+  <- [call/high@L460] ui.structs::struct_turnTable3x.sendMsg_hmz
+  <- [call/high@L472] ui.structs::struct_turnTable3x.sendMsg_mod
+  <- [call/high@L488] ui.structs::struct_turnTable3x.sendMsg_pos
+  <- [call/high@L505] ui.structs::struct_turnTable3x.sendMsg_vel
+  <- [call/high@L520] ui.structs::struct_turnTable3x.sendMsg_acc
+  <- [call/high@L526] ui.structs::struct_turnTable3x.sendMsg_run
+  <- [call/high@L529] ui.structs::struct_turnTable3x.sendMsg_stp
+  <- ... 另有 1 个调用者
+
+## struct_turnTable3x.sumCheckAscii  L440-441  args=(self, string)
+  <- [call/high@L473] ui.structs::struct_turnTable3x.sendMsg_mod
+  <- [call/high@L489] ui.structs::struct_turnTable3x.sendMsg_pos
+  <- [call/high@L506] ui.structs::struct_turnTable3x.sendMsg_vel
+  <- [call/high@L521] ui.structs::struct_turnTable3x.sendMsg_acc
+
+## struct_turnTable3x.sendMsg_chk  L444-445  args=(self)
+  -> [call/high@L445] ui.structs::struct_turnTable3x.sendAndRec
+
+## struct_turnTable3x.sendMsg_rem  L447-448  args=(self)
+  -> [call/high@L448] ui.structs::struct_turnTable3x.sendAndRec
+
+## struct_turnTable3x.sendMsg_loc  L450-451  args=(self)
+  -> [call/high@L451] ui.structs::struct_turnTable3x.sendAndRec
+
+## struct_turnTable3x.sendMsg_enb  L453-454  args=(self)
+  -> [call/high@L454] ui.structs::struct_turnTable3x.sendAndRec
+
+## struct_turnTable3x.sendMsg_dis  L456-457  args=(self)
+  -> [call/high@L457] ui.structs::struct_turnTable3x.sendAndRec
+
+## struct_turnTable3x.sendMsg_hmz  L459-460  args=(self)
+  -> [call/high@L460] ui.structs::struct_turnTable3x.sendAndRec
+
+## struct_turnTable3x.sendMsg_mod  L462-475  args=(self, a, b, c)
+  -> [call/high@L466] ui.structs::struct_turnTable3x.append_showMsg
+  -> [call/high@L467] ui.structs::struct_turnTable3x.append_debugMsg
+  -> [call/high@L472] ui.structs::struct_turnTable3x.sendAndRec
+  -> [call/high@L473] ui.structs::struct_turnTable3x.sumCheckAscii
+
+## struct_turnTable3x.sendMsg_pos  L477-491  args=(self, a, b, c)
+  -> [call/high@L482] ui.structs::struct_turnTable3x.append_showMsg
+  -> [call/high@L483] ui.structs::struct_turnTable3x.append_debugMsg
+  -> [call/high@L488] ui.structs::struct_turnTable3x.sendAndRec
+  -> [call/high@L489] ui.structs::struct_turnTable3x.sumCheckAscii
+
+## struct_turnTable3x.sendMsg_vel  L493-508  args=(self, a, b, c)
+  -> [call/high@L499] ui.structs::struct_turnTable3x.append_showMsg
+  -> [call/high@L500] ui.structs::struct_turnTable3x.append_debugMsg
+  -> [call/high@L505] ui.structs::struct_turnTable3x.sendAndRec
+  -> [call/high@L506] ui.structs::struct_turnTable3x.sumCheckAscii
+
+## struct_turnTable3x.sendMsg_acc  L510-523  args=(self, a, b, c)
+  -> [call/high@L515] ui.structs::struct_turnTable3x.append_showMsg
+  -> [call/high@L520] ui.structs::struct_turnTable3x.sendAndRec
+  -> [call/high@L521] ui.structs::struct_turnTable3x.sumCheckAscii
+
+## struct_turnTable3x.sendMsg_run  L525-526  args=(self)
+  -> [call/high@L526] ui.structs::struct_turnTable3x.sendAndRec
+
+## struct_turnTable3x.sendMsg_stp  L528-529  args=(self)
+  -> [call/high@L529] ui.structs::struct_turnTable3x.sendAndRec
+
+## struct_turnTable3x.sendMsg_sts  L531-532  args=(self)
+  -> [call/high@L532] ui.structs::struct_turnTable3x.sendAndRec

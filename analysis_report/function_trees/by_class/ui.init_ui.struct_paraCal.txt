@@ -1,0 +1,71 @@
+# 类 ui.init_ui::struct_paraCal  (ui/init_ui.py:483)  bases=[]
+
+## struct_paraCal.__init__  L484
+   ui.init_ui::struct_paraCal.__init__  (ui/init_ui.py:484)
+       [call/high@L485] ui.init_ui::struct_paraCal.init_list  (ui/init_ui.py:488)
+       [call/high@L486] ui.init_ui::struct_paraCal.init_conf  (ui/init_ui.py:512)
+
+## struct_paraCal.init_list  L488
+   ui.init_ui::struct_paraCal.init_list  (ui/init_ui.py:488)
+
+## struct_paraCal.init_conf  L512
+   ui.init_ui::struct_paraCal.init_conf  (ui/init_ui.py:512)
+
+## struct_paraCal.load_BD_file  L570
+   ui.init_ui::struct_paraCal.load_BD_file  (ui/init_ui.py:570)
+       [call/high@L571(+1 处: 573)] ui.init_ui::struct_paraCal.processing_BD_file  (ui/init_ui.py:619)
+           [call/high@L629] ui.init_ui::del_empty_folder  (ui/init_ui.py:369)  <in_cycle>
+           [call/high@L691(+1 处: 698)] ui.init_ui::struct_paraCal.get_all2List  (ui/init_ui.py:601)
+       [call/high@L575] ui.init_ui::struct_paraCal.processing_BD_SL  (ui/init_ui.py:586)
+           [call/high@L587] ui.init_ui::struct_paraCal.load_SL_file  (ui/init_ui.py:744)
+       [call/high@L577] ui.init_ui::struct_paraCal.processing_BD_LW  (ui/init_ui.py:589)
+           [call/high@L590] ui.init_ui::struct_paraCal.load_LW_file  (ui/init_ui.py:820)
+
+## struct_paraCal.processing_BD_ave  L580
+   ui.init_ui::struct_paraCal.processing_BD_ave  (ui/init_ui.py:580)
+       [call/high@L581] ui.init_ui::struct_paraCal.processing_BD_file  (ui/init_ui.py:619)
+           [call/high@L629] ui.init_ui::del_empty_folder  (ui/init_ui.py:369)  <in_cycle>
+           [call/high@L691(+1 处: 698)] ui.init_ui::struct_paraCal.get_all2List  (ui/init_ui.py:601)
+
+## struct_paraCal.processing_BD_std  L583
+   ui.init_ui::struct_paraCal.processing_BD_std  (ui/init_ui.py:583)
+       [call/high@L584] ui.init_ui::struct_paraCal.processing_BD_file  (ui/init_ui.py:619)
+           [call/high@L629] ui.init_ui::del_empty_folder  (ui/init_ui.py:369)  <in_cycle>
+           [call/high@L691(+1 处: 698)] ui.init_ui::struct_paraCal.get_all2List  (ui/init_ui.py:601)
+
+## struct_paraCal.processing_BD_SL  L586
+   ui.init_ui::struct_paraCal.processing_BD_SL  (ui/init_ui.py:586)
+       [call/high@L587] ui.init_ui::struct_paraCal.load_SL_file  (ui/init_ui.py:744)
+           [call/high@L766] ui.init_ui::struct_paraCal.get_all2List  (ui/init_ui.py:601)
+           [call/high@L800] ui.init_ui::fun_sl_average  (ui/init_ui.py:441)
+
+## struct_paraCal.processing_BD_LW  L589
+   ui.init_ui::struct_paraCal.processing_BD_LW  (ui/init_ui.py:589)
+       [call/high@L590] ui.init_ui::struct_paraCal.load_LW_file  (ui/init_ui.py:820)
+           [call/high@L842] ui.init_ui::struct_paraCal.get_all2List  (ui/init_ui.py:601)
+           [call/high@L880] ui.init_ui::fun_lw_average  (ui/init_ui.py:389)
+
+## struct_paraCal.show_dict  L595
+   ui.init_ui::struct_paraCal.show_dict  (ui/init_ui.py:595)
+
+## struct_paraCal.get_all2List  L601
+   ui.init_ui::struct_paraCal.get_all2List  (ui/init_ui.py:601)
+
+## struct_paraCal.processing_BD_file  L619
+   ui.init_ui::struct_paraCal.processing_BD_file  (ui/init_ui.py:619)
+       [call/high@L629] ui.init_ui::del_empty_folder  (ui/init_ui.py:369)  <in_cycle>
+           [call/high@L374] ui.init_ui::del_empty_folder  ↻ 递归/循环调用(不再展开)  (ui/init_ui.py:369)
+       [call/high@L691(+1 处: 698)] ui.init_ui::struct_paraCal.get_all2List  (ui/init_ui.py:601)
+
+## struct_paraCal.load_SL_file  L744
+   ui.init_ui::struct_paraCal.load_SL_file  (ui/init_ui.py:744)
+       [call/high@L766] ui.init_ui::struct_paraCal.get_all2List  (ui/init_ui.py:601)
+       [call/high@L800] ui.init_ui::fun_sl_average  (ui/init_ui.py:441)
+
+## struct_paraCal.load_LW_file  L820
+   ui.init_ui::struct_paraCal.load_LW_file  (ui/init_ui.py:820)
+       [call/high@L842] ui.init_ui::struct_paraCal.get_all2List  (ui/init_ui.py:601)
+       [call/high@L880] ui.init_ui::fun_lw_average  (ui/init_ui.py:389)
+
+## struct_paraCal.load_JT_file  L914
+   ui.init_ui::struct_paraCal.load_JT_file  (ui/init_ui.py:914)

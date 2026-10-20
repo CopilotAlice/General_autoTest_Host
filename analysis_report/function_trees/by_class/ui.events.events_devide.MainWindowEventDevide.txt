@@ -1,0 +1,59 @@
+# 类 ui.events.events_devide::MainWindowEventDevide  (ui/events/events_devide.py:4)  bases=[]
+
+## MainWindowEventDevide.__init__  L5
+   ui.events.events_devide::MainWindowEventDevide.__init__  (ui/events/events_devide.py:5)
+       [call/high@L7] ui.events.events_devide::MainWindowEventDevide.logic_tempBox  (ui/events/events_devide.py:18)
+           [connect/high@L19] ui.events.events_devide::MainWindowEventDevide.clickEvent_tempbox_set  (ui/events/events_devide.py:21)  <qt_slot>
+       [call/high@L8] ui.events.events_devide::MainWindowEventDevide.logic_turntable3x  (ui/events/events_devide.py:51)
+           [timer/high@L53] ui.events.events_devide::MainWindowEventDevide.turntable3x_update_status  (ui/events/events_devide.py:175)  <timer_callback>
+           [connect/high@L54] ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_open  (ui/events/events_devide.py:59)  <qt_slot>
+           [connect/high@L55] ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_close  (ui/events/events_devide.py:73)  <qt_slot>
+           [connect/high@L56] ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_command  (ui/events/events_devide.py:80)  <qt_slot>
+           [connect/high@L57] ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_turn  (ui/events/events_devide.py:125)  <qt_slot>
+
+## MainWindowEventDevide.logic_tempBox  L18
+   ui.events.events_devide::MainWindowEventDevide.logic_tempBox  (ui/events/events_devide.py:18)
+       [connect/high@L19] ui.events.events_devide::MainWindowEventDevide.clickEvent_tempbox_set  (ui/events/events_devide.py:21)  <qt_slot>
+           [call/high@L33] funs.fun_serial::tryOpenAndSend  (funs/fun_serial.py:23)  <hardware_io,serial_io_heuristic>
+
+## MainWindowEventDevide.clickEvent_tempbox_set  L21
+   ui.events.events_devide::MainWindowEventDevide.clickEvent_tempbox_set  (ui/events/events_devide.py:21)  <qt_slot>
+       [call/high@L33] funs.fun_serial::tryOpenAndSend  (funs/fun_serial.py:23)  <hardware_io,serial_io_heuristic>
+
+## MainWindowEventDevide.logic_turntable3x  L51
+   ui.events.events_devide::MainWindowEventDevide.logic_turntable3x  (ui/events/events_devide.py:51)
+       [timer/high@L53] ui.events.events_devide::MainWindowEventDevide.turntable3x_update_status  (ui/events/events_devide.py:175)  <timer_callback>
+       [connect/high@L54] ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_open  (ui/events/events_devide.py:59)  <qt_slot>
+           [timer/high@L70] ui.events.events_devide::MainWindowEventDevide.turntable3x_update_status  (ui/events/events_devide.py:175)  <timer_callback>
+       [connect/high@L55] ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_close  (ui/events/events_devide.py:73)  <qt_slot>
+       [connect/high@L56] ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_command  (ui/events/events_devide.py:80)  <qt_slot>
+           [call/high@L82] ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_open  ↑ 已在上文展开  (ui/events/events_devide.py:59)
+           [call/high@L100(+2 处: 103,106)] ui.events.events_devide::MainWindowEventDevide.turntable3x_get_input  (ui/events/events_devide.py:148)
+       [connect/high@L57] ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_turn  (ui/events/events_devide.py:125)  <qt_slot>
+           [call/high@L126] ui.events.events_devide::MainWindowEventDevide.turntable3x_get_input  (ui/events/events_devide.py:148)
+
+## MainWindowEventDevide.clickEvent_turntable3x_open  L59
+   ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_open  (ui/events/events_devide.py:59)  <qt_slot>
+       [timer/high@L70] ui.events.events_devide::MainWindowEventDevide.turntable3x_update_status  (ui/events/events_devide.py:175)  <timer_callback>
+
+## MainWindowEventDevide.clickEvent_turntable3x_close  L73
+   ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_close  (ui/events/events_devide.py:73)  <qt_slot>
+
+## MainWindowEventDevide.clickEvent_turntable3x_command  L80
+   ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_command  (ui/events/events_devide.py:80)  <qt_slot>
+       [call/high@L82] ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_open  (ui/events/events_devide.py:59)  <qt_slot>
+           [timer/high@L70] ui.events.events_devide::MainWindowEventDevide.turntable3x_update_status  (ui/events/events_devide.py:175)  <timer_callback>
+       [call/high@L100(+2 处: 103,106)] ui.events.events_devide::MainWindowEventDevide.turntable3x_get_input  (ui/events/events_devide.py:148)
+
+## MainWindowEventDevide.clickEvent_turntable3x_turn  L125
+   ui.events.events_devide::MainWindowEventDevide.clickEvent_turntable3x_turn  (ui/events/events_devide.py:125)  <qt_slot>
+       [call/high@L126] ui.events.events_devide::MainWindowEventDevide.turntable3x_get_input  (ui/events/events_devide.py:148)
+
+## MainWindowEventDevide.turntable3x_get_input  L148
+   ui.events.events_devide::MainWindowEventDevide.turntable3x_get_input  (ui/events/events_devide.py:148)
+
+## MainWindowEventDevide.turntable3x_set_input  L161
+   ui.events.events_devide::MainWindowEventDevide.turntable3x_set_input  (ui/events/events_devide.py:161)
+
+## MainWindowEventDevide.turntable3x_update_status  L175
+   ui.events.events_devide::MainWindowEventDevide.turntable3x_update_status  (ui/events/events_devide.py:175)  <timer_callback>

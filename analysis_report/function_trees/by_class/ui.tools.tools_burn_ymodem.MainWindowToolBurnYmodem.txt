@@ -1,0 +1,57 @@
+# 类 ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem  (ui/tools/tools_burn_ymodem.py:193)  bases=[]
+
+## MainWindowToolBurnYmodem.__init__  L194
+   ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.__init__  (ui/tools/tools_burn_ymodem.py:194)
+       [call/high@L198] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem._build_tab_if_needed  (ui/tools/tools_burn_ymodem.py:202)
+       [call/high@L199] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem._bind_events  (ui/tools/tools_burn_ymodem.py:267)
+           [connect/high@L270] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.refresh_ports  (ui/tools/tools_burn_ymodem.py:279)  <hardware_io,qt_slot>
+           [connect/high@L271] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.pick_firmware_file  (ui/tools/tools_burn_ymodem.py:291)  <qt_slot>
+           [connect/high@L272] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.start_burn  (ui/tools/tools_burn_ymodem.py:302)  <qt_slot>
+           [connect/high@L273] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.stop_burn  (ui/tools/tools_burn_ymodem.py:335)  <qt_slot>
+       [call/high@L200] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.refresh_ports  ↑ 已在上文展开  (ui/tools/tools_burn_ymodem.py:279)
+
+## MainWindowToolBurnYmodem._build_tab_if_needed  L202
+   ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem._build_tab_if_needed  (ui/tools/tools_burn_ymodem.py:202)
+
+## MainWindowToolBurnYmodem._bind_events  L267
+   ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem._bind_events  (ui/tools/tools_burn_ymodem.py:267)
+       [connect/high@L270] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.refresh_ports  (ui/tools/tools_burn_ymodem.py:279)  <hardware_io,qt_slot>
+           [call/high@L289] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.append_log  (ui/tools/tools_burn_ymodem.py:275)  <qt_slot>
+       [connect/high@L271] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.pick_firmware_file  (ui/tools/tools_burn_ymodem.py:291)  <qt_slot>
+           [call/high@L300] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.append_log  (ui/tools/tools_burn_ymodem.py:275)  <qt_slot>
+       [connect/high@L272] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.start_burn  (ui/tools/tools_burn_ymodem.py:302)  <qt_slot>
+           [call/high@L304(+4 处: 312,315,321,332)] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.append_log  (ui/tools/tools_burn_ymodem.py:275)  <qt_slot>
+           [create/high@L324] ui.tools.tools_burn_ymodem::YModemBurnWorker.__init__  (ui/tools/tools_burn_ymodem.py:39)
+           [connect/high@L325] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.append_log  (ui/tools/tools_burn_ymodem.py:275)  <qt_slot>
+           [connect/high@L327] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem._on_burn_result  (ui/tools/tools_burn_ymodem.py:340)  <qt_slot>
+       [connect/high@L273] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.stop_burn  (ui/tools/tools_burn_ymodem.py:335)  <qt_slot>
+           [call/medium@L337] ui.tools.tools_burn_ymodem::YModemBurnWorker.stop  (ui/tools/tools_burn_ymodem.py:46)
+           [call/high@L338] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.append_log  (ui/tools/tools_burn_ymodem.py:275)  <qt_slot>
+
+## MainWindowToolBurnYmodem.append_log  L275
+   ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.append_log  (ui/tools/tools_burn_ymodem.py:275)  <qt_slot>
+
+## MainWindowToolBurnYmodem.refresh_ports  L279
+   ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.refresh_ports  (ui/tools/tools_burn_ymodem.py:279)  <hardware_io,qt_slot>
+       [call/high@L289] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.append_log  (ui/tools/tools_burn_ymodem.py:275)  <qt_slot>
+
+## MainWindowToolBurnYmodem.pick_firmware_file  L291
+   ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.pick_firmware_file  (ui/tools/tools_burn_ymodem.py:291)  <qt_slot>
+       [call/high@L300] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.append_log  (ui/tools/tools_burn_ymodem.py:275)  <qt_slot>
+
+## MainWindowToolBurnYmodem.start_burn  L302
+   ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.start_burn  (ui/tools/tools_burn_ymodem.py:302)  <qt_slot>
+       [call/high@L304(+4 处: 312,315,321,332)] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.append_log  (ui/tools/tools_burn_ymodem.py:275)  <qt_slot>
+       [create/high@L324] ui.tools.tools_burn_ymodem::YModemBurnWorker.__init__  (ui/tools/tools_burn_ymodem.py:39)
+       [connect/high@L325] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.append_log  (ui/tools/tools_burn_ymodem.py:275)  <qt_slot>
+       [connect/high@L327] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem._on_burn_result  (ui/tools/tools_burn_ymodem.py:340)  <qt_slot>
+           [call/high@L341] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.append_log  (ui/tools/tools_burn_ymodem.py:275)  <qt_slot>
+
+## MainWindowToolBurnYmodem.stop_burn  L335
+   ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.stop_burn  (ui/tools/tools_burn_ymodem.py:335)  <qt_slot>
+       [call/medium@L337] ui.tools.tools_burn_ymodem::YModemBurnWorker.stop  (ui/tools/tools_burn_ymodem.py:46)
+       [call/high@L338] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.append_log  (ui/tools/tools_burn_ymodem.py:275)  <qt_slot>
+
+## MainWindowToolBurnYmodem._on_burn_result  L340
+   ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem._on_burn_result  (ui/tools/tools_burn_ymodem.py:340)  <qt_slot>
+       [call/high@L341] ui.tools.tools_burn_ymodem::MainWindowToolBurnYmodem.append_log  (ui/tools/tools_burn_ymodem.py:275)  <qt_slot>

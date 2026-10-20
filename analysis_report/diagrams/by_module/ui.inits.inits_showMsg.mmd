@@ -1,0 +1,5 @@
+%% 模块局部调用树: ui.inits.inits_showMsg (ui/inits/inits_showMsg.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["MainWindowInitShowMsg.__init__<br/><small>ui.inits.inits_showMsg:33</small>"]
+  f1["MainWindowInitShowMsg.init_showMsg_process<br/><small>ui.inits.inits_showMsg:38</small>"]
+  f0 -->|"call/high"| f1

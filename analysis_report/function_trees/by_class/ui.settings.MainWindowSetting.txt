@@ -1,0 +1,24 @@
+# 类 ui.settings::MainWindowSetting  (ui/settings.py:4)  bases=[]
+
+## MainWindowSetting.__init__  L5
+   ui.settings::MainWindowSetting.__init__  (ui/settings.py:5)
+       [call/high@L9] ui.settings::MainWindowSetting.init_default_config  (ui/settings.py:20)
+       [call/high@L11] ui.settings::MainWindowSetting.init_config_sate  (ui/settings.py:31)
+       [call/high@L15] ui.settings::MainWindowSetting.init_read_para  (ui/settings.py:48)
+           [call/high@L70] funs.fun_chy2::try_int  (funs/fun_chy2.py:163)
+       [call/high@L16] ui.settings::MainWindowSetting.init_read_root  (ui/settings.py:80)
+           [call/high@L101] funs.fun_chy2::try_int  (funs/fun_chy2.py:163)
+
+## MainWindowSetting.init_default_config  L20
+   ui.settings::MainWindowSetting.init_default_config  (ui/settings.py:20)
+
+## MainWindowSetting.init_config_sate  L31
+   ui.settings::MainWindowSetting.init_config_sate  (ui/settings.py:31)
+
+## MainWindowSetting.init_read_para  L48
+   ui.settings::MainWindowSetting.init_read_para  (ui/settings.py:48)
+       [call/high@L70] funs.fun_chy2::try_int  (funs/fun_chy2.py:163)
+
+## MainWindowSetting.init_read_root  L80
+   ui.settings::MainWindowSetting.init_read_root  (ui/settings.py:80)
+       [call/high@L101] funs.fun_chy2::try_int  (funs/fun_chy2.py:163)

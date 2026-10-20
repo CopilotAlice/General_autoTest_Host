@@ -1,0 +1,21 @@
+# 模块 funs.fun_sate  (funs/fun_sate.py)
+
+## <module>  L1-53  args=()  <module_body>
+
+## GPGGA2loc  L1-20  args=(strings)
+  -> [call/high@L9] funs.fun_sate::sate2location
+  -> [call/high@L10] funs.fun_sate::sate2location
+  <- [call/high@L286] ui.structs::struct_sate.replace_sate_receive
+
+## GNVTG2loc  L21-23  args=(strings)
+  <- [call/high@L289] ui.structs::struct_sate.replace_sate_receive
+
+## HEADINGA2loc  L24-25  args=(strings)
+  <- [call/high@L291] ui.structs::struct_sate.replace_sate_receive
+
+## KSXT2loc  L26-44  args=(strings)
+  <- [call/high@L293] ui.structs::struct_sate.replace_sate_receive
+
+## sate2location  L46-53  args=(sate_data)
+  <- [call/high@L9] funs.fun_sate::GPGGA2loc
+  <- [call/high@L10] funs.fun_sate::GPGGA2loc

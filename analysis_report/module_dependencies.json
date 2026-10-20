@@ -1,0 +1,1335 @@
+{
+ "modules": [
+  "Automated_testing",
+  "Automated_testingV17",
+  "Automated_testingV19",
+  "Automated_testingV20",
+  "funs.checks",
+  "funs.checks_remove",
+  "funs.fun_checks",
+  "funs.fun_chy2",
+  "funs.fun_locals",
+  "funs.fun_sate",
+  "funs.fun_serial",
+  "sample_testingV13",
+  "ui",
+  "ui.constants",
+  "ui.debug",
+  "ui.event",
+  "ui.events",
+  "ui.events.events_devide",
+  "ui.events.events_hidden",
+  "ui.get_ui",
+  "ui.init_ui",
+  "ui.inits",
+  "ui.inits.inits_debugMsg",
+  "ui.inits.inits_funcTest",
+  "ui.inits.inits_showMsg",
+  "ui.load_ini",
+  "ui.logic",
+  "ui.navs",
+  "ui.navs.nav_loc",
+  "ui.settings",
+  "ui.structs",
+  "ui.threads",
+  "ui.times",
+  "ui.tools",
+  "ui.tools.tools_bdcalib",
+  "ui.tools.tools_burn_ymodem",
+  "通用自动测试上位机V0.90",
+  "通用自动测试上位机V0.95"
+ ],
+ "edges": [
+  {
+   "src": "ui.constants",
+   "dst": "funs.fun_locals",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    7
+   ],
+   "names": [
+    "*"
+   ]
+  },
+  {
+   "src": "ui.constants",
+   "dst": "ui.structs",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    6
+   ],
+   "names": [
+    "*"
+   ]
+  },
+  {
+   "src": "ui.event",
+   "dst": "funs.fun_checks",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    11
+   ],
+   "names": [
+    "*"
+   ]
+  },
+  {
+   "src": "ui.event",
+   "dst": "funs.fun_chy2",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    10
+   ],
+   "names": [
+    "*"
+   ]
+  },
+  {
+   "src": "ui.events",
+   "dst": "ui.events.events_devide",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    1
+   ],
+   "names": [
+    "*"
+   ]
+  },
+  {
+   "src": "ui.events",
+   "dst": "ui.events.events_hidden",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    2
+   ],
+   "names": [
+    "*"
+   ]
+  },
+  {
+   "src": "ui.events.events_devide",
+   "dst": "funs.fun_serial",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    2
+   ],
+   "names": [
+    "*"
+   ]
+  },
+  {
+   "src": "ui.get_ui",
+   "dst": "funs.fun_locals",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    2
+   ],
+   "names": [
+    "*"
+   ]
+  },
+  {
+   "src": "ui.init_ui",
+   "dst": "funs.fun_locals",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    3
+   ],
+   "names": [
+    "*"
+   ]
+  },
+  {
+   "src": "ui.inits",
+   "dst": "ui.inits.inits_debugMsg",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    1
+   ],
+   "names": [
+    "MainWindowInitDebugMsg"
+   ]
+  },
+  {
+   "src": "ui.inits",
+   "dst": "ui.inits.inits_funcTest",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    3
+   ],
+   "names": [
+    "MainWindowInitFuncTest"
+   ]
+  },
+  {
+   "src": "ui.inits",
+   "dst": "ui.inits.inits_showMsg",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    2
+   ],
+   "names": [
+    "MainWindowInitShowMsg"
+   ]
+  },
+  {
+   "src": "ui.navs",
+   "dst": "ui.navs.nav_loc",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    2
+   ],
+   "names": [
+    "MainWindowNavLoc"
+   ]
+  },
+  {
+   "src": "ui.settings",
+   "dst": "funs.fun_chy2",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    2
+   ],
+   "names": [
+    "*"
+   ]
+  },
+  {
+   "src": "ui.structs",
+   "dst": "funs.fun_chy2",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    6
+   ],
+   "names": [
+    "*"
+   ]
+  },
+  {
+   "src": "ui.structs",
+   "dst": "funs.fun_sate",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    7
+   ],
+   "names": [
+    "*"
+   ]
+  },
+  {
+   "src": "ui.times",
+   "dst": "funs.fun_locals",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    3
+   ],
+   "names": [
+    "*"
+   ]
+  },
+  {
+   "src": "ui.tools",
+   "dst": "ui.tools.tools_bdcalib",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    1
+   ],
+   "names": [
+    "MainWindowToolBdcalib"
+   ]
+  },
+  {
+   "src": "ui.tools",
+   "dst": "ui.tools.tools_burn_ymodem",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    2
+   ],
+   "names": [
+    "MainWindowToolBurnYmodem"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "Automated_testingV17",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    9
+   ],
+   "names": [
+    "Ui_MainWindow"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "funs.fun_checks",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    10
+   ],
+   "names": [
+    "*"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "funs.fun_chy2",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    11
+   ],
+   "names": [
+    "*"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "funs.fun_locals",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    13
+   ],
+   "names": [
+    "*"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "funs.fun_serial",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    12
+   ],
+   "names": [
+    "*"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "ui.constants",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    27
+   ],
+   "names": [
+    "MainWindowConstants"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "ui.debug",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    21
+   ],
+   "names": [
+    "MainWindowDebug"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "ui.event",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    19
+   ],
+   "names": [
+    "MainWindowEvent"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "ui.events",
+   "kinds": [
+    "import"
+   ],
+   "lines": [
+    15
+   ],
+   "names": [
+    "ui.events"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "ui.get_ui",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    23
+   ],
+   "names": [
+    "MainWindowGetUI"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "ui.init_ui",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    24
+   ],
+   "names": [
+    "MainWindowInit"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "ui.inits",
+   "kinds": [
+    "import"
+   ],
+   "lines": [
+    16
+   ],
+   "names": [
+    "ui.inits"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "ui.logic",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    20
+   ],
+   "names": [
+    "MainWindowLogic"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "ui.settings",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    26
+   ],
+   "names": [
+    "MainWindowSetting"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "ui.threads",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    25
+   ],
+   "names": [
+    "MainWindowThread"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "ui.times",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    22
+   ],
+   "names": [
+    "MainWindowTimes"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "ui.tools",
+   "kinds": [
+    "import"
+   ],
+   "lines": [
+    17
+   ],
+   "names": [
+    "ui.tools"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "Automated_testingV19",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    9
+   ],
+   "names": [
+    "Ui_MainWindow"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "funs.fun_checks",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    10
+   ],
+   "names": [
+    "*"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "funs.fun_chy2",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    11
+   ],
+   "names": [
+    "*"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "funs.fun_locals",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    13
+   ],
+   "names": [
+    "*"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "funs.fun_serial",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    12
+   ],
+   "names": [
+    "*"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "ui.constants",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    29
+   ],
+   "names": [
+    "MainWindowConstants"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "ui.debug",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    22
+   ],
+   "names": [
+    "MainWindowDebug"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "ui.event",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    20
+   ],
+   "names": [
+    "MainWindowEvent"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "ui.events",
+   "kinds": [
+    "import"
+   ],
+   "lines": [
+    15
+   ],
+   "names": [
+    "ui.events"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "ui.get_ui",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    24
+   ],
+   "names": [
+    "MainWindowGetUI"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "ui.init_ui",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    25
+   ],
+   "names": [
+    "MainWindowInit"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "ui.inits",
+   "kinds": [
+    "import"
+   ],
+   "lines": [
+    16
+   ],
+   "names": [
+    "ui.inits"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "ui.load_ini",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    27
+   ],
+   "names": [
+    "MainWindowInitIni"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "ui.logic",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    21
+   ],
+   "names": [
+    "MainWindowLogic"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "ui.navs",
+   "kinds": [
+    "import"
+   ],
+   "lines": [
+    18
+   ],
+   "names": [
+    "ui.navs"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "ui.settings",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    28
+   ],
+   "names": [
+    "MainWindowSetting"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "ui.threads",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    26
+   ],
+   "names": [
+    "MainWindowThread"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "ui.times",
+   "kinds": [
+    "from"
+   ],
+   "lines": [
+    23
+   ],
+   "names": [
+    "MainWindowTimes"
+   ]
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "ui.tools",
+   "kinds": [
+    "import"
+   ],
+   "lines": [
+    17
+   ],
+   "names": [
+    "ui.tools"
+   ]
+  }
+ ],
+ "import_cycles": [],
+ "runtime_call_coupling": [
+  {
+   "src": "ui.logic",
+   "dst": "ui.event",
+   "calls": 26
+  },
+  {
+   "src": "ui.event",
+   "dst": "funs.fun_chy2",
+   "calls": 11
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "funs.fun_chy2",
+   "calls": 10
+  },
+  {
+   "src": "ui.structs",
+   "dst": "funs.fun_chy2",
+   "calls": 10
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "funs.fun_chy2",
+   "calls": 9
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "ui.events.events_devide",
+   "calls": 7
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "ui.events.events_devide",
+   "calls": 7
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "funs.fun_serial",
+   "calls": 6
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "funs.fun_serial",
+   "calls": 6
+  },
+  {
+   "src": "ui.constants",
+   "dst": "ui.structs",
+   "calls": 6
+  },
+  {
+   "src": "ui.structs",
+   "dst": "funs.fun_sate",
+   "calls": 4
+  },
+  {
+   "src": "ui.event",
+   "dst": "funs.fun_checks",
+   "calls": 3
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "ui.times",
+   "calls": 2
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "ui.navs.nav_loc",
+   "calls": 2
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "ui.times",
+   "calls": 2
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "funs.fun_checks",
+   "calls": 2
+  },
+  {
+   "src": "ui.settings",
+   "dst": "funs.fun_chy2",
+   "calls": 2
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "Automated_testingV17",
+   "calls": 1
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "ui.inits.inits_debugMsg",
+   "calls": 1
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "ui.inits.inits_showMsg",
+   "calls": 1
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "ui.debug",
+   "calls": 1
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "ui.init_ui",
+   "calls": 1
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "ui.settings",
+   "calls": 1
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "ui.constants",
+   "calls": 1
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "ui.event",
+   "calls": 1
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "ui.threads",
+   "calls": 1
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "ui.logic",
+   "calls": 1
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "ui.get_ui",
+   "calls": 1
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "ui.events.events_hidden",
+   "calls": 1
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "ui.tools.tools_bdcalib",
+   "calls": 1
+  },
+  {
+   "src": "通用自动测试上位机V0.90",
+   "dst": "funs.fun_checks",
+   "calls": 1
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "Automated_testingV19",
+   "calls": 1
+  },
+  {
+   "src": "ui.logic",
+   "dst": "ui.times",
+   "calls": 1
+  },
+  {
+   "src": "ui.events.events_devide",
+   "dst": "funs.fun_serial",
+   "calls": 1
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "ui.inits.inits_debugMsg",
+   "calls": 1
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "ui.inits.inits_showMsg",
+   "calls": 1
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "ui.load_ini",
+   "calls": 1
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "ui.debug",
+   "calls": 1
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "ui.init_ui",
+   "calls": 1
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "ui.settings",
+   "calls": 1
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "ui.constants",
+   "calls": 1
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "ui.event",
+   "calls": 1
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "ui.threads",
+   "calls": 1
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "ui.logic",
+   "calls": 1
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "ui.get_ui",
+   "calls": 1
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "ui.events.events_hidden",
+   "calls": 1
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "ui.tools.tools_bdcalib",
+   "calls": 1
+  },
+  {
+   "src": "通用自动测试上位机V0.95",
+   "dst": "ui.tools.tools_burn_ymodem",
+   "calls": 1
+  }
+ ],
+ "runtime_call_cycles": [],
+ "coupling": {
+  "Automated_testing": {
+   "fan_in": 0,
+   "fan_out": 0
+  },
+  "Automated_testingV17": {
+   "fan_in": 1,
+   "fan_out": 0
+  },
+  "Automated_testingV19": {
+   "fan_in": 1,
+   "fan_out": 0
+  },
+  "Automated_testingV20": {
+   "fan_in": 0,
+   "fan_out": 0
+  },
+  "funs.checks": {
+   "fan_in": 0,
+   "fan_out": 0
+  },
+  "funs.checks_remove": {
+   "fan_in": 0,
+   "fan_out": 0
+  },
+  "funs.fun_checks": {
+   "fan_in": 3,
+   "fan_out": 0
+  },
+  "funs.fun_chy2": {
+   "fan_in": 5,
+   "fan_out": 0
+  },
+  "funs.fun_locals": {
+   "fan_in": 6,
+   "fan_out": 0
+  },
+  "funs.fun_sate": {
+   "fan_in": 1,
+   "fan_out": 0
+  },
+  "funs.fun_serial": {
+   "fan_in": 3,
+   "fan_out": 0
+  },
+  "sample_testingV13": {
+   "fan_in": 0,
+   "fan_out": 0
+  },
+  "ui": {
+   "fan_in": 0,
+   "fan_out": 0
+  },
+  "ui.constants": {
+   "fan_in": 2,
+   "fan_out": 2
+  },
+  "ui.debug": {
+   "fan_in": 2,
+   "fan_out": 0
+  },
+  "ui.event": {
+   "fan_in": 2,
+   "fan_out": 2
+  },
+  "ui.events": {
+   "fan_in": 2,
+   "fan_out": 2
+  },
+  "ui.events.events_devide": {
+   "fan_in": 1,
+   "fan_out": 1
+  },
+  "ui.events.events_hidden": {
+   "fan_in": 1,
+   "fan_out": 0
+  },
+  "ui.get_ui": {
+   "fan_in": 2,
+   "fan_out": 1
+  },
+  "ui.init_ui": {
+   "fan_in": 2,
+   "fan_out": 1
+  },
+  "ui.inits": {
+   "fan_in": 2,
+   "fan_out": 3
+  },
+  "ui.inits.inits_debugMsg": {
+   "fan_in": 1,
+   "fan_out": 0
+  },
+  "ui.inits.inits_funcTest": {
+   "fan_in": 1,
+   "fan_out": 0
+  },
+  "ui.inits.inits_showMsg": {
+   "fan_in": 1,
+   "fan_out": 0
+  },
+  "ui.load_ini": {
+   "fan_in": 1,
+   "fan_out": 0
+  },
+  "ui.logic": {
+   "fan_in": 2,
+   "fan_out": 0
+  },
+  "ui.navs": {
+   "fan_in": 1,
+   "fan_out": 1
+  },
+  "ui.navs.nav_loc": {
+   "fan_in": 1,
+   "fan_out": 0
+  },
+  "ui.settings": {
+   "fan_in": 2,
+   "fan_out": 1
+  },
+  "ui.structs": {
+   "fan_in": 1,
+   "fan_out": 2
+  },
+  "ui.threads": {
+   "fan_in": 2,
+   "fan_out": 0
+  },
+  "ui.times": {
+   "fan_in": 2,
+   "fan_out": 1
+  },
+  "ui.tools": {
+   "fan_in": 2,
+   "fan_out": 2
+  },
+  "ui.tools.tools_bdcalib": {
+   "fan_in": 1,
+   "fan_out": 0
+  },
+  "ui.tools.tools_burn_ymodem": {
+   "fan_in": 1,
+   "fan_out": 0
+  },
+  "通用自动测试上位机V0.90": {
+   "fan_in": 0,
+   "fan_out": 17
+  },
+  "通用自动测试上位机V0.95": {
+   "fan_in": 0,
+   "fan_out": 19
+  }
+ },
+ "external_by_module": {
+  "Automated_testingV17": [
+   "PyQt5",
+   "pyqtgraph"
+  ],
+  "Automated_testingV19": [
+   "PyQt5",
+   "pyqtgraph"
+  ],
+  "Automated_testingV20": [
+   "PyQt5",
+   "pyqtgraph"
+  ],
+  "funs.fun_chy2": [
+   "hashlib",
+   "os",
+   "pathlib",
+   "serial",
+   "shutil",
+   "struct",
+   "uuid"
+  ],
+  "funs.fun_serial": [
+   "serial",
+   "time"
+  ],
+  "ui.constants": [
+   "os",
+   "serial",
+   "time"
+  ],
+  "ui.debug": [
+   "PyQt5"
+  ],
+  "ui.event": [
+   "PyQt5",
+   "os",
+   "pandas",
+   "serial",
+   "struct",
+   "time"
+  ],
+  "ui.events.events_devide": [
+   "PyQt5"
+  ],
+  "ui.events.events_hidden": [
+   "PyQt5"
+  ],
+  "ui.get_ui": [
+   "os"
+  ],
+  "ui.init_ui": [
+   "PyQt5",
+   "datetime",
+   "numpy",
+   "os",
+   "pandas",
+   "pathlib",
+   "pyqtgraph",
+   "re",
+   "shutil",
+   "struct"
+  ],
+  "ui.inits.inits_funcTest": [
+   "PyQt5",
+   "configparser",
+   "hashlib",
+   "pathlib",
+   "uuid"
+  ],
+  "ui.load_ini": [
+   "configparser",
+   "pathlib"
+  ],
+  "ui.navs.nav_loc": [
+   "PyQt5",
+   "configparser",
+   "numpy",
+   "os",
+   "pyqtgraph",
+   "re",
+   "struct"
+  ],
+  "ui.settings": [
+   "hashlib",
+   "os",
+   "uuid"
+  ],
+  "ui.structs": [
+   "PyQt5",
+   "ctypes",
+   "numpy",
+   "pandas",
+   "serial",
+   "struct",
+   "time"
+  ],
+  "ui.threads": [
+   "os",
+   "struct",
+   "time"
+  ],
+  "ui.times": [
+   "PyQt5",
+   "os"
+  ],
+  "ui.tools.tools_bdcalib": [
+   "PyQt5",
+   "datetime",
+   "debugpy",
+   "numpy",
+   "os",
+   "pandas",
+   "re",
+   "shutil",
+   "threading"
+  ],
+  "ui.tools.tools_burn_ymodem": [
+   "PyQt5",
+   "os",
+   "serial",
+   "threading",
+   "time"
+  ],
+  "通用自动测试上位机V0.90": [
+   "PyQt5",
+   "binascii",
+   "datetime",
+   "numpy",
+   "os",
+   "pandas",
+   "pyqtgraph",
+   "serial",
+   "struct",
+   "sys",
+   "threading",
+   "time"
+  ],
+  "通用自动测试上位机V0.95": [
+   "PyQt5",
+   "binascii",
+   "datetime",
+   "numpy",
+   "os",
+   "pandas",
+   "pyqtgraph",
+   "re",
+   "serial",
+   "struct",
+   "sys",
+   "threading",
+   "time"
+  ]
+ },
+ "third_party": {
+  "PyQt5": 16,
+  "debugpy": 1,
+  "numpy": 6,
+  "pandas": 6,
+  "pyqtgraph": 7,
+  "serial": 8
+ },
+ "stdlib": {
+  "binascii": 2,
+  "configparser": 3,
+  "ctypes": 1,
+  "datetime": 4,
+  "hashlib": 3,
+  "os": 13,
+  "pathlib": 4,
+  "re": 4,
+  "shutil": 3,
+  "struct": 8,
+  "sys": 2,
+  "threading": 4,
+  "time": 8,
+  "uuid": 3
+ }
+}

@@ -1,0 +1,7 @@
+%% 模块局部调用树: ui.times (ui/times.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["MainWindowTimes.__init__<br/><small>ui.times:9</small>"]
+  f1["MainWindowTimes.update_test_time<br/><small>ui.times:18</small>"]
+  f0 -->|"call/high"| f1
+  f2["MainWindowTimes.timeEvent_test<br/><small>ui.times:27</small>"]
+  f1 ==>|"timer/high"| f2

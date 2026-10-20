@@ -1,0 +1,11 @@
+# 模块 ui.inits.inits_debugMsg  (ui/inits/inits_debugMsg.py)
+
+## <module>  L1-10  args=()  <module_body>
+
+## MainWindowInitDebugMsg.__init__  L3-7  args=(self, mw)  <constructor>
+  -> [call/high@L7] ui.inits.inits_debugMsg::MainWindowInitDebugMsg.init_debugMsg_list
+  <- [create/high@L81] 通用自动测试上位机V0.90::MainWindow.__init__
+  <- [dynamic/medium@L168] 通用自动测试上位机V0.95::MainWindow._init_modules_in_batches
+
+## MainWindowInitDebugMsg.init_debugMsg_list  L9-10  args=(self)
+  <- [call/high@L7] ui.inits.inits_debugMsg::MainWindowInitDebugMsg.__init__

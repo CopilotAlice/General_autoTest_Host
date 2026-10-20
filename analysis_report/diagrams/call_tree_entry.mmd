@@ -1,0 +1,145 @@
+%% 图3 函数调用树(局部): 自 <module> 起 depth=3; 边: -->call/create, ==>信号槽/定时器/线程(间接), -.->动态
+flowchart LR
+  f0["‹module›<br/><small>通用自动测试上位机V0.95:1</small>"]
+  f0 -->|"call/high L93"| f1
+  f0 -->|"create/high L4490"| f2
+  f1["_prepare_runtime_workdir<br/><small>通用自动测试上位机V0.95:84</small>"]
+  f1 -->|"call/high L85"| f3
+  f2["MainWindow.__init__<br/><small>通用自动测试上位机V0.95:127</small>"]
+  f2 -->|"call/high L136"| f4
+  f2 ==>|"timer/high L152"| f5
+  f3["_find_runtime_root<br/><small>通用自动测试上位机V0.95:50</small>"]
+  f4["Ui_MainWindow.setupUi<br/><small>Automated_testingV19:15</small>"]
+  f5["MainWindow.init_after_show<br/><small>通用自动测试上位机V0.95:197</small>"]
+  f5 -->|"call/high L199"| f6
+  f5 -->|"create/high L377"| f7
+  f5 ==>|"connect/high L522"| f8
+  f5 ==>|"connect/high L595"| f9
+  f5 ==>|"connect/high L608"| f10
+  f5 ==>|"connect/high L609"| f11
+  f5 ==>|"connect/high L610"| f12
+  f5 ==>|"connect/high L624"| f13
+  f5 ==>|"connect/high L625"| f14
+  f5 ==>|"connect/high L626"| f15
+  f5 ==>|"connect/high L628"| f16
+  f5 ==>|"connect/high L630"| f17
+  f5 ==>|"connect/high L632"| f18
+  f5 -->|"call/high L633"| f16
+  f5 -->|"call/high L634"| f17
+  f5 -->|"call/high L635"| f18
+  f5 ==>|"connect/high L646"| f19
+  f5 ==>|"connect/high L652"| f20
+  f5 ==>|"connect/high L654"| f21
+  f5 ==>|"connect/high L655"| f22
+  f5 ==>|"connect/high L656"| f23
+  f5 ==>|"connect/high L662"| f24
+  f5 ==>|"connect/high L663"| f25
+  f5 ==>|"connect/high L664"| f26
+  f5 ==>|"connect/high L671"| f27
+  f5 ==>|"connect/high L672"| f28
+  f5 ==>|"connect/high L673"| f29
+  f5 ==>|"connect/high L680"| f30
+  f5 ==>|"connect/high L681"| f31
+  f5 ==>|"connect/high L682"| f32
+  f5 ==>|"connect/high L688"| f33
+  f5 ==>|"connect/high L703"| f34
+  f5 ==>|"connect/high L704"| f34
+  f5 ==>|"connect/high L705"| f34
+  f5 ==>|"connect/high L706"| f35
+  f5 ==>|"connect/high L707"| f35
+  f5 ==>|"connect/high L708"| f35
+  f5 ==>|"connect/high L710"| f36
+  f5 ==>|"connect/high L711"| f37
+  f5 ==>|"connect/high L713"| f38
+  f5 ==>|"connect/high L715"| f39
+  f5 ==>|"connect/high L717"| f40
+  f5 ==>|"connect/high L719"| f41
+  f5 ==>|"connect/high L721"| f42
+  f5 ==>|"connect/high L728"| f43
+  f5 ==>|"connect/high L729"| f44
+  f5 ==>|"connect/high L731"| f45
+  f5 ==>|"connect/high L733"| f46
+  f5 ==>|"connect/high L735"| f47
+  f5 ==>|"connect/high L737"| f48
+  f5 ==>|"connect/high L740"| f49
+  f5 ==>|"connect/high L742"| f50
+  f5 ==>|"connect/high L743"| f51
+  f5 ==>|"connect/high L745"| f52
+  f5 -->|"call/high L750"| f53
+  f5 -->|"call/high L751"| f54
+  f5 -->|"call/high L752"| f55
+  f5 -->|"call/high L765"| f56
+  f5 -->|"call/high L766"| f57
+  f5 -->|"call/high L767"| f58
+  f5 -->|"call/high L768"| f59
+  f5 -->|"call/high L771"| f60
+  f5 -->|"call/high L772"| f61
+  f5 ==>|"timer/high L776"| f56
+  f5 ==>|"timer/high L780"| f57
+  f5 ==>|"timer/high L784"| f58
+  f5 ==>|"timer/high L788"| f59
+  f5 ==>|"timer/high L792"| f62
+  f5 ==>|"timer/high L797"| f10
+  f5 ==>|"timer/high L801"| f11
+  f5 ==>|"timer/high L806"| f26
+  f5 ==>|"timer/high L809"| f29
+  f5 ==>|"timer/high L812"| f32
+  f5 -->|"call/high L816"| f63
+  f6["MainWindow._init_modules_in_batches<br/><small>通用自动测试上位机V0.95:166</small>"]
+  f7["class_rule.__init__<br/><small>funs.fun_chy2:188</small>"]
+  f8["MainWindow.binding_change<br/><small>通用自动测试上位机V0.95:2702</small>"]
+  f9["MainWindow.event_update_bingding_60s<br/><small>通用自动测试上位机V0.95:1474</small>"]
+  f10["MainWindow.event_send_sate1<br/><small>通用自动测试上位机V0.95:1776</small>"]
+  f11["MainWindow.event_send_sate2<br/><small>通用自动测试上位机V0.95:1796</small>"]
+  f12["MainWindow.event_send_sate3<br/><small>通用自动测试上位机V0.95:1811</small>"]
+  f13["MainWindow.sate_send1_change_time<br/><small>通用自动测试上位机V0.95:1545</small>"]
+  f14["MainWindow.sate_send2_change_time<br/><small>通用自动测试上位机V0.95:1553</small>"]
+  f15["MainWindow.sate_send3_change_time<br/><small>通用自动测试上位机V0.95:1561</small>"]
+  f16["MainWindow.event_update_sate1<br/><small>通用自动测试上位机V0.95:1600</small>"]
+  f17["MainWindow.event_update_sate2<br/><small>通用自动测试上位机V0.95:1655</small>"]
+  f18["MainWindow.event_update_sate3<br/><small>通用自动测试上位机V0.95:1691</small>"]
+  f19["MainWindow.td_command_change<br/><small>通用自动测试上位机V0.95:1851</small>"]
+  f20["MainWindow.td_gnss_change<br/><small>通用自动测试上位机V0.95:1870</small>"]
+  f21["MainWindow.td_atmos_change<br/><small>通用自动测试上位机V0.95:1887</small>"]
+  f22["MainWindow.td_softUpdate_change<br/><small>通用自动测试上位机V0.95:1893</small>"]
+  f23["MainWindow.td_softPara_change<br/><small>通用自动测试上位机V0.95:1899</small>"]
+  f24["MainWindow.td_command_send_update<br/><small>通用自动测试上位机V0.95:1905</small>"]
+  f25["MainWindow.td_command_time_change<br/><small>通用自动测试上位机V0.95:1570</small>"]
+  f26["MainWindow.event_td_send1<br/><small>通用自动测试上位机V0.95:1828</small>"]
+  f27["MainWindow.fz_command_send_update<br/><small>通用自动测试上位机V0.95:1941</small>"]
+  f28["MainWindow.fz_command_time_change<br/><small>通用自动测试上位机V0.95:1579</small>"]
+  f29["MainWindow.event_fz_send1<br/><small>通用自动测试上位机V0.95:1923</small>"]
+  f30["MainWindow.gnss_command_send_update<br/><small>通用自动测试上位机V0.95:1996</small>"]
+  f31["MainWindow.gnss_command_time_change<br/><small>通用自动测试上位机V0.95:1588</small>"]
+  f32["MainWindow.event_gnss_send1<br/><small>通用自动测试上位机V0.95:1959</small>"]
+  f33["MainWindow.gnss_status_change<br/><small>通用自动测试上位机V0.95:1979</small>"]
+  f34["MainWindow.protocal_com_change<br/><small>通用自动测试上位机V0.95:1429</small>"]
+  f35["MainWindow.comboBox_com_change<br/><small>通用自动测试上位机V0.95:1436</small>"]
+  f36["MainWindow.update_plot_axis<br/><small>通用自动测试上位机V0.95:2732</small>"]
+  f37["MainWindow.update_double_axis<br/><small>通用自动测试上位机V0.95:2748</small>"]
+  f38["MainWindow.update_stand_axis<br/><small>通用自动测试上位机V0.95:2766</small>"]
+  f39["MainWindow.update_target_loc<br/><small>通用自动测试上位机V0.95:2789</small>"]
+  f40["MainWindow.update_target_spd<br/><small>通用自动测试上位机V0.95:2812</small>"]
+  f41["MainWindow.filenames_change<br/><small>通用自动测试上位机V0.95:1444</small>"]
+  f42["MainWindow.read_rules<br/><small>通用自动测试上位机V0.95:2422</small>"]
+  f43["MainWindow.begin_test<br/><small>通用自动测试上位机V0.95:2864</small>"]
+  f44["MainWindow.stop_test<br/><small>通用自动测试上位机V0.95:2852</small>"]
+  f45["MainWindow.binding_send<br/><small>通用自动测试上位机V0.95:1453</small>"]
+  f46["MainWindow.event_load_file<br/><small>通用自动测试上位机V0.95:2176</small>"]
+  f47["MainWindow.event_autoset_inu<br/><small>通用自动测试上位机V0.95:2148</small>"]
+  f48["MainWindow.event_reload_config<br/><small>通用自动测试上位机V0.95:2170</small>"]
+  f49["MainWindow.event_send_bingding_60s<br/><small>通用自动测试上位机V0.95:1524</small>"]
+  f50["MainWindow.event_power_on<br/><small>通用自动测试上位机V0.95:2016</small>"]
+  f51["MainWindow.event_power_off<br/><small>通用自动测试上位机V0.95:2086</small>"]
+  f52["MainWindow.change_sate_button<br/><small>通用自动测试上位机V0.95:1541</small>"]
+  f53["MainWindow.init_all_coef<br/><small>通用自动测试上位机V0.95:892</small>"]
+  f54["MainWindow._bind_plot_imu_lineedit_sync<br/><small>通用自动测试上位机V0.95:818</small>"]
+  f55["MainWindow._sync_plot_window_to_imu<br/><small>通用自动测试上位机V0.95:829</small>"]
+  f56["MainWindow.show_message_01s<br/><small>通用自动测试上位机V0.95:945</small>"]
+  f57["MainWindow.show_message_05s<br/><small>通用自动测试上位机V0.95:975</small>"]
+  f58["MainWindow.show_message_1s<br/><small>通用自动测试上位机V0.95:997</small>"]
+  f59["MainWindow.show_message_5s<br/><small>通用自动测试上位机V0.95:1397</small>"]
+  f60["MainWindow.read_default_para_com<br/><small>通用自动测试上位机V0.95:2247</small>"]
+  f61["MainWindow.read_default_para_config<br/><small>通用自动测试上位机V0.95:2282</small>"]
+  f62["MainWindow.show_message_2s<br/><small>通用自动测试上位机V0.95:1173</small>"]
+  f63["MainWindow.init_all_coef_end<br/><small>通用自动测试上位机V0.95:921</small>"]

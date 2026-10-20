@@ -1,0 +1,116 @@
+%% 模块局部调用树: ui.structs (ui/structs.py); 仅显示该模块内函数的直接调用(至多 80 条边)
+flowchart LR
+  f0["struct_general_bind.read_struct_file<br/><small>ui.structs:40</small>"]
+  f1["struct_general_bind.init_structList<br/><small>ui.structs:92</small>"]
+  f0 -->|"call/high"| f1
+  f2["try_return_format<br/><small>funs.fun_chy2:108</small>"]
+  f0 -->|"call/high"| f2
+  f3["try_return_int<br/><small>funs.fun_chy2:114</small>"]
+  f0 -->|"call/high"| f3
+  f4["try_return_checkRule<br/><small>funs.fun_chy2:123</small>"]
+  f0 -->|"call/high"| f4
+  f0 -->|"call/high"| f4
+  f0 -->|"call/high"| f4
+  f0 -->|"call/high"| f4
+  f0 -->|"call/high"| f4
+  f0 -->|"call/high"| f4
+  f0 -->|"call/high"| f4
+  f5["try_return_num<br/><small>funs.fun_chy2:117</small>"]
+  f0 -->|"call/high"| f5
+  f6["struct_general_bind.get_struct_len<br/><small>ui.structs:101</small>"]
+  f0 -->|"call/high"| f6
+  f7["struct_tab_setting.__init__<br/><small>ui.structs:110</small>"]
+  f8["struct_tab_setting.__init__.‹locals›.get_widget<br/><small>ui.structs:112</small>"]
+  f7 -->|"call/high"| f8
+  f7 -->|"call/high"| f8
+  f7 -->|"call/high"| f8
+  f7 -->|"call/high"| f8
+  f7 -->|"call/high"| f8
+  f7 -->|"call/high"| f8
+  f7 -->|"call/high"| f8
+  f9["struct_tab_setting.switch_open<br/><small>ui.structs:141</small>"]
+  f10["struct_tab_setting.get_open_flag<br/><small>ui.structs:158</small>"]
+  f9 -->|"call/high"| f10
+  f11["struct_sate.__init__<br/><small>ui.structs:166</small>"]
+  f12["struct_sate.init_sate_name<br/><small>ui.structs:208</small>"]
+  f11 -->|"call/high"| f12
+  f13["struct_sate.init_sate_titl<br/><small>ui.structs:221</small>"]
+  f11 -->|"call/high"| f13
+  f14["struct_sate.init_sate_leng<br/><small>ui.structs:253</small>"]
+  f11 -->|"call/high"| f14
+  f15["struct_sate.init_sate_zero<br/><small>ui.structs:256</small>"]
+  f11 -->|"call/high"| f15
+  f16["struct_sate.init_sate_shap<br/><small>ui.structs:259</small>"]
+  f11 -->|"call/high"| f16
+  f17["struct_sate.append_sate_receive<br/><small>ui.structs:272</small>"]
+  f18["struct_sate.replace_sate_receive<br/><small>ui.structs:276</small>"]
+  f17 -->|"call/high"| f18
+  f19["GPGGA2loc<br/><small>funs.fun_sate:1</small>"]
+  f18 -->|"call/high"| f19
+  f20["GNVTG2loc<br/><small>funs.fun_sate:21</small>"]
+  f18 -->|"call/high"| f20
+  f21["HEADINGA2loc<br/><small>funs.fun_sate:24</small>"]
+  f18 -->|"call/high"| f21
+  f22["KSXT2loc<br/><small>funs.fun_sate:26</small>"]
+  f18 -->|"call/high"| f22
+  f23["struct_turnTable3x.serial_open<br/><small>ui.structs:346</small>"]
+  f24["struct_turnTable3x.serial_close<br/><small>ui.structs:359</small>"]
+  f23 -->|"call/high"| f24
+  f25["struct_turnTable3x.append_debugMsg<br/><small>ui.structs:329</small>"]
+  f23 -->|"call/high"| f25
+  f24 -->|"call/high"| f25
+  f26["struct_turnTable3x.serial_tryRec<br/><small>ui.structs:371</small>"]
+  f26 -->|"call/high"| f25
+  f27["struct_turnTable3x.serial_try_clear<br/><small>ui.structs:384</small>"]
+  f27 -->|"call/high"| f25
+  f28["struct_turnTable3x.sendAndRec<br/><small>ui.structs:397</small>"]
+  f28 -->|"call/high"| f27
+  f28 -->|"call/high"| f25
+  f28 -->|"call/high"| f26
+  f29["struct_turnTable3x.append_showMsg<br/><small>ui.structs:336</small>"]
+  f28 -->|"call/high"| f29
+  f28 -->|"call/high"| f29
+  f28 -->|"call/high"| f29
+  f28 -->|"call/high"| f29
+  f28 -->|"call/high"| f25
+  f28 -->|"call/high"| f25
+  f28 -->|"call/high"| f29
+  f28 -->|"call/high"| f25
+  f30["struct_turnTable3x.sendMsg_chk<br/><small>ui.structs:444</small>"]
+  f30 -->|"call/high"| f28
+  f31["struct_turnTable3x.sendMsg_rem<br/><small>ui.structs:447</small>"]
+  f31 -->|"call/high"| f28
+  f32["struct_turnTable3x.sendMsg_loc<br/><small>ui.structs:450</small>"]
+  f32 -->|"call/high"| f28
+  f33["struct_turnTable3x.sendMsg_enb<br/><small>ui.structs:453</small>"]
+  f33 -->|"call/high"| f28
+  f34["struct_turnTable3x.sendMsg_dis<br/><small>ui.structs:456</small>"]
+  f34 -->|"call/high"| f28
+  f35["struct_turnTable3x.sendMsg_hmz<br/><small>ui.structs:459</small>"]
+  f35 -->|"call/high"| f28
+  f36["struct_turnTable3x.sendMsg_mod<br/><small>ui.structs:462</small>"]
+  f36 -->|"call/high"| f29
+  f36 -->|"call/high"| f25
+  f36 -->|"call/high"| f28
+  f37["struct_turnTable3x.sumCheckAscii<br/><small>ui.structs:440</small>"]
+  f36 -->|"call/high"| f37
+  f38["struct_turnTable3x.sendMsg_pos<br/><small>ui.structs:477</small>"]
+  f38 -->|"call/high"| f29
+  f38 -->|"call/high"| f25
+  f38 -->|"call/high"| f28
+  f38 -->|"call/high"| f37
+  f39["struct_turnTable3x.sendMsg_vel<br/><small>ui.structs:493</small>"]
+  f39 -->|"call/high"| f29
+  f39 -->|"call/high"| f25
+  f39 -->|"call/high"| f28
+  f39 -->|"call/high"| f37
+  f40["struct_turnTable3x.sendMsg_acc<br/><small>ui.structs:510</small>"]
+  f40 -->|"call/high"| f29
+  f40 -->|"call/high"| f28
+  f40 -->|"call/high"| f37
+  f41["struct_turnTable3x.sendMsg_run<br/><small>ui.structs:525</small>"]
+  f41 -->|"call/high"| f28
+  f42["struct_turnTable3x.sendMsg_stp<br/><small>ui.structs:528</small>"]
+  f42 -->|"call/high"| f28
+  f43["struct_turnTable3x.sendMsg_sts<br/><small>ui.structs:531</small>"]
+  f43 -->|"call/high"| f28

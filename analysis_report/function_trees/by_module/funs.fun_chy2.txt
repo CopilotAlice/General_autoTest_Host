@@ -1,0 +1,132 @@
+# 模块 funs.fun_chy2  (funs/fun_chy2.py)
+
+## <module>  L1-462  args=()  <module_body>
+
+## angular_distance  L5-6  args=(a, b)
+  <- [call/high@L3743] 通用自动测试上位机V0.90::MainWindow.begin_test_3xbd
+  <- [call/high@L3749] 通用自动测试上位机V0.90::MainWindow.begin_test_3xbd
+  <- [call/high@L4069] 通用自动测试上位机V0.95::MainWindow.begin_test_3xbd
+  <- [call/high@L4075] 通用自动测试上位机V0.95::MainWindow.begin_test_3xbd
+
+## get_machine_code  L7-10  args=()
+  => (外部库) uuid.getnode x1
+
+## calculate_td_hex  L12-28  args=(data_list)
+  => (外部库) struct.pack x2
+  <- [call/high@L1642] 通用自动测试上位机V0.90::MainWindow.td_command_send_update
+  <- [call/high@L1913] 通用自动测试上位机V0.95::MainWindow.td_command_send_update
+
+## calculate_fz_hex  L30-44  args=(data_list)
+  => (外部库) struct.pack x2
+  <- [call/high@L1678] 通用自动测试上位机V0.90::MainWindow.fz_command_send_update
+  <- [call/high@L1949] 通用自动测试上位机V0.95::MainWindow.fz_command_send_update
+
+## calculate_gnss_hex  L46-62  args=(data_list)
+  => (外部库) struct.pack x2
+  <- [call/high@L1734] 通用自动测试上位机V0.90::MainWindow.gnss_command_send_update
+  <- [call/high@L2005] 通用自动测试上位机V0.95::MainWindow.gnss_command_send_update
+
+## move_dir  L64-67  args=(src, dest)
+  => (外部库) os.makedirs x1
+  => (外部库) os.path.exists x1
+  => (外部库) shutil.move x1
+  <- [call/high@L92] funs.fun_chy2::move_dir_para_old
+
+## split_pro  L68-72  args=(data)
+
+## split_plus  L73-77  args=(data)
+  <- [call/high@L2807] 通用自动测试上位机V0.90::MainWindow.threading_receive_data
+  <- [call/high@L3096] 通用自动测试上位机V0.95::MainWindow.threading_receive_data
+  <- [call/high@L3105] 通用自动测试上位机V0.95::MainWindow.threading_receive_data
+  <- [call/high@L565] ui.event::MainWindowEvent.changeEvent_deocdeRuleToTableWidget
+
+## move_dir_para_old  L78-98  args=(from_path, skip_name)
+  -> [call/high@L92] funs.fun_chy2::move_dir
+  => (外部库) os.listdir x3
+  => (外部库) pathlib.Path x1
+  <- [call/high@L377] ui.event::MainWindowEvent.clickEvent_para_loadPath
+
+## del_empty_folder  L99-105  args=(path)  <in_cycle>
+  -> [call/high@L103] funs.fun_chy2::del_empty_folder
+  => (外部库) os.listdir x2
+  => (外部库) os.path.isdir x1
+  => (外部库) os.path.join x1
+  => (外部库) os.rmdir x1
+  <- [call/high@L103] funs.fun_chy2::del_empty_folder
+  <- [call/high@L400] ui.event::MainWindowEvent.clickEvent_para_loadPath
+
+## try_return_format  L108-113  args=(format)
+  <- [call/high@L54] ui.structs::struct_general_bind.read_struct_file
+
+## try_return_int  L114-116  args=(data, default)
+  <- [call/high@L56] ui.structs::struct_general_bind.read_struct_file
+
+## try_return_num  L117-122  args=(data, default)
+  <- [call/high@L142] funs.fun_chy2::try_return_bdx
+  <- [call/high@L85] ui.structs::struct_general_bind.read_struct_file
+
+## try_return_checkRule  L123-133  args=(data, default)
+  <- [call/high@L59] ui.structs::struct_general_bind.read_struct_file
+  <- [call/high@L62] ui.structs::struct_general_bind.read_struct_file
+  <- [call/high@L65] ui.structs::struct_general_bind.read_struct_file
+  <- [call/high@L68] ui.structs::struct_general_bind.read_struct_file
+  <- [call/high@L71] ui.structs::struct_general_bind.read_struct_file
+  <- [call/high@L74] ui.structs::struct_general_bind.read_struct_file
+  <- [call/high@L77] ui.structs::struct_general_bind.read_struct_file
+
+## try_return_bdx  L134-142  args=(data, default)
+  -> [call/high@L142] funs.fun_chy2::try_return_num
+  <- [call/high@L146] ui.event::MainWindowEvent.changeEvent_general_bind_table
+  <- [call/high@L148] ui.event::MainWindowEvent.changeEvent_general_bind_table
+
+## try_return_check  L143-162  args=(data, type)
+  <- [call/high@L151] ui.event::MainWindowEvent.changeEvent_general_bind_table
+  <- [call/high@L174] ui.event::MainWindowEvent.changeEvent_general_bind_table
+  <- [call/high@L184] ui.event::MainWindowEvent.changeEvent_general_bind_table
+  <- [call/high@L195] ui.event::MainWindowEvent.changeEvent_general_bind_table
+  <- [call/high@L205] ui.event::MainWindowEvent.changeEvent_general_bind_table
+
+## try_int  L163-166  args=(data)
+  <- [call/high@L70] ui.settings::MainWindowSetting.init_read_para
+  <- [call/high@L101] ui.settings::MainWindowSetting.init_read_root
+
+## check2serial  L167-170  args=(data)
+  <- [call/high@L630] ui.event::MainWindowEvent.clickEvent_decodeShow_tryReceive
+
+## try_int_data  L171-175  args=(data, default)
+  <- [call/high@L282] funs.fun_chy2::class_rule.read_rule_file
+
+## try_float_data  L176-180  args=(data, default)
+
+## try_hex_data  L181-185  args=(data, default)
+  <- [call/high@L287] funs.fun_chy2::class_rule.read_rule_file
+
+## class_rule.__init__  L188-239  args=(self)  <constructor>
+  <- [create/high@L281] 通用自动测试上位机V0.90::MainWindow.__init__
+  <- [create/high@L1963] 通用自动测试上位机V0.90::MainWindow.event_load_file
+  <- [create/high@L377] 通用自动测试上位机V0.95::MainWindow.init_after_show
+  <- [create/high@L2241] 通用自动测试上位机V0.95::MainWindow.event_load_file
+
+## class_rule.reset_debug  L240-244  args=(self)
+
+## class_rule.read_rule_file  L246-314  args=(self, files, filename)
+  -> [call/high@L282] funs.fun_chy2::try_int_data
+  -> [call/high@L287] funs.fun_chy2::try_hex_data
+  -> [call/high@L311] funs.fun_chy2::class_rule.update_decode_rules
+  -> [call/high@L312] funs.fun_chy2::class_rule.update_rule_length
+  -> [call/high@L313] funs.fun_chy2::class_rule.float_para_list
+  <- [call/medium@L1964] 通用自动测试上位机V0.90::MainWindow.event_load_file
+  <- [call/medium@L2242] 通用自动测试上位机V0.95::MainWindow.event_load_file
+
+## class_rule.update_decode_rules  L316-317  args=(self)
+  <- [call/high@L311] funs.fun_chy2::class_rule.read_rule_file
+
+## class_rule.update_rule_length  L318-319  args=(self)
+  => (外部库) struct.calcsize x1
+  <- [call/high@L312] funs.fun_chy2::class_rule.read_rule_file
+
+## class_rule.float_para_list  L320-334  args=(self)
+  <- [call/high@L313] funs.fun_chy2::class_rule.read_rule_file
+
+## class_rule.decode_hex_data  L335-359  args=(self, hex_data)
+  => (外部库) struct.unpack x1
